@@ -206,6 +206,11 @@ namespace Banshee.MediaEngine.Gstreamer
         public override IEnumerable SourceCapabilities {
             get { return source_capabilities; }
         }
+                
+        private static string [] decoder_capabilities = { "wma", "asf", "flac" };
+        public override IEnumerable ExplicitDecoderCapabilities {
+            get { return decoder_capabilities; }
+        }
         
         [DllImport("libbanshee")]
         private static extern IntPtr gst_playback_new();
@@ -377,6 +382,11 @@ namespace Banshee.MediaEngine.Gstreamer
         private static string [] source_capabilities = { "file", "http", "cdda" };
         public override IEnumerable SourceCapabilities {
             get { return source_capabilities; }
+        }
+                
+        private static string [] decoder_capabilities = { "wma", "asf", "flac" };
+        public override IEnumerable ExplicitDecoderCapabilities {
+            get { return decoder_capabilities; }
         }
         
         [DllImport("libbanshee")]

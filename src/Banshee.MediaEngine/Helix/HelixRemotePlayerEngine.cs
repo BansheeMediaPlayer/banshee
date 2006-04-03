@@ -40,24 +40,38 @@ namespace Banshee.MediaEngine.Helix
     {
         private RemotePlayer player;
         private uint timeout_id;
+        private uint ping_id;
         
         public HelixRemotePlayerEngine()
         {
             player = RemotePlayer.Connect();
             player.Stop();
             player.Message += OnRemotePlayerMessage;
+            
+            ping_id = GLib.Timeout.Add(5000, delegate {
+                if(player == null) {
+                    return false;
+                }
+                
+                player.Ping();
+                return true;
+            });
         }
         
         public override void Dispose()
         {
             base.Dispose();
             player.Dispose();
+            player = null;
+            GLib.Source.Remove(ping_id);
         }
                 
         protected override void OpenUri(Uri uri)
         {
-            player.OpenUri(uri.AbsoluteUri);
-            
+            if(!player.OpenUri(uri.AbsoluteUri)) {
+                throw new ApplicationException("Cannot open URI");
+            }
+
             timeout_id = GLib.Timeout.Add(500, delegate {
                 if(CurrentState == PlayerEngineState.Playing) {
                     OnEventChanged(PlayerEngineEvent.Iterate);
@@ -151,6 +165,11 @@ namespace Banshee.MediaEngine.Helix
         private static string [] source_capabilities = { "file" };
         public override IEnumerable SourceCapabilities {
             get { return source_capabilities; }
+        }
+        
+        private static string [] decoder_capabilities = { "m4a", "mp3" };
+        public override IEnumerable ExplicitDecoderCapabilities {
+            get { return decoder_capabilities; }
         }
     }
 }

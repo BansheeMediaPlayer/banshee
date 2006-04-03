@@ -68,6 +68,23 @@ struct GstPlayback {
 
 // private methods
 
+static void
+gst_playback_destroy_pipeline(GstPlayback *engine)
+{
+    g_return_if_fail(IS_GST_PLAYBACK(engine));
+    
+    if(engine->playbin == NULL) {
+        return;
+    }
+    
+    if(GST_IS_ELEMENT(engine->playbin)) {
+        gst_element_set_state(engine->playbin, GST_STATE_NULL);
+        gst_object_unref(GST_OBJECT(engine->playbin));
+    }
+    
+    engine->playbin = NULL;
+}
+
 static gboolean
 gst_playback_bus_callback(GstBus *bus, GstMessage *message, gpointer data)
 {
@@ -79,6 +96,8 @@ gst_playback_bus_callback(GstBus *bus, GstMessage *message, gpointer data)
         case GST_MESSAGE_ERROR: {
             GError *error;
             gchar *debug;
+            
+            gst_playback_destroy_pipeline(engine);
             
             if(engine->error_cb != NULL) {
                 gst_message_parse_error(message, &error, &debug);
@@ -380,6 +399,10 @@ gst_playback_open(GstPlayback *engine, const gchar *uri)
     
     g_return_if_fail(IS_GST_PLAYBACK(engine));
     
+    if(engine->playbin == NULL && !gst_playback_construct(engine)) {
+        return;
+    }
+
     if(uri != NULL && g_str_has_prefix(uri, "cdda://")) {
         const gchar *p = g_utf8_strchr(uri, -1, '#');
         const gchar *new_cdda_device;

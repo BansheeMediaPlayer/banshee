@@ -454,7 +454,6 @@ namespace Banshee
             SetTip(previous_button, Catalog.GetString("Play previous song"));
             SetTip(playpause_button, Catalog.GetString("Play/pause current song"));
             SetTip(next_button, Catalog.GetString("Play next song"));
-            SetTip(seek_slider, Catalog.GetString("Current position in song"));
             SetTip(dapDiskUsageBar, Catalog.GetString("Device disk usage"));
             SetTip(sync_dap_button, Catalog.GetString("Synchronize music library to device"));
             SetTip(volumeButton, Catalog.GetString("Adjust volume"));

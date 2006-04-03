@@ -202,6 +202,19 @@ namespace Banshee.Base
         private static void FindSupportingEngine(Uri uri)
         {
             foreach(PlayerEngine engine in engines) {
+                foreach(string extension in engine.ExplicitDecoderCapabilities) {
+                    if(!uri.AbsoluteUri.EndsWith(extension)) {
+                        continue;
+                    } else if(active_engine != engine) {
+                        Close();
+                        pending_engine = engine;
+                        Console.WriteLine("Switching engine to: " + engine.GetType());
+                    }
+                    return;
+                }
+            }
+        
+            foreach(PlayerEngine engine in engines) {
                 foreach(string scheme in engine.SourceCapabilities) {
                     bool supported = scheme == uri.Scheme;
                     if(supported && active_engine != engine) {

@@ -263,6 +263,10 @@ namespace Banshee.MediaEngine
             get;
         }
         
+        public abstract IEnumerable ExplicitDecoderCapabilities {
+            get;
+        }
+        
         public abstract string Id {
             get;
         }

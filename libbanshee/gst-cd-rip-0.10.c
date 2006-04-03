@@ -98,8 +98,6 @@ gst_cd_ripper_iterate_timeout(GstCdRipper *ripper)
     GstState state;
     gint64 position;
     
-    static int calls = 0;
-    
     g_return_val_if_fail(ripper != NULL, FALSE);
 
     gst_element_get_state(ripper->pipeline, &state, NULL, 0);
@@ -190,7 +188,7 @@ static GstElement *
 gst_cd_ripper_build_encoder(const gchar *encoder_pipeline)
 {
     GstElement *encoder = NULL;
-    gchar *pipeline;
+    gchar *pipeline = NULL;
     GError *error = NULL;
     
     // FIXME: ugly
@@ -198,7 +196,26 @@ gst_cd_ripper_build_encoder(const gchar *encoder_pipeline)
         && strstr(encoder_pipeline, "oggmux") == NULL) {
         g_warning("vorbisenc added without oggmux, attempting to insert oggmux element in pipeline");
         pipeline = g_strdup_printf("audioconvert ! %s ! oggmux", encoder_pipeline);
-    } else {
+    } else if((strstr(encoder_pipeline, "lame") != NULL || strstr(encoder_pipeline, "xingenc") != NULL) &&
+        strstr(encoder_pipeline, "id3mux") == NULL) {
+        const gchar *muxer_names [] = { "taglibid3mux", "id3mux", NULL};
+        gint i;
+        
+        for(i = 0; muxer_names[i] != NULL; i++) {
+            GstElementFactory *id3mux = gst_element_factory_find(muxer_names[i]);
+            if(id3mux == NULL) {
+                continue;
+            }
+            
+            g_warning("MP3 encoder added without %s, attempting to insert %s element in pipeline",
+                muxer_names[i], muxer_names[i]);
+            pipeline = g_strdup_printf("audioconvert ! %s ! %s", encoder_pipeline, muxer_names[i]);
+            gst_object_unref(GST_OBJECT(id3mux));
+            break;
+        }
+    }
+    
+    if(pipeline == NULL) {
         pipeline = g_strdup_printf("audioconvert ! %s", encoder_pipeline);
     }
     

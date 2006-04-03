@@ -39,7 +39,16 @@ namespace Banshee.Gstreamer
         
         public static bool TestEncoder(string pipeline)
         {
+            if(pipeline == null || pipeline == String.Empty) {
+                return false;
+            }
+        
             IntPtr pipeline_ptr = GLib.Marshaller.StringToPtrGStrdup(pipeline);
+            
+            if(pipeline_ptr == IntPtr.Zero) {
+                return false;
+            }
+            
             try {
                 return gstreamer_test_encoder(pipeline_ptr);
             } finally {

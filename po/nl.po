@@ -1,17 +1,17 @@
 # Banshee Dutch Translation
 # Copyright (C) 2005 Aaron Bockover, Novell
 # This file is distributed under the same license as the Banshee package.
-#
-# Stijn Verslycken <mailstijn@gmail.com>, 2005
-# Wouter Bolsterlee <uws+gnome@xs4all.nl>, 2006
+# Stijn Verslycken <mailstijn@gmail.com>, 2005.
+# , fuzzy
+# 
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: Banshee\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2005-09-16 15:18+0200\n"
-"PO-Revision-Date: 2006-03-27 23:53+0200\n"
-"Last-Translator: Wouter Bolsterlee <uws+gnome@xs4all.nl>\n"
+"PO-Revision-Date: 2005-09-16 23:41+0200\n"
+"Last-Translator: Stijn Verslycken <mailstijn@gmail.com>\n"
 "Language-Team: Dutch <vertaling@vrijschrift.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -28,14 +28,16 @@ msgid "Music Player"
 msgstr "Muziekspeler"
 
 #: ../data/banshee.schemas.in.h:1
+#, fuzzy
 msgid "Copy and rename music to banshee music library directory when importing"
-msgstr "Muziek kopiëren naar de Banshee muziekmap bij importeren (en hernoemen)"
+msgstr "Tijdens het importeren naar muziekbibliotheek muziek kopiëren en hernoemen"
 
 #: ../data/banshee.schemas.in.h:2
 msgid "Copy music on import"
-msgstr "Muziek kopiëren bij importeren"
+msgstr "Muziek kopiëren tijdens importeren"
 
 #: ../data/banshee.schemas.in.h:3
+#, fuzzy
 msgid "File Name Pattern"
 msgstr "Bestandsnaampatroon"
 
@@ -48,52 +50,55 @@ msgid ""
 "track_count%, %track_number_nz% (No prefixed zero), %track_count_nz% (No "
 "prefixed zero)."
 msgstr ""
-"Formaat voor het aanmaken van bestandsnamen/mappen voor geripte " 
-"nummers, geïmporteerde muziek, etc. Het formaat is relatief ten " 
-"opzichte van de Banshee muziekmap... gebruik geen absoluut pad! " 
-"Codewoorden: %artist%, %album%, %title%, %track_number%, " 
-"%track_count%, %track_number_nz% (Geen nul vooraan), " 
-"%track_count_nz% (Geen nul vooraan)."
+"Formaat voor het aanmaken van bestandsnamen/mappen voor geripte nummers, geïmporteerde muziek, "
+"etc. Het formaat is relatief ten opzichte van de Banshee muziekbibliotheek... plaats geen "
+"absoluut pad! Delen: %artist%, %album%, %title%, %track_number%, %"
+"track_count%, %track_number_nz% (Geen nul vooraan), %track_count_nz% (Geen "
+"nul vooraan)."
 
 #: ../data/banshee.schemas.in.h:6
 msgid "Height of Main Player Window."
-msgstr "Hoogte van het hoofdvenster."
+msgstr "Hoogte van het hoofd-afspeelvenster."
 
 #: ../data/banshee.schemas.in.h:7
+#, fuzzy
 msgid "Name of media playback engine."
-msgstr "Naam van de afspeelmotor."
+msgstr "Naam van het media-afspeelelement."
 
 #: ../data/banshee.schemas.in.h:8
 msgid "Pixel position of Main Player Window on the X Axis"
-msgstr "Pixel-positie van het hoofdvenster op de x-as."
+msgstr "Pixel-positie van het hoofd-afspeelvenster op de x-as."
 
 #: ../data/banshee.schemas.in.h:9
 msgid "Pixel position of Main Player Window on the Y Axis"
-msgstr "Pixel-positie van het hoofdvenster op de y-as."
+msgstr "Pixel-positie van het hoofd-afspeelvenster op de y-as."
 
 #: ../data/banshee.schemas.in.h:10
+#, fuzzy
 msgid "Player Engine Name"
-msgstr "Naam van de afspeelmotor"
+msgstr "Naam van het afspeelelement"
 
 #: ../data/banshee.schemas.in.h:11
 msgid "Source View Width"
 msgstr "Breedte bronweergave"
 
 #: ../data/banshee.schemas.in.h:12
+#, fuzzy
 msgid "Volume Output Level"
-msgstr "Geluidsniveau"
+msgstr "Uitgaand volume"
 
 #: ../data/banshee.schemas.in.h:13
+#, fuzzy
 msgid ""
 "Volume of playback relative to mixer output (except on Helix, which sets "
 "volume directly on PCM"
 msgstr ""
-"Geluidsniveau, relatief ten opzichte van de mixeruitgang (behalve " 
-"voor Helix; deze gebruikt het volume van PCM)"
+"Volume relatief ten opzichte van de mixeruitgang (behalve voor Helix, deze stelt"
+"het volume in op PCM"
 
 #: ../data/banshee.schemas.in.h:14
 msgid "Width of Main Player Window."
-msgstr "Breedte van het hoofdvenster"
+msgstr "Breedte van het hoofd-afspeelvenster"
 
 #: ../data/banshee.schemas.in.h:15
 msgid "Width of Source View Comlumn."
@@ -129,7 +134,7 @@ msgstr "Snelle info"
 
 #: ../data/glade/about.glade.h:4
 msgid "Version Information"
-msgstr "Versie-informatie"
+msgstr "Versie-info"
 
 #: ../data/glade/player.glade.h:1
 msgid "<b>Playlist</b>"
@@ -141,11 +146,11 @@ msgstr "<span size=\"small\">Gestopt</span>"
 
 #: ../data/glade/player.glade.h:3
 msgid "Add Selelected Songs"
-msgstr "Geselecteerde nummers toevoegen"
+msgstr "Voeg geselecteerde nummers toe"
 
 #: ../data/glade/player.glade.h:4
 msgid "Add To Playlist"
-msgstr "Aan afspeellijst toevoegen"
+msgstr "Voeg toe aan afspeellijst"
 
 #: ../data/glade/player.glade.h:5 ../libbanshee/cd-rip.c:227
 #: ../src/NotificationAreaIcon.cs:61
@@ -235,7 +240,7 @@ msgstr "<b>Geavanceerde instellingen</b>"
 
 #: ../data/glade/preferences.glade.h:2
 msgid "<b>Banshee Music Folder Location</b>"
-msgstr "<b>Lokatie Banshee muziekmap</b>"
+msgstr "<b>Locatie Banshee muziekmap</b>"
 
 #: ../data/glade/preferences.glade.h:3
 msgid "<b>CD Burning</b>"
@@ -246,18 +251,21 @@ msgid "<b>CD Ripping</b>"
 msgstr "<b>CD rippen</b>"
 
 #: ../data/glade/preferences.glade.h:5
+#, fuzzy
 msgid "<b>Playback Engines</b>"
-msgstr "<b>Afspeelmotoren</b>"
+msgstr "<b>Afspeelelementen</b>"
 
 #: ../data/glade/preferences.glade.h:6
+#, fuzzy
 msgid "<b>iPod Transcoding</b>"
-msgstr "<b>Omzetting voor iPod</b>"
+msgstr "<b>Omzetten voor iPod</b>"
 
 #: ../data/glade/preferences.glade.h:7
 msgid "<small>Advanced</small>"
 msgstr "<small>Geavanceerd</small>"
 
 #: ../data/glade/preferences.glade.h:8
+#, fuzzy
 msgid "<small>Burning</small>"
 msgstr "<small>Branden</small>"
 
@@ -274,6 +282,7 @@ msgid "Audio CD"
 msgstr "Audio-cd"
 
 #: ../data/glade/preferences.glade.h:12
+#, fuzzy
 msgid "Burnproof"
 msgstr "Brandbestendig"
 
@@ -282,8 +291,9 @@ msgid "Change"
 msgstr "Veranderen"
 
 #: ../data/glade/preferences.glade.h:14
+#, fuzzy
 msgid "Copy files to Banshee Music Folder when importing to Library"
-msgstr "Bestanden bij importeren naar de Banshee muziekmap kopiëren"
+msgstr "Bestanden tijdens het importeren naar de bibliotheek naar de Banshee muziekmap kopiëren"
 
 #: ../data/glade/preferences.glade.h:15
 msgid "Data CD"
@@ -293,8 +303,8 @@ msgstr "Data-cd"
 msgid "Description:"
 msgstr "Beschrijving:"
 
-# Onvertaald laten lijkt me het best (Wouter Bolsterlee)
 #: ../data/glade/preferences.glade.h:17
+#, fuzzy
 msgid "Disk At Once"
 msgstr "Disk At Once"
 
@@ -308,21 +318,23 @@ msgstr "Schijfformaat:"
 
 #: ../data/glade/preferences.glade.h:20
 msgid "Eject When Finished"
-msgstr "Na afloop uitwerpen"
+msgstr "Uitwerpen wanneer klaar"
 
 #: ../data/glade/preferences.glade.h:21
 msgid "Encoding Profile:"
 msgstr "Coderingsprofiel:"
 
 #: ../data/glade/preferences.glade.h:22
+#, fuzzy
 msgid "Engine:"
-msgstr "Motor:"
+msgstr "Engine:"
 
 #: ../data/glade/preferences.glade.h:23
 msgid "MP3 CD"
 msgstr "MP3-cd"
 
 #: ../data/glade/preferences.glade.h:24
+#, fuzzy
 msgid "Overburn"
 msgstr "Overburn"
 
@@ -376,39 +388,43 @@ msgstr "Titel"
 
 #: ../data/glade/trackinfo.glade.h:9
 msgid "Track Count"
-msgstr "Aantal tracks"
+msgstr "Telling track"
 
 #: ../data/glade/trackinfo.glade.h:10
 msgid "Track Duration:"
-msgstr "Track-lengte"
+msgstr "Duur track"
 
 #: ../data/glade/trackinfo.glade.h:11
 msgid "Track Number"
-msgstr "Track-nummer"
+msgstr "Nummer track"
 
 #: ../data/glade/trackinfo.glade.h:12
 msgid "Track Properties"
-msgstr "Track-eigenschappen"
+msgstr "Eigenschappen track"
 
 #: ../libbanshee/cd-rip.c:85
+#, fuzzy
 msgid "Could not create pipeline"
-msgstr "Aanmaken pipeline mislukt"
+msgstr "Aanmaken pijlijn faalde"
 
 #: ../libbanshee/cd-rip.c:94
 msgid "Could not initialize cdparanoia"
 msgstr "Initialisatie cdparanoia faalde"
 
 #: ../libbanshee/cd-rip.c:107
+#, fuzzy
 msgid "Could not create encoder pipeline"
-msgstr "Aanmaken encoder-pipeline mislukt"
+msgstr "Aanmaken encoder pijpelijn faalde"
 
 #: ../libbanshee/cd-rip.c:113
+#, fuzzy
 msgid "Could not create GNOME VFS File Sink"
-msgstr "Aanmaken van GNOME VFS File Sink mislukt"
+msgstr "Aanmaken GNOME VFS File Sink faalde"
 
 #: ../libbanshee/cd-rip.c:128
+#, fuzzy
 msgid "Could not link pipeline elements"
-msgstr "Verbinden pipelinie-elementen mislukt"
+msgstr "Verbinden pijplijnelementen faalde"
 
 #: ../libbanshee/cd-rip.c:241
 msgid "Encoding element does not support tagging!"
@@ -416,76 +432,78 @@ msgstr "Coderingselement ondersteunt geen tags!"
 
 #: ../libbanshee/cd-rip.c:251
 msgid "Could not send seek event to cdparanoia"
-msgstr "Verzenden zoekactie naar cdparanoia mislukt"
+msgstr "Verzenden zoekactie naar cdparanoia faalde"
 
 #: ../libbanshee/cd-rip.c:257
 msgid "Could not get track start position"
-msgstr "Opzoeken startpositie track mislukt"
+msgstr "Opzoeken startpositie track faalde"
 
 #: ../libbanshee/cd-rip.c:271
 msgid "Could not get track position"
-msgstr "Opzoeken trackpositie mislukt"
+msgstr "Opzoeken trackpositie faalde"
 
 #: ../libbanshee/gst-encode.c:109
 msgid "Could not create 'gnomevfssrc' element"
-msgstr "Aanmaken 'gnomevfssrc'-element mislukt"
+msgstr "Aanmaken 'gnomevfssrc'-element faalde"
 
 #: ../libbanshee/gst-encode.c:115
 msgid "Could not create 'spider' element"
-msgstr "Aanmaken 'spider'-element mislukt"
+msgstr "Aanmaken 'spider'-element faalde"
 
 #: ../libbanshee/gst-encode.c:122
-#, c-format
+#, fuzzy, c-format
 msgid "Could not create encoding pipeline: %s"
-msgstr "Aanmaken encoding-pipeline mislukt: %s"
+msgstr "Aanmaken encoding pijplijn faalde: %s"
 
 #: ../libbanshee/gst-encode.c:128
 msgid "Could not create 'filesink' element"
-msgstr "Aanmaken 'filesink'-element mislukt"
+msgstr "Aanmaken 'filesink'-element faalde"
 
 #: ../libbanshee/gst-encode.c:206
 msgid "No decoder could be found for source format."
-msgstr "Geen decoder voor bronformaat gevonden"
+msgstr "Geen decoder gevonden voor bronformaat"
 
 #: ../libbanshee/gst-encode.c:211
 msgid "Could not stat encoded file"
-msgstr "Bepalen status van gecodeerd bestand mislukt"
+msgstr "Bepalen status gecodeerd bestand faalde"
 
 #: ../mediaengines/gst/GstPlayerEngine.cs:129
 msgid "Could not initialize GStreamer library"
-msgstr "Initialisatie GStreamer-bibliotheek mislukt"
+msgstr "Initialisatie GStraemer-bibliotheek faalde"
 
 #: ../mediaengines/gst/GstPlayerEngine.cs:332
+#, fuzzy
 msgid "GStreamer Engine"
-msgstr "GStreamer motor"
+msgstr "GSteamer afspeelelement"
 
 #: ../mediaengines/gst/GstPlayerEngine.cs:343
+#, fuzzy
 msgid ""
 "GStreamer is a multimedia framework for playing and xmanipulating media. Any "
 "GStreamer plugin that is available will work through this engine."
 msgstr ""
-"GStreamer is een multimedia-raamwerk voor het afspelen en " 
-"manipuleren van media. Elke beschibare Gstreamer-plugin zal werken " 
-"met deze motor."
+"GStreamer is een multimedia-raamwerk voor het afspelen en manipuleren van media. Elke "
+"Gstreamer-plugin beschikbaar zal werken met dit afspeelelement."
 
 #: ../mediaengines/helix/HelixPlayer.cs:79
+#, fuzzy
 msgid "Helix Framework Engine (hxclientkit)"
-msgstr "Helix Framework-motor (hxclientkit)"
+msgstr "Helix raamwerk afspeelelement (hxclientkit)"
 
 #: ../mediaengines/helix/HelixPlayer.cs:87
+#, fuzzy
 msgid ""
 "The Helix Engine provides multimedia control through the Helix Multimedia "
 "Framework, sponsored by RealNetworks. The engine can play any file that "
 "RealPlayer can. Install RealPlayer for best results."
 msgstr ""
-"D Helix-motor biedt multimediaondersteuning met behulp van het Helix " 
-"multimedia-raamwerk, gesponsord door RealNetworks. Het " 
-"afspeelelement kan ieder bestand afspelen dat RealPlayer kan " 
-"afspelen. Installeer de RealPlayer voor de beste resultaten."
+"Het Helix afspeelelement voorziet multimediabesturing met behulp van het Helix multimedia-raamwerk, "
+"gesponsord door RealNetworks. Het afspeelelement kan ieder bestand afspelen dat "
+"RealPlayer kan afspelen. Installeer de RealPlayer voor de beste resultaten."
 
 #: ../plugincore/TrackInfo.cs:143 ../src/AudioCdCore.cs:245
 msgid "Unknown Artist"
-msgstr "Onbekende artiest"
+msgstr "Onbekend artiest"
 
 #: ../plugincore/TrackInfo.cs:148 ../src/AudioCdCore.cs:246
 msgid "Unknown Album"
@@ -501,20 +519,21 @@ msgid "Track {0}"
 msgstr "Track {0}"
 
 #: ../src/AudioCdCore.cs:392
+#, fuzzy
 msgid "Could not initialize HAL for CD Detection"
-msgstr "Initialisatie HAL voor cd-herkenning mislukt"
+msgstr "Initialisatie HAL voor cd-herkenning faalde"
 
 #: ../src/BurnCore.cs:89
 msgid "Could Not Burn CD"
-msgstr "CD branden mislukt"
+msgstr "Branden cd faalde"
 
 #: ../src/BurnCore.cs:90
 msgid ""
 "No suitable wave encoder could be found to convert selected songs to CD "
 "audio format."
 msgstr ""
-"Er is geen geschikte wave-encoder gevonden om de geselecteerde " 
-"nummers om te zetten naar cd-audioformaat"
+"Er werd geen geschikte wave-encoder gevonden om de geselecteerde nummers om te zetten naar "
+"cd-audioformaat"
 
 #: ../src/BurnCore.cs:147
 msgid "Banshee CD Burner"
@@ -522,7 +541,7 @@ msgstr "Banshee cd-brander"
 
 #: ../src/BurnCore.cs:177
 msgid "Burning CD..."
-msgstr "Bezig met branden van de cd..."
+msgstr "Bezig met branden cd"
 
 #: ../src/BurnCore.cs:240 ../src/BurnCore.cs:243
 msgid "Cancel CD Burn?"
@@ -538,7 +557,7 @@ msgstr "Brander initialiseren..."
 
 #: ../src/BurnCore.cs:378
 msgid "The inserted media is not large enough to hold your selected music."
-msgstr "Het medium heeft niet voldoende vrije ruimte voor de geselecteerde muziek."
+msgstr "Het medium heeft niet voldoende ruimte vrij voor uw geselecteerde muziek."
 
 #: ../src/BurnCore.cs:380
 #, csharp-format
@@ -565,7 +584,7 @@ msgstr "Een onbekende fout trad op bij het beschrijven van de cd"
 
 #: ../src/BurnCore.cs:501 ../src/BurnCore.cs:507
 msgid "Data Loss Warning"
-msgstr "Waarschuwing over gegevensverlies"
+msgstr "Waarschuwing gegevensverlies"
 
 #: ../src/BurnCore.cs:503
 msgid ""
@@ -574,20 +593,20 @@ msgid ""
 "\n"
 "Would you like to continue?"
 msgstr ""
-"Een poging om deze collectie te branden kan dataverlies opleveren. De "
-"geselecteerde collectie past mogelijk niet op het medium.\n"
-"\n"
-"Wilt u toch verder gaan?"
+"Een poging om deze collectie te branden kan dataverlies opleveren. De geselecteerde "
+"collectie past mogelijk niet op het medium.\n"
+"Wilt u verder gaan?"
 
 #: ../src/BurnCore.cs:532
 msgid "Preparing to write..."
-msgstr "Schrijfbewerking voorbereiden..."
+msgstr "Schrijfbewerking voorbereiden"
 
 #: ../src/BurnCore.cs:536
 msgid "Writing disk..."
 msgstr "Schijf beschrijven..."
 
 #: ../src/BurnCore.cs:540
+#, fuzzy
 msgid "Fixating disk..."
 msgstr "Fixeren schijf..."
 
@@ -601,19 +620,19 @@ msgstr "Plaats een lege cd"
 
 #: ../src/BurnCore.cs:570
 msgid "Please insert a blank CD disk for the burn process."
-msgstr "Plaats een lege cd om te beschrijven."
+msgstr "Gelieve een lege cd te plaatsen om te beschrijven."
 
 #: ../src/BurnCore.cs:606
 msgid "Error Burning Disk"
-msgstr "Branden cd mislukt"
+msgstr "Branden cd faalde"
 
 #: ../src/BurnCore.cs:628 ../src/BurnCore.cs:631
 msgid "CD Burning Complete"
-msgstr "Branden van de cd voltooid"
+msgstr "Branden cd voltooid"
 
 #: ../src/BurnCore.cs:629
 msgid "The selected audio was successfully written to the CD."
-msgstr "De geselecteerde muziek is met succes op de cd geschreven"
+msgstr "De geselecteerde audio is met succes op de cd geschreven"
 
 #: ../src/FileEncodeTransaction.cs:60
 msgid "File Encoder"
@@ -621,27 +640,27 @@ msgstr "Bestands-encoder"
 
 #: ../src/FileEncodeTransaction.cs:68
 msgid "Initializing Encoder..."
-msgstr "Encoder initialiseren..."
+msgstr "Encoder initialiseren"
 
 #: ../src/FileEncodeTransaction.cs:85
 #, csharp-format
 msgid "Encoding {0} - {1} ..."
-msgstr "Bezig met coderen van {0} - {1}..."
+msgstr "Coderen {0} - {1} ..."
 
 #: ../src/GstFileEncoder.cs:67
 msgid "Could not create encoder"
-msgstr "Aanmaken encoder mislukt"
+msgstr "Aanmaken encoder faalde"
 
 #: ../src/GstFileEncoder.cs:87
 #, csharp-format
 msgid "Could not encode file: {0}"
-msgstr "Bestand coderen mislukt: {0}"
+msgstr "Bestand coderen faalde: {0}"
 
 #. Translators: {0} is the name assigned to an iPod by its owner
 #: ../src/IpodPropertiesWindow.cs:98
 #, csharp-format
 msgid "{0} Properties"
-msgstr "Eigenschappen {0}"
+msgstr "{0} Eigenschappen"
 
 #: ../src/IpodPropertiesWindow.cs:115 ../src/IpodPropertiesWindow.cs:123
 msgid "iPod Name"
@@ -672,8 +691,9 @@ msgid "Mount Point"
 msgstr "Koppelpunt"
 
 #: ../src/IpodPropertiesWindow.cs:142
+#, fuzzy
 msgid "Device Node"
-msgstr "Apparaatnode"
+msgstr "Apparaat"
 
 #: ../src/IpodPropertiesWindow.cs:143
 msgid "Write Support"
@@ -685,7 +705,7 @@ msgstr "Ja"
 
 #: ../src/IpodPropertiesWindow.cs:144
 msgid "No"
-msgstr "Nee"
+msgstr "Neen"
 
 #: ../src/IpodPropertiesWindow.cs:145
 msgid "Volume UUID"
@@ -741,9 +761,7 @@ msgid ""
 "There are multiple operations executing. You may either cancel the current "
 "operation or all operations.\n"
 "\n"
-msgstr ""
-"Er zijn meerdere operaties bezig. U kan de huidige operatie of alle " 
-"operaties annuleren.\n"
+msgstr "Er zijn meerdere operaties bezig. U kan de huidige operatie of alle operaties annuleren.\n"
 "\n"
 
 #: ../src/LibraryTransactionStatus.cs:207

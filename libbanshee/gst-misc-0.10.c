@@ -75,35 +75,16 @@ gst_typefind_type_found_callback(GstElement *typefind, guint probability,
     *type = gst_caps_to_string(caps);    
 }
 
-static gboolean
-gst_typefind_bus_callback(GstBus *bus, GstMessage *message, gpointer data)
-{
-    gchar **out = data;
-
-    switch(GST_MESSAGE_TYPE(message)) {
-        case GST_MESSAGE_ERROR:
-        case GST_MESSAGE_EOS:
-            *out = (gchar *)-1;
-            break;
-        default:
-            break;
-    }
-    
-    return TRUE;
-}
-
 gchar *
 gstreamer_detect_mimetype(const gchar *uri)
 {
-    /*GstElement *pipeline;
+    GstElement *pipeline;
     GstElement *source;
     GstElement *typefind;
     GstElement *fakesink;
     gchar *mimetype = NULL;
 
     pipeline = gst_pipeline_new("new");
-    gst_bus_add_watch(gst_pipeline_get_bus(GST_PIPELINE(pipeline)), 
-        gst_typefind_bus_callback, &mimetype);
         
     source = gst_element_factory_make("gnomevfssrc", "source");
     typefind = gst_element_factory_make("typefind", "typefind");
@@ -118,23 +99,21 @@ gstreamer_detect_mimetype(const gchar *uri)
     g_signal_connect(typefind, "have-type", 
         G_CALLBACK(gst_typefind_type_found_callback), &mimetype);
 
-    gst_bin_add_many(GST_BIN(pipeline), source, typefind, 
-        fakesink, NULL);
+    gst_bin_add_many(GST_BIN(pipeline), source, typefind, fakesink, NULL);
     gst_element_link(source, typefind);
     gst_element_link(typefind, fakesink);
     
-    gst_element_set_state(pipeline, GST_STATE_PLAYING);
+    if(gst_element_set_state(pipeline, GST_STATE_PLAYING) == GST_STATE_CHANGE_ASYNC) {
+        if (gst_element_get_state(pipeline, NULL, NULL, -1) == GST_STATE_CHANGE_FAILURE) {
+            gst_object_unref(pipeline);
+            return NULL;
+        }
+    }
 
-    while(mimetype == NULL);
+    while((mimetype == NULL) && (pipeline->current_state == GST_STATE_PLAYING));
     
     gst_element_set_state(pipeline, GST_STATE_NULL);
     gst_object_unref(pipeline);
         
-    if(mimetype == (gchar *)-1) {
-        mimetype = NULL;
-    }
-
-    return mimetype;*/
-    
-    return NULL;
+    return mimetype;
 }
