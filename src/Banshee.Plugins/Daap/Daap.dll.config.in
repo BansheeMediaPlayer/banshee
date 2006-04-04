@@ -5,5 +5,5 @@
 	<dllmap dll="libbonobo-2.so" target="libbonobo-2.so.0" />
 	<dllmap dll="gdk-x11-2.0" target="libgdk-x11-2.0.so.0" />
 	<dllmap dll="libbanshee" target="@expanded_libdir@/@PACKAGE@/libbanshee.so" />
-	<dllmap dll="dnssd.dll" target="libdns_sd.so.1" />
+	<dllmap dll="dnssd.dll" target="libnss_mdns-0.2.so" />
 </configuration>

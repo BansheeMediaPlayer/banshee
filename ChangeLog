@@ -1,3 +1,111 @@
+2006-04-04  Aaron Bockover  <aaron@abock.org>
+
+	* src/Banshee.Plugins/Daap/Daap.dll.config.in: map to libnss_mdns-0.2.so
+
+	* src/Banshee.Plugins/Daap/daap-sharp/Server.cs: handle exception when
+	trying to shutdown the service locator
+
+2006-04-03  Aaron Bockover  <aaron@abock.org>
+
+	* src/PlayerInterface.cs: Remove tooltip from slider (BNC #158403)
+
+	* src/Banshee.Base/GstMisc.cs: check for NULL from the string marshaller
+
+2006-04-01  Aaron Bockover  <aaron@abock.org>
+
+	* src/Banshee.MediaEngine/Gstreamer/GstPlayerEngine.cs: Claim explicit
+	support for ASF and FLAC
+
+2006-03-31  Aaron Bockover  <aaron@abock.org>
+
+	* configure.ac: Added expanded_bindir
+
+	* data/org.gnome.Banshee.service.in: Prefix Exec path with 
+	@expanded_bindir@ to make DBus activation work
+
+2006-03-31  Aaron Bockover  <aaron@abock.org>
+
+	* src/Banshee.MediaEngine/Helix/HelixRemotePlayer.c: Properly activate
+	the org.gnome.HelixDbusPlayer service using DBus activation through
+	org.freedesktop.DBus.StartServiceByName() (Thanks Timo, fixes #161682)
+
+2006-03-31  Aaron Bockover  <aaron@abock.org>
+
+	* libbanshee/gst-cd-rip-0.10.c: Add a proper ID3 muxer in to the pipeline
+	if it didn't already exist and one can be found, similar to the 
+	oggmux injection
+
+2006-03-30  Aaron Bockover  <aaron@abock.org>
+
+	* libbanshee/gst-misc-0.10.c: Fix from Sebastian Dröge for gstreamer
+	typefinding; re-enabled
+
+	* libbanshee/gst-playback-0.10.c: Reset pipeline on an error so we can
+	try again later
+
+	* src/Banshee.Base/PlayerEngineCore.cs: 
+	* src/Banshee.Base/MediaEngine/PlayerEngine.cs: Support explicit switching
+	based on supported decoders
+
+	* src/Banshee.MediaEngine/Gstreamer/GstPlayerEngine.cs: Explicitly 
+	declare WMA support, as it's impossible for Helix to ever do this
+
+	* src/Banshee.MediaEngine/Helix/HelixRemotePlayer.cs: if DBus activation
+	fails, manually run helix-dbus-server and try up to 15 times at 
+	half-second intervals to connect to it before giving up (Option B fix 
+	for BNC #161682)
+
+	* src/Banshee.MediaEngine/Helix/HelixRemotePlayerEngine.cs: Ping the
+	server every five seconds; if Banshee does not shut down properly, 
+	the server will shutdown if not pinged within 10 seconds; Added
+	explicit decoder support for AAC and MP3
+
+2006-03-30  Hendrik Richter  <hendrikr@gnome.org>
+
+	* configure.ac: Added German translation.
+
+2006-03-28  Fredrik Hedberg  <fredrik@avafan.com>
+
+	* data/UIManagerLayout.xml: Added a placeholder for ViewMenu additions.
+
+2006-03-27  Fredrik Hedberg  <fredrik@avafan.com>
+
+	* src/Banshee.Base/Globals.cs: 
+	* src/PlayerInterface.cs: Expose MainContainer via InterfaceElements.
+
+2006-03-24  Christian Schaller  <christian@fluendo.com>
+
+	* src/Banshee.MediaEngine/Helix/Makefile.am: small fix to enable
+	  'make dist' even when --disable-helix is passed
+
+2006-03-21  James Willcox  <snorp@snorp.net>
+
+	* src/Banshee.Base/Sources/DapSource.cs: when creating the 'syncing'
+	widget, do a ShowAll() on it.
+
+2006-03-21  Aaron Bockover  <aaron@abock.org>
+
+	* src/PlayerInterface.cs: Prefer the stream length over the metadata
+	length in all situations, provided the stream length is non-zero
+
+	* src/Banshee.Base/PlayerEngineCore.cs: Fixed automatic engine switching
+	based on source type, handle any exceptions thrown by active engine
+	and reset the engine
+
+	* src/Banshee.MediaEngine/Gstreamer/GstPlayerEngine.cs:
+	* src/Banshee.MediaEngine/Helix/HelixRemotePlayerEngine.cs:
+	* src/Banshee.Base/MediaEngine/PlayerEngine.cs: make SourceCapabilities
+	IEnumerable
+
+	* src/Banshee.MediaEngine/Helix/HelixRemotePlayerEngine.cs: Removed
+	http as a supported source capability as HTTP under Helix is broken
+
+2006-03-20  Aaron Bockover  <aaron@abock.org>
+
+	* libbanshee/gst-cd-rip-0.10.c: If vorbisenc is chosen as the encoder
+	for ripping and an oggmux is not in the pipeline profile, attempt to
+	insert an oggmux element (BGO #335211)
+
 2006-03-20  Aaron Bockover  <aaron@abock.org>
 
 	* NEWS: Updated with 0.10.9 release notes
