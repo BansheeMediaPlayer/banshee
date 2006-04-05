@@ -1,5 +1,14 @@
 2006-04-05  Aaron Bockover  <aaron@abock.org>
 
+	* libbanshee/gst-playback-0.10.c: do not try to unref playbin if it was
+	never reffed
+
+	* src/PlaylistView.cs: do not show the same file as playing multiple times
+
+	* src/Banshee.Base/Utilities.cs: Updated (C) header
+
+2006-04-05  Aaron Bockover  <aaron@abock.org>
+
 	* libbanshee/gst-misc-0.10.c: disable gstreamer typefinding (again) (sigh)
 
 2006-04-05  Aaron Bockover  <aaron@abock.org>

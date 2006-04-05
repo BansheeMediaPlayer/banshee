@@ -367,7 +367,14 @@ namespace Banshee
             }
         
             if(ti != null) {
-                if(PlayerEngineCore.CurrentTrack != null && PlayerEngineCore.CurrentTrack.Equals(ti)) {
+                bool same_track = false;
+                
+                if(PlayerEngineCore.CurrentTrack != null) {
+                    //same_track = PlayerEngineCore.CurrentTrack.Equals(ti);
+                    same_track = PlayerEngineCore.CurrentTrack == ti;
+                }
+                
+                if(same_track) {
                     renderer.Pixbuf = nowPlayingPixbuf;
                     model.PlayingIter = iter;
                 } else if(ti is AudioCdTrackInfo) {

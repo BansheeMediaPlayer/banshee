@@ -338,8 +338,10 @@ gst_playback_free(GstPlayback *engine)
 {
     g_return_if_fail(IS_GST_PLAYBACK(engine));
     
-    gst_element_set_state(engine->playbin, GST_STATE_NULL);
-    gst_object_unref(GST_OBJECT(engine->playbin));
+    if(GST_IS_OBJECT(engine->playbin)) {
+        gst_element_set_state(engine->playbin, GST_STATE_NULL);
+        gst_object_unref(GST_OBJECT(engine->playbin));
+    }
     
     if(engine->cdda_device != NULL) {
         g_free(engine->cdda_device);
