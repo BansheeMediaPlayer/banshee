@@ -78,7 +78,8 @@ gst_typefind_type_found_callback(GstElement *typefind, guint probability,
 gchar *
 gstreamer_detect_mimetype(const gchar *uri)
 {
-    GstElement *pipeline;
+    return NULL;
+    /*GstElement *pipeline;
     GstElement *source;
     GstElement *typefind;
     GstElement *fakesink;
@@ -115,5 +116,5 @@ gstreamer_detect_mimetype(const gchar *uri)
     gst_element_set_state(pipeline, GST_STATE_NULL);
     gst_object_unref(pipeline);
         
-    return mimetype;
+    return mimetype;*/
 }
