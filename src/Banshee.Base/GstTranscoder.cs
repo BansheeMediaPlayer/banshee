@@ -110,6 +110,9 @@ namespace Banshee.Base
             error_message = null;
             
             gst_transcoder_transcode(handle, input_uri, output_uri, profile.Pipeline);
+            
+            GLib.Marshaller.Free(input_uri);
+            GLib.Marshaller.Free(output_uri);
         }
         
         public override void Cancel()
@@ -137,7 +140,7 @@ namespace Banshee.Base
                     error_message += ": " + debug_string;
                 }
             }
-            Console.WriteLine(error_message);
+            
             OnError();
         }
         

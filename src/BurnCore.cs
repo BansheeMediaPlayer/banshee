@@ -29,6 +29,7 @@
 using System;
 using System.Collections;
 using System.Threading;
+using System.Runtime.InteropServices;
 using System.IO;
 using Mono.Unix;
 using Gtk;
@@ -41,12 +42,13 @@ namespace Banshee
 {
     public class BurnCore
     {
-        public enum DiskType : uint {
+        public enum DiskType {
             Audio,
             Mp3,
             Data
         };
     
+        private BatchTranscoder transcoder;
         private Queue encodeQueue = new Queue();
         private Queue burnQueue = new Queue();
         private DiskType diskType;
@@ -78,37 +80,52 @@ namespace Banshee
                     }
                     break;
                 case DiskType.Mp3:
-                case DiskType.Data:
-                default:
-                    foreach(TrackInfo ti in encodeQueue) {
-                        burnQueue.Enqueue(ti.Uri);
+                    foreach(PipelineProfile cp in PipelineProfile.Profiles) {
+                        if(cp.Extension == "mp3") {
+                            profile = new PipelineProfile(cp);
+                            profile.Bitrate = 192;
+                            try {
+                                profile.Bitrate = (int)Globals.Configuration.Get(GConfKeys.IpodBitrate);
+                            } catch {
+                            }
+                            
+                            break;
+                        }
                     }
-                    
-                    DoBurn();
+                    break;
+                        
+                case DiskType.Data:
+                    CreateImage();
                     return;
             }
             
             if(profile == null) {
                  LogCore.Instance.PushError(
                      Catalog.GetString("Could Not Write CD"),
-                     Catalog.GetString("No suitable wave encoder could be found to convert selected songs to CD audio format."));
+                     Catalog.GetString("No suitable encoder could be found to convert selected songs."));
                  return;
             }
         
-            BatchTranscoder transcoder = new BatchTranscoder(profile);
+            transcoder = new BatchTranscoder(profile);
             transcoder.FileFinished += OnFileEncodeComplete;
             transcoder.BatchFinished += OnFileEncodeTransactionFinished;
             transcoder.Canceled += OnFileEncodeTransactionCanceled;
             
             while(encodeQueue.Count > 0) {
                 TrackInfo ti = encodeQueue.Dequeue() as TrackInfo;
-                string outputFile = Paths.TempDir + "/"  + 
-                    Path.GetFileNameWithoutExtension(ti.Uri.LocalPath) + "." + 
-                    profile.Extension;
+                string outputFile = null;
+                
+                if(Path.GetExtension(ti.Uri.LocalPath) == "." + profile.Extension) {
+                    outputFile = ti.Uri.LocalPath;
+                } else {
+                    outputFile = Paths.TempDir + "/"  +
+                        Path.GetFileNameWithoutExtension(ti.Uri.LocalPath) + "." + 
+                        profile.Extension;
+                }
                 
                 transcoder.AddTrack(ti, new Uri(outputFile));
             }
-                
+            
             transcoder.Start();
         }
         
@@ -120,7 +137,11 @@ namespace Banshee
         private void OnFileEncodeTransactionFinished(object o, EventArgs args)
         {
             if(!canceled) {
-                DoBurn();
+                if(diskType == DiskType.Mp3) {
+                    CreateImage();
+                } else {
+                    DoBurn();
+                }
             }
         }
         
@@ -129,11 +150,83 @@ namespace Banshee
             canceled = true;
         }
         
+        private void CleanTemp()
+        {
+            foreach(string file in Directory.GetFiles(Paths.TempDir)) {
+                try {
+                    File.Delete(file);
+                } catch {
+                }
+            }
+        }
+        
         private void DoBurn()
         {
+            if(burnQueue.Count <= 0) {
+                LogCore.Instance.PushError(
+                    Catalog.GetString("Problem creating CD"),
+                    Catalog.GetString("None of the songs selected for this CD could be " +
+                        "converted to the format required for an audio CD."));
+                CleanTemp();
+                return;
+            }
+        
+            if(transcoder != null && transcoder.ErrorCount > 0) {
+                Banshee.Gui.ErrorListDialog dialog = new Banshee.Gui.ErrorListDialog();
+                
+                dialog.Header = Catalog.GetString("Problem creating CD");
+                dialog.Message = Catalog.GetString("Some songs could not be converted to the format required for an audio CD.");
+                dialog.AddStockButton("gtk-cancel", ResponseType.Cancel);
+                dialog.AddButton(Catalog.GetString("Continue Anyway"), ResponseType.Ok);
+                dialog.IconName = "gtk-dialog-warning";
+                
+                foreach(BatchTranscoder.QueueItem item in transcoder.ErrorList) {
+                    if(item.Source is TrackInfo) {
+                        TrackInfo track = item.Source as TrackInfo;
+                        dialog.AppendString(String.Format("{0} - {1}", track.DisplayArtist, track.DisplayTitle));
+                    } else if(item.Source is Uri) {
+                        dialog.AppendString(Path.GetFileName((item.Source as Uri).LocalPath));
+                    }
+                }
+                
+                ResponseType response = dialog.Run();
+                dialog.Destroy();
+                
+                if(response != ResponseType.Ok) {
+                    CleanTemp();
+                    return;
+                }
+            }
+                            
             ThreadAssist.ProxyToMain(delegate {
                 new Burner(diskType, burnQueue);
             });
+        }
+        
+        private void CreateImage()
+        {
+            NautilusImageCreator imager = new NautilusImageCreator("Banshee Songs");
+            imager.Error += OnCreateImageError;
+            
+            if(diskType == DiskType.Data) {
+                foreach(TrackInfo ti in encodeQueue) {
+                    imager.AddUri(ti.Uri);
+                }
+            } else {
+                foreach(Uri uri in burnQueue) {
+                    imager.AddUri(uri);
+                }
+            }
+            
+            ThreadAssist.Spawn(delegate {
+                imager.Start();
+            });
+        }
+        
+        private void OnCreateImageError(object o, EventArgs args)
+        {
+            NautilusImageCreator imager = o as NautilusImageCreator;
+            LogCore.Instance.PushError(Catalog.GetString("Error Creating CD Image"), imager.ErrorMessage);    
         }
     }
     
@@ -261,7 +354,7 @@ namespace Banshee
                     string message = null;
                     
                     if(header == null || header == String.Empty) {
-                        header = Catalog.GetString("Error Burning CD");
+                        header = Catalog.GetString("Error Writing CD");
                     }
                     
                     if(message == null || message ==String.Empty) {
@@ -308,6 +401,7 @@ namespace Banshee
                     break;
                 case BurnRecorderActions.Fixating:
                     user_event.Message = Catalog.GetString("Fixating disk...");
+                    user_event.Progress = 0.0;
                     user_event.CanCancel = false;
                     break;
             }
@@ -358,6 +452,149 @@ namespace Banshee
             if(args.ResponseId != ResponseType.Ok) {
                 user_event.Cancel();
             }
+        }
+    }
+    
+    public class NautilusImageCreator
+    {
+        private ArrayList uris = new ArrayList(); 
+        private Gnome.Vfs.Uri dest = new Gnome.Vfs.Uri("burn:///");
+        
+        private ActiveUserEvent user_event;
+        private int uri_index = 0;
+        
+        private string error_message;
+        private string image_label;
+        private bool cancel;
+        
+        public EventHandler Canceled;
+        public EventHandler Finished;
+        public EventHandler Error;
+        
+        public NautilusImageCreator(string imageLabel)
+        {
+            image_label = imageLabel;
+        
+            user_event = new ActiveUserEvent(Catalog.GetString("Creating Image"));
+            user_event.Header = Catalog.GetString("Transferring songs");
+            user_event.Icon = Gdk.Pixbuf.LoadFromResource("cd-action-burn-24.png");
+            user_event.CancelRequested += OnUserEventCancelRequested;
+        }
+        
+        public void AddUri(System.Uri uri)
+        {
+            uris.Add(uri);        
+        }
+        
+        public void Start()
+        {
+            if(uris.Count <= 0) {
+                throw new ApplicationException("No files to transfer");
+            }
+        
+            Gnome.Vfs.Result result = Gnome.Vfs.Result.Ok;
+            uri_index = 0;
+            
+            foreach(Uri uri in uris) {
+                Gnome.Vfs.Uri source = new Gnome.Vfs.Uri(uri.AbsoluteUri);
+                Gnome.Vfs.Uri target = dest.Clone();
+                target = target.AppendFileName(source.ExtractShortName());
+                Gnome.Vfs.XferProgressCallback cb = new Gnome.Vfs.XferProgressCallback(OnProgress);
+				
+				user_event.Message = String.Format(Catalog.GetString("Transferring song {0}"), uri_index + 1);
+				user_event.Progress = uri_index / (double)uris.Count;
+				result = Gnome.Vfs.Xfer.XferUri(source, target, 
+				    Gnome.Vfs.XferOptions.Default,
+				    Gnome.Vfs.XferErrorMode.Abort,
+				    Gnome.Vfs.XferOverwriteMode.Replace,
+				    cb);
+				    
+                uri_index++;
+                
+                if(result != Gnome.Vfs.Result.Ok) {
+                    if(!cancel) {
+                        OnError(Catalog.GetString("Could not transfer files to create disk image."));
+                    }
+                    
+                    return;
+                }
+                
+                if(cancel) {
+                    return;
+                }
+            }
+            
+            WriteImage();
+        }
+        
+        private int OnProgress(Gnome.Vfs.XferProgressInfo info)
+        {
+            if(cancel) {
+                return (int)Gnome.Vfs.XferErrorAction.Abort;
+            }
+            
+            if(info.BytesTotal > 0) {
+                double progress = info.BytesCopied / (double)info.BytesTotal;
+                user_event.Progress = (uri_index / (double)uris.Count) + (progress / (double)uris.Count);
+            }
+
+            switch(info.Status) {
+                case Gnome.Vfs.XferProgressStatus.Vfserror:
+                    OnError(Catalog.GetString("Could not transfer file to disk layout."));
+                    return (int)Gnome.Vfs.XferErrorAction.Abort;
+                case Gnome.Vfs.XferProgressStatus.Overwrite:
+                    OnError(Catalog.GetString("File is already in disk layout."));
+                    return (int)Gnome.Vfs.XferOverwriteAction.Abort;
+                default:
+                    return 1;
+            }
+        }
+
+        private void WriteImage()
+        {
+            System.Diagnostics.Process.Start("nautilus-cd-burner");
+            OnFinished();
+        }
+
+        private void OnUserEventCancelRequested(object o, EventArgs args) 
+        {
+            OnCanceled();
+        }
+        
+        private void OnCanceled()
+        {
+            cancel = true;
+            user_event.Dispose();
+
+            EventHandler handler = Canceled;
+            if(handler != null) {
+                handler(this, new EventArgs());
+            }
+        }
+        
+        private void OnError(string message)
+        {
+            error_message = message;
+            user_event.Dispose();
+            
+            EventHandler handler = Error;
+            if(handler != null) {
+                handler(this, new EventArgs());
+            }
+        }
+        
+        private void OnFinished()
+        {
+            user_event.Dispose();
+            
+            EventHandler handler = Finished;
+            if(handler != null) {
+                handler(this, new EventArgs());
+            }
+        }
+        
+        public string ErrorMessage {
+            get { return error_message; }
         }
     }
 }

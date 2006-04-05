@@ -1,5 +1,32 @@
 2006-04-04  Aaron Bockover  <aaron@abock.org>
 
+	* banshee.mdp: Updated MonoDevelop project
+
+	* data/banshee.glade: Added ErrorListDialog
+
+	* libbanshee/gst-transcode-0.10.c: strdup the output URI and and free
+	when necessary
+
+	* src/BurnCore.cs: show an ErrorListDialog for files that cannot be
+	transcoded, giving an option to cancel or continue; various fixes for
+	MP3 and data disk burning
+
+	* src/PlayerInterface.cs: fix to respect the disk type for burning
+
+	* src/Preferences.cs: use only a single gconf key for disk type
+
+	* src/Banshee.Base/BatchTranscoder.cs: do not try to transcode a file
+	if the file type is the requested transcode type
+
+	* src/Banshee.Base/GstTranscoder.cs: Free the input/output URIs
+
+	* src/Banshee.Base/Makefile.am: Added ErrorListDialog.cs
+
+	* src/Banshee.Base/Gui/ErrorListDialog.cs: ErrorListDialog glade 
+	implementation; shows a HIG error dialog with a list view
+
+2006-04-04  Aaron Bockover  <aaron@abock.org>
+
 	* src/Banshee.Plugins/Daap/Daap.dll.config.in: map to libnss_mdns-0.2.so
 
 	* src/Banshee.Plugins/Daap/daap-sharp/Server.cs: handle exception when

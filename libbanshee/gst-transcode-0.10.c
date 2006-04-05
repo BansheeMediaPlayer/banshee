@@ -134,15 +134,15 @@ gst_transcoder_bus_callback(GstBus *bus, GstMessage *message, gpointer data)
             GError *error;
             gchar *debug;
             
+            transcoder->is_transcoding = FALSE;
+            gst_transcoder_stop_iterate_timeout(transcoder);
+            
             if(transcoder->error_cb != NULL) {
                 gst_message_parse_error(message, &error, &debug);
                 gst_transcoder_raise_error(transcoder, error->message, debug);
                 g_error_free(error);
                 g_free(debug);
             }
-            
-            transcoder->is_transcoding = FALSE;
-            gst_transcoder_stop_iterate_timeout(transcoder);
             
             break;
         }        
@@ -345,6 +345,11 @@ gst_transcoder_free(GstTranscoder *transcoder)
     g_object_unref(G_OBJECT(transcoder->pipeline));
     gst_transcoder_stop_iterate_timeout(transcoder);
     
+    if(transcoder->output_uri != NULL) {
+        g_free(transcoder->output_uri);
+        transcoder->output_uri = NULL;
+    }
+    
     g_free(transcoder);
     transcoder = NULL;
 }
@@ -364,7 +369,11 @@ gst_transcoder_transcode(GstTranscoder *transcoder, const gchar *input_uri,
         return;
     }
     
-    transcoder->output_uri = output_uri;
+    if(transcoder->output_uri != NULL) {
+        g_free(transcoder->output_uri);
+    }
+    
+    transcoder->output_uri = g_strdup(output_uri);
     transcoder->is_transcoding = TRUE;
     
     gst_element_set_state(GST_ELEMENT(transcoder->pipeline), GST_STATE_PLAYING);
@@ -376,6 +385,8 @@ gst_transcoder_cancel(GstTranscoder *transcoder)
 {
     g_return_if_fail(transcoder != NULL);
     gst_transcoder_stop_iterate_timeout(transcoder);
+    
+    transcoder->is_transcoding = FALSE;
     
     if(GST_IS_ELEMENT(transcoder->pipeline)) {
         gst_element_set_state(GST_ELEMENT(transcoder->pipeline), GST_STATE_NULL);

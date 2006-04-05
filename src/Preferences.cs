@@ -396,12 +396,17 @@ namespace Banshee
             
             Globals.Configuration.Set(GConfKeys.CDBurnerId, selectedBurnerId);
 
-            (glade["AudioRadio"] as RadioButton).Active = GetBoolPref(
-                burnKeyParent + "FormatAudio", true);
-            (glade["Mp3Radio"] as RadioButton).Active = GetBoolPref(
-                burnKeyParent + "FormatMp3", false);
-            (glade["DataRadio"] as RadioButton).Active = GetBoolPref(
-                burnKeyParent + "FormatData", false);
+            int disk_type = 0;
+            try {
+                disk_type = (int)Globals.Configuration.Get(burnKeyParent + "DiskFormat");
+            } catch {
+            }
+
+            disk_type = (disk_type < 0 || disk_type > 2) ? 0 : disk_type;
+
+            (glade["AudioRadio"] as RadioButton).Active = disk_type == 0;
+            (glade["Mp3Radio"] as RadioButton).Active = disk_type == 1;
+            (glade["DataRadio"] as RadioButton).Active = disk_type == 2;
             
             (glade["EjectCheck"] as CheckButton).Active = GetBoolPref(
                 burnKeyParent + "Eject", true);
@@ -468,12 +473,14 @@ namespace Banshee
         private void SaveBurnSettings()
         {
             if(selectedBurnerId != null && burnKeyParent != null) {
-                Globals.Configuration.Set(burnKeyParent + "FormatAudio", 
-                    (glade["AudioRadio"] as RadioButton).Active);
-                Globals.Configuration.Set(burnKeyParent + "FormatMp3", 
-                    (glade["Mp3Radio"] as RadioButton).Active);
-                Globals.Configuration.Set(burnKeyParent + "FormatData", 
-                    (glade["DataRadio"] as RadioButton).Active);
+                int disk_type = 0;
+                if((glade["Mp3Radio"] as CheckButton).Active) {
+                    disk_type = 1;
+                } else if((glade["DataRadio"] as CheckButton).Active) {
+                    disk_type = 2;
+                }
+                
+                Globals.Configuration.Set(burnKeyParent + "DiskFormat", disk_type);
                     
                 Globals.Configuration.Set(burnKeyParent + "Eject",
                     (glade["EjectCheck"] as CheckButton).Active);

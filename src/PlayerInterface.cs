@@ -1909,8 +1909,22 @@ namespace Banshee
             if(playlistView.Selection.CountSelectedRows() <= 0) {
                 return;
             }
-        
-            BurnCore burnCore = new BurnCore(BurnCore.DiskType.Audio);
+            
+            string drive_id = null;
+            try {
+                drive_id = (string)Globals.Configuration.Get(GConfKeys.CDBurnerId);
+            } catch {
+            }
+            
+            BurnCore.DiskType disk_type = BurnCore.DiskType.Audio;
+            
+            try {
+                string key = GConfKeys.CDBurnerRoot + drive_id + "/DiskFormat";
+                disk_type = (BurnCore.DiskType)Globals.Configuration.Get(key);
+            } catch {
+            }
+            
+            BurnCore burnCore = new BurnCore(disk_type);
         
             foreach(TreePath path in playlistView.Selection.GetSelectedRows()) {
                 burnCore.AddTrack(playlistModel.PathTrackInfo(path));
