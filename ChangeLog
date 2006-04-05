@@ -1,3 +1,16 @@
+2006-04-05  Aaron Bockover  <aaron@abock.org>
+
+	* data/banshee.glade: make horizontal scrolling automatic
+
+	* src/BurnCore.cs: do not try to burn files that don't exist and 
+	do not allow burning if not enough disk space
+
+	* src/Banshee.Base/BatchTranscoder.cs: Move the instantiation of 
+	ActiveUserEvent to Start()
+
+	* src/Banshee.Base/Utilities.cs: Added GetDirectoryAvailableSpace to
+	PathUtil
+
 2006-04-04  Aaron Bockover  <aaron@abock.org>
 
 	* banshee.mdp: Updated MonoDevelop project

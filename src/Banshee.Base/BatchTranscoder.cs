@@ -92,11 +92,6 @@ namespace Banshee.Base
             transcoder.Finished += OnTranscoderFinished;
             
             this.profile = profile;
-            user_event = new ActiveUserEvent(Catalog.GetString("File Transcoder"));
-            user_event.Header = Catalog.GetString("Transcoding Files");
-            user_event.CancelRequested += OnCancelRequested;
-            user_event.Icon = IconThemeUtils.LoadIcon("encode-action-24", 22);
-            user_event.Message = Catalog.GetString("Initializing Transcoder...");
         }
         
         public void AddTrack(TrackInfo track, Uri outputUri)
@@ -111,6 +106,14 @@ namespace Banshee.Base
         
         public void Start()
         {
+            if(user_event == null) {
+                user_event = new ActiveUserEvent(Catalog.GetString("File Transcoder"));
+                user_event.Header = Catalog.GetString("Transcoding Files");
+                user_event.CancelRequested += OnCancelRequested;
+                user_event.Icon = IconThemeUtils.LoadIcon("encode-action-24", 22);
+                user_event.Message = Catalog.GetString("Initializing Transcoder...");
+            }
+            
             total_count = batch_queue.Count;
             finished_count = 0;
             error_list.Clear();

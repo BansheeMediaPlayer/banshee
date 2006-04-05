@@ -49,10 +49,12 @@ namespace Banshee
         };
     
         private BatchTranscoder transcoder;
+        private ArrayList errors = new ArrayList();
         private Queue encodeQueue = new Queue();
         private Queue burnQueue = new Queue();
         private DiskType diskType;
         private bool canceled;
+        private double estimated_encoded_bytes;
         
         public BurnCore(DiskType diskType)
         {
@@ -69,6 +71,19 @@ namespace Banshee
             PipelineProfile profile = null;
             
             canceled = false;
+            
+            foreach(TrackInfo track in encodeQueue) {
+                // 44.1 kHz sample rate * 16 bit channel resolution * 2 channels (stereo)
+                estimated_encoded_bytes += track.Duration.TotalSeconds * 176400.0;
+            }
+
+            long free_space = PathUtil.GetDirectoryAvailableSpace(Paths.TempDir);
+            if(free_space >= 0 && estimated_encoded_bytes >= free_space) {
+                LogCore.Instance.PushError(Catalog.GetString("Insufficient Disk Space"),
+                    String.Format(Catalog.GetString("Creating this CD requires at least {0} MiB of free disk space."),
+                        Math.Ceiling(estimated_encoded_bytes / 1000000)));
+                return;
+            }
             
             switch(diskType) {
                 case DiskType.Audio:
@@ -111,9 +126,18 @@ namespace Banshee
             transcoder.BatchFinished += OnFileEncodeTransactionFinished;
             transcoder.Canceled += OnFileEncodeTransactionCanceled;
             
+            int transcode_count = 0;
+            
             while(encodeQueue.Count > 0) {
                 TrackInfo ti = encodeQueue.Dequeue() as TrackInfo;
                 string outputFile = null;
+                
+                try {
+                    new Gnome.Vfs.FileInfo(ti.Uri.AbsoluteUri);
+                } catch {
+                    errors.Add(String.Format(Catalog.GetString("File does not exist: {0}"), ti.Uri.AbsoluteUri));
+                    continue;
+                }
                 
                 if(Path.GetExtension(ti.Uri.LocalPath) == "." + profile.Extension) {
                     outputFile = ti.Uri.LocalPath;
@@ -124,9 +148,16 @@ namespace Banshee
                 }
                 
                 transcoder.AddTrack(ti, new Uri(outputFile));
+                transcode_count++;
             }
             
-            transcoder.Start();
+            if(transcode_count > 0) {
+                transcoder.Start();
+            } else {
+                LogCore.Instance.PushError(
+                    Catalog.GetString("Problem creating CD"),
+                    Catalog.GetString("None of the songs selected for this CD could be found."));
+            }
         }
         
         private void OnFileEncodeComplete(object o, FileCompleteArgs args)
@@ -170,34 +201,22 @@ namespace Banshee
                 CleanTemp();
                 return;
             }
-        
+            
             if(transcoder != null && transcoder.ErrorCount > 0) {
-                Banshee.Gui.ErrorListDialog dialog = new Banshee.Gui.ErrorListDialog();
-                
-                dialog.Header = Catalog.GetString("Problem creating CD");
-                dialog.Message = Catalog.GetString("Some songs could not be converted to the format required for an audio CD.");
-                dialog.AddStockButton("gtk-cancel", ResponseType.Cancel);
-                dialog.AddButton(Catalog.GetString("Continue Anyway"), ResponseType.Ok);
-                dialog.IconName = "gtk-dialog-warning";
-                
                 foreach(BatchTranscoder.QueueItem item in transcoder.ErrorList) {
                     if(item.Source is TrackInfo) {
                         TrackInfo track = item.Source as TrackInfo;
-                        dialog.AppendString(String.Format("{0} - {1}", track.DisplayArtist, track.DisplayTitle));
+                        errors.Add(String.Format("{0} - {1}", track.DisplayArtist, track.DisplayTitle));
                     } else if(item.Source is Uri) {
-                        dialog.AppendString(Path.GetFileName((item.Source as Uri).LocalPath));
+                        errors.Add(Path.GetFileName((item.Source as Uri).LocalPath));
                     }
                 }
-                
-                ResponseType response = dialog.Run();
-                dialog.Destroy();
-                
-                if(response != ResponseType.Ok) {
-                    CleanTemp();
-                    return;
-                }
             }
-                            
+            
+            if(!HandleErrors()) {
+                return;
+            }
+            
             ThreadAssist.ProxyToMain(delegate {
                 new Burner(diskType, burnQueue);
             });
@@ -210,17 +229,58 @@ namespace Banshee
             
             if(diskType == DiskType.Data) {
                 foreach(TrackInfo ti in encodeQueue) {
-                    imager.AddUri(ti.Uri);
+                    try {
+                        new Gnome.Vfs.FileInfo(ti.Uri.AbsoluteUri);
+                        imager.AddUri(ti.Uri);
+                    } catch {
+                        errors.Add(String.Format(Catalog.GetString("File does not exist: {0}"), ti.Uri.AbsoluteUri));
+                        continue;
+                    }
                 }
             } else {
                 foreach(Uri uri in burnQueue) {
-                    imager.AddUri(uri);
+                    try {
+                        new Gnome.Vfs.FileInfo(uri.AbsoluteUri);
+                        imager.AddUri(uri);
+                    } catch {
+                        errors.Add(String.Format(Catalog.GetString("File does not exist: {0}"), uri.AbsoluteUri));
+                        continue;
+                    }
                 }
+            }
+            
+            if(!HandleErrors()) {
+                return;
             }
             
             ThreadAssist.Spawn(delegate {
                 imager.Start();
             });
+        }
+        
+        private bool HandleErrors()
+        {
+            Banshee.Gui.ErrorListDialog dialog = new Banshee.Gui.ErrorListDialog();
+
+            dialog.Header = Catalog.GetString("Problem creating CD");
+            dialog.Message = Catalog.GetString("Some songs could either not be found or could not be converted to the format required for an audio CD.");
+            dialog.AddStockButton("gtk-cancel", ResponseType.Cancel);
+            dialog.AddButton(Catalog.GetString("Continue Anyway"), ResponseType.Ok);
+            dialog.IconName = "gtk-dialog-warning";
+
+            foreach(string error in errors) {
+                dialog.AppendString(error);
+            }
+            
+            ResponseType response = dialog.Run();
+            dialog.Destroy();
+
+            if(response != ResponseType.Ok) {
+                CleanTemp();
+                return false;
+            }
+            
+            return true;
         }
         
         private void OnCreateImageError(object o, EventArgs args)
@@ -474,11 +534,6 @@ namespace Banshee
         public NautilusImageCreator(string imageLabel)
         {
             image_label = imageLabel;
-        
-            user_event = new ActiveUserEvent(Catalog.GetString("Creating Image"));
-            user_event.Header = Catalog.GetString("Transferring songs");
-            user_event.Icon = Gdk.Pixbuf.LoadFromResource("cd-action-burn-24.png");
-            user_event.CancelRequested += OnUserEventCancelRequested;
         }
         
         public void AddUri(System.Uri uri)
@@ -488,6 +543,13 @@ namespace Banshee
         
         public void Start()
         {
+            if(user_event == null) {        
+                user_event = new ActiveUserEvent(Catalog.GetString("Creating Image"));
+                user_event.Header = Catalog.GetString("Transferring songs");
+                user_event.Icon = Gdk.Pixbuf.LoadFromResource("cd-action-burn-24.png");
+                user_event.CancelRequested += OnUserEventCancelRequested;
+            }
+            
             if(uris.Count <= 0) {
                 throw new ApplicationException("No files to transfer");
             }
