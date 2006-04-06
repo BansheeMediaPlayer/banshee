@@ -348,6 +348,11 @@ expanded_datadir=`( case $prefix in NONE) prefix=$ac_default_prefix ;; *) ;; esa
 		   eval echo $datadir )`
 AC_SUBST(expanded_datadir)
 
+expanded_bindir=`( case $prefix in NONE) prefix=$ac_default_prefix ;; *) ;; esac
+		   case $exec_prefix in NONE) exec_prefix=$prefix ;; *) ;; esac
+		   eval echo $bindir )`
+AC_SUBST(expanded_bindir)
+
 dnl Defines for C Exec Wrapper (${prefix}/bin/banshee)
 
 AC_DEFINE_UNQUOTED([PREFIX], ["${prefix}"], [install prefix])
@@ -358,7 +363,7 @@ AC_DEFINE_UNQUOTED([HELIX_LIBRARY_PATH], ["${HELIX_LIBRARY_PATH}"], [Helix Libra
 
 dnl Intl
 
-ALL_LINGUAS="bg ca cs da en_CA en_GB es fi fr it ja lt nb nl pt_BR sv th zh_CN"
+ALL_LINGUAS="bg ca cs da de en_CA en_GB es fi fr it ja lt nb nl pt_BR sv th zh_CN"
 GETTEXT_PACKAGE=banshee
 AC_SUBST(GETTEXT_PACKAGE)
 AC_DEFINE_UNQUOTED(GETTEXT_PACKAGE, "$GETTEXT_PACKAGE", [Gettext Package])
