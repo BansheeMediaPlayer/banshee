@@ -260,6 +260,10 @@ namespace Banshee
         
         private bool HandleErrors()
         {
+            if(errors.Count == 0) {
+                return true;
+            }
+        
             Banshee.Gui.ErrorListDialog dialog = new Banshee.Gui.ErrorListDialog();
 
             dialog.Header = Catalog.GetString("Problem creating CD");
