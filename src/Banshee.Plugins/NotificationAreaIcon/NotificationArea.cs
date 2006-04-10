@@ -150,6 +150,10 @@ public class NotificationArea : Plug
 
 	private void UpdateManagerWindow (bool dock_if_realized)
 	{
+		if(Handle == IntPtr.Zero || Display == null || Display.Handle == IntPtr.Zero) {
+			return;
+		}
+
 		IntPtr xdisplay = gdk_x11_display_get_xdisplay (Display.Handle);
 	
 		if (manager_window != IntPtr.Zero) {
