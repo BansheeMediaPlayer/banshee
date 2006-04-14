@@ -155,8 +155,16 @@ namespace MusicBrainz
         
         public string GetID(string id)
         {
-            return System.Text.RegularExpressions.Regex.IsMatch(id, @"^[A-Za-z0-9\-]+$") ?
-                id : GetIDFromUrl(id);
+            if(id == null) {
+                return String.Empty;
+            }
+
+            try {
+                return System.Text.RegularExpressions.Regex.IsMatch(id, @"^[A-Za-z0-9\-]+$") ?
+                    id : GetIDFromUrl(id);
+            } catch {
+                return String.Empty;
+            }
         }
         
         public ClientVersion Version
