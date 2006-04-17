@@ -148,7 +148,7 @@ if test "x$enable_ipodsharp" = "xyes"; then
 fi
 AM_CONDITIONAL(ENABLE_IPOD, test "x$enable_ipodsharp" = "xyes")
 
-NJBSHARP_REQUIRED=0.2.1
+NJBSHARP_REQUIRED=0.3.0
 PKG_CHECK_MODULES(NJBSHARP,
 	njb-sharp >= $NJBSHARP_REQUIRED,
 	enable_njbsharp="$enable_njbsharp", enable_njbsharp=no)

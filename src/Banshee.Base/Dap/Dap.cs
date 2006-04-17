@@ -1,8 +1,8 @@
 /***************************************************************************
  *  Dap.cs
  *
- *  Copyright (C) 2005 Novell
- *  Written by Aaron Bockover (aaron@aaronbock.net)
+ *  Copyright (C) 2005-2006 Novell, Inc.
+ *  Written by Aaron Bockover <aaron@abock.org>
  ****************************************************************************/
 
 /*  THIS FILE IS LICENSED UNDER THE MIT LICENSE AS OUTLINED IMMEDIATELY BELOW: 
@@ -192,7 +192,7 @@ namespace Banshee.Dap
         {
             TrackInfo dap_track = OnTrackAdded(track);
             
-            if(track == null) {
+            if(dap_track == null) {
                 return;
             }
             
@@ -247,6 +247,10 @@ namespace Banshee.Dap
         }
         
         protected virtual void OnTracksCleared()
+        {
+        }
+        
+        public virtual void Activate()
         {
         }
 
@@ -375,6 +379,10 @@ namespace Banshee.Dap
             Queue remove_queue = new Queue();
             
             foreach(TrackInfo track in Tracks) {
+                if(track == null || track.Uri == null) {
+                    continue;
+                }
+            
                 string cached_filename = GetCachedSongFileName(track.Uri);
                 
                 if(cached_filename == null) {
@@ -384,7 +392,12 @@ namespace Banshee.Dap
                     }
 
                     Uri old_uri = track.Uri;
-                    track.Uri = ConvertSongFileName(track.Uri, profile.Extension);
+                    
+                    try {
+                        track.Uri = ConvertSongFileName(track.Uri, profile.Extension);
+                    } catch {
+                        continue;
+                    }
                     
                     if(encoder == null) {
                         encoder = new BatchTranscoder(profile);
@@ -430,7 +443,11 @@ namespace Banshee.Dap
         {
             if(!encoder_canceled) {
                 save_report_event.Message = Catalog.GetString("Processing...");
-                Synchronize();
+                if(ThreadAssist.InMainThread) {
+                    ThreadAssist.Spawn(Synchronize);
+                } else {
+                    Synchronize();
+                }
             } else {
                 FinishSave();
             }

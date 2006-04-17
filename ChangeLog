@@ -1,5 +1,32 @@
 2006-04-17  Aaron Bockover  <aaron@abock.org>
 
+	* configure.ac: Require njb-sharp 0.3.0+
+
+	* src/Banshee.Base/Dap/Dap.cs: Added virtual Activate method (see below);
+	handle failure case if a track queued for a sync is null for some reason;
+	if the transcoder handles its own threading and the finished event is
+	raised from the main thread, spawn a new thread for the synchronize (the
+	gst 0.10 transcoder does threading internally so we cannot guarantee a 
+	dedicated thread from the transcoder to do syncing in)
+
+	* src/Banshee.Base/Sources/DapSource.cs: Added Activate method that
+	calls Activate on the device; needed for NJB devices which cannot remain
+	open for the entire session and must be accessed on demand
+
+	* src/Banshee.Dap/Njb/Makefile.am: Link against Mono.Posix for 
+	Catalog.GetString support
+
+	* src/Banshee.Dap/Njb/NjbDap.cs: Delay device activation (open+capture)
+	until direct access to device is necessary; close the device when 
+	access is no longer necessary; ping every 5 minutes to keep device from
+	shutting down, but to allow the handle to be closed most of the time;
+	show an error dialog and do not crash if there is a problem grabbing a
+	a handle to the device; wrap all access calls in GrabDevice/ReleaseDevice
+	to properly reference and perform operations on the device; update the
+	icon name to the proper icon spec name
+
+2006-04-17  Aaron Bockover  <aaron@abock.org>
+
 	* src/DragDrop.cs: Check data length before trying to convert to string
 	    and catch any exceptions in the conversion (BGO #333946)
 

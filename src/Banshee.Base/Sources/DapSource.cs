@@ -1,9 +1,8 @@
-
 /***************************************************************************
  *  DapSource.cs
  *
- *  Copyright (C) 2005 Novell
- *  Written by Aaron Bockover (aaron@aaronbock.net)
+ *  Copyright (C) 2005-2006 Novell, Inc.
+ *  Written by Aaron Bockover <aaron@abock.org>
  ****************************************************************************/
 
 /*  THIS FILE IS LICENSED UNDER THE MIT LICENSE AS OUTLINED IMMEDIATELY BELOW: 
@@ -71,6 +70,8 @@ namespace Banshee.Sources
         
         public override void AddTrack(TrackInfo track)
         {
+            device.Activate();
+            
             if(track is LibraryTrackInfo) {
                 device.AddTrack(track);
             }
@@ -126,6 +127,12 @@ namespace Banshee.Sources
         {
             OnViewChanged();
             OnUpdated();
+        }
+        
+        public override void Activate()
+        {
+            device.Activate();
+            base.Activate();
         }
 
         public override int Count {

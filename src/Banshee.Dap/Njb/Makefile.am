@@ -17,7 +17,7 @@ bansheedap_SCRIPTS = $(ASSEMBLY) $(ASSEMBLY).mdb njb-sharp.dll.config
 endif
 
 $(ASSEMBLY): $(ASSEMBLY_SOURCES)
-	$(MCS) $(MCS_FLAGS) -target:library -out:$@ -r:$(top_builddir)/src/Banshee.Base/Banshee.Base.dll -r:$(top_builddir)/src/Banshee.Widgets/Banshee.Widgets.dll -r:$(top_builddir)/hal-sharp/hal-sharp.dll $(GTKSHARP_LIBS) $(NJBSHARP_LIBS) $(ASSEMBLY_SOURCES)
+	$(MCS) $(MCS_FLAGS) -target:library -out:$@ -r:$(top_builddir)/src/Banshee.Base/Banshee.Base.dll -r:$(top_builddir)/src/Banshee.Widgets/Banshee.Widgets.dll -r:$(top_builddir)/hal-sharp/hal-sharp.dll -r:Mono.Posix $(GTKSHARP_LIBS) $(NJBSHARP_LIBS) $(ASSEMBLY_SOURCES)
 
 install-data-hook:
 	for i in $(NJBSHARP_INSTALL_FILES); do \
