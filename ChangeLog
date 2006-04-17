@@ -1,3 +1,14 @@
+2006-04-17  Aaron Bockover  <aaron@abock.org>
+
+	* src/DragDrop.cs: Check data length before trying to convert to string
+	    and catch any exceptions in the conversion (BGO #333946)
+
+	* src/PlayerInterface.cs: Call model.RemoveTrack instead of 
+	model.Remove (BGO #324768)
+
+	* src/PlaylistModel.cs (RemoveTrack): If the removed iter is the playing
+	iter, set the playing iter to zero (BGO #324768)
+
 2006-04-14  Sebastian Dröge  <slomo@ubuntu.com>
 
 	* src/MusicBrainz/Client.cs (GetID): Check for null/handle any exception

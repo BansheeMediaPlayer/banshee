@@ -1817,7 +1817,7 @@ namespace Banshee
             for(i = 0; i < iters.Length; i++) {
                 TrackInfo track = playlistModel.IterTrackInfo(iters[i]);
                 SourceManager.ActiveSource.RemoveTrack(track);
-                playlistModel.Remove(ref iters[i]);
+                playlistModel.RemoveTrack(ref iters[i], track);
                 
                 if(deleteFromFileSystem) {
                     DeleteSong(track);

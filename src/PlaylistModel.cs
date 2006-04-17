@@ -374,11 +374,20 @@ namespace Banshee
             }
         }
         
-        public void RemoveTrack(ref TreeIter iter)
+        public void RemoveTrack(ref TreeIter iter, TrackInfo track)
         {
-            TrackInfo ti = IterTrackInfo(iter);
+            TrackInfo ti = track;
+            if(ti == null) {
+                ti = IterTrackInfo(iter);
+            }
+            
             totalDuration -= ti.Duration;
             ti.TreeIter = TreeIter.Zero;
+            
+            if(iter.Equals(playingIter)) {
+                playingIter = TreeIter.Zero;
+            }
+            
             Remove(ref iter);
             RaiseUpdated(this, new EventArgs());
         }

@@ -1,9 +1,8 @@
-
 /***************************************************************************
- *  LibraryTransactions.cs
+ *  DragDrop.cs
  *
- *  Copyright (C) 2005 Novell
- *  Written by Aaron Bockover (aaron@aaronbock.net)
+ *  Copyright (C) 2005-2006 Novell, Inc.
+ *  Written by Aaron Bockover <aaron@abock.org>
  ****************************************************************************/
 
 /*  THIS FILE IS LICENSED UNDER THE MIT LICENSE AS OUTLINED IMMEDIATELY BELOW: 
@@ -62,7 +61,15 @@ namespace Banshee
 
 		public static string SelectionDataToString(Gtk.SelectionData data)
 		{
-			return System.Text.Encoding.UTF8.GetString(data.Data);
+			if(data.Length <= 0) {
+				return String.Empty;
+			}
+
+			try {
+				return System.Text.Encoding.UTF8.GetString(data.Data);
+			} catch {
+				return String.Empty;
+			}
 		}
 
 		public static string [] SplitSelectionData(Gtk.SelectionData data)
