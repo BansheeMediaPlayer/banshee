@@ -166,6 +166,7 @@ namespace Helix
         [Method] public abstract string GetGroupTitle(uint groupIndex);
         [Method] public abstract void Shutdown();
         [Method] public abstract void Ping();
+        [Method] public abstract bool GetIsLive();
     }
     
     public enum ContentState {

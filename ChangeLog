@@ -1,3 +1,13 @@
+2006-04-20  Aaron Bockover  <aaron@abock.org>
+
+	* src/Banshee.MediaEngine/Helix/HelixRemotePlayer.cs: Added GetIsLive
+
+	* src/Banshee.MediaEngine/Helix/HelixRemotePlayerEngine.cs: Added 
+	http support to SourceCapabilities, added more RealPlayer-specific 
+	file formats to ExplicitDecoderCapabilities; implemented CanSeek by
+	calling GetIsLive on the remote player; properly handle buffering 
+	and title messages
+
 2006-04-17  Aaron Bockover  <aaron@abock.org>
 
 	* configure.ac: Require njb-sharp 0.3.0+

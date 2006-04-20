@@ -119,12 +119,29 @@ namespace Banshee.MediaEngine.Helix
                             break;
                         case ContentState.Loading:
                         case ContentState.Contacting:
-                            OnEventChanged(PlayerEngineEvent.Buffering);
                             break;
                         default:
                             OnStateChanged(PlayerEngineState.Idle);
                             break;
                     }
+                    break;
+                case MessageType.Buffering:
+                    uint progress = (uint)message["Percent"];
+                    OnEventChanged(PlayerEngineEvent.Buffering, 
+                        null, (double)progress / 100.0);
+                    break;
+                case MessageType.Title:
+                    string title = message["Title"] as string;
+                    if(title == null || title.Trim() == String.Empty) {
+                        break;
+                    }
+                
+                    StreamTag tag = new StreamTag();
+                    tag.Name = CommonTags.Title;
+                    tag.Value = (string)message["Title"];
+                    
+                    OnTagFound(tag);
+                    
                     break;
             }
         }
@@ -154,6 +171,10 @@ namespace Banshee.MediaEngine.Helix
             get { return (uint)player.GetLength() / 1000; }
         }        
         
+        public override bool CanSeek {
+            get { return !player.GetIsLive(); }
+        }
+        
         public override string Id {
             get { return "helix-remote"; }
         }
@@ -162,12 +183,12 @@ namespace Banshee.MediaEngine.Helix
             get { return "Helix Remote"; }
         }
         
-        private static string [] source_capabilities = { "file" };
+        private static string [] source_capabilities = { "file", "http" };
         public override IEnumerable SourceCapabilities {
             get { return source_capabilities; }
         }
         
-        private static string [] decoder_capabilities = { "m4a", "mp3" };
+        private static string [] decoder_capabilities = { "m4a", "mp3", "ram", "ra", "rm", "aac", "mp4" };
         public override IEnumerable ExplicitDecoderCapabilities {
             get { return decoder_capabilities; }
         }
