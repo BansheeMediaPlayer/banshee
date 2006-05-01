@@ -1,5 +1,10 @@
 2006-05-01  Aaron Bockover  <aaron@abock.org>
 
+	* src/Banshee.Base/Dap/DapCore.cs: Fixed bug where iPod does not show
+	up if Banshee has already been started (Gabriel Burt, BGO #340313).
+
+2006-05-01  Aaron Bockover  <aaron@abock.org>
+
 	Fix a locking bug that caused crashes (BGO #340306)
 
 	* src/Banshee.Base/Source.cs: Added virtual TracksMutex object that

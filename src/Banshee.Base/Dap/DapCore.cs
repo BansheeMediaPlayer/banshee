@@ -159,7 +159,7 @@ namespace Banshee.Dap
                     !device.GetPropertyBool("block.is_volume")) {
                     foreach(Device storage_device in Hal.Device.FindByStringMatch(device.Context, 
                         "info.parent", device.Udi)) {
-                        if(AddDevice(storage_device)) {
+                        if(AddDevice(storage_device) && device_waiting_table[storage_device.Udi] == null) {
                             break;
                         }
                     }
@@ -175,7 +175,7 @@ namespace Banshee.Dap
                 if(AddDevice(device, type)) {
                     return true;
                 }
-            }    
+            }
             
             return false;
         }
@@ -192,7 +192,7 @@ namespace Banshee.Dap
                     case InitializeResult.WaitForPropertyChange:
                         device.WatchProperties = true;
                         device_waiting_table[device.Udi] = type;
-                        return false;
+                        return true;
                 }
             } catch(Exception e) {
                 Console.WriteLine(e);
