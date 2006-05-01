@@ -1,3 +1,19 @@
+2006-05-01  Aaron Bockover  <aaron@abock.org>
+
+	Fix a locking bug that caused crashes (BGO #340306)
+
+	* src/Banshee.Base/Source.cs: Added virtual TracksMutex object that
+	can be used to properly lock the Tracks collection
+
+	* src/PlayerInterface.cs:
+	* src/PlaylistModel.cs: lock SourceManager.ActiveSource.TracksMutex
+	when performing operations on SourceManager.ActiveSource.Tracks
+	
+	* src/Banshee.Base/Sources/LibrarySource.cs:
+	* src/Banshee.Base/Sources/PlaylistSource.cs: implement TracksMutext
+	by inlining the internal collection SyncRoot mutex and locking when
+	necessary
+
 2006-04-20  Aaron Bockover  <aaron@abock.org>
 
 	* src/Banshee.MediaEngine/Helix/HelixRemotePlayer.cs: Added GetIsLive

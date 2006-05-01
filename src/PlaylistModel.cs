@@ -132,8 +132,10 @@ namespace Banshee
         {
             ClearModel();
             
-            foreach(TrackInfo track in SourceManager.ActiveSource.Tracks) {
-                AddTrack(track);
+            lock(SourceManager.ActiveSource.TracksMutex) {
+                foreach(TrackInfo track in SourceManager.ActiveSource.Tracks) {
+                    AddTrack(track);
+                }
             }
         }
 

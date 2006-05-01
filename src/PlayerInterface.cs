@@ -1323,13 +1323,15 @@ namespace Banshee
                 return;
             }
             
-            foreach(TrackInfo track in SourceManager.ActiveSource.Tracks) {
-                try {
-                    if(DoesTrackMatchSearch(track)) {
-                        playlistModel.AddTrack(track);
+            lock(SourceManager.ActiveSource.TracksMutex) {
+                foreach(TrackInfo track in SourceManager.ActiveSource.Tracks) {
+                    try {
+                        if(DoesTrackMatchSearch(track)) {
+                            playlistModel.AddTrack(track);
+                        }
+                    } catch(Exception) {
+                        continue;
                     }
-                } catch(Exception) {
-                    continue;
                 }
             }
             

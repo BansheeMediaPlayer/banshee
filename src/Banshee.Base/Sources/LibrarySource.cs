@@ -74,6 +74,10 @@ namespace Banshee.Sources
             get { return Globals.Library.Tracks.Values; }
         }
         
+        public override object TracksMutex {
+            get { return Globals.Library.Tracks.SyncRoot; }
+        }
+        
         public override int Count {
             get { return Globals.Library.Tracks.Count; }
         }  

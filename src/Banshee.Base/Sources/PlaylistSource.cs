@@ -99,8 +99,10 @@ namespace Banshee.Sources
                     id
             ));
             
-            while(reader.Read()) {
-                tracks.Add(Globals.Library.Tracks[Convert.ToInt32(reader[0])]);
+            lock(TracksMutex) {
+                while(reader.Read()) {
+                    tracks.Add(Globals.Library.Tracks[Convert.ToInt32(reader[0])]);
+                }
             }
             
             reader.Dispose();
@@ -139,14 +141,18 @@ namespace Banshee.Sources
         public override void AddTrack(TrackInfo track)
         {
             if(track is LibraryTrackInfo) {
-                tracks.Add(track);
+                lock(TracksMutex) {
+                    tracks.Add(track);
+                }
                 OnUpdated();
             }
         }
         
         public override void RemoveTrack(TrackInfo track)
         {
-            tracks.Remove(track);
+            lock(TracksMutex) {
+                tracks.Remove(track);
+            }
         }
         
         public void Delete()
@@ -175,22 +181,26 @@ namespace Banshee.Sources
                     id
             ));
             
-            foreach(TrackInfo track in Tracks) {
-                if(track.TrackId <= 0)
-                    continue;
-                    
-                Globals.Library.Db.Execute(String.Format(
-                    @"INSERT INTO PlaylistEntries 
-                        VALUES (NULL, '{0}', '{1}')",
-                        id, track.TrackId
-                ));
+            lock(TracksMutex) {
+                foreach(TrackInfo track in Tracks) {
+                    if(track.TrackId <= 0)
+                        continue;
+                        
+                    Globals.Library.Db.Execute(String.Format(
+                        @"INSERT INTO PlaylistEntries 
+                            VALUES (NULL, '{0}', '{1}')",
+                            id, track.TrackId
+                    ));
+                }
             }
         }
         
         public override void Reorder(TrackInfo track, int position)
         {
             RemoveTrack(track);
-            tracks.Insert(position, track);
+            lock(TracksMutex) {
+                tracks.Insert(position, track);
+            }
         }
         
         private void OnLibraryTrackRemoved(object o, LibraryTrackRemovedArgs args)
@@ -233,6 +243,10 @@ namespace Banshee.Sources
             get {
                 return tracks;
             }
+        }
+        
+        public override object TracksMutex {
+            get { return tracks.SyncRoot; }
         }
         
         public override int Count {

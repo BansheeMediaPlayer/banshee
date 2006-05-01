@@ -197,6 +197,17 @@ namespace Banshee.Sources
             }
         }
         
+        private object tracks_mutex = null;
+        public virtual object TracksMutex {
+            get { 
+                if(tracks_mutex == null) {
+                    tracks_mutex = new object();
+                }
+                
+                return tracks_mutex; 
+            }
+        }
+        
         public virtual Gdk.Pixbuf Icon {
             get {
                 return null;
