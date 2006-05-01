@@ -1,6 +1,7 @@
 # Swedish messages for banshee.
-# Copyright (C) 2005 Free Software Foundation, Inc.
+# Copyright (C) 2005 2006 Free Software Foundation, Inc.
 # Christian Rose <menthos@menthos.com>, 2005.
+# Daniel Nylander <po@danielnylander.se>, 2006.
 #
 # $Id$
 #
@@ -8,17 +9,21 @@ msgid ""
 msgstr ""
 "Project-Id-Version: banshee\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-11-13 00:10+0100\n"
-"PO-Revision-Date: 2005-11-13 21:51+0100\n"
-"Last-Translator: Christian Rose <menthos@menthos.com>\n"
-"Language-Team: Swedish <sv@li.org>\n"
+"POT-Creation-Date: 2006-04-11 18:04+0200\n"
+"PO-Revision-Date: 2006-04-12 00:36+0100\n"
+"Last-Translator: Daniel Nylander <po@danielnylander.se>\n"
+"Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: ../data/banshee.desktop.in.in.h:1 ../data/glade/player.glade.h:6
-#: ../src/PlayerInterface.cs:1465
+#. Footer
+#: ../data/banshee.desktop.in.in.h:1
+#: ../data/banshee.glade.h:18
+#: ../src/PlayerInterface.cs:309
+#: ../src/PlayerInterface.cs:651
+#: ../src/PlayerInterface.cs:1181
 msgid "Banshee Music Player"
 msgstr "Musikspelaren Banshee"
 
@@ -26,1755 +31,2396 @@ msgstr "Musikspelaren Banshee"
 msgid "Music Player"
 msgstr "Musikspelare"
 
-#: ../data/banshee.schemas.in.h:1
-msgid "Copy and rename music to banshee music library directory when importing"
-msgstr ""
-
-#: ../data/banshee.schemas.in.h:2
-#, fuzzy
-msgid "Copy music on import"
-msgstr "Kopiera till Pilot"
-
-#: ../data/banshee.schemas.in.h:3
-#, fuzzy
-msgid "File Name Pattern"
-msgstr "Filnamn"
-
-#: ../data/banshee.schemas.in.h:5
-#, no-c-format
-msgid ""
-"Format for creating filenames/directories for ripped tracks, imported music, "
-"etc. Format is relative to the Banshee music directory... do not form an "
-"absolute path! Tokens: %artist%, %album%, %title%, %track_number%, %"
-"track_count%, %track_number_nz% (No prefixed zero), %track_count_nz% (No "
-"prefixed zero)."
-msgstr ""
-
-#: ../data/banshee.schemas.in.h:6
-#, fuzzy
-msgid "Height of the main interface window."
-msgstr "Höjd på spellistefönstret."
-
-#: ../data/banshee.schemas.in.h:7
-msgid "Move music on info save"
-msgstr ""
-
-#: ../data/banshee.schemas.in.h:8
-msgid ""
-"Move music within banshee music library directory when saving track info"
-msgstr ""
-
-#: ../data/banshee.schemas.in.h:9
-#, fuzzy
-msgid "Name of media playback engine."
-msgstr "Namn på sidan"
-
-#: ../data/banshee.schemas.in.h:10
-msgid "Only display the notification area (tray) icon if true"
-msgstr ""
-
-#: ../data/banshee.schemas.in.h:11
-msgid "Pixel position of Main Player Window on the X Axis"
-msgstr ""
-
-#: ../data/banshee.schemas.in.h:12
-msgid "Pixel position of Main Player Window on the Y Axis"
-msgstr ""
-
-#: ../data/banshee.schemas.in.h:13
-#, fuzzy
-msgid "Player Engine Name"
-msgstr "Spela låt senare"
-
-#: ../data/banshee.schemas.in.h:14
-#, fuzzy
-msgid "Show Notification Area Icon"
-msgstr "Visa _adressrad"
-
-#: ../data/banshee.schemas.in.h:15
-#, fuzzy
-msgid "Source View Width"
-msgstr "Bredd på förhandsvisning"
-
-#: ../data/banshee.schemas.in.h:16
-#, fuzzy
-msgid "Volume Output Level"
-msgstr "Volymnivå"
-
-#: ../data/banshee.schemas.in.h:17
-msgid ""
-"Volume of playback relative to mixer output (except on Helix, which sets "
-"volume directly on PCM"
-msgstr ""
-
-#: ../data/banshee.schemas.in.h:18
-#, fuzzy
-msgid "Width of Album Column."
-msgstr "Bredd på fönstret \"Lägg till album\"."
-
-#: ../data/banshee.schemas.in.h:19
-#, fuzzy
-msgid "Width of Artist Column."
-msgstr "Bredd på spellistefönstret."
-
-#: ../data/banshee.schemas.in.h:20
-#, fuzzy
-msgid "Width of Last Played Column."
-msgstr "Bredd på fönstret \"Lägg till album\"."
-
-#: ../data/banshee.schemas.in.h:21
-#, fuzzy
-msgid "Width of Plays Column."
-msgstr "Bredd på spellistefönstret."
-
-#: ../data/banshee.schemas.in.h:22
-#, fuzzy
-msgid "Width of Rating Column."
-msgstr "Bredd på fönstret"
-
-#: ../data/banshee.schemas.in.h:23
-msgid "Width of Source View Comlumn."
-msgstr ""
-
-#: ../data/banshee.schemas.in.h:24
-#, fuzzy
-msgid "Width of Time Column."
-msgstr "Bredd på sidopanelen"
-
-#: ../data/banshee.schemas.in.h:25
-#, fuzzy
-msgid "Width of Title Column."
-msgstr "Bredd på fönstret"
-
-#: ../data/banshee.schemas.in.h:26
-msgid "Width of Track Column."
-msgstr ""
-
-#: ../data/banshee.schemas.in.h:27
-#, fuzzy
-msgid "Width of the main interface window."
-msgstr "Bredd på spellistefönstret."
-
-#: ../data/banshee.schemas.in.h:28
-#, fuzzy
-msgid "Window Height"
-msgstr "Wainwright"
-
-#: ../data/banshee.schemas.in.h:29
-#, fuzzy
-msgid "Window Position X"
-msgstr "Position"
-
-#: ../data/banshee.schemas.in.h:30
-#, fuzzy
-msgid "Window Position Y"
-msgstr "Position"
-
-#: ../data/banshee.schemas.in.h:31
-#, fuzzy
-msgid "Window Width"
-msgstr "Anpassa till bredden"
-
-#: ../data/glade/newipod.glade.h:1
-msgid "<big><b>New iPod Detected <small><sup>TM</sup></small></b></big>"
-msgstr ""
-
-#: ../data/glade/newipod.glade.h:2
-#, fuzzy
-msgid "<small>Serial Number</small>"
-msgstr "Serienummer"
-
-#: ../data/glade/newipod.glade.h:3
-msgid ""
-"Banshee has detected that you are plugging in an iPod for the first time. "
-"Please take a moment to give your iPod a name."
-msgstr ""
-
-#: ../data/glade/newipod.glade.h:4
-#, fuzzy
-msgid "New iPod Detected"
-msgstr "Inga markerade"
-
-#: ../data/glade/newipod.glade.h:5
-#, fuzzy
-msgid "Your Name:"
-msgstr "Färg_namn:"
-
-#: ../data/glade/newipod.glade.h:6
-#, fuzzy
-msgid "iPod Name:"
-msgstr "Fältnamn"
-
-#: ../data/glade/player.glade.h:1
-msgid "<b>Playlist</b>"
-msgstr "<b>Spellista</b>"
-
-#: ../data/glade/player.glade.h:2
-#, fuzzy
-msgid "<span size=\"small\">Idle</span>"
-msgstr "<span size=\"larger\">Okänd</span>"
-
-#: ../data/glade/player.glade.h:3
-#, fuzzy
-msgid "Add Selected Songs"
-msgstr "Allt valt"
-
-#: ../data/glade/player.glade.h:4
-#, fuzzy
-msgid "Add To Playlist"
-msgstr "Lägg till spellista"
-
-#: ../data/glade/player.glade.h:5 ../libbanshee/cd-rip.c:227
-#: ../src/NotificationAreaIcon.cs:62
-#, fuzzy
-msgid "Banshee"
-msgstr "Bas"
-
-#: ../data/glade/player.glade.h:7
-#, fuzzy
-msgid "Columns..."
-msgstr "Formatera kolumner..."
-
-#: ../data/glade/player.glade.h:8
-msgid "Delete"
-msgstr "Ta bort"
-
-#: ../data/glade/player.glade.h:9
-#, fuzzy
-msgid "Delete Playlist"
-msgstr "_Ta bort spellista"
-
-#: ../data/glade/player.glade.h:10
-#, fuzzy
-msgid "Delete Song(s) from Drive"
-msgstr "_Ta bort från papperskorgen"
-
-#: ../data/glade/player.glade.h:11
-#, fuzzy
-msgid "Delete from Drive"
-msgstr "_Ta bort från papperskorgen"
-
-#: ../data/glade/player.glade.h:12
-#, fuzzy
-msgid "Duplicate"
-msgstr "_Duplicera"
-
-#: ../data/glade/player.glade.h:13 ../src/StockIcons.cs:60
-msgid "Eject"
-msgstr "Mata ut"
-
-#: ../data/glade/player.glade.h:14 ../src/StockIcons.cs:77
-#, fuzzy
-msgid "Import CD"
-msgstr "Importera"
-
-#: ../data/glade/player.glade.h:15
-#, fuzzy
-msgid "Import Files..."
-msgstr "_Importera fil..."
-
-#: ../data/glade/player.glade.h:16
-#, fuzzy
-msgid "Import Folder..."
-msgstr "_Importera mapp..."
-
-#: ../data/glade/player.glade.h:17
-msgid "Logged Events..."
-msgstr ""
-
-#: ../data/glade/player.glade.h:18 ../src/Library.cs:588
-#: ../src/PlayerInterface.cs:2027 ../src/SourceView.cs:69
-msgid "New Playlist"
-msgstr "Ny spellista"
-
-#: ../data/glade/player.glade.h:19
-msgid "Prefere_nces"
-msgstr "Inställ_ningar"
-
-#: ../data/glade/player.glade.h:20
-msgid "Properties"
-msgstr "Egenskaper"
-
-#: ../data/glade/player.glade.h:21 ../src/PlaylistView.cs:95
-msgid "Rating"
-msgstr "Betyg"
-
-#: ../data/glade/player.glade.h:22
-msgid "Remove"
-msgstr "Ta bort"
-
-#: ../data/glade/player.glade.h:23
-#, fuzzy
-msgid "Remove Song(s)"
-msgstr "_Ta bort låt"
-
-#: ../data/glade/player.glade.h:24
-msgid "Rename"
-msgstr "Byt namn"
-
-#: ../data/glade/player.glade.h:25 ../src/PlayerInterface.cs:1798
-msgid "Rename Playlist"
-msgstr "Byt namn på spellista"
-
-#: ../data/glade/player.glade.h:26
-#, fuzzy
-msgid "Search:"
-msgstr "_Sök:"
-
-#: ../data/glade/player.glade.h:27
-msgid "Select All"
-msgstr "Markera allt"
-
-#: ../data/glade/player.glade.h:28
-#, fuzzy
-msgid "Select None"
-msgstr "Markera _ingen"
-
-#: ../data/glade/player.glade.h:29
-#, fuzzy
-msgid "Toggle Full Screen Mode"
-msgstr "Växla helskärmsläge"
-
-#: ../data/glade/player.glade.h:30 ../src/PlayerInterface.cs:330
-#, fuzzy
-msgid "Update iPod"
-msgstr "Uppdaterat"
-
-#: ../data/glade/player.glade.h:31
-#, fuzzy
-msgid "Version Information"
-msgstr "Personlig information"
-
-#. Other
-#: ../data/glade/player.glade.h:32 ../src/StockIcons.cs:76
-#, fuzzy
-msgid "Write CD"
-msgstr "Skriv till cd"
-
-#: ../data/glade/player.glade.h:33
-#, fuzzy
-msgid "_Full Screen"
-msgstr "_Helskärm"
-
-#: ../data/glade/player.glade.h:34
-msgid "_Music"
-msgstr "_Musik"
-
-#: ../data/glade/preferences.glade.h:1
-#, fuzzy
+#: ../data/banshee.glade.h:1
 msgid "<b>Advanced Options</b>"
-msgstr "<b>Alternativ för skickande</b>"
+msgstr "<b>Avancerade alternativ</b>"
 
-#: ../data/glade/preferences.glade.h:2
-#, fuzzy
+#: ../data/banshee.glade.h:2
+msgid "<b>Advanced Properties</b>"
+msgstr "<b>Avancerade egenskaper</b>"
+
+#: ../data/banshee.glade.h:3
 msgid "<b>Banshee Music Folder Location</b>"
-msgstr "<b>Musikmapp</b>"
+msgstr "<b>Plats för Banshees musikmapp</b>"
 
-#: ../data/glade/preferences.glade.h:3
-#, fuzzy
+#: ../data/banshee.glade.h:4
 msgid "<b>CD Burning</b>"
-msgstr "<b>Varaktighet:</b>"
+msgstr "<b>Cd-bränning</b>"
 
-#: ../data/glade/preferences.glade.h:4
-#, fuzzy
+#: ../data/banshee.glade.h:5
 msgid "<b>CD Ripping</b>"
-msgstr "<b>Betyg:</b>"
+msgstr "<b>Cd-rippning</b>"
 
-#: ../data/glade/preferences.glade.h:5
-#, fuzzy
+#: ../data/banshee.glade.h:6
+msgid "<b>Loading...</b>"
+msgstr "<b>Läser in...</b>"
+
+#: ../data/banshee.glade.h:7
 msgid "<b>Playback Engines</b>"
-msgstr "<b>Spellista</b>"
+msgstr "<b>Uppspelningsmotorer</b>"
 
-#: ../data/glade/preferences.glade.h:6
-#, fuzzy
+#: ../data/banshee.glade.h:8
 msgid "<b>iPod Transcoding</b>"
-msgstr "<b>Hämtning</b>"
+msgstr "<b>iPod-omkodning</b>"
 
-#: ../data/glade/preferences.glade.h:7
+#: ../data/banshee.glade.h:9
+msgid "<big><b>Editing Song</b></big>"
+msgstr "<big><b>Redigerar låt</b></big>"
+
+#: ../data/banshee.glade.h:10
+msgid "<big><b>Import Music to Library</b></big>"
+msgstr "<big><b>Importera musik till bibliotek</b></big>"
+
+#: ../data/banshee.glade.h:11
+msgid "<small><i><Unknown></i></small>"
+msgstr "<small><i><Okänd></i></small>"
+
+#: ../data/banshee.glade.h:12
 msgid "<small>Advanced</small>"
-msgstr ""
+msgstr "<small>Avancerad</small>"
 
-#: ../data/glade/preferences.glade.h:8
+#: ../data/banshee.glade.h:13
 msgid "<small>Burning</small>"
-msgstr ""
+msgstr "<small>Bränning</small>"
 
-#: ../data/glade/preferences.glade.h:9
-#, fuzzy
+#: ../data/banshee.glade.h:14
 msgid "<small>Encoding</small>"
-msgstr "<span weight=\"bold\">Kodning:</span>"
+msgstr "<small>Kodning</small>"
 
-#: ../data/glade/preferences.glade.h:10
+#: ../data/banshee.glade.h:15
 msgid "<small>Library</small>"
-msgstr ""
+msgstr "<small>Bibliotek</small>"
 
-#: ../data/glade/preferences.glade.h:11 ../src/AudioCdCore.cs:157
+#: ../data/banshee.glade.h:16
+msgid "Albu_m"
+msgstr "Albu_m"
+
+#: ../data/banshee.glade.h:17
+#: ../src/Banshee.Base/AudioCd/AudioCdDisk.cs:92
 msgid "Audio CD"
 msgstr "Ljud-cd"
 
-#: ../data/glade/preferences.glade.h:12
-#, fuzzy
+#: ../data/banshee.glade.h:19
+msgid "Bit Rate:"
+msgstr "Bithastighet:"
+
+# Det är en patenterad teknik. Eller?
+#: ../data/banshee.glade.h:20
 msgid "Burnproof"
-msgstr "Brno"
+msgstr "Burnproof"
 
-#: ../data/glade/preferences.glade.h:13
+#: ../data/banshee.glade.h:21
+msgid "Channels:"
+msgstr "Kanaler:"
+
+#: ../data/banshee.glade.h:22
+msgid "Choose an import source:"
+msgstr "Välj en importkälla:"
+
+#: ../data/banshee.glade.h:23
 msgid "Copy files to Banshee Music Folder when importing to Library"
-msgstr ""
+msgstr "Kopiera filer till Banshees musikmapp vid importering till bibliotek"
 
-#: ../data/glade/preferences.glade.h:14
+#: ../data/banshee.glade.h:24
 msgid "Data CD"
 msgstr "Data-cd"
 
-#: ../data/glade/preferences.glade.h:15
-msgid "Description:"
-msgstr "Beskrivning:"
+#: ../data/banshee.glade.h:25
+msgid "Default Engine"
+msgstr "Standardmotor"
 
-#: ../data/glade/preferences.glade.h:16
-msgid "Disk At Once"
-msgstr ""
-
-#: ../data/glade/preferences.glade.h:17
-#, fuzzy
+# Disc eller disk?
+#: ../data/banshee.glade.h:26
 msgid "Disk Drive:"
-msgstr "Zip-enhet"
+msgstr "Skivenhet:"
 
-#: ../data/glade/preferences.glade.h:18
-#, fuzzy
+# Disc eller disk?
+#: ../data/banshee.glade.h:27
 msgid "Disk Format:"
-msgstr "Format:"
+msgstr "Skivformat:"
 
-#: ../data/glade/preferences.glade.h:19
-#, fuzzy
-msgid "Eject When Finished"
-msgstr "_Mata ut då slutförd"
+# Disc eller disk?
+#: ../data/banshee.glade.h:28
+msgid "Disk Usage:"
+msgstr "Skivanvändning:"
 
-#: ../data/glade/preferences.glade.h:20
-#, fuzzy
+#: ../data/banshee.glade.h:29
+msgid "Disk at once"
+msgstr "Skiva på en gång (DAO)"
+
+#: ../data/banshee.glade.h:30
+msgid "Do not show this dialog again"
+msgstr "Visa inte denna dialogruta igen"
+
+#: ../data/banshee.glade.h:31
+#: ../src/TrackProperties.cs:240
+msgid "Editing Song"
+msgstr "Redigerar låt"
+
+#: ../data/banshee.glade.h:32
+msgid "Eject when finished"
+msgstr "Mata ut vid färdig"
+
+#: ../data/banshee.glade.h:33
 msgid "Encoding Profile:"
-msgstr "Redigera _profiler"
+msgstr "Kodningsprofil:"
 
-#: ../data/glade/preferences.glade.h:21
-#, fuzzy
-msgid "Engine:"
-msgstr "Slutar:"
+#: ../data/banshee.glade.h:34
+msgid "Encoding:"
+msgstr "Kodning:"
 
-#: ../data/glade/preferences.glade.h:22
-#, fuzzy
-msgid "MP3 CD"
-msgstr "MP3"
+#: ../data/banshee.glade.h:35
+msgid "Enter the address of the file you would like to open:"
+msgstr "Ange adressen till filen du vill öppna:"
 
-#: ../data/glade/preferences.glade.h:23
-#, fuzzy
-msgid "Overburn"
-msgstr "Skulle ha utförts:"
-
-#: ../data/glade/preferences.glade.h:24
-msgid "Preferences"
-msgstr "Inställningar"
-
-#: ../data/glade/preferences.glade.h:25
-msgid "Reset"
-msgstr "Återställ"
-
-#: ../data/glade/preferences.glade.h:26
-#, fuzzy
-msgid "Simulate Write"
-msgstr "Sault Ste Marie"
-
-#: ../data/glade/preferences.glade.h:27
-#, fuzzy
-msgid "Write Speed:"
-msgstr "Då öppnat:"
-
-#: ../data/glade/trackinfo.glade.h:1
-#, fuzzy
-msgid "<big><b>Editing Track Properties</b></big>"
-msgstr "<b>Spårförlopp</b>"
-
-#: ../data/glade/trackinfo.glade.h:2
-msgid "<small><i><Unknown></i></small>"
-msgstr ""
-
-#: ../data/glade/trackinfo.glade.h:3
-#, fuzzy
-msgid "Albu_m"
-msgstr "Album"
-
-#: ../data/glade/trackinfo.glade.h:4
-#, fuzzy
-msgid "Imported On:"
-msgstr "Importera"
-
-#: ../data/glade/trackinfo.glade.h:5
-#, fuzzy
-msgid "Last Played On:"
-msgstr "_Senast spelad:"
-
-#: ../data/glade/trackinfo.glade.h:6
-#, fuzzy
-msgid "Number of Plays:"
-msgstr "Antal kolumner:"
-
-#: ../data/glade/trackinfo.glade.h:7
-#, fuzzy
-msgid "Track Duration:"
-msgstr "Varaktighet:"
-
-#: ../data/glade/trackinfo.glade.h:8
-#, fuzzy
-msgid "Track Property Editor"
-msgstr "Spårredigerare"
-
-#: ../data/glade/trackinfo.glade.h:9
-#, fuzzy
-msgid "Track _Count"
-msgstr "Spårformat"
-
-#: ../data/glade/trackinfo.glade.h:10
-#, fuzzy
-msgid "Track _Number"
-msgstr "Spår_nummer"
-
-#: ../data/glade/trackinfo.glade.h:11
-msgid "_Artist"
-msgstr "_Artist"
-
-#: ../data/glade/trackinfo.glade.h:12
-msgid "_Title"
-msgstr "_Titel"
-
-#: ../libbanshee/cd-rip.c:85
-#, fuzzy
-msgid "Could not create pipeline"
-msgstr "Kunde inte skapa rör: %s"
-
-#: ../libbanshee/cd-rip.c:94
-#, fuzzy
-msgid "Could not initialize cdparanoia"
-msgstr "Kunde inte initiera Bonobo"
-
-#: ../libbanshee/cd-rip.c:107
-#, fuzzy
-msgid "Could not create encoder pipeline"
-msgstr "Kunde inte skapa redigerarfönstret."
-
-#: ../libbanshee/cd-rip.c:113
-#, fuzzy
-msgid "Could not create GNOME VFS File Sink"
-msgstr "Kunde inte skapa en uppgiftsfil i \"%s\""
-
-#: ../libbanshee/cd-rip.c:128
-#, fuzzy
-msgid "Could not link pipeline elements"
-msgstr "Kunde inte bygga rörledning"
-
-#: ../libbanshee/cd-rip.c:241
-#, fuzzy
-msgid "Encoding element does not support tagging!"
-msgstr "Detta filsystem stöder inte montering"
-
-#: ../libbanshee/cd-rip.c:251
-#, fuzzy
-msgid "Could not send seek event to cdparanoia"
-msgstr "Kunde inte spola till nästa spår"
-
-#: ../libbanshee/cd-rip.c:257
-msgid "Could not get track start position"
-msgstr "Kunde inte få tag i startposition"
-
-#: ../libbanshee/cd-rip.c:271
-#, fuzzy
-msgid "Could not get track position"
-msgstr "Kunde inte få tag i startposition"
-
-#: ../libbanshee/gst-encode.c:118
-#, fuzzy
-msgid "Could not create 'gnomevfssrc' element"
-msgstr "Misslyckades med att skapa gnomevfssink-element"
-
-#: ../libbanshee/gst-encode.c:124
-#, fuzzy
-msgid "Could not create 'spider' element"
-msgstr "Misslyckades med att skapa tilläggselement"
-
-#: ../libbanshee/gst-encode.c:131
-#, fuzzy, c-format
-msgid "Could not create encoding pipeline: %s"
-msgstr "Kunde inte skapa rör: %s"
-
-#: ../libbanshee/gst-encode.c:137
-#, fuzzy
-msgid "Could not create 'filesink' element"
-msgstr "Misslyckades med att skapa videosink-element"
-
-#: ../libbanshee/gst-encode.c:219
-msgid "No decoder could be found for source format."
-msgstr ""
-
-#: ../libbanshee/gst-encode.c:224
-#, fuzzy
-msgid "Could not stat encoded file"
-msgstr "Kunde inte välja fil"
-
-#: ../mediaengines/gst/GstPlayerEngine.cs:131
-#, fuzzy
-msgid "Could not initialize GStreamer library"
-msgstr "Kunde inte initiera de trådsäkra biblioteken."
-
-#: ../mediaengines/gst/GstPlayerEngine.cs:329
-#, fuzzy
-msgid "GStreamer Engine"
-msgstr "Sökmotorer"
-
-#: ../mediaengines/gst/GstPlayerEngine.cs:340
-msgid ""
-"GStreamer is a multimedia framework for playing and manipulating media. Any "
-"GStreamer plugin that is available will work through this engine."
-msgstr ""
-
-#: ../mediaengines/helix/HelixPlayer.cs:79
-msgid "Helix Framework Engine (hxclientkit)"
-msgstr ""
-
-#: ../mediaengines/helix/HelixPlayer.cs:87
-msgid ""
-"The Helix Engine provides multimedia control through the Helix Multimedia "
-"Framework, sponsored by RealNetworks. The engine can play any file that "
-"RealPlayer can. Install RealPlayer for best results."
-msgstr ""
-
-#: ../mediaengines/vlc/VlcPlayerEngine.cs:77
-msgid "VLC"
-msgstr ""
-
-#: ../mediaengines/vlc/VlcPlayerEngine.cs:85
-msgid ""
-"VLC is a highly portable multimedia player for various audio and video "
-"formats (MP3, AAC, OGG, FLAC, WMA, etc.) See http://videolan.org/vlc/"
-msgstr ""
-
-#: ../plugincore/TrackInfo.cs:158 ../src/AudioCdCore.cs:150
-msgid "Unknown Artist"
-msgstr "Okänd artist"
-
-#: ../plugincore/TrackInfo.cs:163
-msgid "Unknown Album"
-msgstr "Okänt album"
-
-#: ../plugincore/TrackInfo.cs:168
-msgid "Unknown Title"
-msgstr "Okänd titel"
-
-#: ../src/AboutBox.cs:118
-msgid ""
-"Copyright 2005 Novell, Inc.\n"
-"Copyright 2005 Aaron Bockover"
-msgstr ""
-
-#: ../src/AboutBox.cs:120
-#, fuzzy
-msgid "Music Management and Playback for Gnome."
-msgstr "Musikhanterings- och uppspelningsprogramvara för GNOME."
-
-#: ../src/ActiveUserEvent.cs:72
-msgid "Cancel Operation"
-msgstr "Avbryt åtgärd"
-
-#: ../src/ActiveUserEvent.cs:74
-#, fuzzy, csharp-format
-msgid "Are you sure you want to cancel the '{0}' operation?"
-msgstr "Är du säker på att du vill ta bort uppgiften \"{0}\"?"
-
-#: ../src/AudioCdCore.cs:151
-#, fuzzy
-msgid "Unkown Album"
-msgstr "Okänt album"
-
-#: ../src/AudioCdCore.cs:152
-#, fuzzy, csharp-format
-msgid "Track {0}"
-msgstr "Spår"
-
-#: ../src/AudioCdCore.cs:333
-#, fuzzy
-msgid "Could not initialize HAL for CD Detection"
-msgstr "Kunde inte initiera Bonobo"
-
-#. work around mcs #76642
-#: ../src/AudioCdCore.cs:366
-#, fuzzy
-msgid "Could not Read Audio CD"
-msgstr "Kunde inte läsa cd-skivan"
-
-#: ../src/BurnCore.cs:89
-#, fuzzy
-msgid "Could Not Write CD"
-msgstr "Kunde inte läsa cd-skivan"
-
-#: ../src/BurnCore.cs:90
-msgid ""
-"No suitable wave encoder could be found to convert selected songs to CD "
-"audio format."
-msgstr ""
-
-#: ../src/BurnCore.cs:151
-#, fuzzy
-msgid "Writing CD"
-msgstr "Skriv till cd"
-
-#: ../src/BurnCore.cs:183
-msgid "The inserted media is not large enough to hold your selected music."
-msgstr ""
-
-#: ../src/BurnCore.cs:185
-#, csharp-format
-msgid "{0} more minute is needed on the media."
-msgid_plural "{0} more minutes are needed on the media."
-msgstr[0] ""
-msgstr[1] ""
-
-#: ../src/BurnCore.cs:189
-msgid "Not Enough Space on Disc"
-msgstr ""
-
-#: ../src/BurnCore.cs:220
-msgid "No CD writers were found on your system."
-msgstr ""
-
-# SUN CHANGED MESSAGE
-#: ../src/BurnCore.cs:260
-#, fuzzy
-msgid "Error Burning CD"
-msgstr "Fel vid öppnande av cd"
-
-#: ../src/BurnCore.cs:264
-msgid "An unknown error occurred when attempting to write the CD"
-msgstr ""
-
-#: ../src/BurnCore.cs:270
-#, fuzzy
-msgid "CD Writing Complete"
-msgstr "Lågt fuktdisdrev"
-
-#: ../src/BurnCore.cs:271
-msgid "The selected audio was successfully written to the CD."
-msgstr ""
-
-# SUN CHANGED MESSAGE
-#: ../src/BurnCore.cs:275
-#, fuzzy
-msgid "Error Writing CD"
-msgstr "Fel vid öppnande av cd"
-
-#: ../src/BurnCore.cs:298
-#, fuzzy
-msgid "Preparing to write..."
-msgstr "Förbereder flyttning..."
-
-#: ../src/BurnCore.cs:302
-#, fuzzy
-msgid "Writing disk..."
-msgstr "Väntar..."
-
-#: ../src/BurnCore.cs:306
-#, fuzzy
-msgid "Fixating disk..."
-msgstr "Migrerar..."
-
-#: ../src/BurnCore.cs:323
-#, fuzzy
-msgid "Waiting for Media"
-msgstr "Väntar på svar [%s]\n"
-
-#: ../src/BurnCore.cs:327 ../src/BurnCore.cs:330
-#, fuzzy
-msgid "Insert Blank CD"
-msgstr "Infoga fil"
-
-#: ../src/BurnCore.cs:328
-#, fuzzy
-msgid "Please insert a blank CD disk for the write process."
-msgstr "Ange ett namn för den nya musikgruppen."
-
-#: ../src/Dialogs.cs:80
-#, fuzzy
-msgid "Cannot Rename Playlist"
-msgstr "Byt namn på spellista"
-
-#: ../src/Dialogs.cs:81
-#, fuzzy
-msgid "A playlist with this name already exists. Please choose another name."
-msgstr "En mapp med namnet \"{1}\" finns redan. Använd ett annat namn."
-
-#: ../src/Dialogs.cs:90
-#, fuzzy
-msgid "An Error Occurred"
-msgstr "Ett fel inträffade"
-
-#: ../src/Dialogs.cs:97
+#: ../data/banshee.glade.h:36
+#: ../src/Dialogs.cs:88
 msgid "Error"
 msgstr "Fel"
 
-#: ../src/ExceptionDialog.cs:24
-#, fuzzy
-msgid "Banshee Encountered a Fatal Error"
-msgstr "Ikonvyn råkade ut för ett fel."
+#: ../data/banshee.glade.h:37
+msgid "File Name:"
+msgstr "Filnamn:"
 
-#: ../src/ExceptionDialog.cs:52
+#: ../data/banshee.glade.h:38
+msgid "Import Music Source"
+msgstr "Importera musikkälla"
+
+#: ../data/banshee.glade.h:39
+msgid "Import Music to Library"
+msgstr "Importera musik till bibliotek"
+
+#: ../data/banshee.glade.h:40
+msgid "Imported On:"
+msgstr "Importerad den:"
+
+#: ../data/banshee.glade.h:41
+msgid "Last Played On:"
+msgstr "Senast spelad den:"
+
+#: ../data/banshee.glade.h:42
+msgid "MP3 CD"
+msgstr "MP3-cd"
+
+#: ../data/banshee.glade.h:43
+msgid "Mime Type:"
+msgstr "Mimetyp:"
+
+#: ../data/banshee.glade.h:44
+msgid "Number of Plays:"
+msgstr "Antal spelningar:"
+
+#: ../data/banshee.glade.h:45
+#: ../src/Banshee.Base/Gui/OpenLocationDialog.cs:97
+msgid "Open Location"
+msgstr "Öppna plats"
+
+#: ../data/banshee.glade.h:46
+msgid "Overburn"
+msgstr "Överbränn"
+
+#: ../data/banshee.glade.h:47
+msgid "Preferences"
+msgstr "Inställningar"
+
+#: ../data/banshee.glade.h:48
+msgid "Reset"
+msgstr "Återställ"
+
+#: ../data/banshee.glade.h:49
+msgid "Sample Rate:"
+msgstr "Samplingshastighet:"
+
+#: ../data/banshee.glade.h:50
+msgid "Seek to Position"
+msgstr "Spola till position"
+
+#: ../data/banshee.glade.h:51
+msgid "Simulate write"
+msgstr "Simulera skrivning"
+
+#: ../data/banshee.glade.h:52
+msgid "Track Duration:"
+msgstr "Spårlängd:"
+
+#: ../data/banshee.glade.h:53
+msgid "Track _Count"
+msgstr "Spår_antal"
+
+#: ../data/banshee.glade.h:54
+msgid "Track _Number"
+msgstr "Spår_nummer"
+
+#: ../data/banshee.glade.h:55
+#: ../src/Banshee.Base/Dap/Dap.cs:604
+#: ../src/TrackProperties.cs:236
+#: ../src/TrackProperties.cs:260
+#: ../src/TrackProperties.cs:261
+#: ../src/TrackProperties.cs:262
+#: ../src/TrackProperties.cs:263
+#: ../src/TrackProperties.cs:264
+#: ../src/TrackProperties.cs:265
+msgid "Unknown"
+msgstr "Okänd"
+
+#: ../data/banshee.glade.h:56
+msgid "VBR:"
+msgstr "VBR:"
+
+#: ../data/banshee.glade.h:57
+msgid "Write Speed:"
+msgstr "Skrivningshastighet:"
+
+#: ../data/banshee.glade.h:58
+msgid "Your music library is empty. You may import new music into your library now, or choose to do so later."
+msgstr "Ditt musikbibliotek är tomt. Du kan importera ny musik till ditt bibliotek nu, eller välja att göra det senare."
+
+#: ../data/banshee.glade.h:59
+msgid "_Artist"
+msgstr "_Artist"
+
+#: ../data/banshee.glade.h:60
+msgid "_Genre"
+msgstr "_Genre"
+
+#: ../data/banshee.glade.h:61
+msgid "_Search:"
+msgstr "_Sök:"
+
+#: ../data/banshee.glade.h:62
+msgid "_Title"
+msgstr "_Titel"
+
+#: ../data/banshee.schemas.in.h:1
+msgid "Copy and rename music to banshee music library directory when importing"
+msgstr "Kopiera och byt namn på musik till Banshees musikbibliotek vid importering"
+
+#: ../data/banshee.schemas.in.h:2
+msgid "Copy music on import"
+msgstr "Kopiera musik vid importering"
+
+#: ../data/banshee.schemas.in.h:3
+msgid "Enable Special Keys"
+msgstr "Aktivera specialtangenter"
+
+#: ../data/banshee.schemas.in.h:4
+msgid "Enabled Special Keys (Multimedia Keys) support for Play/Pause/Next/Previous; works with mappings set through Gnome Shortcuts capplet"
+msgstr "Aktiverade specialtangenter (Multimediatangenter) stöd för Spela/Pause/Nästa/Föregående; fungerar med bindningar inställda genom panelprogrammet för Gnome-genvägar"
+
+#: ../data/banshee.schemas.in.h:5
+msgid "File Name Pattern"
+msgstr "Filnamnsmönster"
+
+#: ../data/banshee.schemas.in.h:7
+#, no-c-format
+msgid "Format for creating filenames/directories for ripped tracks, imported music, etc. Format is relative to the Banshee music directory... do not form an absolute path! Tokens: %artist%, %album%, %title%, %track_number%, %track_count%, %track_number_nz% (No prefixed zero), %track_count_nz% (No prefixed zero)."
+msgstr "Format för att skapa filnamn/kataloger för rippade spår, importerad musik, etc. Formatet är relativt till Banshees musikkatalog... ange inte en absolut sökväg! Symboler: %artist%, %album%, %title%, %track_number%, %track_count%, %track_number_nz% (Ingen nolla som prefix), %track_count_nz% (Ingen nolla som prefix)."
+
+#: ../data/banshee.schemas.in.h:8
+msgid "Height of the main interface window."
+msgstr "Höjd på huvudgränssnittsfönstret."
+
+#: ../data/banshee.schemas.in.h:9
+msgid "Move music on info save"
+msgstr "Flytta musik vid sparande av information"
+
+#: ../data/banshee.schemas.in.h:10
+msgid "Move music within banshee music library directory when saving track info"
+msgstr "Flytta musik inom Banshees musikbibliotekkatalog när spårinformation sparas"
+
+#: ../data/banshee.schemas.in.h:11
+msgid "Name of media playback engine."
+msgstr "Namn på mediauppspelningsmotor."
+
+#: ../data/banshee.schemas.in.h:12
+msgid "Pixel position of Main Player Window on the X Axis"
+msgstr "Pixelposition för huvuduppspelarfönstret på X-axeln"
+
+#: ../data/banshee.schemas.in.h:13
+msgid "Pixel position of Main Player Window on the Y Axis"
+msgstr "Pixelposition för huvuduppspelarfönstret på Y-axeln"
+
+#: ../data/banshee.schemas.in.h:14
+msgid "Player Engine Name"
+msgstr "Namn på uppspelningsmotor"
+
+#: ../data/banshee.schemas.in.h:15
+msgid "Show advanced track properties"
+msgstr "Visa avancerade spåregenskaper"
+
+#: ../data/banshee.schemas.in.h:16
+msgid "Show the Initial Import Dialog"
+msgstr "Visa den initiala importeringsdialogen"
+
+#: ../data/banshee.schemas.in.h:17
+msgid "Show the Initial Import Dialog when the Banshee library is empty"
+msgstr "Visa den initiala importeringsdialog när Banshees bibliotek är tomt"
+
+#: ../data/banshee.schemas.in.h:18
+msgid "Source View Width"
+msgstr "Bredd på källvy"
+
+#: ../data/banshee.schemas.in.h:19
+msgid "True if main window is to be maximized, false if it is not."
+msgstr "Sant om huvudfönstret ska maximeras, falskt om det inte är."
+
+#: ../data/banshee.schemas.in.h:20
+msgid "True if the advanced expander should be expanded in the track properties dialog, false if it should be closed"
+msgstr "Sant om den avancerade expanderaren ska expanderas i spåregenskapsdialogen, falskt om den ska stängas"
+
+#: ../data/banshee.schemas.in.h:21
+msgid "Visibility of Album Column."
+msgstr "Synlighet för Album-kolumn."
+
+#: ../data/banshee.schemas.in.h:22
+msgid "Visibility of Artist Column."
+msgstr "Synlighet för Artist-kolumn."
+
+#: ../data/banshee.schemas.in.h:23
+msgid "Visibility of Time Column."
+msgstr "Synlighet för Tid-kolumn."
+
+#: ../data/banshee.schemas.in.h:24
+msgid "Visibility of Title Column."
+msgstr "Synlighet för Titel-kolumn."
+
+#: ../data/banshee.schemas.in.h:25
+msgid "Visibility of Track Column."
+msgstr "Synlighet för Spår-kolumn."
+
+#: ../data/banshee.schemas.in.h:26
+msgid "Volume Output Level"
+msgstr "Volymnivå"
+
+#: ../data/banshee.schemas.in.h:27
+msgid "Volume of playback relative to mixer output (except on Helix, which sets volume directly on PCM"
+msgstr "Uppspelningsvolym relativ till mixerutgång (förutom på Helix, som ställer in volymen direkt på PCM"
+
+#: ../data/banshee.schemas.in.h:28
+msgid "Width of Album Column."
+msgstr "Bredd på Album-kolumn."
+
+#: ../data/banshee.schemas.in.h:29
+msgid "Width of Artist Column."
+msgstr "Bredd på Artist-kolumn."
+
+#: ../data/banshee.schemas.in.h:30
+msgid "Width of Last Played Column."
+msgstr "Bredd på Senast spelad-kolumn."
+
+#: ../data/banshee.schemas.in.h:31
+msgid "Width of Plays Column."
+msgstr "Bredd på Spelar-kolumn."
+
+#: ../data/banshee.schemas.in.h:32
+msgid "Width of Rating Column."
+msgstr "Bredd på Betyg-kolumn."
+
+#: ../data/banshee.schemas.in.h:33
+msgid "Width of Source View Column."
+msgstr "Bredd på Källvy-kolumn."
+
+#: ../data/banshee.schemas.in.h:34
+msgid "Width of Time Column."
+msgstr "Bredd på Tid-kolumn."
+
+#: ../data/banshee.schemas.in.h:35
+msgid "Width of Title Column."
+msgstr "Bredd på Titel-kolumn."
+
+#: ../data/banshee.schemas.in.h:36
+msgid "Width of Track Column."
+msgstr "Bredd på Spår-kolumn."
+
+#: ../data/banshee.schemas.in.h:37
+msgid "Width of the main interface window."
+msgstr "Bredd på huvudgränssnittsfönstret."
+
+#: ../data/banshee.schemas.in.h:38
+msgid "Window Height"
+msgstr "Fönsterhöjd"
+
+#: ../data/banshee.schemas.in.h:39
+msgid "Window Maximized"
+msgstr "Fönster maximerat"
+
+#: ../data/banshee.schemas.in.h:40
+msgid "Window Position X"
+msgstr "Fönsterposition X"
+
+#: ../data/banshee.schemas.in.h:41
+msgid "Window Position Y"
+msgstr "Fönsterposition Y"
+
+#: ../data/banshee.schemas.in.h:42
+msgid "Window Width"
+msgstr "Fönsterbredd"
+
+#: ../libbanshee/gst-cd-rip-0.10.c:241
+#: ../libbanshee/gst-cd-rip-0.8.c:84
+msgid "Could not create pipeline"
+msgstr "Kunde inte skapa rör"
+
+#: ../libbanshee/gst-cd-rip-0.10.c:247
+#: ../libbanshee/gst-cd-rip-0.8.c:93
+msgid "Could not initialize cdparanoia"
+msgstr "Kunde inte initiera cdparanoia"
+
+#: ../libbanshee/gst-cd-rip-0.10.c:258
+#: ../libbanshee/gst-cd-rip-0.8.c:106
+msgid "Could not create encoder pipeline"
+msgstr "Kunde inte skapa rör för kodare"
+
+#: ../libbanshee/gst-cd-rip-0.10.c:264
+msgid "Could not create queue plugin"
+msgstr "Kunde inte skapa köinsticksmodul"
+
+# Intressant ordval
+#: ../libbanshee/gst-cd-rip-0.10.c:272
+#: ../libbanshee/gst-cd-rip-0.8.c:112
+msgid "Could not create GNOME VFS output plugin"
+msgstr "Kunde inte skapa utmatningsinsticksmodul för GNOME VFS"
+
+#: ../libbanshee/gst-cd-rip-0.10.c:287
+#: ../libbanshee/gst-cd-rip-0.8.c:127
+msgid "Could not link pipeline elements"
+msgstr "Kunde inte länka rörelement"
+
+#: ../libbanshee/gst-cd-rip-0.10.c:378
+#: ../libbanshee/gst-cd-rip-0.8.c:226
+#: ../src/AboutBox.cs:132
+#: ../src/Banshee.Plugins/NotificationAreaIcon/NotificationAreaIconPlugin.cs:105
+msgid "Banshee"
+msgstr "Banshee"
+
+#: ../libbanshee/gst-cd-rip-0.10.c:404
+#: ../libbanshee/gst-cd-rip-0.8.c:240
+msgid "Encoding element does not support tagging!"
+msgstr "Kodningselement har inte stöd för taggning!"
+
+#: ../libbanshee/gst-cd-rip-0.8.c:250
+msgid "Could not send seek event to cdparanoia"
+msgstr "Kunde inte skicka spolhändelse till cdparanoia"
+
+#: ../libbanshee/gst-cd-rip-0.8.c:256
+msgid "Could not get track start position"
+msgstr "Kunde inte få tag i startposition"
+
+#: ../libbanshee/gst-cd-rip-0.8.c:270
+msgid "Could not get track position"
+msgstr "Kunde inte få tag i spårposition"
+
+#: ../libbanshee/gst-playback-0.8.c:91
+msgid "Could not find or create the 'playbin' GStreamer plugin"
+msgstr "Kunde inte hitta eller skapa GStreamer-insticksmodulen \"playbin"
+
+#: ../libbanshee/gst-playback-0.8.c:99
+msgid "Could not load an output sink from GStreamer/GConf and could not fall back on alsasink"
+msgstr "Kunde inte läsa in en utmatningsutgång från GStreamer/GConf och kunde inte falla tillbaka på alsasink"
+
+#: ../libbanshee/gst-playback-0.8.c:102
+msgid "Could not load an output sink from GStreamer/GConf, falling back on alsasink"
+msgstr "Kunde inte läsa in en utmatningsutgång från GStreamer/GConf, faller tillbaka på alsasink"
+
+#: ../libbanshee/gst-transcode-0.10.c:160
+#: ../libbanshee/gst-transcode-0.8.c:242
+msgid "No decoder could be found for source format."
+msgstr "Ingen avkodare kunde hittades för källformatet."
+
+#: ../libbanshee/gst-transcode-0.10.c:165
+#: ../libbanshee/gst-transcode-0.8.c:247
+msgid "Could not stat encoded file"
+msgstr "Kunde inte ta status på kodad fil"
+
+#: ../libbanshee/gst-transcode-0.10.c:249
+#: ../libbanshee/gst-transcode-0.8.c:90
+msgid "Could not create 'gnomevfssrc' plugin"
+msgstr "Kunde inte skapa \"gnomevfssrc\"-insticksmodul"
+
+#: ../libbanshee/gst-transcode-0.10.c:255
+msgid "Could not create 'decodebin' plugin"
+msgstr "Kunde inte skapa \"decodebin\"-insticksmodul"
+
+#: ../libbanshee/gst-transcode-0.10.c:261
+msgid "Could not create 'gnomevfssink' plugin"
+msgstr "Kunde inte skapa \"gnomevfssink\"-insticksmodul"
+
+#: ../libbanshee/gst-transcode-0.10.c:267
+msgid "Could not create 'sinkben' plugin"
+msgstr "Kunde inte skapa \"sinkben\"-insticksmodul"
+
+#: ../libbanshee/gst-transcode-0.10.c:273
+msgid "Could not create 'audioconvert' plugin"
+msgstr "Kunde inte skapa \"audioconvert\"-insticksmodul"
+
+#: ../libbanshee/gst-transcode-0.10.c:279
+msgid "Could not create encoding pipeline"
+msgstr "Kunde inte skapa kodningsrör"
+
+# Sink pad?
+#: ../libbanshee/gst-transcode-0.10.c:285
+msgid "Could not get sink pad from encoder"
+msgstr "Kunde inte få sink pad från kodare"
+
+#: ../libbanshee/gst-transcode-0.10.c:368
+msgid "Could not construct pipeline"
+msgstr "Kunde inte konstruera rör"
+
+#: ../libbanshee/gst-transcode-0.8.c:96
+msgid "Could not create 'spider' plugin"
+msgstr "Kunde inte skapa \"spider\"-insticksmodul"
+
+#: ../libbanshee/gst-transcode-0.8.c:103
+#, c-format
+msgid "Could not create encoding pipeline: %s"
+msgstr "Kunde inte skapa kodningsrör: %s"
+
+#: ../libbanshee/gst-transcode-0.8.c:109
+msgid "Could not create 'filesink' plugin"
+msgstr "Kunde inte skapa \"filesink\"-insticksmodul"
+
+#: ../libbanshee/hal-context.c:61
+msgid "Could not create new HAL context"
+msgstr "Kunde inte skapa nytt HAL-sammanhang"
+
+#: ../libbanshee/hal-context.c:69
+#, c-format
+msgid "Could not integrate HAL with mainloop: %s"
+msgstr "Kunde inte integrera HAL med huvudloop: %s"
+
+#: ../libbanshee/hal-context.c:89
+#: ../libbanshee/hal-context.c:92
+msgid "Could not initialize HAL context"
+msgstr "Kunde inte initiera HAL-sammanhang"
+
+#: ../libbanshee/hal-context.c:101
+msgid "Could not get device list from HAL"
+msgstr "Kunde inte få enhetslista från HAL"
+
+#: ../src/AboutBox.cs:134
+msgid "Music Management and Playback for Gnome."
+msgstr "Musikhanterings- och uppspelningsprogramvara för Gnome."
+
+#: ../src/AboutBox.cs:136
 msgid ""
-"This may be due to a programming error. Please help us make Banshee better "
-"by reporting this error. Thank you in advance!"
+"Copyright © 2005-2006 Novell, Inc.\n"
+"Copyright © 2005 Aaron Bockover"
 msgstr ""
-
-#: ../src/ExceptionDialog.cs:99
-msgid "An unhandled exception was thrown: "
-msgstr ""
-
-#: ../src/FileEncodeTransaction.cs:67
-#, fuzzy
-msgid "File Encoder"
-msgstr "_Arkivera under:"
-
-#: ../src/FileEncodeTransaction.cs:70
-msgid "Initializing Encoder..."
-msgstr ""
-
-#: ../src/FileEncodeTransaction.cs:101
-#, fuzzy, csharp-format
-msgid "Encoding {0} - {1} ..."
-msgstr "Fel vid sparande av {0} till {1}: {2}"
-
-#: ../src/FileEncodeTransaction.cs:105
-#, fuzzy
-msgid "Encoding files..."
-msgstr "Flyttar filer"
-
-#: ../src/GstFileEncoder.cs:67
-#, fuzzy
-msgid "Could not create encoder"
-msgstr ""
-"Kunde inte skapa mappen %s:\n"
-"%s"
-
-#: ../src/GstFileEncoder.cs:87
-#, fuzzy, csharp-format
-msgid "Could not encode file: {0}"
-msgstr "Kunde inte öppna fil"
-
-#: ../src/IpodCore.cs:189
-#, fuzzy
-msgid "Syncing iPod"
-msgstr "Synkroniserar mapp"
-
-#. Translators: position in song. eg, "0:37 of 3:48"
-#: ../src/IpodCore.cs:484 ../src/Library.cs:483 ../src/PlayerInterface.cs:905
-#, fuzzy, csharp-format
-msgid "{0} of {1}"
-msgstr "{0} och {1}"
-
-#: ../src/IpodCore.cs:493 ../src/Library.cs:494
-#, fuzzy, csharp-format
-msgid "({0} Remaining)"
-msgstr "(%d.%02d återstår)"
-
-#. Translators: {0} is the name assigned to an iPod by its owner
-#: ../src/IpodPropertiesWindow.cs:98
-#, fuzzy, csharp-format
-msgid "{0} Properties"
-msgstr "Egenskaper"
-
-#: ../src/IpodPropertiesWindow.cs:115 ../src/IpodPropertiesWindow.cs:123
-#, fuzzy
-msgid "iPod Name"
-msgstr "Fältnamn"
-
-#: ../src/IpodPropertiesWindow.cs:116 ../src/IpodPropertiesWindow.cs:124
-#, fuzzy
-msgid "Your Name"
-msgstr "Ditt värdnamn"
-
-#: ../src/IpodPropertiesWindow.cs:117 ../src/IpodPropertiesWindow.cs:125
-#, fuzzy
-msgid "Computer Name"
-msgstr "Dator"
-
-#: ../src/IpodPropertiesWindow.cs:130
-msgid "Model"
-msgstr "Modell"
-
-#: ../src/IpodPropertiesWindow.cs:133
-#, fuzzy
-msgid "Capacity"
-msgstr "_Opacitet:"
-
-#: ../src/IpodPropertiesWindow.cs:134
-#, fuzzy
-msgid "Volume Usage"
-msgstr "Volym upp"
-
-#: ../src/IpodPropertiesWindow.cs:141
-#, fuzzy
-msgid "Mount Point"
-msgstr "Mount Wilson"
-
-#: ../src/IpodPropertiesWindow.cs:142
-#, fuzzy
-msgid "Device Node"
-msgstr "Enhet"
-
-#: ../src/IpodPropertiesWindow.cs:143
-#, fuzzy
-msgid "Write Support"
-msgstr "White Sulphur"
-
-#: ../src/IpodPropertiesWindow.cs:144
-msgid "Yes"
-msgstr "Ja"
-
-#: ../src/IpodPropertiesWindow.cs:144
-msgid "No"
-msgstr "Nej"
-
-#: ../src/IpodPropertiesWindow.cs:145
-#, fuzzy
-msgid "Volume UUID"
-msgstr "Höj volymen"
-
-#: ../src/IpodPropertiesWindow.cs:146
-msgid "Serial Number"
-msgstr "Serienummer"
-
-#: ../src/IpodPropertiesWindow.cs:147
-#, fuzzy
-msgid "Firmware Version"
-msgstr "Serverversion"
-
-#: ../src/IpodPropertiesWindow.cs:148
-#, fuzzy
-msgid "Database Version"
-msgstr "Cd-databasserver"
-
-#: ../src/IpodPropertiesWindow.cs:150
-#, fuzzy
-msgid "Advanced Details"
-msgstr "Avancerad sökning"
-
-#: ../src/Library.cs:259
-msgid "Library"
-msgstr "Bibliotek"
-
-# Vad är detta?
-# http://bugzilla.ximian.com/show_bug.cgi?id=61062
-#: ../src/Library.cs:473 ../src/Utilities.cs:123
-#, fuzzy, csharp-format
-msgid "{0} GB"
-msgstr "{0}"
-
-#: ../src/Library.cs:475 ../src/Utilities.cs:125
-#, fuzzy, csharp-format
-msgid "{0} MB"
-msgstr "10 MB"
-
-#: ../src/LibraryTransactionStatus.cs:165
-msgid "Working"
-msgstr "Arbetar"
-
-#: ../src/LibraryTransactionStatus.cs:203
-msgid ""
-"There are multiple operations executing. You may either cancel the current "
-"operation or all operations.\n"
-"\n"
-msgstr ""
-
-#: ../src/LibraryTransactionStatus.cs:207
-#, fuzzy
-msgid "Are you sure you want to cancel this operation?"
-msgid_plural "Are you sure you want to cancel these operations?"
-msgstr[0] "Är du säker på att du vill ta bort detta sammanträde?"
-msgstr[1] "Är du säker på att du vill ta bort detta sammanträde?"
-
-#: ../src/LibraryTransactionStatus.cs:213
-#, fuzzy
-msgid "Really Cancel Operation?"
-msgid_plural "Really Cancel Operations?"
-msgstr[0] "Avbryt åtgärd"
-msgstr[1] "Avbryt åtgärd"
-
-#: ../src/LibraryTransactions.cs:95
-msgid "Unhandled Exception, ending IO Transaction safely"
-msgstr ""
-
-#: ../src/LibraryTransactions.cs:212 ../src/LibraryTransactions.cs:569
-#, fuzzy
-msgid "Library Track Loader"
-msgstr "Virtuell papperskorgsmapp"
-
-#: ../src/LibraryTransactions.cs:234 ../src/LibraryTransactions.cs:588
-#: ../src/LibraryTransactions.cs:697
-#, fuzzy
-msgid "Processing"
-msgstr "Stoppa behandling"
-
-#: ../src/LibraryTransactions.cs:254
-#, fuzzy
-msgid "Preloading Files"
-msgstr "Fel vid inläsning av filen: %s"
-
-#: ../src/LibraryTransactions.cs:304 ../src/LibraryTransactions.cs:453
-#: ../src/LibraryTransactions.cs:595 ../src/LibraryTransactions.cs:722
-#, fuzzy, csharp-format
-msgid "Loading {0} - {1} ..."
-msgstr "Läser in..."
-
-#: ../src/LibraryTransactions.cs:372
-#, fuzzy
-msgid "Playlist Save"
-msgstr "Spellista"
-
-#: ../src/LibraryTransactions.cs:386
-#, fuzzy
-msgid "Flushing old entries"
-msgstr "Filtrerar mapp"
-
-#: ../src/LibraryTransactions.cs:400
-#, fuzzy
-msgid "Saving new entries"
-msgstr "Sparar ändringar i %s"
-
-#: ../src/LibraryTransactions.cs:429
-#, fuzzy
-msgid "Library Load"
-msgstr "Bibliotek"
-
-#: ../src/LibraryTransactions.cs:440
-#, fuzzy
-msgid "Preloading Library"
-msgstr "Fel vid inläsning av filer till biblioteket"
-
-#: ../src/LibraryTransactions.cs:482
-msgid "Library Track Remove"
-msgstr ""
-
-#: ../src/LibraryTransactions.cs:488 ../src/LibraryTransactions.cs:532
-#, fuzzy
-msgid "Removing Tracks"
-msgstr "Byter namn på mappen %s"
-
-#: ../src/LibraryTransactions.cs:501 ../src/LibraryTransactions.cs:547
-#, fuzzy, csharp-format
-msgid "Removing {0} - {1}"
-msgstr "{0} - {1}"
-
-#: ../src/LibraryTransactions.cs:507
-msgid "Purging Removed Tracks from Library..."
-msgstr ""
-
-#: ../src/LibraryTransactions.cs:521
-msgid "Playlist Track Remove"
-msgstr ""
-
-#: ../src/LibraryTransactions.cs:554
-msgid "Purging Removed Tracks from Playlist..."
-msgstr ""
-
-#: ../src/LibraryTransactions.cs:616
-#, fuzzy
-msgid "Could not load track from library"
-msgstr "Kunde inte lägga till ett bokmärke"
-
-#: ../src/LibraryTransactions.cs:679
-msgid "Playlist Track Loader"
-msgstr ""
-
-#: ../src/LogCoreViewer.cs:50
-#, fuzzy
-msgid "Log Viewer"
-msgstr "Listvisare"
-
-#: ../src/LogCoreViewer.cs:86
-msgid "Time Stamp"
-msgstr ""
-
-#: ../src/LogCoreViewer.cs:105
-msgid "Message"
-msgstr "Meddelande"
-
-#: ../src/LogCoreViewer.cs:117
-#, fuzzy
-msgid "Show:"
-msgstr "Visa"
-
-#: ../src/LogCoreViewer.cs:134
-#, fuzzy
-msgid "All Log Entries"
-msgstr "Tillåt nyrader"
-
-#: ../src/LogCoreViewer.cs:135
-#, fuzzy
-msgid "Only Error Messages"
-msgstr "_Öppna meddelanden"
-
-#: ../src/LogCoreViewer.cs:136
-#, fuzzy
-msgid "Only Warning Messages"
-msgstr "Varning: Oskickade meddelanden"
-
-#: ../src/LogCoreViewer.cs:137
-#, fuzzy
-msgid "Only Information Messages"
-msgstr "Valfri information"
-
-#: ../src/LogCoreViewer.cs:138
-#, fuzzy
-msgid "Only Debug Messages"
-msgstr "_Öppna meddelanden"
-
-#: ../src/LogCoreViewer.cs:153
-#, fuzzy
-msgid "Entry Details:"
-msgstr "Detaljer:"
-
-#: ../src/NotificationAreaIcon.cs:113
-msgid "Play / Pause"
-msgstr "Spela/Paus"
-
-#: ../src/NotificationAreaIcon.cs:118 ../src/StockIcons.cs:55
-msgid "Previous"
-msgstr "Föregående"
-
-#. Playback Control Icons
-#: ../src/NotificationAreaIcon.cs:124 ../src/StockIcons.cs:54
+"Copyright © 2005-2006 Novell, Inc.\n"
+"Copyright © 2005 Aaron Bockover"
+
+#: ../src/AboutBox.cs:141
+msgid "Banshee Wiki"
+msgstr "Banshee Wiki"
+
+#: ../src/Banshee.Base/ActionManager.cs:61
+msgid "_Music"
+msgstr "_Musik"
+
+#: ../src/Banshee.Base/ActionManager.cs:64
+#: ../src/Banshee.Base/Sources/PlaylistSource.cs:61
+#: ../src/Banshee.Base/Sources/PlaylistSource.cs:301
+#: ../src/Banshee.Base/Sources/PlaylistSource.cs:323
+#: ../src/Banshee.Base/Sources/PlaylistSource.cs:330
+#: ../src/PlayerInterface.cs:1480
+msgid "New Playlist"
+msgstr "Ny spellista"
+
+#: ../src/Banshee.Base/ActionManager.cs:65
+msgid "Create a new empty playlist"
+msgstr "Skapa en ny tom spellista"
+
+#: ../src/Banshee.Base/ActionManager.cs:68
+msgid "Import _Folder..."
+msgstr "Importera _mapp..."
+
+#: ../src/Banshee.Base/ActionManager.cs:69
+msgid "Import the contents of an entire folder"
+msgstr "Importera innehållet av en hel mapp"
+
+#: ../src/Banshee.Base/ActionManager.cs:72
+msgid "Import Files..."
+msgstr "Importera filer..."
+
+#: ../src/Banshee.Base/ActionManager.cs:73
+msgid "Import files inside a folder"
+msgstr "Importera filer inne i en mapp"
+
+#: ../src/Banshee.Base/ActionManager.cs:76
+msgid "Import Music..."
+msgstr "Importera musik..."
+
+#: ../src/Banshee.Base/ActionManager.cs:77
+msgid "Import music from a variety of sources"
+msgstr "Importera musik från ett antal källor"
+
+#: ../src/Banshee.Base/ActionManager.cs:80
+msgid "Open Location..."
+msgstr "Öppna plats..."
+
+#: ../src/Banshee.Base/ActionManager.cs:81
+msgid "Open a remote location for playback"
+msgstr "Öppna en fjärrplats för uppspelning"
+
+#: ../src/Banshee.Base/ActionManager.cs:84
+msgid "Import Source"
+msgstr "Importera källa"
+
+#: ../src/Banshee.Base/ActionManager.cs:85
+msgid "Import source to library"
+msgstr "Importera källa till bibliotek"
+
+#: ../src/Banshee.Base/ActionManager.cs:88
+msgid "Source Properties..."
+msgstr "Källegenskaper..."
+
+#: ../src/Banshee.Base/ActionManager.cs:89
+msgid "View source properties"
+msgstr "Visa källegenskaper"
+
+#: ../src/Banshee.Base/ActionManager.cs:92
+msgid "_Quit"
+msgstr "_Avsluta"
+
+#: ../src/Banshee.Base/ActionManager.cs:93
+msgid "Quit Banshee"
+msgstr "Avsluta Banshee"
+
+#: ../src/Banshee.Base/ActionManager.cs:96
+msgid "_Edit"
+msgstr "_Redigera"
+
+#: ../src/Banshee.Base/ActionManager.cs:99
+msgid "Rename Source"
+msgstr "Byt namn på källa"
+
+#: ../src/Banshee.Base/ActionManager.cs:100
+msgid "Rename the active source"
+msgstr "Byt namn på aktiv källa"
+
+#: ../src/Banshee.Base/ActionManager.cs:103
+msgid "Select All"
+msgstr "Markera allt"
+
+#: ../src/Banshee.Base/ActionManager.cs:104
+msgid "Select all songs in song list"
+msgstr "Markera alla låtar i låtlista"
+
+#: ../src/Banshee.Base/ActionManager.cs:107
+msgid "Select None"
+msgstr "Markera inga"
+
+#: ../src/Banshee.Base/ActionManager.cs:108
+msgid "Unselect all songs in song list"
+msgstr "Avmarkera alla låtar i låtlista"
+
+#: ../src/Banshee.Base/ActionManager.cs:111
+msgid "Plugins..."
+msgstr "Insticksmoduler..."
+
+#: ../src/Banshee.Base/ActionManager.cs:112
+msgid "Configure Banshee plugins"
+msgstr "Konfigurera insticksmoduler för Banshee"
+
+#: ../src/Banshee.Base/ActionManager.cs:117
+msgid "_View"
+msgstr "_Visa"
+
+#: ../src/Banshee.Base/ActionManager.cs:120
+msgid "Columns..."
+msgstr "Kolumner..."
+
+#: ../src/Banshee.Base/ActionManager.cs:121
+msgid "Select which columns to display in the song list"
+msgstr "Välj vilka kolumner att visa i låtlistan"
+
+#: ../src/Banshee.Base/ActionManager.cs:124
+msgid "Logged Events Viewer..."
+msgstr "Visare för loggade händelser..."
+
+#: ../src/Banshee.Base/ActionManager.cs:125
+msgid "View a detailed log of events"
+msgstr "Visa en detaljerad händelselogg"
+
+#: ../src/Banshee.Base/ActionManager.cs:128
+msgid "_Help"
+msgstr "_Hjälp"
+
+#: ../src/Banshee.Base/ActionManager.cs:131
+msgid "Version Information..."
+msgstr "Versionsinformation..."
+
+#: ../src/Banshee.Base/ActionManager.cs:132
+msgid "View detailed version and configuration information"
+msgstr "Visa detaljerad versions- och konfigurationsinformation"
+
+#: ../src/Banshee.Base/ActionManager.cs:137
+msgid "_Playback"
+msgstr "_Uppspelning"
+
+#: ../src/Banshee.Base/ActionManager.cs:140
+#: ../src/SourceView.cs:77
+msgid "Source"
+msgstr "Källa"
+
+#: ../src/Banshee.Base/ActionManager.cs:148
+msgid "Fullscreen"
+msgstr "Helskärm"
+
+#: ../src/Banshee.Base/ActionManager.cs:149
+msgid "Toggle Fullscreen Mode"
+msgstr "Växla helskärmsläge"
+
+#: ../src/Banshee.Base/ActionManager.cs:152
+msgid "Show Cover Art"
+msgstr "Visa omslagsbild"
+
+#: ../src/Banshee.Base/ActionManager.cs:153
+msgid "Toggle display of album cover art"
+msgstr "Växla visning av albumets omslagsbild"
+
+#: ../src/Banshee.Base/ActionManager.cs:162
+msgid "Delete Playlist"
+msgstr "Ta bort spellista"
+
+#: ../src/Banshee.Base/ActionManager.cs:163
+msgid "Delete the active playlist"
+msgstr "Ta bort den aktiva spellistan"
+
+#: ../src/Banshee.Base/ActionManager.cs:172
+msgid "Write CD"
+msgstr "Skriv cd"
+
+#: ../src/Banshee.Base/ActionManager.cs:173
+msgid "Write selection to audio CD"
+msgstr "Skriv markering till ljud-cd"
+
+#: ../src/Banshee.Base/ActionManager.cs:176
+msgid "Remove Song(s)"
+msgstr "Ta bort låt(ar)"
+
+#: ../src/Banshee.Base/ActionManager.cs:177
+msgid "Remove selected song(s) from library"
+msgstr "Ta bort markerade låt(ar) från bibliotek"
+
+#: ../src/Banshee.Base/ActionManager.cs:180
+msgid "Delete Song(s) From Drive"
+msgstr "Ta bort låt(ar) från enhet"
+
+#: ../src/Banshee.Base/ActionManager.cs:181
+msgid "Permanently delete selected song(s) from storage medium"
+msgstr "Ta permanent bort markerade låt(ar) från lagringsmedium"
+
+#: ../src/Banshee.Base/ActionManager.cs:184
+msgid "Edit Song Metadata"
+msgstr "Redigera låtens metadata"
+
+#: ../src/Banshee.Base/ActionManager.cs:185
+msgid "Edit metadata on selected songs"
+msgstr "Redigera metadata för de markerade låtarna"
+
+#: ../src/Banshee.Base/ActionManager.cs:188
+msgid "Add to Playlist"
+msgstr "Lägg till i spellista"
+
+#: ../src/Banshee.Base/ActionManager.cs:189
+msgid "Append selected songs to playlist or create new playlist from selection"
+msgstr "Lägg till de markerade låtarna till spellistan eller skapa en ny spellista från markering"
+
+#: ../src/Banshee.Base/ActionManager.cs:192
+#: ../src/PlaylistView.cs:105
+msgid "Rating"
+msgstr "Betyg"
+
+#: ../src/Banshee.Base/ActionManager.cs:193
+msgid "Set rating for selected songs"
+msgstr "Sätt betyg på de markerade låtarna"
+
+#: ../src/Banshee.Base/ActionManager.cs:202
+msgid "Import CD"
+msgstr "Importera cd"
+
+#: ../src/Banshee.Base/ActionManager.cs:203
+msgid "Import audio CD to library"
+msgstr "Importera ljud-cd till bibliotek"
+
+#: ../src/Banshee.Base/ActionManager.cs:212
+#: ../src/PlayerInterface.cs:814
+#: ../src/PlayerInterface.cs:822
+msgid "Play"
+msgstr "Spela"
+
+#: ../src/Banshee.Base/ActionManager.cs:213
+msgid "Play or pause the current song"
+msgstr "Spela upp eller pausa den aktuella låten"
+
+#: ../src/Banshee.Base/ActionManager.cs:216
 msgid "Next"
 msgstr "Nästa"
 
-#: ../src/NotificationAreaIcon.cs:131 ../src/StockIcons.cs:58
+#: ../src/Banshee.Base/ActionManager.cs:217
+msgid "Play the next song"
+msgstr "Spela upp nästa låt"
+
+#: ../src/Banshee.Base/ActionManager.cs:220
+msgid "Previous"
+msgstr "Föregående"
+
+#: ../src/Banshee.Base/ActionManager.cs:221
+msgid "Play the previous song"
+msgstr "Spela upp den föregående låten"
+
+#: ../src/Banshee.Base/ActionManager.cs:226
+#: ../src/ToggleStates.cs:41
+msgid "Repeat None"
+msgstr "Upprepa ingen"
+
+#: ../src/Banshee.Base/ActionManager.cs:227
+msgid "Do not repeat playlist"
+msgstr "Upprepa inte spellista"
+
+#: ../src/Banshee.Base/ActionManager.cs:230
+#: ../src/ToggleStates.cs:59
+msgid "Repeat All"
+msgstr "Upprepa alla"
+
+#: ../src/Banshee.Base/ActionManager.cs:231
+msgid "Play all songs before repeating playlist"
+msgstr "Spela upp alla låtar innan upprepning av spellista"
+
+#: ../src/Banshee.Base/ActionManager.cs:234
+#: ../src/ToggleStates.cs:50
+msgid "Repeat Single"
+msgstr "Upprepa enstaka"
+
+#: ../src/Banshee.Base/ActionManager.cs:235
+msgid "Repeat the current playing song"
+msgstr "Repetera den för närvarande uppspelade låten"
+
+#: ../src/Banshee.Base/ActionManager.cs:240
+#: ../src/ToggleStates.cs:68
 msgid "Shuffle"
 msgstr "Blanda"
 
-#: ../src/NotificationAreaIcon.cs:136 ../src/StockIcons.cs:59
-msgid "Repeat"
-msgstr "Upprepa"
+#: ../src/Banshee.Base/ActionManager.cs:241
+msgid "Toggle between shuffle or continuous playback modes"
+msgstr "Växla mellan blandning eller kontinuerlig uppspelning"
 
-#: ../src/NotificationAreaIcon.cs:143
-#, fuzzy
-msgid "Quit Banshee"
-msgstr "Cut Bank"
+#: ../src/Banshee.Base/ActionManager.cs:250
+msgid "Seek Backward"
+msgstr "Spola bakåt"
 
-#: ../src/PipelineProfile.cs:105
+#: ../src/Banshee.Base/ActionManager.cs:251
+msgid "Seek backward in current song"
+msgstr "Spola bakåt i aktuell låt"
+
+#: ../src/Banshee.Base/ActionManager.cs:254
+msgid "Seek Forward"
+msgstr "Spola framåt"
+
+#: ../src/Banshee.Base/ActionManager.cs:255
+msgid "Seek forward in current song"
+msgstr "Spola framåt i aktuell låt"
+
+#: ../src/Banshee.Base/ActionManager.cs:258
+msgid "Seek To..."
+msgstr "Spola till..."
+
+#: ../src/Banshee.Base/ActionManager.cs:259
+msgid "Seek to a specific location in current song"
+msgstr "Spola till en specifik plats i aktuell låt"
+
+#: ../src/Banshee.Base/ActionManager.cs:262
+msgid "Restart Song"
+msgstr "Starta om låt"
+
+#: ../src/Banshee.Base/ActionManager.cs:263
+msgid "Restart the current song"
+msgstr "Starta om den aktuella låten"
+
+#: ../src/Banshee.Base/ActionManager.cs:272
+#: ../src/PlayerInterface.cs:1056
+msgid "Synchronize"
+msgstr "Synkronisera"
+
+#: ../src/Banshee.Base/ActionManager.cs:273
+msgid "Save changes to device or synchronize music library"
+msgstr "Spara ändringar till enhet eller synkronisera musikbibliotek"
+
+#: ../src/Banshee.Base/ActionManager.cs:282
+msgid "Eject"
+msgstr "Mata ut"
+
+#: ../src/Banshee.Base/ActionManager.cs:283
+msgid "Eject the active source"
+msgstr "Mata ut den aktiva källan"
+
+#: ../src/Banshee.Base/AudioCd/AudioCdCore.cs:80
+msgid "HAL is not initialized"
+msgstr "HAL är inte initierad"
+
+#: ../src/Banshee.Base/AudioCd/AudioCdCore.cs:86
+msgid "Audio CD Core Initialized"
+msgstr "Ljud-cd-kärnan initierad"
+
+#. work around mcs #76642
+#: ../src/Banshee.Base/AudioCd/AudioCdCore.cs:103
+msgid "Could not Read Audio CD"
+msgstr "Kunde inte läsa ljud-cd"
+
+#: ../src/Banshee.Base/AudioCd/AudioCdDisk.cs:85
+#: ../src/Banshee.Base/TrackInfo.cs:374
+msgid "Unknown Artist"
+msgstr "Okänd artist"
+
+#: ../src/Banshee.Base/AudioCd/AudioCdDisk.cs:86
+#: ../src/Banshee.Base/TrackInfo.cs:382
+msgid "Unknown Album"
+msgstr "Okänt album"
+
+#: ../src/Banshee.Base/AudioCd/AudioCdDisk.cs:87
+#, csharp-format
+msgid "Track {0}"
+msgstr "Spår {0}"
+
+#: ../src/Banshee.Base/AudioCd/AudioCdDisk.cs:241
+msgid "Cannot Eject CD"
+msgstr "Kunde inte mata ut cd"
+
+#: ../src/Banshee.Base/AudioCd/AudioCdDisk.cs:242
+msgid "The CD cannot be ejected while it is importing. Stop the import first."
+msgstr "Cd-skivan kan inte matas ut under tiden den importeras. Stoppa importeringen först."
+
+#: ../src/Banshee.Base/AudioCdRipper.cs:85
+msgid "Could not create CD Ripper"
+msgstr "Kunde inte skapa cd-ripper"
+
+#: ../src/Banshee.Base/AudioCdRipper.cs:295
+#, csharp-format
+msgid "The device node '{0}' differs from the device node already set for previously queued tracks ({1})"
+msgstr "Enhetsnoden \"{0}\" skiljer sig från enhetsnoden redan inställd för tidigare köade spår ({1})"
+
+#: ../src/Banshee.Base/AudioCdRipper.cs:308
+msgid "Importing Audio CD"
+msgstr "Importerar ljud-cd"
+
+#: ../src/Banshee.Base/AudioCdRipper.cs:309
+msgid "Initializing Drive"
+msgstr "Initierar enhet"
+
+#: ../src/Banshee.Base/AudioCdRipper.cs:329
+#: ../src/Banshee.Base/AudioCdRipper.cs:393
+msgid "Cannot Import CD"
+msgstr "Kan inte importera cd"
+
+#: ../src/Banshee.Base/AudioCdRipper.cs:341
+#: ../src/Banshee.Base/ImportManager.cs:115
+#, csharp-format
+msgid "Importing {0} of {1}"
+msgstr "Importerar {0} av {1}"
+
+#: ../src/Banshee.Base/BatchTranscoder.cs:110
+msgid "File Transcoder"
+msgstr "Filomkodning"
+
+#: ../src/Banshee.Base/BatchTranscoder.cs:111
+msgid "Transcoding Files"
+msgstr "Kodar om filer"
+
+#: ../src/Banshee.Base/BatchTranscoder.cs:114
+msgid "Initializing Transcoder..."
+msgstr "Initierar omkodare..."
+
+#: ../src/Banshee.Base/Dap/DapCore.cs:119
+msgid "Cannot initialize DapCore because HalCore is not initialized"
+msgstr "Kan inte initiera DapCore på grund av att HalCore inte är initierad"
+
+#: ../src/Banshee.Base/Dap/Dap.cs:325
+#: ../src/Banshee.Base/Dap/Dap.cs:326
+msgid "Synchronizing Device"
+msgstr "Synkroniserar enhet"
+
+#: ../src/Banshee.Base/Dap/Dap.cs:327
+msgid "Waiting for transcoder..."
+msgstr "Väntar på omkodare..."
+
+#: ../src/Banshee.Base/Dap/Dap.cs:411
+#: ../src/Banshee.Base/Dap/Dap.cs:432
+msgid "Processing..."
+msgstr "Behandlar..."
+
+#. Translators: {0} is the name assigned to a Digital Audio Player by its owner
+#: ../src/Banshee.Base/Dap/DapPropertiesDialog.cs:54
+#, csharp-format
+msgid "{0} Properties"
+msgstr "Egenskaper för {0}"
+
+#: ../src/Banshee.Base/Dap/DapPropertiesDialog.cs:78
+#: ../src/Banshee.Base/Dap/DapPropertiesDialog.cs:81
+msgid "Device Name"
+msgstr "Enhetsnamn"
+
+#: ../src/Banshee.Base/Dap/DapPropertiesDialog.cs:85
+#: ../src/Banshee.Base/Dap/DapPropertiesDialog.cs:88
+msgid "Owner Name"
+msgstr "Ägarens namn"
+
+#: ../src/Banshee.Base/Dap/DapPropertiesDialog.cs:93
+msgid "Volume Usage"
+msgstr "Volymanvändning"
+
+#: ../src/Banshee.Base/Dap/DapPropertiesDialog.cs:105
+msgid "Advanced Details"
+msgstr "Avancerade detaljer"
+
+#: ../src/Banshee.Base/Gui/OpenLocationDialog.cs:53
+msgid "Browse..."
+msgstr "Bläddra..."
+
+#: ../src/Banshee.Base/FileImportSource.cs:55
+msgid "Import Files to Library"
+msgstr "Importera filer till bibliotek"
+
+#: ../src/Banshee.Base/FileImportSource.cs:82
+msgid "Local Files"
+msgstr "Lokala filer"
+
+#: ../src/Banshee.Base/FolderImportSource.cs:55
+msgid "Import Folder to Library"
+msgstr "Importera mapp till bibliotek"
+
+#: ../src/Banshee.Base/FolderImportSource.cs:80
+msgid "Local Folder"
+msgstr "Lokal mapp"
+
+#: ../src/Banshee.Base/GstTranscoder.cs:82
+#: ../src/Banshee.Base/GstTranscoder.cs:185
+msgid "Could not create transcoder"
+msgstr "Kunde inte skapa omkodare"
+
+#: ../src/Banshee.Base/HalCore.cs:97
+msgid "HAL could not be initialized"
+msgstr "HAL kunde inte initieras"
+
+#: ../src/Banshee.Base/HalCore.cs:104
+msgid "HAL context could not be created"
+msgstr "HAL-sammanhang kunde inte skapas"
+
+#: ../src/Banshee.Base/HalCore.cs:105
+msgid "D-Bus may not be working or configured properly"
+msgstr "D-Bus kanske inte fungerar eller är korrekt konfigurerad"
+
+#: ../src/Banshee.Base/HomeDirectoryImportSource.cs:58
+msgid "Home Directory"
+msgstr "Hemkatalog"
+
+#: ../src/Banshee.Base/ImportManager.cs:83
+msgid "Importing Songs"
+msgstr "Importerar låtar"
+
+#: ../src/Banshee.Base/ImportManager.cs:86
+msgid "Scanning for songs"
+msgstr "Söker efter låtar"
+
+#: ../src/Banshee.Base/Library.cs:126
+msgid "Could not load track from library"
+msgstr "Kunde inte läsa in spår från bibliotek"
+
+#: ../src/Banshee.Base/NetworkDetect.cs:76
+msgid "Cannot connect to NetworkManager"
+msgstr "Kan inte ansluta till NetworkManager"
+
+# Intressant engelska
+#: ../src/Banshee.Base/NetworkDetect.cs:77
+msgid "An available, working network connection will be assumed"
+msgstr "En tillgänglig, fungerande nätverksanslutning kommer att antas"
+
+#: ../src/Banshee.Base/PipelineProfile.cs:105
 msgid "Pipeline profile is empty."
-msgstr ""
+msgstr "Rörprofil är tom."
 
-#: ../src/PipelineProfile.cs:111
+#: ../src/Banshee.Base/PipelineProfile.cs:111
 msgid "Pipeline profile does not have the correct number of components (7)"
-msgstr ""
+msgstr "Rörprofil har inte det korrekta antalet komponenter (7)"
 
-#: ../src/PipelineProfile.cs:121
+#: ../src/Banshee.Base/PipelineProfile.cs:121
 msgid "Pipeline profile does not have a lookup key"
-msgstr ""
+msgstr "Rörprofil har inte en uppslagsnyckel"
 
-#: ../src/PipelineProfile.cs:125
+#: ../src/Banshee.Base/PipelineProfile.cs:125
 msgid "Pipeline profile does not have a display name"
-msgstr ""
+msgstr "Rörprofil har inte ett visningsnamn"
 
-#: ../src/PipelineProfile.cs:130
+#: ../src/Banshee.Base/PipelineProfile.cs:130
 #, csharp-format
 msgid "Pipeline profile '{0}' does not have a file extension"
-msgstr ""
+msgstr "Rörprofil \"{0}\" har inte en filändelse"
 
-#: ../src/PipelineProfile.cs:136
+#: ../src/Banshee.Base/PipelineProfile.cs:136
 #, csharp-format
 msgid "Pipeline profile '{0}' does not have a GStreamer element"
-msgstr ""
+msgstr "Rörprofil \"{0}\" har inte ett GStreamer-element"
 
-#: ../src/PipelineProfile.cs:167
+#: ../src/Banshee.Base/PipelineProfile.cs:167
 #, csharp-format
-msgid ""
-"Pipeline profile '{0}' will be unavailable: GStreamer pipeline '{1}' could "
-"not be run"
-msgstr ""
+msgid "Pipeline profile '{0}' will be unavailable: GStreamer pipeline '{1}' could not be run"
+msgstr "Rörprofil \"{0}\" kommer att vara otillgänglig: GStreamer-rör \"{1}\" kunde inte köras"
 
-#: ../src/PipelineProfile.cs:195
+#: ../src/Banshee.Base/PipelineProfile.cs:195
 msgid "Cannot use internal bitrate. Use BuildPipeline(bitrate) instead."
-msgstr ""
+msgstr "Kan inte använda intern bithastighet. Använd BuildPipeline(bithastighet) istället."
 
-#: ../src/PipelineProfile.cs:215
-msgid ""
-"Cannot set internal bitrate. Must copy profile and set Bitrate on copy (new "
-"PipelineProfile(profile))"
-msgstr ""
+#: ../src/Banshee.Base/PipelineProfile.cs:215
+msgid "Cannot set internal bitrate. Must copy profile and set Bitrate on copy (new PipelineProfile(profile))"
+msgstr "Kan inte ställa in intern bithastighet. Måste kopiera profil och ställa in bithastighet på kopia (ny PipelineProfile(profil))"
 
-#: ../src/PipelineProfile.cs:370
-#, fuzzy
+#. Translators: used to specify the bitrate for ripping
+#: ../src/Banshee.Base/PipelineProfile.cs:362
 msgid "at"
-msgstr "Beat"
+msgstr "i"
 
-#: ../src/PipelineProfile.cs:412
-#, fuzzy
+#: ../src/Banshee.Base/PipelineProfile.cs:404
 msgid "No iPod-compatible encoders available"
-msgstr "Inga egenskaper tillgängliga."
+msgstr "Inga iPod-kompatibla kodare tillgängliga"
 
-#: ../src/PlayerInterface.cs:272
+#: ../src/Banshee.Base/PlayerEngineCore.cs:101
+msgid "Default player engine"
+msgstr "Standardmotor för uppspelning"
+
+#: ../src/Banshee.Base/PlayerEngineCore.cs:172
+msgid "Problem with Player Engine"
+msgstr "Problem med uppspelningsmotor"
+
+#: ../src/Banshee.Base/Plugins/PluginDialog.cs:52
+msgid "Banshee Plugins"
+msgstr "Insticksmoduler för Banshee"
+
+#: ../src/Banshee.Base/Plugins/PluginDialog.cs:64
+#: ../src/Banshee.Base/Plugins/PluginDialog.cs:93
+msgid "Plugin Name"
+msgstr "Insticksmodulnamn"
+
+#: ../src/Banshee.Base/Plugins/PluginDialog.cs:70
+msgid "Enabled"
+msgstr "Aktiverad"
+
+#: ../src/Banshee.Base/Plugins/PluginDialog.cs:90
+msgid "Overview"
+msgstr "Översikt"
+
+#: ../src/Banshee.Base/Plugins/PluginDialog.cs:97
+msgid "Description"
+msgstr "Beskrivning"
+
+#: ../src/Banshee.Base/Plugins/PluginDialog.cs:100
+msgid "Author(s)"
+msgstr "Upphovsman"
+
+#: ../src/Banshee.Base/Plugins/PluginDialog.cs:105
+msgid "This plugin could not be initialized."
+msgstr "Denna insticksmodul kunde inte initieras."
+
+#: ../src/Banshee.Base/Plugins/PluginDialog.cs:193
+msgid "Configuration"
+msgstr "Konfiguration"
+
+#: ../src/Banshee.Base/Sources/AudioCdSource.cs:76
+msgid "Reading table of contents from CD..."
+msgstr "Läser innehållsförteckning från cd..."
+
+#: ../src/Banshee.Base/Sources/AudioCdSource.cs:81
+msgid "Searching for CD metadata..."
+msgstr "Söker efter cd-metadata..."
+
+#: ../src/Banshee.Base/Sources/AudioCdSource.cs:86
+msgid "Searching for CD cover art..."
+msgstr "Söker efter omslagsbild för cd..."
+
+#: ../src/Banshee.Base/Sources/AudioCdSource.cs:91
+msgid "Cannot search for CD metadata: there is no available Internet connection"
+msgstr "Kan inte söka efter cd-metadata: det finns ingen tillgänglig Internetanslutning"
+
+#: ../src/Banshee.Base/Sources/AudioCdSource.cs:97
+msgid "Could not fetch metadata for CD."
+msgstr "Kunde inte hämta metadata för cd."
+
+#: ../src/Banshee.Base/Sources/AudioCdSource.cs:178
+msgid "Invalid Selection"
+msgstr "Ogiltig markering"
+
+#: ../src/Banshee.Base/Sources/AudioCdSource.cs:179
+msgid "You must select at least one track to import."
+msgstr "Du måste välja åtminstone ett spår att importera."
+
+#: ../src/Banshee.Base/Sources/DapSource.cs:104
+msgid "Synchronizing your Device, Please Wait..."
+msgstr "Synkroniserar din enhet, var god vänta..."
+
+#: ../src/Banshee.Base/Sources/DapSource.cs:165
+#: ../src/Banshee.Widgets/StreamPositionLabel.cs:87
+#, csharp-format
+msgid "{0} of {1}"
+msgstr "{0} av {1}"
+
+#: ../src/Banshee.Base/Sources/DapSource.cs:175
+#, csharp-format
+msgid "({0} Remaining)"
+msgstr "({0} återstår)"
+
+#: ../src/Banshee.Base/Sources/LibrarySource.cs:50
+msgid "Music Library"
+msgstr "Musikbibliotek"
+
+#: ../src/Banshee.Base/Sources/LocalQueueSource.cs:53
+msgid "Local Queue"
+msgstr "Lokal kö"
+
+#: ../src/Banshee.Base/Sources/PlaylistSource.cs:117
+msgid "Cannot Rename Playlist"
+msgstr "Kan inte byta namn på spellista"
+
+#: ../src/Banshee.Base/Sources/PlaylistSource.cs:118
+msgid "A playlist with this name already exists. Please choose another name."
+msgstr "En spellista med detta namn finns redan. Välj ett annat namn."
+
+#: ../src/Banshee.Base/TrackInfo.cs:390
+msgid "Unknown Title"
+msgstr "Okänd titel"
+
+#: ../src/Banshee.Base/TrackInfoHeader.cs:103
+msgid "by"
+msgstr "av"
+
+#: ../src/Banshee.Base/TrackInfoHeader.cs:104
+msgid "from"
+msgstr "från"
+
+# Vad är detta?
+# http://bugzilla.ximian.com/show_bug.cgi?id=61062
+#: ../src/Banshee.Base/Utilities.cs:73
+#, csharp-format
+msgid "{0:0.00} GB"
+msgstr "{0:0.00} GB"
+
+#: ../src/Banshee.Base/Utilities.cs:74
+#, csharp-format
+msgid "{0} MB"
+msgstr "{0} MB"
+
+#: ../src/Banshee.Dap/Ipod/DatabaseRebuilder.cs:55
+#: ../src/Banshee.Dap/Ipod/DatabaseRebuilder.cs:56
+msgid "Rebuilding Database"
+msgstr "Bygger om databas"
+
+#: ../src/Banshee.Dap/Ipod/DatabaseRebuilder.cs:57
+msgid "Scanning iPod..."
+msgstr "Söker av iPod..."
+
+#: ../src/Banshee.Dap/Ipod/DatabaseRebuilder.cs:91
+msgid "Processing Songs..."
+msgstr "Behandlar låtar..."
+
+#: ../src/Banshee.Dap/Ipod/DatabaseRebuilder.cs:138
+msgid "Saving new database..."
+msgstr "Sparar ny databas..."
+
+#: ../src/Banshee.Dap/Ipod/DatabaseRebuilder.cs:145
+msgid "Error rebuilding iPod database"
+msgstr "Fel vid ombyggnation av iPod-databas"
+
+#: ../src/Banshee.Dap/Ipod/IpodDap.cs:159
+#: ../src/Banshee.Dap/Ipod/IpodDap.cs:178
+msgid "Synchronizing iPod"
+msgstr "Synkroniserar iPod"
+
+#: ../src/Banshee.Dap/Ipod/IpodDap.cs:160
+msgid "Pre-processing tracks"
+msgstr "Förbehandlar spår"
+
+#: ../src/Banshee.Dap/Ipod/IpodDap.cs:175
+msgid "Flushing to Disk (may take time)"
+msgstr "Spolar till disk (kan ta tid)"
+
+#: ../src/Banshee.Dap/Ipod/IpodDap.cs:185
+msgid "Failed to synchronize iPod"
+msgstr "Misslyckades med att synkronisera iPod"
+
+#: ../src/Banshee.Dap/Ipod/UnsupportedDatabaseView.cs:59
+msgid "Unable to read your iPod"
+msgstr "Kunde inte läsa din iPod"
+
+#: ../src/Banshee.Dap/Ipod/UnsupportedDatabaseView.cs:82
+msgid "What is the reason for this?"
+msgstr "Vad är anledningen för detta?"
+
+#: ../src/Banshee.Dap/Ipod/UnsupportedDatabaseView.cs:97
+msgid "Rebuild iPod Database..."
+msgstr "Bygger om iPod-databas..."
+
+#: ../src/Banshee.Dap/Ipod/UnsupportedDatabaseView.cs:105
+msgid "Confirm Rebuild iPod Database"
+msgstr "Bekräfta ombyggnation av iPod-databas"
+
+#: ../src/Banshee.Dap/Ipod/UnsupportedDatabaseView.cs:111
+msgid ""
+"Rebuilding your iPod database may take some time. Also note that any playlists you have on your iPod will be lost.\n"
+"\n"
+"Are you sure you want to rebuild your iPod database?"
+msgstr ""
+"Bygga om din iPod-databas kan ta lite tid. Notera även att de spellistor du har på din iPod kommer att förloras.\n"
+"\n"
+"Är du säker på att du vill bygga om din iPod-databas?"
+
+#: ../src/Banshee.Dap/Ipod/UnsupportedDatabaseView.cs:116
+msgid "Rebuild Database"
+msgstr "Bygg om databas"
+
+#: ../src/Banshee.Dap/Ipod/UnsupportedDatabaseView.cs:128
+msgid "Rebuilding iPod Database..."
+msgstr "Bygger om iPod-databas..."
+
+#. Console.WriteLine(Catalog.GetString("Cannot Import") + ": {0}", args.FileName);
+#. Console.WriteLine(Catalog.GetString("Cannot Import: {0} ({1}, {2})"),
+#. args.FileName, e.GetType(), e.Message);
+#: ../src/Banshee.Dap/MassStorage/MassStorageDap.cs:133
+#: ../src/Banshee.Dap/MassStorage/MassStorageDap.cs:137
+#: ../src/PlayerInterface.cs:1722
+msgid "Scanning"
+msgstr "Söker av"
+
+#: ../src/Banshee.Dap/MassStorage/MassStorageDap.cs:257
+msgid "Audio Device"
+msgstr "Ljudenhet"
+
+#: ../src/Banshee.MediaEngine/Gstreamer/GstPlayerEngine.cs:65
+#: ../src/Banshee.MediaEngine/Gstreamer/GstPlayerEngine.cs:296
+msgid "Could not initialize GStreamer library"
+msgstr "Kunde inte initiera GStreamer-bibliotek"
+
+#: ../src/Banshee.MediaEngine/Gstreamer/GstPlayerEngine.cs:143
+msgid "Unknown Error"
+msgstr "Okänt fel"
+
+#: ../src/Banshee.MediaEngine/Gstreamer/GstPlayerEngine.cs:165
+#: ../src/Banshee.Widgets/StreamPositionLabel.cs:81
+msgid "Buffering"
+msgstr "Buffrar"
+
+#: ../src/Banshee.Plugins/Audioscrobbler/AudioscrobblerConfigDialog.cs:61
+#: ../src/Banshee.Plugins/Audioscrobbler/AudioscrobblerPlugin.cs:145
+msgid "Audioscrobbler Reporting"
+msgstr "Audioscrobbler-rapportering"
+
+#: ../src/Banshee.Plugins/Audioscrobbler/AudioscrobblerConfigDialog.cs:73
+msgid "Create an account"
+msgstr "Skapa ett konto"
+
+#: ../src/Banshee.Plugins/Audioscrobbler/AudioscrobblerConfigDialog.cs:77
+msgid "Join the Banshee group"
+msgstr "Gå med i Banshee-gruppen"
+
+#: ../src/Banshee.Plugins/Audioscrobbler/AudioscrobblerConfigDialog.cs:91
+#: ../src/Banshee.Plugins/Audioscrobbler/AudioscrobblerPlugin.cs:130
+#: ../src/Banshee.Plugins/Audioscrobbler/AudioscrobblerPlugin.cs:131
+msgid "Enable song reporting"
+msgstr "Aktivera låtrapportering"
+
+#: ../src/Banshee.Plugins/Audioscrobbler/AudioscrobblerConfigDialog.cs:101
+msgid "Last.fm Username"
+msgstr "Användarnamn för Last.fm"
+
+#: ../src/Banshee.Plugins/Audioscrobbler/AudioscrobblerConfigDialog.cs:102
+msgid "Last.fm Password"
+msgstr "Lösenord för Last.fm"
+
+#: ../src/Banshee.Plugins/Audioscrobbler/AudioscrobblerPlugin.cs:59
+msgid "Your profile page on Last.fm is automatically updated whenever you listen to music. It lets others see what you're listening to right now, and shows charts of your listening history."
+msgstr "Din profilsida på Last.fm uppdateras automatiskt när du lyssnar på musik. Den låter andra se vad du lyssnar på just nu, och visar grafer över din lyssningshistorik."
+
+#: ../src/Banshee.Plugins/Audioscrobbler/AudioscrobblerPlugin.cs:112
+msgid "Audioscrobbler"
+msgstr "Audioscrobbler"
+
+#: ../src/Banshee.Plugins/Audioscrobbler/AudioscrobblerPlugin.cs:113
+#: ../src/Banshee.Plugins/Audioscrobbler/AudioscrobblerPlugin.cs:125
+msgid "Configure the Audioscrobbler plugin"
+msgstr "Konfigurera insticksmodulen Audioscrobbler"
+
+#: ../src/Banshee.Plugins/Audioscrobbler/AudioscrobblerPlugin.cs:116
+msgid "Visit user profile page"
+msgstr "Besök användarens profilsida"
+
+#: ../src/Banshee.Plugins/Audioscrobbler/AudioscrobblerPlugin.cs:117
+msgid "Visit your Audioscrobbler profile page"
+msgstr "Besök din profilsida för Audioscrobbler"
+
+#: ../src/Banshee.Plugins/Audioscrobbler/AudioscrobblerPlugin.cs:120
+msgid "Visit group page"
+msgstr "Besök gruppsida"
+
+#: ../src/Banshee.Plugins/Audioscrobbler/AudioscrobblerPlugin.cs:121
+msgid "Visit the Banshee last.fm group page"
+msgstr "Besök Banshees last.fm-gruppsida"
+
+#: ../src/Banshee.Plugins/Audioscrobbler/AudioscrobblerPlugin.cs:124
+msgid "Configure..."
+msgstr "Konfigurera..."
+
+#: ../src/Banshee.Plugins/Audioscrobbler/audioscrobbler.schemas.in.h:1
+msgid "Allow engine to submit song data to last.fm in the Audioscrobbler plugin"
+msgstr "Tillåt motor att skicka låtdata till last.fm i insticksmodulen Audioscrobbler"
+
+#: ../src/Banshee.Plugins/Audioscrobbler/audioscrobbler.schemas.in.h:2
+msgid "Enable the Audioscrobbler plugin"
+msgstr "Aktivera insticksmodulen Audioscrobbler"
+
+#: ../src/Banshee.Plugins/Audioscrobbler/audioscrobbler.schemas.in.h:3
+msgid "Your last.fm password"
+msgstr "Ditt lösenord på last.fm"
+
+#: ../src/Banshee.Plugins/Audioscrobbler/audioscrobbler.schemas.in.h:4
+msgid "Your last.fm username"
+msgstr "Ditt användarnamn på last.fm"
+
+#: ../src/Banshee.Plugins/Daap/DaapConfigPage.cs:50
+msgid "Music Sharing"
+msgstr "Musikdelning"
+
+#: ../src/Banshee.Plugins/Daap/DaapConfigPage.cs:53
+msgid "Share my music library with others"
+msgstr "Dela mitt musikbibliotek med andra"
+
+#: ../src/Banshee.Plugins/Daap/DaapConfigPage.cs:76
+msgid "Share name:"
+msgstr "Utdelningsnamn:"
+
+#: ../src/Banshee.Plugins/Daap/DaapCore.cs:73
+msgid "Banshee Music Share"
+msgstr "Banshee-musikdelning"
+
+#: ../src/Banshee.Plugins/Daap/DaapLoginDialog.cs:48
+msgid "Login to Music Share"
+msgstr "Logga in till musikdelning"
+
+#: ../src/Banshee.Plugins/Daap/DaapLoginDialog.cs:81
+msgid "Authentication Required"
+msgstr "Autentisering krävs"
+
+#: ../src/Banshee.Plugins/Daap/DaapLoginDialog.cs:105
+msgid "Username:"
+msgstr "Användarnamn:"
+
+#: ../src/Banshee.Plugins/Daap/DaapLoginDialog.cs:113
+msgid "Password:"
+msgstr "Lösenord:"
+
+#: ../src/Banshee.Plugins/Daap/DaapLoginDialog.cs:124
+msgid "Login"
+msgstr "Logga in"
+
+#: ../src/Banshee.Plugins/Daap/daap.schemas.in.h:1
+msgid "Allow others to browse and listen to your music from other DAAP clients"
+msgstr "Tillåt andra att bläddra i och lyssna till din musik från andra DAAP-klienter"
+
+#: ../src/Banshee.Plugins/Daap/daap.schemas.in.h:2
+msgid "Enable DAAP Server support"
+msgstr "Aktivera stöd för DAAP-server"
+
+#: ../src/Banshee.Plugins/Daap/daap.schemas.in.h:3
+msgid "Enable the DAAP Music Sharing plugin"
+msgstr "Aktivera insticksmodulen för DAAP-musikutdelning"
+
+#: ../src/Banshee.Plugins/Daap/daap.schemas.in.h:4
+msgid "Name of DAAP server share"
+msgstr "Namn på DAAP-serverns utdelning"
+
+#: ../src/Banshee.Plugins/Daap/DaapSource.cs:70
+msgid "Cannot login to DAAP share"
+msgstr "Kan inte logga in på DAAP-utdelning"
+
+#: ../src/Banshee.Plugins/FileSystemMonitor/filesystemmonitor.schemas.in.h:1
+msgid "Enable the FileSystemMonitor plugin"
+msgstr "Aktivera insticksmodulen Filsystemsövervakaren"
+
+#: ../src/Banshee.Plugins/FileSystemMonitor/Watcher.cs:49
+msgid "Automatically keep your Banshee library directory in sync with your music folder. This plugin responds to changes made in the file system to reflect them in your library."
+msgstr "Håll automatiskt din Banshee-bibliotekskatalog i synk med din musikmapp. Denna insticksmodul hanterar ändringar gjorda i filsystemet för att stämma överens med ditt bibliotek."
+
+#: ../src/Banshee.Plugins/MetadataSearch/MetadataSearchConfigDialog.cs:61
+msgid "Metadata and Cover Art Searching"
+msgstr "Sökning efter metadata och omslagsbilder"
+
+#: ../src/Banshee.Plugins/MetadataSearch/MetadataSearchConfigDialog.cs:70
+msgid "Only download album cover artwork"
+msgstr "Hämta endast albumets omslagsbild"
+
+#: ../src/Banshee.Plugins/MetadataSearch/MetadataSearchConfigDialog.cs:72
+msgid "Download album cover artwork and fill in missing track data"
+msgstr "Hämta albumets omslagsbild och fyll i saknad spårdata"
+
+#: ../src/Banshee.Plugins/MetadataSearch/MetadataSearchConfigDialog.cs:74
+msgid "Download album cover artwork and overwrite any existing track data"
+msgstr "Hämta albumets omslagsbild och skriv över eventuellt existerande spårdata"
+
+#: ../src/Banshee.Plugins/MetadataSearch/MetadataSearchConfigDialog.cs:76
+msgid "Rescan Library"
+msgstr "Sök av bibliotek igen"
+
+#: ../src/Banshee.Plugins/MetadataSearch/MetadataSearchConfigDialog.cs:96
+msgid "Warning"
+msgstr "Varning"
+
+#: ../src/Banshee.Plugins/MetadataSearch/MetadataSearchConfigDialog.cs:98
+msgid "This option can usually correct minor mistakes in metadata, however on rare occasions metadata may be incorrectly updated from MusicBrainz."
+msgstr "Detta alternativ kan vanligtvis rätta till mindre misstag i metadata, dock vid sällsynta tillfällen kan metadata bli felaktigt uppdaterad från MusicBrainz."
+
+#: ../src/Banshee.Plugins/MetadataSearch/MetadataSearchPlugin.cs:57
+msgid "Automatically search for missing and supplementary metadata and cover art for songs in your library."
+msgstr "Sök automatiskt efter saknade och kompletterande metadata och omslagsbilder för låtar i ditt bibliotek."
+
+#: ../src/Banshee.Plugins/MetadataSearch/metadatasearch.schemas.in.h:1
+msgid "0 - Download only cover art 1 - Download cover art, fill in missing metadata 2 - Download cover art, overwrite metadata"
+msgstr "0 - Hämta endast omslagsbilder 1 - Hämta omslagsbilder, fyll i saknad metadata 2 - Hämta omslagsbilder, skriv över metadata"
+
+#: ../src/Banshee.Plugins/MetadataSearch/metadatasearch.schemas.in.h:2
+msgid "Enable the MetadataSearch plugin"
+msgstr "Aktiera insticksmodulen Metadatasökning"
+
+#: ../src/Banshee.Plugins/MetadataSearch/metadatasearch.schemas.in.h:3
+msgid "Method of fetching cover art and supplementary metadata"
+msgstr "Metod för att hämta omslagsbilder och kompletterande metadata"
+
+#: ../src/Banshee.Plugins/MMKeys/MMKeysConfigPage.cs:48
+msgid "Multimedia Keyboard Shortcuts"
+msgstr "Genvägar för multimediatangentbord"
+
+#: ../src/Banshee.Plugins/MMKeys/MMKeysConfigPage.cs:52
+msgid "Configuration of multimedia keyboard shortcuts is done through the Gnome Keyboard Shortcuts configuration applet."
+msgstr "Konfiguration av genvägar för multimediatangentbord görs genom panelprogrammet Gnome Keyboard Shortcuts."
+
+#: ../src/Banshee.Plugins/MMKeys/mmkeys.schemas.in.h:1
+msgid "Enable the MultimediaKeys plugin"
+msgstr "Aktivera insticksmodulen Multimediatangenter"
+
+#: ../src/Banshee.Plugins/NotificationAreaIcon/NotificationAreaIconPlugin.cs:49
+msgid "Notification Area Icon"
+msgstr "Ikon för notifieringsyta"
+
+#: ../src/Banshee.Plugins/NotificationAreaIcon/NotificationAreaIconPlugin.cs:53
+msgid "Shows the Notification Area Icon"
+msgstr "Visar ikon för notifieringsyta"
+
+#: ../src/Banshee.Plugins/NotificationAreaIcon/banshee-notificationareaicon.schemas.in.h:1
+msgid "Enable the Notification Area Icon plugin"
+msgstr "Aktivera insticksmodul för ikon på notifieringsytan"
+
+#: ../src/Banshee.Widgets/ActiveUserEvent.cs:76
+msgid "Cancel Operation"
+msgstr "Avbryt åtgärd"
+
+#: ../src/Banshee.Widgets/ActiveUserEvent.cs:78
+#, csharp-format
+msgid "Are you sure you want to cancel the '{0}' operation?"
+msgstr "Är du säker på att du vill avbryta \"{0}\"-åtgärden?"
+
+#: ../src/Banshee.Widgets/SearchEntry.cs:203
+#: ../src/Banshee.Widgets/SearchEntry.cs:314
+#, csharp-format
+msgid "Searching: {0}"
+msgstr "Söker: {0}"
+
+#: ../src/Banshee.Widgets/StreamPositionLabel.cs:83
+msgid "Idle"
+msgstr "Inaktiv"
+
+#: ../src/BurnCore.cs:82
+msgid "Insufficient Disk Space"
+msgstr "Otillräckligt diskutrymme"
+
+#: ../src/BurnCore.cs:83
+#, csharp-format
+msgid "Creating this CD requires at least {0} MiB of free disk space."
+msgstr "Skapa denna cd kräver åtminstone {0} MiB ledigt diskutrymme."
+
+#: ../src/BurnCore.cs:119
+msgid "Could Not Write CD"
+msgstr "Kunde inte skriva cd"
+
+#: ../src/BurnCore.cs:120
+msgid "No suitable encoder could be found to convert selected songs."
+msgstr "Ingen lämplig kodare kunde hittas för att konvertera de markerade låtarna."
+
+#: ../src/BurnCore.cs:138
+#: ../src/BurnCore.cs:236
+#: ../src/BurnCore.cs:246
+#, csharp-format
+msgid "File does not exist: {0}"
+msgstr "Filen existerar inte: {0}"
+
+# SUN CHANGED MESSAGE
+#: ../src/BurnCore.cs:158
+#: ../src/BurnCore.cs:198
+#: ../src/BurnCore.cs:269
+msgid "Problem creating CD"
+msgstr "Problem vid skapande av cd"
+
+#: ../src/BurnCore.cs:159
+msgid "None of the songs selected for this CD could be found."
+msgstr "Ingen av de markerade låtarna för denna cd kunde hittas."
+
+#: ../src/BurnCore.cs:199
+msgid "None of the songs selected for this CD could be converted to the format required for an audio CD."
+msgstr "Inga av låtarna markerade för denna cd kunde konverteras till formatet som krävs för en ljud-cd."
+
+#: ../src/BurnCore.cs:270
+msgid "Some songs could either not be found or could not be converted to the format required for an audio CD."
+msgstr "Vissa låtar kunde varken hittas eller kunde inte konverteras till formatet som krävs för en ljud-cd."
+
+#: ../src/BurnCore.cs:272
+msgid "Continue Anyway"
+msgstr "Fortsätt ändå"
+
+#: ../src/BurnCore.cs:293
+msgid "Error Creating CD Image"
+msgstr "Fel vid skapande av cd-avbild"
+
+#: ../src/BurnCore.cs:312
+msgid "Writing CD"
+msgstr "Skriver cd"
+
+#: ../src/BurnCore.cs:313
+msgid "Writing Audio CD"
+msgstr "Skriver ljud-cd"
+
+#: ../src/BurnCore.cs:344
+msgid "The inserted media is not large enough to hold your selected music."
+msgstr "Det inmatade mediumet är inte tillräckligt stor för att hålla din markerade musik."
+
+#: ../src/BurnCore.cs:346
+#, csharp-format
+msgid "{0} more minute is needed on the media."
+msgid_plural "{0} more minutes are needed on the media."
+msgstr[0] "Ytterligare {0} minut behövs på mediumet."
+msgstr[1] "Ytterligare {0} minuter behövs på mediumet."
+
+#: ../src/BurnCore.cs:350
+msgid "Not Enough Space on Disc"
+msgstr "Inte tillräckligt utrymme på skiva"
+
+#: ../src/BurnCore.cs:381
+msgid "No CD writers were found on your system."
+msgstr "Inga cd-skrivare hittades på ditt system."
+
+# SUN CHANGED MESSAGE
+#: ../src/BurnCore.cs:421
+#: ../src/BurnCore.cs:436
+msgid "Error Writing CD"
+msgstr "Fel vid skrivning av cd"
+
+#: ../src/BurnCore.cs:425
+msgid "An unknown error occurred when attempting to write the CD"
+msgstr "Ett okänt fel inträffade vid försök att skriva cd-skivan."
+
+#: ../src/BurnCore.cs:431
+msgid "CD Writing Complete"
+msgstr "Skrivning av cd färdig"
+
+# Intressant meningsbyggnad
+#: ../src/BurnCore.cs:432
+msgid "The selected audio was successfully written to the CD."
+msgstr "Det markerade ljudet skrevs till cd-skivan."
+
+#: ../src/BurnCore.cs:459
+msgid "Preparing to write..."
+msgstr "Förbereder att skriva..."
+
+# DISC måste det vara?
+#: ../src/BurnCore.cs:463
+msgid "Writing disk..."
+msgstr "Skriver skiva..."
+
+# DISC måste det vara?
+#: ../src/BurnCore.cs:467
+msgid "Fixating disk..."
+msgstr "Fixerar skiva..."
+
+#: ../src/BurnCore.cs:485
+msgid "Waiting for Media"
+msgstr "Väntar på media"
+
+#: ../src/BurnCore.cs:489
+#: ../src/BurnCore.cs:492
+msgid "Insert Blank CD"
+msgstr "Mata in blank cd"
+
+#: ../src/BurnCore.cs:490
+msgid "Please insert a blank CD disk for the write process."
+msgstr "Mata in en blank cd för att påbörja skrivprocessen."
+
+#: ../src/BurnCore.cs:551
+msgid "Creating Image"
+msgstr "Skapar avbild"
+
+#: ../src/BurnCore.cs:552
+msgid "Transferring songs"
+msgstr "Överför låtar"
+
+#: ../src/BurnCore.cs:570
+#, csharp-format
+msgid "Transferring song {0}"
+msgstr "Överför låt {0}"
+
+#: ../src/BurnCore.cs:582
+msgid "Could not transfer files to create disk image."
+msgstr "Kunde inte överföra filer för att skapa diskavbild."
+
+#: ../src/BurnCore.cs:609
+msgid "Could not transfer file to disk layout."
+msgstr "Kunde inte överföra fil till disklayout."
+
+#: ../src/BurnCore.cs:612
+msgid "File is already in disk layout."
+msgstr "Filen är redan i disklayouten."
+
+#: ../src/Dialogs.cs:81
+msgid "An Error Occurred"
+msgstr "Ett fel inträffade"
+
+#: ../src/ExceptionDialog.cs:24
+msgid "Banshee Encountered a Fatal Error"
+msgstr "Banshee påträffade ett ödesdigert fel"
+
+#: ../src/ExceptionDialog.cs:52
+msgid "This may be due to a programming error. Please help us make Banshee better by reporting this error. Thank you in advance!"
+msgstr "Detta kan vara på grund av ett programmeringsfel. Hjälp oss göra Banshee bättre genom att rapportera detta fel. Tack på förhand!"
+
+#: ../src/ExceptionDialog.cs:99
+msgid "An unhandled exception was thrown: "
+msgstr "Ett ohanterat undantag kastades: "
+
+#: ../src/LogCoreViewer.cs:52
+msgid "Log Viewer"
+msgstr "Loggvisare"
+
+#: ../src/LogCoreViewer.cs:88
+msgid "Time Stamp"
+msgstr "Tidsstämpel"
+
+#: ../src/LogCoreViewer.cs:107
+msgid "Message"
+msgstr "Meddelande"
+
+#: ../src/LogCoreViewer.cs:119
+msgid "Show:"
+msgstr "Visa:"
+
+#: ../src/LogCoreViewer.cs:136
+msgid "All Log Entries"
+msgstr "Alla loggposter"
+
+#: ../src/LogCoreViewer.cs:137
+msgid "Only Error Messages"
+msgstr "Endast felmeddelanden"
+
+#: ../src/LogCoreViewer.cs:138
+msgid "Only Warning Messages"
+msgstr "Endast varningsmeddelanden"
+
+#: ../src/LogCoreViewer.cs:139
+msgid "Only Information Messages"
+msgstr "Endast informationsmeddelanden"
+
+#: ../src/LogCoreViewer.cs:140
+msgid "Only Debug Messages"
+msgstr "Endast felsökningsmeddelanden"
+
+#: ../src/LogCoreViewer.cs:155
+msgid "Entry Details:"
+msgstr "Postdetaljer:"
+
+#: ../src/PlayerInterface.cs:363
 msgid "Loading..."
 msgstr "Läser in..."
 
-#. gxml["IpodContainer"].Visible = false;
-#. Misc
-#: ../src/PlayerInterface.cs:354 ../src/PlayerInterface.cs:2345
-#: ../src/TrackInfoHeader.cs:136
-#, fuzzy
-msgid "Idle"
-msgstr "Indie"
-
-#: ../src/PlayerInterface.cs:362
+#: ../src/PlayerInterface.cs:426
 msgid "All"
 msgstr "Alla"
 
-#: ../src/PlayerInterface.cs:364 ../src/PlayerInterface.cs:1888
-#, fuzzy
+#: ../src/PlayerInterface.cs:428
+#: ../src/PlayerInterface.cs:1281
 msgid "Song Name"
-msgstr "Vanligt namn"
+msgstr "Låtnamn"
 
-#: ../src/PlayerInterface.cs:365 ../src/PlayerInterface.cs:1886
-#, fuzzy
+#: ../src/PlayerInterface.cs:429
+#: ../src/PlayerInterface.cs:1279
 msgid "Artist Name"
-msgstr "Artist: "
+msgstr "Artistnamn"
 
-#: ../src/PlayerInterface.cs:366 ../src/PlayerInterface.cs:1890
+#: ../src/PlayerInterface.cs:430
+#: ../src/PlayerInterface.cs:1283
 msgid "Album Title"
 msgstr "Albumtitel"
 
-#: ../src/PlayerInterface.cs:376
-#, fuzzy
-msgid "Create New Playlist"
-msgstr "Skapa en ny spellista"
+#: ../src/PlayerInterface.cs:431
+#: ../src/PlayerInterface.cs:1285
+#: ../src/PlaylistView.cs:97
+msgid "Genre"
+msgstr "Genre"
 
-#: ../src/PlayerInterface.cs:377
-#, fuzzy
-msgid "Toggle Shuffle Playback Mode"
-msgstr "Blandningsläge"
+#: ../src/PlayerInterface.cs:452
+msgid "Write selection to CD"
+msgstr "Skriv markering till cd"
 
-#: ../src/PlayerInterface.cs:378
-#, fuzzy
-msgid "Toggle Repeat Playback Mode"
-msgstr "Slå på/av upprepningsläge"
+#: ../src/PlayerInterface.cs:453
+msgid "Import CD into library"
+msgstr "Importera cd till bibliotek"
 
-#: ../src/PlayerInterface.cs:379
-#, fuzzy
-msgid "View Selected Song Information"
-msgstr "Sammanträdesinformation"
+#: ../src/PlayerInterface.cs:454
+msgid "Play previous song"
+msgstr "Spela upp föregående låt"
 
-#: ../src/PlayerInterface.cs:380
-#, fuzzy
-msgid "Write Selection to CD"
-msgstr "_Skriv innehåll till cd"
+#: ../src/PlayerInterface.cs:455
+msgid "Play/pause current song"
+msgstr "Spela upp/Pausa aktuell låt"
 
-#: ../src/PlayerInterface.cs:381
-#, fuzzy
-msgid "Import CD into Library"
-msgstr "Lägg till i bibliotek"
+#: ../src/PlayerInterface.cs:456
+msgid "Play next song"
+msgstr "Spela upp nästa låt"
 
-#: ../src/PlayerInterface.cs:382
-#, fuzzy
-msgid "Play Previous Song"
-msgstr "Spela föregående låt"
+#: ../src/PlayerInterface.cs:457
+msgid "Device disk usage"
+msgstr "Enhetsanvändning"
 
-#: ../src/PlayerInterface.cs:383
-#, fuzzy
-msgid "Play/Pause Current Song"
-msgstr "Spela/Gör paus"
+#: ../src/PlayerInterface.cs:458
+msgid "Synchronize music library to device"
+msgstr "Synkronisera musikbibliotek till enhet"
 
-#: ../src/PlayerInterface.cs:384
-#, fuzzy
-msgid "Play Next Song"
-msgstr "Spela nästa låt"
-
-#: ../src/PlayerInterface.cs:385
-#, fuzzy
-msgid "Current Position in Song"
-msgstr "Nuvarande förhållanden"
-
-#: ../src/PlayerInterface.cs:386
-#, fuzzy
-msgid "Adjust Volume"
-msgstr "Justera poäng"
-
-#: ../src/PlayerInterface.cs:387
-#, fuzzy
-msgid "iPod Disk Usage"
-msgstr "Sök i meddelande"
-
-#: ../src/PlayerInterface.cs:388
-#, fuzzy
-msgid "Eject iPod"
-msgstr "Mata ut"
-
-#: ../src/PlayerInterface.cs:389 ../src/PlayerInterface.cs:390
-#, fuzzy
-msgid "Synchronize Music Library to iPod"
-msgstr "Sök låtar i musikbiblioteket:"
-
-#: ../src/PlayerInterface.cs:391
-#, fuzzy
-msgid "View iPod Properties"
-msgstr "Ljudegenskaper"
-
-#: ../src/PlayerInterface.cs:422
-#, fuzzy
-msgid "Notification Area Icon could not be installed"
-msgstr "Avisering om ditt möte"
+#: ../src/PlayerInterface.cs:459
+msgid "Adjust volume"
+msgstr "Justera volym"
 
 #: ../src/PlayerInterface.cs:460
-#, fuzzy
-msgid "Import Music"
-msgstr "Importera fil"
+msgid "Change repeat playback mode"
+msgstr "Ändra upprepningsläge"
 
 #: ../src/PlayerInterface.cs:461
+msgid "Toggle shuffle playback mode"
+msgstr "Växla blandningsläge"
+
+#: ../src/PlayerInterface.cs:462
+msgid "Edit and view metadata of selected songs"
+msgstr "Redigera och visa metadata för markerade låtar"
+
+#: ../src/PlayerInterface.cs:804
+msgid "Cannot Play Song"
+msgstr "Kan inte spela upp låt"
+
+#: ../src/PlayerInterface.cs:805
+#, csharp-format
 msgid ""
-"Your music library is empty. You may import new music into your library now, "
-"or choose to do so later.\n"
+"{0} cannot be played by Banshee. The most common reasons for this are:\n"
 "\n"
-"Automatic import or importing a large folder may take a long time, so please "
-"be patient."
+"  <big>•</big> Song is protected (DRM)\n"
+"  <big>•</big> Song is on a DAP that does not support playback\n"
 msgstr ""
-
-#: ../src/PlayerInterface.cs:465
-msgid "Import Folder"
-msgstr "Importera mapp"
-
-#: ../src/PlayerInterface.cs:467
-#, fuzzy
-msgid "Automatic Import"
-msgstr "Automatisk"
-
-#: ../src/PlayerInterface.cs:585
-#, fuzzy
-msgid "Position:"
-msgstr "Position"
-
-#: ../src/PlayerInterface.cs:991
-#, fuzzy
-msgid "Import Folder to Library"
-msgstr "Importera mapp"
-
-#: ../src/PlayerInterface.cs:1048
-#, fuzzy
-msgid "Import Files to Library"
-msgstr "Importera fil"
-
-#: ../src/PlayerInterface.cs:1157
-#, fuzzy, csharp-format
-msgid "<b>{0}'s Music Library</b>"
-msgstr "<b>Sök låtar i musikbiblioteket:</b>"
-
-#: ../src/PlayerInterface.cs:1332 ../src/PlayerInterface.cs:1362
-#, fuzzy
-msgid "Synchronize iPod"
-msgstr "Synkronisera"
-
-#: ../src/PlayerInterface.cs:1333
-msgid ""
-"You have made changes to your iPod. Please choose a method for updating the "
-"contents of your iPod.\n"
+"{0} kan inte spelas upp av Banshee. De mest vanliga anledningarna för detta är:\n"
 "\n"
-"<i>Synchronize Library</i>: synchronize Banshee library to iPod\n"
-"<i>Save Manual Changes</i>: save only the manual changes you made\n"
-"\n"
-"<b>Warning:</b> Actions will alter or erase existing iPod contents and may "
-"cause incompatability with iTunes!"
-msgstr ""
+"  <big>•</big> Låten är skyddad (DRM)\n"
+"  <big>•</big> Låten är på en DAP som inte har stöd för uppspelning\n"
 
-#: ../src/PlayerInterface.cs:1338 ../src/PlayerInterface.cs:1366
-#, fuzzy
-msgid "Synchronize Library"
-msgstr "Synkronisera"
+#: ../src/PlayerInterface.cs:825
+msgid "Pause"
+msgstr "Paus"
 
-#: ../src/PlayerInterface.cs:1339
-#, fuzzy
-msgid "Save Manual Changes"
-msgstr "Spara ändringar"
+#: ../src/PlayerInterface.cs:859
+msgid "Playback Error"
+msgstr "Uppspelningsfel"
 
-#: ../src/PlayerInterface.cs:1363
-msgid ""
-"Are you sure you want to synchronize your iPod with your Banshee library? "
-"This will <b>erase</b> the contents of your iPod and then copy the contents "
-"of your Banshee library."
-msgstr ""
+#: ../src/PlayerInterface.cs:1045
+msgid "Import"
+msgstr "Importera"
 
-#: ../src/PlayerInterface.cs:1452
-#, fuzzy, csharp-format
+#: ../src/PlayerInterface.cs:1061
+#: ../src/PlayerInterface.cs:2023
+msgid "Rename Device"
+msgstr "Byt namn på enhet"
+
+#: ../src/PlayerInterface.cs:1063
+#: ../src/PlayerInterface.cs:2017
+msgid "Rename Playlist"
+msgstr "Byt namn på spellista"
+
+#: ../src/PlayerInterface.cs:1168
+#, csharp-format
 msgid "{0} day"
 msgid_plural "{0} days"
-msgstr[0] "1 dag"
-msgstr[1] "1 dag"
+msgstr[0] "{0} dag"
+msgstr[1] "{0} dagar"
 
-#: ../src/PlayerInterface.cs:1470
-msgid "Your Library is Empty - Consider Importing Music"
-msgstr ""
-
-#: ../src/PlayerInterface.cs:1474
-msgid "This Playlist is Empty - Consider Adding Music"
-msgstr ""
-
-#: ../src/PlayerInterface.cs:1478
-#, fuzzy, csharp-format
+#: ../src/PlayerInterface.cs:1185
+#, csharp-format
 msgid "{0} Item"
 msgid_plural "{0} Items"
-msgstr[0] "0 objekt"
-msgstr[1] "0 objekt"
+msgstr[0] "{0} objekt"
+msgstr[1] "{0} objekt"
 
-#: ../src/PlayerInterface.cs:1480
+#: ../src/PlayerInterface.cs:1187
 #, csharp-format
 msgid "{0} Total Play Time"
-msgstr ""
+msgstr "{0} Total speltid"
 
-#: ../src/PlayerInterface.cs:1563
-#, csharp-format
-msgid ""
-"Are you sure you want to remove the selected song from your library "
-"<i><b>and</b></i> your drive? This action will permanently delete the file."
-msgid_plural ""
-"Are you sure you want to remove the selected <b>({0})</b> songs from your "
-"library <i><b>and</b></i> your drive? This action will permanently delete "
-"the files."
-msgstr[0] ""
-msgstr[1] ""
-
-#: ../src/PlayerInterface.cs:1570
-#, fuzzy, csharp-format
-msgid "Are you sure you want to remove the selected song from your library?"
-msgid_plural ""
-"Are you sure you want to remove the selected <b>({0})</b> songs from your "
-"library?"
-msgstr[0] ""
-"Är du säker att du vill ta bort \"%s\" permanent från papperskorgen?"
-msgstr[1] ""
-"Är du säker att du vill ta bort \"%s\" permanent från papperskorgen?"
-
-#: ../src/PlayerInterface.cs:1579
-#, fuzzy
-msgid "Remove Selected Songs from Library"
-msgstr "Ta bort markerat bokmärke"
-
-#: ../src/PlayerInterface.cs:1799
-#, fuzzy
-msgid "Enter new playlist name"
-msgstr "Ange ett namn"
-
-#: ../src/PlayerInterface.cs:1803
-#, fuzzy
-msgid "Rename iPod"
-msgstr "Byt namn på mapp"
-
-#: ../src/PlayerInterface.cs:1804
-#, fuzzy
-msgid "Enter new name for your iPod"
-msgstr "Ange ett nytt namn för det visade emblemet:"
-
-#: ../src/PlayerInterface.cs:2051
+#: ../src/PlayerInterface.cs:1499
 msgid "Clear"
 msgstr "Töm"
 
-#: ../src/PlayerInterface.cs:2288
-#, fuzzy
-msgid "Invalid Selection"
-msgstr "Omvänd markering"
-
-#: ../src/PlayerInterface.cs:2289
-#, fuzzy
-msgid "You must select at least one track to import."
-msgstr "Du måste välja en eller flera profiler att ta bort."
-
-#: ../src/PlayerInterface.cs:2313
-#, fuzzy
+#: ../src/PlayerInterface.cs:1710
 msgid "Could Not Eject"
-msgstr "Kunde inte mata ut cd-skivan"
+msgstr "Kunde inte mata ut"
 
-#: ../src/PlayerInterface.cs:2350
-msgid "Banshee - Idle"
+#: ../src/PlayerInterface.cs:1738
+#, csharp-format
+msgid "Cannot Import: {0} ({1})"
+msgstr "Kan inte importera: {0} ({1})"
+
+#: ../src/PlayerInterface.cs:1780
+#, csharp-format
+msgid "Are you sure you want to remove the selected song from your library <i><b>and</b></i> your drive? This action will permanently delete the file."
+msgid_plural "Are you sure you want to remove the selected <b>({0})</b> songs from your library <i><b>and</b></i> your drive? This action will permanently delete the files."
+msgstr[0] "Är du säker på att du vill ta bort den markerade låten från ditt bibliotek <i><b>och</b></i> din enhet? Denna åtgärd kommer permanent ta bort filen."
+msgstr[1] "Är du säker på att du vill ta bort de markerade låtarna från ditt bibliotek <i><b>och</b></i> din enhet? Denna åtgärd kommer permanent ta bort filerna."
+
+#: ../src/PlayerInterface.cs:1789
+#, csharp-format
+msgid "Are you sure you want to remove the selected song from your library?"
+msgid_plural "Are you sure you want to remove the selected <b>({0})</b> songs from your library?"
+msgstr[0] "Är du säker att du vill ta bort den markerade låten från ditt bibliotek?"
+msgstr[1] "Är du säker att du vill ta bort de <b>({0})</b> markerade låtarna från ditt bibliotek?"
+
+#: ../src/PlayerInterface.cs:1798
+msgid "Remove Selected Songs from Library"
+msgstr "Ta bort markerade låtar från bibliotek"
+
+#. Translators: {0} is the name of the DAP device (i.e. 'iPod')
+#: ../src/PlayerInterface.cs:1951
+#, csharp-format
+msgid "Synchronize {0}"
+msgstr "Synkronisera {0}"
+
+#: ../src/PlayerInterface.cs:1952
+#, csharp-format
+msgid ""
+"You have made changes to your {0}. Please choose a method for updating the contents of your {0}.\n"
+"\n"
+"<big>•</big> <i>Synchronize Library</i>: synchronize Banshee library to {0}\n"
+"<big>•</big> <i>Save Manual Changes</i>: save only the manual changes you made"
 msgstr ""
+"Du har gjort ändringar till din {0}. Välj en metod för att uppdatera innehållet av din {0}.\n"
+"\n"
+"<big>•</big> <i>Synkronisera bibliotek</i>: synkronisera Banshees bibliotek till {0}\n"
+"<big>•</big> <i>Spara manuella ändringar</i>: spara endast de manuella ändringarna du gjorde"
 
-#: ../src/PlayerInterface.cs:2397
-msgid "Syncing your iPod, Please Wait..."
-msgstr ""
+#: ../src/PlayerInterface.cs:1958
+msgid "<b>Warning:</b> Actions will alter or erase existing iPod contents and may cause incompatability with iTunes!"
+msgstr "<b>Varning:</b> Åtgärder kommer att ändra eller radera existerande iPod-innehåll och kan orsaka inkompatibilitet med iTunes!"
 
-#: ../src/PlaylistColumns.cs:80
-#, fuzzy
+#: ../src/PlayerInterface.cs:1960
+msgid "Synchronize Library"
+msgstr "Synkronisera bibliotek"
+
+#: ../src/PlayerInterface.cs:1962
+msgid "Save Manual Changes"
+msgstr "Spara manuella ändringar"
+
+#: ../src/PlayerInterface.cs:2018
+msgid "Enter new playlist name"
+msgstr "Ange ett nytt namn för spellistan"
+
+#: ../src/PlayerInterface.cs:2024
+msgid "Enter new name for your device"
+msgstr "Ange ett nytt namn för din enhet"
+
+#: ../src/PlaylistColumns.cs:84
 msgid "Invalid column width"
-msgstr "Kolumnbredd"
+msgstr "Ogiltig kolumnbredd"
 
-#: ../src/PlaylistColumns.cs:117
-#, fuzzy
+#: ../src/PlaylistColumns.cs:143
 msgid "Choose Columns"
-msgstr "Färglägg kolumn"
+msgstr "Välj kolumner"
 
-#: ../src/PlaylistColumns.cs:131
-#, fuzzy
+#: ../src/PlaylistColumns.cs:159
 msgid "Visible Playlist Columns"
-msgstr "Synliga kolumner"
+msgstr "Synliga spellistekolumner"
 
-#: ../src/PlaylistRowRenderer.cs:185
-#, fuzzy, csharp-format
-msgid "{0} Play"
-msgid_plural "{0} Plays"
-msgstr[0] "Spela"
-msgstr[1] "Spela"
-
-#: ../src/PlaylistView.cs:80
+#: ../src/PlaylistView.cs:85
 msgid "Track"
 msgstr "Spår"
 
-#. Now Playing Images
-#: ../src/PlaylistView.cs:83 ../src/StockIcons.cs:71
+#: ../src/PlaylistView.cs:88
 msgid "Artist"
 msgstr "Artist"
 
-#: ../src/PlaylistView.cs:86 ../src/StockIcons.cs:73
+#: ../src/PlaylistView.cs:91
 msgid "Title"
 msgstr "Titel"
 
-#: ../src/PlaylistView.cs:89 ../src/StockIcons.cs:72
+#: ../src/PlaylistView.cs:94
 msgid "Album"
 msgstr "Album"
 
-#: ../src/PlaylistView.cs:92
+#: ../src/PlaylistView.cs:100
 msgid "Time"
 msgstr "Tid"
 
-#: ../src/PlaylistView.cs:98
-#, fuzzy
+#: ../src/PlaylistView.cs:111
 msgid "Plays"
-msgstr "Spela"
+msgstr "Spelar"
 
-#: ../src/PlaylistView.cs:102
-#, fuzzy
+#: ../src/PlaylistView.cs:118
 msgid "Last Played"
-msgstr "S_enast spelad"
+msgstr "Senast spelad"
 
-#: ../src/PlaylistView.cs:417
+#: ../src/PlaylistView.cs:469
 msgid "N/A"
 msgstr "-"
 
-#: ../src/Preferences.cs:96
-#, fuzzy
+#: ../src/Preferences.cs:98
 msgid "Select Library Location"
-msgstr "Välj en plats"
+msgstr "Välj biblioteksplats"
 
 #: ../src/Preferences.cs:262
-#, fuzzy
 msgid "Unavailable"
-msgstr "SSL är inte tillgängligt"
+msgstr "Ej tillgänglig"
 
 #: ../src/Preferences.cs:268
-#, fuzzy
 msgid "Loading Drive List..."
-msgstr "Läser in låtar..."
+msgstr "Läser in enhetslista..."
 
 #: ../src/Preferences.cs:291
-#, fuzzy
 msgid "No CD Burners Detected"
-msgstr "Inga källor har valts."
+msgstr "Inga cd-brännare identifierades"
 
 #: ../src/Preferences.cs:389
-#, fuzzy
 msgid "Fastest Possible"
-msgstr "Närsomhelst"
+msgstr "Snabbast möjliga"
 
 # Vad är detta?
 # http://bugzilla.ximian.com/show_bug.cgi?id=61062
 #. Translators: this represents a CD write speed, eg "32x"
 #: ../src/Preferences.cs:393
-#, fuzzy, csharp-format
+#, csharp-format
 msgid "{0}x"
-msgstr "{0}"
+msgstr "{0}x"
 
-#: ../src/Preferences.cs:544
-#, csharp-format
-msgid ""
-"You have changed the Banshee Playback Engine. This change will not take "
-"affect until the next time Banshee is run. Please restart Banshee to use the "
-"new <b><i>{0}</i></b> Engine"
-msgstr ""
+#: ../src/ToggleStates.cs:79
+msgid "Continuous"
+msgstr "Kontinuerlig"
 
-#: ../src/Preferences.cs:552
-#, fuzzy
-msgid "Banshee Restart Required"
-msgstr "Visa handtag (kräver omstart)"
-
-#: ../src/RipTransaction.cs:66
-#, fuzzy
-msgid "Could not create CD Ripper"
-msgstr "Kunde inte skapa rör: %s"
-
-#: ../src/RipTransaction.cs:175
-#, csharp-format
-msgid ""
-"The device node '{0}' differs from the device node already set for "
-"previously queued tracks ({1})"
-msgstr ""
-
-#: ../src/RipTransaction.cs:193
-msgid "Initializing CD Drive"
-msgstr ""
-
-#: ../src/RipTransaction.cs:219
-#, fuzzy, csharp-format
-msgid "Ripping {0} of {1} : {2} - {3}"
-msgstr "Fel vid sparande av {0} till {1}: {2}"
-
-#: ../src/SearchEntry.cs:161 ../src/SearchEntry.cs:266
-#, fuzzy, csharp-format
-msgid "Searching: {0}"
-msgstr "Söker"
-
-#: ../src/SourceView.cs:142
-msgid "Source"
-msgstr "Källa"
-
-#: ../src/StockIcons.cs:56
-msgid "Play"
-msgstr "Spela"
-
-#: ../src/StockIcons.cs:57
-msgid "Pause"
-msgstr "Paus"
-
-#. Volume Button Icons
-#: ../src/StockIcons.cs:63
-#, fuzzy
-msgid "Volume Maximum"
-msgstr "Volymmätare"
-
-#: ../src/StockIcons.cs:64
-#, fuzzy
-msgid "Volume Medium"
-msgstr "Volymmätare"
-
-#: ../src/StockIcons.cs:65
-#, fuzzy
-msgid "Volume Miniumum"
-msgstr "Volymmätare"
-
-#: ../src/StockIcons.cs:66
-#, fuzzy
-msgid "Volume Mute"
-msgstr "Volymmätare"
-
-#: ../src/StockIcons.cs:67
-#, fuzzy
-msgid "Volume Decrease"
-msgstr "Minska"
-
-#: ../src/StockIcons.cs:68
-#, fuzzy
-msgid "Volume Increase"
-msgstr "Öka"
-
-#: ../src/TrackInfoHeader.cs:134
-#, fuzzy
-msgid "Banshee Player"
-msgstr "Cd-spelare för Gnome"
-
-#: ../src/TrackProperties.cs:156
+#: ../src/TrackProperties.cs:184
 msgid "Set all Track Numbers to this value"
-msgstr ""
+msgstr "Ställ in alla spårnummer till detta värde"
 
-#: ../src/TrackProperties.cs:159
-#, fuzzy
+#: ../src/TrackProperties.cs:185
 msgid "Automatically Set All Track Numbers"
-msgstr "Betygsätt automatiskt:"
+msgstr "Ställ automatiskt in alla spårnummer"
 
-#: ../src/TrackProperties.cs:162
-#, fuzzy
+#: ../src/TrackProperties.cs:186
 msgid "Set all Track Counts to this value"
-msgstr "Ställ in som bakgrund för _denna mapp"
+msgstr "Ställ in alla spårantal till detta värde"
 
-#: ../src/TrackProperties.cs:165
-#, fuzzy
+#: ../src/TrackProperties.cs:187
 msgid "Set all Artists to this value"
-msgstr "Svara till alla mottagare av det här meddelandet"
+msgstr "Ställ in alla artister till detta värde"
 
-#: ../src/TrackProperties.cs:167
+#: ../src/TrackProperties.cs:188
 msgid "Set all Albums to this value"
-msgstr ""
+msgstr "Ställ in alla album till detta värde"
 
-#: ../src/TrackProperties.cs:169
-#, fuzzy
+#: ../src/TrackProperties.cs:189
 msgid "Set all Titles to this value"
-msgstr "Markera alla objekt i detta fönster"
+msgstr "Ställ in alla titlar till detta värde"
 
-#: ../src/TrackProperties.cs:204
-#, fuzzy
+#: ../src/TrackProperties.cs:190
+msgid "Set all Genres to this value"
+msgstr "Ställ in alla genrer till detta värde"
+
+#: ../src/TrackProperties.cs:234
 msgid "Never Played"
-msgstr "Filmspelare"
+msgstr "Aldrig spelad"
 
-#: ../src/TrackProperties.cs:208
-msgid "Unknown"
-msgstr "Okänd"
-
-#: ../src/TrackProperties.cs:214
+#: ../src/TrackProperties.cs:239
 #, csharp-format
-msgid "Editing Track Properties ({0} of {1})"
-msgstr ""
+msgid "Editing Song {0} of {1}"
+msgstr "Redigerar låt {0} av {1}"
 
-#: ../src/TrackProperties.cs:218
-#, fuzzy
-msgid "Editing Track Properties"
-msgstr "Medi_aegenskaper"
-
-#: ../src/TrackProperties.cs:223
-#, fuzzy, csharp-format
+#: ../src/TrackProperties.cs:246
+#: ../src/TrackProperties.cs:247
+#, csharp-format
 msgid "File: {0}"
-msgstr "Titel: "
+msgstr "Fil: {0}"
 
-#: ../src/VersionInformationDialog.cs:59
-#, fuzzy
+#: ../src/TrackProperties.cs:253
+msgid "KB/Second"
+msgstr "KB/sekund"
+
+# Vad är detta?
+# http://bugzilla.ximian.com/show_bug.cgi?id=61062
+#: ../src/TrackProperties.cs:254
+#, csharp-format
+msgid "{0} KHz"
+msgstr "{0} KHz"
+
+#: ../src/TrackProperties.cs:255
+msgid "Yes"
+msgstr "Ja"
+
+#: ../src/TrackProperties.cs:255
+msgid "No"
+msgstr "Nej"
+
+#: ../src/VersionInformationDialog.cs:62
 msgid "Assembly Version Information"
-msgstr "Personlig information"
+msgstr "Monteringsversionsinformation"
 
-#: ../src/VersionInformationDialog.cs:65
-#, fuzzy
+#: ../src/VersionInformationDialog.cs:68
 msgid "Assembly Name"
-msgstr "efter _namn"
+msgstr "Monteringsnamn"
 
-#: ../src/VersionInformationDialog.cs:67
+#: ../src/VersionInformationDialog.cs:70
 msgid "Version"
 msgstr "Version"
 
-#~ msgid "Add to Music Library"
-#~ msgstr "Lägg till i musikbiblioteket"
+#, fuzzy
+#~ msgid "<small>Serial Number</small>"
+#~ msgstr "Serienummer"
 
+#, fuzzy
+#~ msgid "New iPod Detected"
+#~ msgstr "Inga markerade"
+
+#, fuzzy
+#~ msgid "Your Name:"
+#~ msgstr "Färg_namn:"
+
+#, fuzzy
+#~ msgid "iPod Name:"
+#~ msgstr "Fältnamn"
+#~ msgid "<b>Playlist</b>"
+#~ msgstr "<b>Spellista</b>"
+
+#, fuzzy
+#~ msgid "<span size=\"small\">Idle</span>"
+#~ msgstr "<span size=\"larger\">Okänd</span>"
+
+#, fuzzy
+#~ msgid "Add Selected Songs"
+#~ msgstr "Allt valt"
+#~ msgid "Delete"
+#~ msgstr "Ta bort"
+
+#, fuzzy
+#~ msgid "Delete from Drive"
+#~ msgstr "_Ta bort från papperskorgen"
+
+#, fuzzy
+#~ msgid "Duplicate"
+#~ msgstr "_Duplicera"
+#~ msgid "Prefere_nces"
+#~ msgstr "Inställ_ningar"
+#~ msgid "Properties"
+#~ msgstr "Egenskaper"
+#~ msgid "Remove"
+#~ msgstr "Ta bort"
+
+#, fuzzy
+#~ msgid "Update iPod"
+#~ msgstr "Uppdaterat"
+
+#, fuzzy
+#~ msgid "Engine:"
+#~ msgstr "Slutar:"
+
+#, fuzzy
+#~ msgid "Track Property Editor"
+#~ msgstr "Spårredigerare"
+
+#, fuzzy
+#~ msgid "Unkown Album"
+#~ msgstr "Okänt album"
+
+# SUN CHANGED MESSAGE
+#, fuzzy
+#~ msgid "Error Burning CD"
+#~ msgstr "Fel vid öppnande av cd"
+
+#, fuzzy
+#~ msgid "Encoding files..."
+#~ msgstr "Flyttar filer"
+
+#, fuzzy
+#~ msgid "Could not encode file: {0}"
+#~ msgstr "Kunde inte öppna fil"
+
+#, fuzzy
+#~ msgid "iPod Name"
+#~ msgstr "Fältnamn"
+
+#, fuzzy
+#~ msgid "Your Name"
+#~ msgstr "Ditt värdnamn"
+
+#, fuzzy
+#~ msgid "Computer Name"
+#~ msgstr "Dator"
+#~ msgid "Model"
+#~ msgstr "Modell"
+
+#, fuzzy
+#~ msgid "Capacity"
+#~ msgstr "_Opacitet:"
+
+#, fuzzy
+#~ msgid "Mount Point"
+#~ msgstr "Mount Wilson"
+
+#, fuzzy
+#~ msgid "Write Support"
+#~ msgstr "White Sulphur"
+
+#, fuzzy
+#~ msgid "Volume UUID"
+#~ msgstr "Höj volymen"
+#~ msgid "Serial Number"
+#~ msgstr "Serienummer"
+
+#, fuzzy
+#~ msgid "Firmware Version"
+#~ msgstr "Serverversion"
+
+#, fuzzy
+#~ msgid "Database Version"
+#~ msgstr "Cd-databasserver"
+#~ msgid "Library"
+#~ msgstr "Bibliotek"
+
+#, fuzzy
+#~ msgid "Are you sure you want to cancel this operation?"
+#~ msgid_plural "Are you sure you want to cancel these operations?"
+#~ msgstr[0] "Är du säker på att du vill ta bort detta sammanträde?"
+#~ msgstr[1] "Är du säker på att du vill ta bort detta sammanträde?"
+
+#, fuzzy
+#~ msgid "Really Cancel Operation?"
+#~ msgid_plural "Really Cancel Operations?"
+#~ msgstr[0] "Avbryt åtgärd"
+#~ msgstr[1] "Avbryt åtgärd"
+
+#, fuzzy
+#~ msgid "Library Track Loader"
+#~ msgstr "Virtuell papperskorgsmapp"
+
+#, fuzzy
+#~ msgid "Loading {0} - {1} ..."
+#~ msgstr "Läser in..."
+
+#, fuzzy
+#~ msgid "Playlist Save"
+#~ msgstr "Spellista"
+
+#, fuzzy
+#~ msgid "Flushing old entries"
+#~ msgstr "Filtrerar mapp"
+
+#, fuzzy
+#~ msgid "Library Load"
+#~ msgstr "Bibliotek"
+
+#, fuzzy
+#~ msgid "Removing Tracks"
+#~ msgstr "Byter namn på mappen %s"
+#~ msgid "Play / Pause"
+#~ msgstr "Spela/Paus"
+
+#, fuzzy
+#~ msgid "Current Position in Song"
+#~ msgstr "Nuvarande förhållanden"
+
+#, fuzzy
+#~ msgid "Eject iPod"
+#~ msgstr "Mata ut"
+
+#, fuzzy
+#~ msgid "Notification Area Icon could not be installed"
+#~ msgstr "Avisering om ditt möte"
+#~ msgid "Import Folder"
+#~ msgstr "Importera mapp"
+
+#, fuzzy
+#~ msgid "Automatic Import"
+#~ msgstr "Automatisk"
+
+#, fuzzy
+#~ msgid "<b>{0}'s Music Library</b>"
+#~ msgstr "<b>Sök låtar i musikbiblioteket:</b>"
+
+#, fuzzy
+#~ msgid "{0} Play"
+#~ msgid_plural "{0} Plays"
+#~ msgstr[0] "Spela"
+#~ msgstr[1] "Spela"
+
+#, fuzzy
+#~ msgid "Banshee Restart Required"
+#~ msgstr "Visa handtag (kräver omstart)"
+
+#, fuzzy
+#~ msgid "Ripping {0} of {1} : {2} - {3}"
+#~ msgstr "Fel vid sparande av {0} till {1}: {2}"
+
+#, fuzzy
+#~ msgid "Volume Maximum"
+#~ msgstr "Volymmätare"
+
+#, fuzzy
+#~ msgid "Volume Medium"
+#~ msgstr "Volymmätare"
+
+#, fuzzy
+#~ msgid "Volume Miniumum"
+#~ msgstr "Volymmätare"
+
+#, fuzzy
+#~ msgid "Volume Mute"
+#~ msgstr "Volymmätare"
+
+#, fuzzy
+#~ msgid "Volume Decrease"
+#~ msgstr "Minska"
+
+#, fuzzy
+#~ msgid "Volume Increase"
+#~ msgstr "Öka"
 #~ msgid "Nautilus context menu extension for Rhythmbox"
 #~ msgstr "Nautilus-sammanhangsmenytillägg för Rhythmbox"
-
 #~ msgid "Rhythmbox Nautilus Context Menu Item"
 #~ msgstr "Nautilus-sammanhangsmenypost för Rhythmbox"
-
 #~ msgid "Rhythmbox shell"
 #~ msgstr "Rhythmbox-skal"
-
 #~ msgid "Rhythmbox shell factory"
 #~ msgstr "Rhythmbox-skalfabrik"
-
 #~ msgid "*"
 #~ msgstr "*"
-
 #~ msgid "Add if any criteria are matched"
 #~ msgstr "Lägg till om några villkor matchar"
-
 #~ msgid "Create automatically updating playlist where:"
 #~ msgstr "Skapa automatiskt uppdaterande spellista där:"
-
 #~ msgid "GB"
 #~ msgstr "GB"
-
 #~ msgid "MB"
 #~ msgstr "MB"
-
 #~ msgid "_Limit to: "
 #~ msgstr "_Begränsa till: "
-
 #~ msgid "songs"
 #~ msgstr "låtar"
-
 #~ msgid ""
 #~ "Rhythmbox manages all of your music in a central music \"library\", so "
 #~ "you can easily view, search, and organize it.\n"
@@ -1789,2258 +2435,114 @@ msgstr "Version"
 #~ "det kan hitta din musik. Du kan välja att hoppa över detta steg och "
 #~ "istället lägga till musik till ditt bibliotek vid ett senare tillfälle.\n"
 #~ "Välj ett av alternativen nedan:"
-
-#~ msgid "_Browse..."
-#~ msgstr "_Bläddra..."
-
 #~ msgid "_Enter location manually:"
 #~ msgstr "_Ange plats manuellt:"
-
 #~ msgid "_Path:"
 #~ msgstr "_Sökväg:"
-
 #~ msgid "_Skip this step"
 #~ msgstr "_Hoppa över detta steg"
-
 #~ msgid "A_lbum"
 #~ msgstr "A_lbum"
-
-#~ msgid "_Duration"
-#~ msgstr "_Varaktighet"
-
-#~ msgid "_Genre"
-#~ msgstr "_Genre"
-
 #~ msgid "_Last played"
 #~ msgstr "_Senast spelad"
-
 #~ msgid "_Play count"
 #~ msgstr "_Spelräknare"
-
 #~ msgid "_Rating"
 #~ msgstr "_Betyg"
-
 #~ msgid "Artists and albums"
 #~ msgstr "Artister och album"
-
 #~ msgid "Browser Views"
 #~ msgstr "Bläddrarvyer"
-
 #~ msgid "Genres and artists"
 #~ msgstr "Genrer och artister"
-
 #~ msgid "Genres, artists and albums"
 #~ msgstr "Genrer, artister och album"
-
 #~ msgid "The following files couldn't be loaded:"
 #~ msgstr "Följande filer kunde inte läsas in:"
-
 #~ msgid "Basic"
 #~ msgstr "Grundläggande"
-
 #~ msgid "Bitrate:"
 #~ msgstr "Bithastighet:"
-
 #~ msgid "Details"
 #~ msgstr "Detaljer"
-
-#~ msgid "File name:"
-#~ msgstr "Filnamn:"
-
 #~ msgid "Last played:"
 #~ msgstr "Senast spelad:"
-
 #~ msgid "Location:"
 #~ msgstr "Plats:"
-
 #~ msgid "Play count:"
 #~ msgstr "Spelräknare:"
-
 #~ msgid "_Album:"
 #~ msgstr "_Album:"
-
 #~ msgid "_Artist:"
 #~ msgstr "_Artist:"
-
 #~ msgid "_Genre:"
 #~ msgstr "_Genre:"
-
 #~ msgid "_Rating:"
 #~ msgstr "_Betyg:"
-
 #~ msgid "_Title:"
 #~ msgstr "_Titel:"
-
 #~ msgid "_Track number:"
 #~ msgstr "_Spårnummer:"
-
 #~ msgid "_Location:"
 #~ msgstr "_Plats:"
-
 #~ msgid "L_ocation:"
 #~ msgstr "P_lats:"
-
 #~ msgid "Play Count:"
 #~ msgstr "Spelräknare:"
-
 #~ msgid "Wed, Jan 01, 1970 00:00:00 -0500"
 #~ msgstr "ons jan 01 1970 00.00.00 +0100"
-
 #~ msgid "_Last Played:"
 #~ msgstr "_Senast spelad:"
-
-#~ msgid "Enter the _location (URI) of the file you would like to add:"
-#~ msgstr "Ange _platsen (URI) för den fil du vill lägga till:"
-
 #~ msgid "Open from URI"
 #~ msgstr "Öppna från URI"
-
 #~ msgid "Play and organize your music collection"
 #~ msgstr "Spela och organisera din musiksamling"
-
-#~ msgid "Deselect all songs"
-#~ msgstr "Avmarkera alla låtar"
-
 #~ msgid "Eject Audio-CD"
 #~ msgstr "Mata ut ljud-cd"
-
-#~ msgid "Scroll the view to the currently playing song"
-#~ msgstr "Rulla vyn till den för tillfället spelade låten"
-
 #~ msgid "Select _All"
 #~ msgstr "Markera _alla"
-
-#~ msgid "Select all songs"
-#~ msgstr "Markera alla låtar"
-
-#~ msgid "_Edit"
-#~ msgstr "_Redigera"
-
 #~ msgid "_Eject Audio-CD..."
 #~ msgstr "_Mata ut ljud-cd..."
-
-#~ msgid "_Jump to Playing Song"
-#~ msgstr "_Hoppa till aktuell låt"
-
-#~ msgid "_View"
-#~ msgstr "_Visa"
-
-#~ msgid "Add Lo_cation..."
-#~ msgstr "Lägg till p_lats..."
-
 #~ msgid "Browse this album"
 #~ msgstr "Bläddra i detta album"
-
 #~ msgid "Browse this artist"
 #~ msgstr "Bläddra i denna artist"
-
 #~ msgid "Browse this genre"
 #~ msgstr "Bläddra i denna genre"
-
 #~ msgid "Change the visibility of the browser"
 #~ msgstr "Ändra synligheten på bläddraren"
-
 #~ msgid "Change the visibility of the main window"
 #~ msgstr "Ändra synligheten på huvudfönstret"
-
 #~ msgid "Change the visibility of the source list"
 #~ msgstr "Ändra synligheten på källistan"
-
 #~ msgid "Change the visibility of the statusbar"
 #~ msgstr "Ändra synligheten på statusraden"
-
 #~ msgid "Change this automatic playlist"
 #~ msgstr "Ändra denna automatiska spellista"
-
 #~ msgid "Choose a location (URI) to be added to the library"
 #~ msgstr "Välj en plats (URI) att lägga till i biblioteket"
-
 #~ msgid "Choose a playlist to be loaded"
 #~ msgstr "Välj en spellista att lägga till"
-
 #~ msgid "Choose files or a directory to be added to the library"
 #~ msgstr "Välj filer eller en katalog att lägga till i biblioteket"
-
 #~ msgid "Copy selection"
 #~ msgstr "Kopiera markering"
-
 #~ msgid "Create a new Internet Radio station"
 #~ msgstr "Skapa en ny Internetradiokanal"
-
 #~ msgid "Create a new automatically updating playlist"
 #~ msgstr "Skapa en ny automatiskt uppdaterande spellista"
-
 #~ msgid "Cu_t"
 #~ msgstr "Klipp _ut"
-
 #~ msgid "Cut selection"
 #~ msgstr "Klipp ut markering"
-
 #~ msgid "D_eselect All"
 #~ msgstr "A_vmarkera alla"
-
 #~ msgid "Delete selection"
 #~ msgstr "Ta bort markering"
-
 #~ msgid "Display music player help"
 #~ msgstr "Visa hjälp för musikspelaren"
-
 #~ msgid "Edit music player preferences"
 #~ msgstr "Redigera inställningar för musikspelaren"
-
 #~ msgid "Extract and import songs from a CD"
 #~ msgstr "Extrahera och importera låtar från en cd"
 
-# andersca hälsar att det ska vara "Importera plats" och inget annat.
-#~ msgid "Import Lo_cation..."
-#~ msgstr "Importera p_lats..."
-
-#~ msgid "Import _Audio CD..."
-#~ msgstr "Importera _ljud-cd..."
-
-#~ msgid "Make the main window smaller"
-#~ msgstr "Gör huvudfönstret mindre"
-
-#~ msgid "New _Automatic Playlist..."
-#~ msgstr "Ny _automatisk spellista..."
-
-#~ msgid "New _Internet Radio Station"
-#~ msgstr "Ny _Internetradiokanal"
-
-#~ msgid "P_laylist"
-#~ msgstr "S_pellista"
-
-#~ msgid "P_revious"
-#~ msgstr "F_öregående"
-
-#~ msgid "Paste selection"
-#~ msgstr "Klistra in markering"
-
-#~ msgid "Pause playing"
-#~ msgstr "Gör paus i uppspelning"
-
-#~ msgid "Play first song again after all songs are played"
-#~ msgstr "Spela första låten igen efter det att alla låtar spelats"
-
-#~ msgid "Play songs in a random order"
-#~ msgstr "Spela låtar i slumpmässig ordning"
-
-#~ msgid "Quit the music player"
-#~ msgstr "Avsluta musikspelaren"
-
-#~ msgid "Repea_t"
-#~ msgstr "_Upprepa"
-
-#~ msgid "S_tatusbar"
-#~ msgstr "S_tatusrad"
-
-#~ msgid "Save a playlist to a file"
-#~ msgstr "Spara en spellista i en fil"
-
-#~ msgid "Set the browser to view only this album"
-#~ msgstr "Ställ in bläddraren att endast visa detta album"
-
-#~ msgid "Set the browser to view only this artist"
-#~ msgstr "Ställ in bläddraren att endast visa denna artist"
-
-#~ msgid "Set the browser to view only this genre"
-#~ msgstr "Ställ in bläddraren att endast visa denna genre"
-
-#~ msgid "Show information about the music player"
-#~ msgstr "Visa information om musikspelaren"
-
-#~ msgid "Show information on the selected song"
-#~ msgstr "Visa information om den valda låten"
-
-#~ msgid "Source _List"
-#~ msgstr "Käl_lista"
-
-#~ msgid "Start playing"
-#~ msgstr "Starta uppspelning"
-
-#~ msgid "Start playing the next song"
-#~ msgstr "Starta uppspelning av nästa låt"
-
-#~ msgid "Start playing the previous song"
-#~ msgstr "Starta uppspelning av föregående låt"
-
-#~ msgid "Stop playing"
-#~ msgstr "Stoppa uppspelning"
-
-#~ msgid "_About"
-#~ msgstr "_Om"
-
-#~ msgid "_Add to Library..."
-#~ msgstr "_Lägg till i bibliotek..."
-
-#~ msgid "_Browser"
-#~ msgstr "_Bläddrare"
-
-#~ msgid "_Contents"
-#~ msgstr "_Innehåll"
-
-#~ msgid "_Control"
-#~ msgstr "_Kontroll"
-
-#~ msgid "_Copy"
-#~ msgstr "_Kopiera"
-
-#~ msgid "_Cut"
-#~ msgstr "Klipp _ut"
-
-#~ msgid "_Delete"
-#~ msgstr "_Ta bort"
-
-#~ msgid "_Help"
-#~ msgstr "_Hjälp"
-
-#~ msgid "_Load from file..."
-#~ msgstr "_Läs in från fil..."
-
-#~ msgid "_New Playlist..."
-#~ msgstr "_Ny spellista..."
-
-#~ msgid "_Next"
-#~ msgstr "_Nästa"
-
-#~ msgid "_Paste"
-#~ msgstr "Klistra _in"
-
-#~ msgid "_Play"
-#~ msgstr "_Spela"
-
-#~ msgid "_Properties"
-#~ msgstr "_Egenskaper"
-
-#~ msgid "_Quit"
-#~ msgstr "_Avsluta"
-
-#~ msgid "_Remove"
-#~ msgstr "_Ta bort"
-
-#~ msgid "_Save to file..."
-#~ msgstr "_Spara till fil..."
-
-#~ msgid "_Show Window"
-#~ msgstr "_Visa fönster"
-
-#~ msgid "_Shuffle"
-#~ msgstr "_Blanda"
-
-#~ msgid "_Small Display"
-#~ msgstr "_Liten visning"
-
-#~ msgid "New Internet Radio Station"
-#~ msgstr "Ny Internetradiokanal"
-
-#~ msgid "%s Properties"
-#~ msgstr "Egenskaper för %s"
-
-#~ msgid "Properties for %s"
-#~ msgstr "Egenskaper för %s"
-
-#~ msgid "Expander Size"
-#~ msgstr "Utökarstorlek"
-
-#~ msgid "Size of the expander arrow"
-#~ msgstr "Storlek på utökarpilen"
-
-#~ msgid ""
-#~ "GConf error:\n"
-#~ "  %s"
-#~ msgstr ""
-#~ "GConf-fel:\n"
-#~ "  %s"
-
-#~ msgid "Orientation"
-#~ msgstr "Orientering"
-
-#~ msgid "The orientation of the tray."
-#~ msgstr "Orienteringen på lådan."
-
-#~ msgid "Failed to find %s"
-#~ msgstr "Misslyckades med att hitta %s"
-
-#~ msgid "%s exists, please move it out of the way."
-#~ msgstr "%s finns, flytta undan den."
-
-#~ msgid "Failed to create directory %s."
-#~ msgstr "Misslyckades med att skapa katalogen %s."
-
-#~ msgid "Couldn't write playlist: %s"
-#~ msgstr "Kunde inte skriva spellista: %s"
-
-#~ msgid "Couldn't open playlist: %s"
-#~ msgstr "Kunde inte öppna spellista: %s"
-
-#~ msgid "Unsupported MIME type %s"
-#~ msgstr "MIME-typen %s stöds inte"
-
-#~ msgid "Unknown file type"
-#~ msgstr "Okänd filtyp"
-
-#~ msgid "Track %.2d"
-#~ msgstr "Spår %.2d"
-
-#~ msgid "No TRM ID for this song"
-#~ msgstr "Inget TRM-ID för denna låt"
-
-#~ msgid "No information for this song found"
-#~ msgstr "Ingen information för denna låt hittades"
-
-#~ msgid "Invalid track number"
-#~ msgstr "Ogiltigt spårnummer"
-
-#~ msgid "Audio CD track"
-#~ msgstr "Ljud-cd-spår"
-
-#~ msgid "Failed to open file for reading"
-#~ msgstr "Misslyckades med att öppna fil för läsning"
-
-#~ msgid "Error decoding FLAC file"
-#~ msgstr "Fel vid avkodning av FLAC-fil"
-
-#~ msgid "FLAC"
-#~ msgstr "FLAC"
-
-#~ msgid "Failed to gather information about the file"
-#~ msgstr "Misslyckades med att hämta information om filen"
-
-#~ msgid "MPEG %d Layer III"
-#~ msgstr "MPEG %d lager 3"
-
-#~ msgid "MPEG 2.5 Layer III"
-#~ msgstr "MPEG 2.5 lager 3"
-
-#~ msgid "Failed to recognise filetype"
-#~ msgstr "Misslyckades med känna igen filtypen"
-
-#~ msgid "Failed to find an audio track"
-#~ msgstr "Misslyckades med att hitta ett ljudspår"
-
-#~ msgid "MPEG-4 audio (MPEG-4 AAC)"
-#~ msgstr "MPEG-4-ljud (MPEG-4 AAC)"
-
-#~ msgid "Failed to seek file"
-#~ msgstr "Misslyckades med att spola fil"
-
-#~ msgid "Failed to open file as Ogg Vorbis"
-#~ msgstr "Misslyckades med att öppna filen som Ogg Vorbis"
-
-#~ msgid "Ogg Vorbis"
-#~ msgstr "Ogg Vorbis"
-
-#~ msgid "There is no plugin installed to handle a %s file."
-#~ msgstr ""
-#~ "Det finns ingen insticksmodul installerad för att hantera en %s-fil."
-
-#~ msgid "Failed to create %s element; check your installation"
-#~ msgstr "Misslyckades med att skapa %s-element; kontrollera din installation"
-
-#~ msgid "Operation not supported"
-#~ msgstr "Åtgärden stöds inte"
-
-#~ msgid "Could not start pipeline playing"
-#~ msgstr "Kunde inte starta rörledningsspelande"
-
-#~ msgid "Could not create audio output element; check your settings"
-#~ msgstr ""
-#~ "Kunde inte skapa ljudutmatningselement; kontrollera dina inställningar"
-
-#~ msgid "Couldn't initialize scheduler.  Did you run gst-register?"
-#~ msgstr "Kunde inte initiera schemaläggaren. Körde du gst-register?"
-
-#~ msgid "Could not pause playback"
-#~ msgstr "Kunde inte göra paus i uppspelning"
-
-#~ msgid "Could not close output sink"
-#~ msgstr "Kunde inte stänga utmatningsutgång"
-
-#~ msgid "No AudioCD support; check your settings"
-#~ msgstr "Inget stöd för ljud-cd; kontrollera dina inställningar"
-
-#~ msgid "Failed to close audio output sink"
-#~ msgstr "Misslyckades med att stänga ljudutmatningsutgång"
-
-#~ msgid "Failed to set up an audio driver; check your installation"
-#~ msgstr ""
-#~ "Misslyckades med att konfigurera en ljuddrivrutin; kontrollera din "
-#~ "installation"
-
-#~ msgid "No input plugin available for %s; check your installation."
-#~ msgstr "Ingen inmatningsinsticksmodul för %s; kontrollera din installation."
-
-#~ msgid "No demux plugin available for %s; check your installation."
-#~ msgstr ""
-#~ "Ingen demuxinsticksmodul tillgänglig för %s; kontrollera din installation."
-
-#~ msgid "Demuxing for %s failed; check your installation."
-#~ msgstr "Demux för %s misslyckades; kontrollera din installation."
-
-#~ msgid "Internal error; check your installation."
-#~ msgstr "Internt fel; kontrollera din installation."
-
-#~ msgid "Audio of %s not handled; check your installation."
-#~ msgstr "Ljud för %s hanteras inte; kontrollera din installation."
-
-#~ msgid "<invalid filename>"
-#~ msgstr "<ogiltigt filnamn>"
-
-#~ msgid "Never"
-#~ msgstr "Aldrig"
-
-#~ msgid "%Y-%m-%d %H:%M"
-#~ msgstr "%Y-%m-%d %H.%M"
-
-#~ msgid "Refreshing songs..."
-#~ msgstr "Uppdaterar låtar..."
-
-#~ msgid "%d song"
-#~ msgid_plural "%d songs"
-#~ msgstr[0] "%d låt"
-#~ msgstr[1] "%d låtar"
-
-#~ msgid "%ld minute"
-#~ msgid_plural "%ld minutes"
-#~ msgstr[0] "%ld minut"
-#~ msgstr[1] "%ld minuter"
-
-#~ msgid "%ld hour"
-#~ msgid_plural "%ld hours"
-#~ msgstr[0] "%ld timme"
-#~ msgstr[1] "%ld timmar"
-
-#~ msgid "%ld day"
-#~ msgid_plural "%ld days"
-#~ msgstr[0] "%ld dag"
-#~ msgstr[1] "%ld dagar"
-
-#~ msgid "%s, %s and %s"
-#~ msgstr "%s, %s och %s"
-
-#~ msgid "%s and %s"
-#~ msgstr "%s och %s"
-
-#~ msgid "Print the playing song and exit"
-#~ msgstr "Skriv ut den spelade låten och avsluta"
-
-#~ msgid "Print the playing song URI and exit"
-#~ msgstr "Skriv ut URI:n för den spelade låten och avsluta"
-
-#~ msgid "Print the playing song length in seconds and exit"
-#~ msgstr "Skriv ut den spelade låtlängden i sekunder och avsluta"
-
-#~ msgid "Print the current elapsed time of playing song and exit"
-#~ msgstr "Skriv ut den förflutna tiden för den spelade låten och avsluta"
-
-#~ msgid "Seek to the specified time in playing song if possible and exit"
-#~ msgstr ""
-#~ "Spola om möjligt till den angivna tiden i den spelade låten och avsluta"
-
-#~ msgid "Toggle play/pause mode"
-#~ msgstr "Växla uppspelnings-/pausläge"
-
-#~ msgid "Focus the running player"
-#~ msgstr "Fokusera den körande spelaren"
-
-#~ msgid "Jump to previous song"
-#~ msgstr "Hoppa till föregående låt"
-
-#~ msgid "Jump to next song"
-#~ msgstr "Hoppa till nästa låt"
-
-#~ msgid "Toggle shuffling"
-#~ msgstr "Växla blandning"
-
-#~ msgid "Enable debugging code"
-#~ msgstr "Aktivera felsökningsläge"
-
-#~ msgid "Do not update the library"
-#~ msgstr "Uppdatera inte biblioteket"
-
-#~ msgid "Do not register the shell"
-#~ msgstr "Registrera inte skalet"
-
-#~ msgid "Don't save any data permanently (implies --no-registration)"
-#~ msgstr "Spara inte några data permanent (förutsätter --no-registration)"
-
-#~ msgid "Path for database file to use"
-#~ msgstr "Sökväg till databasfilen att använda"
-
-#~ msgid "Quit Rhythmbox"
-#~ msgstr "Avsluta Rhythmbox"
-
-#~ msgid "Rhythmbox"
-#~ msgstr "Rhythmbox"
-
-#~ msgid "An exception occured '%s'"
-#~ msgstr "Ett undantag inträffade \"%s\""
-
-#~ msgid ""
-#~ "Failed to activate the shell:\n"
-#~ "%s"
-#~ msgstr ""
-#~ "Misslyckades med att aktivera skalet:\n"
-#~ "%s"
-
-#~ msgid "Linear"
-#~ msgstr "Linjär"
-
-#~ msgid "Linear looping"
-#~ msgstr "Linjär slinga"
-
-#~ msgid "Random with equal weights"
-#~ msgstr "Slumpmässig med lika vikter"
-
-#~ msgid "Random by time since last play"
-#~ msgstr "Slumpmässig efter tid sedan senaste uppspelning"
-
-#~ msgid "Random by rating"
-#~ msgstr "Slumpmässig efter rangordning"
-
-#~ msgid "Random by time since last play and rating"
-#~ msgstr "Slumpmässig efter tid sedan senaste uppspelning och rangordning"
-
-#~ msgid "Couldn't parse playlist"
-#~ msgstr "Kunde inte tolka spellista"
-
-#~ msgid "Load playlist"
-#~ msgstr "Läs in spellista"
-
-#~ msgid "Save playlist"
-#~ msgstr "Spara spellista"
-
-#~ msgid "Failed to create the player: %s"
-#~ msgstr "Misslyckades med att skapa spelaren: %s"
-
-#~ msgid "Change the music volume"
-#~ msgstr "Ändra musikvolymen"
-
-#~ msgid "Opening %s..."
-#~ msgstr "Öppnar %s..."
-
-#~ msgid "Pause playback"
-#~ msgstr "Gör paus i uppspelning"
-
-#~ msgid "_Pause"
-#~ msgstr "_Paus"
-
-#~ msgid "Stop playback"
-#~ msgstr "Stoppa uppspelning"
-
-#~ msgid "_Stop"
-#~ msgstr "_Stopp"
-
-#~ msgid "Unexpected end of stream!"
-#~ msgstr "Oväntat slut på flöde!"
-
-#~ msgid "Music Player Preferences"
-#~ msgstr "Inställningar för musikspelare"
-
-#~ msgid "General"
-#~ msgstr "Allmänt"
-
-#~ msgid "Unable to parse URI \"%s\"\n"
-#~ msgstr "Kan inte tolka URI:n \"%s\"\n"
-
-#~ msgid "Whether the main window is visible"
-#~ msgstr "Huruvida huvudfönstret är synligt"
-
-#~ msgid "Whether shuffle is enabled"
-#~ msgstr "Huruvida blanda är aktiverat"
-
-#~ msgid "Properties for the current song"
-#~ msgstr "Egenskaper för den aktuella låten"
-
-#~ msgid ""
-#~ "Failed to register the shell: %s\n"
-#~ "This probably means that you installed Rhythmbox in a different prefix "
-#~ "than bonobo-activation; this warning is harmless, but IPC will not work."
-#~ msgstr ""
-#~ "Misslyckades med att registrera skalet: %s\n"
-#~ "Detta betyder troligtvis att du installerade Rhythmbox i ett annat prefix "
-#~ "än bonobo-activation. Denna varning är inte allvarlig, men IPC kommer "
-#~ "inte att fungera."
-
-#~ msgid "Not playing"
-#~ msgstr "Spelar inte"
-
-#~ msgid ""
-#~ "%s\n"
-#~ "Paused, %s"
-#~ msgstr ""
-#~ "%s\n"
-#~ "Gör paus, %s"
-
-#~ msgid ""
-#~ "%s\n"
-#~ "%s"
-#~ msgstr ""
-#~ "%s\n"
-#~ "%s"
-
-#~ msgid "%s (Paused)"
-#~ msgstr "%s (Gör paus)"
-
-#~ msgid "translator_credits"
-#~ msgstr ""
-#~ "Christian Rose\n"
-#~ "Skicka synpunkter på översättningen till sv@li.org"
-
-#~ msgid "Maintainers:"
-#~ msgstr "Ansvariga:"
-
-#~ msgid "Former Maintainers:"
-#~ msgstr "Tidigare ansvariga:"
-
-#~ msgid "Contributors:"
-#~ msgstr "Bidragsgivare:"
-
-#~ msgid "Music management and playback software for GNOME."
-#~ msgstr "Musikhanterings- och uppspelningsprogramvara för GNOME."
-
-#~ msgid "Choose Files or Directory"
-#~ msgstr "Välj filer eller katalog"
-
-#~ msgid "To extract CDs you must install the Sound Juicer package."
-#~ msgstr ""
-#~ "För att extrahera cd-skivor måste du installera paketet Sound Juicer."
-
-#~ msgid "Couldn't run sound-juicer: %s"
-#~ msgstr "Kunde inte köra sound-juicer: %s"
-
-#~ msgid "Filter music display by genre, artist, album, or title"
-#~ msgstr "Filtrera musikvisningen efter genre, artist, album eller titel"
-
-#~ msgid "Show _Browser"
-#~ msgstr "Visa _bläddrare"
-
-#~ msgid "Hide _Browser"
-#~ msgstr "Dölj _bläddrare"
-
-#~ msgid "_Repeat"
-#~ msgstr "_Upprepa"
-
-#~ msgid "Buffering..."
-#~ msgstr "Buffrar..."
-
-#~ msgid "Master-PL"
-#~ msgstr "Huvudspellista"
-
-#~ msgid "Playlist"
-#~ msgstr "Spellista"
-
-#~ msgid "Error reading \"%s\".\n"
-#~ msgstr "Fel vid läsning av \"%s\".\n"
-
-#~ msgid "\"%s\" is not a valid iPod database.\n"
-#~ msgstr "\"%s\" är ingen giltig iPod-databas.\n"
-
-#~ msgid "Could not open \"%s\" file for reading.\n"
-#~ msgstr "Kunde inte öppna filen \"%s\" för läsning.\n"
-
-#~ msgid "Could not open \"%s\" file for writing.\n"
-#~ msgstr "Kunde inte öppna filen \"%s\" för skrivning.\n"
-
-#~ msgid "Error renaming '%s' to '%s' (%s).\n"
-#~ msgstr "Fel vid namnbyte av \"%s\" till \"%s\" (%s).\n"
-
-#~ msgid "Error reading file \"%s\".\n"
-#~ msgstr "Fel vid läsning av filen \"%s\".\n"
-
-#~ msgid "Error writing PC file \"%s\".\n"
-#~ msgstr "Fel vid skrivning av PC-filen \"%s\".\n"
-
-#~ msgid "iPod"
-#~ msgstr "iPod"
-
-#~ msgid "Genre"
-#~ msgstr "Genre"
-
-#~ msgid "Radio"
-#~ msgstr "Radio"
-
-#~ msgid "%d station"
-#~ msgid_plural "%d stations"
-#~ msgstr[0] "%d kanal"
-#~ msgstr[1] "%d kanaler"
-
-#~ msgid "Add Location"
-#~ msgstr "Lägg till plats"
-
-#~ msgid "Tra_ck"
-#~ msgstr "Sp_år"
-
-#~ msgid "This source does not support drag and drop."
-#~ msgstr "Denna källa stöder inte dra och släpp."
-
-#~ msgid "_Source"
-#~ msgstr "_Källa"
-
-#~ msgid "Pixbuf Object"
-#~ msgstr "Pixbuf-objekt"
-
-#~ msgid "The pixbuf to render."
-#~ msgstr "Pixbuf att rendera."
-
-#~ msgid "Welcome to Rhythmbox"
-#~ msgstr "Välkommen till Rhythmbox"
-
-#~ msgid ""
-#~ "Rhythmbox is the GNOME music player that lets you do everything: play "
-#~ "your music files, listen to Internet Radio, import music from CDs, and "
-#~ "much more.\n"
-#~ "\n"
-#~ "This assistant will help you get started by asking you some simple "
-#~ "questions."
-#~ msgstr ""
-#~ "Rhythmbox är GNOME-musikspelaren som låter dig göra allting: spela dina "
-#~ "musikfiler, lyssna på Internetradio, importera musik från cd-skivor och "
-#~ "mycket mera.\n"
-#~ "\n"
-#~ "Denna guide kommer att hjälpa dig komma igång genom att fråga dig några "
-#~ "enkla frågor."
-
-#~ msgid "Music library setup"
-#~ msgstr "Konfiguration av musikbibliotek"
-
-#~ msgid "Finish"
-#~ msgstr "Slutför"
-
-#~ msgid ""
-#~ "You are now ready to start Rhythmbox.\n"
-#~ "\n"
-#~ "Remember that you may add music to the library using \"Music\" then "
-#~ "\"Import Folder\", or by importing it from CDs."
-#~ msgstr ""
-#~ "Du är nu redo att starta Rhythmbox.\n"
-#~ "\n"
-#~ "Kom ihåg att du kan lägga till musik i biblioteket genom att använda "
-#~ "\"Musik\", sedan \"Importera mapp\", eller genom att importera den från "
-#~ "cd-skivor."
-
-#~ msgid "Error reading filename: %s"
-#~ msgstr "Fel vid läsning av filnamn: %s"
-
-#~ msgid "Choose a directory"
-#~ msgstr "Välj en katalog"
-
-#~ msgid "%d:%02d"
-#~ msgstr "%d.%02d"
-
-#~ msgid "Very Low"
-#~ msgstr "Mycket låg"
-
-#~ msgid "Low"
-#~ msgstr "Låg"
-
-#~ msgid "Regular"
-#~ msgstr "Normal"
-
-#~ msgid "High"
-#~ msgstr "Hög"
-
-#~ msgid "Very High"
-#~ msgstr "Mycket hög"
-
-#~ msgid "Perfect"
-#~ msgstr "Perfekt"
-
-#~ msgid "Art_ist"
-#~ msgstr "Art_ist"
-
-#~ msgid "Ge_nre"
-#~ msgstr "Ge_nre"
-
-#~ msgid "Ti_me"
-#~ msgstr "Ti_d"
-
-#~ msgid "_Quality"
-#~ msgstr "_Kvalitet"
-
-#~ msgid "_Play Count"
-#~ msgstr "_Spelräknare"
-
-#~ msgid "Now Playing"
-#~ msgstr "Spelar nu"
-
-#~ msgid "Listening to "
-#~ msgstr "Lyssnar på "
-
-#~ msgid "Get information on this album from the web"
-#~ msgstr "Hämta information om detta album från webben"
-
-#~ msgid "Get information on this artist from the web"
-#~ msgstr "Hämta information om denna artist från webben"
-
-#~ msgid "Get information on this station from the web"
-#~ msgstr "Hämta information om denna kanal från webben"
-
-#~ msgid "%d:%02d of %d:%02d"
-#~ msgstr "%d.%02d av %d.%02d"
-
-#~ msgid "%d:%02d of %d:%02d remaining"
-#~ msgstr "%d.%02d av %d.%02d återstår"
-
-#~ msgid "_Error"
-#~ msgstr "_Fel"
-
-#~ msgid "_File"
-#~ msgstr "_Arkiv"
-
-#~ msgid "contains"
-#~ msgstr "innehåller"
-
-#~ msgid "does not contain"
-#~ msgstr "innehåller inte"
-
-#~ msgid "equals"
-#~ msgstr "är lika med"
-
-#~ msgid "greater than"
-#~ msgstr "större än"
-
-#~ msgid "less than"
-#~ msgstr "mindre än"
-
-#~ msgid "Create Automatic Playlist"
-#~ msgstr "Skapa automatisk spellista"
-
-#~ msgid "from"
-#~ msgstr "från"
-
-#~ msgid "by"
-#~ msgstr "av"
-
-#~ msgid "Song Properties"
-#~ msgstr "Låtegenskaper"
-
-#~ msgid "Multiple Song Properties"
-#~ msgstr "Egenskaper för flera låtar"
-
-#~ msgid "%d kbps"
-#~ msgstr "%d kb/s"
-
-#~ msgid "on the desktop"
-#~ msgstr "på skrivbordet"
-
-#~ msgid "+"
-#~ msgstr "+"
-
-#~ msgid "-"
-#~ msgstr "-"
-
-#~ msgid "A_lbum:"
-#~ msgstr "A_lbum:"
-
-#~ msgid ""
-#~ "Rhythmbox does not currently work if GNOME sound events are are enabled "
-#~ "and esdsink is in use."
-#~ msgstr ""
-#~ "Rhythmbox fungerar för tillfället inte om GNOME-ljudhändelser är "
-#~ "aktiverade och esdsink används."
-
-#~ msgid "Sink"
-#~ msgstr "Utgång"
-
-#~ msgid "Could not open iTunesDB \"%s\" for writing.\n"
-#~ msgstr "Kunde inte öppna iTunesDB \"%s\" för skrivning.\n"
-
-#~ msgid "Could not open file \"%s\" for reading.\n"
-#~ msgstr "Kunde inte öppna filen \"%s\" för läsning.\n"
-
-#~ msgid "Could not open file \"%s\" for writing.\n"
-#~ msgstr "Kunde inte öppna filen \"%s\" för skrivning.\n"
-
-#~ msgid "%s, %s, and %s"
-#~ msgstr "%s, %s och %s"
-
-#~ msgid "Very low"
-#~ msgstr "Mycket låg"
-
-#~ msgid "Very high"
-#~ msgstr "Mycket hög"
-
-#~ msgid "I could not initialize Bonobo"
-#~ msgstr "Jag kunde inte initiera Bonobo"
-
-#~ msgid "Could not create an instance of the sample echo component"
-#~ msgstr "Kunde inte skapa en instans av exempelekokomponenten"
-
-#~ msgid "Encoding:"
-#~ msgstr "Kodning:"
-
-#~ msgid "Quality:"
-#~ msgstr "Kvalitet:"
-
-#~ msgid "_Comments:"
-#~ msgstr "_Kommentarer:"
-
-#~ msgid "_Date:"
-#~ msgstr "_Datum:"
-
-#~ msgid "_of:"
-#~ msgstr "_av:"
-
-#~ msgid "_Album"
-#~ msgstr "_Album"
-
-#~ msgid "Toggle random playing order"
-#~ msgstr "Slå på/av slumpvis spelordning"
-
-#~ msgid "THE ,DJ "
-#~ msgstr " "
-
-#~ msgid "%s, %s"
-#~ msgstr "%s, %s"
-
-#~ msgid ""
-#~ "%s does not point to a valid CDRom device. This may be caused by:\n"
-#~ "a) CD support is not compiled into Linux\n"
-#~ "b) You do not have the correct permissions to access the CD drive\n"
-#~ "c) %s is not the CD drive.\n"
-#~ msgstr ""
-#~ "%s pekar inte på en giltig cd-rom-enhet. Detta kan orsakas av:\n"
-#~ "a) Cd-stöd är inte inkompilerat i Linux\n"
-#~ "b) Du inte har rätt rättigheter för att komma åt cd-enheten\n"
-#~ "c) %s inte är cd-enheten.\n"
-
-#~ msgid "You do not seem to have permission to access %s."
-#~ msgstr "Du verkar inte ha rättigheter att komma åt %s."
-
-#~ msgid ""
-#~ "%s does not appear to point to a valid CD device. This may be because:\n"
-#~ "a) CD support is not compiled into Linux\n"
-#~ "b) You do not have the correct permissions to access the CD drive\n"
-#~ "c) %s is not the CD drive.\n"
-#~ msgstr ""
-#~ "%s verkar inte peka på en giltig cd-enhet. Detta kan orsakas av:\n"
-#~ "a) Cd-stöd är inte inkompilerat i Linux\n"
-#~ "b) Du inte har rätt rättigheter för att komma åt cd-enheten\n"
-#~ "c) %s inte är cd-enheten.\n"
-
-#~ msgid "Error reading CD header: %s"
-#~ msgstr "Fel vid läsning av cd-huvudet: %s"
-
-#~ msgid "Error getting leadout: %s"
-#~ msgstr "Fel vid hämtande av paus: %s"
-
-#~ msgid "Lossless"
-#~ msgstr "Förlustfri"
-
-#~ msgid "Failed to create gnomevfssrc input element; check your installation"
-#~ msgstr ""
-#~ "Misslyckades med att skapa gnomevfssrc-indataelement; kontrollera din "
-#~ "installation"
-
-#~ msgid "Failed to create cdparanoia input element; check your installation"
-#~ msgstr ""
-#~ "Misslyckades med att skapa cdparanoia-indataelement; kontrollera din "
-#~ "installation"
-
-#~ msgid "Failed to create spider element; check your installation"
-#~ msgstr ""
-#~ "Misslyckades med att skapa spindelelement; kontrollera din installation"
-
-#~ msgid "Failed to create volume element; check your installation"
-#~ msgstr ""
-#~ "Misslyckades med att skapa volymelement; kontrollera din installation"
-
-#~ msgid "Failed to create %s input element; check your installation"
-#~ msgstr ""
-#~ "Misslyckades med att skapa %s-indataelement; kontrollera din installation"
-
-#~ msgid "Failed to create queue element; check your installation"
-#~ msgstr "Misslyckades med att skapa köelement; kontrollera din installation"
-
-#~ msgid "GStreamer options:"
-#~ msgstr "Flaggor för Gstreamer:"
-
-#~ msgid "Please remove %s"
-#~ msgstr "Ta bort %s"
-
-#~ msgid "Failed to create directory %s"
-#~ msgstr "Misslyckades med att skapa katalogen %s"
-
-#~ msgid "MonkeyMedia options:"
-#~ msgstr "MonkeyMedia-alternativ:"
-
-#~ msgid ""
-#~ "Music management and playback software for GNOME.\n"
-#~ "Audio backend: %s\n"
-#~ "Audio formats: %s\n"
-#~ msgstr ""
-#~ "Musikhanterings- och uppspelningsprogramvara för GNOME.\n"
-#~ "Ljudbakände: %s\n"
-#~ "Ljudformat: %s\n"
-
-#~ msgid ""
-#~ "There was an error going to %s:\n"
-#~ "%s"
-#~ msgstr ""
-#~ "Det uppstod ett fel vid försök att gå till %s:\n"
-#~ "%s"
-
-#~ msgid "from "
-#~ msgstr "från "
-
-#~ msgid "by "
-#~ msgstr "av "
-
-#~ msgid " (Mono)"
-#~ msgstr " (Mono)"
-
-#~ msgid " (Stereo)"
-#~ msgstr " (Stereo)"
-
-#~ msgid " (%d channel)"
-#~ msgid_plural " (%d channel)"
-#~ msgstr[0] " (%d kanal)"
-#~ msgstr[1] " (%d kanaler)"
-
-#~ msgid "_Limit to:"
-#~ msgstr "_Begränsa till:"
-
-#~ msgid "(%d channel)"
-#~ msgid_plural "(%d channel)"
-#~ msgstr[0] "(%d kanal)"
-#~ msgstr[1] "(%d kanaler)"
-
-#~ msgid "music audiocd"
-#~ msgstr "musik-ljud-cd"
-
-#~ msgid "Retrieving MusicBrainz data"
-#~ msgstr "Hämtar MusicBrainz-data"
-
-#~ msgid "Failed to parse %s as disc info file"
-#~ msgstr "Misslyckades med att tolka %s som diskinformationsfil"
-
-#~ msgid "Loading CD information"
-#~ msgstr "Läser in cd-information"
-
-#~ msgid "%d songs, %d:%02d:%02d total time"
-#~ msgstr "%d låtar, %d.%02d.%02d total tid"
-
-#~ msgid "%d total stations in %d distinct genres"
-#~ msgstr "totalt %d kanaler inom %d unika genrer"
-
-#~ msgid "Don't save any data permanently"
-#~ msgstr "Spara inte några data permanent"
-
-#~ msgid ""
-#~ "%s\n"
-#~ "Paused"
-#~ msgstr ""
-#~ "%s\n"
-#~ "Gör paus"
-
-#~ msgid ""
-#~ "%s\n"
-#~ "Paused, %s remaining"
-#~ msgstr ""
-#~ "%s\n"
-#~ "Gör paus, %s återstår"
-
-#~ msgid ""
-#~ "%s\n"
-#~ "%s remaining"
-#~ msgstr ""
-#~ "%s\n"
-#~ "%s återstår"
-
-#~ msgid "File name"
-#~ msgstr "Filnamn"
-
-#~ msgid "Name:"
-#~ msgstr "Namn:"
-
-#~ msgid "_Rename"
-#~ msgstr "_Byt namn"
-
-#~ msgid "_Rename..."
-#~ msgstr "_Byt namn..."
-
-#~ msgid "There is already a playlist with that name."
-#~ msgstr "Det finns redan en spellista med det namnet."
-
-#~ msgid "Untitled"
-#~ msgstr "Namnlös"
-
-#~ msgid "C_reate"
-#~ msgstr "S_kapa"
-
-#~ msgid "Please enter a name for the new playlist:"
-#~ msgstr "Ange ett namn för den nya spellistan:"
-
-#~ msgid "Add the _selected songs to the new playlist"
-#~ msgstr "Lägg till de _markerade låtarna till den nya spellistan"
-
-#~ msgid "Extract songs from a CD"
-#~ msgstr "Extrahera låtar från en cd"
-
-#~ msgid "%s - %s"
-#~ msgstr "%s - %s"
-
-#~ msgid "_Close"
-#~ msgstr "S_täng"
-
-#~ msgid "_Extract CD..."
-#~ msgstr "_Extrahera cd..."
-
-#~ msgid "_Load Playlist..."
-#~ msgstr "_Läs in spellista..."
-
-#~ msgid "_Rename Playlist"
-#~ msgstr "_Byt namn på spellista"
-
-#~ msgid "_Save Playlist..."
-#~ msgstr "_Spara spellista..."
-
-#~ msgid "Unable to find file \"iradio-initial.xml\""
-#~ msgstr "Kan inte hitta filen \"iradio-initial.xml\""
-
-#~ msgid "Failed to parse %s\n"
-#~ msgstr "Misslyckades med att tolka %s\n"
-
-#~ msgid "(Unknown)"
-#~ msgstr "(Okänd)"
-
-#~ msgid "The child model"
-#~ msgstr "Barnmodellen"
-
-#~ msgid "The model for the filtermodel to filter"
-#~ msgstr "Modellen som filtermodellen ska använda för filtrering"
-
-#~ msgid "The virtual root"
-#~ msgstr "Den virtuella roten"
-
-#~ msgid "The virtual root (relative to the child model) for this filtermodel"
-#~ msgstr ""
-#~ "Den virtuella roten (relativ till barnmodellen) för denna filtermodell"
-
-#~ msgid "TreeModelSort Model"
-#~ msgstr "TreeModelSort-modell"
-
-#~ msgid "The model for the TreeModelSort to sort"
-#~ msgstr "Modellen som TreeModelSort ska använda för sortering"
-
-#~ msgid ""
-#~ "Rhythmbox is the GNOME music player that lets you do\n"
-#~ "everything: play your music files, listen to Internet Radio,\n"
-#~ "import music from CDs, and much more.\n"
-#~ "\n"
-#~ "This assistant will help you get started by\n"
-#~ "asking you some simple questions."
-#~ msgstr ""
-#~ "Rhythmbox är GNOME-musikspelaren som låter dig göra allting:\n"
-#~ "spela dina musikfiler, lyssna på Internetradio, importera\n"
-#~ "musik från cd-skivor och mycket mera.\n"
-#~ "\n"
-#~ "Denna guide kommer att hjälpa dig komma igång\n"
-#~ "genom att fråga dig några enkla frågor."
-
-#~ msgid ""
-#~ "You are now ready to start Rhythmbox.\n"
-#~ "\n"
-#~ "Remember that you may add music\n"
-#~ "to the library using \"Organize\"\n"
-#~ "then \"Add to Library\", or by importing\n"
-#~ "it from CDs."
-#~ msgstr ""
-#~ "Du är nu redo att starta Rhythmbox.\n"
-#~ "\n"
-#~ "Kom ihåg att du kan lägga till musik\n"
-#~ "i biblioteket genom att använda\n"
-#~ "\"Organisera\", sedan \"Lägg till i\n"
-#~ "bibliotek\", eller genom att importera\n"
-#~ "den från cd-skivor."
-
-#~ msgid "Failed to parse %s as NodeView layout file"
-#~ msgstr "Misslyckades med att tolka %s som NodeView-layoutfil"
-
-#~ msgid "Failed to load library!"
-#~ msgstr "Misslyckades med att läsa in biblioteket!"
-
-#~ msgid "%ld:%02ld"
-#~ msgstr "%ld.%02ld"
-
-#~ msgid "<b>%.1f</b> days (%ld songs)"
-#~ msgstr "<b>%.1f</b> dagar (%ld låtar)"
-
-#~ msgid "<b>%ld</b> hours and <b>%ld</b> minutes (%ld songs)"
-#~ msgstr "<b>%ld</b> timmar och <b>%ld</b> minuter (%ld låtar)"
-
-#~ msgid "<b>%ld</b> minutes (%ld songs)"
-#~ msgstr "<b>%ld</b> minuter (%ld låtar)"
-
-#~ msgid "R_ename"
-#~ msgstr "B_yt namn"
-
-#~ msgid "Please enter a new name for the playlist:"
-#~ msgstr "Ange ett nytt namn för spellistan:"
-
-#~ msgid "Stop"
-#~ msgstr "Stopp"
-
-#~ msgid "<b>%d</b> total stations in <b>%d</b> distinct genres"
-#~ msgstr "totalt <b>%d</b> kanaler inom <b>%d</b> unika genrer"
-
-#~ msgid "Failed to parse %s as playlist file"
-#~ msgstr "Misslyckades med att tolka %s som spellistefil"
-
-#~ msgid ""
-#~ "In order to get started using Rhythmbox, this assistant will ask you some "
-#~ "simple questions."
-#~ msgstr ""
-#~ "Denna guide kommer att fråga dig ett par enkla frågor för att du ska "
-#~ "kunna komma igång med användningen av Rhythmbox."
-
-#~ msgid "Library setup"
-#~ msgstr "Bibliotekskonfiguration"
-
-#~ msgid "You are now ready to start Rhythmbox."
-#~ msgstr "Du är nu redo att starta Rhythmbox."
-
-#~ msgid ""
-#~ "In order to get started using\n"
-#~ "Rhythmbox, this assistant will ask\n"
-#~ "you some simple questions."
-#~ msgstr ""
-#~ "Denna guide kommer att fråga dig\n"
-#~ "ett par enkla frågor för att du ska\n"
-#~ "kunna komma igång med användningen\n"
-#~ "av Rhythmbox."
-
-#~ msgid ""
-#~ "Rhythmbox needs to know where to find your music.\n"
-#~ "You may choose to skip this step; instead, you \n"
-#~ "can add music to your library at any point later.\n"
-#~ "\n"
-#~ "Please choose one of the options below:"
-#~ msgstr ""
-#~ "Rhythmbox måste veta var det kan hitta din musik.\n"
-#~ "Du kan välja att hoppa över detta steg och istället\n"
-#~ "lägga till musik till ditt bibliotek vid ett senare\n"
-#~ "tillfälle.\n"
-#~ "\n"
-#~ "Välj ett av alternativen nedan:"
-
-#~ msgid ""
-#~ "You are now ready to start\n"
-#~ "Rhythmbox."
-#~ msgstr ""
-#~ "Du är nu redo att starta\n"
-#~ "Rhythmbox."
-
-#~ msgid "Paused, %s remaining"
-#~ msgstr "Gör paus, %s återstår"
-
-#~ msgid "%s remaining"
-#~ msgstr "%s återstår"
-
-#~ msgid " by "
-#~ msgstr " av "
-
-#~ msgid "Source List"
-#~ msgstr "Källista"
-
-#~ msgid "_Source List"
-#~ msgstr "_Källista"
-
-#~ msgid "    "
-#~ msgstr "    "
-
-#~ msgid "And"
-#~ msgstr "Och"
-
-#~ msgid "Last played"
-#~ msgstr "Senast spelad"
-
-#~ msgid "Or"
-#~ msgstr "Eller"
-
-#~ msgid "Played"
-#~ msgstr "Spelad"
-
-#~ msgid "Search Songs"
-#~ msgstr "Sök låtar"
-
-#~ msgid "Where"
-#~ msgstr "Där"
-
-#~ msgid "Year"
-#~ msgstr "År"
-
-#~ msgid "does not contains"
-#~ msgstr "innehåller inte"
-
-#~ msgid "is after"
-#~ msgstr "är efter"
-
-#~ msgid "is before"
-#~ msgstr "är innan"
-
-#~ msgid "<b>Loading songs...</b>"
-#~ msgstr "<b>Läser in låtar...</b>"
-
-#~ msgid "<b>Refreshing songs...</b>"
-#~ msgstr "<b>Uppdaterar låtar...</b>"
-
-#~ msgid ""
-#~ "Rhythmbox does not currently work if GNOME sound events are are enabled."
-#~ msgstr ""
-#~ "Rhythmbox fungerar för tillfället inte om GNOME-ljudhändelser är "
-#~ "aktiverade."
-
-#~ msgid "Rename..."
-#~ msgstr "Byt namn..."
-
-#~ msgid "Change the visibility of the toolbar"
-#~ msgstr "Ändra synligheten på verktygsraden"
-
-#~ msgid "St_atusbar"
-#~ msgstr "St_atusrad"
-
-#~ msgid "<b>Working...</b> (%d total songs)"
-#~ msgstr "<b>Arbetar...</b> (totalt %d låtar)"
-
-#~ msgid "Volume"
-#~ msgstr "Volym"
-
-#~ msgid "Locations"
-#~ msgstr "Platser"
-
-#~ msgid "_Add:"
-#~ msgstr "_Lägg till:"
-
-#~ msgid "Failed to open %s: %s"
-#~ msgstr "Misslyckades med att öppna %s: %s"
-
-#~ msgid "Failed to read %s: %s"
-#~ msgstr "Misslyckades med att läsa %s: %s"
-
-#~ msgid "Failed to parse %s: %s"
-#~ msgstr "Misslyckades med att tolka %s: %s"
-
-#~ msgid "No locations specified!"
-#~ msgstr "Inga platser angivna!"
-
-#~ msgid "No location is selected."
-#~ msgstr "Ingen plats är angiven."
-
-#~ msgid "No location specified."
-#~ msgstr "Ingen plats angiven."
-
-#~ msgid "Location is not a valid URL."
-#~ msgstr "Platsen är inte en giltig URL."
-
-# Osäker
-#~ msgid "All fallback locations failed, unable to play: %s\n"
-#~ msgstr "Alla reservplatser misslyckades, kan inte spela: %s\n"
-
-#~ msgid "Create"
-#~ msgstr "Skapa"
-
-#~ msgid "_of"
-#~ msgstr "_av"
-
-#~ msgid "<span weight=\"bold\">Visible Columns</span>"
-#~ msgstr "<span weight=\"bold\">Synliga kolumner</span>"
-
-#~ msgid "<b>Browser Views</b>"
-#~ msgstr "<b>Bläddrarvyer</b>"
-
-#~ msgid "   "
-#~ msgstr "   "
-
-#~ msgid "<b>Last played:</b>"
-#~ msgstr "<b>Senast spelad:</b>"
-
-#~ msgid "<b>Location:</b>"
-#~ msgstr "<b>Plats:</b>"
-
-#~ msgid "<b>Name:</b>"
-#~ msgstr "<b>Namn:</b>"
-
-#~ msgid "<b>Play count:</b>"
-#~ msgstr "<b>Spelräknare:</b>"
-
-#~ msgid "<b>Quality:</b>"
-#~ msgstr "<b>Kvalitet:</b>"
-
-#~ msgid "<b>_Album:</b>"
-#~ msgstr "<b>_Album:</b>"
-
-#~ msgid "<b>_Artist:</b>"
-#~ msgstr "<b>_Artist:</b>"
-
-#~ msgid "<b>_Comments:</b>"
-#~ msgstr "<b>_Kommentarer:</b>"
-
-#~ msgid "<b>_Date:</b>"
-#~ msgstr "<b>_Datum:</b>"
-
-#~ msgid "<b>_Genre:</b>"
-#~ msgstr "<b>_Genre:</b>"
-
-#~ msgid "<b>_Rating:</b>"
-#~ msgstr "<b>_Betyg:</b>"
-
-#~ msgid "<b>_Title:</b>"
-#~ msgstr "<b>_Titel:</b>"
-
-#~ msgid "<b>_Track number:</b>"
-#~ msgstr "<b>_Spårnummer:</b>"
-
-#~ msgid " "
-#~ msgstr " "
-
-#~ msgid "_Genre: "
-#~ msgstr "_Genre: "
-
-#~ msgid "_Title: "
-#~ msgstr "_Titel: "
-
-#~ msgid "dialog1"
-#~ msgstr "dialog1"
-
-#~ msgid "42"
-#~ msgstr "42"
-
-#~ msgid "_Rating: "
-#~ msgstr "_Betyg: "
-
-#~ msgid "blah Properties"
-#~ msgstr "Egenskaper för blah"
-
-#~ msgid "A_rtist"
-#~ msgstr "A_rtist"
-
-#~ msgid "_Don't Add"
-#~ msgstr "Lägg i_nte till"
-
-#~ msgid "Unable to parse %s: %s\n"
-#~ msgstr "Kan inte tolka %s: %s\n"
-
-#~ msgid "_Next Song"
-#~ msgstr "_Nästa låt"
-
-#~ msgid "%d kbps "
-#~ msgstr "%d kb/s "
-
-#~ msgid "Unable to parse playlist entry \"%s\""
-#~ msgstr "Kan inte tolka spellisteposten \"%s\""
-
-#~ msgid "Unable to load playlist file \"%s\""
-#~ msgstr "Kan inte läsa in spellistefilen \"%s\""
-
-#~ msgid ""
-#~ "Error reading playlist file \"%s\":\n"
-#~ " no numberofentries header found"
-#~ msgstr ""
-#~ "Fel vid läsande av spellistefilen \"%s\":\n"
-#~ " inget numberofentries-huvud hittades"
-
-#~ msgid ""
-#~ "Error reading playlist file \"%s\":\n"
-#~ " no playlist header"
-#~ msgstr ""
-#~ "Fel vid läsande av spellistefilen \"%s\":\n"
-#~ " inget spellistehuvud"
-
-#~ msgid "Unable to handle URI \"%s\"\n"
-#~ msgstr "Kan inte hantera URI:n \"%s\"\n"
-
-#~ msgid "Please enter a name for the new playlist"
-#~ msgstr "Ange ett namn för den nya spellistan"
-
-#~ msgid "Please enter a name for the new playlist."
-#~ msgstr "Ange ett namn för den nya spellistan."
-
-#~ msgid "<b>%.1f</b> days"
-#~ msgstr "<b>%.1f</b> dagar"
-
-#~ msgid "<b>%ld</b> hours and <b>%ld</b> minutes"
-#~ msgstr "<b>%ld</b> timmar och <b>%ld</b> minuter"
-
-#~ msgid "<b>%ld</b> minutes"
-#~ msgstr "<b>%ld</b> minuter"
-
-#~ msgid "Cut"
-#~ msgstr "Klipp ut"
-
-#~ msgid "Name"
-#~ msgstr "Namn"
-
-#~ msgid "A unique name for the action."
-#~ msgstr "Ett unikt namn för åtgärden."
-
-#~ msgid "Label"
-#~ msgstr "Etikett"
-
-#~ msgid "The label used for menu items and buttons that activate this action."
-#~ msgstr ""
-#~ "Etiketten som används för menyposter och knappar som aktiverar denna "
-#~ "åtgärd."
-
-#~ msgid "Short label"
-#~ msgstr "Kort etikett"
-
-#~ msgid "A shorter label that may be used on toolbar buttons."
-#~ msgstr "En kortare etikett som kan användas på verktygsradsknappar."
-
-#~ msgid "Tooltip"
-#~ msgstr "Verktygstips"
-
-#~ msgid "A tooltip for this action."
-#~ msgstr "Ett verktygstips för denna åtgärd."
-
-#~ msgid "Stock Icon"
-#~ msgstr "Standardikon"
-
-#~ msgid "The stock icon displayed in widgets representing this action."
-#~ msgstr "Standardikonen som visas i widgetar som representerar denna åtgärd."
-
-#~ msgid "Sensitive"
-#~ msgstr "Känslig"
-
-#~ msgid "_Remove Toolbar"
-#~ msgstr "_Ta bort verktygsrad"
-
-#~ msgid "Separator"
-#~ msgstr "Avskiljare"
-
-#~ msgid "Toolbar Style"
-#~ msgstr "Verktygsradsstil"
-
-#~ msgid "Show Arrow"
-#~ msgstr "Visa pil"
-
-#~ msgid "Change the visibility of the genre browser"
-#~ msgstr "Ändra synligheten på genrebläddraren"
-
-#~ msgid "Scroll the view to the currently playing station"
-#~ msgstr "Rulla vyn till den för tillfället spelade kanalen"
-
-#~ msgid "Show information on the selected station"
-#~ msgstr "Visa information om den valda kanalen"
-
-#~ msgid "_Jump to Playing Station"
-#~ msgstr "_Hoppa till spelande kanal"
-
-#~ msgid "_New Internet Radio Station"
-#~ msgstr "_Ny Internetradiokanal"
-
-#~ msgid "Change the visibility of the artist and album browser"
-#~ msgstr "Ändra synligheten på artist- och albumbläddraren"
-
-#~ msgid "_Organize"
-#~ msgstr "_Organisera"
-
-#~ msgid "Organize"
-#~ msgstr "Organisera"
-
-#~ msgid "Today at %-H:%M"
-#~ msgstr "Idag klockan %H.%M"
-
-#~ msgid "Yesterday at %-H:%M"
-#~ msgstr "Igår klockan %H.%M"
-
-#~ msgid "%A, %B %-d %Y at %-H:%M"
-#~ msgstr "%A %-d %B %Y klockan %H.%M"
-
-#~ msgid "Click to mute"
-#~ msgstr "Klicka för att tysta"
-
-#~ msgid "Click to unmute"
-#~ msgstr "Klicka för att avtysta"
-
-#~ msgid "Lead developers:"
-#~ msgstr "Huvudutvecklare:"
-
-#~ msgid "music group"
-#~ msgstr "musikgrupp"
-
-#~ msgid "Unnamed"
-#~ msgstr "Namnlös"
-
-#~ msgid "New Smart Playlist..."
-#~ msgstr "Ny smart spellista..."
-
-#~ msgid "Create a new music group"
-#~ msgstr "Skapa en ny musikgrupp"
-
-#~ msgid "_New Group..."
-#~ msgstr "_Ny grupp..."
-
-#~ msgid "Hide Browser"
-#~ msgstr "Dölj bläddrare"
-
-#~ msgid "Audio-CD"
-#~ msgstr "Ljud-cd"
-
-#~ msgid ""
-#~ "Failed to create stream for %s, error was:\n"
-#~ "%s"
-#~ msgstr ""
-#~ "Misslyckades med att skapa flöde för %s, felet var:\n"
-#~ "%s"
-
-#~ msgid "iradio"
-#~ msgstr "iradio"
-
-#~ msgid "_Play Album"
-#~ msgstr "_Spela album"
-
-#~ msgid "Start playing this album"
-#~ msgstr "Starta uppspelning av detta album"
-
-#~ msgid "Play Album _Later"
-#~ msgstr "Spela album s_enare"
-
-#~ msgid "Enqueue this album for later playback"
-#~ msgstr "Kölägg detta album för senare uppspelning"
-
-#~ msgid "Enqueue the selected song(s) for later playback"
-#~ msgstr "Kölägg de markerade låtarna för senare uppspelning"
-
-#~ msgid "Play _Song"
-#~ msgstr "Spela _låt"
-
-#~ msgid "Start playing the selected song(s)"
-#~ msgstr "Starta uppspelning av de markerade låtarna"
-
-#~ msgid "Location"
-#~ msgstr "Plats"
-
-#~ msgid "Play count"
-#~ msgstr "Spelräknare"
-
-#~ msgid "Quality"
-#~ msgstr "Kvalitet"
-
-#~ msgid "<b>Album:</b>"
-#~ msgstr "<b>Album:</b>"
-
-#~ msgid "Album:"
-#~ msgstr "Album:"
-
-#~ msgid "<b>Artist:</b>"
-#~ msgstr "<b>Artist:</b>"
-
-#~ msgid "Artist:"
-#~ msgstr "Artist:"
-
-#~ msgid "<b>Comments:</b>"
-#~ msgstr "<b>Kommentarer:</b>"
-
-#~ msgid "<b>Comment:</b>"
-#~ msgstr "<b>Kommentar:</b>"
-
-#~ msgid "_Comments"
-#~ msgstr "_Kommentarer"
-
-#~ msgid "Comments:"
-#~ msgstr "Kommentarer:"
-
-#~ msgid "Comment"
-#~ msgstr "Kommentar"
-
-#~ msgid "<b>Date:</b>"
-#~ msgstr "<b>Datum:</b>"
-
-#~ msgid "_Date"
-#~ msgstr "_Datum"
-
-#~ msgid "Date:"
-#~ msgstr "Datum:"
-
-#~ msgid "Date"
-#~ msgstr "Datum"
-
-#~ msgid "<b>Genre:</b>"
-#~ msgstr "<b>Genre:</b>"
-
-#~ msgid "Genre:"
-#~ msgstr "Genre:"
-
-#~ msgid "Rating:"
-#~ msgstr "Betyg:"
-
-#~ msgid "<b>Title:</b>"
-#~ msgstr "<b>Titel:</b>"
-
-#~ msgid "Title:"
-#~ msgstr "Titel:"
-
-#~ msgid "<b>Track number:</b>"
-#~ msgstr "<b>Spårnummer:</b>"
-
-#~ msgid "_Track number"
-#~ msgstr "_Spårnummer"
-
-#~ msgid "Track number:"
-#~ msgstr "Spårnummer:"
-
-#~ msgid "Track number"
-#~ msgstr "Spårnummer"
-
-#~ msgid "<span weight=\"bold\">Duration: </span>"
-#~ msgstr "<span weight=\"bold\">Varaktighet: </span>"
-
-#~ msgid "<span weight=\"bold\">Last played: </span>"
-#~ msgstr "<span weight=\"bold\">Senast spelad: </span>"
-
-#~ msgid "<span weight=\"bold\">Location: </span>"
-#~ msgstr "<span weight=\"bold\">Plats: </span>"
-
-#~ msgid "<span weight=\"bold\">Name:</span>"
-#~ msgstr "<span weight=\"bold\">Namn:</span>"
-
-#~ msgid "<span weight=\"bold\">Play count: </span>"
-#~ msgstr "<span weight=\"bold\">Spelräknare: </span>"
-
-#~ msgid "<span weight=\"bold\">Quality:</span>"
-#~ msgstr "<span weight=\"bold\">Kvalitet:</span>"
-
-#~ msgid "<span weight=\"bold\">_Album:</span>"
-#~ msgstr "<span weight=\"bold\">_Album:</span>"
-
-#~ msgid "<span weight=\"bold\">_Artist:</span>"
-#~ msgstr "<span weight=\"bold\">_Artist:</span>"
-
-#~ msgid "<span weight=\"bold\">_Comments:</span>"
-#~ msgstr "<span weight=\"bold\">_Kommentarer:</span>"
-
-#~ msgid "<span weight=\"bold\">_Date:</span>"
-#~ msgstr "<span weight=\"bold\">_Datum:</span>"
-
-#~ msgid "<span weight=\"bold\">_Genre:</span>"
-#~ msgstr "<span weight=\"bold\">_Genre:</span>"
-
-#~ msgid "<span weight=\"bold\">_Rating:</span>"
-#~ msgstr "<span weight=\"bold\">_Betyg:</span>"
-
-#~ msgid "<span weight=\"bold\">_Title:</span>"
-#~ msgstr "<span weight=\"bold\">_Titel:</span>"
-
-#~ msgid "<span weight=\"bold\">_Track number:</span>"
-#~ msgstr "<span weight=\"bold\">_Spårnummer:</span>"
-
-#~ msgid "Copyright 2002,2003 Jorn Baayen,Colin Walters"
-#~ msgstr "Copyright 2002, 2003 Jorn Baayen, Colin Walters"
-
-#~ msgid "%d of %d"
-#~ msgstr "%d av %d"
-
-#~ msgid "%ld hours and %ld minutes"
-#~ msgstr "%ld timmar och %ld minuter"
-
-#~ msgid ""
-#~ "Elapsed time of the song. Click on it to display remaining and total time"
-#~ msgstr ""
-#~ "Förlupen speltid för låten. Klicka på den för att visa återstående och "
-#~ "total tid"
-
-#~ msgid ""
-#~ "Remaining time of the song. Click on it to display total and elapsed time"
-#~ msgstr ""
-#~ "Återstående speltid för låten. Klicka på den för att visa total och "
-#~ "förlupen tid"
-
-#~ msgid ""
-#~ "Total time of the song. Click on it to display elapsed and remaining time"
-#~ msgstr ""
-#~ "Total speltid för låten. Klicka på den för att visa förlupen och "
-#~ "återstående tid"
-
-#~ msgid "- %d:%02d"
-#~ msgstr "- %d.%02d"
-
-#~ msgid "Total: %d:%02d"
-#~ msgstr "Totalt: %d.%02d"
-
-#~ msgid "Invalid mode"
-#~ msgstr "Ogiltigt läge"
-
-#~ msgid "Sources"
-#~ msgstr "Källor"
-
-#~ msgid "%ld songs, %.1f days total time, %s"
-#~ msgstr "%ld låtar, %.1f total tid, %s"
-
-#~ msgid "%ld songs, %ld:%02ld:%02ld total time, %s"
-#~ msgstr "%ld låtar, %ld.%02ld.%02ld total tid, %s"
-
-#~ msgid "%ld songs, %02ld:%02ld total time, %s"
-#~ msgstr "%ld låtar, %02ld.%02ld total tid, %s"
-
-#~ msgid "Location: "
-#~ msgstr "Plats: "
-
-#~ msgid "Unable to find file \"%s\""
-#~ msgstr "Kan inte hitta filen \"%s\""
-
-#~ msgid "Copyright 2002,2003 Jorn Baayen, Colin Walters"
-#~ msgstr "Copyright 2002, 2003 Jorn Baayen, Colin Walters"
-
-#~ msgid "Copyright 2002, 2003 Jorn Baayen, Colin Walters"
-#~ msgstr "Copyright 2002, 2003 Jorn Baayen, Colin Walters"
-
-#~ msgid "<span weight=\"bold\">Appearance</span>"
-#~ msgstr "<span weight=\"bold\">Utseende</span>"
-
-#~ msgid "Show _toolbar as:"
-#~ msgstr "Visa _verktygsrad som:"
-
-#~ msgid "Text _below icons"
-#~ msgstr "Text _under ikoner"
-
-#~ msgid "Text b_eside icons"
-#~ msgstr "Text b_redvid ikoner"
-
-#~ msgid "_Desktop default"
-#~ msgstr "_Skrivbordsstandard"
-
-#~ msgid "_Text"
-#~ msgstr "_Text"
-
-#~ msgid "Genre: "
-#~ msgstr "Genre: "
-
-#~ msgid ""
-#~ "Well well well...\n"
-#~ "\n"
-#~ "Gentoo eh? You'll run into problems. We know. Don't bug us.\n"
-#~ "\n"
-#~ "Have a nice day."
-#~ msgstr ""
-#~ "Ser man på...\n"
-#~ "\n"
-#~ "Gentoo minsann? Du kommer att stöta på problem. Vi vet. Klaga inte på "
-#~ "oss.\n"
-#~ "\n"
-#~ "Ha en trevlig dag."
-
-#~ msgid "Do not register with bonobo activation"
-#~ msgstr "Registrera inte med bonobo activation"
-
-#~ msgid "Drag to go to a particular moment in the song"
-#~ msgstr "Dra för att gå till ett visst ställe i låten"
-
-#~ msgid "Shuffle the play list"
-#~ msgstr "Blanda spellistan"
-
-#~ msgid "To play, add music to the play list"
-#~ msgstr "Lägg till musik i spellistan för att spela"
-
-#~ msgid ""
-#~ "Failed to create player, exiting. Error was:\n"
-#~ "%s"
-#~ msgstr ""
-#~ "Misslyckades med att skapa spelaren, avslutar. Felet var:\n"
-#~ "%s"
-
-#~ msgid "Disable repeating the play list"
-#~ msgstr "Inaktivera upprepning av spellistan"
-
-#~ msgid "Enable repeating the play list"
-#~ msgstr "Aktivera upprepning av spellistan"
-
-#~ msgid "%s - Unknown"
-#~ msgstr "%s - Okänd"
-
-#~ msgid ""
-#~ "Failed to create stream, error was:\n"
-#~ "%s"
-#~ msgstr ""
-#~ "Misslyckades med att skapa flöde, felet var:\n"
-#~ "%s"
-
-#~ msgid "%ld:%.2ld"
-#~ msgstr "%ld.%.2ld"
-
-#~ msgid "Total %ld:%.2ld (%ld:%.2ld remaining)"
-#~ msgstr "Totalt %ld.%.2ld (%ld.%.2ld återstår)"
-
-#~ msgid "Copyright %s 2002, 2003 Jorn Baayen. All rights reserved."
-#~ msgstr "Copyright %s 2002, 2003 Jorn Baayen. Alla rättigheter förbehållna."
-
-#~ msgid "Copyright (C) 2002, 2003 Jorn Baayen. All rights reserved."
-#~ msgstr "Copyright 2002, 2003 Jorn Baayen. Alla rättigheter förbehållna."
-
-#~ msgid "Delete the currently selected music group"
-#~ msgstr "Ta bort den för tillfället valda musikgruppen"
-
-#~ msgid "Rename the currently selected music group"
-#~ msgstr "Byt namn på den för tillfället valda musikgruppen"
-
-#~ msgid "_Delete Group"
-#~ msgstr "_Ta bort grupp"
-
-#~ msgid "_Rename Group..."
-#~ msgstr "_Byt namn på grupp..."
-
-#~ msgid "Oh neej!!"
-#~ msgstr "Åh nej!!"
-
-#~ msgid "Track %d from "
-#~ msgstr "Spår %d från "
-
-#~ msgid "%s"
-#~ msgstr "%s"
-
-#~ msgid "Copyright (C) 2002 Jorn Baayen. All rights reserved."
-#~ msgstr "Copyright 2002 Jorn Baayen. Alla rättigheter förehållna."
-
-#~ msgid "<b>Cu_rrent Controls</b>"
-#~ msgstr "<b>Ak_tuella kontroller</b>"
-
-#~ msgid "<b>_Available Controls</b>"
-#~ msgstr "<b>_Tillgängliga kontroller</b>"
-
-#~ msgid "_Reset to defaults"
-#~ msgstr "_Återställ till standardalternativ"
-
-#~ msgid "T_oolbar"
-#~ msgstr "_Verktygsrad"
-
-#~ msgid "_Side Pane"
-#~ msgstr "_Sidopanel"
-
-#~ msgid "Copy"
-#~ msgstr "Kopiera"
-
-#~ msgid "Paste"
-#~ msgstr "Klistra in"
-
-#~ msgid "New Group"
-#~ msgstr "Ny grupp"
-
-#~ msgid "/_Open"
-#~ msgstr "/_Öppna"
-
-#~ msgid "/_Delete"
-#~ msgstr "/_Ta bort"
-
-#~ msgid "/Rename..."
-#~ msgstr "/Byt namn..."
-
-#~ msgid "/Delete"
-#~ msgstr "/Ta bort"
-
-#~ msgid "Please enter a new name for this %s."
-#~ msgstr "Ange ett nytt namn för denna %s."
-
-#~ msgid "Failed to parse %s as sidebar layout file"
-#~ msgstr "Misslyckades med att tolka %s som sidopanellayoutfil"
-
-#~ msgid "library"
-#~ msgstr "bibliotek"
-
-#~ msgid "%Y-%m-%d %H:%M:%S"
-#~ msgstr "%Y-%m-%d %H.%M.%S"
-
-#~ msgid "Today at %-H:%M:%S"
-#~ msgstr "Idag klockan %H.%M.%S"
-
-#~ msgid "Yesterday at %-H:%M.%S"
-#~ msgstr "Igår klockan %H.%M.%S"
-
-#~ msgid "%A, %B %-d %Y at %-H:%M:%S"
-#~ msgstr "%A %-d %B %Y klockan %H.%M.%S"
-
-#~ msgid "Mono"
-#~ msgstr "Mono"
-
-#~ msgid "Stereo"
-#~ msgstr "Stereo"
-
-#~ msgid "Show _statusbar"
-#~ msgstr "Visa _statusrad"
-
-#~ msgid "Show s_ide pane"
-#~ msgstr "Visa s_idopanel"
-
-#~ msgid "<span weight=\"bold\">Bit rate:</span>"
-#~ msgstr "<span weight=\"bold\">Bithastighet:</span>"
-
-#~ msgid "<span weight=\"bold\">Channels:</span>"
-#~ msgstr "<span weight=\"bold\">Kanaler:</span>"
-
-#~ msgid "<span weight=\"bold\">Size: </span>"
-#~ msgstr "<span weight=\"bold\">Storlek: </span>"
-
-#~ msgid "Additional"
-#~ msgstr "Ytterligare"
-
-#~ msgid "S_idebar"
-#~ msgstr "S_idopanel"
-
-#~ msgid "Mixer channel"
-#~ msgstr "Mixerkanal"
-
-#~ msgid "The mixer channel of which the volume is controlled."
-#~ msgstr "Mixerkanal vars volym styrs."
-
-#~ msgid ""
-#~ "warning: this version of gmix was compiled with a different version of\n"
-#~ "soundcard.h.\n"
-#~ msgstr ""
-#~ "varning: denna version av gmix kompilerades med en annan version av\n"
-#~ "soundcard.h.\n"
-
-#~ msgid "Querying available channels of mixer device %s failed\n"
-#~ msgstr ""
-#~ "Undersökning av tillgängliga kanaler på mixerenheten %s misslyckades\n"
-
-#~ msgid "Mixer device %s has neither volume nor PCM channels.\n"
-#~ msgstr "Mixerenheten %s har varken volym- eller PCM-kanaler.\n"
-
-#~ msgid "%d-%m-%Y %H:%M:%S"
-#~ msgstr "%Y-%m-%d %H.%M.%S"
-
-#~ msgid "<span weight=\"bold\">View Settings</span>"
-#~ msgstr "<span weight=\"bold\">Visa inställningar</span>"
-
-#~ msgid "_Show Toolbar As:"
-#~ msgstr "_Visa verktygsrad som:"
-
-#~ msgid "Create a new music group from the selected songs"
-#~ msgstr "Skapa en ny musikgrupp från de markerade låtarna"
-
-#~ msgid "P_revious Song"
-#~ msgstr "_Föregående låt"
-
-#~ msgid "_New Group from Selection..."
-#~ msgstr "_Ny grupp från markering..."
-
-#~ msgid "Playing from the %s"
-#~ msgstr "Spelar från %s"
-
-#~ msgid "of"
-#~ msgstr "av"
-
-#~ msgid "<b>Imported Music Folder</b>"
-#~ msgstr "<b>Mapp för importerad musik</b>"
-
-#~ msgid ""
-#~ "All music you import from CD or the internet will be stored\n"
-#~ "in this folder."
-#~ msgstr ""
-#~ "All musik som du importerar från cd eller Internet kommer att\n"
-#~ "lagras i denna mapp."
-
-#~ msgid "Rhythmbox Music Player"
-#~ msgstr "Musikspelaren Rhythmbox"
-
-#~ msgid "Song _Information..."
-#~ msgstr "Låt_information..."
-
-#~ msgid "Go to the next track"
-#~ msgstr "Gå till nästa spår"
-
-#~ msgid "Go to the previous track"
-#~ msgstr "Gå till föregående spår"
-
-#~ msgid "Choose a folder"
-#~ msgstr "Välj en mapp"
-
-#~ msgid "_Track Number:"
-#~ msgstr "_Spårnummer:"
-
-#~ msgid "Bit Rate: "
-#~ msgstr "Bithastighet: "
-
-#~ msgid "Channels: "
-#~ msgstr "Kanaler: "
-
-#~ msgid "Drop songs here to add them in this group"
-#~ msgstr "Släpp låtar här för att lägga till dem i denna grupp"
-
-#~ msgid "Drop files here to add them to the library"
-#~ msgstr "Släpp filer här för att lägga till dem i biblioteket"
-
-#~ msgid "<b>Also Look for Music in These Folders</b>"
-#~ msgstr "<b>Leta efter musik även i dessa mappar</b>"
-
-#~ msgid "<b>Choose a folder to add</b>"
-#~ msgstr "<b>Välj en mapp att lägga till</b>"
-
-#~ msgid "<b>Searching /data/music...</b>"
-#~ msgstr "<b>Söker i /data/music...</b>"
-
-#~ msgid "Choose Folder"
-#~ msgstr "Välj mapp"
-
-#~ msgid "Searching for Music Folders"
-#~ msgstr "Söker efter musikmappar"
-
-#~ msgid "Specify where Rhythmbox should look for music"
-#~ msgstr "Ange var Rhythmbox ska leta efter musik"
-
-#~ msgid "_Music Folders..."
-#~ msgstr "_Musikmappar..."
-
-#~ msgid "Music Folders"
-#~ msgstr "Musikmappar"
-
-#~ msgid "Folder"
-#~ msgstr "Mapp"
-
-#~ msgid "#"
-#~ msgstr "Nr"
-
-#~ msgid "Music group"
-#~ msgstr "Musikgrupp"
-
-#~ msgid "Include Audio CD contents in library as long as disc is present"
-#~ msgstr ""
-#~ "Inkludera innehåll på ljud-cd i bibliotek så länge skivan är närvarande"
-
-#~ msgid "_About Rhythmbox..."
-#~ msgstr "_Om Rhythmbox..."
-
-#~ msgid "Go to %s"
-#~ msgstr "Gå till %s"
-
-#~ msgid "Comments"
-#~ msgstr "Kommentarer"
-
-#~ msgid "Also Look for Music in These Folders"
-#~ msgstr "Leta efter musik även i dessa mappar"
-
-#~ msgid "Music Base Folder"
-#~ msgstr "Musikbasmapp"
-
-#~ msgid "Searching /data/music..."
-#~ msgstr "Söker i /data/music..."
-
-#~ msgid "Failed to find a decoder plugin for %s; check your installation"
-#~ msgstr ""
-#~ "Misslyckades med att hitta en avkodningsinsticksmodul för %s; kontrollera "
-#~ "din installation"
-
-#~ msgid "Mime type %s not handled; check your installation"
-#~ msgstr "Mimetypen %s hanteras inte; kontrollera din installation"
-
-#~ msgid "Failed to create %s element"
-#~ msgstr "Misslyckades med att skapa %s-element"
-
-#~ msgid "Failed to create queue element"
-#~ msgstr "Misslyckades med att skapa köelement"
-
-#~ msgid "Failed to create volume element"
-#~ msgstr "Misslyckades med att skapa volymelement"
-
-#~ msgid "Failed to create thread element"
-#~ msgstr "Misslyckades med att skapa trådelement"
-
-#~ msgid "Failed to create tee element"
-#~ msgstr "Misslyckades med att skapa tee-element"
-
-#~ msgid "Failed to create cdparanoia element"
-#~ msgstr "Misslyckades med att skapa cdparanoia-element"
-
-#~ msgid "Failed to create colorspace element"
-#~ msgstr "Misslyckades med att skapa färgutrymmeselement"
