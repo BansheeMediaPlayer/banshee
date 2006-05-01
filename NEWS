@@ -1,84 +1,110 @@
-Banshee 0.10.9 is out! 
+Banshee 0.10.10 is now out! This release marks the stabilization of
+the 0.10.x series. 0.10.x releases will be made from the
+BANSHEE_0_10_9_SL branch in CVS.
 
-NEW FEATURES
-------------
+As such, no new features will be introduced in the 0.10.x series, 
+but lots of great work will soon be going into HEAD in preparation 
+for the first 0.11.x release. For more information on what is soon 
+to come in the 0.11.x series, read the Banshee Roadmap 
+(work in progress):
 
- * Simultaneous rip and play for audio CDs. When ripping a CD, tracks 
- will be disabled until they are ripped or the rip is halted
- 
- * Improved track transitioning for audio CDs
- 
- * Playback engine supports buffering and metadata extraction from the 
- incoming audio stream
- 
- * Live seeking and a new seek dialog to allow for higher precision seeking
- 
- * More keyboard accelerators for playback actions
- 
- * Open location dialog has history support
- 
- * Various fixes regarding custom source views that embed the playlist 
- view widget; Audio CD view is now completely migrated into the Audio CD 
- source object
- 
- * Plugins can now have direct access to extend the GStreamer pipeline
- by linking elements to the internal tee element; pipeline can play to 
- multiple sinks
- 
+http://banshee-project.org/Roadmap
+
+
+CHANGES SINCE 0.10.9
+--------------------
+
+  * Much improved NJB DAP support [1]
+
+  * Much improved CD burning (show error dialog with list of files that
+    cannot be transcoded, fixed MP3/Data CD support, check for enough
+    available disk space to perform transcoding)
+
+  * Fixed locking bug that causes crashes (BGO #340306)
+
+  * Fixed HTTP/Streaming support in Helix backend
+
+  * Prevent crash when dragging a column into the source view (BGO #333946)
+
+  * Prevent crash when removing the playing song (BGO #324768)
+
+  * Prevent Banshee crash if gnome-panel crashes
+
+  * Remove tooltip from slider (BNC #158403)
+
+  * Properly activate org.gnome.HelixDbusPlayer using 
+    DBus activation (BNC #161682)
+
+  * Added German Translation by Hendrik Richter
+
+  * Fixed dynamic player engine switching (GStreamer<->Helix)
+
+  * Prefer a stream duration over a metadata duration at all times
+
+  * Insert oggmux into a vorbisenc pipeline if oggmux is missing (BGO #335211)
+
+  * Fixes in libipoddevice 0.4.5 to support 2G and older iPods
+
 
 NOTES
 -----
 
-The Xing MP3 encoder has been moved out of the Banshee source tree and
-is now available as a separate module:
+[1] NJB support requires a few things that are distribution specific and may
+not be available yet. First, the distribution must support making the NJB
+device (through libusb) accessible to users (done by matching against 
+portable_audio_player.type). This should be done through HAL resmgr 
+with the following entry into an FDI file in fdi/policy/10osvendor:
 
-http://banshee-project.org/files/gstreamer-xing/gstreamer-xing-0.8.tar.gz
- 
+<deviceinfo version="0.2">
+<device>
+  ...
+  <match key="info.category" string="portable_audio_player">
+    <match key="portable_audio_player.access_method" string="user">
+      <merge key="resmgr.class" type="string">audioplayer</merge>
+    </match>
+  </match>
+  ...
+</device>
+</deviceinfo>
 
-BUG FIXES
----------
+Additionally, the 20-njb.fdi file must be installed in
+fdi/information/20thirdparty/
 
- * 333472: [PATCH] Fix display of duration/position of tracks longer than 1 hour 
- * 313626: GUI freezes for some time on startup after "Loading" stage
- * 314525: I get an exception when running banshee
- * 321460: 0.9.11.1 Crashes when starting
- * 322573: Banshee Crashes on SMP
- * 323234: Ubuntu Dapper error
+The 20-njb.fdi file can be found here:
+http://banshee-project.org/files/misc/20-njb.fdi
+
+To verify that HAL is properly setting permissions on the device, 
+run "njb-handshake"
+
+Banshee also requires njb-sharp 0.3.0 now.
 
 
 THE IMPORTANT LINKS
 -------------------
 
 Release Overview Page:
-http://banshee-project.org/Releases/0.10.9
+http://banshee-project.org/Releases/0.10.10
 
-Banshee 0.10.9 Tarball:
-http://banshee-project.org/files/banshee/banshee-0.10.9.tar.gz
+Banshee 0.10.10 Tarball:
+http://banshee-project.org/files/banshee/banshee-0.10.10.tar.gz
 
 helix-dbus-server Tarball:
-http://banshee-project.org/files/helix-dbus-server/helix-dbus-server-0.2.tar.gz
+http://banshee-project.org/files/helix-dbus-server/helix-dbus-server-0.2.2.tar.gz
 
 xing MP3 Encoder Tarball:
-http://banshee-project.org/files/gstreamer-xing/gstreamer-xing-0.8.tar.gz
+http://banshee-project.org/files/gstreamer-xing/gstreamer-xing-0.10.1.tar.gz
 
 ipod-sharp 0.5.15 Tarball:
 http://banshee-project.org/files/ipod-sharp/ipod-sharp-0.5.15.tar.gz
 
-libipoddevice 0.4.1 Tarball:
-http://banshee-project.org/files/libipoddevice/libipoddevice-0.4.1.tar.gz
+libipoddevice 0.4.5 Tarball:
+http://banshee-project.org/files/libipoddevice/libipoddevice-0.4.5.tar.gz
 
-njb-sharp 0.2.1 Tarball:
-http://banshee-project.org/files/njb-sharp/njb-sharp-0.2.1.tar.gz
+njb-sharp 0.3.0 Tarball:
+http://banshee-project.org/files/njb-sharp/njb-sharp-0.3.0.tar.gz
 
 Banshee Wiki: 
 http://banshee-project.org/
-
-
-CONTRIBUTORS FOR THIS RELEASE
------------------------------
-
-Ruben Vermeersch
-Sebastian Dröge
 
 
 DEPENDENCIES
@@ -97,24 +123,9 @@ DEPENDENCIES
 MORE NOTES
 ----------
 
-* Please do not hesitate to file bugs against Banshee in GNOME Bugzilla
+Please do not hesitate to file bugs against Banshee in GNOME Bugzilla
 (http://bugzilla.gnome.org, component: banshee), or discuss Banshee on
 this list or in #banshee on irc.gnome.org. The Banshee Wiki, open to
 everyone for viewing and editing is located at
 http://banshee-project.org.
 
-
-* Bindings to the VLC libraries have been implemented and are available
-as a Banshee Media Engine. To use the VLC engine, pass --enable-vlc to
-configure. Additionally, libvlc.so must be copied to
-banshee/mediaengines/vlc before running "make install". To build
-libvlc.so, download and build Jon Lech Johansen's snd123:
-
-http://nanocrew.net/2005/09/20/snd123/
-
-Copy the resulting libvlc.so to the aforementioned build directory, and
-proceed with building Banshee as normal. Keep in mind, VLC support is
-optional. Banshee also supports GStreamer and Helix engines. GStreamer
-is required, and Helix is optional, but will be automatically detected
-and configured if your system is set up properly with either RealPlayer
-or Helix Player. See http://helixcommunity.org/

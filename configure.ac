@@ -5,7 +5,7 @@ AM_CONFIG_HEADER(config.h)
 AC_CANONICAL_SYSTEM
 AC_PREREQ(2.13)
 
-VERSION=0.10.9
+VERSION=0.10.10
 ASM_VERSION="$VERSION.*"
 
 AM_INIT_AUTOMAKE(banshee, $VERSION)
@@ -45,14 +45,22 @@ AC_ARG_ENABLE(docs, AC_HELP_STRING([--disable-docs], [Do not build documentation
 AC_ARG_ENABLE(dev-tests, AC_HELP_STRING([--enable-dev-tests], [Whether or not to build various test programs for components in libbanshee and mediaengines]), , enable_dev_tests="no")
 AM_CONDITIONAL(ENABLE_TESTS, test "x$enable_dev_tests" = "xyes")
 
-AC_ARG_WITH(gstreamer-0-10, AC_HELP_STRING([--with-gstreamer-0-10], [Build the GStreamer 0.10 backends]), enable_gst_10="yes", enable_gst_10="no")
-AM_CONDITIONAL(ENABLE_GST_10, test "x$enable_gst_10" = "xyes")
-
 AC_ARG_ENABLE(daap, AC_HELP_STRING([--disable-daap], [Do not build with DAAP support]), enable_daap=no, enable_daap=yes)
 
 if test "x$enable_helix" = "xyes"; then
 	PKG_CHECK_MODULES(HELIX_REMOTE, helix-dbus-server >= 0.2)
 fi
+
+GST_VERSION=0.10
+
+AC_ARG_ENABLE(gstreamer, AC_HELP_STRING([--enable-gstreamer=0.10|0.8], [Enable GStreamer 0.8 or 0.10]), 
+	[case "${enableval}" in
+		yes)  GST_VERSION=0.10 ;;
+		0.8)  GST_VERSION=0.8  ;;
+		0.10) GST_VERSION=0.10 ;;
+		*) AC_MSG_ERROR([Bad value ${enableval} for --enable-gstreamer])
+	esac],
+	[GST_VERSION=0.10])
 
 dnl pkg-config, install programs
 AC_PATH_PROG(PKG_CONFIG, pkg-config, no)
@@ -76,6 +84,7 @@ MONODIR=`$PKG_CONFIG --variable=exec_prefix mono`
 MONOBIN="$MONODIR/bin"
 MONO="$MONOBIN/mono"
 MCS="$MONOBIN/mcs"
+GMCS="$MONOBIN/gmcs"
 
 AC_MSG_CHECKING([for mono.pc])
 if test -z `$PKG_CONFIG --variable=prefix mono`; then
@@ -104,7 +113,12 @@ if test ! -x "$MCS"; then
 	AC_MSG_ERROR([No $CS compiler found])
 fi
 
+if test ! -x "$GMCS"; then
+	AC_MSG_ERROR([No $CS 2.0 (gmcs) compiler found])
+fi
+
 AC_SUBST(MCS)
+AC_SUBST(GMCS)
 AC_SUBST(MONO)
 
 if test "x$with_docs" = "xyes"; then
@@ -202,7 +216,7 @@ else
 fi
 
 dnl gstreamer devel deps
-if test "x$enable_gst_10" = "xyes"; then
+if test "x$GST_VERSION" = "x0.10"; then	
 	GSTREAMER_REQUIRED_VERSION=0.10.3
 	AC_SUBST(GSTREAMER_REQUIRED_VERSION)
 	PKG_CHECK_MODULES(GST,
@@ -256,6 +270,8 @@ fi
 
 AC_SUBST(GST_CFLAGS)
 AC_SUBST(GST_LIBS)
+
+AM_CONDITIONAL(ENABLE_GST_10, test "x$GST_VERSION" = "x0.10")
 
 dnl gstreamer plugins
 
@@ -363,11 +379,12 @@ AC_DEFINE_UNQUOTED([HELIX_LIBRARY_PATH], ["${HELIX_LIBRARY_PATH}"], [Helix Libra
 
 dnl Intl
 
-ALL_LINGUAS="bg ca cs da de en_CA en_GB es fi fr it ja lt nb nl pt_BR sv th zh_CN"
+ALL_LINGUAS="`cat "$srcdir/po/LINGUAS" | grep -v '^#'`"
 GETTEXT_PACKAGE=banshee
 AC_SUBST(GETTEXT_PACKAGE)
 AC_DEFINE_UNQUOTED(GETTEXT_PACKAGE, "$GETTEXT_PACKAGE", [Gettext Package])
 AM_GLIB_GNU_GETTEXT
+AC_SUBST([CONFIG_STATUS_DEPENDENCIES],['$(top_srcdir)/po/LINGUAS'])
 
 dnl generated files
 AC_OUTPUT([
@@ -423,16 +440,15 @@ docs/Makefile
 po/Makefile.in
 ])
 
-gst_version="0.8";
-if test "x${enable_gst_10}" = "xyes"; then
-	gst_version="0.10";
-fi;
-
 if test "x${enable_daap}" = "xyes"; then
 	zeroconf_lib=", Avahi"
 	if test "x${enable_mdnsd}" = "xyes"; then
 		zeroconf_lib=", mDNSResponder"
 	fi
+fi
+
+if test "x${GST_VERSION}" = "x0.8"; then
+	GST_DEPRECATED="(DEPRECATED/UNSUPPORTED)"
 fi
 
 echo "
@@ -444,7 +460,7 @@ banshee-$VERSION
     Mono Runtime:      ${MONO}
 
     Engines:
-      GStreamer:       yes, ${gst_version}
+      GStreamer:       yes, ${GST_VERSION} $GST_DEPRECATED
       Helix Remote:    ${enable_helix}
       VLC:             ${enable_vlc}
 
