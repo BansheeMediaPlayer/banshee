@@ -23,24 +23,6 @@
  *  DEALINGS IN THE SOFTWARE.
  */
 
-/*
- * $Log$
- * Revision 1.9.4.1  2006/05/02 20:50:14  abock
- * 2006-05-02  Aaron Bockover  <aaron@abock.org>
- *
- *     * entagged-sharp/Ogg/OggFileReader.cs: Added application/x-vorbis+ogg
- *     and application/x-vorbis+ogg as a SupportedMimeType (BNC #169616)
- *
- * Revision 1.9  2005/12/05 16:55:08  abock
- * 2005-12-05  Aaron Bockover  <aaron@aaronbock.net>
- *
- *     * entagged-sharp/*: Updated entagged-sharp checkout
- *
- * Revision 1.4  2005/02/08 12:54:42  kikidonk
- * Added cvs log and header
- *
- */
-
 using System.IO;
 using Entagged.Audioformats.Util;
 using Entagged.Audioformats.Ogg.Util;
