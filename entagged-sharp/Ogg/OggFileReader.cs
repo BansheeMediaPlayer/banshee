@@ -25,6 +25,12 @@
 
 /*
  * $Log$
+ * Revision 1.9.4.1  2006/05/02 20:50:14  abock
+ * 2006-05-02  Aaron Bockover  <aaron@abock.org>
+ *
+ *     * entagged-sharp/Ogg/OggFileReader.cs: Added application/x-vorbis+ogg
+ *     and application/x-vorbis+ogg as a SupportedMimeType (BNC #169616)
+ *
  * Revision 1.9  2005/12/05 16:55:08  abock
  * 2005-12-05  Aaron Bockover  <aaron@aaronbock.net>
  *
@@ -43,6 +49,8 @@ namespace Entagged.Audioformats.Ogg
 {
 	[SupportedMimeType ("application/ogg")]
 	[SupportedMimeType ("application/x-ogg")]
+	[SupportedMimeType ("application/x-vorbis+ogg")]
+	[SupportedMimeType ("audio/x-vorbis+ogg")]
 	[SupportedMimeType ("audio/vorbis")]
 	[SupportedMimeType ("audio/x-vorbis")]
 	[SupportedMimeType ("audio/ogg")]
