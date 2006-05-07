@@ -159,7 +159,7 @@ namespace Banshee.Widgets
                 DefaultResponse = response;
                 button.AddAccelerator ("activate",
                                accel_group,
-                               (uint) Gdk.Key.Escape, 
+                               (uint) Gdk.Key.Return, 
                                0,
                                Gtk.AccelFlags.Visible);
             }

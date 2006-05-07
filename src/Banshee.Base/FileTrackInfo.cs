@@ -102,8 +102,8 @@ namespace Banshee.Base
             }
 
             while(path != null && path != String.Empty) {
-                path = Path.GetDirectoryName(path);
                 fileName = Path.GetFileName (path);
+                path = Path.GetDirectoryName(path);
                 if(album == String.Empty) {
                     album = fileName;
                     continue;

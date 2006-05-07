@@ -1,3 +1,18 @@
+2006-05-07  Aaron Bockover  <aaron@abock.org>
+
+	* src/Banshee.MediaEngine/Gstreamer/GstPlayerEngine.cs: Added explicit
+	support for ogg/vorbis to keep the vorbis leak in Helix from happening
+
+	* src/Banshee.Widgets/HigMessageDialog.cs: Make 'Return' the default
+	dialog action key (BNC #172450, Robert Vojta)
+
+	* src/Banshee.Base/LibraryTrackInfo.cs: Add Path.DirectorySeparatorChar
+	to 'StartsWith' check to determine if files should be copied, otherwise
+	'Music to import' will be treated as 'Music' (BNC #171101 Robert Vojta)
+
+	* src/Banshee.Base/FileTrackInfo.cs: properly load files in shallow 
+	directories from command line (BNC #163911, Simon Brys)
+
 2006-05-02  Aaron Bockover  <aaron@abock.org>
 
 	* entagged-sharp/Ogg/OggFileReader.cs: Added application/x-vorbis+ogg

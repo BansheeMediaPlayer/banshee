@@ -207,7 +207,7 @@ namespace Banshee.MediaEngine.Gstreamer
             get { return source_capabilities; }
         }
                 
-        private static string [] decoder_capabilities = { "wma", "asf", "flac" };
+        private static string [] decoder_capabilities = { "ogg", "wma", "asf", "flac" };
         public override IEnumerable ExplicitDecoderCapabilities {
             get { return decoder_capabilities; }
         }
@@ -384,7 +384,7 @@ namespace Banshee.MediaEngine.Gstreamer
             get { return source_capabilities; }
         }
                 
-        private static string [] decoder_capabilities = { "wma", "asf", "flac" };
+        private static string [] decoder_capabilities = { "ogg", "wma", "asf", "flac" };
         public override IEnumerable ExplicitDecoderCapabilities {
             get { return decoder_capabilities; }
         }
