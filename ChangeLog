@@ -1,3 +1,7 @@
+2006-05-08  Aaron Bockover  <aaron@abock.org>
+
+	* docs/Makefile.am: Prefix doc_DATA with $(DESTDIR) so distcheck works
+
 2006-05-07  Aaron Bockover  <aaron@abock.org>
 
 	* src/Banshee.MediaEngine/Gstreamer/GstPlayerEngine.cs: Added explicit

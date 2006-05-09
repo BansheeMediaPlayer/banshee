@@ -15,7 +15,7 @@ all: MonodocNodeConfig.exe
 MonodocNodeConfig.exe: MonodocNodeConfig.cs
 	mcs -out:$@ -r:System.Xml $<
 
-docdir = $(DOCDIR)
+docdir = $(DESTDIR)$(DOCDIR)
 doc_DATA = \
 	banshee-docs.zip \
 	banshee-docs.tree \
