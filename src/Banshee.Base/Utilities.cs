@@ -336,9 +336,36 @@ namespace Banshee.Base
     {
         private static char[] CharsToQuote = { ';', '?', ':', '@', '&', '=', '$', ',', '#', '%' };
        
+        [DllImport("libglib-2.0.so")]
+        private static extern IntPtr g_filename_to_uri(IntPtr filename, IntPtr hostname, IntPtr error);
+       
+        public static string FilenameToUri(string localPath)
+        {
+            // TODO: replace with managed conversion to avoid marshalling
+            IntPtr path_ptr = GLib.Marshaller.StringToPtrGStrdup(localPath);
+            IntPtr uri_ptr = g_filename_to_uri(path_ptr, IntPtr.Zero, IntPtr.Zero);
+            GLib.Marshaller.Free(path_ptr);
+
+            if(uri_ptr == IntPtr.Zero) {
+                throw new ApplicationException("Filename path must be absolute");
+            }
+
+            string uri = GLib.Marshaller.Utf8PtrToString(uri_ptr);
+            GLib.Marshaller.Free(uri_ptr);
+            
+            return uri;
+        }
+       
         public static Uri PathToFileUri(string path)
         {
             path = Path.GetFullPath(path);
+            
+            try {
+                return new Uri(FilenameToUri(path));
+            } catch {
+                Console.WriteLine("Could not use g_filename_to_uri for {0}, " +
+                    "falling back on CharsToQuote.", path);
+            }
             
             StringBuilder builder = new StringBuilder();
             builder.Append(Uri.UriSchemeFile);

@@ -1,4 +1,3 @@
-
 /***************************************************************************
  *  Database.cs
  *
@@ -94,7 +93,8 @@ namespace Banshee.Base
                 CREATE TABLE PlaylistEntries (
                     EntryID INTEGER PRIMARY KEY,
                     PlaylistID INTEGER NOT NULL,
-                    TrackID INTEGER NOT NULL
+                    TrackID INTEGER NOT NULL,
+                    ViewOrder INTEGER NOT NULL DEFAULT 0
                 )");
             }
         }
@@ -120,6 +120,13 @@ namespace Banshee.Base
             } catch(ApplicationException) {
                 LogCore.Instance.PushDebug("Adding new database column", "RemoteLookupStatus INTEGER");
                 Execute("ALTER TABLE Tracks ADD RemoteLookupStatus INTEGER");
+            }            
+            
+            try {
+                QuerySingle("SELECT ViewOrder FROM PlaylistEntries LIMIT 1");
+            } catch(ApplicationException) {
+                LogCore.Instance.PushDebug("Adding new database column", "ViewOrder INTEGER");
+                Execute("ALTER TABLE PlaylistEntries ADD ViewOrder INTEGER NOT NULL DEFAULT 0");
             }
         }
     }

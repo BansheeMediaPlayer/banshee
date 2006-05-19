@@ -77,6 +77,14 @@ namespace Banshee
         public PlaylistColumn PlaysColumn;
         public PlaylistColumn LastPlayedColumn;
         
+        private class ColumnSorter : IComparer
+        {
+            public int Compare(object a, object b) 
+            {
+                return (a as PlaylistColumn).Order.CompareTo((b as PlaylistColumn).Order); 
+            }
+        }
+        
         public PlaylistView(PlaylistModel model)
         {        
             // set up columns
@@ -121,8 +129,10 @@ namespace Banshee
                 8, (int)ColumnId.LastPlayed);
             columns.Add(LastPlayedColumn);
             
+            columns.Sort(new ColumnSorter());
+            
             foreach(PlaylistColumn plcol in columns) {
-                InsertColumn(plcol.Column, plcol.Order);
+                AppendColumn(plcol.Column);
             }
 
             // FIXME: would be nice to have these as PlaylistColumns too...

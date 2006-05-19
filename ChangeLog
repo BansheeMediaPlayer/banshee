@@ -1,3 +1,21 @@
+2006-05-18  Aaron Bockover  <aaron@abock.org>
+
+	* src/PlaylistView.cs: Use a custom IComparer to sort columns by desired
+	order before attaching to view; use AppendColumn on sorted columns instead
+	of InsertColumn (BNC #120666)
+
+	* src/Banshee.Base/Database.cs: Added ViewOrder column to PlaylistEntries
+	table schema; check to see if ViewOrder exists on an existing 
+	PlaylistEntries table and if not, alter the table accordingly (BNC #168653)
+
+	* src/Banshee.Base/Sources/PlaylistSource.cs: No longer sync local 
+	playlist back to database after every minor change; operations are now
+	directly translated into SQL queries (append, delete, reorder) to bring
+	great speed improvements when handling large playlists (BNC #168653)
+
+	* src/Banshee.Base/Utilities.cs: Use g_filename_to_uri to convert from
+	a filename to a proper URI (BNC #147144)
+
 2006-05-16  Aaron Bockover  <aaron@abock.org>
 
 	* src/PlayerInterface.cs: Reset vertical scroll adjustment of the 

@@ -1,9 +1,8 @@
-
 /***************************************************************************
  *  PlaylistSource.cs
  *
- *  Copyright (C) 2005 Novell
- *  Written by Aaron Bockover (aaron@aaronbock.net)
+ *  Copyright (C) 2005-2006 Novell, Inc.
+ *  Written by Aaron Bockover <aaron@abock.org>
  ****************************************************************************/
 
 /*  THIS FILE IS LICENSED UNDER THE MIT LICENSE AS OUTLINED IMMEDIATELY BELOW: 
@@ -52,6 +51,8 @@ namespace Banshee.Sources
         }
         
         private ArrayList tracks = new ArrayList();
+        private Queue remove_queue = new Queue();
+        private Queue append_queue = new Queue();
         private int id;
     
         public PlaylistSource() : this(0)
@@ -84,18 +85,39 @@ namespace Banshee.Sources
         }
         
         private void LoadFromDatabase()
-        {
+        {   
             Name = (string)Globals.Library.Db.QuerySingle(String.Format(
                 @"SELECT Name
                     FROM Playlists
                     WHERE PlaylistID = '{0}'",
                     id
             ));
-            
+         
+            // check to see if ViewOrder has ever been set, if not, perform
+            // a default ordering as a compatibility update
+            if(Convert.ToInt32(Globals.Library.Db.QuerySingle(String.Format(
+                @"SELECT COUNT(*) 
+                    FROM PlaylistEntries
+                    WHERE PlaylistID = '{0}'
+                        AND ViewOrder > 0",
+                    id))) <= 0) {
+                Console.WriteLine("Performing compatibility update on playlist '{0}'", Name);
+                Globals.Library.Db.Execute(String.Format(
+                    @"UPDATE PlaylistEntries
+                        SET ViewOrder = (ROWID -
+                            (SELECT COUNT(*) 
+                                FROM PlaylistEntries
+                                WHERE PlaylistID < '{0}'))
+                        WHERE PlaylistID = '{0}'",
+                        id
+                ));
+            }
+   
             IDataReader reader = Globals.Library.Db.Query(String.Format(
                 @"SELECT TrackID 
                     FROM PlaylistEntries
-                    WHERE PlaylistID = '{0}'",
+                    WHERE PlaylistID = '{0}'
+                    ORDER BY ViewOrder",
                     id
             ));
             
@@ -143,6 +165,7 @@ namespace Banshee.Sources
             if(track is LibraryTrackInfo) {
                 lock(TracksMutex) {
                     tracks.Add(track);
+                    append_queue.Enqueue(track);
                 }
                 OnUpdated();
             }
@@ -152,6 +175,7 @@ namespace Banshee.Sources
         {
             lock(TracksMutex) {
                 tracks.Remove(track);
+                remove_queue.Enqueue(track);
             }
         }
         
@@ -169,36 +193,88 @@ namespace Banshee.Sources
                     id
             ));
             
+            tracks.Clear();
+            append_queue.Clear();
+            remove_queue.Clear();
+            
             SourceManager.RemoveSource(this);
             playlists.Remove(this);
         }
         
         public override void Commit()
         {
-            Globals.Library.Db.Execute(String.Format(
-                @"DELETE FROM PlaylistEntries
-                    WHERE PlaylistID = '{0}'",
-                    id
-            ));
+            if(remove_queue.Count > 0) {
+                lock(TracksMutex) {
+                    while(remove_queue.Count > 0) {
+                        TrackInfo track = remove_queue.Dequeue() as TrackInfo;
+                        Globals.Library.Db.Execute(String.Format(
+                            @"DELETE FROM PlaylistEntries
+                                WHERE PlaylistID = '{0}'
+                                AND TrackID = '{1}'",
+                                id, track.TrackId
+                        ));
+                    }
+                }
+            }
             
-            lock(TracksMutex) {
-                foreach(TrackInfo track in Tracks) {
-                    if(track.TrackId <= 0)
-                        continue;
-                        
-                    Globals.Library.Db.Execute(String.Format(
-                        @"INSERT INTO PlaylistEntries 
-                            VALUES (NULL, '{0}', '{1}')",
-                            id, track.TrackId
-                    ));
+            if(append_queue.Count > 0) {
+                lock(TracksMutex) {
+                    while(append_queue.Count > 0) {
+                        TrackInfo track = append_queue.Dequeue() as TrackInfo;
+                        Globals.Library.Db.Execute(String.Format(
+                            @"INSERT INTO PlaylistEntries 
+                                VALUES (NULL, '{0}', '{1}', (
+                                    SELECT CASE WHEN MAX(ViewOrder)
+                                        THEN MAX(ViewOrder) + 1
+                                        ELSE 1 END
+                                    FROM PlaylistEntries 
+                                    WHERE PlaylistID = '{0}')
+                                )", id, track.TrackId
+                        ));
+                    }
                 }
             }
         }
         
         public override void Reorder(TrackInfo track, int position)
         {
-            RemoveTrack(track);
             lock(TracksMutex) {
+                int sql_position = 1;
+            
+                if(position > 0) {
+                    TrackInfo sibling = tracks[position] as TrackInfo;
+                    if(sibling == track || sibling == null) {
+                        return;
+                    }
+                    
+                    sql_position = Convert.ToInt32(Globals.Library.Db.QuerySingle(String.Format(
+                        @"SELECT ViewOrder
+                            FROM PlaylistEntries
+                            WHERE PlaylistID = '{0}'
+                                AND TrackID = '{1}'
+                            LIMIT 1", id, sibling.TrackId)
+                    ));
+                } else if(tracks[position] == track) {
+                    return;
+                } 
+                
+                Globals.Library.Db.Execute(String.Format(
+                    @"UPDATE PlaylistEntries
+                        SET ViewOrder = ViewOrder + 1
+                        WHERE PlaylistID = '{0}'
+                            AND ViewOrder >= '{1}'",
+                    id, sql_position
+                ));
+                
+                Globals.Library.Db.Execute(String.Format(
+                    @"UPDATE PlaylistEntries
+                        SET ViewOrder = '{1}'
+                        WHERE PlaylistID = '{0}'
+                            AND TrackID = '{2}'",
+                    id, sql_position, track.TrackId
+                ));
+                
+                tracks.Remove(track);
                 tracks.Insert(position, track);
             }
         }
@@ -223,10 +299,13 @@ namespace Banshee.Sources
             
             int removed_count = 0;
             
-            foreach(TrackInfo track in args.Tracks) {
-                if(tracks.Contains(track)) {
-                    tracks.Remove(track);
-                    removed_count++;
+            lock(TracksMutex) {
+                foreach(TrackInfo track in args.Tracks) {
+                    if(tracks.Contains(track)) {
+                        tracks.Remove(track);
+                        remove_queue.Enqueue(track);
+                        removed_count++;
+                    }
                 }
             }
             
