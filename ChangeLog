@@ -1,3 +1,8 @@
+2006-05-19  Aaron Bockover  <aaron@abock.org>
+
+	* src/Main.cs: Call dbus_g_thread_init after Gtk.Application.Init();
+	fixes the CD burning crash seen on SMP machines (BNC #175378)
+
 2006-05-18  Aaron Bockover  <aaron@abock.org>
 
 	* src/PlaylistView.cs: Use a custom IComparer to sort columns by desired
