@@ -275,7 +275,11 @@ namespace Banshee.Base
         
         public static ushort Volume {
             get { return active_engine.Volume; }
-            set { active_engine.Volume = value; }
+            set { 
+                foreach(PlayerEngine engine in engines) {
+                    engine.Volume = value;
+                }
+            }
         }
         
         public static uint Position {
