@@ -1,3 +1,12 @@
+2006-05-25  Aaron Bockover  <aaron@abock.org>
+
+	* configure.ac: 
+	* src/Banshee.Plugins/Makefile.am: 
+	* src/Banshee.Plugins/FileSystemMonitor/*: Removed FSM plugin; it is
+	unmaintained and very buggy; it will be imported as a standalone plugin
+	module to Banshee Subversion where someone may choose to continue 
+	working on it
+
 2006-05-22  Aaron Bockover  <aaron@abock.org>
 
 	* src/Banshee.Base/PlayerEngineCore.cs (set_Volume): pass on value

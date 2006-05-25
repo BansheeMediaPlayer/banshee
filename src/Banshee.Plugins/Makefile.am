@@ -1,7 +1,6 @@
 SUBDIRS = \
 	Audioscrobbler \
 	Daap \
-	FileSystemMonitor \
 	MetadataSearch \
 	MMKeys \
 	NotificationAreaIcon
