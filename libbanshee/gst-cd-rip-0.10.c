@@ -197,8 +197,8 @@ gst_cd_ripper_build_encoder(const gchar *encoder_pipeline)
         g_warning("vorbisenc added without oggmux, attempting to insert oggmux element in pipeline");
         pipeline = g_strdup_printf("audioconvert ! %s ! oggmux", encoder_pipeline);
     } else if((strstr(encoder_pipeline, "lame") != NULL || strstr(encoder_pipeline, "xingenc") != NULL) &&
-        strstr(encoder_pipeline, "id3mux") == NULL) {
-        const gchar *muxer_names [] = { "taglibid3mux", "id3mux", NULL};
+        strstr(encoder_pipeline, "mux") == NULL) {
+        const gchar *muxer_names [] = { "id3v2mux", "taglibid3mux", "id3mux", NULL};
         gint i;
         
         for(i = 0; muxer_names[i] != NULL; i++) {

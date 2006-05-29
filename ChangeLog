@@ -1,3 +1,14 @@
+2006-05-29  Aaron Bockover  <aaron@abock.org>
+
+	* libbanshee/gst-cd-rip-0.10.c: Added id3v2mux to list of tag muxers to
+	search for when encoding to MP3 and no muxer was specified
+
+	* src/banshee.in: Set GST_PLUGIN_PATH to $(libdir)/banshee/gstreamer-0.10
+	to support loading private plugins (gstxing, gstdtdriver on SUSE/SLED)
+
+	* banshee.mds:
+	* banshee.mdp: Updated MonoDevelop project
+
 2006-05-25  Aaron Bockover  <aaron@abock.org>
 
 	* configure.ac: 

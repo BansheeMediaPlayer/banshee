@@ -7,6 +7,7 @@ MONO_EXE="@expanded_libdir@/@PACKAGE@/$exec_asm"
 
 export DYLD_LIBRARY_PATH=@expanded_libdir@${DYLD_LIBRARY_PATH+:$DYLD_LIBRARY_PATH}
 export LD_LIBRARY_PATH=@expanded_libdir@${LD_LIBRARY_PATH+:$LD_LIBRARY_PATH}
+export GST_PLUGIN_PATH=@expanded_libdir@/@PACKAGE@/gstreamer-0.10
 
 if [ "x$1" = "x--debug" ]; then
 	MONO_OPTIONS="--debug"

@@ -1,10 +1,10 @@
 <Combine name="banshee" fileversion="2.0" outputpath="./build/bin">
   <Configurations active="Debug">
     <Configuration name="Debug" ctype="CombineConfiguration">
-      <Entry configuration="Debug" build="True" name="banshee" />
+      <Entry build="True" name="banshee" configuration="Debug" />
     </Configuration>
     <Configuration name="Release" ctype="CombineConfiguration">
-      <Entry configuration="Release" build="True" name="banshee" />
+      <Entry build="True" name="banshee" configuration="Release" />
     </Configuration>
   </Configurations>
   <StartMode startupentry="banshee" single="True">
