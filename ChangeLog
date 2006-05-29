@@ -1,5 +1,12 @@
 2006-05-29  Aaron Bockover  <aaron@abock.org>
 
+	* src/BurnCore.cs: Calculate the total duration of the selection and 
+	ensure the media is large enough to hold it; all strings were reused
+	and it will prompt to insert media before transcoding in order to
+	check its size (BNC #151332)
+
+2006-05-29  Aaron Bockover  <aaron@abock.org>
+
 	* libbanshee/gst-cd-rip-0.10.c: Added id3v2mux to list of tag muxers to
 	search for when encoding to MP3 and no muxer was specified
 

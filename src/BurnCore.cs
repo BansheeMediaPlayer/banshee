@@ -1,8 +1,8 @@
 /***************************************************************************
  *  BurnCore.cs
  *
- *  Copyright (C) 2005 Novell
- *  Written by Aaron Bockover (aaron@aaronbock.net)
+ *  Copyright (C) 2005-2006 Novell, Inc.
+ *  Written by Aaron Bockover <aaron@abock.org>
  ****************************************************************************/
 
 /*  THIS FILE IS LICENSED UNDER THE MIT LICENSE AS OUTLINED IMMEDIATELY BELOW: 
@@ -72,10 +72,18 @@ namespace Banshee
             
             canceled = false;
             
+            double total_seconds = 0;
+            
             foreach(TrackInfo track in encodeQueue) {
-                // 44.1 kHz sample rate * 16 bit channel resolution * 2 channels (stereo)
-                estimated_encoded_bytes += track.Duration.TotalSeconds * 176400.0;
+                total_seconds += track.Duration.TotalSeconds;
             }
+            
+            if(!HaveRequiredSpace(total_seconds)) {
+                return;
+            }
+            
+            // 44.1 kHz sample rate * 16 bit channel resolution * 2 channels (stereo)
+            estimated_encoded_bytes = total_seconds * 176400.0;
 
             long free_space = PathUtil.GetDirectoryAvailableSpace(Paths.TempDir);
             if(free_space >= 0 && estimated_encoded_bytes >= free_space) {
@@ -158,6 +166,49 @@ namespace Banshee
                     Catalog.GetString("Problem creating CD"),
                     Catalog.GetString("None of the songs selected for this CD could be found."));
             }
+        }
+                
+        private bool HaveRequiredSpace(double totalduration) 
+        {
+            string selected_burner_id = null;
+            try { 
+                selected_burner_id = (string)Globals.Configuration.Get(GConfKeys.CDBurnerId);
+            } catch {
+            }
+                
+            BurnDrive drive = BurnUtil.GetDriveByIdOrDefault(selected_burner_id);
+            
+            if(drive == null) {
+                LogCore.Instance.PushWarning(
+                    Catalog.GetString("Problem creating CD"),
+                    Catalog.GetString("No CD writers were found on your system."));
+                return false;
+            }
+            
+            if(drive.MediaSize <= 0) {
+                LogCore.Instance.PushWarning(
+                    Catalog.GetString("Insert Blank CD"),
+                    Catalog.GetString("Please insert a blank CD disk for the write process."));
+                return false;
+            }
+            
+            long available = (long)(((drive.MediaSize  / 1024 / 1024) - 1) * 48 / 7);
+            long remaining = (long)(available - totalduration);
+
+            if(remaining < 0) {
+                int minutes = (int)(-remaining / 60);
+                string msg = String.Format(
+                    Catalog.GetString("The inserted media is not large enough to hold your selected music.") + " " +
+                    Catalog.GetPluralString(
+                        "{0} more minute is needed on the media.",
+                        "{0} more minutes are needed on the media.",
+                        minutes), minutes);
+            
+                LogCore.Instance.PushWarning(Catalog.GetString("Not Enough Space on Disc"), msg);
+                return false;
+            }
+
+            return true;
         }
         
         private void OnFileEncodeComplete(object o, FileCompleteArgs args)
@@ -301,7 +352,6 @@ namespace Banshee
         private BurnDrive drive;
         private BurnRecorder recorder;
         private BurnRecorderActions currentAction;
-        private long TotalDuration;
         private ActiveUserEvent user_event;
         
         public Burner(BurnCore.DiskType diskType, Queue burnQueue)
@@ -331,27 +381,6 @@ namespace Banshee
             if(recorder != null) {
                 recorder.Cancel(false);
             }
-        }
-        
-        private bool HaveRequiredSpace() 
-        {
-            long available = (long)(((drive.MediaSize  / 1024 / 1024) - 1) * 48 / 7);
-            long remaining = (long)(available - TotalDuration);
-
-            if(remaining < 0) {
-                int minutes = (int)(-remaining / 60);
-                string msg =
-                    Catalog.GetString("The inserted media is not large enough to hold your selected music.") + " " +
-                    Catalog.GetPluralString(
-                        "{0} more minute is needed on the media.",
-                        "{0} more minutes are needed on the media.",
-                        minutes);
-            
-                LogCore.Instance.PushWarning(Catalog.GetString("Not Enough Space on Disc"), msg);
-                return false;
-            }
-
-            return true;
         }
         
         private void BurnThread()
