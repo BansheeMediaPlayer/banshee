@@ -35,12 +35,7 @@ namespace Banshee
     public static class PlayerCore 
     {
         public static PlayerUI UserInterface;
-        
-        static PlayerCore()
-        {
-            StockIcons.Initialize();
-        }
-        
+
         public static void Dispose()
         {
         }

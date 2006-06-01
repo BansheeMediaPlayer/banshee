@@ -128,8 +128,8 @@ namespace Banshee
             
             IconThemeUtils.SetWindowIcon(this);
             
-            Logo = Gdk.Pixbuf.LoadFromResource("banshee-logo.png");
-            Name = Catalog.GetString("Banshee"); 
+            Logo = Branding.Logo;
+            Name = Catalog.GetString(Branding.ApplicationName); 
             Version = ConfigureDefines.VERSION;
             Comments = Catalog.GetString("Music Management and Playback for Gnome.");
             Copyright = Catalog.GetString(

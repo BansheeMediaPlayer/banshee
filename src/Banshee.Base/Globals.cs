@@ -52,10 +52,16 @@ namespace Banshee.Base
             
             Mono.Unix.Catalog.Init(ConfigureDefines.GETTEXT_PACKAGE, ConfigureDefines.LOCALE_DIR);
         
+            ui_manager = new Banshee.Gui.UIManager();
+            
+            if(!Branding.Initialize()) {
+                System.Environment.Exit(1);
+                return;
+            }
+        
             gconf_client = new GConf.Client();
             network_detect = NetworkDetect.Instance;
             action_manager = new ActionManager();
-            ui_manager = new Banshee.Gui.UIManager();
             library = new Library();
             random = new Random();
             

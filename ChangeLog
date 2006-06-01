@@ -1,3 +1,21 @@
+2006-06-01  Aaron Bockover  <aaron@abock.org>
+
+	* src/Banshee.Base/Branding.cs: Added new branding support; allows for
+	an external assembly (branding.dll) to set application name(s) and logo
+	and to hook into the the beginning of the initialization routine
+
+	* src/AboutBox.cs:
+	* src/PlayerInterface.cs: Use Branding.Application*Name to replace
+	hard-coded Banshee application name strings
+
+	* src/PlayerInterface.cs: Call StockIcons.Initialize
+
+	* src/Core.cs: Do not call StockIcons.Initialize here
+
+	* src/Globals.cs: Call Branding.Initialize
+
+	* src/Banshee.Base/Makefile.am: Added Branding.cs
+
 2006-05-29  Aaron Bockover  <aaron@abock.org>
 
 	* src/BurnCore.cs: Calculate the total duration of the selection and 
