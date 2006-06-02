@@ -1,3 +1,10 @@
+2006-06-02  Aaron Bockover  <aaron@abock.org>
+
+	* src/Main.cs: Moved StockIcons.Initialize here to ensure BNC #148034 
+	doesn't creep back into the build
+
+	* src/PlayerInterface.cs: Removed call to StockIcons.Initialize
+
 2006-06-01  Aaron Bockover  <aaron@abock.org>
 
 	* src/Banshee.Base/Branding.cs: Added icon name support and renamed Logo

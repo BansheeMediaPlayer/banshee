@@ -98,6 +98,7 @@ namespace Banshee
             HandleDbusCommands(dbus_core);
             
             Globals.Initialize();
+            StockIcons.Initialize();
             new Program(StringUtil.UcFirst(ConfigureDefines.PACKAGE), ConfigureDefines.VERSION, Modules.UI, args);
             PlayerCore.UserInterface = new Banshee.PlayerUI();
             

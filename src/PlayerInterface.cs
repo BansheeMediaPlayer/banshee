@@ -248,7 +248,6 @@ namespace Banshee
         {
             IconThemeUtils.SetWindowIcon(WindowPlayer);
             WindowPlayer.Title = Branding.ApplicationLongName;
-            StockIcons.Initialize();
             
             // Main Menu
             (gxml["MainMenuContainer"] as Container).Add(Globals.ActionManager.GetWidget("/MainMenu"));
