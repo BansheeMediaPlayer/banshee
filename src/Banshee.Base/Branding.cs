@@ -100,10 +100,17 @@ namespace Banshee.Base
             }
         }
         
-        public static Gdk.Pixbuf Logo {
+        public static string ApplicationIconName {
+            get {
+                string name = custom_branding.ApplicationIconName;
+                return name == null ? default_branding.ApplicationIconName : name;
+            }
+        }
+        
+        public static Gdk.Pixbuf AboutBoxLogo {
             get { 
-                Gdk.Pixbuf logo = custom_branding.Logo;
-                return logo == null ? default_branding.Logo : logo;
+                Gdk.Pixbuf logo = custom_branding.AboutBoxLogo;
+                return logo == null ? default_branding.AboutBoxLogo : logo;
             }
         }
     }
@@ -113,16 +120,17 @@ namespace Banshee.Base
         bool Initialize();
         string ApplicationLongName { get; }
         string ApplicationName { get; }
-        Gdk.Pixbuf Logo { get; }
+        string ApplicationIconName { get; }
+        Gdk.Pixbuf AboutBoxLogo { get; }
     }
     
     public class BansheeBranding : ICustomBranding
     {
-        private Gdk.Pixbuf logo_pixbuf;
+        private Gdk.Pixbuf about_box_logo;
     
         public bool Initialize()
         {
-            logo_pixbuf = new Gdk.Pixbuf(Assembly.GetEntryAssembly(), "banshee-logo.png");
+            about_box_logo = new Gdk.Pixbuf(Assembly.GetEntryAssembly(), "banshee-logo.png");
             return true;
         }
         
@@ -134,8 +142,12 @@ namespace Banshee.Base
             get { return Catalog.GetString("Banshee"); }
         }
         
-        public Gdk.Pixbuf Logo {
-            get { return logo_pixbuf; }
+        public string ApplicationIconName {
+            get { return "music-player-banshee"; }
+        }
+        
+        public Gdk.Pixbuf AboutBoxLogo {
+            get { return about_box_logo; }
         }
     }
 }

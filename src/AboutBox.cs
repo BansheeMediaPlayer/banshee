@@ -128,7 +128,7 @@ namespace Banshee
             
             IconThemeUtils.SetWindowIcon(this);
             
-            Logo = Branding.Logo;
+            Logo = Branding.AboutBoxLogo;
             Name = Catalog.GetString(Branding.ApplicationName); 
             Version = ConfigureDefines.VERSION;
             Comments = Catalog.GetString("Music Management and Playback for Gnome.");

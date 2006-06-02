@@ -103,7 +103,7 @@ namespace Banshee.Base
 
         public static void SetWindowIcon(Gtk.Window window)
         {
-            SetWindowIcon(window, "music-player-banshee");
+            SetWindowIcon(window, Branding.ApplicationIconName);
         }
 
         public static void SetWindowIcon(Gtk.Window window, string iconName)
