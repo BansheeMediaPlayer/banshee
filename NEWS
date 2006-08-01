@@ -1,95 +1,68 @@
-Banshee 0.10.10 is now out! This release marks the stabilization of
-the 0.10.x series. 0.10.x releases will be made from the
-BANSHEE_0_10_9_SL branch in CVS.
+The Banshee 0.10.11 release is mostly a fixes-only release. A small critical
+feature was backported from 0.11.x/HEAD that allows files to be enqueued
+in an already running instance (e.g. launching a file from Nautilus with
+Banshee already running should play the file in the already running Banshee).
 
-As such, no new features will be introduced in the 0.10.x series, 
-but lots of great work will soon be going into HEAD in preparation 
-for the first 0.11.x release. For more information on what is soon 
-to come in the 0.11.x series, read the Banshee Roadmap 
-(work in progress):
+CHANGES SINCE 0.10.10
+---------------------
 
-http://banshee-project.org/Roadmap
+  * Added D-Bus/Remote support for enqueueing files on an already 
+    running instance
 
+  * Added branding plugin support (in SLED, it's called "Helix (TM) Banshee")
 
-CHANGES SINCE 0.10.9
---------------------
+  * Calculate the total duration of selected media for CD burning; ensure
+    inserted media is large enough to hold it; media is checked before
+	transcoding now (BNC #151332)
 
-  * Much improved NJB DAP support [1]
+  * Added awareness for id3v2mux; set GST_PLUGIN_PATH to 
+    $(libdir)/banshee/gstreamer-0.10 in case distros need to ship private
+    GStreamer plugins (SLED)
 
   * Much improved CD burning (show error dialog with list of files that
     cannot be transcoded, fixed MP3/Data CD support, check for enough
     available disk space to perform transcoding)
 
-  * Fixed locking bug that causes crashes (BGO #340306)
+  * Removed the File System Monitoring plugin from tree; was broken and
+    deprecated for many months; will be replaced in 0.11.x with a 
+	feature-complete Beagle plugin
 
-  * Fixed HTTP/Streaming support in Helix backend
+  * Set volume calls now take effect on all engines, not just the 
+    active engine (BNC #176255)
 
-  * Prevent crash when dragging a column into the source view (BGO #333946)
+  * Call dbus_g_thread_init after Gtk.Application.Init to fix a crash
+    seen on SMP machines (BNC #175378)
 
-  * Prevent crash when removing the playing song (BGO #324768)
+  * Ensure column ordering persists across instances (BNC #120666)
 
-  * Prevent Banshee crash if gnome-panel crashes
+  * Added ViewOrder column to PlaylistEntries table (BNC #168653)
 
-  * Remove tooltip from slider (BNC #158403)
+  * Use g_filename_to_uri to do proper filename->URI conversions (BNC #147144)
 
-  * Properly activate org.gnome.HelixDbusPlayer using 
-    DBus activation (BNC #161682)
+  * Reset vertical scroll adjustment of playlist view so tracks don't
+    seemingly disappear under some circumstances (BNC #174406)
 
-  * Added German Translation by Hendrik Richter
+  * Make 'return' default dialog action key for HIG message 
+    dialogs (BNC #172450, Robert Vojta)
 
-  * Fixed dynamic player engine switching (GStreamer<->Helix)
+  * Fixed import/copy bug regarding library path (BNC #171101, Robert Vojta)
 
-  * Prefer a stream duration over a metadata duration at all times
+  * Properly load files in shallow directories (BNC #163911, Simon Brys)
 
-  * Insert oggmux into a vorbisenc pipeline if oggmux is missing (BGO #335211)
-
-  * Fixes in libipoddevice 0.4.5 to support 2G and older iPods
-
-
-NOTES
------
-
-[1] NJB support requires a few things that are distribution specific and may
-not be available yet. First, the distribution must support making the NJB
-device (through libusb) accessible to users (done by matching against 
-portable_audio_player.type). This should be done through HAL resmgr 
-with the following entry into an FDI file in fdi/policy/10osvendor:
-
-<deviceinfo version="0.2">
-<device>
-  ...
-  <match key="info.category" string="portable_audio_player">
-    <match key="portable_audio_player.access_method" string="user">
-      <merge key="resmgr.class" type="string">audioplayer</merge>
-    </match>
-  </match>
-  ...
-</device>
-</deviceinfo>
-
-Additionally, the 20-njb.fdi file must be installed in
-fdi/information/20thirdparty/
-
-The 20-njb.fdi file can be found here:
-http://banshee-project.org/files/misc/20-njb.fdi
-
-To verify that HAL is properly setting permissions on the device, 
-run "njb-handshake"
-
-Banshee also requires njb-sharp 0.3.0 now.
+  * Added application/x-vorbis+ogg and application/x-vorbis+ogg (BNC #169616)
 
 
 THE IMPORTANT LINKS
 -------------------
 
 Release Overview Page:
-http://banshee-project.org/Releases/0.10.10
+http://banshee-project.org/Releases/0.10.11
 
 Banshee 0.10.10 Tarball:
-http://banshee-project.org/files/banshee/banshee-0.10.10.tar.gz
+http://banshee-project.org/files/banshee/banshee-0.10.11.tar.gz
 
 helix-dbus-server Tarball:
-http://banshee-project.org/files/helix-dbus-server/helix-dbus-server-0.2.2.tar.gz
+http://banshee-project.org/files/helix-dbus-server/helix-dbus-server-0.2.3.tar.gz
 
 xing MP3 Encoder Tarball:
 http://banshee-project.org/files/gstreamer-xing/gstreamer-xing-0.10.1.tar.gz

@@ -54,7 +54,7 @@ namespace Banshee.Plugins.MMKeys
             label.Wrap = true;
             label.Xalign = 0.0f;
 
-            Button button = new Button("Configure Keyboard Shortcuts");
+            Button button = new Button(Catalog.GetString("Configure keyboard shortcuts"));
             button.Clicked += delegate(object o, EventArgs args) {
                 System.Diagnostics.Process.Start("gnome-keybinding-properties");
             };

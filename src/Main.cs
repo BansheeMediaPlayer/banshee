@@ -132,6 +132,11 @@ namespace Banshee
             }
             
             bool present = true;
+            
+            string [] files = Globals.ArgumentQueue.Files;
+            if(files.Length > 0) {
+                remote_player.EnqueueFiles(files);
+            }
         
             foreach(string arg in Globals.ArgumentQueue.Arguments) {
                 bool dequeue = true;

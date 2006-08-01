@@ -120,6 +120,11 @@ namespace Banshee.Sources
             });
         }
         
+        public static bool ContainsSource(Source source)
+        {
+            return sources.Contains(source);
+        }
+        
         private static void OnSourceUpdated(object o, EventArgs args)
         {
             SourceEventHandler handler = SourceUpdated;

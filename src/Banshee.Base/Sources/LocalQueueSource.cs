@@ -52,7 +52,14 @@ namespace Banshee.Sources
         
         private LocalQueueSource() : base(Catalog.GetString("Local Queue"), 100)
         {
-            foreach(string file in Globals.ArgumentQueue.Files) {
+            Enqueue(Globals.ArgumentQueue.Files, false);
+        }
+        
+        public void Enqueue(string [] files, bool playFirst)
+        {
+            bool played_first = false;
+        
+            foreach(string file in files) {
                 try {
                     Uri uri = file.StartsWith("file://") ? new Uri(file) : PathUtil.PathToFileUri(file);
                     if(!System.IO.File.Exists(uri.LocalPath)) {
@@ -60,11 +67,24 @@ namespace Banshee.Sources
                             System.IO.Path.DirectorySeparatorChar + file);
                     }
                     
-                    tracks.Add(new FileTrackInfo(uri));
+                    TrackInfo track = new FileTrackInfo(uri);
+                    tracks.Add(track);
+                    OnTrackAdded(track);
+                    
+                    if(playFirst && !played_first) {
+                        played_first = true;
+                        PlayerEngineCore.OpenPlay(track);
+                    }
                 } catch(Exception e) {
                     Console.WriteLine("Could not load: {0}", e.Message);
                 }
             }
+            
+            if(!SourceManager.ContainsSource(this) && tracks.Count > 0) {
+                SourceManager.AddSource(this);
+            }
+            
+            OnUpdated();
         }
         
         public override int Count {

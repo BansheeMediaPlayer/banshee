@@ -1,3 +1,33 @@
+2006-07-31  Aaron Bockover  <abock@gnome.org>
+
+	0.10.11 Released
+
+	* configure;ac: Bump to 0.10.11
+
+	* NEWS: Updated with 0.10.11 release notes
+
+	* banshee.mdp: 
+	* banshee.mds: Updated MonoDevelop project/splution
+
+	* configure.ac: 
+	* burn-sharp/glue.c: Bulid against ncb 2.15.x (BGO #346501)
+
+	* src/Main.cs: Allow queueing files on the remote instance
+
+	* src/PlayerInterface.cs: Do not add LocalQueueSource
+
+	* src/Banshee.Base/SourceManager.cs: Added ContainsSource
+
+	* src/Banshee.Base/Sources/LocalQueueSource.cs: Allow enqueuing of
+	files at any time (used by remote instance enqueue)
+
+	* src/RemotePlayer.cs: D-Bus method to enqueue local files 
+
+	* src/Banshee.Plugins/MMKeys/MMKeysConfigPage.cs:
+	* src/Banshee.Plugins/MMKeys/MMKeysPlugin.cs: 
+	* src/Banshee.Plugins/MetadataSearch/MetadataSearchPlugin.cs: Make
+	some strings localizable
+
 2006-06-02  Aaron Bockover  <aaron@abock.org>
 
 	* src/Main.cs: Moved StockIcons.Initialize here to ensure BNC #148034 

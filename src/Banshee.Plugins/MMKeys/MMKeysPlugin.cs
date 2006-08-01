@@ -39,7 +39,7 @@ namespace Banshee.Plugins.MMKeys
 	public class MMKeysPlugin : Banshee.Plugins.Plugin
 	{
 	   protected override string ConfigurationName { get { return "MMKeys"; } }
-        public override string DisplayName { get { return "Multimedia Keys"; } }
+        public override string DisplayName { get { return Catalog.GetString("Multimedia Keys"); } }
 	
 		public override string Description {
             get {

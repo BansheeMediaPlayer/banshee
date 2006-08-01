@@ -598,7 +598,6 @@ namespace Banshee
             PlaylistUtil.LoadSources();
 
             if(LocalQueueSource.Instance.Count > 0) {
-                SourceManager.AddSource(LocalQueueSource.Instance);
                 SourceManager.SetActiveSource(LocalQueueSource.Instance);
             } else if(Globals.ArgumentQueue.Contains("audio-cd")) {
                 SelectAudioCd(Globals.ArgumentQueue.Dequeue("audio-cd"));

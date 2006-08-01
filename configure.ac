@@ -5,7 +5,7 @@ AM_CONFIG_HEADER(config.h)
 AC_CANONICAL_SYSTEM
 AC_PREREQ(2.13)
 
-VERSION=0.10.10
+VERSION=0.10.11
 ASM_VERSION="$VERSION.*"
 
 AM_INIT_AUTOMAKE(banshee, $VERSION)
@@ -332,16 +332,18 @@ AC_SUBST(DBUS_SOVERSION)
 
 
 dnl libnautilus-burn devel deps
+PKG_CHECK_MODULES(LIBNAUTILUS_BURN, libnautilus-burn >= 2.15, lnb15=yes, lnb15=no)
 PKG_CHECK_MODULES(LIBNAUTILUS_BURN, libnautilus-burn >= 2.13, lnb13=yes, lnb13=no)
-if test "x$lnb13" = "xyes"; then
+PKG_CHECK_MODULES(LIBNAUTILUS_BURN, libnautilus-burn >= 2.12, lnb12=yes, lnb12=no)
+if test "x$lnb15" = "xyes"; then
+	LNB_SOVERSION=4
+	AC_DEFINE(HAVE_LIBNAUTILUS_BURN_4, 1, [Define if libnautilus-burn is version 2.15 (soversion 4) or later])
+elif test "x$lnb13" = "xyes"; then
 	LNB_SOVERSION=3
+elif test "x$lnb12" = "xyes"; then
+	LNB_SOVERSION=2
 else
-	PKG_CHECK_MODULES(LIBNAUTILUS_BURN, libnautilus-burn >= 2.12, lnb12=yes, lnb12=no)
-	if test "x$lnb12" = "xyes"; then
-		LNB_SOVERSION=2
-	else
-		AC_MSG_ERROR([You need libnautilus-burn 2.12 or better])
-	fi
+	AC_MSG_ERROR([You need libnautilus-burn 2.12 or better])
 fi
 AC_SUBST(LNB_SOVERSION)
 AC_SUBST(LIBNAUTILUS_BURN_CFLAGS)

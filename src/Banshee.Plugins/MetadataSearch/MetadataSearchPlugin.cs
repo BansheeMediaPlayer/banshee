@@ -49,7 +49,7 @@ namespace Banshee.Plugins.MetadataSearch
         private const string NotFoundAsin = "NOTFOUND";
         
         protected override string ConfigurationName { get { return "MetadataSearch"; } }
-        public override string DisplayName { get { return "Metadata Searcher"; } }
+        public override string DisplayName { get { return Catalog.GetString("Metadata Searcher"); } }
         
         public override string Description {
             get {

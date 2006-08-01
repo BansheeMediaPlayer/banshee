@@ -141,6 +141,13 @@ namespace Banshee
             }
         }
         
+        [Method]
+        public virtual void EnqueueFiles(string [] files)
+        {
+            Banshee.Sources.LocalQueueSource.Instance.Enqueue(files, true);
+            Banshee.Sources.SourceManager.SetActiveSource(Banshee.Sources.LocalQueueSource.Instance);
+        }
+        
         private bool HaveTrack {
             get {
                 return PlayerUI != null && PlayerEngineCore.CurrentTrack != null;
