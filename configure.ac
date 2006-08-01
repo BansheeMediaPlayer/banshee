@@ -153,7 +153,8 @@ AC_SUBST(GTKSHARP_LIBS)
 dnl dap support
 IPODSHARP_REQUIRED=0.5.15
 PKG_CHECK_MODULES(IPODSHARP,
-	ipod-sharp >= $IPODSHARP_REQUIRED,
+	ipod-sharp >= $IPODSHARP_REQUIRED
+	ipod-sharp < 0.6.0,
 	enable_ipodsharp="$enable_ipodsharp", enable_ipodsharp=no)
 if test "x$enable_ipodsharp" = "xyes"; then
 	IPODSHARP_ASSEMBLIES="`$PKG_CONFIG --variable=Libraries ipod-sharp`"

@@ -13,19 +13,15 @@ CHANGES SINCE 0.10.10
 
   * Calculate the total duration of selected media for CD burning; ensure
     inserted media is large enough to hold it; media is checked before
-	transcoding now (BNC #151332)
+    transcoding now (BNC #151332)
 
   * Added awareness for id3v2mux; set GST_PLUGIN_PATH to 
     $(libdir)/banshee/gstreamer-0.10 in case distros need to ship private
     GStreamer plugins (SLED)
 
-  * Much improved CD burning (show error dialog with list of files that
-    cannot be transcoded, fixed MP3/Data CD support, check for enough
-    available disk space to perform transcoding)
-
   * Removed the File System Monitoring plugin from tree; was broken and
     deprecated for many months; will be replaced in 0.11.x with a 
-	feature-complete Beagle plugin
+    feature-complete Beagle plugin
 
   * Set volume calls now take effect on all engines, not just the 
     active engine (BNC #176255)
