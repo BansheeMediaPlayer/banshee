@@ -289,9 +289,24 @@ namespace Banshee.Widgets
         
         public Pixbuf Image {
             set {
-                image.Pixbuf = value;
-                SetSizeRequest(value.Width, value.Height);
-                Resize(value.Width, value.Height);
+                int width = value.Width, height = value.Height;
+                if (height >= Screen.Height * 0.75) {
+                    width = (int) (width * ((Screen.Height * 0.75) / height));
+                    height = (int) (Screen.Height * 0.75);
+                }
+
+                if (width >= Screen.Width * 0.75) {
+                    height = (int) (height * ((Screen.Width * 0.75) / width));
+                    width = (int) (Screen.Width * 0.75);
+                }
+
+                if ((width != value.Width) || (height != value.Height))
+                    image.Pixbuf = value.ScaleSimple(width, height, InterpType.Bilinear);
+                else
+                    image.Pixbuf = value;
+
+                SetSizeRequest(image.Pixbuf.Width, image.Pixbuf.Height);
+                Resize(image.Pixbuf.Width, image.Pixbuf.Height);
             }
         }
         

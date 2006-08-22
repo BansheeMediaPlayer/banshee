@@ -42,6 +42,7 @@ namespace Banshee.Sources
         private AudioCdDisk disk;
         private VBox box;
         private Alignment container;
+        private AudioCdRipper ripper;
         
         private HighlightMessageArea audiocd_statusbar;
         
@@ -64,6 +65,8 @@ namespace Banshee.Sources
             
             container.Show();
             box.Show();
+            
+            SourceManager.SourceRemoved += OnSourceRemoved;
         }
         
         private void UpdateAudioCdStatus()
@@ -159,7 +162,7 @@ namespace Banshee.Sources
             }
             
             if(list.Count > 0) {
-                AudioCdRipper ripper = new AudioCdRipper();
+                ripper = new AudioCdRipper();
                 ripper.Finished += OnRipperFinished;
                 ripper.HaveTrackInfo += OnRipperHaveTrackInfo;
                 foreach(AudioCdTrackInfo track in list) {
@@ -184,6 +187,13 @@ namespace Banshee.Sources
             }
         }
         
+        private void OnSourceRemoved(SourceEventArgs args)
+        {
+            if(args.Source == this && ripper != null) {
+                ripper.Cancel();
+            }
+        }
+        
         private void OnRipperHaveTrackInfo(object o, HaveTrackInfoArgs args)
         {
             OnUpdated();
@@ -192,6 +202,7 @@ namespace Banshee.Sources
         private void OnRipperFinished(object o, EventArgs args)
         {
             disk.IsRipping = false;
+            ripper = null;
             OnUpdated();
         }
         

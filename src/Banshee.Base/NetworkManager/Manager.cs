@@ -30,6 +30,7 @@
 using System;
 using System.Reflection;
 using System.Collections;
+using System.Threading;
 using DBus;
 
 namespace NetworkManager
@@ -68,6 +69,8 @@ namespace NetworkManager
     {
         private static readonly string PATH_NAME = "/org/freedesktop/NetworkManager";
         private static readonly string INTERFACE_NAME = "org.freedesktop.NetworkManager";
+        private static readonly string DBUS_LOCAL_PATH_NAME = "/org/freedesktop/DBus/Local";
+        private static readonly string DBUS_LOCAL_INTERFACE_NAME = "org.freedesktop.DBus.Local";
 
         private Service dbus_service;
         private Connection dbus_connection;
@@ -88,11 +91,7 @@ namespace NetworkManager
         
         public Manager()
         {
-            dbus_connection = Bus.GetSystemBus();
-            dbus_service = Service.Get(dbus_connection, INTERFACE_NAME);
-            manager = (ManagerProxy)dbus_service.GetObject(typeof(ManagerProxy), PATH_NAME);
-                
-            dbus_service.SignalCalled += OnSignalCalled;
+            Connect();
         }
         
         public void Dispose()
@@ -101,8 +100,47 @@ namespace NetworkManager
             System.GC.SuppressFinalize(manager);
         }
         
+        private void Connect()
+        {
+            dbus_connection = Bus.GetSystemBus();
+            dbus_connection.ExitOnDisconnect = false;
+            dbus_service = Service.Get(dbus_connection, INTERFACE_NAME);
+            manager = (ManagerProxy)dbus_service.GetObject(typeof(ManagerProxy), PATH_NAME);
+                
+            dbus_service.SignalCalled += OnSignalCalled;
+        }
+       
+        private void Reconnect()
+        {
+            while(true) {
+                Thread.Sleep(3000);
+                
+                try {
+                    Connect();
+                    return;
+                } catch(DBusException) {
+                } catch(ApplicationException) {
+                }
+            }
+        }
+       
         private void OnSignalCalled(Signal signal)
         {
+            if(signal.PathName == DBUS_LOCAL_PATH_NAME 
+               && signal.InterfaceName == DBUS_LOCAL_INTERFACE_NAME) {
+                switch(signal.Name) {
+                    case "Disconnected":
+                        dbus_connection.Dispose();
+                        dbus_service.SignalCalled -= OnSignalCalled;
+                        Dispose();
+                        
+                        Thread reconnect_thread = new Thread(Reconnect);
+                        reconnect_thread.IsBackground = true;
+                        reconnect_thread.Start();
+                        break;
+                }
+            }                
+        
             if(signal.PathName != PATH_NAME || signal.InterfaceName != INTERFACE_NAME) {
                 return;
             }

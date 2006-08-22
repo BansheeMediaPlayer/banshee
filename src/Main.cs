@@ -246,6 +246,7 @@ namespace Banshee
             
             // Major nasty hack to work around dbus-sharp bug: bad IL in object Finalizer
             System.GC.SuppressFinalize(remote_player);
+            Gdk.Global.NotifyStartupComplete();
             System.Environment.Exit(0);
         }
         

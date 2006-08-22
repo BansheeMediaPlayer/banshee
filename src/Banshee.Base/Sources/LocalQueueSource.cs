@@ -87,6 +87,11 @@ namespace Banshee.Sources
             OnUpdated();
         }
         
+        public override void RemoveTrack(TrackInfo track)
+        {
+            tracks.Remove(track);
+        }
+        
         public override int Count {
             get {
                 return tracks.Count;

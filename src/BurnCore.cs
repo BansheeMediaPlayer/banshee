@@ -176,9 +176,14 @@ namespace Banshee
             } catch {
             }
                 
-            BurnDrive drive = BurnUtil.GetDriveByIdOrDefault(selected_burner_id);
+            BurnDrive drive;
             
-            if(drive == null) {
+            try {
+                drive = BurnUtil.GetDriveByIdOrDefault(selected_burner_id);
+                if(drive == null) {
+                    throw new ApplicationException("could not get drive");
+                }
+            } catch {
                 LogCore.Instance.PushWarning(
                     Catalog.GetString("Problem creating CD"),
                     Catalog.GetString("No CD writers were found on your system."));

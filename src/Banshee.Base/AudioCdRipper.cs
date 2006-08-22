@@ -279,6 +279,40 @@ namespace Banshee.Base
         
         private ActiveUserEvent user_event;
         
+        [DllImport("libc")]
+        private static extern int ioctl(int device, IoctlOperation request, bool lockdoor); 
+
+        private enum IoctlOperation {
+            LockDoor = 0x5329
+        }
+        
+        private static bool LockDrive(string device, bool lockdoor)
+        {
+            using(UnixStream stream = (new UnixFileInfo(device)).Open( 
+                Mono.Unix.Native.OpenFlags.O_RDONLY | 
+                Mono.Unix.Native.OpenFlags.O_NONBLOCK)) {
+                return ioctl(stream.Handle, IoctlOperation.LockDoor, lockdoor) == 0;
+            }
+        }
+        
+        private void LockDrive()
+        {
+            lock(this) {
+                if(!LockDrive(device, true)) {
+                    LogCore.Instance.PushWarning("Could not lock CD-ROM drive", device, false);
+                }
+            }
+        }
+        
+        private void UnlockDrive()
+        {
+            lock(this) {
+                if(!LockDrive(device, false)) {
+                    LogCore.Instance.PushWarning("Could not unlock CD-ROM drive", device, false);
+                }
+            }
+        }
+        
         public AudioCdRipper()
         {
             user_event = new ActiveUserEvent("Importing CD");
@@ -315,6 +349,8 @@ namespace Banshee.Base
         
                 LogCore.Instance.PushDebug("Ripping CD and Encoding with Pipeline", encodePipeline);
             
+                LockDrive();
+            
                 ripper = new AudioCdTrackRipper(device, 0, encodePipeline);
                 ripper.Progress += OnRipperProgress;
                 ripper.TrackFinished += OnTrackRipped;
@@ -328,6 +364,12 @@ namespace Banshee.Base
             } catch(PipelineProfileException e) {
                 LogCore.Instance.PushError(Catalog.GetString("Cannot Import CD"), e.Message);
             }
+        }
+        
+        public void Cancel()
+        {
+            user_event.Dispose();
+            OnFinished();
         }
         
         private void RipNextTrack()
@@ -395,6 +437,7 @@ namespace Banshee.Base
         
         private void OnFinished()
         {
+            UnlockDrive();
             EventHandler handler = Finished;
             if(handler != null) {
                 handler(this, new EventArgs());

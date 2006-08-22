@@ -1,3 +1,30 @@
+2006-08-22  Aaron Bockover  <abock@gnome.org>
+
+	* data/banshee.desktop.in.in: Updated from SLED
+
+	* src/Banshee.Base/NetworkManager/Manager.cs: Handle network-manager,
+	HAL, D-Bus restarts properly
+
+	* src/Banshee.Plugins/NotificationAreaIcon/NotificationArea.cs: Redraw
+	icon properly when panel is transparent, pixmapped, etc.
+
+	* src/Banshee.Widgets/CoverArtPopup.cs: Scale cover art to a max of
+	75% of the screen size if too large (BNC #200953)
+
+	* src/Banshee.Base/Sources/AudioCdSource.cs: Cancel the ripper if the
+	source goes away (hardware eject) (BNC #199902)
+
+	* src/Banshee.Base/AudioCdRipper.cs: Attempt to lock CD-ROM drive when
+	ripping, unlock when done/canceled/failed using Linux CD-ROM ioctls;
+	should use HAL here, but on SLED it seems libhal_device_lock/unlock does
+	nothing - will punt HAL locking to HEAD (BNC #199902)
+
+	* src/Banshee.Base/Sources/LocalQueueSource.cs: Implement
+	Banshee.Source.Source.RemoveTrack(TrackInfo) (BNC #188437)
+
+	* src/BurnCore.cs: Handle exception from BurnUtil.GetDriveByIdOrDefault
+	in case there are no CD burners on the system (BNC #188486)
+
 2006-07-31  Aaron Bockover  <abock@gnome.org>
 
 	0.10.11 Released
