@@ -1,5 +1,17 @@
 2006-08-22  Aaron Bockover  <abock@gnome.org>
 
+	* configure.ac: Build a small test to check for 
+	DBus.Connection.ExitOnDisconnect as it's not available in all distributions
+	due to poor upstream maintainership of dbus-sharp
+
+	* src/Banshee.Base/Makefile.am: if MISSING_DBUS_SHARP_EOD, define
+	it for mcs
+
+	* src/Banshee.Base/NetworkManager/Manager.cs: Only use ExitOnDisconnect
+	if MISSING_DBUS_SHARP_EOD is not defined
+
+2006-08-22  Aaron Bockover  <abock@gnome.org>
+
 	* data/banshee.desktop.in.in: Updated from SLED
 
 	* src/Banshee.Base/NetworkManager/Manager.cs: Handle network-manager,

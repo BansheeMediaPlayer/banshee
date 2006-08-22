@@ -103,7 +103,9 @@ namespace NetworkManager
         private void Connect()
         {
             dbus_connection = Bus.GetSystemBus();
+#if !MISSING_DBUS_SHARP_EOD
             dbus_connection.ExitOnDisconnect = false;
+#endif
             dbus_service = Service.Get(dbus_connection, INTERFACE_NAME);
             manager = (ManagerProxy)dbus_service.GetObject(typeof(ManagerProxy), PATH_NAME);
                 

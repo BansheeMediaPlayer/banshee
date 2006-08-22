@@ -5,8 +5,8 @@ AM_CONFIG_HEADER(config.h)
 AC_CANONICAL_SYSTEM
 AC_PREREQ(2.13)
 
-VERSION=0.10.11
-ASM_VERSION="$VERSION.*"
+VERSION=0.10.12-pre
+ASM_VERSION="0.10.12.*"
 
 AM_INIT_AUTOMAKE(banshee, $VERSION)
 AC_SUBST(ASM_VERSION)
@@ -182,6 +182,19 @@ AM_CONDITIONAL(ENABLE_NJB, test "x$enable_njbsharp" = "xyes")
 dnl dbus
 PKG_CHECK_MODULES(DBUSSHARP, dbus-sharp)
 AC_SUBST(DBUSSHARP)
+
+AC_MSG_CHECKING([for DBus.Connection.ExitOnDisconnect])
+DBUS_EOD=".dbus-eod"
+echo "class T { static void Main() { DBus.Bus.GetSessionBus().ExitOnDisconnect = true; } }" > $DBUS_EOD.cs
+if `$MCS -out:$DBUS_EOD.exe $DBUS_EOD.cs $DBUSSHARP_LIBS &>/dev/null`; then
+	AM_CONDITIONAL(MISSING_DBUS_SHARP_EOD, false)
+	AC_MSG_RESULT([yes])
+else
+	AM_CONDITIONAL(MISSING_DBUS_SHARP_EOD, true)
+	AC_MSG_RESULT([no])
+fi
+
+rm -f $DBUS_EOD.{cs,exe} &>/dev/null
 
 dnl sqlite devel dep
 PKG_CHECK_MODULES(SQLITE, sqlite3 >= 3.2)

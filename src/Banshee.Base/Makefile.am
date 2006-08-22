@@ -6,6 +6,10 @@ if ENABLE_GST_10
 MCS_FLAGS +=  -define:GSTREAMER_0_10
 endif
 
+if MISSING_DBUS_SHARP_EOD
+MCS_FLAGS +=  -define:MISSING_DBUS_SHARP_EOD
+endif
+
 bansheebasedir = $(pkglibdir)
 bansheebase_SCRIPTS = $(ASSEMBLY) $(ASSEMBLY).mdb $(ASSEMBLY).config
 
