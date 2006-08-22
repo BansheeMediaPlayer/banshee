@@ -2,12 +2,11 @@
 # Copyright (C) 2005-2006 Jordi Mas i Hernàndez, jmas@softcatala.org
 # Traducció del Banshee al català
 #
-#: ../src/Main.cs:106
 msgid ""
 msgstr ""
 "Project-Id-Version: Banshee\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-01-09 18:04+0100\n"
+"POT-Creation-Date: 2006-04-25 18:06+0200\n"
 "PO-Revision-Date: 2006-01-14 13:46+0200\n"
 "Last-Translator: Jordi Mas i Hernàndez <jmas@softcatala.org>\n"
 "Language-Team: tradgnome@softcatala.net\n"
@@ -16,14 +15,277 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: ../data/banshee.desktop.in.in.h:1 ../src/PlayerInterface.cs:334
-#: ../src/PlayerInterface.cs:1409
+#. Footer
+#: ../data/banshee.desktop.in.in.h:1 ../data/banshee.glade.h:18
+#: ../src/PlayerInterface.cs:309 ../src/PlayerInterface.cs:650
+#: ../src/PlayerInterface.cs:1178
 msgid "Banshee Music Player"
 msgstr "Reproductor de música Banshee"
 
 #: ../data/banshee.desktop.in.in.h:2
 msgid "Music Player"
 msgstr "Reproductor de música"
+
+#: ../data/banshee.glade.h:1
+msgid "<b>Advanced Options</b>"
+msgstr "<b>Opcions avançades</b>"
+
+#
+#: ../data/banshee.glade.h:2
+msgid "<b>Advanced Properties</b>"
+msgstr "<b>Propietats avançades</b>"
+
+#: ../data/banshee.glade.h:3
+msgid "<b>Banshee Music Folder Location</b>"
+msgstr "<b>Ubicació de la carpeta de música del Banshee</b>"
+
+#: ../data/banshee.glade.h:4
+msgid "<b>CD Burning</b>"
+msgstr "<b>Enregistrament de CD</b>"
+
+#: ../data/banshee.glade.h:5
+msgid "<b>CD Ripping</b>"
+msgstr "<b>Extracció de l'àudio de CD</b>"
+
+#
+#: ../data/banshee.glade.h:6
+msgid "<b>Loading...</b>"
+msgstr "<b>S'està carregant...</b>"
+
+#: ../data/banshee.glade.h:7
+msgid "<b>Playback Engines</b>"
+msgstr "<b>Motors de reproducció de medis</b>"
+
+#: ../data/banshee.glade.h:8
+msgid "<b>iPod Transcoding</b>"
+msgstr "<b>Transcodificació de l'iPod</b>"
+
+#
+#: ../data/banshee.glade.h:9
+msgid "<big><b>Editing Song</b></big>"
+msgstr "<big><b>S'està editant la cançó</b></big>"
+
+#: ../data/banshee.glade.h:10
+#, fuzzy
+msgid "<big><b>Import Music to Library</b></big>"
+msgstr "<b>Biblioteca musical de {0}</b>"
+
+#: ../data/banshee.glade.h:11
+msgid "<small><i><Unknown></i></small>"
+msgstr "<small><i><Unknown></i></small>"
+
+#: ../data/banshee.glade.h:12
+msgid "<small>Advanced</small>"
+msgstr "<small>Avançat</small>"
+
+#: ../data/banshee.glade.h:13
+msgid "<small>Burning</small>"
+msgstr "<small>Enregistrament</small>"
+
+#: ../data/banshee.glade.h:14
+msgid "<small>Encoding</small>"
+msgstr "<small>Codificació</small>"
+
+#: ../data/banshee.glade.h:15
+msgid "<small>Library</small>"
+msgstr "<small>Biblioteca</small>"
+
+#: ../data/banshee.glade.h:16
+msgid "Albu_m"
+msgstr "Àlbu_m"
+
+#: ../data/banshee.glade.h:17 ../src/Banshee.Base/AudioCd/AudioCdDisk.cs:92
+msgid "Audio CD"
+msgstr "CD d'àudio"
+
+#: ../data/banshee.glade.h:19
+msgid "Bit Rate:"
+msgstr "Ritme de bit:"
+
+#: ../data/banshee.glade.h:20
+msgid "Burnproof"
+msgstr "Verificació d'enregistrament"
+
+#
+#: ../data/banshee.glade.h:21
+msgid "Channels:"
+msgstr "Canals:"
+
+#: ../data/banshee.glade.h:22
+msgid "Choose an import source:"
+msgstr ""
+
+#: ../data/banshee.glade.h:23
+msgid "Copy files to Banshee Music Folder when importing to Library"
+msgstr ""
+
+#: ../data/banshee.glade.h:24
+msgid "Data CD"
+msgstr "CD de dades"
+
+#: ../data/banshee.glade.h:25
+#, fuzzy
+msgid "Default Engine"
+msgstr "Motor del GStreamer"
+
+#: ../data/banshee.glade.h:26
+msgid "Disk Drive:"
+msgstr "Unitat de disc:"
+
+#: ../data/banshee.glade.h:27
+msgid "Disk Format:"
+msgstr "Format del disc:"
+
+#
+#: ../data/banshee.glade.h:28
+msgid "Disk Usage:"
+msgstr "Ús del disc:"
+
+#
+#: ../data/banshee.glade.h:29
+msgid "Disk at once"
+msgstr "Disc d'un cop"
+
+#: ../data/banshee.glade.h:30
+msgid "Do not show this dialog again"
+msgstr ""
+
+#: ../data/banshee.glade.h:31 ../src/TrackProperties.cs:240
+msgid "Editing Song"
+msgstr "S'està editant la cançó"
+
+#
+#: ../data/banshee.glade.h:32
+msgid "Eject when finished"
+msgstr "Expulsa'l quan finalitzis"
+
+#: ../data/banshee.glade.h:33
+msgid "Encoding Profile:"
+msgstr "Perfil de codificació:"
+
+#
+#: ../data/banshee.glade.h:34
+msgid "Encoding:"
+msgstr "Codificació:"
+
+#: ../data/banshee.glade.h:35
+msgid "Enter the address of the file you would like to open:"
+msgstr ""
+
+#: ../data/banshee.glade.h:36
+msgid "File Name:"
+msgstr "Nom del fitxer:"
+
+#: ../data/banshee.glade.h:37
+#, fuzzy
+msgid "Import Music Source"
+msgstr "Importa la música"
+
+#: ../data/banshee.glade.h:38
+#, fuzzy
+msgid "Import Music to Library"
+msgstr "Importa fitxers a la biblioteca"
+
+#: ../data/banshee.glade.h:39
+msgid "Imported On:"
+msgstr "Importat el:"
+
+#: ../data/banshee.glade.h:40
+msgid "Last Played On:"
+msgstr "Última reproducció el:"
+
+#: ../data/banshee.glade.h:41
+msgid "MP3 CD"
+msgstr "CD-ROM d'MP3"
+
+#: ../data/banshee.glade.h:42
+msgid "Mime Type:"
+msgstr "Tipus Mime:"
+
+#: ../data/banshee.glade.h:43
+msgid "Number of Plays:"
+msgstr "Nombre de reproduccions:"
+
+#: ../data/banshee.glade.h:44 ../src/Banshee.Base/Gui/OpenLocationDialog.cs:97
+msgid "Open Location"
+msgstr ""
+
+#: ../data/banshee.glade.h:45
+msgid "Overburn"
+msgstr "Sobreenregistrar"
+
+#: ../data/banshee.glade.h:46
+msgid "Preferences"
+msgstr "Preferències"
+
+#: ../data/banshee.glade.h:47
+msgid "Reset"
+msgstr "Reinicia"
+
+#: ../data/banshee.glade.h:48
+msgid "Sample Rate:"
+msgstr "Velocitat de mostreig:"
+
+#: ../data/banshee.glade.h:49
+#, fuzzy
+msgid "Seek to Position"
+msgstr "Posició X de la finestra"
+
+#
+#: ../data/banshee.glade.h:50
+msgid "Simulate write"
+msgstr "Simula l'escriptura"
+
+#: ../data/banshee.glade.h:51
+msgid "Track Duration:"
+msgstr "Durada de la pista:"
+
+#: ../data/banshee.glade.h:52
+msgid "Track _Count"
+msgstr "Nombre de _pistes"
+
+#: ../data/banshee.glade.h:53
+msgid "Track _Number"
+msgstr "Númer_o de pista"
+
+#: ../data/banshee.glade.h:54 ../src/Banshee.Base/Dap/Dap.cs:604
+#: ../src/TrackProperties.cs:236 ../src/TrackProperties.cs:260
+#: ../src/TrackProperties.cs:261 ../src/TrackProperties.cs:262
+#: ../src/TrackProperties.cs:263 ../src/TrackProperties.cs:264
+#: ../src/TrackProperties.cs:265
+msgid "Unknown"
+msgstr "Desconegut"
+
+#: ../data/banshee.glade.h:55
+msgid "VBR:"
+msgstr "VBR:"
+
+#: ../data/banshee.glade.h:56
+msgid "Write Speed:"
+msgstr "Velocitat d'escriptura:"
+
+#: ../data/banshee.glade.h:57
+msgid ""
+"Your music library is empty. You may import new music into your library now, "
+"or choose to do so later."
+msgstr ""
+
+#: ../data/banshee.glade.h:58
+msgid "_Artist"
+msgstr "_Artista"
+
+#: ../data/banshee.glade.h:59
+msgid "_Genre"
+msgstr ""
+
+#: ../data/banshee.glade.h:60
+#, fuzzy
+msgid "_Search:"
+msgstr "Cerca:"
+
+#: ../data/banshee.glade.h:61
+msgid "_Title"
+msgstr "_Títol"
 
 #: ../data/banshee.schemas.in.h:1
 msgid "Copy and rename music to banshee music library directory when importing"
@@ -44,8 +306,9 @@ msgid ""
 "Enabled Special Keys (Multimedia Keys) support for Play/Pause/Next/Previous; "
 "works with mappings set through Gnome Shortcuts capplet"
 msgstr ""
-"Habilita el suport de tecles especials (tecles multimèdia) per a Reproducció/Pausa/Següent/Anterior; "
-"funciona amb el mapeig a través de la miniaplicació de dreceres del GNOME"
+"Habilita el suport de tecles especials (tecles multimèdia) per a Reproducció/"
+"Pausa/Següent/Anterior; funciona amb el mapeig a través de la miniaplicació "
+"de dreceres del GNOME"
 
 #: ../data/banshee.schemas.in.h:5
 msgid "File Name Pattern"
@@ -81,31 +344,31 @@ msgid "Name of media playback engine."
 msgstr "Nom del motor de reproducció de suports."
 
 #: ../data/banshee.schemas.in.h:12
-msgid "Only display the notification area (tray) icon if true"
-msgstr "Mostra només la icona de l'àrea de notificació (safata) si és cert"
-
-#: ../data/banshee.schemas.in.h:13
 msgid "Pixel position of Main Player Window on the X Axis"
 msgstr ""
 "Posició en píxels de la finestra principal del reproductor en l'eix de les X"
 
-#: ../data/banshee.schemas.in.h:14
+#: ../data/banshee.schemas.in.h:13
 msgid "Pixel position of Main Player Window on the Y Axis"
 msgstr ""
 "Posició en píxels de la finestra principal del reproductor en l'eix de les Y"
 
-#: ../data/banshee.schemas.in.h:15
+#: ../data/banshee.schemas.in.h:14
 msgid "Player Engine Name"
 msgstr "Nom del motor del reproductor"
 
-#: ../data/banshee.schemas.in.h:16
-msgid "Show Notification Area Icon"
-msgstr "Mostra la icona de l'àrea de notificació"
-
-#: ../data/banshee.schemas.in.h:17
 #
+#: ../data/banshee.schemas.in.h:15
 msgid "Show advanced track properties"
 msgstr "Mostra les propietats avançades de la pista"
+
+#: ../data/banshee.schemas.in.h:16
+msgid "Show the Initial Import Dialog"
+msgstr ""
+
+#: ../data/banshee.schemas.in.h:17
+msgid "Show the Initial Import Dialog when the Banshee library is empty"
+msgstr ""
 
 #: ../data/banshee.schemas.in.h:18
 msgid "Source View Width"
@@ -120,377 +383,157 @@ msgid ""
 "True if the advanced expander should be expanded in the track properties "
 "dialog, false if it should be closed"
 msgstr ""
-"Cert si l'expandidor avançat ha de ser expandit en el diàleg de les propietats "
-"de la pista, fals si ha de ser tancat"
+"Cert si l'expandidor avançat ha de ser expandit en el diàleg de les "
+"propietats de la pista, fals si ha de ser tancat"
 
 #: ../data/banshee.schemas.in.h:21
+#, fuzzy
+msgid "Visibility of Album Column."
+msgstr "Amplada de la columna Àlbum."
+
+#: ../data/banshee.schemas.in.h:22
+#, fuzzy
+msgid "Visibility of Artist Column."
+msgstr "Amplada de la columna Artista."
+
+#: ../data/banshee.schemas.in.h:23
+#, fuzzy
+msgid "Visibility of Time Column."
+msgstr "Amplada de la columna Temps."
+
+#: ../data/banshee.schemas.in.h:24
+#, fuzzy
+msgid "Visibility of Title Column."
+msgstr "Amplada de la columna Títol."
+
+#: ../data/banshee.schemas.in.h:25
+#, fuzzy
+msgid "Visibility of Track Column."
+msgstr "Amplada de la columna Pista."
+
+#: ../data/banshee.schemas.in.h:26
 msgid "Volume Output Level"
 msgstr "Nivell del volum de sortida"
 
-#: ../data/banshee.schemas.in.h:22
+#: ../data/banshee.schemas.in.h:27
 msgid ""
 "Volume of playback relative to mixer output (except on Helix, which sets "
 "volume directly on PCM"
 msgstr ""
 
-#: ../data/banshee.schemas.in.h:23
+#: ../data/banshee.schemas.in.h:28
 msgid "Width of Album Column."
 msgstr "Amplada de la columna Àlbum."
 
-#: ../data/banshee.schemas.in.h:24
+#: ../data/banshee.schemas.in.h:29
 msgid "Width of Artist Column."
 msgstr "Amplada de la columna Artista."
 
-#: ../data/banshee.schemas.in.h:25
+#: ../data/banshee.schemas.in.h:30
 msgid "Width of Last Played Column."
 msgstr "Amplada de la columna Última reproducció."
 
-#: ../data/banshee.schemas.in.h:26
+#: ../data/banshee.schemas.in.h:31
 msgid "Width of Plays Column."
 msgstr "Amplada de la columna Reproduccions."
 
-#: ../data/banshee.schemas.in.h:27
+#: ../data/banshee.schemas.in.h:32
 msgid "Width of Rating Column."
 msgstr "Amplada de la columna Valoració."
 
-#: ../data/banshee.schemas.in.h:28
 #
+#: ../data/banshee.schemas.in.h:33
 msgid "Width of Source View Column."
 msgstr "Amplada de la columna vista font."
 
-#: ../data/banshee.schemas.in.h:29
+#: ../data/banshee.schemas.in.h:34
 msgid "Width of Time Column."
 msgstr "Amplada de la columna Temps."
 
-#: ../data/banshee.schemas.in.h:30
+#: ../data/banshee.schemas.in.h:35
 msgid "Width of Title Column."
 msgstr "Amplada de la columna Títol."
 
-#: ../data/banshee.schemas.in.h:31
+#: ../data/banshee.schemas.in.h:36
 msgid "Width of Track Column."
 msgstr "Amplada de la columna Pista."
 
-#: ../data/banshee.schemas.in.h:32
+#: ../data/banshee.schemas.in.h:37
 msgid "Width of the main interface window."
 msgstr "Amplada de la finestra principal de la interfície"
 
-#: ../data/banshee.schemas.in.h:33
+#: ../data/banshee.schemas.in.h:38
 msgid "Window Height"
 msgstr "Alçada de la finestra"
 
-#: ../data/banshee.schemas.in.h:34
 #
+#: ../data/banshee.schemas.in.h:39
 msgid "Window Maximized"
 msgstr "Finestra maximitzada"
 
-#: ../data/banshee.schemas.in.h:35
+#: ../data/banshee.schemas.in.h:40
 msgid "Window Position X"
 msgstr "Posició X de la finestra"
 
-#: ../data/banshee.schemas.in.h:36
+#: ../data/banshee.schemas.in.h:41
 msgid "Window Position Y"
 msgstr "Posició Y de la finestra"
 
-#: ../data/banshee.schemas.in.h:37
+#: ../data/banshee.schemas.in.h:42
 msgid "Window Width"
 msgstr "Amplada de la finestra"
 
-#: ../data/banshee.glade.h:1
-msgid "<b>Advanced Options</b>"
-msgstr "<b>Opcions avançades</b>"
-
-#: ../data/banshee.glade.h:2
-#
-msgid "<b>Advanced Properties</b>"
-msgstr "<b>Propietats avançades</b>"
-
-#: ../data/banshee.glade.h:3
-msgid "<b>Banshee Music Folder Location</b>"
-msgstr "<b>Ubicació de la carpeta de música del Banshee</b>"
-
-#: ../data/banshee.glade.h:4
-msgid "<b>CD Burning</b>"
-msgstr "<b>Enregistrament de CD</b>"
-
-#: ../data/banshee.glade.h:5
-msgid "<b>CD Ripping</b>"
-msgstr "<b>Extracció de l'àudio de CD</b>"
-
-#: ../data/banshee.glade.h:6
-#
-msgid "<b>Loading...</b>"
-msgstr "<b>S'està carregant...</b>"
-
-#: ../data/banshee.glade.h:7
-msgid "<b>Playback Engines</b>"
-msgstr "<b>Motors de reproducció de medis</b>"
-
-#: ../data/banshee.glade.h:8
-msgid "<b>iPod Transcoding</b>"
-msgstr "<b>Transcodificació de l'iPod</b>"
-
-#: ../data/banshee.glade.h:9
-#
-msgid "<big><b>Editing Song</b></big>"
-msgstr "<big><b>S'està editant la cançó</b></big>"
-
-#: ../data/banshee.glade.h:10
-msgid "<big><b>New iPod Detected <small><sup>TM</sup></small></b></big>"
-msgstr ""
-"<big><b>S'ha detectat un nou iPod<small><sup>TM</sup></small></b></big>"
-
-#: ../data/banshee.glade.h:11
-msgid "<small><i><Unknown></i></small>"
-msgstr "<small><i><Unknown></i></small>"
-
-#: ../data/banshee.glade.h:12
-msgid "<small>Advanced</small>"
-msgstr "<small>Avançat</small>"
-
-#: ../data/banshee.glade.h:13
-msgid "<small>Burning</small>"
-msgstr "<small>Enregistrament</small>"
-
-#: ../data/banshee.glade.h:14
-msgid "<small>Encoding</small>"
-msgstr "<small>Codificació</small>"
-
-#: ../data/banshee.glade.h:15
-msgid "<small>Library</small>"
-msgstr "<small>Biblioteca</small>"
-
-#: ../data/banshee.glade.h:16
-msgid "<small>Serial Number</small>"
-msgstr "<small>Número de sèrie</small>"
-
-#: ../data/banshee.glade.h:17
-msgid "<span size=\"small\">Idle</span>"
-msgstr "<span size=\"small\">Inactiu</span>"
-
-#: ../data/banshee.glade.h:18
-msgid "Albu_m"
-msgstr "Àlbu_m"
-
-#: ../data/banshee.glade.h:19 ../src/Banshee.Base/AudioCd/AudioCdDisk.cs:93
-msgid "Audio CD"
-msgstr "CD d'àudio"
-
-#: ../data/banshee.glade.h:20 ../libbanshee/gst-cd-rip-0.8.c:227
-#: ../src/AboutBox.cs:66 ../src/NotificationAreaIcon.cs:61
-#: ../src/PlayerInterface.cs:696
-msgid "Banshee"
-msgstr "Banshee"
-
-#: ../data/banshee.glade.h:21
-msgid ""
-"Banshee has detected that you are plugging in an iPod for the first time. "
-"Please take a moment to give your iPod a name."
-msgstr ""
-"El banshee ha detectat per primera vegada que heu connectat un iPod."
-"Heu de posar-li un nom al vostre iPod."
-
-#: ../data/banshee.glade.h:22
-msgid "Bit Rate:"
-msgstr "Ritme de bit:"
-
-#: ../data/banshee.glade.h:23
-msgid "Burnproof"
-msgstr "Verificació d'enregistrament"
-
-#: ../data/banshee.glade.h:24
-#
-msgid "Channels:"
-msgstr "Canals:"
-
-#: ../data/banshee.glade.h:25
-msgid "Copy files to Banshee Music Folder when importing to Library"
-msgstr ""
-
-#: ../data/banshee.glade.h:26
-msgid "Data CD"
-msgstr "CD de dades"
-
-#: ../data/banshee.glade.h:27
-msgid "Description:"
-msgstr "Descripció:"
-
-#: ../data/banshee.glade.h:28
-msgid "Disk Drive:"
-msgstr "Unitat de disc:"
-
-#: ../data/banshee.glade.h:29
-msgid "Disk Format:"
-msgstr "Format del disc:"
-
-#: ../data/banshee.glade.h:30
-#
-msgid "Disk Usage:"
-msgstr "Ús del disc:"
-
-#: ../data/banshee.glade.h:31
-#
-msgid "Disk at once"
-msgstr "Disc d'un cop"
-
-#: ../data/banshee.glade.h:32 ../src/TrackProperties.cs:222
-msgid "Editing Song"
-msgstr "S'està editant la cançó"
-
-#: ../data/banshee.glade.h:33
-#
-msgid "Eject when finished"
-msgstr "Expulsa'l quan finalitzis"
-
-#: ../data/banshee.glade.h:34
-msgid "Encoding Profile:"
-msgstr "Perfil de codificació:"
-
-#: ../data/banshee.glade.h:35
-#
-msgid "Encoding:"
-msgstr "Codificació:"
-
-#: ../data/banshee.glade.h:36
-msgid "Engine:"
-msgstr "Motor:"
-
-#: ../data/banshee.glade.h:37
-#, 
-msgid "File Name:"
-msgstr "Nom del fitxer:"
-
-#: ../data/banshee.glade.h:38
-msgid "Imported On:"
-msgstr "Importat el:"
-
-#: ../data/banshee.glade.h:39
-msgid "Last Played On:"
-msgstr "Última reproducció el:"
-
-#: ../data/banshee.glade.h:40
-msgid "MP3 CD"
-msgstr "CD-ROM d'MP3"
-
-#: ../data/banshee.glade.h:41
-msgid "Mime Type:"
-msgstr "Tipus Mime:"
-
-#: ../data/banshee.glade.h:42
-msgid "New iPod Detected"
-msgstr "S'ha detectat un nou iPod"
-
-#: ../data/banshee.glade.h:43
-msgid "Number of Plays:"
-msgstr "Nombre de reproduccions:"
-
-#: ../data/banshee.glade.h:44
-msgid "Overburn"
-msgstr "Sobreenregistrar"
-
-#: ../data/banshee.glade.h:45
-msgid "Preferences"
-msgstr "Preferències"
-
-#: ../data/banshee.glade.h:46
-msgid "Reset"
-msgstr "Reinicia"
-
-#: ../data/banshee.glade.h:47
-msgid "Sample Rate:"
-msgstr "Velocitat de mostreig:"
-
-#: ../data/banshee.glade.h:48
-msgid "Search:"
-msgstr "Cerca:"
-
-#: ../data/banshee.glade.h:49
-#
-msgid "Simulate write"
-msgstr "Simula l'escriptura"
-
-#: ../data/banshee.glade.h:50
-msgid "Track Duration:"
-msgstr "Durada de la pista:"
-
-#: ../data/banshee.glade.h:51
-msgid "Track _Count"
-msgstr "Nombre de _pistes"
-
-#: ../data/banshee.glade.h:52
-msgid "Track _Number"
-msgstr "Númer_o de pista"
-
-#: ../data/banshee.glade.h:53 ../src/TrackProperties.cs:218
-#: ../src/TrackProperties.cs:242 ../src/TrackProperties.cs:243
-#: ../src/TrackProperties.cs:244 ../src/TrackProperties.cs:245
-#: ../src/TrackProperties.cs:246 ../src/TrackProperties.cs:247
-#: ../src/Banshee.Base/Dap/Dap.cs:590
-msgid "Unknown"
-msgstr "Desconegut"
-
-#: ../data/banshee.glade.h:54
-msgid "VBR:"
-msgstr "VBR:"
-
-#: ../data/banshee.glade.h:55
-msgid "Write Speed:"
-msgstr "Velocitat d'escriptura:"
-
-#: ../data/banshee.glade.h:56
-msgid "Your Name:"
-msgstr "El vostre nom:"
-
-#: ../data/banshee.glade.h:57
-msgid "_Artist"
-msgstr "_Artista"
-
-#: ../data/banshee.glade.h:58
-msgid "_Title"
-msgstr "_Títol"
-
-#: ../data/banshee.glade.h:59
-msgid "iPod Name:"
-msgstr "Nom de l'iPod"
-
-#: ../libbanshee/gst-cd-rip-0.8.c:85
+#: ../libbanshee/gst-cd-rip-0.10.c:216 ../libbanshee/gst-cd-rip-0.8.c:84
 msgid "Could not create pipeline"
 msgstr "No s'ha pogut crear el conducte"
 
-#: ../libbanshee/gst-cd-rip-0.8.c:94
+#: ../libbanshee/gst-cd-rip-0.10.c:222 ../libbanshee/gst-cd-rip-0.8.c:93
 msgid "Could not initialize cdparanoia"
 msgstr "No s'ha pogut inicialitzar el cdparanoia"
 
-#: ../libbanshee/gst-cd-rip-0.8.c:107
+#: ../libbanshee/gst-cd-rip-0.10.c:233 ../libbanshee/gst-cd-rip-0.8.c:106
 msgid "Could not create encoder pipeline"
 msgstr "No s'ha pogut crear el conducte per al codificador"
 
-#: ../libbanshee/gst-cd-rip-0.8.c:113
 #
+#: ../libbanshee/gst-cd-rip-0.10.c:239
+#, fuzzy
+msgid "Could not create queue plugin"
+msgstr "No s'ha pogut crear el connector 'spider'"
+
+#
+#: ../libbanshee/gst-cd-rip-0.10.c:247 ../libbanshee/gst-cd-rip-0.8.c:112
 msgid "Could not create GNOME VFS output plugin"
 msgstr "No s'ha pogut crear el connector de sortida GNOME VFS"
 
-#: ../libbanshee/gst-cd-rip-0.8.c:128
+#: ../libbanshee/gst-cd-rip-0.10.c:262 ../libbanshee/gst-cd-rip-0.8.c:127
 msgid "Could not link pipeline elements"
 msgstr "No es poden enllaçar els elements del conducte"
 
-#: ../libbanshee/gst-cd-rip-0.8.c:241
+#: ../libbanshee/gst-cd-rip-0.10.c:353 ../libbanshee/gst-cd-rip-0.8.c:226
+#: ../src/AboutBox.cs:132
+#: ../src/Banshee.Plugins/NotificationAreaIcon/NotificationAreaIconPlugin.cs:105
+msgid "Banshee"
+msgstr "Banshee"
+
+#: ../libbanshee/gst-cd-rip-0.10.c:379 ../libbanshee/gst-cd-rip-0.8.c:240
 msgid "Encoding element does not support tagging!"
 msgstr "Els elements de la codificació no suporten etiquetatge!"
 
-#: ../libbanshee/gst-cd-rip-0.8.c:251
+#: ../libbanshee/gst-cd-rip-0.8.c:250
 msgid "Could not send seek event to cdparanoia"
 msgstr "No s'ha pogut enviar l'esdeveniment de posicionament al cdparanoia"
 
-#: ../libbanshee/gst-cd-rip-0.8.c:257
+#: ../libbanshee/gst-cd-rip-0.8.c:256
 msgid "Could not get track start position"
 msgstr "No s'ha pogut obtenir la posició d'inici de la pista"
 
-#: ../libbanshee/gst-cd-rip-0.8.c:271
+#: ../libbanshee/gst-cd-rip-0.8.c:270
 msgid "Could not get track position"
 msgstr "No s'ha pogut obtenir la posició de la pista"
 
-#: ../libbanshee/gst-playback-0.8.c:91
 #
+#: ../libbanshee/gst-playback-0.8.c:91
 msgid "Could not find or create the 'playbin' GStreamer plugin"
 msgstr "No s'ha trobat o creat el connector 'playbin' del GStreamer"
 
@@ -505,36 +548,77 @@ msgid ""
 "Could not load an output sink from GStreamer/GConf, falling back on alsasink"
 msgstr ""
 
-#: ../libbanshee/gst-transcode-0.8.c:118
+#: ../libbanshee/gst-transcode-0.10.c:160
+#: ../libbanshee/gst-transcode-0.8.c:242
+msgid "No decoder could be found for source format."
+msgstr "No s'ha pogut trobar cap decodificador per al format font."
+
+#: ../libbanshee/gst-transcode-0.10.c:165
+#: ../libbanshee/gst-transcode-0.8.c:247
+msgid "Could not stat encoded file"
+msgstr "No s'ha pogut fer stat sobre el fitxer codificat"
+
 #
+#: ../libbanshee/gst-transcode-0.10.c:249 ../libbanshee/gst-transcode-0.8.c:90
 msgid "Could not create 'gnomevfssrc' plugin"
 msgstr "No s'ha pogut crear el connector 'gnomevfssrc'"
 
-#: ../libbanshee/gst-transcode-0.8.c:124
 #
+#: ../libbanshee/gst-transcode-0.10.c:255
+#, fuzzy
+msgid "Could not create 'decodebin' plugin"
+msgstr "No s'ha pogut crear el connector 'filesink'"
+
+#
+#: ../libbanshee/gst-transcode-0.10.c:261
+#, fuzzy
+msgid "Could not create 'gnomevfssink' plugin"
+msgstr "No s'ha pogut crear el connector 'gnomevfssrc'"
+
+#
+#: ../libbanshee/gst-transcode-0.10.c:267
+#, fuzzy
+msgid "Could not create 'sinkben' plugin"
+msgstr "No s'ha pogut crear el connector 'filesink'"
+
+#
+#: ../libbanshee/gst-transcode-0.10.c:273
+#, fuzzy
+msgid "Could not create 'audioconvert' plugin"
+msgstr "No s'ha pogut crear el connector 'spider'"
+
+#: ../libbanshee/gst-transcode-0.10.c:279
+#, fuzzy
+msgid "Could not create encoding pipeline"
+msgstr "No s'ha pogut crear el conducte de codificació: %s"
+
+#: ../libbanshee/gst-transcode-0.10.c:285
+#, fuzzy
+msgid "Could not get sink pad from encoder"
+msgstr "No s'ha pogut crear el codificador"
+
+#: ../libbanshee/gst-transcode-0.10.c:363
+#, fuzzy
+msgid "Could not construct pipeline"
+msgstr "No s'ha pogut crear el conducte"
+
+#
+#: ../libbanshee/gst-transcode-0.8.c:96
 msgid "Could not create 'spider' plugin"
 msgstr "No s'ha pogut crear el connector 'spider'"
 
-#: ../libbanshee/gst-transcode-0.8.c:131
+#: ../libbanshee/gst-transcode-0.8.c:103
 #, c-format
 msgid "Could not create encoding pipeline: %s"
 msgstr "No s'ha pogut crear el conducte de codificació: %s"
 
-#: ../libbanshee/gst-transcode-0.8.c:137
 #
+#: ../libbanshee/gst-transcode-0.8.c:109
 msgid "Could not create 'filesink' plugin"
 msgstr "No s'ha pogut crear el connector 'filesink'"
 
-#: ../libbanshee/gst-transcode-0.8.c:219
-msgid "No decoder could be found for source format."
-msgstr "No s'ha pogut trobar cap decodificador per al format font."
-
-#: ../libbanshee/gst-transcode-0.8.c:224
-msgid "Could not stat encoded file"
-msgstr "No s'ha pogut fer stat sobre el fitxer codificat"
-
-#: ../libbanshee/hal-context.c:61
 #
+#: ../libbanshee/hal-context.c:61
 msgid "Could not create new HAL context"
 msgstr "No s'ha pogut crear el nou context HAL"
 
@@ -543,717 +627,54 @@ msgstr "No s'ha pogut crear el nou context HAL"
 msgid "Could not integrate HAL with mainloop: %s"
 msgstr "No s'ha pogut integrar el HAL amb el bucle principal: %s"
 
-#: ../libbanshee/hal-context.c:89 ../libbanshee/hal-context.c:92
 #
+#: ../libbanshee/hal-context.c:89 ../libbanshee/hal-context.c:92
 msgid "Could not initialize HAL context"
 msgstr "No s'ha pogut inicialitzar el context HAL"
 
-#: ../libbanshee/hal-context.c:101
 #
+#: ../libbanshee/hal-context.c:101
 msgid "Could not get device list from HAL"
 msgstr "No s'ha pogut obtenir la llista de dispositius de HAL"
 
-#: ../src/AboutBox.cs:63
-msgid ""
-"Copyright 2005 Novell, Inc.\n"
-"Copyright 2005 Aaron Bockover"
-msgstr ""
-"Copyright 2005 Novell, Inc.\n"
-"Copyright 2005 Aaron Bockover"
-
-#: ../src/AboutBox.cs:68
+#: ../src/AboutBox.cs:134
 msgid "Music Management and Playback for Gnome."
 msgstr "Gestió i reproducció de la música per al Gnome."
 
-#: ../src/AboutBox.cs:145
+#: ../src/AboutBox.cs:136
+#, fuzzy
+msgid ""
+"Copyright © 2005-2006 Novell, Inc.\n"
+"Copyright © 2005 Aaron Bockover"
+msgstr ""
+"Copyright 2005 Novell, Inc.\n"
+"Copyright 2005 Aaron Bockover"
+
 #
+#: ../src/AboutBox.cs:141
 msgid "Banshee Wiki"
 msgstr "Wiki del Banshee"
-
-#: ../src/BurnCore.cs:92
-#
-msgid "Could Not Write CD"
-msgstr "No s'ha pogut escriure al CD"
-
-#: ../src/BurnCore.cs:93
-msgid ""
-"No suitable wave encoder could be found to convert selected songs to CD "
-"audio format."
-msgstr ""
-"No s'ha pogut trobar un codificador addient per convertir les cançons "
-"seleccionades al format d'àudio del CD."
-
-#: ../src/BurnCore.cs:153
-#
-msgid "Writing CD"
-msgstr "S'està escrivint al CD"
-
-#: ../src/BurnCore.cs:154
-#
-msgid "Writing Audio CD"
-msgstr "S'està escrivint al CD d'àudio"
-
-#: ../src/BurnCore.cs:186
-msgid "The inserted media is not large enough to hold your selected music."
-msgstr "El suport inserit no és suficientment gran per emmagatzetmar la música seleccionada."
-
-#: ../src/BurnCore.cs:188
-#, csharp-format
-msgid "{0} more minute is needed on the media."
-msgid_plural "{0} more minutes are needed on the media."
-msgstr[0] "{0} minut més és necessari en el suport."
-msgstr[1] "{0} minuts més són necessaris en el suport."
-
-#: ../src/BurnCore.cs:192
-#
-msgid "Not Enough Space on Disc"
-msgstr "No hi ha prou espai al disc"
-
-#: ../src/BurnCore.cs:223
-msgid "No CD writers were found on your system."
-msgstr "No s'han trobar gravadores de CD en el sistema."
-
-#: ../src/BurnCore.cs:263
-msgid "Error Burning CD"
-msgstr "S'ha produït un error en enregistrar el CD"
-
-#: ../src/BurnCore.cs:267
-msgid "An unknown error occurred when attempting to write the CD"
-msgstr "S'ha produït un error desconegut en intentar escriure al CD"
-
-#: ../src/BurnCore.cs:273
-#
-msgid "CD Writing Complete"
-msgstr "L'enregistrament del CD ha acabat"
-
-#: ../src/BurnCore.cs:274
-msgid "The selected audio was successfully written to the CD."
-msgstr "L'àudio seleccionat s'ha escrit correctament al CD-ROM."
-
-#: ../src/BurnCore.cs:278
-#
-msgid "Error Writing CD"
-msgstr "S'ha produït un error en enregistrar el CD"
-
-#: ../src/BurnCore.cs:301
-msgid "Preparing to write..."
-msgstr "S'està preparant per l'escriptura"
-
-#: ../src/BurnCore.cs:305
-msgid "Writing disk..."
-msgstr "S'està escrivint al disc..."
-
-#: ../src/BurnCore.cs:309
-msgid "Fixating disk..."
-msgstr "S'està fixant el disc..."
-
-#: ../src/BurnCore.cs:326
-msgid "Waiting for Media"
-msgstr "S'està esperant el suport"
-
-#: ../src/BurnCore.cs:330 ../src/BurnCore.cs:333
-msgid "Insert Blank CD"
-msgstr "Inseriu un CD en blanc"
-
-#: ../src/BurnCore.cs:331
-#
-msgid "Please insert a blank CD disk for the write process."
-msgstr "Inseriu un CD en blanc per al procés d'enregistrament."
-
-#: ../src/Dialogs.cs:81
-msgid "An Error Occurred"
-msgstr "S'ha produït un error"
-
-#: ../src/Dialogs.cs:88
-msgid "Error"
-msgstr "Error"
-
-#: ../src/ExceptionDialog.cs:24
-msgid "Banshee Encountered a Fatal Error"
-msgstr "S'ha produït un error fatal al Banshee"
-
-#: ../src/ExceptionDialog.cs:52
-msgid ""
-"This may be due to a programming error. Please help us make Banshee better "
-"by reporting this error. Thank you in advance!"
-msgstr ""
-
-#: ../src/ExceptionDialog.cs:99
-msgid "An unhandled exception was thrown: "
-msgstr "S'ha llançat un excepció no gestionada: "
-
-#: ../src/LogCoreViewer.cs:52
-msgid "Log Viewer"
-msgstr "Visualitzador del registre"
-
-#: ../src/LogCoreViewer.cs:88
-msgid "Time Stamp"
-msgstr "Marca horària"
-
-#: ../src/LogCoreViewer.cs:107
-msgid "Message"
-msgstr "Missatge"
-
-#: ../src/LogCoreViewer.cs:119
-msgid "Show:"
-msgstr "Mostra:"
-
-#: ../src/LogCoreViewer.cs:136
-msgid "All Log Entries"
-msgstr "Totes les entrades del registre"
-
-#: ../src/LogCoreViewer.cs:137
-msgid "Only Error Messages"
-msgstr "Només els missatges d'error"
-
-#: ../src/LogCoreViewer.cs:138
-msgid "Only Warning Messages"
-msgstr "Només els missatges d'avís"
-
-#: ../src/LogCoreViewer.cs:139
-msgid "Only Information Messages"
-msgstr "Només els missatges d'informació"
-
-#: ../src/LogCoreViewer.cs:140
-msgid "Only Debug Messages"
-msgstr "Només els missatges de depuració"
-
-#: ../src/LogCoreViewer.cs:155
-#
-msgid "Entry Details:"
-msgstr "Detalls d'entrada:"
-
-#: ../src/Main.cs:107
-msgid ""
-"Banshee is already running. If you were trying to control the already "
-"running instance of Banshee, D-Bus must be enabled. Banshee could not "
-"connect to your D-Bus Session Bus."
-msgstr ""
-
-#: ../src/PlayerInterface.cs:374
-msgid "Loading..."
-msgstr "S'està carregant..."
-
-#. Misc
-#: ../src/PlayerInterface.cs:425 ../src/PlayerInterface.cs:1943
-msgid "Idle"
-msgstr "En espera"
-
-#: ../src/PlayerInterface.cs:434
-msgid "All"
-msgstr "Tot"
-
-#: ../src/PlayerInterface.cs:436 ../src/PlayerInterface.cs:1515
-msgid "Song Name"
-msgstr "Nom de la cançó"
-
-#: ../src/PlayerInterface.cs:437 ../src/PlayerInterface.cs:1513
-msgid "Artist Name"
-msgstr "Nom de l'artista"
-
-#: ../src/PlayerInterface.cs:438 ../src/PlayerInterface.cs:1517
-msgid "Album Title"
-msgstr "Nom de l'àlbum"
-
-#: ../src/PlayerInterface.cs:463
-#
-msgid "Write selection to CD"
-msgstr "Enregistra la selecció al CD"
-
-#: ../src/PlayerInterface.cs:464
-#
-msgid "Import CD into library"
-msgstr "Importa el CD a la biblioteca"
-
-#: ../src/PlayerInterface.cs:465
-#
-msgid "Play previous song"
-msgstr "Reprodueix la cançó anterior"
-
-#: ../src/PlayerInterface.cs:466
-#
-msgid "Play/pause current song"
-msgstr "Reprodueix/pausa la cançó actual"
-
-#: ../src/PlayerInterface.cs:467
-#
-msgid "Play next song"
-msgstr "Reprodueix la cançó següent"
-
-#: ../src/PlayerInterface.cs:468
-#
-msgid "Current position in song"
-msgstr "Posició actual en la cançó"
-
-#: ../src/PlayerInterface.cs:469
-#
-msgid "Device disk usage"
-msgstr "Ús del dispositiu de disc"
-
-#: ../src/PlayerInterface.cs:470
-#
-msgid "Synchronize music library to device"
-msgstr "Sincronitza la biblioteca de música al dispositiu"
-
-#: ../src/PlayerInterface.cs:471
-#
-msgid "Adjust volume"
-msgstr "Ajusta el volum"
-
-#: ../src/PlayerInterface.cs:495
-msgid "Notification Area Icon could not be installed"
-msgstr "No s'ha pogut instal·lar la icona de l'àrea de notificació"
-
-#: ../src/PlayerInterface.cs:546
-msgid "Import Music"
-msgstr "Importa la música"
-
-#: ../src/PlayerInterface.cs:547
-msgid ""
-"Your music library is empty. You may import new music into your library now, "
-"or choose to do so later.\n"
-"\n"
-"Automatic import or importing a large folder may take a long time, so please "
-"be patient."
-msgstr ""
-
-#: ../src/PlayerInterface.cs:551
-msgid "Import Folder"
-msgstr "Importa la carpeta"
-
-#: ../src/PlayerInterface.cs:553
-msgid "Automatic Import"
-msgstr "Importació automàtica"
-
-#: ../src/PlayerInterface.cs:680 ../src/PlayerInterface.cs:1939
-#: ../src/Banshee.Base/ActionManager.cs:207
-#
-msgid "Play"
-msgstr "Reproduir"
-
-#: ../src/PlayerInterface.cs:684
-#
-msgid "Pause"
-msgstr "Pausa"
-
-#: ../src/PlayerInterface.cs:739
-#
-msgid "Cannot Play Song"
-msgstr "No s'ha pogut reproduir la cançó"
-
-#: ../src/PlayerInterface.cs:740
-#, csharp-format
-msgid ""
-"{0} cannot be played by Banshee. The most common reasons for this are:\n"
-"\n"
-"  <big>•</big> Song is protected (DRM)\n"
-"  <big>•</big> Song is on a DAP that does not support playback\n"
-msgstr ""
-
-#. Translators: position in song. eg, "0:37 of 3:48"
-#: ../src/PlayerInterface.cs:929 ../src/Banshee.Base/Sources/DapSource.cs:116
-#, csharp-format
-msgid "{0} of {1}"
-msgstr "{0} de {1}"
-
-#: ../src/PlayerInterface.cs:1019
-msgid "Import Folder to Library"
-msgstr "Importa la carpeta a la biblioteca"
-
-#: ../src/PlayerInterface.cs:1125 ../src/Banshee.Base/ActionManager.cs:253
-#
-msgid "Synchronize"
-msgstr "Sincronitza"
-
-#: ../src/PlayerInterface.cs:1126 ../src/PlayerInterface.cs:2265
-#
-msgid "Rename Device"
-msgstr "Reanomena el dispositiu"
-
-#: ../src/PlayerInterface.cs:1128 ../src/PlayerInterface.cs:2259
-msgid "Rename Playlist"
-msgstr "Reanomena la llista de reproducció"
-
-#: ../src/PlayerInterface.cs:1149
-msgid "Reading table of contents from CD..."
-msgstr "S'està llegint la taula de continguts del CD..."
-
-#: ../src/PlayerInterface.cs:1154
-msgid "Searching for CD metadata..."
-msgstr "S'estan cercant les metadades del CD..."
-
-#: ../src/PlayerInterface.cs:1159
-msgid "Searching for CD cover art..."
-msgstr "S'està cercant la caràtula del CD..."
-
-#: ../src/PlayerInterface.cs:1164
-msgid ""
-"Cannot search for CD metadata: there is no available Internet connection"
-msgstr ""
-"No s'han pogut cercar les metadades del CD: no hi ha connexió a Internet"
-
-#: ../src/PlayerInterface.cs:1170
-#
-msgid "Could not fetch metadata for CD."
-msgstr "No s'ha pogut crear el codificador"
-
-#: ../src/PlayerInterface.cs:1381
-msgid "Synchronizing your Device, Please Wait..."
-msgstr "S'està sincronitzant el dispositiu, si us plau espereu..."
-
-#: ../src/PlayerInterface.cs:1396
-#, csharp-format
-msgid "{0} day"
-msgid_plural "{0} days"
-msgstr[0] "{0} dia"
-msgstr[1] "{0} dies"
-
-#: ../src/PlayerInterface.cs:1413
-msgid "Your Library is Empty - Consider Importing Music"
-msgstr "La vostra biblioteca està buida. Considereu importar música"
-
-#: ../src/PlayerInterface.cs:1416
-msgid "This Playlist is Empty - Consider Adding Music"
-msgstr "La llista de reproducció està buida. Considereu afegir música"
-
-#: ../src/PlayerInterface.cs:1419
-#, csharp-format
-msgid "{0} Item"
-msgid_plural "{0} Items"
-msgstr[0] "{0} element"
-msgstr[1] "{0} elements"
-
-#: ../src/PlayerInterface.cs:1421
-#, csharp-format
-msgid "{0} Total Play Time"
-msgstr "Temps total de reproducció {0}"
-
-#: ../src/PlayerInterface.cs:1698 ../src/Banshee.Base/ActionManager.cs:64
-#: ../src/Banshee.Base/Sources/PlaylistSource.cs:48
-#: ../src/Banshee.Base/Sources/PlaylistSource.cs:284
-#: ../src/Banshee.Base/Sources/PlaylistSource.cs:306
-#: ../src/Banshee.Base/Sources/PlaylistSource.cs:313
-msgid "New Playlist"
-msgstr "Nova llista de reproducció"
-
-#: ../src/PlayerInterface.cs:1721
-msgid "Clear"
-msgstr "Buida"
-
-#: ../src/PlayerInterface.cs:1930
-msgid "Could Not Eject"
-msgstr "No s'ha pogut expulsar"
-
-#: ../src/PlayerInterface.cs:1974
-#
-msgid "Cannot Import"
-msgstr "No s'ha pogut importar"
-
-#: ../src/PlayerInterface.cs:1975 ../src/PlayerInterface.cs:1979
-msgid "Scanning"
-msgstr "S'està escanejant"
-
-#: ../src/PlayerInterface.cs:1977
-#, csharp-format
-msgid "Cannot Import: {0} ({1}, {2})"
-msgstr "No s'ha pogut importar: {0} ({1}, {2})"
-
-#: ../src/PlayerInterface.cs:2021
-#, csharp-format
-msgid ""
-"Are you sure you want to remove the selected song from your library "
-"<i><b>and</b></i> your drive? This action will permanently delete the file."
-msgid_plural ""
-"Are you sure you want to remove the selected <b>({0})</b> songs from your "
-"library <i><b>and</b></i> your drive? This action will permanently delete "
-"the files."
-msgstr[0] ""
-msgstr[1] ""
-
-#: ../src/PlayerInterface.cs:2030
-#, csharp-format
-msgid "Are you sure you want to remove the selected song from your library?"
-msgid_plural ""
-"Are you sure you want to remove the selected <b>({0})</b> songs from your "
-"library?"
-msgstr[0] ""
-msgstr[1] ""
-
-#: ../src/PlayerInterface.cs:2039
-msgid "Remove Selected Songs from Library"
-msgstr "Elimina les cançons seleccionades de la biblioteca"
-
-#: ../src/PlayerInterface.cs:2109
-msgid "Import Files to Library"
-msgstr "Importa fitxers a la biblioteca"
-
-#: ../src/PlayerInterface.cs:2155
-msgid "Invalid Selection"
-msgstr "Selecció invàlida"
-
-#: ../src/PlayerInterface.cs:2156
-msgid "You must select at least one track to import."
-msgstr "Heu de seleccionar almenys una pista a importar."
-
-#. Translators: {0} is the name of the DAP device (i.e. 'iPod')
-#: ../src/PlayerInterface.cs:2193
-#,  csharp-format
-msgid "Synchronize {0}"
-msgstr "Sincronitza {0}"
-
-#: ../src/PlayerInterface.cs:2194
-#, csharp-format
-msgid ""
-"You have made changes to your {0}. Please choose a method for updating the "
-"contents of your {0}.\n"
-"\n"
-"<big>•</big> <i>Synchronize Library</i>: synchronize Banshee library to {0}\n"
-"<big>•</big> <i>Save Manual Changes</i>: save only the manual changes you "
-"made"
-msgstr ""
-
-#: ../src/PlayerInterface.cs:2200
-msgid ""
-"<b>Warning:</b> Actions will alter or erase existing iPod contents and may "
-"cause incompatability with iTunes!"
-msgstr ""
-
-#: ../src/PlayerInterface.cs:2202
-msgid "Synchronize Library"
-msgstr "Sincronitza la biblioteca"
-
-#: ../src/PlayerInterface.cs:2204
-msgid "Save Manual Changes"
-msgstr "Desa els canvis manuals"
-
-#: ../src/PlayerInterface.cs:2260
-msgid "Enter new playlist name"
-msgstr "Introduïu el nom de la nova llista de reproducció"
-
-#: ../src/PlayerInterface.cs:2266
-msgid "Enter new name for your device"
-msgstr "Introduïu el nou nom per dispositiu"
-
-#: ../src/PlaylistColumns.cs:82
-msgid "Invalid column width"
-msgstr "Amplada de columna no vàlida"
-
-#: ../src/PlaylistColumns.cs:119
-msgid "Choose Columns"
-msgstr "Escolliu columnes"
-
-#: ../src/PlaylistColumns.cs:133
-msgid "Visible Playlist Columns"
-msgstr "Columnes visibles de la llista de reproducció"
-
-#: ../src/PlaylistView.cs:83
-msgid "Track"
-msgstr "Pista"
-
-#: ../src/PlaylistView.cs:86
-msgid "Artist"
-msgstr "Artista"
-
-#: ../src/PlaylistView.cs:89
-msgid "Title"
-msgstr "Títol"
-
-#: ../src/PlaylistView.cs:92
-msgid "Album"
-msgstr "Àlbum"
-
-#: ../src/PlaylistView.cs:95
-msgid "Time"
-msgstr "Temps"
-
-#: ../src/PlaylistView.cs:100 ../src/Banshee.Base/ActionManager.cs:187
-msgid "Rating"
-msgstr "Valoració"
-
-#: ../src/PlaylistView.cs:107
-msgid "Plays"
-msgstr "Reproduccions"
-
-#: ../src/PlaylistView.cs:115
-msgid "Last Played"
-msgstr "Última reproducció"
-
-#: ../src/PlaylistView.cs:418
-msgid "N/A"
-msgstr "N/D"
-
-#: ../src/Preferences.cs:99
-#
-msgid "Select Library Location"
-msgstr "Seleccioneu la ubicació de la biblioteca"
-
-#: ../src/Preferences.cs:265
-msgid "Unavailable"
-msgstr "No disponible"
-
-#: ../src/Preferences.cs:271
-msgid "Loading Drive List..."
-msgstr "S'està carregant la llista d'unitats..."
-
-#: ../src/Preferences.cs:294
-msgid "No CD Burners Detected"
-msgstr "No s'ha detectat cap enregistrador de CD"
-
-#: ../src/Preferences.cs:392
-msgid "Fastest Possible"
-msgstr ""
-
-#. Translators: this represents a CD write speed, eg "32x"
-#: ../src/Preferences.cs:396
-#, csharp-format
-msgid "{0}x"
-msgstr "{0}x"
-
-#: ../src/Preferences.cs:547
-#, csharp-format
-msgid ""
-"You have changed the Banshee Playback Engine. This change will not take "
-"affect until the next time Banshee is run. Please restart Banshee to use the "
-"new <b><i>{0}</i></b> Engine"
-msgstr ""
-
-#: ../src/Preferences.cs:555
-msgid "Banshee Restart Required"
-msgstr "Cal reiniciar el Banshee"
-
-#: ../src/RipTransaction.cs:69
-msgid "Could not create CD Ripper"
-msgstr "No s'ha pogut crear l'extractor del CD"
-
-#: ../src/RipTransaction.cs:178
-#, csharp-format
-msgid ""
-"The device node '{0}' differs from the device node already set for "
-"previously queued tracks ({1})"
-msgstr ""
-
-#: ../src/RipTransaction.cs:196
-#
-msgid "Importing Audio CD"
-msgstr "S'està important el CD d'àudio"
-
-#: ../src/RipTransaction.cs:197
-#
-msgid "Initializing Drive"
-msgstr "S'està inicialitzant la unitat"
-
-#: ../src/RipTransaction.cs:221 ../src/Banshee.Base/ImportManager.cs:115
-#,csharp-format
-msgid "Importing {0} of {1}"
-msgstr "S'està important {0} de {1}"
-
-#: ../src/SourceView.cs:77 ../src/Banshee.Base/ActionManager.cs:132
-msgid "Source"
-msgstr "Font"
-
-#: ../src/ToggleStates.cs:41 ../src/Banshee.Base/ActionManager.cs:229
-#
-msgid "Repeat None"
-msgstr "No en repeteixis cap"
-
-#: ../src/ToggleStates.cs:50 ../src/Banshee.Base/ActionManager.cs:237
-#
-msgid "Repeat Single"
-msgstr "Repeteix una"
-
-#: ../src/ToggleStates.cs:59 ../src/Banshee.Base/ActionManager.cs:233
-#
-msgid "Repeat All"
-msgstr "Repeteix totes"
-
-#: ../src/ToggleStates.cs:68 ../src/Banshee.Base/ActionManager.cs:243
-msgid "Shuffle"
-msgstr "Mesclar"
-
-#: ../src/ToggleStates.cs:77
-msgid "Continuous"
-msgstr "Continu"
-
-#: ../src/TrackProperties.cs:168
-msgid "Set all Track Numbers to this value"
-msgstr "Dóna aquest valor a tots els números de pista a aquest valor"
-
-#: ../src/TrackProperties.cs:169
-msgid "Automatically Set All Track Numbers"
-msgstr "Dóna aquest valor a automàticament tots els números de pista"
-
-#: ../src/TrackProperties.cs:170
-msgid "Set all Track Counts to this value"
-msgstr "Dóna aquest valor a tots els comptes de pista"
-
-#: ../src/TrackProperties.cs:171
-msgid "Set all Artists to this value"
-msgstr "Dóna aquest valor a tots els artistes"
-
-#: ../src/TrackProperties.cs:172
-msgid "Set all Albums to this value"
-msgstr "Dóna aquest valor a tots els àlbums"
-
-#: ../src/TrackProperties.cs:173
-msgid "Set all Titles to this value"
-msgstr "Dóna aquest valor a tots els títols"
-
-#: ../src/TrackProperties.cs:216
-msgid "Never Played"
-msgstr "Mai no s'ha reproduït"
-
-#: ../src/TrackProperties.cs:221
-#, csharp-format
-msgid "Editing Song {0} of {1}"
-msgstr "S'està editant la cançó {0} de {1}"
-
-#: ../src/TrackProperties.cs:228 ../src/TrackProperties.cs:229
-#, csharp-format
-msgid "File: {0}"
-msgstr "Fitxer: {0}"
-
-#: ../src/TrackProperties.cs:235
-msgid "KB/Second"
-msgstr "KB/Segon"
-
-#: ../src/TrackProperties.cs:236
-#, csharp-format
-msgid "{0} KHz"
-msgstr "{0} KHz"
-
-#: ../src/TrackProperties.cs:237
-msgid "Yes"
-msgstr "Sí"
-
-#: ../src/TrackProperties.cs:237
-msgid "No"
-msgstr "No"
-
-#: ../src/VersionInformationDialog.cs:62
-#
-msgid "Assembly Version Information"
-msgstr "Informació de la versió de l'assembly"
-
-#: ../src/VersionInformationDialog.cs:68
-msgid "Assembly Name"
-msgstr "Nom de l'assembly"
-
-#: ../src/VersionInformationDialog.cs:70
-#
-msgid "Version"
-msgstr "Versió"
 
 #: ../src/Banshee.Base/ActionManager.cs:61
 msgid "_Music"
 msgstr "_Música"
 
-#: ../src/Banshee.Base/ActionManager.cs:65
+#: ../src/Banshee.Base/ActionManager.cs:64
+#: ../src/Banshee.Base/Sources/PlaylistSource.cs:61
+#: ../src/Banshee.Base/Sources/PlaylistSource.cs:301
+#: ../src/Banshee.Base/Sources/PlaylistSource.cs:323
+#: ../src/Banshee.Base/Sources/PlaylistSource.cs:330
+#: ../src/PlayerInterface.cs:1477
+msgid "New Playlist"
+msgstr "Nova llista de reproducció"
+
 #
+#: ../src/Banshee.Base/ActionManager.cs:65
 msgid "Create a new empty playlist"
 msgstr "Crea una nova llista de reproducció buida"
 
-#: ../src/Banshee.Base/ActionManager.cs:68
 #
+#: ../src/Banshee.Base/ActionManager.cs:68
 msgid "Import _Folder..."
 msgstr "Importa la _carpeta..."
 
@@ -1270,283 +691,507 @@ msgid "Import files inside a folder"
 msgstr "Importa els fitxers dins d'una carpeta"
 
 #: ../src/Banshee.Base/ActionManager.cs:76
+#, fuzzy
+msgid "Import Music..."
+msgstr "Importa la música"
+
+#: ../src/Banshee.Base/ActionManager.cs:77
+msgid "Import music from a variety of sources"
+msgstr ""
+
 #
+#: ../src/Banshee.Base/ActionManager.cs:80
+#, fuzzy
+msgid "Open Location..."
+msgstr "Informació de la versió..."
+
+#: ../src/Banshee.Base/ActionManager.cs:81
+msgid "Open a remote location for playback"
+msgstr ""
+
+#: ../src/Banshee.Base/ActionManager.cs:84
+#, fuzzy
+msgid "Import Source"
+msgstr "Importa la música"
+
+#: ../src/Banshee.Base/ActionManager.cs:85
+#, fuzzy
+msgid "Import source to library"
+msgstr "Importa la carpeta a la biblioteca"
+
+#
+#: ../src/Banshee.Base/ActionManager.cs:88
 msgid "Source Properties..."
 msgstr "Propietats de la font..."
 
-#: ../src/Banshee.Base/ActionManager.cs:77
 #
+#: ../src/Banshee.Base/ActionManager.cs:89
 msgid "View source properties"
 msgstr "Propietats de la font"
 
-#: ../src/Banshee.Base/ActionManager.cs:80
+#: ../src/Banshee.Base/ActionManager.cs:92
 msgid "_Quit"
 msgstr "_Surt"
 
-#: ../src/Banshee.Base/ActionManager.cs:81
+#: ../src/Banshee.Base/ActionManager.cs:93
 msgid "Quit Banshee"
 msgstr "Surt del Banshee"
 
-#: ../src/Banshee.Base/ActionManager.cs:84
+#: ../src/Banshee.Base/ActionManager.cs:96
 msgid "_Edit"
 msgstr "_Edita"
 
-#: ../src/Banshee.Base/ActionManager.cs:87
 #
+#: ../src/Banshee.Base/ActionManager.cs:99
 msgid "Rename Source"
 msgstr "Reanomena la font"
 
-#: ../src/Banshee.Base/ActionManager.cs:88
+#: ../src/Banshee.Base/ActionManager.cs:100
 msgid "Rename the active source"
 msgstr "Reanomena la font activa"
 
-#: ../src/Banshee.Base/ActionManager.cs:91
+#: ../src/Banshee.Base/ActionManager.cs:103
 msgid "Select All"
 msgstr "Selecciona-ho tot"
 
-#: ../src/Banshee.Base/ActionManager.cs:92
+#: ../src/Banshee.Base/ActionManager.cs:104
 msgid "Select all songs in song list"
 msgstr "Selecciona totes les cançons a la llista de cançons"
 
-#: ../src/Banshee.Base/ActionManager.cs:95
+#: ../src/Banshee.Base/ActionManager.cs:107
 msgid "Select None"
 msgstr "No en seleccionis cap"
 
-#: ../src/Banshee.Base/ActionManager.cs:96
+#: ../src/Banshee.Base/ActionManager.cs:108
 msgid "Unselect all songs in song list"
 msgstr "Desselecciona totes les cançons a la llista de cançons"
 
-#: ../src/Banshee.Base/ActionManager.cs:99
 #
+#: ../src/Banshee.Base/ActionManager.cs:111
 msgid "Plugins..."
 msgstr "Connectors..."
 
-#: ../src/Banshee.Base/ActionManager.cs:100
+#: ../src/Banshee.Base/ActionManager.cs:112
 msgid "Configure Banshee plugins"
 msgstr "Configura els connectors del Banshee"
 
-#: ../src/Banshee.Base/ActionManager.cs:103
-#
-msgid "Preferences..."
-msgstr "Preferències..."
-
-#: ../src/Banshee.Base/ActionManager.cs:104
-msgid "Edit Banshee preferences"
-msgstr "Edita les preferències del Banshee"
-
-#: ../src/Banshee.Base/ActionManager.cs:107
+#: ../src/Banshee.Base/ActionManager.cs:117
 msgid "_View"
 msgstr "_Visualitza"
 
-#: ../src/Banshee.Base/ActionManager.cs:110
+#: ../src/Banshee.Base/ActionManager.cs:120
 msgid "Columns..."
 msgstr "Columnes..."
 
-#: ../src/Banshee.Base/ActionManager.cs:111
+#: ../src/Banshee.Base/ActionManager.cs:121
 msgid "Select which columns to display in the song list"
 msgstr "Seleccioneu quines columnes s'han de mostrar en la llista de cançons"
 
-#: ../src/Banshee.Base/ActionManager.cs:114
+#: ../src/Banshee.Base/ActionManager.cs:124
 msgid "Logged Events Viewer..."
 msgstr "Visualitzador dels esdeveniments enregistrats..."
 
-#: ../src/Banshee.Base/ActionManager.cs:115
+#: ../src/Banshee.Base/ActionManager.cs:125
 msgid "View a detailed log of events"
 msgstr "Visualitza un registre detallat dels esdeveniments"
 
-#: ../src/Banshee.Base/ActionManager.cs:118
+#: ../src/Banshee.Base/ActionManager.cs:128
 msgid "_Help"
 msgstr "Aj_uda"
 
-#: ../src/Banshee.Base/ActionManager.cs:121
 #
+#: ../src/Banshee.Base/ActionManager.cs:131
 msgid "Version Information..."
 msgstr "Informació de la versió..."
 
-#: ../src/Banshee.Base/ActionManager.cs:122
+#: ../src/Banshee.Base/ActionManager.cs:132
 msgid "View detailed version and configuration information"
 msgstr "Visualitza informació detallada de la versió i la configuració"
 
-#: ../src/Banshee.Base/ActionManager.cs:125
-#
-msgid "About..."
-msgstr "Quant a..."
-
-#: ../src/Banshee.Base/ActionManager.cs:126
-msgid "View Banshee credits and license information"
-msgstr "Visualitza els crèdits i la informació de la llicència del Banshee"
-
-#: ../src/Banshee.Base/ActionManager.cs:129
+#: ../src/Banshee.Base/ActionManager.cs:137
 msgid "_Playback"
 msgstr "_Reprodueix"
 
-#: ../src/Banshee.Base/ActionManager.cs:143
+#: ../src/Banshee.Base/ActionManager.cs:140 ../src/SourceView.cs:77
+msgid "Source"
+msgstr "Font"
+
+#: ../src/Banshee.Base/ActionManager.cs:148
 msgid "Fullscreen"
 msgstr "A pantalla sencera"
 
-#: ../src/Banshee.Base/ActionManager.cs:144
+#: ../src/Banshee.Base/ActionManager.cs:149
 msgid "Toggle Fullscreen Mode"
 msgstr "Commuta el mode de pantalla sencera"
 
-#: ../src/Banshee.Base/ActionManager.cs:147
+#: ../src/Banshee.Base/ActionManager.cs:152
 msgid "Show Cover Art"
 msgstr "Mostra la caràtula"
 
-#: ../src/Banshee.Base/ActionManager.cs:148
+#: ../src/Banshee.Base/ActionManager.cs:153
 msgid "Toggle display of album cover art"
 msgstr "Commuta la visualització de la caràtula"
 
-#: ../src/Banshee.Base/ActionManager.cs:157
+#: ../src/Banshee.Base/ActionManager.cs:162
 msgid "Delete Playlist"
 msgstr "Suprimeix la llista de reproducció"
 
-#: ../src/Banshee.Base/ActionManager.cs:158
 #
+#: ../src/Banshee.Base/ActionManager.cs:163
 msgid "Delete the active playlist"
 msgstr "Suprimeix la llista de reproducció activa"
 
-#: ../src/Banshee.Base/ActionManager.cs:167
 #
+#: ../src/Banshee.Base/ActionManager.cs:172
 msgid "Write CD"
 msgstr "Enregistra el CD"
 
-#: ../src/Banshee.Base/ActionManager.cs:168
 #
+#: ../src/Banshee.Base/ActionManager.cs:173
 msgid "Write selection to audio CD"
 msgstr "Enregistra la selecció al CD"
 
-#: ../src/Banshee.Base/ActionManager.cs:171
+#: ../src/Banshee.Base/ActionManager.cs:176
 msgid "Remove Song(s)"
 msgstr "Elimina la cançó/les cançons"
 
-#: ../src/Banshee.Base/ActionManager.cs:172
+#: ../src/Banshee.Base/ActionManager.cs:177
 msgid "Remove selected song(s) from library"
 msgstr "Elimina la cançó/les cançons seleccionades de la biblioteca"
 
-#: ../src/Banshee.Base/ActionManager.cs:175
+#: ../src/Banshee.Base/ActionManager.cs:180
 msgid "Delete Song(s) From Drive"
 msgstr "Esborra la cançó/les cançons del disc"
 
-#: ../src/Banshee.Base/ActionManager.cs:176
+#: ../src/Banshee.Base/ActionManager.cs:181
 msgid "Permanently delete selected song(s) from storage medium"
-msgstr "Esborra permanentment la cançó/les cançons seleccionades del suport d'emmagatzament"
+msgstr ""
+"Esborra permanentment la cançó/les cançons seleccionades del suport "
+"d'emmagatzament"
 
-#: ../src/Banshee.Base/ActionManager.cs:179
+#: ../src/Banshee.Base/ActionManager.cs:184
 msgid "Edit Song Metadata"
 msgstr "Edita les metadades de la cançó"
 
-#: ../src/Banshee.Base/ActionManager.cs:180
 #
+#: ../src/Banshee.Base/ActionManager.cs:185
 msgid "Edit metadata on selected songs"
 msgstr "Edita les metadades en les cançons seleccionades"
 
-#: ../src/Banshee.Base/ActionManager.cs:183
 #
+#: ../src/Banshee.Base/ActionManager.cs:188
 msgid "Add to Playlist"
 msgstr "Afegeix a la llista de reproducció"
 
-#: ../src/Banshee.Base/ActionManager.cs:184
+#: ../src/Banshee.Base/ActionManager.cs:189
 msgid "Append selected songs to playlist or create new playlist from selection"
-msgstr "Afegeix les cançons seleccionades a la llista de reproducció o crea una llista de la selecció"
+msgstr ""
+"Afegeix les cançons seleccionades a la llista de reproducció o crea una "
+"llista de la selecció"
 
-#: ../src/Banshee.Base/ActionManager.cs:188
+#: ../src/Banshee.Base/ActionManager.cs:192 ../src/PlaylistView.cs:105
+msgid "Rating"
+msgstr "Valoració"
+
+#: ../src/Banshee.Base/ActionManager.cs:193
 msgid "Set rating for selected songs"
 msgstr "Estableix la valoració per les cançons seleccionades"
 
-#: ../src/Banshee.Base/ActionManager.cs:197
 #
+#: ../src/Banshee.Base/ActionManager.cs:202
 msgid "Import CD"
 msgstr "Importa el CD"
 
-#: ../src/Banshee.Base/ActionManager.cs:198
 #
+#: ../src/Banshee.Base/ActionManager.cs:203
 msgid "Import audio CD to library"
 msgstr "Importa el CD d'àudio a la biblioteca"
 
-#: ../src/Banshee.Base/ActionManager.cs:208
-#: ../src/Banshee.Base/ActionManager.cs:212
-#: ../src/Banshee.Base/ActionManager.cs:216
 #
+#: ../src/Banshee.Base/ActionManager.cs:212 ../src/PlayerInterface.cs:813
+#: ../src/PlayerInterface.cs:821
+msgid "Play"
+msgstr "Reproduir"
+
+#
+#: ../src/Banshee.Base/ActionManager.cs:213
 msgid "Play or pause the current song"
 msgstr "Reprodueix o pausa la cançó actual"
 
-#: ../src/Banshee.Base/ActionManager.cs:211
+#: ../src/Banshee.Base/ActionManager.cs:216
 msgid "Next"
 msgstr "Següent"
 
-#: ../src/Banshee.Base/ActionManager.cs:215
+#
+#: ../src/Banshee.Base/ActionManager.cs:217
+#, fuzzy
+msgid "Play the next song"
+msgstr "Reprodueix la cançó següent"
+
+#: ../src/Banshee.Base/ActionManager.cs:220
 msgid "Previous"
 msgstr "Anterior"
 
-#: ../src/Banshee.Base/ActionManager.cs:219
-msgid "Seek Backward"
-msgstr "Cerca cap endarrere"
-
-#: ../src/Banshee.Base/ActionManager.cs:220
-msgid "Seek backward in current song"
-msgstr "Cerca cap endarrere en la cançó actual"
-
-#: ../src/Banshee.Base/ActionManager.cs:223
-msgid "Seek Forward"
-msgstr "Cerca cap endavant"
-
-#: ../src/Banshee.Base/ActionManager.cs:224
-msgid "Seek forward in current song"
-msgstr "Cerca cap endavant en la cançó actual"
-
-#: ../src/Banshee.Base/ActionManager.cs:230
 #
+#: ../src/Banshee.Base/ActionManager.cs:221
+#, fuzzy
+msgid "Play the previous song"
+msgstr "Reprodueix la cançó anterior"
+
+#
+#: ../src/Banshee.Base/ActionManager.cs:226 ../src/ToggleStates.cs:41
+msgid "Repeat None"
+msgstr "No en repeteixis cap"
+
+#
+#: ../src/Banshee.Base/ActionManager.cs:227
 msgid "Do not repeat playlist"
 msgstr "No repeteixis la llista de reproducció"
 
-#: ../src/Banshee.Base/ActionManager.cs:234
+#
+#: ../src/Banshee.Base/ActionManager.cs:230 ../src/ToggleStates.cs:59
+msgid "Repeat All"
+msgstr "Repeteix totes"
+
+#: ../src/Banshee.Base/ActionManager.cs:231
 msgid "Play all songs before repeating playlist"
 msgstr "Reprodueix totes les cançons abans de repetir la llista de reproducció"
 
-#: ../src/Banshee.Base/ActionManager.cs:238
+#
+#: ../src/Banshee.Base/ActionManager.cs:234 ../src/ToggleStates.cs:50
+msgid "Repeat Single"
+msgstr "Repeteix una"
+
+#: ../src/Banshee.Base/ActionManager.cs:235
 msgid "Repeat the current playing song"
 msgstr "Repeteix la cançó que s'està reproduint"
 
-#: ../src/Banshee.Base/ActionManager.cs:244
+#: ../src/Banshee.Base/ActionManager.cs:240 ../src/ToggleStates.cs:68
+msgid "Shuffle"
+msgstr "Mesclar"
+
+#: ../src/Banshee.Base/ActionManager.cs:241
 msgid "Toggle between shuffle or continuous playback modes"
 msgstr ""
 
+#: ../src/Banshee.Base/ActionManager.cs:250
+msgid "Seek Backward"
+msgstr "Cerca cap endarrere"
+
+#: ../src/Banshee.Base/ActionManager.cs:251
+msgid "Seek backward in current song"
+msgstr "Cerca cap endarrere en la cançó actual"
+
 #: ../src/Banshee.Base/ActionManager.cs:254
-msgid "Save changes to device or synchronize music library"
-msgstr "Desa els canvis al dispositiu o sincronitza amb la biblioteca de música"
+msgid "Seek Forward"
+msgstr "Cerca cap endavant"
+
+#: ../src/Banshee.Base/ActionManager.cs:255
+msgid "Seek forward in current song"
+msgstr "Cerca cap endavant en la cançó actual"
+
+#: ../src/Banshee.Base/ActionManager.cs:258
+msgid "Seek To..."
+msgstr ""
+
+#: ../src/Banshee.Base/ActionManager.cs:259
+#, fuzzy
+msgid "Seek to a specific location in current song"
+msgstr "Cerca cap endavant en la cançó actual"
+
+#
+#: ../src/Banshee.Base/ActionManager.cs:262
+#, fuzzy
+msgid "Restart Song"
+msgstr "Repeteix una"
 
 #: ../src/Banshee.Base/ActionManager.cs:263
+#, fuzzy
+msgid "Restart the current song"
+msgstr "Repeteix la cançó que s'està reproduint"
+
+#
+#: ../src/Banshee.Base/ActionManager.cs:272 ../src/PlayerInterface.cs:1053
+msgid "Synchronize"
+msgstr "Sincronitza"
+
+#: ../src/Banshee.Base/ActionManager.cs:273
+msgid "Save changes to device or synchronize music library"
+msgstr ""
+"Desa els canvis al dispositiu o sincronitza amb la biblioteca de música"
+
+#: ../src/Banshee.Base/ActionManager.cs:282
 msgid "Eject"
 msgstr "Expulsa"
 
-#: ../src/Banshee.Base/ActionManager.cs:264
+#: ../src/Banshee.Base/ActionManager.cs:283
 msgid "Eject the active source"
 msgstr "Expulsa la font activa"
 
-#: ../src/Banshee.Base/FileEncodeAction.cs:68
-msgid "File Encoder"
+#
+#: ../src/Banshee.Base/AudioCd/AudioCdCore.cs:80
+msgid "HAL is not initialized"
+msgstr "No s'ha pogut inicialitzar HAL"
+
+#: ../src/Banshee.Base/AudioCd/AudioCdCore.cs:86
+msgid "Audio CD Core Initialized"
+msgstr "S'ha inicialitzat el nucli del CD d'àudio"
+
+#
+#. work around mcs #76642
+#: ../src/Banshee.Base/AudioCd/AudioCdCore.cs:103
+msgid "Could not Read Audio CD"
+msgstr "No s'ha pogut llegir el CD d'àudio"
+
+#: ../src/Banshee.Base/AudioCd/AudioCdDisk.cs:85
+#: ../src/Banshee.Base/TrackInfo.cs:374
+msgid "Unknown Artist"
+msgstr "Artista desconegut"
+
+#: ../src/Banshee.Base/AudioCd/AudioCdDisk.cs:86
+#: ../src/Banshee.Base/TrackInfo.cs:382
+msgid "Unknown Album"
+msgstr "Àlbum desconegut"
+
+#: ../src/Banshee.Base/AudioCd/AudioCdDisk.cs:87
+#, csharp-format
+msgid "Track {0}"
+msgstr "Pista {0}"
+
+#: ../src/Banshee.Base/AudioCd/AudioCdDisk.cs:241
+#, fuzzy
+msgid "Cannot Eject CD"
+msgstr "No s'ha pogut expulsar"
+
+#: ../src/Banshee.Base/AudioCd/AudioCdDisk.cs:242
+msgid "The CD cannot be ejected while it is importing. Stop the import first."
+msgstr ""
+
+#: ../src/Banshee.Base/AudioCdRipper.cs:85
+msgid "Could not create CD Ripper"
+msgstr "No s'ha pogut crear l'extractor del CD"
+
+#: ../src/Banshee.Base/AudioCdRipper.cs:295
+#, csharp-format
+msgid ""
+"The device node '{0}' differs from the device node already set for "
+"previously queued tracks ({1})"
+msgstr ""
+
+#
+#: ../src/Banshee.Base/AudioCdRipper.cs:308
+msgid "Importing Audio CD"
+msgstr "S'està important el CD d'àudio"
+
+#
+#: ../src/Banshee.Base/AudioCdRipper.cs:309
+msgid "Initializing Drive"
+msgstr "S'està inicialitzant la unitat"
+
+#
+#: ../src/Banshee.Base/AudioCdRipper.cs:329
+#: ../src/Banshee.Base/AudioCdRipper.cs:393
+#, fuzzy
+msgid "Cannot Import CD"
+msgstr "No s'ha pogut importar"
+
+#: ../src/Banshee.Base/AudioCdRipper.cs:341
+#: ../src/Banshee.Base/ImportManager.cs:115
+#, csharp-format
+msgid "Importing {0} of {1}"
+msgstr "S'està important {0} de {1}"
+
+#: ../src/Banshee.Base/BatchTranscoder.cs:93
+#, fuzzy
+msgid "File Transcoder"
 msgstr "Codificador de fitxers"
 
-#: ../src/Banshee.Base/FileEncodeAction.cs:69
 #
-msgid "Encoding Files"
+#: ../src/Banshee.Base/BatchTranscoder.cs:94
+#, fuzzy
+msgid "Transcoding Files"
 msgstr "S'estan codificant els fitxers"
 
-#: ../src/Banshee.Base/FileEncodeAction.cs:72
-msgid "Initializing Encoder..."
+#: ../src/Banshee.Base/BatchTranscoder.cs:97
+#, fuzzy
+msgid "Initializing Transcoder..."
 msgstr "S'està inicialitzant el codificador..."
 
-#: ../src/Banshee.Base/GstFileEncoder.cs:67
-msgid "Could not create encoder"
+#: ../src/Banshee.Base/Dap/DapCore.cs:119
+msgid "Cannot initialize DapCore because HalCore is not initialized"
+msgstr ""
+
+#
+#: ../src/Banshee.Base/Dap/Dap.cs:325 ../src/Banshee.Base/Dap/Dap.cs:326
+msgid "Synchronizing Device"
+msgstr "S'està sincronitzant el dispositiu"
+
+#
+#: ../src/Banshee.Base/Dap/Dap.cs:327
+msgid "Waiting for transcoder..."
+msgstr "S'està esperant el codificador..."
+
+#
+#: ../src/Banshee.Base/Dap/Dap.cs:411 ../src/Banshee.Base/Dap/Dap.cs:432
+msgid "Processing..."
+msgstr "S'està processant..."
+
+#. Translators: {0} is the name assigned to a Digital Audio Player by its owner
+#: ../src/Banshee.Base/Dap/DapPropertiesDialog.cs:54
+#, csharp-format
+msgid "{0} Properties"
+msgstr "Propietats del {0}"
+
+#
+#: ../src/Banshee.Base/Dap/DapPropertiesDialog.cs:78
+#: ../src/Banshee.Base/Dap/DapPropertiesDialog.cs:81
+msgid "Device Name"
+msgstr "Nom del dispositiu"
+
+#
+#: ../src/Banshee.Base/Dap/DapPropertiesDialog.cs:85
+#: ../src/Banshee.Base/Dap/DapPropertiesDialog.cs:88
+msgid "Owner Name"
+msgstr "Propietari de la cançó"
+
+#: ../src/Banshee.Base/Dap/DapPropertiesDialog.cs:93
+msgid "Volume Usage"
+msgstr "Ús del volum"
+
+#: ../src/Banshee.Base/Dap/DapPropertiesDialog.cs:105
+msgid "Advanced Details"
+msgstr "Detalls avançats"
+
+#: ../src/Banshee.Base/Gui/OpenLocationDialog.cs:53
+msgid "Browse..."
+msgstr ""
+
+#: ../src/Banshee.Base/FileImportSource.cs:55
+msgid "Import Files to Library"
+msgstr "Importa fitxers a la biblioteca"
+
+#: ../src/Banshee.Base/FileImportSource.cs:82
+#, fuzzy
+msgid "Local Files"
+msgstr "Cua local"
+
+#: ../src/Banshee.Base/FolderImportSource.cs:55
+msgid "Import Folder to Library"
+msgstr "Importa la carpeta a la biblioteca"
+
+#: ../src/Banshee.Base/FolderImportSource.cs:80
+#, fuzzy
+msgid "Local Folder"
+msgstr "Importa la carpeta"
+
+#: ../src/Banshee.Base/GstTranscoder.cs:82
+#: ../src/Banshee.Base/GstTranscoder.cs:182
+#, fuzzy
+msgid "Could not create transcoder"
 msgstr "No s'ha pogut crear el codificador"
 
-#: ../src/Banshee.Base/GstFileEncoder.cs:87
-#, csharp-format
-msgid "Could not encode file: {0}"
-msgstr "No s'ha pogut codificar el fitxer: {0}"
-
-#: ../src/Banshee.Base/HalCore.cs:97
 #
+#: ../src/Banshee.Base/HalCore.cs:97
 msgid "HAL could not be initialized"
 msgstr "No s'ha pogut inicialitzar HAL"
 
@@ -1558,6 +1203,10 @@ msgstr "No s'ha pogut crear el context HAL"
 msgid "D-Bus may not be working or configured properly"
 msgstr "D-Bus pot no estar funcionant o configurat correctament"
 
+#: ../src/Banshee.Base/HomeDirectoryImportSource.cs:58
+msgid "Home Directory"
+msgstr ""
+
 #: ../src/Banshee.Base/ImportManager.cs:83
 msgid "Importing Songs"
 msgstr "S'estan important les cançons"
@@ -1566,7 +1215,7 @@ msgstr "S'estan important les cançons"
 msgid "Scanning for songs"
 msgstr "S'està escanejant cançons"
 
-#: ../src/Banshee.Base/Library.cs:118
+#: ../src/Banshee.Base/Library.cs:126
 msgid "Could not load track from library"
 msgstr "No s'ha pogut carregar la pista de la biblioteca"
 
@@ -1630,29 +1279,121 @@ msgstr "a"
 msgid "No iPod-compatible encoders available"
 msgstr "No hi ha codificadors compatibles amb iPod disponibles"
 
-#: ../src/Banshee.Base/PlayerEngineCore.cs:93
-msgid "CD playback is not supported for this instance"
+#: ../src/Banshee.Base/PlayerEngineCore.cs:101
+msgid "Default player engine"
 msgstr ""
 
-#: ../src/Banshee.Base/TrackInfo.cs:340
-#: ../src/Banshee.Base/AudioCd/AudioCdDisk.cs:86
-msgid "Unknown Artist"
-msgstr "Artista desconegut"
+#
+#: ../src/Banshee.Base/Plugins/PluginDialog.cs:52
+msgid "Banshee Plugins"
+msgstr "Connectors del Banshee"
 
-#: ../src/Banshee.Base/TrackInfo.cs:348
-#: ../src/Banshee.Base/AudioCd/AudioCdDisk.cs:87
-msgid "Unknown Album"
-msgstr "Àlbum desconegut"
+#
+#: ../src/Banshee.Base/Plugins/PluginDialog.cs:64
+#: ../src/Banshee.Base/Plugins/PluginDialog.cs:93
+msgid "Plugin Name"
+msgstr "Nom del connector"
 
-#: ../src/Banshee.Base/TrackInfo.cs:356
+#: ../src/Banshee.Base/Plugins/PluginDialog.cs:70
+msgid "Enabled"
+msgstr "Habilitat"
+
+#: ../src/Banshee.Base/Plugins/PluginDialog.cs:90
+msgid "Overview"
+msgstr ""
+
+#
+#: ../src/Banshee.Base/Plugins/PluginDialog.cs:97
+msgid "Description"
+msgstr "Descripció"
+
+#: ../src/Banshee.Base/Plugins/PluginDialog.cs:100
+msgid "Author(s)"
+msgstr "Autor(s)"
+
+#: ../src/Banshee.Base/Plugins/PluginDialog.cs:105
+msgid "This plugin could not be initialized."
+msgstr "No s'ha pogut inicialitzar el connector"
+
+#: ../src/Banshee.Base/Plugins/PluginDialog.cs:193
+#, fuzzy
+msgid "Configuration"
+msgstr "Configura el connector"
+
+#: ../src/Banshee.Base/Sources/AudioCdSource.cs:76
+msgid "Reading table of contents from CD..."
+msgstr "S'està llegint la taula de continguts del CD..."
+
+#: ../src/Banshee.Base/Sources/AudioCdSource.cs:81
+msgid "Searching for CD metadata..."
+msgstr "S'estan cercant les metadades del CD..."
+
+#: ../src/Banshee.Base/Sources/AudioCdSource.cs:86
+msgid "Searching for CD cover art..."
+msgstr "S'està cercant la caràtula del CD..."
+
+#: ../src/Banshee.Base/Sources/AudioCdSource.cs:91
+msgid ""
+"Cannot search for CD metadata: there is no available Internet connection"
+msgstr ""
+"No s'han pogut cercar les metadades del CD: no hi ha connexió a Internet"
+
+#
+#: ../src/Banshee.Base/Sources/AudioCdSource.cs:97
+msgid "Could not fetch metadata for CD."
+msgstr "No s'ha pogut crear el codificador"
+
+#: ../src/Banshee.Base/Sources/AudioCdSource.cs:178
+msgid "Invalid Selection"
+msgstr "Selecció invàlida"
+
+#: ../src/Banshee.Base/Sources/AudioCdSource.cs:179
+msgid "You must select at least one track to import."
+msgstr "Heu de seleccionar almenys una pista a importar."
+
+#: ../src/Banshee.Base/Sources/DapSource.cs:104
+msgid "Synchronizing your Device, Please Wait..."
+msgstr "S'està sincronitzant el dispositiu, si us plau espereu..."
+
+#: ../src/Banshee.Base/Sources/DapSource.cs:164
+#: ../src/Banshee.Widgets/StreamPositionLabel.cs:87
+#, csharp-format
+msgid "{0} of {1}"
+msgstr "{0} de {1}"
+
+#: ../src/Banshee.Base/Sources/DapSource.cs:174
+#, csharp-format
+msgid "({0} Remaining)"
+msgstr "({0} restants)"
+
+#
+#: ../src/Banshee.Base/Sources/LibrarySource.cs:50
+msgid "Music Library"
+msgstr "Biblioteca de música"
+
+#: ../src/Banshee.Base/Sources/LocalQueueSource.cs:53
+msgid "Local Queue"
+msgstr "Cua local"
+
+#: ../src/Banshee.Base/Sources/PlaylistSource.cs:117
+msgid "Cannot Rename Playlist"
+msgstr "No s'ha pogut reanomenar la llista de reproducció"
+
+#: ../src/Banshee.Base/Sources/PlaylistSource.cs:118
+msgid "A playlist with this name already exists. Please choose another name."
+msgstr ""
+"Ja hi ha una llista de reproducció amb aquest nom. Si us plau, escolliu un "
+"altre nom."
+
+#: ../src/Banshee.Base/TrackInfo.cs:390
 msgid "Unknown Title"
 msgstr "Títol desconegut"
 
-#: ../src/Banshee.Base/TrackInfoHeader.cs:104
+#: ../src/Banshee.Base/TrackInfoHeader.cs:103
 msgid "by"
 msgstr "per"
 
-#: ../src/Banshee.Base/TrackInfoHeader.cs:105
+#: ../src/Banshee.Base/TrackInfoHeader.cs:104
 msgid "from"
 msgstr "des de"
 
@@ -1666,242 +1407,178 @@ msgstr "{0:0.00} GB"
 msgid "{0} MB"
 msgstr "{0} MB"
 
-#: ../src/Banshee.Base/AudioCd/AudioCdCore.cs:80
+#: ../src/Banshee.Dap/Ipod/DatabaseRebuilder.cs:55
+#: ../src/Banshee.Dap/Ipod/DatabaseRebuilder.cs:56
+msgid "Rebuilding Database"
+msgstr ""
+
+#: ../src/Banshee.Dap/Ipod/DatabaseRebuilder.cs:57
+#, fuzzy
+msgid "Scanning iPod..."
+msgstr "S'està escanejant"
+
 #
-msgid "HAL is not initialized"
-msgstr "No s'ha pogut inicialitzar HAL"
-
-#: ../src/Banshee.Base/AudioCd/AudioCdCore.cs:86
-msgid "Audio CD Core Initialized"
-msgstr "S'ha inicialitzat el nucli del CD d'àudio"
-
-#. work around mcs #76642
-#: ../src/Banshee.Base/AudioCd/AudioCdCore.cs:103
-#
-msgid "Could not Read Audio CD"
-msgstr "No s'ha pogut llegir el CD d'àudio"
-
-#: ../src/Banshee.Base/AudioCd/AudioCdDisk.cs:88
-#, csharp-format
-msgid "Track {0}"
-msgstr "Pista {0}"
-
-#: ../src/Banshee.Base/Dap/Dap.cs:315 ../src/Banshee.Base/Dap/Dap.cs:316
-#
-msgid "Synchronizing Device"
-msgstr "S'està sincronitzant el dispositiu"
-
-#: ../src/Banshee.Base/Dap/Dap.cs:317
-#
-msgid "Waiting for transcoder..."
-msgstr "S'està esperant el codificador..."
-
-#: ../src/Banshee.Base/Dap/Dap.cs:401 ../src/Banshee.Base/Dap/Dap.cs:422
-#
-msgid "Processing..."
+#: ../src/Banshee.Dap/Ipod/DatabaseRebuilder.cs:91
+#, fuzzy
+msgid "Processing Songs..."
 msgstr "S'està processant..."
 
-#: ../src/Banshee.Base/Dap/DapCore.cs:119
-msgid "Cannot initialize DapCore because HalCore is not initialized"
+#: ../src/Banshee.Dap/Ipod/DatabaseRebuilder.cs:138
+#, fuzzy
+msgid "Saving new database..."
+msgstr "S'estan desant les entrades noves"
+
+#: ../src/Banshee.Dap/Ipod/DatabaseRebuilder.cs:145
+msgid "Error rebuilding iPod database"
 msgstr ""
 
-#: ../src/Banshee.Base/Dap/DapCore.cs:173
-msgid "Could not process connected DAP"
-msgstr "No s'ha pogut processar el DAP connectat"
-
-#. Translators: {0} is the name assigned to a Digital Audio Player by its owner
-#: ../src/Banshee.Base/Dap/DapPropertiesDialog.cs:54
-#, csharp-format
-msgid "{0} Properties"
-msgstr "Propietats del {0}"
-
-#: ../src/Banshee.Base/Dap/DapPropertiesDialog.cs:78
-#: ../src/Banshee.Base/Dap/DapPropertiesDialog.cs:81
 #
-msgid "Device Name"
-msgstr "Nom del dispositiu"
-
-#: ../src/Banshee.Base/Dap/DapPropertiesDialog.cs:85
-#: ../src/Banshee.Base/Dap/DapPropertiesDialog.cs:88
-#
-msgid "Owner Name"
-msgstr "Propietari de la cançó"
-
-#: ../src/Banshee.Base/Dap/DapPropertiesDialog.cs:93
-msgid "Volume Usage"
-msgstr "Ús del volum"
-
-#: ../src/Banshee.Base/Dap/DapPropertiesDialog.cs:105
-msgid "Advanced Details"
-msgstr "Detalls avançats"
-
-#: ../src/Banshee.Base/Plugins/PluginDialog.cs:52
-#
-msgid "Banshee Plugins"
-msgstr "Connectors del Banshee"
-
-#: ../src/Banshee.Base/Plugins/PluginDialog.cs:65
-#: ../src/Banshee.Base/Plugins/PluginDialog.cs:89
-#
-msgid "Plugin Name"
-msgstr "Nom del connector"
-
-#: ../src/Banshee.Base/Plugins/PluginDialog.cs:71
-msgid "Enabled"
-msgstr "Habilitat"
-
-#: ../src/Banshee.Base/Plugins/PluginDialog.cs:93
-#
-msgid "Description"
-msgstr "Descripció"
-
-#: ../src/Banshee.Base/Plugins/PluginDialog.cs:96
-msgid "Author(s)"
-msgstr "Autor(s)"
-
-#: ../src/Banshee.Base/Plugins/PluginDialog.cs:104
-msgid "Configure Plugin"
-msgstr "Configura el connector"
-
-#: ../src/Banshee.Base/Plugins/PluginDialog.cs:113
-msgid "This plugin could not be initialized."
-msgstr "No s'ha pogut inicialitzar el connector"
-
-#: ../src/Banshee.Base/Sources/DapSource.cs:126
-#, csharp-format
-msgid "({0} Remaining)"
-msgstr "({0} restants)"
-
-#: ../src/Banshee.Base/Sources/LibrarySource.cs:51
-#
-msgid "Music Library"
-msgstr "Biblioteca de música"
-
-#: ../src/Banshee.Base/Sources/LocalQueueSource.cs:53
-msgid "Local Queue"
-msgstr "Cua local"
-
-#: ../src/Banshee.Base/Sources/PlaylistSource.cs:101
-msgid "Cannot Rename Playlist"
-msgstr "No s'ha pogut reanomenar la llista de reproducció"
-
-#: ../src/Banshee.Base/Sources/PlaylistSource.cs:102
-msgid "A playlist with this name already exists. Please choose another name."
-msgstr ""
-"Ja hi ha una llista de reproducció amb aquest nom. Si us plau, escolliu un "
-"altre nom."
-
-#: ../src/Banshee.Dap/Ipod/IpodDap.cs:128
-#: ../src/Banshee.Dap/Ipod/IpodDap.cs:147
-#
+#: ../src/Banshee.Dap/Ipod/IpodDap.cs:159
+#: ../src/Banshee.Dap/Ipod/IpodDap.cs:178
 msgid "Synchronizing iPod"
 msgstr "S'està sincronitzant l'iPod"
 
-#: ../src/Banshee.Dap/Ipod/IpodDap.cs:129
 #
+#: ../src/Banshee.Dap/Ipod/IpodDap.cs:160
 msgid "Pre-processing tracks"
 msgstr "S'està pre-processant les pistes"
 
-#: ../src/Banshee.Dap/Ipod/IpodDap.cs:144
+#: ../src/Banshee.Dap/Ipod/IpodDap.cs:175
 msgid "Flushing to Disk (may take time)"
 msgstr ""
 
-#: ../src/Banshee.Dap/Ipod/IpodDap.cs:154
 #
+#: ../src/Banshee.Dap/Ipod/IpodDap.cs:185
 msgid "Failed to synchronize iPod"
 msgstr "No s'ha pogut sincronitzar l'iPod"
 
-#: ../src/Banshee.MediaEngine/Gstreamer/GstPlayerEngine.cs:113
-#: ../src/Banshee.MediaEngine/Gstreamer/GstPlayerEngine.cs:406
+#: ../src/Banshee.Dap/Ipod/UnsupportedDatabaseView.cs:59
+msgid "Unable to read your iPod"
+msgstr ""
+
+#: ../src/Banshee.Dap/Ipod/UnsupportedDatabaseView.cs:82
+msgid "What is the reason for this?"
+msgstr ""
+
+#: ../src/Banshee.Dap/Ipod/UnsupportedDatabaseView.cs:97
+msgid "Rebuild iPod Database..."
+msgstr ""
+
+#: ../src/Banshee.Dap/Ipod/UnsupportedDatabaseView.cs:105
+msgid "Confirm Rebuild iPod Database"
+msgstr ""
+
+#: ../src/Banshee.Dap/Ipod/UnsupportedDatabaseView.cs:111
+msgid ""
+"Rebuilding your iPod database may take some time. Also note that any "
+"playlists you have on your iPod will be lost.\n"
+"\n"
+"Are you sure you want to rebuild your iPod database?"
+msgstr ""
+
+#: ../src/Banshee.Dap/Ipod/UnsupportedDatabaseView.cs:116
+msgid "Rebuild Database"
+msgstr ""
+
+#: ../src/Banshee.Dap/Ipod/UnsupportedDatabaseView.cs:128
+msgid "Rebuilding iPod Database..."
+msgstr ""
+
+#. Console.WriteLine(Catalog.GetString("Cannot Import") + ": {0}", args.FileName);
+#. Console.WriteLine(Catalog.GetString("Cannot Import: {0} ({1}, {2})"),
+#. args.FileName, e.GetType(), e.Message);
+#: ../src/Banshee.Dap/MassStorage/MassStorageDap.cs:133
+#: ../src/Banshee.Dap/MassStorage/MassStorageDap.cs:137
+#: ../src/PlayerInterface.cs:1719
+msgid "Scanning"
+msgstr "S'està escanejant"
+
+#: ../src/Banshee.Dap/MassStorage/MassStorageDap.cs:257
+#, fuzzy
+msgid "Audio Device"
+msgstr "CD d'àudio"
+
+#: ../src/Banshee.MediaEngine/Gstreamer/GstPlayerEngine.cs:64
+#: ../src/Banshee.MediaEngine/Gstreamer/GstPlayerEngine.cs:290
 msgid "Could not initialize GStreamer library"
 msgstr "No s'ha pogut inicialitzar la biblioteca del GStreamer"
 
-#: ../src/Banshee.MediaEngine/Gstreamer/GstPlayerEngine.cs:237
 #
+#: ../src/Banshee.MediaEngine/Gstreamer/GstPlayerEngine.cs:142
 msgid "Unknown Error"
 msgstr "Error Desconegut"
 
-#: ../src/Banshee.MediaEngine/Gstreamer/GstPlayerEngine.cs:294
-#
-msgid "GStreamer 0.10 Engine"
-msgstr "Motor del GStreamer 0.10"
-
-#: ../src/Banshee.MediaEngine/Gstreamer/GstPlayerEngine.cs:304
-#: ../src/Banshee.MediaEngine/Gstreamer/GstPlayerEngine.cs:615
-msgid ""
-"GStreamer is a multimedia framework for playing and manipulating media. Any "
-"GStreamer plugin that is available will work through this engine."
+#: ../src/Banshee.MediaEngine/Gstreamer/GstPlayerEngine.cs:164
+#: ../src/Banshee.Widgets/StreamPositionLabel.cs:81
+msgid "Buffering"
 msgstr ""
 
-#: ../src/Banshee.MediaEngine/Gstreamer/GstPlayerEngine.cs:604
-msgid "GStreamer Engine"
-msgstr "Motor del GStreamer"
-
-#: ../src/Banshee.MediaEngine/Helix/HelixPlayer.cs:81
-msgid "Helix Framework Engine (hxclientkit)"
-msgstr ""
-
-#: ../src/Banshee.MediaEngine/Helix/HelixPlayer.cs:89
-msgid ""
-"The Helix Engine provides multimedia control through the Helix Multimedia "
-"Framework, sponsored by RealNetworks. The engine can play any file that "
-"RealPlayer can. Install RealPlayer for best results."
-msgstr ""
-
-#: ../src/Banshee.MediaEngine/Vlc/VlcPlayerEngine.cs:80
-msgid "VLC"
-msgstr "VLC"
-
-#: ../src/Banshee.MediaEngine/Vlc/VlcPlayerEngine.cs:88
-msgid ""
-"VLC is a highly portable multimedia player for various audio and video "
-"formats (MP3, AAC, OGG, FLAC, WMA, etc.) See http://videolan.org/vlc/"
-msgstr ""
-
-#: ../src/Banshee.Plugins/Audioscrobbler/AudioscrobblerConfigDialog.cs:50
-msgid "Configure Audioscrobbler"
-msgstr "Configura l'Audioscrobbler"
-
-#: ../src/Banshee.Plugins/Audioscrobbler/AudioscrobblerConfigDialog.cs:70
-#: ../src/Banshee.Plugins/Audioscrobbler/AudioscrobblerPlugin.cs:113
-msgid "Audioscrobbler"
+#: ../src/Banshee.Plugins/Audioscrobbler/AudioscrobblerConfigDialog.cs:61
+#: ../src/Banshee.Plugins/Audioscrobbler/AudioscrobblerPlugin.cs:145
+#, fuzzy
+msgid "Audioscrobbler Reporting"
 msgstr "Audioscrobbler"
 
-#: ../src/Banshee.Plugins/Audioscrobbler/AudioscrobblerConfigDialog.cs:79
-msgid "Create a free Last.fm account"
+#: ../src/Banshee.Plugins/Audioscrobbler/AudioscrobblerConfigDialog.cs:73
+#, fuzzy
+msgid "Create an account"
 msgstr "Crea un compte gratuït a Last.fm"
 
-#: ../src/Banshee.Plugins/Audioscrobbler/AudioscrobblerConfigDialog.cs:102
+#: ../src/Banshee.Plugins/Audioscrobbler/AudioscrobblerConfigDialog.cs:77
+msgid "Join the Banshee group"
+msgstr ""
+
+#: ../src/Banshee.Plugins/Audioscrobbler/AudioscrobblerConfigDialog.cs:91
+#: ../src/Banshee.Plugins/Audioscrobbler/AudioscrobblerPlugin.cs:130
+#: ../src/Banshee.Plugins/Audioscrobbler/AudioscrobblerPlugin.cs:131
+msgid "Enable song reporting"
+msgstr ""
+
+#: ../src/Banshee.Plugins/Audioscrobbler/AudioscrobblerConfigDialog.cs:101
 msgid "Last.fm Username"
 msgstr "Nom d'usuari a Last.fm"
 
-#: ../src/Banshee.Plugins/Audioscrobbler/AudioscrobblerConfigDialog.cs:103
+#: ../src/Banshee.Plugins/Audioscrobbler/AudioscrobblerConfigDialog.cs:102
 msgid "Last.fm Password"
 msgstr "Contrasenya a Last.fm"
 
-#: ../src/Banshee.Plugins/Audioscrobbler/AudioscrobblerPlugin.cs:58
+#: ../src/Banshee.Plugins/Audioscrobbler/AudioscrobblerPlugin.cs:59
 msgid ""
 "Your profile page on Last.fm is automatically updated whenever you listen to "
 "music. It lets others see what you're listening to right now, and shows "
 "charts of your listening history."
 msgstr ""
 
-#: ../src/Banshee.Plugins/Audioscrobbler/AudioscrobblerPlugin.cs:114
-#: ../src/Banshee.Plugins/Audioscrobbler/AudioscrobblerPlugin.cs:118
+#: ../src/Banshee.Plugins/Audioscrobbler/AudioscrobblerPlugin.cs:112
+msgid "Audioscrobbler"
+msgstr "Audioscrobbler"
+
+#: ../src/Banshee.Plugins/Audioscrobbler/AudioscrobblerPlugin.cs:113
+#: ../src/Banshee.Plugins/Audioscrobbler/AudioscrobblerPlugin.cs:125
 msgid "Configure the Audioscrobbler plugin"
 msgstr "Configura el connector de l'Audioscrobbler"
 
-#: ../src/Banshee.Plugins/Audioscrobbler/AudioscrobblerPlugin.cs:117
-msgid "Configure..."
-msgstr "Configura..."
-
-#: ../src/Banshee.Plugins/Audioscrobbler/AudioscrobblerPlugin.cs:121
-msgid "Visit Profile Page"
+#: ../src/Banshee.Plugins/Audioscrobbler/AudioscrobblerPlugin.cs:116
+#, fuzzy
+msgid "Visit user profile page"
 msgstr "Visita la pàgina de perfils"
 
-#: ../src/Banshee.Plugins/Audioscrobbler/AudioscrobblerPlugin.cs:122
+#: ../src/Banshee.Plugins/Audioscrobbler/AudioscrobblerPlugin.cs:117
 msgid "Visit your Audioscrobbler profile page"
 msgstr "Visiteu la vostra pàgina de perfil a l'Audioscrobbler"
+
+#: ../src/Banshee.Plugins/Audioscrobbler/AudioscrobblerPlugin.cs:120
+#, fuzzy
+msgid "Visit group page"
+msgstr "Visita la pàgina de perfils"
+
+#: ../src/Banshee.Plugins/Audioscrobbler/AudioscrobblerPlugin.cs:121
+msgid "Visit the Banshee last.fm group page"
+msgstr ""
+
+#: ../src/Banshee.Plugins/Audioscrobbler/AudioscrobblerPlugin.cs:124
+msgid "Configure..."
+msgstr "Configura..."
 
 #: ../src/Banshee.Plugins/Audioscrobbler/audioscrobbler.schemas.in.h:1
 msgid ""
@@ -1920,43 +1597,123 @@ msgstr "La vostra darrera contrasenya a last.fm"
 msgid "Your last.fm username"
 msgstr "El vostre nom d'usuari a last.fm"
 
+#: ../src/Banshee.Plugins/Daap/DaapConfigPage.cs:50
+#, fuzzy
+msgid "Music Sharing"
+msgstr "Reproductor de música"
+
+#
+#: ../src/Banshee.Plugins/Daap/DaapConfigPage.cs:53
+#, fuzzy
+msgid "Share my music library with others"
+msgstr "Sincronitza la biblioteca de música al dispositiu"
+
+#: ../src/Banshee.Plugins/Daap/DaapConfigPage.cs:76
+#, fuzzy
+msgid "Share name:"
+msgstr "Velocitat de mostreig:"
+
+#: ../src/Banshee.Plugins/Daap/DaapCore.cs:73
+#, fuzzy
+msgid "Banshee Music Share"
+msgstr "Reproductor de música Banshee"
+
+#: ../src/Banshee.Plugins/Daap/DaapLoginDialog.cs:48
+msgid "Login to Music Share"
+msgstr ""
+
+#: ../src/Banshee.Plugins/Daap/DaapLoginDialog.cs:81
+msgid "Authentication Required"
+msgstr ""
+
+#: ../src/Banshee.Plugins/Daap/DaapLoginDialog.cs:105
+#, fuzzy
+msgid "Username:"
+msgstr "Reanomena"
+
+#: ../src/Banshee.Plugins/Daap/DaapLoginDialog.cs:113
+#, fuzzy
+msgid "Password:"
+msgstr "Contrasenya a Last.fm"
+
+#: ../src/Banshee.Plugins/Daap/DaapLoginDialog.cs:124
+msgid "Login"
+msgstr ""
+
+#: ../src/Banshee.Plugins/Daap/daap.schemas.in.h:1
+msgid "Allow others to browse and listen to your music from other DAAP clients"
+msgstr ""
+
+#: ../src/Banshee.Plugins/Daap/daap.schemas.in.h:2
+msgid "Enable DAAP Server support"
+msgstr ""
+
+#: ../src/Banshee.Plugins/Daap/daap.schemas.in.h:3
+#, fuzzy
+msgid "Enable the DAAP Music Sharing plugin"
+msgstr "Habilita el connector Audioscrobbler"
+
+#: ../src/Banshee.Plugins/Daap/daap.schemas.in.h:4
+msgid "Name of DAAP server share"
+msgstr ""
+
+#: ../src/Banshee.Plugins/Daap/DaapSource.cs:70
+msgid "Cannot login to DAAP share"
+msgstr ""
+
 #: ../src/Banshee.Plugins/FileSystemMonitor/filesystemmonitor.schemas.in.h:1
 msgid "Enable the FileSystemMonitor plugin"
 msgstr "Habilita el connector FileSystemMonitor"
 
-#: ../src/Banshee.Plugins/MetadataSearch/MetadataSearchConfigDialog.cs:49
-msgid "Configure Metadata Searcher"
-msgstr "Configura el cercador de metadates"
+#: ../src/Banshee.Plugins/FileSystemMonitor/Watcher.cs:49
+msgid ""
+"Automatically keep your Banshee library directory in sync with your music "
+"folder. This plugin responds to changes made in the file system to reflect "
+"them in your library."
+msgstr ""
 
-#: ../src/Banshee.Plugins/MetadataSearch/MetadataSearchConfigDialog.cs:68
-msgid "Metadata Searching"
+#: ../src/Banshee.Plugins/MetadataSearch/MetadataSearchConfigDialog.cs:61
+#, fuzzy
+msgid "Metadata and Cover Art Searching"
 msgstr "Cerca de metadates"
 
-#: ../src/Banshee.Plugins/MetadataSearch/MetadataSearchConfigDialog.cs:71
-msgid "Search Options"
-msgstr "Opcions de cerca"
-
-#: ../src/Banshee.Plugins/MetadataSearch/MetadataSearchConfigDialog.cs:83
+#: ../src/Banshee.Plugins/MetadataSearch/MetadataSearchConfigDialog.cs:70
 msgid "Only download album cover artwork"
 msgstr "Descarrega només la caràtula de l'àlbum"
 
-#: ../src/Banshee.Plugins/MetadataSearch/MetadataSearchConfigDialog.cs:85
+#: ../src/Banshee.Plugins/MetadataSearch/MetadataSearchConfigDialog.cs:72
 msgid "Download album cover artwork and fill in missing track data"
-msgstr "Descarrega la caràtula de l'àlbum i emplena la informació de la pista que falta"
+msgstr ""
+"Descarrega la caràtula de l'àlbum i emplena la informació de la pista que "
+"falta"
 
-#: ../src/Banshee.Plugins/MetadataSearch/MetadataSearchConfigDialog.cs:87
+#: ../src/Banshee.Plugins/MetadataSearch/MetadataSearchConfigDialog.cs:74
 msgid "Download album cover artwork and overwrite any existing track data"
-msgstr "Descarrega la caràtula de l'àlbum i sobreescriu qualsevol informació de la pista"
+msgstr ""
+"Descarrega la caràtula de l'àlbum i sobreescriu qualsevol informació de la "
+"pista"
 
-#: ../src/Banshee.Plugins/MetadataSearch/MetadataSearchConfigDialog.cs:102
 #
+#: ../src/Banshee.Plugins/MetadataSearch/MetadataSearchConfigDialog.cs:76
+#, fuzzy
+msgid "Rescan Library"
+msgstr "Biblioteca de música"
+
+#
+#: ../src/Banshee.Plugins/MetadataSearch/MetadataSearchConfigDialog.cs:96
 msgid "Warning"
 msgstr "Avís"
 
-#: ../src/Banshee.Plugins/MetadataSearch/MetadataSearchConfigDialog.cs:104
+#: ../src/Banshee.Plugins/MetadataSearch/MetadataSearchConfigDialog.cs:98
 msgid ""
 "This option can usually correct minor mistakes in metadata, however on rare "
-"occasions metadata may be incorrectly updated from MusizBrainz."
+"occasions metadata may be incorrectly updated from MusicBrainz."
+msgstr ""
+
+#: ../src/Banshee.Plugins/MetadataSearch/MetadataSearchPlugin.cs:57
+msgid ""
+"Automatically search for missing and supplementary metadata and cover art "
+"for songs in your library."
 msgstr ""
 
 #: ../src/Banshee.Plugins/MetadataSearch/metadatasearch.schemas.in.h:1
@@ -1973,6 +1730,36 @@ msgstr "Habilita el connector MetadataSearch"
 msgid "Method of fetching cover art and supplementary metadata"
 msgstr ""
 
+#: ../src/Banshee.Plugins/MMKeys/MMKeysConfigPage.cs:48
+msgid "Multimedia Keyboard Shortcuts"
+msgstr ""
+
+#: ../src/Banshee.Plugins/MMKeys/MMKeysConfigPage.cs:52
+msgid ""
+"Configuration of multimedia keyboard shortcuts is done through the Gnome "
+"Keyboard Shortcuts configuration applet."
+msgstr ""
+
+#: ../src/Banshee.Plugins/MMKeys/mmkeys.schemas.in.h:1
+#, fuzzy
+msgid "Enable the MultimediaKeys plugin"
+msgstr "Habilita el connector MetadataSearch"
+
+#: ../src/Banshee.Plugins/NotificationAreaIcon/NotificationAreaIconPlugin.cs:49
+#, fuzzy
+msgid "Notification Area Icon"
+msgstr "Mostra la icona de l'àrea de notificació"
+
+#: ../src/Banshee.Plugins/NotificationAreaIcon/NotificationAreaIconPlugin.cs:53
+#, fuzzy
+msgid "Shows the Notification Area Icon"
+msgstr "Mostra la icona de l'àrea de notificació"
+
+#: ../src/Banshee.Plugins/NotificationAreaIcon/banshee-notificationareaicon.schemas.in.h:1
+#, fuzzy
+msgid "Enable the Notification Area Icon plugin"
+msgstr "Mostra la icona de l'àrea de notificació"
+
 #: ../src/Banshee.Widgets/ActiveUserEvent.cs:76
 msgid "Cancel Operation"
 msgstr "Cancel·la l'operació"
@@ -1982,11 +1769,625 @@ msgstr "Cancel·la l'operació"
 msgid "Are you sure you want to cancel the '{0}' operation?"
 msgstr "Esteu segur que voleu cancel·lar l'operació '{0}'?"
 
-#: ../src/Banshee.Widgets/SearchEntry.cs:157
-#: ../src/Banshee.Widgets/SearchEntry.cs:268
+#: ../src/Banshee.Widgets/SearchEntry.cs:203
+#: ../src/Banshee.Widgets/SearchEntry.cs:314
 #, csharp-format
 msgid "Searching: {0}"
 msgstr "S'està cercant: {0}"
+
+#: ../src/Banshee.Widgets/StreamPositionLabel.cs:83
+msgid "Idle"
+msgstr "En espera"
+
+#
+#: ../src/BurnCore.cs:93
+msgid "Could Not Write CD"
+msgstr "No s'ha pogut escriure al CD"
+
+#: ../src/BurnCore.cs:94
+msgid ""
+"No suitable wave encoder could be found to convert selected songs to CD "
+"audio format."
+msgstr ""
+"No s'ha pogut trobar un codificador addient per convertir les cançons "
+"seleccionades al format d'àudio del CD."
+
+#
+#: ../src/BurnCore.cs:155
+msgid "Writing CD"
+msgstr "S'està escrivint al CD"
+
+#
+#: ../src/BurnCore.cs:156
+msgid "Writing Audio CD"
+msgstr "S'està escrivint al CD d'àudio"
+
+#: ../src/BurnCore.cs:187
+msgid "The inserted media is not large enough to hold your selected music."
+msgstr ""
+"El suport inserit no és suficientment gran per emmagatzetmar la música "
+"seleccionada."
+
+#: ../src/BurnCore.cs:189
+#, csharp-format
+msgid "{0} more minute is needed on the media."
+msgid_plural "{0} more minutes are needed on the media."
+msgstr[0] "{0} minut més és necessari en el suport."
+msgstr[1] "{0} minuts més són necessaris en el suport."
+
+#
+#: ../src/BurnCore.cs:193
+msgid "Not Enough Space on Disc"
+msgstr "No hi ha prou espai al disc"
+
+#: ../src/BurnCore.cs:224
+msgid "No CD writers were found on your system."
+msgstr "No s'han trobar gravadores de CD en el sistema."
+
+#: ../src/BurnCore.cs:264
+msgid "Error Burning CD"
+msgstr "S'ha produït un error en enregistrar el CD"
+
+#: ../src/BurnCore.cs:268
+msgid "An unknown error occurred when attempting to write the CD"
+msgstr "S'ha produït un error desconegut en intentar escriure al CD"
+
+#
+#: ../src/BurnCore.cs:274
+msgid "CD Writing Complete"
+msgstr "L'enregistrament del CD ha acabat"
+
+#: ../src/BurnCore.cs:275
+msgid "The selected audio was successfully written to the CD."
+msgstr "L'àudio seleccionat s'ha escrit correctament al CD-ROM."
+
+#
+#: ../src/BurnCore.cs:279
+msgid "Error Writing CD"
+msgstr "S'ha produït un error en enregistrar el CD"
+
+#: ../src/BurnCore.cs:302
+msgid "Preparing to write..."
+msgstr "S'està preparant per l'escriptura"
+
+#: ../src/BurnCore.cs:306
+msgid "Writing disk..."
+msgstr "S'està escrivint al disc..."
+
+#: ../src/BurnCore.cs:310
+msgid "Fixating disk..."
+msgstr "S'està fixant el disc..."
+
+#: ../src/BurnCore.cs:327
+msgid "Waiting for Media"
+msgstr "S'està esperant el suport"
+
+#: ../src/BurnCore.cs:331 ../src/BurnCore.cs:334
+msgid "Insert Blank CD"
+msgstr "Inseriu un CD en blanc"
+
+#
+#: ../src/BurnCore.cs:332
+msgid "Please insert a blank CD disk for the write process."
+msgstr "Inseriu un CD en blanc per al procés d'enregistrament."
+
+#: ../src/Dialogs.cs:81
+msgid "An Error Occurred"
+msgstr "S'ha produït un error"
+
+#: ../src/Dialogs.cs:88
+msgid "Error"
+msgstr "Error"
+
+#: ../src/ExceptionDialog.cs:24
+msgid "Banshee Encountered a Fatal Error"
+msgstr "S'ha produït un error fatal al Banshee"
+
+#: ../src/ExceptionDialog.cs:52
+msgid ""
+"This may be due to a programming error. Please help us make Banshee better "
+"by reporting this error. Thank you in advance!"
+msgstr ""
+
+#: ../src/ExceptionDialog.cs:99
+msgid "An unhandled exception was thrown: "
+msgstr "S'ha llançat un excepció no gestionada: "
+
+#: ../src/LogCoreViewer.cs:52
+msgid "Log Viewer"
+msgstr "Visualitzador del registre"
+
+#: ../src/LogCoreViewer.cs:88
+msgid "Time Stamp"
+msgstr "Marca horària"
+
+#: ../src/LogCoreViewer.cs:107
+msgid "Message"
+msgstr "Missatge"
+
+#: ../src/LogCoreViewer.cs:119
+msgid "Show:"
+msgstr "Mostra:"
+
+#: ../src/LogCoreViewer.cs:136
+msgid "All Log Entries"
+msgstr "Totes les entrades del registre"
+
+#: ../src/LogCoreViewer.cs:137
+msgid "Only Error Messages"
+msgstr "Només els missatges d'error"
+
+#: ../src/LogCoreViewer.cs:138
+msgid "Only Warning Messages"
+msgstr "Només els missatges d'avís"
+
+#: ../src/LogCoreViewer.cs:139
+msgid "Only Information Messages"
+msgstr "Només els missatges d'informació"
+
+#: ../src/LogCoreViewer.cs:140
+msgid "Only Debug Messages"
+msgstr "Només els missatges de depuració"
+
+#
+#: ../src/LogCoreViewer.cs:155
+msgid "Entry Details:"
+msgstr "Detalls d'entrada:"
+
+#: ../src/PlayerInterface.cs:363
+msgid "Loading..."
+msgstr "S'està carregant..."
+
+#: ../src/PlayerInterface.cs:424
+msgid "All"
+msgstr "Tot"
+
+#: ../src/PlayerInterface.cs:426 ../src/PlayerInterface.cs:1278
+msgid "Song Name"
+msgstr "Nom de la cançó"
+
+#: ../src/PlayerInterface.cs:427 ../src/PlayerInterface.cs:1276
+msgid "Artist Name"
+msgstr "Nom de l'artista"
+
+#: ../src/PlayerInterface.cs:428 ../src/PlayerInterface.cs:1280
+msgid "Album Title"
+msgstr "Nom de l'àlbum"
+
+#: ../src/PlayerInterface.cs:429 ../src/PlayerInterface.cs:1282
+#: ../src/PlaylistView.cs:97
+msgid "Genre"
+msgstr ""
+
+#
+#: ../src/PlayerInterface.cs:450
+msgid "Write selection to CD"
+msgstr "Enregistra la selecció al CD"
+
+#
+#: ../src/PlayerInterface.cs:451
+msgid "Import CD into library"
+msgstr "Importa el CD a la biblioteca"
+
+#
+#: ../src/PlayerInterface.cs:452
+msgid "Play previous song"
+msgstr "Reprodueix la cançó anterior"
+
+#
+#: ../src/PlayerInterface.cs:453
+msgid "Play/pause current song"
+msgstr "Reprodueix/pausa la cançó actual"
+
+#
+#: ../src/PlayerInterface.cs:454
+msgid "Play next song"
+msgstr "Reprodueix la cançó següent"
+
+#
+#: ../src/PlayerInterface.cs:455
+msgid "Current position in song"
+msgstr "Posició actual en la cançó"
+
+#
+#: ../src/PlayerInterface.cs:456
+msgid "Device disk usage"
+msgstr "Ús del dispositiu de disc"
+
+#
+#: ../src/PlayerInterface.cs:457
+msgid "Synchronize music library to device"
+msgstr "Sincronitza la biblioteca de música al dispositiu"
+
+#
+#: ../src/PlayerInterface.cs:458
+msgid "Adjust volume"
+msgstr "Ajusta el volum"
+
+#: ../src/PlayerInterface.cs:459
+msgid "Change repeat playback mode"
+msgstr ""
+
+#: ../src/PlayerInterface.cs:460
+#, fuzzy
+msgid "Toggle shuffle playback mode"
+msgstr "Commuta el mode de pantalla sencera"
+
+#
+#: ../src/PlayerInterface.cs:461
+#, fuzzy
+msgid "Edit and view metadata of selected songs"
+msgstr "Edita les metadades en les cançons seleccionades"
+
+#
+#: ../src/PlayerInterface.cs:803
+msgid "Cannot Play Song"
+msgstr "No s'ha pogut reproduir la cançó"
+
+#: ../src/PlayerInterface.cs:804
+#, csharp-format
+msgid ""
+"{0} cannot be played by Banshee. The most common reasons for this are:\n"
+"\n"
+"  <big>•</big> Song is protected (DRM)\n"
+"  <big>•</big> Song is on a DAP that does not support playback\n"
+msgstr ""
+
+#
+#: ../src/PlayerInterface.cs:824
+msgid "Pause"
+msgstr "Pausa"
+
+#: ../src/PlayerInterface.cs:858
+#, fuzzy
+msgid "Playback Error"
+msgstr "_Reprodueix"
+
+#
+#: ../src/PlayerInterface.cs:1042
+#, fuzzy
+msgid "Import"
+msgstr "Importa el CD"
+
+#
+#: ../src/PlayerInterface.cs:1058 ../src/PlayerInterface.cs:2006
+msgid "Rename Device"
+msgstr "Reanomena el dispositiu"
+
+#: ../src/PlayerInterface.cs:1060 ../src/PlayerInterface.cs:2000
+msgid "Rename Playlist"
+msgstr "Reanomena la llista de reproducció"
+
+#: ../src/PlayerInterface.cs:1165
+#, csharp-format
+msgid "{0} day"
+msgid_plural "{0} days"
+msgstr[0] "{0} dia"
+msgstr[1] "{0} dies"
+
+#: ../src/PlayerInterface.cs:1182
+#, csharp-format
+msgid "{0} Item"
+msgid_plural "{0} Items"
+msgstr[0] "{0} element"
+msgstr[1] "{0} elements"
+
+#: ../src/PlayerInterface.cs:1184
+#, csharp-format
+msgid "{0} Total Play Time"
+msgstr "Temps total de reproducció {0}"
+
+#: ../src/PlayerInterface.cs:1496
+msgid "Clear"
+msgstr "Buida"
+
+#: ../src/PlayerInterface.cs:1707
+msgid "Could Not Eject"
+msgstr "No s'ha pogut expulsar"
+
+#: ../src/PlayerInterface.cs:1735
+#, fuzzy, csharp-format
+msgid "Cannot Import: {0} ({1})"
+msgstr "No s'ha pogut importar: {0} ({1}, {2})"
+
+#: ../src/PlayerInterface.cs:1777
+#, csharp-format
+msgid ""
+"Are you sure you want to remove the selected song from your library "
+"<i><b>and</b></i> your drive? This action will permanently delete the file."
+msgid_plural ""
+"Are you sure you want to remove the selected <b>({0})</b> songs from your "
+"library <i><b>and</b></i> your drive? This action will permanently delete "
+"the files."
+msgstr[0] ""
+msgstr[1] ""
+
+#: ../src/PlayerInterface.cs:1786
+#, csharp-format
+msgid "Are you sure you want to remove the selected song from your library?"
+msgid_plural ""
+"Are you sure you want to remove the selected <b>({0})</b> songs from your "
+"library?"
+msgstr[0] ""
+msgstr[1] ""
+
+#: ../src/PlayerInterface.cs:1795
+msgid "Remove Selected Songs from Library"
+msgstr "Elimina les cançons seleccionades de la biblioteca"
+
+#. Translators: {0} is the name of the DAP device (i.e. 'iPod')
+#: ../src/PlayerInterface.cs:1934
+#, csharp-format
+msgid "Synchronize {0}"
+msgstr "Sincronitza {0}"
+
+#: ../src/PlayerInterface.cs:1935
+#, csharp-format
+msgid ""
+"You have made changes to your {0}. Please choose a method for updating the "
+"contents of your {0}.\n"
+"\n"
+"<big>•</big> <i>Synchronize Library</i>: synchronize Banshee library to {0}\n"
+"<big>•</big> <i>Save Manual Changes</i>: save only the manual changes you "
+"made"
+msgstr ""
+
+#: ../src/PlayerInterface.cs:1941
+msgid ""
+"<b>Warning:</b> Actions will alter or erase existing iPod contents and may "
+"cause incompatability with iTunes!"
+msgstr ""
+
+#: ../src/PlayerInterface.cs:1943
+msgid "Synchronize Library"
+msgstr "Sincronitza la biblioteca"
+
+#: ../src/PlayerInterface.cs:1945
+msgid "Save Manual Changes"
+msgstr "Desa els canvis manuals"
+
+#: ../src/PlayerInterface.cs:2001
+msgid "Enter new playlist name"
+msgstr "Introduïu el nom de la nova llista de reproducció"
+
+#: ../src/PlayerInterface.cs:2007
+msgid "Enter new name for your device"
+msgstr "Introduïu el nou nom per dispositiu"
+
+#: ../src/PlaylistColumns.cs:84
+msgid "Invalid column width"
+msgstr "Amplada de columna no vàlida"
+
+#: ../src/PlaylistColumns.cs:143
+msgid "Choose Columns"
+msgstr "Escolliu columnes"
+
+#: ../src/PlaylistColumns.cs:159
+msgid "Visible Playlist Columns"
+msgstr "Columnes visibles de la llista de reproducció"
+
+#: ../src/PlaylistView.cs:85
+msgid "Track"
+msgstr "Pista"
+
+#: ../src/PlaylistView.cs:88
+msgid "Artist"
+msgstr "Artista"
+
+#: ../src/PlaylistView.cs:91
+msgid "Title"
+msgstr "Títol"
+
+#: ../src/PlaylistView.cs:94
+msgid "Album"
+msgstr "Àlbum"
+
+#: ../src/PlaylistView.cs:100
+msgid "Time"
+msgstr "Temps"
+
+#: ../src/PlaylistView.cs:111
+msgid "Plays"
+msgstr "Reproduccions"
+
+#: ../src/PlaylistView.cs:118
+msgid "Last Played"
+msgstr "Última reproducció"
+
+#: ../src/PlaylistView.cs:462
+msgid "N/A"
+msgstr "N/D"
+
+#
+#: ../src/Preferences.cs:98
+msgid "Select Library Location"
+msgstr "Seleccioneu la ubicació de la biblioteca"
+
+#: ../src/Preferences.cs:262
+msgid "Unavailable"
+msgstr "No disponible"
+
+#: ../src/Preferences.cs:268
+msgid "Loading Drive List..."
+msgstr "S'està carregant la llista d'unitats..."
+
+#: ../src/Preferences.cs:291
+msgid "No CD Burners Detected"
+msgstr "No s'ha detectat cap enregistrador de CD"
+
+#: ../src/Preferences.cs:389
+msgid "Fastest Possible"
+msgstr ""
+
+#. Translators: this represents a CD write speed, eg "32x"
+#: ../src/Preferences.cs:393
+#, csharp-format
+msgid "{0}x"
+msgstr "{0}x"
+
+#: ../src/ToggleStates.cs:79
+msgid "Continuous"
+msgstr "Continu"
+
+#: ../src/TrackProperties.cs:184
+msgid "Set all Track Numbers to this value"
+msgstr "Dóna aquest valor a tots els números de pista a aquest valor"
+
+#: ../src/TrackProperties.cs:185
+msgid "Automatically Set All Track Numbers"
+msgstr "Dóna aquest valor a automàticament tots els números de pista"
+
+#: ../src/TrackProperties.cs:186
+msgid "Set all Track Counts to this value"
+msgstr "Dóna aquest valor a tots els comptes de pista"
+
+#: ../src/TrackProperties.cs:187
+msgid "Set all Artists to this value"
+msgstr "Dóna aquest valor a tots els artistes"
+
+#: ../src/TrackProperties.cs:188
+msgid "Set all Albums to this value"
+msgstr "Dóna aquest valor a tots els àlbums"
+
+#: ../src/TrackProperties.cs:189
+msgid "Set all Titles to this value"
+msgstr "Dóna aquest valor a tots els títols"
+
+#: ../src/TrackProperties.cs:190
+#, fuzzy
+msgid "Set all Genres to this value"
+msgstr "Dóna aquest valor a tots els títols"
+
+#: ../src/TrackProperties.cs:234
+msgid "Never Played"
+msgstr "Mai no s'ha reproduït"
+
+#: ../src/TrackProperties.cs:239
+#, csharp-format
+msgid "Editing Song {0} of {1}"
+msgstr "S'està editant la cançó {0} de {1}"
+
+#: ../src/TrackProperties.cs:246 ../src/TrackProperties.cs:247
+#, csharp-format
+msgid "File: {0}"
+msgstr "Fitxer: {0}"
+
+#: ../src/TrackProperties.cs:253
+msgid "KB/Second"
+msgstr "KB/Segon"
+
+#: ../src/TrackProperties.cs:254
+#, csharp-format
+msgid "{0} KHz"
+msgstr "{0} KHz"
+
+#: ../src/TrackProperties.cs:255
+msgid "Yes"
+msgstr "Sí"
+
+#: ../src/TrackProperties.cs:255
+msgid "No"
+msgstr "No"
+
+#
+#: ../src/VersionInformationDialog.cs:62
+msgid "Assembly Version Information"
+msgstr "Informació de la versió de l'assembly"
+
+#: ../src/VersionInformationDialog.cs:68
+msgid "Assembly Name"
+msgstr "Nom de l'assembly"
+
+#
+#: ../src/VersionInformationDialog.cs:70
+msgid "Version"
+msgstr "Versió"
+
+#~ msgid "Only display the notification area (tray) icon if true"
+#~ msgstr "Mostra només la icona de l'àrea de notificació (safata) si és cert"
+
+#~ msgid "<big><b>New iPod Detected <small><sup>TM</sup></small></b></big>"
+#~ msgstr ""
+#~ "<big><b>S'ha detectat un nou iPod<small><sup>TM</sup></small></b></big>"
+
+#~ msgid "<small>Serial Number</small>"
+#~ msgstr "<small>Número de sèrie</small>"
+
+#~ msgid "<span size=\"small\">Idle</span>"
+#~ msgstr "<span size=\"small\">Inactiu</span>"
+
+#~ msgid ""
+#~ "Banshee has detected that you are plugging in an iPod for the first time. "
+#~ "Please take a moment to give your iPod a name."
+#~ msgstr ""
+#~ "El banshee ha detectat per primera vegada que heu connectat un iPod.Heu "
+#~ "de posar-li un nom al vostre iPod."
+
+#~ msgid "Description:"
+#~ msgstr "Descripció:"
+
+#~ msgid "Engine:"
+#~ msgstr "Motor:"
+
+#~ msgid "New iPod Detected"
+#~ msgstr "S'ha detectat un nou iPod"
+
+#~ msgid "Your Name:"
+#~ msgstr "El vostre nom:"
+
+#~ msgid "iPod Name:"
+#~ msgstr "Nom de l'iPod"
+
+#~ msgid "Notification Area Icon could not be installed"
+#~ msgstr "No s'ha pogut instal·lar la icona de l'àrea de notificació"
+
+#~ msgid "Automatic Import"
+#~ msgstr "Importació automàtica"
+
+#~ msgid "Your Library is Empty - Consider Importing Music"
+#~ msgstr "La vostra biblioteca està buida. Considereu importar música"
+
+#~ msgid "This Playlist is Empty - Consider Adding Music"
+#~ msgstr "La llista de reproducció està buida. Considereu afegir música"
+
+#~ msgid "Banshee Restart Required"
+#~ msgstr "Cal reiniciar el Banshee"
+
+#
+#~ msgid "Preferences..."
+#~ msgstr "Preferències..."
+
+#~ msgid "Edit Banshee preferences"
+#~ msgstr "Edita les preferències del Banshee"
+
+#
+#~ msgid "About..."
+#~ msgstr "Quant a..."
+
+#~ msgid "View Banshee credits and license information"
+#~ msgstr "Visualitza els crèdits i la informació de la llicència del Banshee"
+
+#~ msgid "Could not encode file: {0}"
+#~ msgstr "No s'ha pogut codificar el fitxer: {0}"
+
+#~ msgid "Could not process connected DAP"
+#~ msgstr "No s'ha pogut processar el DAP connectat"
+
+#
+#~ msgid "GStreamer 0.10 Engine"
+#~ msgstr "Motor del GStreamer 0.10"
+
+#~ msgid "VLC"
+#~ msgstr "VLC"
+
+#~ msgid "Configure Audioscrobbler"
+#~ msgstr "Configura l'Audioscrobbler"
+
+#~ msgid "Configure Metadata Searcher"
+#~ msgstr "Configura el cercador de metadates"
+
+#~ msgid "Search Options"
+#~ msgstr "Opcions de cerca"
 
 #~ msgid "About Banshee"
 #~ msgstr "Quant al Banshee"
@@ -2011,9 +2412,6 @@ msgstr "S'està cercant: {0}"
 
 #~ msgid "Remove"
 #~ msgstr "Elimina"
-
-#~ msgid "Rename"
-#~ msgstr "Reanomena"
 
 #~ msgid "Banshee CD Burner"
 #~ msgstr "Enregistrador de CD del Banshee"
@@ -2078,9 +2476,6 @@ msgstr "S'està cercant: {0}"
 #~ msgid "Playlist Save"
 #~ msgstr "Desa la llista de reproducció"
 
-#~ msgid "Saving new entries"
-#~ msgstr "S'estan desant les entrades noves"
-
 #~ msgid "Preloading Library"
 #~ msgstr "Precarregant la biblioteca"
 
@@ -2095,9 +2490,6 @@ msgstr "S'està cercant: {0}"
 
 #~ msgid "Eject iPod"
 #~ msgstr "Expulsa l'iPod"
-
-#~ msgid "<b>{0}'s Music Library</b>"
-#~ msgstr "<b>Biblioteca musical de {0}</b>"
 
 #~ msgid "Banshee - Idle"
 #~ msgstr "Banshee - En espera"

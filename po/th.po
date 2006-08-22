@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Banshee VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-02-07 12:08+0700\n"
+"POT-Creation-Date: 2006-04-25 18:06+0200\n"
 "PO-Revision-Date: 2006-02-07 13:37+0700\n"
 "Last-Translator: Theppitak Karoonboonyanan <thep@linux.thai.net>\n"
 "Language-Team: Thai <l10n@opentle.org>\n"
@@ -16,14 +16,268 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: ../data/banshee.desktop.in.in.h:1 ../src/PlayerInterface.cs:315
-#: ../src/PlayerInterface.cs:1381
+#. Footer
+#: ../data/banshee.desktop.in.in.h:1 ../data/banshee.glade.h:18
+#: ../src/PlayerInterface.cs:309 ../src/PlayerInterface.cs:650
+#: ../src/PlayerInterface.cs:1178
 msgid "Banshee Music Player"
 msgstr "ตัวเล่นเพลง Banshee"
 
 #: ../data/banshee.desktop.in.in.h:2
 msgid "Music Player"
 msgstr "ตัวเล่นเพลง"
+
+#: ../data/banshee.glade.h:1
+msgid "<b>Advanced Options</b>"
+msgstr "<b>ตัวเลือกเพิ่มเติม</b>"
+
+#: ../data/banshee.glade.h:2
+msgid "<b>Advanced Properties</b>"
+msgstr "<b>คุณสมบัติเพิ่มเติม</b>"
+
+#: ../data/banshee.glade.h:3
+msgid "<b>Banshee Music Folder Location</b>"
+msgstr "<b>ตำแหน่งโฟลเดอร์เก็บเพลงของ Banshee</b>"
+
+#: ../data/banshee.glade.h:4
+msgid "<b>CD Burning</b>"
+msgstr "<b>การเขียนซีดี</b>"
+
+#: ../data/banshee.glade.h:5
+msgid "<b>CD Ripping</b>"
+msgstr ""
+
+#: ../data/banshee.glade.h:6
+msgid "<b>Loading...</b>"
+msgstr "<b>กำลังเรียก...</b>"
+
+#: ../data/banshee.glade.h:7
+msgid "<b>Playback Engines</b>"
+msgstr ""
+
+#: ../data/banshee.glade.h:8
+msgid "<b>iPod Transcoding</b>"
+msgstr ""
+
+#: ../data/banshee.glade.h:9
+msgid "<big><b>Editing Song</b></big>"
+msgstr ""
+
+#: ../data/banshee.glade.h:10
+msgid "<big><b>Import Music to Library</b></big>"
+msgstr ""
+
+#: ../data/banshee.glade.h:11
+msgid "<small><i><Unknown></i></small>"
+msgstr "<small><i><ไม่มีข้อมูล></i></small>"
+
+#: ../data/banshee.glade.h:12
+msgid "<small>Advanced</small>"
+msgstr "<small>ระดับสูง</small>"
+
+#: ../data/banshee.glade.h:13
+msgid "<small>Burning</small>"
+msgstr "<small>การเขียนซีดี</small>"
+
+#: ../data/banshee.glade.h:14
+msgid "<small>Encoding</small>"
+msgstr "<small>การเข้ารหัส</small>"
+
+#: ../data/banshee.glade.h:15
+msgid "<small>Library</small>"
+msgstr "<small>ไลบรารี</small>"
+
+#: ../data/banshee.glade.h:16
+msgid "Albu_m"
+msgstr "_อัลบั้ม"
+
+#: ../data/banshee.glade.h:17 ../src/Banshee.Base/AudioCd/AudioCdDisk.cs:92
+msgid "Audio CD"
+msgstr "ซีดีเพลง"
+
+#: ../data/banshee.glade.h:19
+msgid "Bit Rate:"
+msgstr "บิตเรต:"
+
+#: ../data/banshee.glade.h:20
+msgid "Burnproof"
+msgstr ""
+
+#: ../data/banshee.glade.h:21
+msgid "Channels:"
+msgstr "ช่องสัญญาณ:"
+
+#: ../data/banshee.glade.h:22
+msgid "Choose an import source:"
+msgstr ""
+
+#: ../data/banshee.glade.h:23
+msgid "Copy files to Banshee Music Folder when importing to Library"
+msgstr "คัดลอกแฟ้มไปยังโฟลเดอร์เพลงของ Banshee เมื่อนำเข้าเพลงมายังไลบรารี"
+
+#: ../data/banshee.glade.h:24
+msgid "Data CD"
+msgstr "ซีดีข้อมูล"
+
+#: ../data/banshee.glade.h:25
+msgid "Default Engine"
+msgstr ""
+
+#: ../data/banshee.glade.h:26
+msgid "Disk Drive:"
+msgstr "ไดรว์:"
+
+#: ../data/banshee.glade.h:27
+msgid "Disk Format:"
+msgstr "ชนิดของแผ่น:"
+
+#: ../data/banshee.glade.h:28
+msgid "Disk Usage:"
+msgstr "เนื้อที่ดิสก์ที่ใช้:"
+
+#: ../data/banshee.glade.h:29
+msgid "Disk at once"
+msgstr ""
+
+#: ../data/banshee.glade.h:30
+msgid "Do not show this dialog again"
+msgstr ""
+
+#: ../data/banshee.glade.h:31 ../src/TrackProperties.cs:240
+msgid "Editing Song"
+msgstr "แก้ไขข้อมูลเพลง"
+
+#: ../data/banshee.glade.h:32
+msgid "Eject when finished"
+msgstr "ดันแผ่นออกเมื่อเขียนเสร็จ"
+
+#: ../data/banshee.glade.h:33
+msgid "Encoding Profile:"
+msgstr "รูปแบบการเข้ารหัส:"
+
+#: ../data/banshee.glade.h:34
+msgid "Encoding:"
+msgstr "การเข้ารหัส:"
+
+#: ../data/banshee.glade.h:35
+msgid "Enter the address of the file you would like to open:"
+msgstr ""
+
+#: ../data/banshee.glade.h:36
+msgid "File Name:"
+msgstr "ชื่อแฟ้ม:"
+
+#: ../data/banshee.glade.h:37
+#, fuzzy
+msgid "Import Music Source"
+msgstr "นำเข้าเพลง"
+
+#: ../data/banshee.glade.h:38
+#, fuzzy
+msgid "Import Music to Library"
+msgstr "นำเข้าแฟ้มมายังไลบรารี"
+
+#: ../data/banshee.glade.h:39
+msgid "Imported On:"
+msgstr "นำเข้าเมื่อ:"
+
+#: ../data/banshee.glade.h:40
+msgid "Last Played On:"
+msgstr "เล่นครั้งล่าสุด:"
+
+#: ../data/banshee.glade.h:41
+msgid "MP3 CD"
+msgstr "ซีดี MP3"
+
+#: ../data/banshee.glade.h:42
+msgid "Mime Type:"
+msgstr "ส่วนขยายแฟ้ม:"
+
+#: ../data/banshee.glade.h:43
+msgid "Number of Plays:"
+msgstr "จำนวนครั้งที่เล่น"
+
+#: ../data/banshee.glade.h:44 ../src/Banshee.Base/Gui/OpenLocationDialog.cs:97
+msgid "Open Location"
+msgstr ""
+
+#: ../data/banshee.glade.h:45
+msgid "Overburn"
+msgstr ""
+
+#: ../data/banshee.glade.h:46
+msgid "Preferences"
+msgstr "ปรับแต่ง"
+
+#: ../data/banshee.glade.h:47
+msgid "Reset"
+msgstr "คืนค่าเดิม"
+
+#: ../data/banshee.glade.h:48
+msgid "Sample Rate:"
+msgstr ""
+
+#: ../data/banshee.glade.h:49
+msgid "Seek to Position"
+msgstr ""
+
+#: ../data/banshee.glade.h:50
+msgid "Simulate write"
+msgstr "จำลองการเขียน"
+
+#: ../data/banshee.glade.h:51
+msgid "Track Duration:"
+msgstr "ความยาวเพลง:"
+
+#: ../data/banshee.glade.h:52
+msgid "Track _Count"
+msgstr "_จำนวนแทร็ค"
+
+#: ../data/banshee.glade.h:53
+msgid "Track _Number"
+msgstr "_ลำดับแทร็ค"
+
+#: ../data/banshee.glade.h:54 ../src/Banshee.Base/Dap/Dap.cs:604
+#: ../src/TrackProperties.cs:236 ../src/TrackProperties.cs:260
+#: ../src/TrackProperties.cs:261 ../src/TrackProperties.cs:262
+#: ../src/TrackProperties.cs:263 ../src/TrackProperties.cs:264
+#: ../src/TrackProperties.cs:265
+msgid "Unknown"
+msgstr "ไม่มีข้อมูล"
+
+#: ../data/banshee.glade.h:55
+msgid "VBR:"
+msgstr "VBR:"
+
+#: ../data/banshee.glade.h:56
+msgid "Write Speed:"
+msgstr "ความเร็วการเขียน:"
+
+#: ../data/banshee.glade.h:57
+#, fuzzy
+msgid ""
+"Your music library is empty. You may import new music into your library now, "
+"or choose to do so later."
+msgstr ""
+"คุณไม่มีเพลงในไลบรารี คุณอาจนำเข้าเพลงใหม่ในไลบรารีตอนนี้หรือเลือกที่จะนำเข้าในภายหลังก็ได้\n"
+"\n"
+"การเลือกนำเข้าอัตโนมัติ หรือนำเข้าโฟลเดอร์ขนาดใหญ่อาจต้องใช้เวลา กรุณารอจนกว่าจะเสร็จ"
+
+#: ../data/banshee.glade.h:58
+msgid "_Artist"
+msgstr "_ศิลปิน"
+
+#: ../data/banshee.glade.h:59
+msgid "_Genre"
+msgstr ""
+
+#: ../data/banshee.glade.h:60
+msgid "_Search:"
+msgstr "_ค้นหา:"
+
+#: ../data/banshee.glade.h:61
+msgid "_Title"
+msgstr "_ชื่อ"
 
 #: ../data/banshee.schemas.in.h:1
 msgid "Copy and rename music to banshee music library directory when importing"
@@ -75,27 +329,27 @@ msgid "Name of media playback engine."
 msgstr ""
 
 #: ../data/banshee.schemas.in.h:12
-msgid "Only display the notification area (tray) icon if true"
-msgstr ""
-
-#: ../data/banshee.schemas.in.h:13
 msgid "Pixel position of Main Player Window on the X Axis"
 msgstr ""
 
-#: ../data/banshee.schemas.in.h:14
+#: ../data/banshee.schemas.in.h:13
 msgid "Pixel position of Main Player Window on the Y Axis"
 msgstr ""
 
-#: ../data/banshee.schemas.in.h:15
+#: ../data/banshee.schemas.in.h:14
 msgid "Player Engine Name"
 msgstr ""
 
+#: ../data/banshee.schemas.in.h:15
+msgid "Show advanced track properties"
+msgstr ""
+
 #: ../data/banshee.schemas.in.h:16
-msgid "Show Notification Area Icon"
+msgid "Show the Initial Import Dialog"
 msgstr ""
 
 #: ../data/banshee.schemas.in.h:17
-msgid "Show advanced track properties"
+msgid "Show the Initial Import Dialog when the Banshee library is empty"
 msgstr ""
 
 #: ../data/banshee.schemas.in.h:18
@@ -113,352 +367,142 @@ msgid ""
 msgstr ""
 
 #: ../data/banshee.schemas.in.h:21
+msgid "Visibility of Album Column."
+msgstr ""
+
+#: ../data/banshee.schemas.in.h:22
+#, fuzzy
+msgid "Visibility of Artist Column."
+msgstr "คอลัมน์ที่แสดงในรายการเล่น"
+
+#: ../data/banshee.schemas.in.h:23
+#, fuzzy
+msgid "Visibility of Time Column."
+msgstr "คอลัมน์ที่แสดงในรายการเล่น"
+
+#: ../data/banshee.schemas.in.h:24
+#, fuzzy
+msgid "Visibility of Title Column."
+msgstr "คอลัมน์ที่แสดงในรายการเล่น"
+
+#: ../data/banshee.schemas.in.h:25
+msgid "Visibility of Track Column."
+msgstr ""
+
+#: ../data/banshee.schemas.in.h:26
 msgid "Volume Output Level"
 msgstr "ระดับเสียง"
 
-#: ../data/banshee.schemas.in.h:22
+#: ../data/banshee.schemas.in.h:27
 msgid ""
 "Volume of playback relative to mixer output (except on Helix, which sets "
 "volume directly on PCM"
 msgstr ""
 
-#: ../data/banshee.schemas.in.h:23
+#: ../data/banshee.schemas.in.h:28
 msgid "Width of Album Column."
 msgstr ""
 
-#: ../data/banshee.schemas.in.h:24
+#: ../data/banshee.schemas.in.h:29
 msgid "Width of Artist Column."
 msgstr ""
 
-#: ../data/banshee.schemas.in.h:25
+#: ../data/banshee.schemas.in.h:30
 msgid "Width of Last Played Column."
 msgstr ""
 
-#: ../data/banshee.schemas.in.h:26
+#: ../data/banshee.schemas.in.h:31
 msgid "Width of Plays Column."
 msgstr ""
 
-#: ../data/banshee.schemas.in.h:27
+#: ../data/banshee.schemas.in.h:32
 msgid "Width of Rating Column."
 msgstr ""
 
-#: ../data/banshee.schemas.in.h:28
+#: ../data/banshee.schemas.in.h:33
 msgid "Width of Source View Column."
 msgstr ""
 
-#: ../data/banshee.schemas.in.h:29
+#: ../data/banshee.schemas.in.h:34
 msgid "Width of Time Column."
 msgstr ""
 
-#: ../data/banshee.schemas.in.h:30
+#: ../data/banshee.schemas.in.h:35
 msgid "Width of Title Column."
 msgstr ""
 
-#: ../data/banshee.schemas.in.h:31
+#: ../data/banshee.schemas.in.h:36
 msgid "Width of Track Column."
 msgstr ""
 
-#: ../data/banshee.schemas.in.h:32
+#: ../data/banshee.schemas.in.h:37
 msgid "Width of the main interface window."
 msgstr ""
 
-#: ../data/banshee.schemas.in.h:33
+#: ../data/banshee.schemas.in.h:38
 msgid "Window Height"
 msgstr ""
 
-#: ../data/banshee.schemas.in.h:34
+#: ../data/banshee.schemas.in.h:39
 msgid "Window Maximized"
 msgstr ""
 
-#: ../data/banshee.schemas.in.h:35
+#: ../data/banshee.schemas.in.h:40
 msgid "Window Position X"
 msgstr ""
 
-#: ../data/banshee.schemas.in.h:36
+#: ../data/banshee.schemas.in.h:41
 msgid "Window Position Y"
 msgstr ""
 
-#: ../data/banshee.schemas.in.h:37
+#: ../data/banshee.schemas.in.h:42
 msgid "Window Width"
 msgstr ""
 
-#: ../data/banshee.glade.h:1
-msgid "<b>Advanced Options</b>"
-msgstr "<b>ตัวเลือกเพิ่มเติม</b>"
-
-#: ../data/banshee.glade.h:2
-msgid "<b>Advanced Properties</b>"
-msgstr "<b>คุณสมบัติเพิ่มเติม</b>"
-
-#: ../data/banshee.glade.h:3
-msgid "<b>Banshee Music Folder Location</b>"
-msgstr "<b>ตำแหน่งโฟลเดอร์เก็บเพลงของ Banshee</b>"
-
-#: ../data/banshee.glade.h:4
-msgid "<b>CD Burning</b>"
-msgstr "<b>การเขียนซีดี</b>"
-
-#: ../data/banshee.glade.h:5
-msgid "<b>CD Ripping</b>"
-msgstr ""
-
-#: ../data/banshee.glade.h:6
-msgid "<b>Loading...</b>"
-msgstr "<b>กำลังเรียก...</b>"
-
-#: ../data/banshee.glade.h:7
-msgid "<b>Playback Engines</b>"
-msgstr ""
-
-#: ../data/banshee.glade.h:8
-msgid "<b>iPod Transcoding</b>"
-msgstr ""
-
-#: ../data/banshee.glade.h:9
-msgid "<big><b>Editing Song</b></big>"
-msgstr ""
-
-#: ../data/banshee.glade.h:10
-msgid "<big><b>New iPod Detected <small><sup>TM</sup></small></b></big>"
-msgstr ""
-
-#: ../data/banshee.glade.h:11
-msgid "<small><i><Unknown></i></small>"
-msgstr "<small><i><ไม่มีข้อมูล></i></small>"
-
-#: ../data/banshee.glade.h:12
-msgid "<small>Advanced</small>"
-msgstr "<small>ระดับสูง</small>"
-
-#: ../data/banshee.glade.h:13
-msgid "<small>Burning</small>"
-msgstr "<small>การเขียนซีดี</small>"
-
-#: ../data/banshee.glade.h:14
-msgid "<small>Encoding</small>"
-msgstr "<small>การเข้ารหัส</small>"
-
-#: ../data/banshee.glade.h:15
-msgid "<small>Library</small>"
-msgstr "<small>ไลบรารี</small>"
-
-#: ../data/banshee.glade.h:16
-msgid "<small>Serial Number</small>"
-msgstr ""
-
-#: ../data/banshee.glade.h:17
-msgid "<span size=\"small\">Idle</span>"
-msgstr "<span size=\"small\">ไม่ได้เล่น</span>"
-
-#: ../data/banshee.glade.h:18
-msgid "Albu_m"
-msgstr "_อัลบั้ม"
-
-#: ../data/banshee.glade.h:19 ../src/Banshee.Base/AudioCd/AudioCdDisk.cs:93
-msgid "Audio CD"
-msgstr "ซีดีเพลง"
-
-#: ../data/banshee.glade.h:20 ../libbanshee/gst-cd-rip-0.8.c:227
-#: ../src/AboutBox.cs:126 ../src/NotificationAreaIcon.cs:61
-#: ../src/PlayerInterface.cs:693
-msgid "Banshee"
-msgstr "Banshee"
-
-#: ../data/banshee.glade.h:21
-msgid ""
-"Banshee has detected that you are plugging in an iPod for the first time. "
-"Please take a moment to give your iPod a name."
-msgstr "Banshee ตรวจพบว่าคุณเสียบไอพอดเป็นครั้งแรก กรุณาใส่ชื่อไอพอดของคุณ"
-
-#: ../data/banshee.glade.h:22
-msgid "Bit Rate:"
-msgstr "บิตเรต:"
-
-#: ../data/banshee.glade.h:23
-msgid "Burnproof"
-msgstr ""
-
-#: ../data/banshee.glade.h:24
-msgid "Channels:"
-msgstr "ช่องสัญญาณ:"
-
-#: ../data/banshee.glade.h:25
-msgid "Copy files to Banshee Music Folder when importing to Library"
-msgstr "คัดลอกแฟ้มไปยังโฟลเดอร์เพลงของ Banshee เมื่อนำเข้าเพลงมายังไลบรารี"
-
-#: ../data/banshee.glade.h:26
-msgid "Data CD"
-msgstr "ซีดีข้อมูล"
-
-#: ../data/banshee.glade.h:27
-msgid "Description:"
-msgstr "คำอธิบาย:"
-
-#: ../data/banshee.glade.h:28
-msgid "Disk Drive:"
-msgstr "ไดรว์:"
-
-#: ../data/banshee.glade.h:29
-msgid "Disk Format:"
-msgstr "ชนิดของแผ่น:"
-
-#: ../data/banshee.glade.h:30
-msgid "Disk Usage:"
-msgstr "เนื้อที่ดิสก์ที่ใช้:"
-
-#: ../data/banshee.glade.h:31
-msgid "Disk at once"
-msgstr ""
-
-#: ../data/banshee.glade.h:32 ../src/TrackProperties.cs:222
-msgid "Editing Song"
-msgstr "แก้ไขข้อมูลเพลง"
-
-#: ../data/banshee.glade.h:33
-msgid "Eject when finished"
-msgstr "ดันแผ่นออกเมื่อเขียนเสร็จ"
-
-#: ../data/banshee.glade.h:34
-msgid "Encoding Profile:"
-msgstr "รูปแบบการเข้ารหัส:"
-
-#: ../data/banshee.glade.h:35
-msgid "Encoding:"
-msgstr "การเข้ารหัส:"
-
-#: ../data/banshee.glade.h:36
-msgid "Engine:"
-msgstr ""
-
-#: ../data/banshee.glade.h:37
-msgid "File Name:"
-msgstr "ชื่อแฟ้ม:"
-
-#: ../data/banshee.glade.h:38
-msgid "Imported On:"
-msgstr "นำเข้าเมื่อ:"
-
-#: ../data/banshee.glade.h:39
-msgid "Last Played On:"
-msgstr "เล่นครั้งล่าสุด:"
-
-#: ../data/banshee.glade.h:40
-msgid "MP3 CD"
-msgstr "ซีดี MP3"
-
-#: ../data/banshee.glade.h:41
-msgid "Mime Type:"
-msgstr "ส่วนขยายแฟ้ม:"
-
-#: ../data/banshee.glade.h:42
-msgid "New iPod Detected"
-msgstr "ตรวจพบไอพอดใหม่"
-
-#: ../data/banshee.glade.h:43
-msgid "Number of Plays:"
-msgstr "จำนวนครั้งที่เล่น"
-
-#: ../data/banshee.glade.h:44
-msgid "Overburn"
-msgstr ""
-
-#: ../data/banshee.glade.h:45
-msgid "Preferences"
-msgstr "ปรับแต่ง"
-
-#: ../data/banshee.glade.h:46
-msgid "Reset"
-msgstr "คืนค่าเดิม"
-
-#: ../data/banshee.glade.h:47
-msgid "Sample Rate:"
-msgstr ""
-
-#: ../data/banshee.glade.h:48
-msgid "Simulate write"
-msgstr "จำลองการเขียน"
-
-#: ../data/banshee.glade.h:49
-msgid "Track Duration:"
-msgstr "ความยาวเพลง:"
-
-#: ../data/banshee.glade.h:50
-msgid "Track _Count"
-msgstr "_จำนวนแทร็ค"
-
-#: ../data/banshee.glade.h:51
-msgid "Track _Number"
-msgstr "_ลำดับแทร็ค"
-
-#: ../data/banshee.glade.h:52 ../src/TrackProperties.cs:218
-#: ../src/TrackProperties.cs:242 ../src/TrackProperties.cs:243
-#: ../src/TrackProperties.cs:244 ../src/TrackProperties.cs:245
-#: ../src/TrackProperties.cs:246 ../src/TrackProperties.cs:247
-#: ../src/Banshee.Base/Dap/Dap.cs:590
-msgid "Unknown"
-msgstr "ไม่มีข้อมูล"
-
-#: ../data/banshee.glade.h:53
-msgid "VBR:"
-msgstr "VBR:"
-
-#: ../data/banshee.glade.h:54
-msgid "Write Speed:"
-msgstr "ความเร็วการเขียน:"
-
-#: ../data/banshee.glade.h:55
-msgid "Your Name:"
-msgstr "ชื่อของคุณ:"
-
-#: ../data/banshee.glade.h:56
-msgid "_Artist"
-msgstr "_ศิลปิน"
-
-#: ../data/banshee.glade.h:57
-msgid "_Search:"
-msgstr "_ค้นหา:"
-
-#: ../data/banshee.glade.h:58
-msgid "_Title"
-msgstr "_ชื่อ"
-
-#: ../data/banshee.glade.h:59
-msgid "iPod Name:"
-msgstr "ชื่อไอพ็อด:"
-
-#: ../libbanshee/gst-cd-rip-0.8.c:85
+#: ../libbanshee/gst-cd-rip-0.10.c:216 ../libbanshee/gst-cd-rip-0.8.c:84
 msgid "Could not create pipeline"
 msgstr ""
 
-#: ../libbanshee/gst-cd-rip-0.8.c:94
+#: ../libbanshee/gst-cd-rip-0.10.c:222 ../libbanshee/gst-cd-rip-0.8.c:93
 msgid "Could not initialize cdparanoia"
 msgstr ""
 
-#: ../libbanshee/gst-cd-rip-0.8.c:107
+#: ../libbanshee/gst-cd-rip-0.10.c:233 ../libbanshee/gst-cd-rip-0.8.c:106
 msgid "Could not create encoder pipeline"
 msgstr ""
 
-#: ../libbanshee/gst-cd-rip-0.8.c:113
+#: ../libbanshee/gst-cd-rip-0.10.c:239
+#, fuzzy
+msgid "Could not create queue plugin"
+msgstr "ไม่สามารถสร้างตัวลงรหัส"
+
+#: ../libbanshee/gst-cd-rip-0.10.c:247 ../libbanshee/gst-cd-rip-0.8.c:112
 msgid "Could not create GNOME VFS output plugin"
 msgstr ""
 
-#: ../libbanshee/gst-cd-rip-0.8.c:128
+#: ../libbanshee/gst-cd-rip-0.10.c:262 ../libbanshee/gst-cd-rip-0.8.c:127
 msgid "Could not link pipeline elements"
 msgstr ""
 
-#: ../libbanshee/gst-cd-rip-0.8.c:241
+#: ../libbanshee/gst-cd-rip-0.10.c:353 ../libbanshee/gst-cd-rip-0.8.c:226
+#: ../src/AboutBox.cs:132
+#: ../src/Banshee.Plugins/NotificationAreaIcon/NotificationAreaIconPlugin.cs:105
+msgid "Banshee"
+msgstr "Banshee"
+
+#: ../libbanshee/gst-cd-rip-0.10.c:379 ../libbanshee/gst-cd-rip-0.8.c:240
 msgid "Encoding element does not support tagging!"
 msgstr ""
 
-#: ../libbanshee/gst-cd-rip-0.8.c:251
+#: ../libbanshee/gst-cd-rip-0.8.c:250
 msgid "Could not send seek event to cdparanoia"
 msgstr ""
 
-#: ../libbanshee/gst-cd-rip-0.8.c:257
+#: ../libbanshee/gst-cd-rip-0.8.c:256
 msgid "Could not get track start position"
 msgstr ""
 
-#: ../libbanshee/gst-cd-rip-0.8.c:271
+#: ../libbanshee/gst-cd-rip-0.8.c:270
 msgid "Could not get track position"
 msgstr ""
 
@@ -477,29 +521,66 @@ msgid ""
 "Could not load an output sink from GStreamer/GConf, falling back on alsasink"
 msgstr ""
 
-#: ../libbanshee/gst-transcode-0.8.c:118
+#: ../libbanshee/gst-transcode-0.10.c:160
+#: ../libbanshee/gst-transcode-0.8.c:242
+msgid "No decoder could be found for source format."
+msgstr ""
+
+#: ../libbanshee/gst-transcode-0.10.c:165
+#: ../libbanshee/gst-transcode-0.8.c:247
+msgid "Could not stat encoded file"
+msgstr ""
+
+#: ../libbanshee/gst-transcode-0.10.c:249 ../libbanshee/gst-transcode-0.8.c:90
 msgid "Could not create 'gnomevfssrc' plugin"
 msgstr ""
 
-#: ../libbanshee/gst-transcode-0.8.c:124
+#: ../libbanshee/gst-transcode-0.10.c:255
+#, fuzzy
+msgid "Could not create 'decodebin' plugin"
+msgstr "ไม่สามารถสร้างตัวลงรหัส"
+
+#: ../libbanshee/gst-transcode-0.10.c:261
+#, fuzzy
+msgid "Could not create 'gnomevfssink' plugin"
+msgstr "ไม่สามารถสร้างตัวลงรหัส"
+
+#: ../libbanshee/gst-transcode-0.10.c:267
+#, fuzzy
+msgid "Could not create 'sinkben' plugin"
+msgstr "ไม่สามารถสร้างตัวลงรหัส"
+
+#: ../libbanshee/gst-transcode-0.10.c:273
+#, fuzzy
+msgid "Could not create 'audioconvert' plugin"
+msgstr "ไม่สามารถสร้างตัวลงรหัส"
+
+#: ../libbanshee/gst-transcode-0.10.c:279
+#, fuzzy
+msgid "Could not create encoding pipeline"
+msgstr "ไม่สามารถสร้างตัวลงรหัส"
+
+#: ../libbanshee/gst-transcode-0.10.c:285
+#, fuzzy
+msgid "Could not get sink pad from encoder"
+msgstr "ไม่สามารถสร้างตัวลงรหัส"
+
+#: ../libbanshee/gst-transcode-0.10.c:363
+#, fuzzy
+msgid "Could not construct pipeline"
+msgstr "ไม่สามารถสร้างตัวลงรหัส"
+
+#: ../libbanshee/gst-transcode-0.8.c:96
 msgid "Could not create 'spider' plugin"
 msgstr ""
 
-#: ../libbanshee/gst-transcode-0.8.c:131
+#: ../libbanshee/gst-transcode-0.8.c:103
 #, c-format
 msgid "Could not create encoding pipeline: %s"
 msgstr ""
 
-#: ../libbanshee/gst-transcode-0.8.c:137
+#: ../libbanshee/gst-transcode-0.8.c:109
 msgid "Could not create 'filesink' plugin"
-msgstr ""
-
-#: ../libbanshee/gst-transcode-0.8.c:219
-msgid "No decoder could be found for source format."
-msgstr ""
-
-#: ../libbanshee/gst-transcode-0.8.c:224
-msgid "Could not stat encoded file"
 msgstr ""
 
 #: ../libbanshee/hal-context.c:61
@@ -519,11 +600,11 @@ msgstr ""
 msgid "Could not get device list from HAL"
 msgstr ""
 
-#: ../src/AboutBox.cs:128
+#: ../src/AboutBox.cs:134
 msgid "Music Management and Playback for Gnome."
 msgstr "ตัวเล่นและจัดการเพลงสำหรับ Gnome"
 
-#: ../src/AboutBox.cs:130
+#: ../src/AboutBox.cs:136
 msgid ""
 "Copyright © 2005-2006 Novell, Inc.\n"
 "Copyright © 2005 Aaron Bockover"
@@ -531,648 +612,22 @@ msgstr ""
 "สงวนลิขสิทธิ์ © 2005-2006 Novell, Inc.\n"
 "สงวนลิขสิทธิ์ © 2005 Aaron Bockover"
 
-#: ../src/AboutBox.cs:135
+#: ../src/AboutBox.cs:141
 msgid "Banshee Wiki"
 msgstr "Banshee Wiki"
-
-#: ../src/BurnCore.cs:92
-msgid "Could Not Write CD"
-msgstr "ไม่สามารถเขียนซีดีได้"
-
-#: ../src/BurnCore.cs:93
-msgid ""
-"No suitable wave encoder could be found to convert selected songs to CD "
-"audio format."
-msgstr "ไม่มีตัวเข้ารหัสเสียงที่เหมาะสมในการแปลงเพลงลงซีดี"
-
-#: ../src/BurnCore.cs:153
-msgid "Writing CD"
-msgstr "กำลังเขียนซีดี"
-
-#: ../src/BurnCore.cs:154
-msgid "Writing Audio CD"
-msgstr "กำลังเขียนซีดีเพลง"
-
-#: ../src/BurnCore.cs:186
-msgid "The inserted media is not large enough to hold your selected music."
-msgstr "สื่อที่ใช้มีขนาดไม่พอสำหรับเพลงที่คุณเลือก"
-
-#: ../src/BurnCore.cs:188
-#, csharp-format
-msgid "{0} more minute is needed on the media."
-msgid_plural "{0} more minutes are needed on the media."
-msgstr[0] ""
-
-#: ../src/BurnCore.cs:192
-msgid "Not Enough Space on Disc"
-msgstr "แผ่นมีเนื้อที่ไม่พอ"
-
-#: ../src/BurnCore.cs:223
-msgid "No CD writers were found on your system."
-msgstr "ไม่พบเครื่องเขียนซีดีในระบบ"
-
-#: ../src/BurnCore.cs:263
-msgid "Error Burning CD"
-msgstr "เกิดความผิดพลาดในการเขียนซีดี"
-
-#: ../src/BurnCore.cs:267
-msgid "An unknown error occurred when attempting to write the CD"
-msgstr ""
-
-#: ../src/BurnCore.cs:273
-msgid "CD Writing Complete"
-msgstr "เขียนซีดีเสร็จสิ้น"
-
-#: ../src/BurnCore.cs:274
-msgid "The selected audio was successfully written to the CD."
-msgstr "เพลงที่เลือกถูกเขียนลงซีดีเรียบร้อย"
-
-#: ../src/BurnCore.cs:278
-msgid "Error Writing CD"
-msgstr "เกิดความผิดพลาดในการเขียนซีดี"
-
-#: ../src/BurnCore.cs:301
-msgid "Preparing to write..."
-msgstr "กำลังเตรียมการเขียน..."
-
-#: ../src/BurnCore.cs:305
-msgid "Writing disk..."
-msgstr "กำลังเขียนแผ่น..."
-
-#: ../src/BurnCore.cs:309
-msgid "Fixating disk..."
-msgstr ""
-
-#: ../src/BurnCore.cs:326
-msgid "Waiting for Media"
-msgstr "กำลังรอแผ่น"
-
-#: ../src/BurnCore.cs:330 ../src/BurnCore.cs:333
-msgid "Insert Blank CD"
-msgstr "กรุณาใส่ซีดีเปล่า"
-
-#: ../src/BurnCore.cs:331
-msgid "Please insert a blank CD disk for the write process."
-msgstr "กรุณาใส่แผ่นซีดีเปล่าสำหรับการเขียน"
-
-#: ../src/Dialogs.cs:81
-msgid "An Error Occurred"
-msgstr "เกิดข้อผิดพลาด"
-
-#: ../src/Dialogs.cs:88
-msgid "Error"
-msgstr "ผิดพลาด"
-
-#: ../src/ExceptionDialog.cs:24
-msgid "Banshee Encountered a Fatal Error"
-msgstr "Banshee พบข้อผิดพลาดรุนแรง"
-
-#: ../src/ExceptionDialog.cs:52
-msgid ""
-"This may be due to a programming error. Please help us make Banshee better "
-"by reporting this error. Thank you in advance!"
-msgstr "นี่อาจเป็นปัญหาที่ตัวโปรแกรม คุณสามารถรายงานปัญหานี้ เพื่อช่วยให้ Banshee ดีขึ้น"
-
-#: ../src/ExceptionDialog.cs:99
-msgid "An unhandled exception was thrown: "
-msgstr ""
-
-#: ../src/LogCoreViewer.cs:52
-msgid "Log Viewer"
-msgstr ""
-
-#: ../src/LogCoreViewer.cs:88
-msgid "Time Stamp"
-msgstr ""
-
-#: ../src/LogCoreViewer.cs:107
-msgid "Message"
-msgstr "ข้อความ:"
-
-#: ../src/LogCoreViewer.cs:119
-msgid "Show:"
-msgstr "แสดง"
-
-#: ../src/LogCoreViewer.cs:136
-msgid "All Log Entries"
-msgstr ""
-
-#: ../src/LogCoreViewer.cs:137
-msgid "Only Error Messages"
-msgstr ""
-
-#: ../src/LogCoreViewer.cs:138
-msgid "Only Warning Messages"
-msgstr ""
-
-#: ../src/LogCoreViewer.cs:139
-msgid "Only Information Messages"
-msgstr ""
-
-#: ../src/LogCoreViewer.cs:140
-msgid "Only Debug Messages"
-msgstr ""
-
-#: ../src/LogCoreViewer.cs:155
-msgid "Entry Details:"
-msgstr ""
-
-#: ../src/PlayerInterface.cs:357
-msgid "Loading..."
-msgstr "กำลังเรียก..."
-
-#. Misc
-#: ../src/PlayerInterface.cs:410 ../src/PlayerInterface.cs:1922
-msgid "Idle"
-msgstr "ไม่ได้เล่น"
-
-#: ../src/PlayerInterface.cs:419
-msgid "All"
-msgstr "ทั้งหมด"
-
-#: ../src/PlayerInterface.cs:421 ../src/PlayerInterface.cs:1487
-msgid "Song Name"
-msgstr "ชื่อเพลง"
-
-#: ../src/PlayerInterface.cs:422 ../src/PlayerInterface.cs:1485
-msgid "Artist Name"
-msgstr "ชื่อศิลปิน"
-
-#: ../src/PlayerInterface.cs:423 ../src/PlayerInterface.cs:1489
-msgid "Album Title"
-msgstr "ชื่ออัลบั้ม"
-
-#: ../src/PlayerInterface.cs:456
-msgid "Write selection to CD"
-msgstr "เขียนเพลงที่เลือกลงซีดี"
-
-#: ../src/PlayerInterface.cs:457
-msgid "Import CD into library"
-msgstr "นำเข้าซีดีไปยังไลบรารี"
-
-#: ../src/PlayerInterface.cs:458
-msgid "Play previous song"
-msgstr "เล่นเพลงก่อนหน้า"
-
-#: ../src/PlayerInterface.cs:459
-msgid "Play/pause current song"
-msgstr "เล่น/หยุดเพลงปัจจุบัน"
-
-#: ../src/PlayerInterface.cs:460
-msgid "Play next song"
-msgstr "เล่นเพลงถัดไป"
-
-#: ../src/PlayerInterface.cs:461
-msgid "Current position in song"
-msgstr "ตำแหน่งของเพลงที่กำลังเล่นอยู่"
-
-#: ../src/PlayerInterface.cs:462
-msgid "Device disk usage"
-msgstr "เนื้อที่ดิสก์ที่ใช้"
-
-#: ../src/PlayerInterface.cs:463
-msgid "Synchronize music library to device"
-msgstr ""
-
-#: ../src/PlayerInterface.cs:464
-msgid "Adjust volume"
-msgstr "ปรับระดับเสียง"
-
-#: ../src/PlayerInterface.cs:465
-msgid "Change repeat playback mode"
-msgstr "เล่นซ้ำ"
-
-#: ../src/PlayerInterface.cs:466
-msgid "Toggle shuffle playback mode"
-msgstr "เล่นแบบสุ่ม"
-
-#: ../src/PlayerInterface.cs:467
-msgid "Edit and view metadata of selected songs"
-msgstr "แก้ไขและดูข้อมูลเพลงที่เลือก"
-
-#: ../src/PlayerInterface.cs:491
-msgid "Notification Area Icon could not be installed"
-msgstr ""
-
-#: ../src/PlayerInterface.cs:542
-msgid "Import Music"
-msgstr "นำเข้าเพลง"
-
-#: ../src/PlayerInterface.cs:543
-msgid ""
-"Your music library is empty. You may import new music into your library now, "
-"or choose to do so later.\n"
-"\n"
-"Automatic import or importing a large folder may take a long time, so please "
-"be patient."
-msgstr ""
-"คุณไม่มีเพลงในไลบรารี คุณอาจนำเข้าเพลงใหม่ในไลบรารีตอนนี้หรือเลือกที่จะนำเข้าในภายหลังก็ได้\n"
-"\n"
-"การเลือกนำเข้าอัตโนมัติ หรือนำเข้าโฟลเดอร์ขนาดใหญ่อาจต้องใช้เวลา กรุณารอจนกว่าจะเสร็จ"
-
-#: ../src/PlayerInterface.cs:547
-msgid "Import Folder"
-msgstr "นำเข้าโฟลเดอร์"
-
-#: ../src/PlayerInterface.cs:549
-msgid "Automatic Import"
-msgstr "นำเข้าอัตโนมัติ"
-
-#: ../src/PlayerInterface.cs:677 ../src/PlayerInterface.cs:1918
-#: ../src/Banshee.Base/ActionManager.cs:203
-msgid "Play"
-msgstr "เล่น"
-
-#: ../src/PlayerInterface.cs:681
-msgid "Pause"
-msgstr "หยุด"
-
-#: ../src/PlayerInterface.cs:741
-msgid "Cannot Play Song"
-msgstr "ไม่สามารถเล่นเพลงได้"
-
-#: ../src/PlayerInterface.cs:742
-#, csharp-format
-msgid ""
-"{0} cannot be played by Banshee. The most common reasons for this are:\n"
-"\n"
-"  <big>•</big> Song is protected (DRM)\n"
-"  <big>•</big> Song is on a DAP that does not support playback\n"
-msgstr ""
-
-#. Translators: position in song. eg, "0:37 of 3:48"
-#: ../src/PlayerInterface.cs:918 ../src/Banshee.Base/Sources/DapSource.cs:157
-#, csharp-format
-msgid "{0} of {1}"
-msgstr "{0} จาก {1}"
-
-#: ../src/PlayerInterface.cs:1008
-msgid "Import Folder to Library"
-msgstr "นำเข้าโฟลเดอร์มายังไลบรารี"
-
-#: ../src/PlayerInterface.cs:1167 ../src/Banshee.Base/ActionManager.cs:249
-msgid "Synchronize"
-msgstr ""
-
-#: ../src/PlayerInterface.cs:1168 ../src/PlayerInterface.cs:2244
-msgid "Rename Device"
-msgstr "เปลี่ยนชื่ออุปกรณ์"
-
-#: ../src/PlayerInterface.cs:1170 ../src/PlayerInterface.cs:2238
-msgid "Rename Playlist"
-msgstr "เปลี่ยนชื่อรายการเล่น"
-
-#: ../src/PlayerInterface.cs:1191
-msgid "Reading table of contents from CD..."
-msgstr "กำลังอ่านตารางข้อมูลจากซีดี..."
-
-#: ../src/PlayerInterface.cs:1196
-msgid "Searching for CD metadata..."
-msgstr "กำลังค้นหาข้อมูลซีดี..."
-
-#: ../src/PlayerInterface.cs:1201
-msgid "Searching for CD cover art..."
-msgstr "กำลังค้นหาภาพปกซีดี..."
-
-#: ../src/PlayerInterface.cs:1206
-msgid ""
-"Cannot search for CD metadata: there is no available Internet connection"
-msgstr "ไม่สามารถค้นหาข้อมูลซีดีได้: ไม่ได้เชื่อมต่ออินเทอร์เน็ต"
-
-#: ../src/PlayerInterface.cs:1212
-msgid "Could not fetch metadata for CD."
-msgstr "ไม่สามารถหาข้อมูลเพลงสำหรับซีดีนี้"
-
-#: ../src/PlayerInterface.cs:1368
-#, csharp-format
-msgid "{0} day"
-msgid_plural "{0} days"
-msgstr[0] "{0} วัน"
-msgstr[1] "{0} วัน"
-
-#: ../src/PlayerInterface.cs:1385
-msgid "Your Library is Empty - Consider Importing Music"
-msgstr "ไลบรารีไม่มีเพลงอยู่ กรุณานำเข้าเพลง"
-
-#: ../src/PlayerInterface.cs:1388
-msgid "This Playlist is Empty - Consider Adding Music"
-msgstr "รายการเล่นไม่มีเพลง กรุณาเพิ่มเพลงลงรายการ"
-
-#: ../src/PlayerInterface.cs:1391
-#, csharp-format
-msgid "{0} Item"
-msgid_plural "{0} Items"
-msgstr[0] "{0} รายการ"
-msgstr[1] "{0} รายการ"
-
-#: ../src/PlayerInterface.cs:1393
-#, csharp-format
-msgid "{0} Total Play Time"
-msgstr "ความยาวทั้งหมด {0}"
-
-#: ../src/PlayerInterface.cs:1681 ../src/Banshee.Base/ActionManager.cs:64
-#: ../src/Banshee.Base/Sources/PlaylistSource.cs:61
-#: ../src/Banshee.Base/Sources/PlaylistSource.cs:301
-#: ../src/Banshee.Base/Sources/PlaylistSource.cs:323
-#: ../src/Banshee.Base/Sources/PlaylistSource.cs:330
-msgid "New Playlist"
-msgstr "สร้างรายการเล่นใหม่"
-
-#: ../src/PlayerInterface.cs:1700
-msgid "Clear"
-msgstr "ล้าง"
-
-#: ../src/PlayerInterface.cs:1909
-msgid "Could Not Eject"
-msgstr "ไม่สามารถเอาแผ่นออกได้"
-
-#: ../src/PlayerInterface.cs:1953
-msgid "Cannot Import"
-msgstr "ไม่สามารถนำเข้าได้"
-
-#: ../src/PlayerInterface.cs:1954 ../src/PlayerInterface.cs:1958
-msgid "Scanning"
-msgstr "กำลังค้นหา"
-
-#: ../src/PlayerInterface.cs:1956
-#, csharp-format
-msgid "Cannot Import: {0} ({1}, {2})"
-msgstr "ไม่สามารถนำเข้า: {0} ({1}, {2})"
-
-#: ../src/PlayerInterface.cs:2000
-#, csharp-format
-msgid ""
-"Are you sure you want to remove the selected song from your library "
-"<i><b>and</b></i> your drive? This action will permanently delete the file."
-msgid_plural ""
-"Are you sure you want to remove the selected <b>({0})</b> songs from your "
-"library <i><b>and</b></i> your drive? This action will permanently delete "
-"the files."
-msgstr[0] ""
-"คุณแน่ใจว่าต้องการลบเพลงที่เลือกออกจากไลบรารี <i><b>และ</b></i> ดิสก์หรือไม่? "
-"การลบนี้จะเป็นการลบแฟ้มเพลงอย่างถาวร"
-msgstr[1] ""
-"คุณแน่ใจว่าต้องการลบเพลง <b>({0})</b> เพลงที่เลือกออกจากไลบรารี <i><b>และ</b></i> "
-"ดิสก์หรือไม่? การลบนี้จะเป็นการลบแฟ้มเพลงอย่างถาวร"
-
-#: ../src/PlayerInterface.cs:2009
-#, csharp-format
-msgid "Are you sure you want to remove the selected song from your library?"
-msgid_plural ""
-"Are you sure you want to remove the selected <b>({0})</b> songs from your "
-"library?"
-msgstr[0] ""
-"คุณแน่ใจว่าต้องการลบเพลงที่เลือกออกจากไลบรารีหรือไม่?"
-msgstr[1] ""
-"คุณแน่ใจว่าต้องการลบเพลง <b>({0})</b> เพลงที่เลือกออกจากไลบรารีหรือไม่?"
-
-#: ../src/PlayerInterface.cs:2018
-msgid "Remove Selected Songs from Library"
-msgstr "ลบเพลงที่เลือกจากไลบรารี"
-
-#: ../src/PlayerInterface.cs:2088
-msgid "Import Files to Library"
-msgstr "นำเข้าแฟ้มมายังไลบรารี"
-
-#: ../src/PlayerInterface.cs:2134
-msgid "Invalid Selection"
-msgstr "เลือกไม่ถูกต้อง"
-
-#: ../src/PlayerInterface.cs:2135
-msgid "You must select at least one track to import."
-msgstr "คุณต้องเลือกเพลงที่จะนำเข้าอย่างน้อยหนึ่งเพลง"
-
-#. Translators: {0} is the name of the DAP device (i.e. 'iPod')
-#: ../src/PlayerInterface.cs:2172
-#, csharp-format
-msgid "Synchronize {0}"
-msgstr ""
-
-#: ../src/PlayerInterface.cs:2173
-#, csharp-format
-msgid ""
-"You have made changes to your {0}. Please choose a method for updating the "
-"contents of your {0}.\n"
-"\n"
-"<big>•</big> <i>Synchronize Library</i>: synchronize Banshee library to {0}\n"
-"<big>•</big> <i>Save Manual Changes</i>: save only the manual changes you "
-"made"
-msgstr ""
-
-#: ../src/PlayerInterface.cs:2179
-msgid ""
-"<b>Warning:</b> Actions will alter or erase existing iPod contents and may "
-"cause incompatability with iTunes!"
-msgstr ""
-
-#: ../src/PlayerInterface.cs:2181
-msgid "Synchronize Library"
-msgstr ""
-
-#: ../src/PlayerInterface.cs:2183
-msgid "Save Manual Changes"
-msgstr ""
-
-#: ../src/PlayerInterface.cs:2239
-msgid "Enter new playlist name"
-msgstr "ใส่ชื่อรายการเล่นใหม่"
-
-#: ../src/PlayerInterface.cs:2245
-msgid "Enter new name for your device"
-msgstr "ใส่ชื่อให้อุปกรณ์ของคุณ"
-
-#: ../src/PlaylistColumns.cs:82
-msgid "Invalid column width"
-msgstr ""
-
-#: ../src/PlaylistColumns.cs:119
-msgid "Choose Columns"
-msgstr "เลือกคอลัมน์"
-
-#: ../src/PlaylistColumns.cs:133
-msgid "Visible Playlist Columns"
-msgstr "คอลัมน์ที่แสดงในรายการเล่น"
-
-#: ../src/PlaylistView.cs:83
-msgid "Track"
-msgstr "เพลงที่"
-
-#: ../src/PlaylistView.cs:86
-msgid "Artist"
-msgstr "ศิลปิน"
-
-#: ../src/PlaylistView.cs:89
-msgid "Title"
-msgstr "ชื่อเพลง"
-
-#: ../src/PlaylistView.cs:92
-msgid "Album"
-msgstr "อัลบั้ม"
-
-#: ../src/PlaylistView.cs:95
-msgid "Time"
-msgstr "ความยาว"
-
-#: ../src/PlaylistView.cs:100 ../src/Banshee.Base/ActionManager.cs:183
-msgid "Rating"
-msgstr "คะแนน"
-
-#: ../src/PlaylistView.cs:107
-msgid "Plays"
-msgstr "ครั้งที่เล่น"
-
-#: ../src/PlaylistView.cs:115
-msgid "Last Played"
-msgstr "เล่นล่าสุด"
-
-#: ../src/PlaylistView.cs:418
-msgid "N/A"
-msgstr "ไม่มีข้อมูล"
-
-#: ../src/Preferences.cs:99
-msgid "Select Library Location"
-msgstr "เลือกตำแหน่งไลบรารี"
-
-#: ../src/Preferences.cs:265
-msgid "Unavailable"
-msgstr "ไม่ปรากฏ"
-
-#: ../src/Preferences.cs:271
-msgid "Loading Drive List..."
-msgstr "กำลังเรียกรายการไดรว์..."
-
-#: ../src/Preferences.cs:294
-msgid "No CD Burners Detected"
-msgstr "ไม่พบตัวเขียนซีดี"
-
-#: ../src/Preferences.cs:392
-msgid "Fastest Possible"
-msgstr "เร็วที่สุดที่เป็นไปได้"
-
-#. Translators: this represents a CD write speed, eg "32x"
-#: ../src/Preferences.cs:396
-#, csharp-format
-msgid "{0}x"
-msgstr "{0}x"
-
-#: ../src/RipTransaction.cs:69
-msgid "Could not create CD Ripper"
-msgstr ""
-
-#: ../src/RipTransaction.cs:178
-#, csharp-format
-msgid ""
-"The device node '{0}' differs from the device node already set for "
-"previously queued tracks ({1})"
-msgstr ""
-
-#: ../src/RipTransaction.cs:196
-msgid "Importing Audio CD"
-msgstr "กำลังนำเข้าซีดีเพลง"
-
-#: ../src/RipTransaction.cs:197
-msgid "Initializing Drive"
-msgstr ""
-
-#: ../src/RipTransaction.cs:221 ../src/Banshee.Base/ImportManager.cs:115
-#, csharp-format
-msgid "Importing {0} of {1}"
-msgstr "กำลังนำเข้า {0} จาก {1}"
-
-#: ../src/SourceView.cs:77 ../src/Banshee.Base/ActionManager.cs:128
-msgid "Source"
-msgstr "แหล่งที่มา"
-
-#: ../src/ToggleStates.cs:41 ../src/Banshee.Base/ActionManager.cs:225
-msgid "Repeat None"
-msgstr "ไม่เล่นซ้ำ"
-
-#: ../src/ToggleStates.cs:50 ../src/Banshee.Base/ActionManager.cs:233
-msgid "Repeat Single"
-msgstr "เล่นซ้ำเฉพาะเพลง"
-
-#: ../src/ToggleStates.cs:59 ../src/Banshee.Base/ActionManager.cs:229
-msgid "Repeat All"
-msgstr "เล่นซ้ำทั้งหมด"
-
-#: ../src/ToggleStates.cs:68 ../src/Banshee.Base/ActionManager.cs:239
-msgid "Shuffle"
-msgstr "สุ่ม"
-
-#: ../src/ToggleStates.cs:77
-msgid "Continuous"
-msgstr ""
-
-#: ../src/TrackProperties.cs:168
-msgid "Set all Track Numbers to this value"
-msgstr "ตั้งลำดับเพลงทั้งหมดเป็นค่านี้"
-
-#: ../src/TrackProperties.cs:169
-msgid "Automatically Set All Track Numbers"
-msgstr "ตั้งลำดับเพลงทั้งหมดโดยอัตโนมัติ"
-
-#: ../src/TrackProperties.cs:170
-msgid "Set all Track Counts to this value"
-msgstr "ตั้งจำนวนเพลงทั้งหมดเป็นค่านี้"
-
-#: ../src/TrackProperties.cs:171
-msgid "Set all Artists to this value"
-msgstr "ตั้งศิลปินทั้งหมดเป็นค่านี้"
-
-#: ../src/TrackProperties.cs:172
-msgid "Set all Albums to this value"
-msgstr "ตั้งอัลบั้มทั้งหมดเป็นค่านี้"
-
-#: ../src/TrackProperties.cs:173
-msgid "Set all Titles to this value"
-msgstr "ตั้งชื่อเพลงทั้งหมดเป็นค่านี้"
-
-#: ../src/TrackProperties.cs:216
-msgid "Never Played"
-msgstr "ไม่เคยเล่น"
-
-#: ../src/TrackProperties.cs:221
-#, csharp-format
-msgid "Editing Song {0} of {1}"
-msgstr "แก้ไขข้อมูลเพลงที่ {0} จาก {1}"
-
-#: ../src/TrackProperties.cs:228 ../src/TrackProperties.cs:229
-#, csharp-format
-msgid "File: {0}"
-msgstr "แฟ้ม: {0}"
-
-#: ../src/TrackProperties.cs:235
-msgid "KB/Second"
-msgstr "KB/วินาที"
-
-#: ../src/TrackProperties.cs:236
-#, csharp-format
-msgid "{0} KHz"
-msgstr "{0} KHz"
-
-#: ../src/TrackProperties.cs:237
-msgid "Yes"
-msgstr "ใช่"
-
-#: ../src/TrackProperties.cs:237
-msgid "No"
-msgstr "ไม่ใช่"
-
-#: ../src/VersionInformationDialog.cs:62
-msgid "Assembly Version Information"
-msgstr "ข้อมูลเวอร์ชันของส่วนประกอบต่างๆ"
-
-#: ../src/VersionInformationDialog.cs:68
-msgid "Assembly Name"
-msgstr "ชื่อส่วนประกอบ"
-
-#: ../src/VersionInformationDialog.cs:70
-msgid "Version"
-msgstr "เวอร์ชัน"
 
 #: ../src/Banshee.Base/ActionManager.cs:61
 msgid "_Music"
 msgstr "เ_พลง"
+
+#: ../src/Banshee.Base/ActionManager.cs:64
+#: ../src/Banshee.Base/Sources/PlaylistSource.cs:61
+#: ../src/Banshee.Base/Sources/PlaylistSource.cs:301
+#: ../src/Banshee.Base/Sources/PlaylistSource.cs:323
+#: ../src/Banshee.Base/Sources/PlaylistSource.cs:330
+#: ../src/PlayerInterface.cs:1477
+msgid "New Playlist"
+msgstr "สร้างรายการเล่นใหม่"
 
 #: ../src/Banshee.Base/ActionManager.cs:65
 msgid "Create a new empty playlist"
@@ -1195,247 +650,463 @@ msgid "Import files inside a folder"
 msgstr "นำเข้าแฟ้มภายในโฟลเดอร์"
 
 #: ../src/Banshee.Base/ActionManager.cs:76
+#, fuzzy
+msgid "Import Music..."
+msgstr "นำเข้าเพลง"
+
+#: ../src/Banshee.Base/ActionManager.cs:77
+msgid "Import music from a variety of sources"
+msgstr ""
+
+#: ../src/Banshee.Base/ActionManager.cs:80
+#, fuzzy
+msgid "Open Location..."
+msgstr "ข้อมูลเวอร์ชัน..."
+
+#: ../src/Banshee.Base/ActionManager.cs:81
+msgid "Open a remote location for playback"
+msgstr ""
+
+#: ../src/Banshee.Base/ActionManager.cs:84
+#, fuzzy
+msgid "Import Source"
+msgstr "นำเข้าเพลง"
+
+#: ../src/Banshee.Base/ActionManager.cs:85
+#, fuzzy
+msgid "Import source to library"
+msgstr "นำเข้าโฟลเดอร์มายังไลบรารี"
+
+#: ../src/Banshee.Base/ActionManager.cs:88
 msgid "Source Properties..."
 msgstr "คุณสมบัติแหล่งที่มา..."
 
-#: ../src/Banshee.Base/ActionManager.cs:77
+#: ../src/Banshee.Base/ActionManager.cs:89
 msgid "View source properties"
 msgstr "แสดงคุณสมบัติของแหล่งที่มาเพลง"
 
-#: ../src/Banshee.Base/ActionManager.cs:80
+#: ../src/Banshee.Base/ActionManager.cs:92
 msgid "_Quit"
 msgstr "_ออก"
 
-#: ../src/Banshee.Base/ActionManager.cs:81
+#: ../src/Banshee.Base/ActionManager.cs:93
 msgid "Quit Banshee"
 msgstr "ออกจาก Banshee"
 
-#: ../src/Banshee.Base/ActionManager.cs:84
+#: ../src/Banshee.Base/ActionManager.cs:96
 msgid "_Edit"
 msgstr "แ_ก้ไข"
 
-#: ../src/Banshee.Base/ActionManager.cs:87
+#: ../src/Banshee.Base/ActionManager.cs:99
 msgid "Rename Source"
 msgstr "เปลี่ยนชื่อแหล่งที่มา"
 
-#: ../src/Banshee.Base/ActionManager.cs:88
+#: ../src/Banshee.Base/ActionManager.cs:100
 msgid "Rename the active source"
 msgstr "เปลี่ยนชื่อแหล่งที่มาที่ใช้อยู่"
 
-#: ../src/Banshee.Base/ActionManager.cs:91
+#: ../src/Banshee.Base/ActionManager.cs:103
 msgid "Select All"
 msgstr "เลือกทั้งหมด"
 
-#: ../src/Banshee.Base/ActionManager.cs:92
+#: ../src/Banshee.Base/ActionManager.cs:104
 msgid "Select all songs in song list"
 msgstr "เลือกเพลงทั้งหมดในรายการ"
 
-#: ../src/Banshee.Base/ActionManager.cs:95
+#: ../src/Banshee.Base/ActionManager.cs:107
 msgid "Select None"
 msgstr "เลิกเลือกทั้งหมด"
 
-#: ../src/Banshee.Base/ActionManager.cs:96
+#: ../src/Banshee.Base/ActionManager.cs:108
 msgid "Unselect all songs in song list"
 msgstr "ยกเลิกการเลือกเพลงทั้งหมดในรายการ"
 
-#: ../src/Banshee.Base/ActionManager.cs:99
+#: ../src/Banshee.Base/ActionManager.cs:111
 msgid "Plugins..."
 msgstr "ปลั๊กอิน..."
 
-#: ../src/Banshee.Base/ActionManager.cs:100
+#: ../src/Banshee.Base/ActionManager.cs:112
 msgid "Configure Banshee plugins"
 msgstr "ปรับแต่งปลั๊กอินของ Banshee"
 
-#: ../src/Banshee.Base/ActionManager.cs:105
+#: ../src/Banshee.Base/ActionManager.cs:117
 msgid "_View"
 msgstr "_มุมมอง"
 
-#: ../src/Banshee.Base/ActionManager.cs:108
+#: ../src/Banshee.Base/ActionManager.cs:120
 msgid "Columns..."
 msgstr "คอลัมน์..."
 
-#: ../src/Banshee.Base/ActionManager.cs:109
+#: ../src/Banshee.Base/ActionManager.cs:121
 msgid "Select which columns to display in the song list"
 msgstr "เลือกคอลัมน์ที่ต้องการแสดงในรายการเพลง"
 
-#: ../src/Banshee.Base/ActionManager.cs:112
+#: ../src/Banshee.Base/ActionManager.cs:124
 msgid "Logged Events Viewer..."
 msgstr ""
 
-#: ../src/Banshee.Base/ActionManager.cs:113
+#: ../src/Banshee.Base/ActionManager.cs:125
 msgid "View a detailed log of events"
 msgstr ""
 
-#: ../src/Banshee.Base/ActionManager.cs:116
+#: ../src/Banshee.Base/ActionManager.cs:128
 msgid "_Help"
 msgstr "_วิธีใช้"
 
-#: ../src/Banshee.Base/ActionManager.cs:119
+#: ../src/Banshee.Base/ActionManager.cs:131
 msgid "Version Information..."
 msgstr "ข้อมูลเวอร์ชัน..."
 
-#: ../src/Banshee.Base/ActionManager.cs:120
+#: ../src/Banshee.Base/ActionManager.cs:132
 msgid "View detailed version and configuration information"
 msgstr "ดูรายละเอียดของรุ่นและการตั้งค่าต่างๆ"
 
-#: ../src/Banshee.Base/ActionManager.cs:125
+#: ../src/Banshee.Base/ActionManager.cs:137
 msgid "_Playback"
 msgstr "_ควบคุม"
 
-#: ../src/Banshee.Base/ActionManager.cs:139
+#: ../src/Banshee.Base/ActionManager.cs:140 ../src/SourceView.cs:77
+msgid "Source"
+msgstr "แหล่งที่มา"
+
+#: ../src/Banshee.Base/ActionManager.cs:148
 msgid "Fullscreen"
 msgstr "เต็มหน้าจอ"
 
-#: ../src/Banshee.Base/ActionManager.cs:140
+#: ../src/Banshee.Base/ActionManager.cs:149
 msgid "Toggle Fullscreen Mode"
 msgstr "เปิด-ปิดการแสดงแบบเต็มหน้าจอ"
 
-#: ../src/Banshee.Base/ActionManager.cs:143
+#: ../src/Banshee.Base/ActionManager.cs:152
 msgid "Show Cover Art"
 msgstr "แสดงปกอัลบั้ม"
 
-#: ../src/Banshee.Base/ActionManager.cs:144
+#: ../src/Banshee.Base/ActionManager.cs:153
 msgid "Toggle display of album cover art"
 msgstr "แสดงหรือซ่อนภาพปกอัลบั้ม"
 
-#: ../src/Banshee.Base/ActionManager.cs:153
+#: ../src/Banshee.Base/ActionManager.cs:162
 msgid "Delete Playlist"
 msgstr "ลบรายการเล่น"
 
-#: ../src/Banshee.Base/ActionManager.cs:154
+#: ../src/Banshee.Base/ActionManager.cs:163
 msgid "Delete the active playlist"
 msgstr "ลบรายการเล่นที่เลือก"
 
-#: ../src/Banshee.Base/ActionManager.cs:163
+#: ../src/Banshee.Base/ActionManager.cs:172
 msgid "Write CD"
 msgstr "เขียนซีดี"
 
-#: ../src/Banshee.Base/ActionManager.cs:164
+#: ../src/Banshee.Base/ActionManager.cs:173
 msgid "Write selection to audio CD"
 msgstr "เขียนเพลงที่เลือกเป็นซีดีเพลง"
 
-#: ../src/Banshee.Base/ActionManager.cs:167
+#: ../src/Banshee.Base/ActionManager.cs:176
 msgid "Remove Song(s)"
 msgstr "ลบเพลง"
 
-#: ../src/Banshee.Base/ActionManager.cs:168
+#: ../src/Banshee.Base/ActionManager.cs:177
 msgid "Remove selected song(s) from library"
 msgstr "ลบเพลงที่เลือกออกจากรายการ"
 
-#: ../src/Banshee.Base/ActionManager.cs:171
+#: ../src/Banshee.Base/ActionManager.cs:180
 msgid "Delete Song(s) From Drive"
 msgstr "ลบแฟ้มเพลง"
 
-#: ../src/Banshee.Base/ActionManager.cs:172
+#: ../src/Banshee.Base/ActionManager.cs:181
 msgid "Permanently delete selected song(s) from storage medium"
 msgstr "ลบเพลงที่เลือกออกจากสื่อเก็บอย่างถาวร"
 
-#: ../src/Banshee.Base/ActionManager.cs:175
+#: ../src/Banshee.Base/ActionManager.cs:184
 msgid "Edit Song Metadata"
 msgstr "แก้ไขข้อมูลเพลง"
 
-#: ../src/Banshee.Base/ActionManager.cs:176
+#: ../src/Banshee.Base/ActionManager.cs:185
 msgid "Edit metadata on selected songs"
 msgstr "แก้ไขข้อมูลเพลงที่เลือก"
 
-#: ../src/Banshee.Base/ActionManager.cs:179
+#: ../src/Banshee.Base/ActionManager.cs:188
 msgid "Add to Playlist"
 msgstr "เพิ่มในรายการเล่น"
 
-#: ../src/Banshee.Base/ActionManager.cs:180
+#: ../src/Banshee.Base/ActionManager.cs:189
 msgid "Append selected songs to playlist or create new playlist from selection"
 msgstr "เพิ่มเพลงที่เลือกลงในรายการเล่น หรือสร้างรายการใหม่จากเพลงที่เลือก"
 
-#: ../src/Banshee.Base/ActionManager.cs:184
+#: ../src/Banshee.Base/ActionManager.cs:192 ../src/PlaylistView.cs:105
+msgid "Rating"
+msgstr "คะแนน"
+
+#: ../src/Banshee.Base/ActionManager.cs:193
 msgid "Set rating for selected songs"
 msgstr "ให้คะแนนเพลงที่เลือก"
 
-#: ../src/Banshee.Base/ActionManager.cs:193
+#: ../src/Banshee.Base/ActionManager.cs:202
 msgid "Import CD"
 msgstr "นำเข้าซีดี"
 
-#: ../src/Banshee.Base/ActionManager.cs:194
+#: ../src/Banshee.Base/ActionManager.cs:203
 msgid "Import audio CD to library"
 msgstr "นำเข้าซีดีเพลงยังไลบรารี"
 
-#: ../src/Banshee.Base/ActionManager.cs:204
-#: ../src/Banshee.Base/ActionManager.cs:208
-#: ../src/Banshee.Base/ActionManager.cs:212
+#: ../src/Banshee.Base/ActionManager.cs:212 ../src/PlayerInterface.cs:813
+#: ../src/PlayerInterface.cs:821
+msgid "Play"
+msgstr "เล่น"
+
+#: ../src/Banshee.Base/ActionManager.cs:213
 msgid "Play or pause the current song"
 msgstr "เล่นหรือพักเพลงปัจจุบัน"
 
-#: ../src/Banshee.Base/ActionManager.cs:207
+#: ../src/Banshee.Base/ActionManager.cs:216
 msgid "Next"
 msgstr "ถัดไป"
 
-#: ../src/Banshee.Base/ActionManager.cs:211
+#: ../src/Banshee.Base/ActionManager.cs:217
+#, fuzzy
+msgid "Play the next song"
+msgstr "เล่นเพลงถัดไป"
+
+#: ../src/Banshee.Base/ActionManager.cs:220
 msgid "Previous"
 msgstr "ก่อนหน้า"
 
-#: ../src/Banshee.Base/ActionManager.cs:215
-msgid "Seek Backward"
-msgstr "เลื่อนถอยหลัง"
+#: ../src/Banshee.Base/ActionManager.cs:221
+#, fuzzy
+msgid "Play the previous song"
+msgstr "เล่นเพลงก่อนหน้า"
 
-#: ../src/Banshee.Base/ActionManager.cs:216
-msgid "Seek backward in current song"
-msgstr "เลื่อนตำแหน่งที่เล่นเพลงปัจจุบันถอยหลัง"
+#: ../src/Banshee.Base/ActionManager.cs:226 ../src/ToggleStates.cs:41
+msgid "Repeat None"
+msgstr "ไม่เล่นซ้ำ"
 
-#: ../src/Banshee.Base/ActionManager.cs:219
-msgid "Seek Forward"
-msgstr "เลื่อนไปหน้า"
-
-#: ../src/Banshee.Base/ActionManager.cs:220
-msgid "Seek forward in current song"
-msgstr "เลื่อนตำแหน่งที่เล่นเพลงปัจจุบันไปข้างหน้า"
-
-#: ../src/Banshee.Base/ActionManager.cs:226
+#: ../src/Banshee.Base/ActionManager.cs:227
 msgid "Do not repeat playlist"
 msgstr ""
 
-#: ../src/Banshee.Base/ActionManager.cs:230
+#: ../src/Banshee.Base/ActionManager.cs:230 ../src/ToggleStates.cs:59
+msgid "Repeat All"
+msgstr "เล่นซ้ำทั้งหมด"
+
+#: ../src/Banshee.Base/ActionManager.cs:231
 msgid "Play all songs before repeating playlist"
 msgstr ""
 
-#: ../src/Banshee.Base/ActionManager.cs:234
+#: ../src/Banshee.Base/ActionManager.cs:234 ../src/ToggleStates.cs:50
+msgid "Repeat Single"
+msgstr "เล่นซ้ำเฉพาะเพลง"
+
+#: ../src/Banshee.Base/ActionManager.cs:235
 msgid "Repeat the current playing song"
 msgstr ""
 
-#: ../src/Banshee.Base/ActionManager.cs:240
+#: ../src/Banshee.Base/ActionManager.cs:240 ../src/ToggleStates.cs:68
+msgid "Shuffle"
+msgstr "สุ่ม"
+
+#: ../src/Banshee.Base/ActionManager.cs:241
 msgid "Toggle between shuffle or continuous playback modes"
 msgstr ""
 
 #: ../src/Banshee.Base/ActionManager.cs:250
-msgid "Save changes to device or synchronize music library"
+msgid "Seek Backward"
+msgstr "เลื่อนถอยหลัง"
+
+#: ../src/Banshee.Base/ActionManager.cs:251
+msgid "Seek backward in current song"
+msgstr "เลื่อนตำแหน่งที่เล่นเพลงปัจจุบันถอยหลัง"
+
+#: ../src/Banshee.Base/ActionManager.cs:254
+msgid "Seek Forward"
+msgstr "เลื่อนไปหน้า"
+
+#: ../src/Banshee.Base/ActionManager.cs:255
+msgid "Seek forward in current song"
+msgstr "เลื่อนตำแหน่งที่เล่นเพลงปัจจุบันไปข้างหน้า"
+
+#: ../src/Banshee.Base/ActionManager.cs:258
+msgid "Seek To..."
 msgstr ""
 
 #: ../src/Banshee.Base/ActionManager.cs:259
+#, fuzzy
+msgid "Seek to a specific location in current song"
+msgstr "เลื่อนตำแหน่งที่เล่นเพลงปัจจุบันไปข้างหน้า"
+
+#: ../src/Banshee.Base/ActionManager.cs:262
+#, fuzzy
+msgid "Restart Song"
+msgstr "เล่นซ้ำเฉพาะเพลง"
+
+#: ../src/Banshee.Base/ActionManager.cs:263
+#, fuzzy
+msgid "Restart the current song"
+msgstr "เล่นหรือพักเพลงปัจจุบัน"
+
+#: ../src/Banshee.Base/ActionManager.cs:272 ../src/PlayerInterface.cs:1053
+msgid "Synchronize"
+msgstr ""
+
+#: ../src/Banshee.Base/ActionManager.cs:273
+msgid "Save changes to device or synchronize music library"
+msgstr ""
+
+#: ../src/Banshee.Base/ActionManager.cs:282
 msgid "Eject"
 msgstr "ดันแผ่นออก"
 
-#: ../src/Banshee.Base/ActionManager.cs:260
+#: ../src/Banshee.Base/ActionManager.cs:283
 msgid "Eject the active source"
 msgstr ""
 
-#: ../src/Banshee.Base/FileEncodeAction.cs:68
-msgid "File Encoder"
+#: ../src/Banshee.Base/AudioCd/AudioCdCore.cs:80
+msgid "HAL is not initialized"
+msgstr "ไม่สามารถเริ่มต้นการทำงานของ HAL"
+
+#: ../src/Banshee.Base/AudioCd/AudioCdCore.cs:86
+msgid "Audio CD Core Initialized"
+msgstr ""
+
+#. work around mcs #76642
+#: ../src/Banshee.Base/AudioCd/AudioCdCore.cs:103
+msgid "Could not Read Audio CD"
+msgstr "ไม่สามารถอ่านซีดีเพลง"
+
+#: ../src/Banshee.Base/AudioCd/AudioCdDisk.cs:85
+#: ../src/Banshee.Base/TrackInfo.cs:374
+msgid "Unknown Artist"
+msgstr "ไม่มีชื่อศิลปิน"
+
+#: ../src/Banshee.Base/AudioCd/AudioCdDisk.cs:86
+#: ../src/Banshee.Base/TrackInfo.cs:382
+msgid "Unknown Album"
+msgstr "ไม่มีชื่ออัลบั้ม"
+
+#: ../src/Banshee.Base/AudioCd/AudioCdDisk.cs:87
+#, csharp-format
+msgid "Track {0}"
+msgstr "เพลงที่ {0}"
+
+#: ../src/Banshee.Base/AudioCd/AudioCdDisk.cs:241
+#, fuzzy
+msgid "Cannot Eject CD"
+msgstr "ไม่สามารถเอาแผ่นออกได้"
+
+#: ../src/Banshee.Base/AudioCd/AudioCdDisk.cs:242
+msgid "The CD cannot be ejected while it is importing. Stop the import first."
+msgstr ""
+
+#: ../src/Banshee.Base/AudioCdRipper.cs:85
+msgid "Could not create CD Ripper"
+msgstr ""
+
+#: ../src/Banshee.Base/AudioCdRipper.cs:295
+#, csharp-format
+msgid ""
+"The device node '{0}' differs from the device node already set for "
+"previously queued tracks ({1})"
+msgstr ""
+
+#: ../src/Banshee.Base/AudioCdRipper.cs:308
+msgid "Importing Audio CD"
+msgstr "กำลังนำเข้าซีดีเพลง"
+
+#: ../src/Banshee.Base/AudioCdRipper.cs:309
+msgid "Initializing Drive"
+msgstr ""
+
+#: ../src/Banshee.Base/AudioCdRipper.cs:329
+#: ../src/Banshee.Base/AudioCdRipper.cs:393
+#, fuzzy
+msgid "Cannot Import CD"
+msgstr "ไม่สามารถนำเข้าได้"
+
+#: ../src/Banshee.Base/AudioCdRipper.cs:341
+#: ../src/Banshee.Base/ImportManager.cs:115
+#, csharp-format
+msgid "Importing {0} of {1}"
+msgstr "กำลังนำเข้า {0} จาก {1}"
+
+#: ../src/Banshee.Base/BatchTranscoder.cs:93
+#, fuzzy
+msgid "File Transcoder"
 msgstr "การเข้ารหัสแฟ้ม"
 
-#: ../src/Banshee.Base/FileEncodeAction.cs:69
-msgid "Encoding Files"
+#: ../src/Banshee.Base/BatchTranscoder.cs:94
+#, fuzzy
+msgid "Transcoding Files"
+msgstr "รูปแบบการเข้ารหัส:"
+
+#: ../src/Banshee.Base/BatchTranscoder.cs:97
+msgid "Initializing Transcoder..."
 msgstr ""
 
-#: ../src/Banshee.Base/FileEncodeAction.cs:72
-msgid "Initializing Encoder..."
+#: ../src/Banshee.Base/Dap/DapCore.cs:119
+msgid "Cannot initialize DapCore because HalCore is not initialized"
 msgstr ""
 
-#: ../src/Banshee.Base/GstFileEncoder.cs:67
-msgid "Could not create encoder"
-msgstr "ไม่สามารถสร้างตัวลงรหัส"
+#: ../src/Banshee.Base/Dap/Dap.cs:325 ../src/Banshee.Base/Dap/Dap.cs:326
+msgid "Synchronizing Device"
+msgstr ""
 
-#: ../src/Banshee.Base/GstFileEncoder.cs:94
+#: ../src/Banshee.Base/Dap/Dap.cs:327
+msgid "Waiting for transcoder..."
+msgstr ""
+
+#: ../src/Banshee.Base/Dap/Dap.cs:411 ../src/Banshee.Base/Dap/Dap.cs:432
+msgid "Processing..."
+msgstr "กำลังประมวลผล..."
+
+#. Translators: {0} is the name assigned to a Digital Audio Player by its owner
+#: ../src/Banshee.Base/Dap/DapPropertiesDialog.cs:54
 #, csharp-format
-msgid "Could not encode file: {0}"
-msgstr "ไม่สามารถลงรหัสแฟ้ม: {0}"
+msgid "{0} Properties"
+msgstr ""
+
+#: ../src/Banshee.Base/Dap/DapPropertiesDialog.cs:78
+#: ../src/Banshee.Base/Dap/DapPropertiesDialog.cs:81
+msgid "Device Name"
+msgstr ""
+
+#: ../src/Banshee.Base/Dap/DapPropertiesDialog.cs:85
+#: ../src/Banshee.Base/Dap/DapPropertiesDialog.cs:88
+msgid "Owner Name"
+msgstr "ชื่อเจ้าของ"
+
+#: ../src/Banshee.Base/Dap/DapPropertiesDialog.cs:93
+msgid "Volume Usage"
+msgstr "พื้นที่ใช้งาน"
+
+#: ../src/Banshee.Base/Dap/DapPropertiesDialog.cs:105
+msgid "Advanced Details"
+msgstr "รายละเอียดเพิ่มเติม"
+
+#: ../src/Banshee.Base/Gui/OpenLocationDialog.cs:53
+msgid "Browse..."
+msgstr ""
+
+#: ../src/Banshee.Base/FileImportSource.cs:55
+msgid "Import Files to Library"
+msgstr "นำเข้าแฟ้มมายังไลบรารี"
+
+#: ../src/Banshee.Base/FileImportSource.cs:82
+msgid "Local Files"
+msgstr ""
+
+#: ../src/Banshee.Base/FolderImportSource.cs:55
+msgid "Import Folder to Library"
+msgstr "นำเข้าโฟลเดอร์มายังไลบรารี"
+
+#: ../src/Banshee.Base/FolderImportSource.cs:80
+#, fuzzy
+msgid "Local Folder"
+msgstr "นำเข้าโฟลเดอร์"
+
+#: ../src/Banshee.Base/GstTranscoder.cs:82
+#: ../src/Banshee.Base/GstTranscoder.cs:182
+#, fuzzy
+msgid "Could not create transcoder"
+msgstr "ไม่สามารถสร้างตัวลงรหัส"
 
 #: ../src/Banshee.Base/HalCore.cs:97
 msgid "HAL could not be initialized"
@@ -1449,6 +1120,10 @@ msgstr ""
 msgid "D-Bus may not be working or configured properly"
 msgstr ""
 
+#: ../src/Banshee.Base/HomeDirectoryImportSource.cs:58
+msgid "Home Directory"
+msgstr ""
+
 #: ../src/Banshee.Base/ImportManager.cs:83
 msgid "Importing Songs"
 msgstr "กำลังนำเข้าเพลง"
@@ -1457,7 +1132,7 @@ msgstr "กำลังนำเข้าเพลง"
 msgid "Scanning for songs"
 msgstr "กำลังตรวจหาเพลง"
 
-#: ../src/Banshee.Base/Library.cs:118
+#: ../src/Banshee.Base/Library.cs:126
 msgid "Could not load track from library"
 msgstr ""
 
@@ -1521,103 +1196,9 @@ msgstr "ที่"
 msgid "No iPod-compatible encoders available"
 msgstr "ไม่มีตัวลงรหัสที่ใช้ได้กับไอพอด"
 
-#: ../src/Banshee.Base/PlayerEngineCore.cs:114
-msgid "CD playback is not supported for this instance"
+#: ../src/Banshee.Base/PlayerEngineCore.cs:101
+msgid "Default player engine"
 msgstr ""
-
-#: ../src/Banshee.Base/TrackInfo.cs:340
-#: ../src/Banshee.Base/AudioCd/AudioCdDisk.cs:86
-msgid "Unknown Artist"
-msgstr "ไม่มีชื่อศิลปิน"
-
-#: ../src/Banshee.Base/TrackInfo.cs:348
-#: ../src/Banshee.Base/AudioCd/AudioCdDisk.cs:87
-msgid "Unknown Album"
-msgstr "ไม่มีชื่ออัลบั้ม"
-
-#: ../src/Banshee.Base/TrackInfo.cs:356
-msgid "Unknown Title"
-msgstr "ไม่มีชื่อเพลง"
-
-#: ../src/Banshee.Base/TrackInfoHeader.cs:104
-msgid "by"
-msgstr "โดย"
-
-#: ../src/Banshee.Base/TrackInfoHeader.cs:105
-msgid "from"
-msgstr "จาก"
-
-#: ../src/Banshee.Base/Utilities.cs:74
-#, csharp-format
-msgid "{0:0.00} GB"
-msgstr "{0:0.00} GB"
-
-#: ../src/Banshee.Base/Utilities.cs:75
-#, csharp-format
-msgid "{0} MB"
-msgstr "{0} MB"
-
-#: ../src/Banshee.Base/AudioCd/AudioCdCore.cs:80
-msgid "HAL is not initialized"
-msgstr "ไม่สามารถเริ่มต้นการทำงานของ HAL"
-
-#: ../src/Banshee.Base/AudioCd/AudioCdCore.cs:86
-msgid "Audio CD Core Initialized"
-msgstr ""
-
-#. work around mcs #76642
-#: ../src/Banshee.Base/AudioCd/AudioCdCore.cs:103
-msgid "Could not Read Audio CD"
-msgstr "ไม่สามารถอ่านซีดีเพลง"
-
-#: ../src/Banshee.Base/AudioCd/AudioCdDisk.cs:88
-#, csharp-format
-msgid "Track {0}"
-msgstr "เพลงที่ {0}"
-
-#: ../src/Banshee.Base/Dap/Dap.cs:315 ../src/Banshee.Base/Dap/Dap.cs:316
-msgid "Synchronizing Device"
-msgstr ""
-
-#: ../src/Banshee.Base/Dap/Dap.cs:317
-msgid "Waiting for transcoder..."
-msgstr ""
-
-#: ../src/Banshee.Base/Dap/Dap.cs:401 ../src/Banshee.Base/Dap/Dap.cs:422
-msgid "Processing..."
-msgstr "กำลังประมวลผล..."
-
-#: ../src/Banshee.Base/Dap/DapCore.cs:119
-msgid "Cannot initialize DapCore because HalCore is not initialized"
-msgstr ""
-
-#: ../src/Banshee.Base/Dap/DapCore.cs:173
-msgid "Could not process connected DAP"
-msgstr ""
-
-#. Translators: {0} is the name assigned to a Digital Audio Player by its owner
-#: ../src/Banshee.Base/Dap/DapPropertiesDialog.cs:54
-#, csharp-format
-msgid "{0} Properties"
-msgstr ""
-
-#: ../src/Banshee.Base/Dap/DapPropertiesDialog.cs:78
-#: ../src/Banshee.Base/Dap/DapPropertiesDialog.cs:81
-msgid "Device Name"
-msgstr ""
-
-#: ../src/Banshee.Base/Dap/DapPropertiesDialog.cs:85
-#: ../src/Banshee.Base/Dap/DapPropertiesDialog.cs:88
-msgid "Owner Name"
-msgstr "ชื่อเจ้าของ"
-
-#: ../src/Banshee.Base/Dap/DapPropertiesDialog.cs:93
-msgid "Volume Usage"
-msgstr "พื้นที่ใช้งาน"
-
-#: ../src/Banshee.Base/Dap/DapPropertiesDialog.cs:105
-msgid "Advanced Details"
-msgstr "รายละเอียดเพิ่มเติม"
 
 #: ../src/Banshee.Base/Plugins/PluginDialog.cs:52
 msgid "Banshee Plugins"
@@ -1652,16 +1233,51 @@ msgstr "ไม่สามารถเรียกใช้ปลั๊กอิ
 msgid "Configuration"
 msgstr "ตั้งค่า"
 
-#: ../src/Banshee.Base/Sources/DapSource.cs:103
+#: ../src/Banshee.Base/Sources/AudioCdSource.cs:76
+msgid "Reading table of contents from CD..."
+msgstr "กำลังอ่านตารางข้อมูลจากซีดี..."
+
+#: ../src/Banshee.Base/Sources/AudioCdSource.cs:81
+msgid "Searching for CD metadata..."
+msgstr "กำลังค้นหาข้อมูลซีดี..."
+
+#: ../src/Banshee.Base/Sources/AudioCdSource.cs:86
+msgid "Searching for CD cover art..."
+msgstr "กำลังค้นหาภาพปกซีดี..."
+
+#: ../src/Banshee.Base/Sources/AudioCdSource.cs:91
+msgid ""
+"Cannot search for CD metadata: there is no available Internet connection"
+msgstr "ไม่สามารถค้นหาข้อมูลซีดีได้: ไม่ได้เชื่อมต่ออินเทอร์เน็ต"
+
+#: ../src/Banshee.Base/Sources/AudioCdSource.cs:97
+msgid "Could not fetch metadata for CD."
+msgstr "ไม่สามารถหาข้อมูลเพลงสำหรับซีดีนี้"
+
+#: ../src/Banshee.Base/Sources/AudioCdSource.cs:178
+msgid "Invalid Selection"
+msgstr "เลือกไม่ถูกต้อง"
+
+#: ../src/Banshee.Base/Sources/AudioCdSource.cs:179
+msgid "You must select at least one track to import."
+msgstr "คุณต้องเลือกเพลงที่จะนำเข้าอย่างน้อยหนึ่งเพลง"
+
+#: ../src/Banshee.Base/Sources/DapSource.cs:104
 msgid "Synchronizing your Device, Please Wait..."
 msgstr ""
 
-#: ../src/Banshee.Base/Sources/DapSource.cs:167
+#: ../src/Banshee.Base/Sources/DapSource.cs:164
+#: ../src/Banshee.Widgets/StreamPositionLabel.cs:87
+#, csharp-format
+msgid "{0} of {1}"
+msgstr "{0} จาก {1}"
+
+#: ../src/Banshee.Base/Sources/DapSource.cs:174
 #, csharp-format
 msgid "({0} Remaining)"
 msgstr "(เหลืออีก {0})"
 
-#: ../src/Banshee.Base/Sources/LibrarySource.cs:51
+#: ../src/Banshee.Base/Sources/LibrarySource.cs:50
 msgid "Music Library"
 msgstr "ไลบรารีเพลง"
 
@@ -1677,69 +1293,127 @@ msgstr "ไม่สามารถเปลี่ยนชื่อรายก
 msgid "A playlist with this name already exists. Please choose another name."
 msgstr "มีรายการเล่นชื่อนี้อยู่แล้ว"
 
-#: ../src/Banshee.Dap/Ipod/IpodDap.cs:131
-#: ../src/Banshee.Dap/Ipod/IpodDap.cs:150
+#: ../src/Banshee.Base/TrackInfo.cs:390
+msgid "Unknown Title"
+msgstr "ไม่มีชื่อเพลง"
+
+#: ../src/Banshee.Base/TrackInfoHeader.cs:103
+msgid "by"
+msgstr "โดย"
+
+#: ../src/Banshee.Base/TrackInfoHeader.cs:104
+msgid "from"
+msgstr "จาก"
+
+#: ../src/Banshee.Base/Utilities.cs:74
+#, csharp-format
+msgid "{0:0.00} GB"
+msgstr "{0:0.00} GB"
+
+#: ../src/Banshee.Base/Utilities.cs:75
+#, csharp-format
+msgid "{0} MB"
+msgstr "{0} MB"
+
+#: ../src/Banshee.Dap/Ipod/DatabaseRebuilder.cs:55
+#: ../src/Banshee.Dap/Ipod/DatabaseRebuilder.cs:56
+msgid "Rebuilding Database"
+msgstr ""
+
+#: ../src/Banshee.Dap/Ipod/DatabaseRebuilder.cs:57
+#, fuzzy
+msgid "Scanning iPod..."
+msgstr "กำลังค้นหา"
+
+#: ../src/Banshee.Dap/Ipod/DatabaseRebuilder.cs:91
+#, fuzzy
+msgid "Processing Songs..."
+msgstr "กำลังประมวลผล..."
+
+#: ../src/Banshee.Dap/Ipod/DatabaseRebuilder.cs:138
+msgid "Saving new database..."
+msgstr ""
+
+#: ../src/Banshee.Dap/Ipod/DatabaseRebuilder.cs:145
+msgid "Error rebuilding iPod database"
+msgstr ""
+
+#: ../src/Banshee.Dap/Ipod/IpodDap.cs:159
+#: ../src/Banshee.Dap/Ipod/IpodDap.cs:178
 msgid "Synchronizing iPod"
 msgstr ""
 
-#: ../src/Banshee.Dap/Ipod/IpodDap.cs:132
+#: ../src/Banshee.Dap/Ipod/IpodDap.cs:160
 msgid "Pre-processing tracks"
 msgstr ""
 
-#: ../src/Banshee.Dap/Ipod/IpodDap.cs:147
+#: ../src/Banshee.Dap/Ipod/IpodDap.cs:175
 msgid "Flushing to Disk (may take time)"
 msgstr ""
 
-#: ../src/Banshee.Dap/Ipod/IpodDap.cs:157
+#: ../src/Banshee.Dap/Ipod/IpodDap.cs:185
 msgid "Failed to synchronize iPod"
 msgstr ""
 
-#: ../src/Banshee.MediaEngine/Gstreamer/GstPlayerEngine.cs:113
-#: ../src/Banshee.MediaEngine/Gstreamer/GstPlayerEngine.cs:408
+#: ../src/Banshee.Dap/Ipod/UnsupportedDatabaseView.cs:59
+msgid "Unable to read your iPod"
+msgstr ""
+
+#: ../src/Banshee.Dap/Ipod/UnsupportedDatabaseView.cs:82
+msgid "What is the reason for this?"
+msgstr ""
+
+#: ../src/Banshee.Dap/Ipod/UnsupportedDatabaseView.cs:97
+msgid "Rebuild iPod Database..."
+msgstr ""
+
+#: ../src/Banshee.Dap/Ipod/UnsupportedDatabaseView.cs:105
+msgid "Confirm Rebuild iPod Database"
+msgstr ""
+
+#: ../src/Banshee.Dap/Ipod/UnsupportedDatabaseView.cs:111
+msgid ""
+"Rebuilding your iPod database may take some time. Also note that any "
+"playlists you have on your iPod will be lost.\n"
+"\n"
+"Are you sure you want to rebuild your iPod database?"
+msgstr ""
+
+#: ../src/Banshee.Dap/Ipod/UnsupportedDatabaseView.cs:116
+msgid "Rebuild Database"
+msgstr ""
+
+#: ../src/Banshee.Dap/Ipod/UnsupportedDatabaseView.cs:128
+msgid "Rebuilding iPod Database..."
+msgstr ""
+
+#. Console.WriteLine(Catalog.GetString("Cannot Import") + ": {0}", args.FileName);
+#. Console.WriteLine(Catalog.GetString("Cannot Import: {0} ({1}, {2})"),
+#. args.FileName, e.GetType(), e.Message);
+#: ../src/Banshee.Dap/MassStorage/MassStorageDap.cs:133
+#: ../src/Banshee.Dap/MassStorage/MassStorageDap.cs:137
+#: ../src/PlayerInterface.cs:1719
+msgid "Scanning"
+msgstr "กำลังค้นหา"
+
+#: ../src/Banshee.Dap/MassStorage/MassStorageDap.cs:257
+#, fuzzy
+msgid "Audio Device"
+msgstr "ซีดีเพลง"
+
+#: ../src/Banshee.MediaEngine/Gstreamer/GstPlayerEngine.cs:64
+#: ../src/Banshee.MediaEngine/Gstreamer/GstPlayerEngine.cs:290
 msgid "Could not initialize GStreamer library"
 msgstr ""
 
-#: ../src/Banshee.MediaEngine/Gstreamer/GstPlayerEngine.cs:237
+#: ../src/Banshee.MediaEngine/Gstreamer/GstPlayerEngine.cs:142
 msgid "Unknown Error"
 msgstr "เกิดข้อผิดพลาดไม่ทราบสาเหตุ"
 
-#: ../src/Banshee.MediaEngine/Gstreamer/GstPlayerEngine.cs:296
-msgid "GStreamer 0.10 Engine"
+#: ../src/Banshee.MediaEngine/Gstreamer/GstPlayerEngine.cs:164
+#: ../src/Banshee.Widgets/StreamPositionLabel.cs:81
+msgid "Buffering"
 msgstr ""
-
-#: ../src/Banshee.MediaEngine/Gstreamer/GstPlayerEngine.cs:306
-#: ../src/Banshee.MediaEngine/Gstreamer/GstPlayerEngine.cs:627
-msgid ""
-"GStreamer is a multimedia framework for playing and manipulating media. Any "
-"GStreamer plugin that is available will work through this engine."
-msgstr ""
-
-#: ../src/Banshee.MediaEngine/Gstreamer/GstPlayerEngine.cs:616
-msgid "GStreamer Engine"
-msgstr ""
-
-#: ../src/Banshee.MediaEngine/Helix/HelixPlayer.cs:81
-msgid "Helix Framework Engine (hxclientkit)"
-msgstr ""
-
-#: ../src/Banshee.MediaEngine/Helix/HelixPlayer.cs:89
-msgid ""
-"The Helix Engine provides multimedia control through the Helix Multimedia "
-"Framework, sponsored by RealNetworks. The engine can play any file that "
-"RealPlayer can. Install RealPlayer for best results."
-msgstr ""
-
-#: ../src/Banshee.MediaEngine/Vlc/VlcPlayerEngine.cs:82
-msgid "VLC"
-msgstr "VLC"
-
-#: ../src/Banshee.MediaEngine/Vlc/VlcPlayerEngine.cs:90
-msgid ""
-"VLC is a highly portable multimedia player for various audio and video "
-"formats (MP3, AAC, OGG, FLAC, WMA, etc.) See http://videolan.org/vlc/"
-msgstr ""
-"VLC เป็นโปรแกรมเล่นแฟ้มมัลติมีเดียความสามารถสูง ที่สนับสนุนฟอร์แมตหลายชนิด (เช่น MP3, AAC, "
-"OGG, FLAC, WMA) ดูรายละเอียดเพิ่มเติมที่ http://www.videolan.org/vlc/"
 
 #: ../src/Banshee.Plugins/Audioscrobbler/AudioscrobblerConfigDialog.cs:61
 #: ../src/Banshee.Plugins/Audioscrobbler/AudioscrobblerPlugin.cs:145
@@ -1835,7 +1509,7 @@ msgstr ""
 msgid "Share name:"
 msgstr ""
 
-#: ../src/Banshee.Plugins/Daap/DaapCore.cs:72
+#: ../src/Banshee.Plugins/Daap/DaapCore.cs:73
 msgid "Banshee Music Share"
 msgstr ""
 
@@ -1859,10 +1533,6 @@ msgstr "รหัสผ่าน:"
 msgid "Login"
 msgstr "ล็อกอิน"
 
-#: ../src/Banshee.Plugins/Daap/DaapSource.cs:70
-msgid "Cannot login to DAAP share"
-msgstr ""
-
 #: ../src/Banshee.Plugins/Daap/daap.schemas.in.h:1
 msgid "Allow others to browse and listen to your music from other DAAP clients"
 msgstr ""
@@ -1879,6 +1549,14 @@ msgstr ""
 msgid "Name of DAAP server share"
 msgstr ""
 
+#: ../src/Banshee.Plugins/Daap/DaapSource.cs:70
+msgid "Cannot login to DAAP share"
+msgstr ""
+
+#: ../src/Banshee.Plugins/FileSystemMonitor/filesystemmonitor.schemas.in.h:1
+msgid "Enable the FileSystemMonitor plugin"
+msgstr ""
+
 #: ../src/Banshee.Plugins/FileSystemMonitor/Watcher.cs:49
 msgid ""
 "Automatically keep your Banshee library directory in sync with your music "
@@ -1886,31 +1564,32 @@ msgid ""
 "them in your library."
 msgstr ""
 
-#: ../src/Banshee.Plugins/FileSystemMonitor/filesystemmonitor.schemas.in.h:1
-msgid "Enable the FileSystemMonitor plugin"
-msgstr ""
-
-#: ../src/Banshee.Plugins/MetadataSearch/MetadataSearchConfigDialog.cs:60
+#: ../src/Banshee.Plugins/MetadataSearch/MetadataSearchConfigDialog.cs:61
 msgid "Metadata and Cover Art Searching"
 msgstr "ค้นหาข้อมูลเพลงและภาพปกอัลบั้ม"
 
-#: ../src/Banshee.Plugins/MetadataSearch/MetadataSearchConfigDialog.cs:69
+#: ../src/Banshee.Plugins/MetadataSearch/MetadataSearchConfigDialog.cs:70
 msgid "Only download album cover artwork"
 msgstr "ดาวน์โหลดเฉพาะภาพปกอัลบั้ม"
 
-#: ../src/Banshee.Plugins/MetadataSearch/MetadataSearchConfigDialog.cs:71
+#: ../src/Banshee.Plugins/MetadataSearch/MetadataSearchConfigDialog.cs:72
 msgid "Download album cover artwork and fill in missing track data"
 msgstr "ดาวน์โหลดภาพปกอัลบั้ม และเติมข้อมูลเพลงที่ว่างอยู่"
 
-#: ../src/Banshee.Plugins/MetadataSearch/MetadataSearchConfigDialog.cs:73
+#: ../src/Banshee.Plugins/MetadataSearch/MetadataSearchConfigDialog.cs:74
 msgid "Download album cover artwork and overwrite any existing track data"
 msgstr "ดาวน์โหลดภาพปกอัลบั้ม และเขียนทับข้อมูลเพลงที่มีอยู่"
 
-#: ../src/Banshee.Plugins/MetadataSearch/MetadataSearchConfigDialog.cs:88
+#: ../src/Banshee.Plugins/MetadataSearch/MetadataSearchConfigDialog.cs:76
+#, fuzzy
+msgid "Rescan Library"
+msgstr "ไลบรารีเพลง"
+
+#: ../src/Banshee.Plugins/MetadataSearch/MetadataSearchConfigDialog.cs:96
 msgid "Warning"
 msgstr "คำเตือน"
 
-#: ../src/Banshee.Plugins/MetadataSearch/MetadataSearchConfigDialog.cs:90
+#: ../src/Banshee.Plugins/MetadataSearch/MetadataSearchConfigDialog.cs:98
 msgid ""
 "This option can usually correct minor mistakes in metadata, however on rare "
 "occasions metadata may be incorrectly updated from MusicBrainz."
@@ -1918,7 +1597,7 @@ msgstr ""
 "ตัวเลือกนี้จะช่วยแก้ไขข้อผิดพลาดเล็กน้อยในข้อมูลเพลง อย่างไรก็ตามก็มีโอกาสที่ข้อมูลเพลงจาก "
 "MusicBrainz จะผิดพลาด"
 
-#: ../src/Banshee.Plugins/MetadataSearch/MetadataSearchPlugin.cs:55
+#: ../src/Banshee.Plugins/MetadataSearch/MetadataSearchPlugin.cs:57
 msgid ""
 "Automatically search for missing and supplementary metadata and cover art "
 "for songs in your library."
@@ -1954,6 +1633,19 @@ msgstr ""
 msgid "Enable the MultimediaKeys plugin"
 msgstr "เปิดใช้งานปลั๊กอิน "
 
+#: ../src/Banshee.Plugins/NotificationAreaIcon/NotificationAreaIconPlugin.cs:49
+msgid "Notification Area Icon"
+msgstr ""
+
+#: ../src/Banshee.Plugins/NotificationAreaIcon/NotificationAreaIconPlugin.cs:53
+msgid "Shows the Notification Area Icon"
+msgstr ""
+
+#: ../src/Banshee.Plugins/NotificationAreaIcon/banshee-notificationareaicon.schemas.in.h:1
+#, fuzzy
+msgid "Enable the Notification Area Icon plugin"
+msgstr "เปิดใช้งานปลั๊กอิน "
+
 #: ../src/Banshee.Widgets/ActiveUserEvent.cs:76
 msgid "Cancel Operation"
 msgstr "ยกเลิกปฏิบัติการ"
@@ -1968,3 +1660,545 @@ msgstr "คุณแน่ใจว่าต้องการยกเลิก
 #, csharp-format
 msgid "Searching: {0}"
 msgstr "กำลังค้นหา: {0}"
+
+#: ../src/Banshee.Widgets/StreamPositionLabel.cs:83
+msgid "Idle"
+msgstr "ไม่ได้เล่น"
+
+#: ../src/BurnCore.cs:93
+msgid "Could Not Write CD"
+msgstr "ไม่สามารถเขียนซีดีได้"
+
+#: ../src/BurnCore.cs:94
+msgid ""
+"No suitable wave encoder could be found to convert selected songs to CD "
+"audio format."
+msgstr "ไม่มีตัวเข้ารหัสเสียงที่เหมาะสมในการแปลงเพลงลงซีดี"
+
+#: ../src/BurnCore.cs:155
+msgid "Writing CD"
+msgstr "กำลังเขียนซีดี"
+
+#: ../src/BurnCore.cs:156
+msgid "Writing Audio CD"
+msgstr "กำลังเขียนซีดีเพลง"
+
+#: ../src/BurnCore.cs:187
+msgid "The inserted media is not large enough to hold your selected music."
+msgstr "สื่อที่ใช้มีขนาดไม่พอสำหรับเพลงที่คุณเลือก"
+
+#: ../src/BurnCore.cs:189
+#, csharp-format
+msgid "{0} more minute is needed on the media."
+msgid_plural "{0} more minutes are needed on the media."
+msgstr[0] ""
+
+#: ../src/BurnCore.cs:193
+msgid "Not Enough Space on Disc"
+msgstr "แผ่นมีเนื้อที่ไม่พอ"
+
+#: ../src/BurnCore.cs:224
+msgid "No CD writers were found on your system."
+msgstr "ไม่พบเครื่องเขียนซีดีในระบบ"
+
+#: ../src/BurnCore.cs:264
+msgid "Error Burning CD"
+msgstr "เกิดความผิดพลาดในการเขียนซีดี"
+
+#: ../src/BurnCore.cs:268
+msgid "An unknown error occurred when attempting to write the CD"
+msgstr ""
+
+#: ../src/BurnCore.cs:274
+msgid "CD Writing Complete"
+msgstr "เขียนซีดีเสร็จสิ้น"
+
+#: ../src/BurnCore.cs:275
+msgid "The selected audio was successfully written to the CD."
+msgstr "เพลงที่เลือกถูกเขียนลงซีดีเรียบร้อย"
+
+#: ../src/BurnCore.cs:279
+msgid "Error Writing CD"
+msgstr "เกิดความผิดพลาดในการเขียนซีดี"
+
+#: ../src/BurnCore.cs:302
+msgid "Preparing to write..."
+msgstr "กำลังเตรียมการเขียน..."
+
+#: ../src/BurnCore.cs:306
+msgid "Writing disk..."
+msgstr "กำลังเขียนแผ่น..."
+
+#: ../src/BurnCore.cs:310
+msgid "Fixating disk..."
+msgstr ""
+
+#: ../src/BurnCore.cs:327
+msgid "Waiting for Media"
+msgstr "กำลังรอแผ่น"
+
+#: ../src/BurnCore.cs:331 ../src/BurnCore.cs:334
+msgid "Insert Blank CD"
+msgstr "กรุณาใส่ซีดีเปล่า"
+
+#: ../src/BurnCore.cs:332
+msgid "Please insert a blank CD disk for the write process."
+msgstr "กรุณาใส่แผ่นซีดีเปล่าสำหรับการเขียน"
+
+#: ../src/Dialogs.cs:81
+msgid "An Error Occurred"
+msgstr "เกิดข้อผิดพลาด"
+
+#: ../src/Dialogs.cs:88
+msgid "Error"
+msgstr "ผิดพลาด"
+
+#: ../src/ExceptionDialog.cs:24
+msgid "Banshee Encountered a Fatal Error"
+msgstr "Banshee พบข้อผิดพลาดรุนแรง"
+
+#: ../src/ExceptionDialog.cs:52
+msgid ""
+"This may be due to a programming error. Please help us make Banshee better "
+"by reporting this error. Thank you in advance!"
+msgstr "นี่อาจเป็นปัญหาที่ตัวโปรแกรม คุณสามารถรายงานปัญหานี้ เพื่อช่วยให้ Banshee ดีขึ้น"
+
+#: ../src/ExceptionDialog.cs:99
+msgid "An unhandled exception was thrown: "
+msgstr ""
+
+#: ../src/LogCoreViewer.cs:52
+msgid "Log Viewer"
+msgstr ""
+
+#: ../src/LogCoreViewer.cs:88
+msgid "Time Stamp"
+msgstr ""
+
+#: ../src/LogCoreViewer.cs:107
+msgid "Message"
+msgstr "ข้อความ:"
+
+#: ../src/LogCoreViewer.cs:119
+msgid "Show:"
+msgstr "แสดง"
+
+#: ../src/LogCoreViewer.cs:136
+msgid "All Log Entries"
+msgstr ""
+
+#: ../src/LogCoreViewer.cs:137
+msgid "Only Error Messages"
+msgstr ""
+
+#: ../src/LogCoreViewer.cs:138
+msgid "Only Warning Messages"
+msgstr ""
+
+#: ../src/LogCoreViewer.cs:139
+msgid "Only Information Messages"
+msgstr ""
+
+#: ../src/LogCoreViewer.cs:140
+msgid "Only Debug Messages"
+msgstr ""
+
+#: ../src/LogCoreViewer.cs:155
+msgid "Entry Details:"
+msgstr ""
+
+#: ../src/PlayerInterface.cs:363
+msgid "Loading..."
+msgstr "กำลังเรียก..."
+
+#: ../src/PlayerInterface.cs:424
+msgid "All"
+msgstr "ทั้งหมด"
+
+#: ../src/PlayerInterface.cs:426 ../src/PlayerInterface.cs:1278
+msgid "Song Name"
+msgstr "ชื่อเพลง"
+
+#: ../src/PlayerInterface.cs:427 ../src/PlayerInterface.cs:1276
+msgid "Artist Name"
+msgstr "ชื่อศิลปิน"
+
+#: ../src/PlayerInterface.cs:428 ../src/PlayerInterface.cs:1280
+msgid "Album Title"
+msgstr "ชื่ออัลบั้ม"
+
+#: ../src/PlayerInterface.cs:429 ../src/PlayerInterface.cs:1282
+#: ../src/PlaylistView.cs:97
+msgid "Genre"
+msgstr ""
+
+#: ../src/PlayerInterface.cs:450
+msgid "Write selection to CD"
+msgstr "เขียนเพลงที่เลือกลงซีดี"
+
+#: ../src/PlayerInterface.cs:451
+msgid "Import CD into library"
+msgstr "นำเข้าซีดีไปยังไลบรารี"
+
+#: ../src/PlayerInterface.cs:452
+msgid "Play previous song"
+msgstr "เล่นเพลงก่อนหน้า"
+
+#: ../src/PlayerInterface.cs:453
+msgid "Play/pause current song"
+msgstr "เล่น/หยุดเพลงปัจจุบัน"
+
+#: ../src/PlayerInterface.cs:454
+msgid "Play next song"
+msgstr "เล่นเพลงถัดไป"
+
+#: ../src/PlayerInterface.cs:455
+msgid "Current position in song"
+msgstr "ตำแหน่งของเพลงที่กำลังเล่นอยู่"
+
+#: ../src/PlayerInterface.cs:456
+msgid "Device disk usage"
+msgstr "เนื้อที่ดิสก์ที่ใช้"
+
+#: ../src/PlayerInterface.cs:457
+msgid "Synchronize music library to device"
+msgstr ""
+
+#: ../src/PlayerInterface.cs:458
+msgid "Adjust volume"
+msgstr "ปรับระดับเสียง"
+
+#: ../src/PlayerInterface.cs:459
+msgid "Change repeat playback mode"
+msgstr "เล่นซ้ำ"
+
+#: ../src/PlayerInterface.cs:460
+msgid "Toggle shuffle playback mode"
+msgstr "เล่นแบบสุ่ม"
+
+#: ../src/PlayerInterface.cs:461
+msgid "Edit and view metadata of selected songs"
+msgstr "แก้ไขและดูข้อมูลเพลงที่เลือก"
+
+#: ../src/PlayerInterface.cs:803
+msgid "Cannot Play Song"
+msgstr "ไม่สามารถเล่นเพลงได้"
+
+#: ../src/PlayerInterface.cs:804
+#, csharp-format
+msgid ""
+"{0} cannot be played by Banshee. The most common reasons for this are:\n"
+"\n"
+"  <big>•</big> Song is protected (DRM)\n"
+"  <big>•</big> Song is on a DAP that does not support playback\n"
+msgstr ""
+
+#: ../src/PlayerInterface.cs:824
+msgid "Pause"
+msgstr "หยุด"
+
+#: ../src/PlayerInterface.cs:858
+#, fuzzy
+msgid "Playback Error"
+msgstr "_ควบคุม"
+
+#: ../src/PlayerInterface.cs:1042
+#, fuzzy
+msgid "Import"
+msgstr "นำเข้าซีดี"
+
+#: ../src/PlayerInterface.cs:1058 ../src/PlayerInterface.cs:2006
+msgid "Rename Device"
+msgstr "เปลี่ยนชื่ออุปกรณ์"
+
+#: ../src/PlayerInterface.cs:1060 ../src/PlayerInterface.cs:2000
+msgid "Rename Playlist"
+msgstr "เปลี่ยนชื่อรายการเล่น"
+
+#: ../src/PlayerInterface.cs:1165
+#, csharp-format
+msgid "{0} day"
+msgid_plural "{0} days"
+msgstr[0] "{0} วัน"
+msgstr[1] "{0} วัน"
+
+#: ../src/PlayerInterface.cs:1182
+#, csharp-format
+msgid "{0} Item"
+msgid_plural "{0} Items"
+msgstr[0] "{0} รายการ"
+msgstr[1] "{0} รายการ"
+
+#: ../src/PlayerInterface.cs:1184
+#, csharp-format
+msgid "{0} Total Play Time"
+msgstr "ความยาวทั้งหมด {0}"
+
+#: ../src/PlayerInterface.cs:1496
+msgid "Clear"
+msgstr "ล้าง"
+
+#: ../src/PlayerInterface.cs:1707
+msgid "Could Not Eject"
+msgstr "ไม่สามารถเอาแผ่นออกได้"
+
+#: ../src/PlayerInterface.cs:1735
+#, fuzzy, csharp-format
+msgid "Cannot Import: {0} ({1})"
+msgstr "ไม่สามารถนำเข้า: {0} ({1}, {2})"
+
+#: ../src/PlayerInterface.cs:1777
+#, csharp-format
+msgid ""
+"Are you sure you want to remove the selected song from your library "
+"<i><b>and</b></i> your drive? This action will permanently delete the file."
+msgid_plural ""
+"Are you sure you want to remove the selected <b>({0})</b> songs from your "
+"library <i><b>and</b></i> your drive? This action will permanently delete "
+"the files."
+msgstr[0] ""
+"คุณแน่ใจว่าต้องการลบเพลงที่เลือกออกจากไลบรารี <i><b>และ</b></i> ดิสก์หรือไม่? "
+"การลบนี้จะเป็นการลบแฟ้มเพลงอย่างถาวร"
+msgstr[1] ""
+"คุณแน่ใจว่าต้องการลบเพลง <b>({0})</b> เพลงที่เลือกออกจากไลบรารี <i><b>และ</b></i> "
+"ดิสก์หรือไม่? การลบนี้จะเป็นการลบแฟ้มเพลงอย่างถาวร"
+
+#: ../src/PlayerInterface.cs:1786
+#, csharp-format
+msgid "Are you sure you want to remove the selected song from your library?"
+msgid_plural ""
+"Are you sure you want to remove the selected <b>({0})</b> songs from your "
+"library?"
+msgstr[0] "คุณแน่ใจว่าต้องการลบเพลงที่เลือกออกจากไลบรารีหรือไม่?"
+msgstr[1] "คุณแน่ใจว่าต้องการลบเพลง <b>({0})</b> เพลงที่เลือกออกจากไลบรารีหรือไม่?"
+
+#: ../src/PlayerInterface.cs:1795
+msgid "Remove Selected Songs from Library"
+msgstr "ลบเพลงที่เลือกจากไลบรารี"
+
+#. Translators: {0} is the name of the DAP device (i.e. 'iPod')
+#: ../src/PlayerInterface.cs:1934
+#, csharp-format
+msgid "Synchronize {0}"
+msgstr ""
+
+#: ../src/PlayerInterface.cs:1935
+#, csharp-format
+msgid ""
+"You have made changes to your {0}. Please choose a method for updating the "
+"contents of your {0}.\n"
+"\n"
+"<big>•</big> <i>Synchronize Library</i>: synchronize Banshee library to {0}\n"
+"<big>•</big> <i>Save Manual Changes</i>: save only the manual changes you "
+"made"
+msgstr ""
+
+#: ../src/PlayerInterface.cs:1941
+msgid ""
+"<b>Warning:</b> Actions will alter or erase existing iPod contents and may "
+"cause incompatability with iTunes!"
+msgstr ""
+
+#: ../src/PlayerInterface.cs:1943
+msgid "Synchronize Library"
+msgstr ""
+
+#: ../src/PlayerInterface.cs:1945
+msgid "Save Manual Changes"
+msgstr ""
+
+#: ../src/PlayerInterface.cs:2001
+msgid "Enter new playlist name"
+msgstr "ใส่ชื่อรายการเล่นใหม่"
+
+#: ../src/PlayerInterface.cs:2007
+msgid "Enter new name for your device"
+msgstr "ใส่ชื่อให้อุปกรณ์ของคุณ"
+
+#: ../src/PlaylistColumns.cs:84
+msgid "Invalid column width"
+msgstr ""
+
+#: ../src/PlaylistColumns.cs:143
+msgid "Choose Columns"
+msgstr "เลือกคอลัมน์"
+
+#: ../src/PlaylistColumns.cs:159
+msgid "Visible Playlist Columns"
+msgstr "คอลัมน์ที่แสดงในรายการเล่น"
+
+#: ../src/PlaylistView.cs:85
+msgid "Track"
+msgstr "เพลงที่"
+
+#: ../src/PlaylistView.cs:88
+msgid "Artist"
+msgstr "ศิลปิน"
+
+#: ../src/PlaylistView.cs:91
+msgid "Title"
+msgstr "ชื่อเพลง"
+
+#: ../src/PlaylistView.cs:94
+msgid "Album"
+msgstr "อัลบั้ม"
+
+#: ../src/PlaylistView.cs:100
+msgid "Time"
+msgstr "ความยาว"
+
+#: ../src/PlaylistView.cs:111
+msgid "Plays"
+msgstr "ครั้งที่เล่น"
+
+#: ../src/PlaylistView.cs:118
+msgid "Last Played"
+msgstr "เล่นล่าสุด"
+
+#: ../src/PlaylistView.cs:462
+msgid "N/A"
+msgstr "ไม่มีข้อมูล"
+
+#: ../src/Preferences.cs:98
+msgid "Select Library Location"
+msgstr "เลือกตำแหน่งไลบรารี"
+
+#: ../src/Preferences.cs:262
+msgid "Unavailable"
+msgstr "ไม่ปรากฏ"
+
+#: ../src/Preferences.cs:268
+msgid "Loading Drive List..."
+msgstr "กำลังเรียกรายการไดรว์..."
+
+#: ../src/Preferences.cs:291
+msgid "No CD Burners Detected"
+msgstr "ไม่พบตัวเขียนซีดี"
+
+#: ../src/Preferences.cs:389
+msgid "Fastest Possible"
+msgstr "เร็วที่สุดที่เป็นไปได้"
+
+#. Translators: this represents a CD write speed, eg "32x"
+#: ../src/Preferences.cs:393
+#, csharp-format
+msgid "{0}x"
+msgstr "{0}x"
+
+#: ../src/ToggleStates.cs:79
+msgid "Continuous"
+msgstr ""
+
+#: ../src/TrackProperties.cs:184
+msgid "Set all Track Numbers to this value"
+msgstr "ตั้งลำดับเพลงทั้งหมดเป็นค่านี้"
+
+#: ../src/TrackProperties.cs:185
+msgid "Automatically Set All Track Numbers"
+msgstr "ตั้งลำดับเพลงทั้งหมดโดยอัตโนมัติ"
+
+#: ../src/TrackProperties.cs:186
+msgid "Set all Track Counts to this value"
+msgstr "ตั้งจำนวนเพลงทั้งหมดเป็นค่านี้"
+
+#: ../src/TrackProperties.cs:187
+msgid "Set all Artists to this value"
+msgstr "ตั้งศิลปินทั้งหมดเป็นค่านี้"
+
+#: ../src/TrackProperties.cs:188
+msgid "Set all Albums to this value"
+msgstr "ตั้งอัลบั้มทั้งหมดเป็นค่านี้"
+
+#: ../src/TrackProperties.cs:189
+msgid "Set all Titles to this value"
+msgstr "ตั้งชื่อเพลงทั้งหมดเป็นค่านี้"
+
+#: ../src/TrackProperties.cs:190
+#, fuzzy
+msgid "Set all Genres to this value"
+msgstr "ตั้งชื่อเพลงทั้งหมดเป็นค่านี้"
+
+#: ../src/TrackProperties.cs:234
+msgid "Never Played"
+msgstr "ไม่เคยเล่น"
+
+#: ../src/TrackProperties.cs:239
+#, csharp-format
+msgid "Editing Song {0} of {1}"
+msgstr "แก้ไขข้อมูลเพลงที่ {0} จาก {1}"
+
+#: ../src/TrackProperties.cs:246 ../src/TrackProperties.cs:247
+#, csharp-format
+msgid "File: {0}"
+msgstr "แฟ้ม: {0}"
+
+#: ../src/TrackProperties.cs:253
+msgid "KB/Second"
+msgstr "KB/วินาที"
+
+#: ../src/TrackProperties.cs:254
+#, csharp-format
+msgid "{0} KHz"
+msgstr "{0} KHz"
+
+#: ../src/TrackProperties.cs:255
+msgid "Yes"
+msgstr "ใช่"
+
+#: ../src/TrackProperties.cs:255
+msgid "No"
+msgstr "ไม่ใช่"
+
+#: ../src/VersionInformationDialog.cs:62
+msgid "Assembly Version Information"
+msgstr "ข้อมูลเวอร์ชันของส่วนประกอบต่างๆ"
+
+#: ../src/VersionInformationDialog.cs:68
+msgid "Assembly Name"
+msgstr "ชื่อส่วนประกอบ"
+
+#: ../src/VersionInformationDialog.cs:70
+msgid "Version"
+msgstr "เวอร์ชัน"
+
+#~ msgid "<span size=\"small\">Idle</span>"
+#~ msgstr "<span size=\"small\">ไม่ได้เล่น</span>"
+
+#~ msgid ""
+#~ "Banshee has detected that you are plugging in an iPod for the first time. "
+#~ "Please take a moment to give your iPod a name."
+#~ msgstr "Banshee ตรวจพบว่าคุณเสียบไอพอดเป็นครั้งแรก กรุณาใส่ชื่อไอพอดของคุณ"
+
+#~ msgid "Description:"
+#~ msgstr "คำอธิบาย:"
+
+#~ msgid "New iPod Detected"
+#~ msgstr "ตรวจพบไอพอดใหม่"
+
+#~ msgid "Your Name:"
+#~ msgstr "ชื่อของคุณ:"
+
+#~ msgid "iPod Name:"
+#~ msgstr "ชื่อไอพ็อด:"
+
+#~ msgid "Automatic Import"
+#~ msgstr "นำเข้าอัตโนมัติ"
+
+#~ msgid "Your Library is Empty - Consider Importing Music"
+#~ msgstr "ไลบรารีไม่มีเพลงอยู่ กรุณานำเข้าเพลง"
+
+#~ msgid "This Playlist is Empty - Consider Adding Music"
+#~ msgstr "รายการเล่นไม่มีเพลง กรุณาเพิ่มเพลงลงรายการ"
+
+#~ msgid "Could not encode file: {0}"
+#~ msgstr "ไม่สามารถลงรหัสแฟ้ม: {0}"
+
+#~ msgid "VLC"
+#~ msgstr "VLC"
+
+#~ msgid ""
+#~ "VLC is a highly portable multimedia player for various audio and video "
+#~ "formats (MP3, AAC, OGG, FLAC, WMA, etc.) See http://videolan.org/vlc/"
+#~ msgstr ""
+#~ "VLC เป็นโปรแกรมเล่นแฟ้มมัลติมีเดียความสามารถสูง ที่สนับสนุนฟอร์แมตหลายชนิด (เช่น MP3, "
+#~ "AAC, OGG, FLAC, WMA) ดูรายละเอียดเพิ่มเติมที่ http://www.videolan.org/vlc/"
