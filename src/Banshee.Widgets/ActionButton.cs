@@ -95,7 +95,7 @@ namespace Banshee.Widgets
             }
         }
         
-        public Action Action {
+        public new Action Action {
             get {
                 return action;
             }
@@ -200,7 +200,7 @@ namespace Banshee.Widgets
             }
         }
         
-        public Action Action {
+        public new Action Action {
             get {
                 return action;
             }

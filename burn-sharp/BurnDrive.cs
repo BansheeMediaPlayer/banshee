@@ -99,12 +99,12 @@ namespace Nautilus {
 			nautilus_burn_drive_free(Handle);
 		}
 
-		[DllImport("libnautilus-burn")]
-		static extern long nautilus_burn_drive_get_media_size(IntPtr raw);
+		[DllImport("libnautilusburnglue")]
+		static extern long nautilus_glue_burn_drive_get_media_size(IntPtr raw);
 
 		public long MediaSize { 
 			get {
-				long raw_ret = nautilus_burn_drive_get_media_size(Handle);
+				long raw_ret = nautilus_glue_burn_drive_get_media_size(Handle);
 				long ret = raw_ret;
 				return ret;
 			}
@@ -137,11 +137,11 @@ namespace Nautilus {
 			return ret;
 		}
 
-		[DllImport("libnautilus-burn")]
-		static extern IntPtr nautilus_burn_drive_copy(IntPtr raw);
+		[DllImport("libnautilusburnglue")]
+		static extern IntPtr nautilus_glue_burn_drive_copy(IntPtr raw);
 
 		public Nautilus.BurnDrive Copy() {
-			IntPtr raw_ret = nautilus_burn_drive_copy(Handle);
+			IntPtr raw_ret = nautilus_glue_burn_drive_copy(Handle);
 			Nautilus.BurnDrive ret = raw_ret == IntPtr.Zero ? null : new Nautilus.BurnDrive(raw_ret);
 			return ret;
 		}
@@ -169,11 +169,11 @@ namespace Nautilus {
 #endregion
 #region Customized extensions
 #line 1 "BurnDrive.custom"
-		[DllImport("libnautilus-burn")]
-                static extern IntPtr nautilus_burn_drive_get_list(bool recorder_only, bool add_image);
+		[DllImport("libnautilusburnglue")]
+                static extern IntPtr nautilus_glue_burn_drive_get_list(bool recorder_only, bool add_image);
 
                 public static GLib.List GetList(bool recorder_only, bool add_image) {
-                        IntPtr raw_ret = nautilus_burn_drive_get_list(recorder_only, add_image);
+                        IntPtr raw_ret = nautilus_glue_burn_drive_get_list(recorder_only, add_image);
                         GLib.List ret = new GLib.List(raw_ret, typeof (Nautilus.BurnDrive));
                         return ret;
                 }

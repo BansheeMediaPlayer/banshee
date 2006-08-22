@@ -1,5 +1,15 @@
-
 #include <nautilus-burn-recorder.h>
+#include <nautilus-burn-drive.h>
+
+#ifndef NAUTILUS_BURN_CHECK_VERSION
+#define NAUTILUS_BURN_CHECK_VERSION(a,b,c) FALSE
+#endif
+
+#define LNB_215 NAUTILUS_BURN_CHECK_VERSION(2,15,3)
+
+#if LNB_215
+#include <nautilus-burn.h>
+#endif
 
 #ifdef HAVE_CONFIG_H
 #include "config.h"
@@ -27,59 +37,111 @@ nautilus_burn_glue_create_track (const char *filename,
 char *
 nautilus_burn_glue_drive_get_id (NautilusBurnDrive *drive)
 {
-#ifndef HAVE_LIBNAUTILUS_BURN_4
-	return g_strdup (drive->cdrecord_id);
-#else /* HAVE_LIBNAUTILUS_BURN_4 */
+#if LNB_215
 	return g_strdup (nautilus_burn_drive_get_device (drive));
-#endif /* HAVE_LIBNAUTILUS_BURN_4 */
+#else
+	return g_strdup (drive->cdrecord_id);
+#endif 
 }
 
 NautilusBurnDriveType
 nautilus_burn_glue_drive_get_type (NautilusBurnDrive *drive)
 {
-#ifndef HAVE_LIBNAUTILUS_BURN_4
-	return drive->type;
-#else /* HAVE_LIBNAUTILUS_BURN_4 */
+#if LNB_215
 	return nautilus_burn_drive_get_drive_type (drive);
-#endif /* HAVE_LIBNAUTILUS_BURN_4 */
+#else
+	return drive->type;
+#endif
 }
 
 char *
 nautilus_burn_glue_drive_get_display_name (NautilusBurnDrive *drive)
 {
-#ifndef HAVE_LIBNAUTILUS_BURN_4
-	return g_strdup (drive->display_name);
-#else /* HAVE_LIBNAUTILUS_BURN_4 */
+#if LNB_215
 	return nautilus_burn_drive_get_name_for_display (drive);
-#endif /* HAVE_LIBNAUTILUS_BURN_4 */
+#else
+	return g_strdup (drive->display_name);
+#endif
 }
 
 int
 nautilus_burn_glue_drive_get_max_read_speed (NautilusBurnDrive *drive)
 {
-#ifndef HAVE_LIBNAUTILUS_BURN_4
+#if LNB_215
+	return  NAUTILUS_BURN_DRIVE_CD_SPEED(nautilus_burn_drive_get_max_speed_read(drive));
+#else 
 	return drive->max_speed_read;
-#else /* HAVE_LIBNAUTILUS_BURN_4 */
-	return nautilus_burn_drive_get_max_speed_read (drive);
-#endif /* HAVE_LIBNAUTILUS_BURN_4 */
+#endif
 }
 
 int
 nautilus_burn_glue_drive_get_max_write_speed (NautilusBurnDrive *drive)
 {
-#ifndef HAVE_LIBNAUTILUS_BURN_4
+#if LNB_215
+	return  NAUTILUS_BURN_DRIVE_CD_SPEED(nautilus_burn_drive_get_max_speed_write(drive));
+#else 
 	return drive->max_speed_write;
-#else /* HAVE_LIBNAUTILUS_BURN_4 */
-	return nautilus_burn_drive_get_max_speed_write (drive);
-#endif /* HAVE_LIBNAUTILUS_BURN_4 */
+#endif
 }
+
 
 char *
 nautilus_burn_glue_drive_get_device (NautilusBurnDrive *drive)
 {
-#ifndef HAVE_LIBNAUTILUS_BURN_4
-	return g_strdup (drive->device);
-#else /* HAVE_LIBNAUTILUS_BURN_4 */
+#if LNB_215
 	return g_strdup (nautilus_burn_drive_get_device (drive));
-#endif /* HAVE_LIBNAUTILUS_BURN_4 */
+#else
+	return g_strdup (drive->device);
+#endif
 }
+
+GList *
+nautilus_glue_burn_drive_get_list(gboolean recorder_only, gboolean add_image)
+{
+#if LNB_215
+	NautilusBurnDriveMonitor *monitor;
+	GList *drives;
+
+	monitor = nautilus_burn_get_drive_monitor();
+
+	if(recorder_only) {
+		drives = nautilus_burn_drive_monitor_get_recorder_drives(monitor);
+	} else {
+		drives = nautilus_burn_drive_monitor_get_drives(monitor);
+	}
+
+	if(add_image) {
+		drives = g_list_append(drives, 
+			nautilus_burn_drive_monitor_get_drive_for_image(monitor));
+	}
+
+	g_object_unref(monitor);
+	return drives;
+#else
+	return nautilus_burn_drive_get_list(recorder_only, add_image);
+#endif
+}
+
+NautilusBurnDrive *
+nautilus_glue_burn_drive_copy(NautilusBurnDrive *drive)
+{
+#if LNB_215
+	nautilus_burn_drive_ref(drive);
+	return drive;
+#else
+	return nautilus_burn_drive_copy(drive);
+#endif
+}
+
+gint64
+nautilus_glue_burn_drive_get_media_size(NautilusBurnDrive *drive)
+{
+#if LNB_215
+	gint64 size = nautilus_burn_drive_get_media_capacity(drive);
+	g_debug("SIZE: %lld", size);
+	return size;
+#else
+	return nautilus_burn_drive_get_media_size(drive);
+#endif
+}
+

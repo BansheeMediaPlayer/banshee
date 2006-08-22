@@ -1,5 +1,17 @@
 2006-08-22  Aaron Bockover  <abock@gnome.org>
 
+	* burn-sharp/BurnDrive.cs:
+	* burn-sharp/glue.c: If building against libnautilus-burn 2.15.3+, 
+	emulate API provided by libnautilus-burn 2.12/2.14 
+	(nautilus_burn_drive_get_media_size, nautilus_burn_drive_copy, 
+	nautilus_burn_drive_get_list)
+
+	* src/Banshee.Widgets/ActionButton.cs: Added 'new' keyword on Action
+	property to allow for proper functionality under Gtk# 2.12, which 
+	provides Gtk.Widget.Action
+
+2006-08-22  Aaron Bockover  <abock@gnome.org>
+
 	* configure.ac: Build a small test to check for 
 	DBus.Connection.ExitOnDisconnect as it's not available in all distributions
 	due to poor upstream maintainership of dbus-sharp
