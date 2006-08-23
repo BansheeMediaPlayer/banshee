@@ -1,61 +1,39 @@
-The Banshee 0.10.11 release is mostly a fixes-only release. A small critical
-feature was backported from 0.11.x/HEAD that allows files to be enqueued
-in an already running instance (e.g. launching a file from Nautilus with
-Banshee already running should play the file in the already running Banshee).
+The Banshee 0.10.12 release is mostly a fixes-only release. As such, a few
+important bug fixes were made, and Banshee was updated to work with the
+libnautilus-burn/nautilus-cd-burner shipped with GNOME 2.15.x.
 
-CHANGES SINCE 0.10.10
+CHANGES SINCE 0.10.11
 ---------------------
 
-  * Added D-Bus/Remote support for enqueueing files on an already 
-    running instance
+  * Work with libnautilus-burn 2.15.3+ (emulation layer for 2.12/2.14 API)
 
-  * Added branding plugin support (in SLED, it's called "Helix (TM) Banshee")
+  * Added CD-ROM door locking; when ripping a CD, the drive will lock 
+    to prevent a hardware eject, if supported. If locking is not supported
+    a hang/crash is now prevented when a rip is canceled via hardware
 
-  * Calculate the total duration of selected media for CD burning; ensure
-    inserted media is large enough to hold it; media is checked before
-    transcoding now (BNC #151332)
+  * Do not crash on exit if events have come from NetworkManager
 
-  * Added awareness for id3v2mux; set GST_PLUGIN_PATH to 
-    $(libdir)/banshee/gstreamer-0.10 in case distros need to ship private
-    GStreamer plugins (SLED)
+  * Translations all updated to what shipped with SUSE Linux Enterprise
+    Desktop 10. Added new Hungarian, Polish, and Chinese (Traditional) 
+    translations from SLED
 
-  * Removed the File System Monitoring plugin from tree; was broken and
-    deprecated for many months; will be replaced in 0.11.x with a 
-    feature-complete Beagle plugin
+  * The cover art popup will scale to a maximum of 75% of the screen
 
-  * Set volume calls now take effect on all engines, not just the 
-    active engine (BNC #176255)
+  * Handle exception when trying to burn CD on a system with no CD writers
 
-  * Call dbus_g_thread_init after Gtk.Application.Init to fix a crash
-    seen on SMP machines (BNC #175378)
+  * Fix a crash when attempting to remove a track from the local queue
 
-  * Ensure column ordering persists across instances (BNC #120666)
-
-  * Added ViewOrder column to PlaylistEntries table (BNC #168653)
-
-  * Use g_filename_to_uri to do proper filename->URI conversions (BNC #147144)
-
-  * Reset vertical scroll adjustment of playlist view so tracks don't
-    seemingly disappear under some circumstances (BNC #174406)
-
-  * Make 'return' default dialog action key for HIG message 
-    dialogs (BNC #172450, Robert Vojta)
-
-  * Fixed import/copy bug regarding library path (BNC #171101, Robert Vojta)
-
-  * Properly load files in shallow directories (BNC #163911, Simon Brys)
-
-  * Added application/x-vorbis+ogg and application/x-vorbis+ogg (BNC #169616)
+  * Build properly with Gtk# 2.10
 
 
 THE IMPORTANT LINKS
 -------------------
 
 Release Overview Page:
-http://banshee-project.org/Releases/0.10.11
+http://banshee-project.org/Releases/0.10.12
 
-Banshee 0.10.10 Tarball:
-http://banshee-project.org/files/banshee/banshee-0.10.11.tar.gz
+Banshee 0.10.12 Tarball:
+http://banshee-project.org/files/banshee/banshee-0.10.12.tar.gz
 
 helix-dbus-server Tarball:
 http://banshee-project.org/files/helix-dbus-server/helix-dbus-server-0.2.3.tar.gz
