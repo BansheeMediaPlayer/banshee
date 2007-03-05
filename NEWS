@@ -1,5 +1,5 @@
 ===============================================================================
-WELCOME TO BANSHEE 0.11.7
+WELCOME TO BANSHEE 0.12.0
 ===============================================================================
 
  * Banshee is a music management and playback application for GNOME.
@@ -11,7 +11,7 @@ WELCOME TO BANSHEE 0.11.7
     and much more."
 
  * Learn More: http://banshee-project.org/Discover
- * Release Overview Page: http://banshee-project.org/Releases/0.11.7
+ * Release Overview Page: http://banshee-project.org/Releases/0.12.0
 
 
 ===============================================================================
@@ -58,9 +58,9 @@ GET THE GOODS
 Sources
 -------
 
- * Banshee 0.11.7 Tarballs:
-   http://banshee-project.org/files/banshee/banshee-0.11.7.tar.bz2
-   http://banshee-project.org/files/banshee/banshee-0.11.7.tar.gz
+ * Banshee 0.12.0 Tarballs:
+   http://banshee-project.org/files/banshee/banshee-0.12.0.tar.bz2
+   http://banshee-project.org/files/banshee/banshee-0.12.0.tar.gz
  
  * ipod-sharp 0.6.2 Tarball:
    http://banshee-project.org/files/ipod-sharp/ipod-sharp-0.6.2.tar.gz
@@ -74,7 +74,7 @@ Sources
 ChangeLogs
 ----------
  
- * http://banshee-project.org/files/banshee/banshee-0.11.7.changes
+ * http://banshee-project.org/files/banshee/banshee-0.12.0.changes
 
 Dependencies
 ------------
@@ -96,12 +96,9 @@ NEW STUFF
 Localization
 ------------
 
- * New Punjabi translation by AP Singh Alam
+ * Updated translations: Czech (Jakub Friedl), French (Stéphane Raimbault),
+   Hungarian (Gabor Kelemen)
 
- * Updated translations: Catalan (Jordi Mas), Danish (Lasse Bang Mikkelsen), 
-   English-GB (David Lodge), Finnish (Ilkka Tuohela), Hungarian (Gabor Kelemen),
-   Japanese (Koike Kazuhiko), Lithuanian (Žygimantas Beručka), 
-   Polish (Artur Flinta), Swedish (Daniel Nylander)
 
 ===============================================================================
 BUGZILLA OVERVIEW
@@ -112,27 +109,40 @@ Noteworthy bugs fixes/enhancements embraced in this release
 
  GNOME Bugzilla
 
- * 333528 - Fix random crash when importing CD
- * 399448 - Ensure track column title doesn't get clipped
- * 405798 - Fixed crash when GStreamer reports an error and no track is playing
- * 404939 - Fixed performance regression in taglib-sharp
- 
+ * 414505 - Updated FindSource to be recursive like SourceView (Scott Peterson)
+ * 414485 - Fixed ellipsis code in SourceView (Scott Peterson)
+ * 413593 - Fixed themeing issue in recommendations pane (Brian Kerrick Nickel)
+ * 410364 - Added null check for CurrentTrack in PlayerEngineCore
+ * 348079 - Ensure 'now playing' indication is properly set from OpenPlay(URI)
+ * 408128 - Ensure 'now playing' indication survives source changes
+ * 411221 - Disable remove content option for smart playlists (Gabriel Burt)
+ * 410278 - Set playback pipeline to playing/paused when buffering
+ * 408068 - Work around last.fm web services problem
+
+
  Novell Bugzilla
 
- * 200068 - Do not crash when waking from suspend or resetting time (i.e.
-            survive DBus restarts; fix in dbus-sharp - Alp Toker)
- * 199893 - Fixed random crash when cancelling import
- * 215045 - Do not allow splash screen to force itself as a permanent top
-            level window when starting up
- * 244595 - Startup (and display warning dialog) when a session bus cannot
-            be found (DBus)
- * 242345 - Ensure all metadata elements are hidden when engine goes idle
- * 242348 - Allow horizontal scrolling in the radio source
+ * 228720 - Do not show more than one 'now playing' indication
+ * 249494 - Ensure gdk_set_program_class is called so windows don't group
+ * 248831 - Ensure local stations will load even if remote ones can't
+
+Other untracked fixes
+---------------------
+
+ * Clicking Play in the radio source when nothing is playing already will
+   now start playback based on selection in the station list
+
+ * In the volume button, do not show the slider dock when scrolling, instead
+   just show the tooltip
+
+ * Audio profile configuration dialog can be resized in X direction and has
+   a good minimum width; use TextViewLabel instead of Label to provide good
+   word wrapping
 
 Show all bugs marked FIXED during this release cycle
 ----------------------------------------------------
 
- * http://banshee-project.org/files/closedbugs.php/2007-02-05,2007-02-20
+ * http://banshee-project.org/files/closedbugs.php/2007-02-21,2007-03-05
 
 File Bugs... Be Proactive... Contribute to Open Source!
 -------------------------------------------------------
@@ -153,7 +163,7 @@ Contributors for this release
    
    Community makes Open Source work!
 
-   Aaron Bockover, Alp Toker, Brian Nickel
+   Aaron Bockover, Alp Toker, Brian Nickel, Gabriel Burt, Scott Peterson
 
 Contributors for past releases [1]
 ----------------------------------
