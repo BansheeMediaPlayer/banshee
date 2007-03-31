@@ -88,8 +88,7 @@ namespace Banshee.Base
         
         public static string DefaultLibraryPath {
             get {
-                return Environment.GetFolderPath(
-                    Environment.SpecialFolder.Personal) + 
+                return Environment.GetFolderPath(Environment.SpecialFolder.Personal)
                     + Path.DirectorySeparatorChar  
                     + "Music"
                     + Path.DirectorySeparatorChar;
