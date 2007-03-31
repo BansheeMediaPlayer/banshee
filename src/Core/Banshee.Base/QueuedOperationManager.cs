@@ -27,13 +27,11 @@
  */
  
 using System;
-using System.Collections;
-using System.IO;
-using System.Threading;
-using Mono.Unix;
-using Mono.Unix.Native;
+using System.Collections.Generic;
+
 using Gtk;
 
+using Banshee.Kernel;
 using Banshee.Widgets;
 
 namespace Banshee.Base
@@ -52,11 +50,56 @@ namespace Banshee.Base
         public class OperationCanceledException : ApplicationException
         {
         }
+    
+        private class QueuedOperationJob : IJob
+        {
+            private int id = 0;
+            private QueuedOperationManager manager;
+            
+            private object @object;
+            private QueuedOperationHandler handler;
+            private QueuedOperationArgs args;
+            
+            public QueuedOperationJob(QueuedOperationManager manager, int id)
+            {
+                this.manager = manager;
+                this.id = id;
+            }
+            
+            public void Run()
+            {
+                args = new QueuedOperationArgs();
+                args.Object = @object;
+                
+                try {
+                    handler(manager, args);
+                } catch(QueuedOperationManager.OperationCanceledException) {
+                    args.Abort = true;
+                }
+            }
+            
+            public int ID {
+                get { return id; }
+            }
+            
+            public QueuedOperationHandler Handler {
+                get { return handler; }
+                set { handler = value; }
+            }
+            
+            public QueuedOperationArgs Args {
+                get { return args; }
+            }
+            
+            public object @Object {
+                get { return @object; }
+                set { @object = value; }
+            }
+        }
         
-        private Queue object_queue;
         private int total_count;
         private int processed_count;
-        private bool processing_queue = false;
+        private int id;
 
         private ActiveUserEvent user_event;
         public ActiveUserEvent UserEvent {
@@ -65,13 +108,20 @@ namespace Banshee.Base
                 return user_event;
             }
         }
+        
+        private static int all_ids = 0;
+        private static int RequestID()
+        {
+            return all_ids++;
+        }
 
         public event QueuedOperationHandler OperationRequested;
         public event EventHandler Finished;
         
         public QueuedOperationManager()
         {
-            object_queue = new Queue();
+            id = RequestID();
+            Scheduler.JobFinished += OnJobFinished;
         }
         
         private void CreateUserEvent()
@@ -79,6 +129,7 @@ namespace Banshee.Base
             if(user_event == null) {
                 user_event = new ActiveUserEvent(ActionMessage, true);
                 user_event.Icon = IconThemeUtils.LoadIcon(22, "system-search", Stock.Find);
+                user_event.CancelRequested += OnCancelRequested;
                 lock(user_event) {
                     total_count = 0;
                     processed_count = 0;
@@ -92,14 +143,41 @@ namespace Banshee.Base
                 lock(user_event) {
                     user_event.Dispose();
                     user_event = null;
-                    total_count = 0;
-                    processed_count = 0;
                 }
             }
+            
+            total_count = 0;
+            processed_count = 0;
+                    
+            Scheduler.JobFinished -= OnJobFinished;
             
             EventHandler handler = Finished;
             if(handler != null) {
                 handler(this, new EventArgs());
+            }
+        }
+        
+        private void OnJobFinished(IJob _job)
+        {
+            if(Scheduler.ScheduledJobsCount == 0) {
+                FinalizeOperation();
+                return;
+            }
+            
+            QueuedOperationJob job = _job as QueuedOperationJob;
+            
+            if(job == null) {
+                return;
+            }
+        
+            processed_count++;
+                
+            if(handle_user_event) {
+                UpdateCount(job.Args.ReturnMessage);
+            }
+            
+            if(job.Args.Abort || processed_count == total_count) {
+                FinalizeOperation();
             }
         }
         
@@ -119,84 +197,49 @@ namespace Banshee.Base
             }
         }
         
-        private void CheckForCanceled()
+        private void OnCancelRequested(object o, EventArgs args)
         {
-            if(user_event != null && user_event.IsCancelRequested) {
-                throw new OperationCanceledException();  
-            }
+            FinalizeOperation();
         }
         
         private void FinalizeOperation()
         {
-            object_queue.Clear();
-            processing_queue = false;
-            DestroyUserEvent();
+            lock(this) {
+                Scheduler.Suspend();
+                
+                Queue<IJob> to_remove = new Queue<IJob>();
+                
+                foreach(IJob job in Scheduler.ScheduledJobs) {
+                    if(job is QueuedOperationJob && ((QueuedOperationJob)job).ID == id) {
+                        to_remove.Enqueue(job);
+                    }
+                }
+                
+                while(to_remove.Count > 0) {
+                    Scheduler.Unschedule(to_remove.Dequeue());
+                }
+                
+                Scheduler.Resume();
+                
+                total_count = 0;
+                processed_count = 0;
+                
+                DestroyUserEvent();
+            }
         }
         
         public void Enqueue(object obj)
         {
-            CreateUserEvent();
-            ThreadAssist.Spawn(delegate {
-                try {
-                    lock(object_queue.SyncRoot) {
-                        if(object_queue.Contains(obj)) {
-                            return;
-                        }
-                        
-                        total_count++;
-                        object_queue.Enqueue(obj);
-                    }
-
-                    ProcessQueue();
-                } catch(OperationCanceledException) {
-                    FinalizeOperation();
-                }
-            });
-        }
-        
-        private void ProcessQueue()
-        {
-            lock(object_queue.SyncRoot) {
-                if(processing_queue) {
-                    return;
-                } else {
-                    processing_queue = true;
-                }
-            }
-
-            CreateUserEvent();
-            
-            while(object_queue.Count > 0) {
-                CheckForCanceled();
+            lock(this) {
+                CreateUserEvent();
+                total_count++;
                 
-                object obj = object_queue.Dequeue();
-                    
-                QueuedOperationHandler handler = OperationRequested;
-                if(handler != null && obj != null) {
-                    QueuedOperationArgs args = new QueuedOperationArgs();
-                    args.Object = obj;
-                    handler(this, args);
-                    processed_count++;
-                    
-                    if(handle_user_event) {
-                        UpdateCount(args.ReturnMessage);
-                    }
-                    
-                    if(args.Abort) {
-                        break;
-                    }
-                } else if(handle_user_event) {
-                    processed_count++;
-                    UpdateCount(null);
-                } else {
-                    processed_count++;
-                }
+                QueuedOperationJob job = new QueuedOperationJob(this, id);
+                job.Handler = OperationRequested;
+                job.Object = obj;
+                
+                Scheduler.Schedule(job);
             }
-
-            object_queue.Clear();
-            processing_queue = false;
-            
-            DestroyUserEvent();
         }
 
         private string action_message;

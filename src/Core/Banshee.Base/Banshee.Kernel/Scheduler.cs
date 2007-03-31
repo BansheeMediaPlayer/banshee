@@ -41,6 +41,7 @@ namespace Banshee.Kernel
         private static Thread job_thread;
         private static bool disposed;
         private static IJob current_running_job;
+        private static int suspend_count;
         
         public static event JobEventHandler JobStarted;
         public static event JobEventHandler JobFinished;
@@ -99,6 +100,20 @@ namespace Banshee.Kernel
                 while(to_remove.Count > 0) {
                     Unschedule(to_remove.Dequeue());
                 }
+            }
+        }
+        
+        public static void Suspend()
+        {
+            lock(this_mutex) {
+                Interlocked.Increment(ref suspend_count);
+            }
+        }
+        
+        public static void Resume()
+        {
+            lock(this_mutex) {
+                Interlocked.Decrement(ref suspend_count);
             }
         }
         
@@ -191,6 +206,11 @@ namespace Banshee.Kernel
             while(true) {
                 current_running_job = null;
                 
+                if(suspend_count > 0) {
+                    Thread.Sleep(10);
+                    continue;
+                }
+                    
                 lock(this_mutex) {
                     if(disposed) {
                         Console.WriteLine("execution thread destroyed, dispose requested");

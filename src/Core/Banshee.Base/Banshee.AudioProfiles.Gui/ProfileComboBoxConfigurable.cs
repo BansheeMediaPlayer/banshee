@@ -70,13 +70,18 @@ namespace Banshee.AudioProfiles.Gui
             tag.Style = Pango.Style.Italic;
             description.Buffer.TagTable.Add(tag);
             
-            Combo.SetActiveProfile(manager.GetConfiguredActiveProfile(configurationId));
+            Profile profile = manager.GetConfiguredActiveProfile(configurationId);
             
-            SetDescription();
+            if(profile != null) {
+                Combo.SetActiveProfile(profile);
+                SetDescription();
+            }
             
             Combo.Changed += delegate {
-                ProfileConfiguration.SaveActiveProfile(Combo.ActiveProfile, configurationId);
-                SetDescription();
+                if(Combo.ActiveProfile != null) {
+                    ProfileConfiguration.SaveActiveProfile(Combo.ActiveProfile, configurationId);
+                    SetDescription();
+                }
             };
             
             Spacing = 5;

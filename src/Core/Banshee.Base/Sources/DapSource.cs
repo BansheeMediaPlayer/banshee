@@ -201,6 +201,10 @@ namespace Banshee.Sources
             }
             
             foreach(TrackInfo track in tracks) {
+                if(import_manager == null) {
+                    continue;
+                }
+                
                 if(playlist == null) {
                     import_manager.Enqueue(track);
                 } else {
@@ -270,16 +274,16 @@ namespace Banshee.Sources
                                 continue;
                             }
                             
+                            if(import_manager == null || import_manager.UserEvent == null) {
+                                continue;
+                            }
+                            
                             double tracks_processed = (double)import_manager.ProcessedCount;
                             double tracks_total = (double)import_manager.TotalCount;
                             
                             import_manager.UserEvent.Progress = (tracks_processed / tracks_total) +
                                 ((bytes_read / (double)total_bytes) / tracks_total);
-                                
-                            if(import_manager.UserEvent.IsCancelRequested) {
-                                throw new QueuedOperationManager.OperationCanceledException();
-                            }
-                            
+
                             last_message_pump = DateTime.Now;
                         }
                     }

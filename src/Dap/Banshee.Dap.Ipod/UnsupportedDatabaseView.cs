@@ -106,6 +106,10 @@ namespace Banshee.Dap.Ipod
                 pane.Append(link, Gtk.AttachOptions.Expand | Gtk.AttachOptions.Fill, 0, true);
             }
             
+            if(!dap.Device.CanWrite) {
+                return;
+            }
+            
             LinkLabel rebuild_link = new LinkLabel();
             rebuild_link.Xalign = 0.0f;
             rebuild_link.Markup = String.Format("<u>{0}</u>", GLib.Markup.EscapeText(Catalog.GetString(

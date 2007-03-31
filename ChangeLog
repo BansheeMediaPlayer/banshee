@@ -1,3 +1,30 @@
+2007-03-31  Aaron Bockover  <abock@gnome.org>
+
+	* src/Dap/Banshee.Dap.Ipod/IpodDap.cs: Fixed major bug where no tracks
+	would be read on an HFS+ iPod; handle new iPod shuffles a little better;
+	map to more suitable device icons for new Nanos and Shuffles
+
+	* src/Dap/Banshee.Dap.Ipod/UnsupportedDatabaseView.cs: Dot not offer to
+	rebuild the database if iPod is read only/HFS+
+
+	* src/Core/Banshee.Base/Banshee.AudioProfiles.Gui/ProfileComboBoxConfigurable.cs:
+	* src/Core/Banshee.Base/Dap/DapPropertiesDialog.cs: Do not crash when
+	reading profile properties
+
+	* src/Core/Banshee.Base/Banshee.Kernel/Scheduler.cs: Added Suspend/Resume
+	methods to stop the processing of scheduled jobs
+
+	* src/Core/Banshee.Base/QueuedOperationManager.cs: Internals rewritten
+	to use the scheduler instead of creating its own threads; there was a huge
+	bug here that ended up potentially spawning hundreds of threads. Evil.
+	The scheduler rocks.
+
+	* src/Core/Banshee.Base/Sources/DapSource.cs: Added some null checks and
+	updated to reflect changes in QOM
+
+	* src/Plugins/Banshee.Plugins.Podcast/PodcastDBManager.cs: Do not bail
+	reading the DB if the date/time is invalid
+
 2007-03-05  Aaron Bockover  <abock@gnome.org>
 
 	0.12.0 Released

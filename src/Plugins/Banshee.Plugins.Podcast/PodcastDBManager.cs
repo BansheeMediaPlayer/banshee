@@ -97,7 +97,7 @@ namespace Banshee.Plugins.Podcast
                     feed_reader.GetInt32 (0), feed_reader.GetString (1),
                     feed_reader.GetString (2), GetStringSafe (feed_reader, 3),
                     GetStringSafe (feed_reader, 4), GetStringSafe (feed_reader, 5),
-                    feed_reader.GetDateTime (6), feed_reader.GetBoolean (7),
+                    GetDateTimeSafe (feed_reader, 6), feed_reader.GetBoolean (7),
                     (SyncPreference)feed_reader.GetInt32(8)
                 );
                 
@@ -359,5 +359,14 @@ namespace Banshee.Plugins.Podcast
             return reader.IsDBNull (index) ? 
                 String.Empty : reader.GetString (index);
         }
+
+		private static DateTime GetDateTimeSafe(IDataReader reader, int index)
+		{
+			try {
+				return reader.GetDateTime(index);
+			} catch {
+				return DateTime.MinValue;
+			}
+		}
     }
 }

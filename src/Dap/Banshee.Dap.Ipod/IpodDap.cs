@@ -165,7 +165,12 @@ namespace Banshee.Dap.Ipod
         
         public override void AddTrack(TrackInfo track)
         {
-            if (track == null || IsReadOnly)
+            AddTrack(track, false);
+        }
+
+        private void AddTrack(TrackInfo track, bool loading)
+        {
+            if (track == null || (IsReadOnly && !loading))
                 return;
 
             TrackInfo new_track = null;
@@ -206,10 +211,10 @@ namespace Banshee.Dap.Ipod
                 device.TrackDatabase.Reload();
             }
             
-            if(database_supported) {
+            if(database_supported || (device.IsNew && device.IsShuffle)) {
                 foreach(Track track in device.TrackDatabase.Tracks) {
                     IpodDapTrackInfo ti = new IpodDapTrackInfo(track);
-                    AddTrack(ti);            
+                    AddTrack(ti, true);
                 }
             } else {
                 BuildDatabaseUnsupportedWidget();
@@ -369,7 +374,14 @@ namespace Banshee.Dap.Ipod
                 case DeviceModel.VideoWhite: id = "ipod-video-white"; break;
                 case DeviceModel.VideoBlack: id = "ipod-video-black"; break;
                 default:
-                    id = "ipod-standard-monochrome";
+                    if(device.IsShuffle) {
+                        id = "ipod-shuffle";
+                    } else if(device.Model >= DeviceModel.NanoSilver &&
+                        device.Model <= DeviceModel.NanoProductRed) {
+                        id = "ipod-nano-white";
+                    } else {
+                        id = "ipod-standard-monochrome";
+                    }
                     break;
             }
             
