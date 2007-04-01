@@ -1,6 +1,6 @@
 AC_DEFUN([BANSHEE_CHECK_DAP_IPOD],
 [
-	IPODSHARP_REQUIRED=0.6.2
+	IPODSHARP_REQUIRED=0.6.3
 
 	AC_ARG_ENABLE(ipod, AC_HELP_STRING([--enable-ipod], 
 		[Enable iPod DAP support]), , enable_ipod="yes")
