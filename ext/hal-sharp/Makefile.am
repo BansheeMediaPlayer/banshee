@@ -8,7 +8,8 @@ hal_SCRIPTS = $(ASSEMBLY) $(ASSEMBLY).mdb
 
 ASSEMBLY_SOURCES = \
 	$(srcdir)/Manager.cs \
-	$(srcdir)/Device.cs
+	$(srcdir)/Device.cs \
+	$(srcdir)/Volume.cs
 
 all: $(ASSEMBLY)
 

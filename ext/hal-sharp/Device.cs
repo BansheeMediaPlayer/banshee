@@ -37,7 +37,11 @@ namespace Hal
                                        // in a variant, nor does it have a 
                                        // GetPropertyUInt64
                                        // should be object GetProperty(string key)
-                                      
+
+        void StringListPrepend(string key, string value);
+        void StringListAppend(string key, string value);
+        void StringListRemove(string key, string value);
+        
         string GetPropertyString(string key);
         int GetPropertyInteger(string key);
         bool GetPropertyBoolean(string key);
@@ -120,18 +124,14 @@ namespace Hal
         {
             this.udi = udi;
             
-            if(!Bus.System.NameHasOwner("org.freedesktop.Hal")) {
-                throw new ApplicationException("Could not find org.freedesktop.Hal");
-            }
-            
-            device = Bus.System.GetObject<IDevice>("org.freedesktop.Hal", new ObjectPath(udi));
+            device = CastDevice<IDevice>();
             device.PropertyModified += OnPropertyModified;
         }
         
         public static Device [] UdisToDevices(string [] udis)
         {
             if(udis == null || udis.Length == 0) {
-                return null;
+                return new Device[0];
             }
             
             Device [] devices = new Device[udis.Length];
@@ -152,6 +152,16 @@ namespace Hal
             if(handler != null) {
                 handler(this, new PropertyModifiedArgs(modifications));   
             }
+        }
+        
+        public string [] GetChildren(Manager manager)
+        {
+            return manager.FindDeviceByStringMatch("info.parent", Udi);
+        }
+        
+        public Device [] GetChildrenAsDevice(Manager manager)
+        {
+            return manager.FindDeviceByStringMatchAsDevice("info.parent", Udi);
         }
         
         public void Lock(string reason)
@@ -197,6 +207,21 @@ namespace Hal
         public PropertyType GetPropertyType(string key)
         {
             return PropertyExists(key) ? device.GetPropertyType(key) : PropertyType.Invalid;
+        }
+        
+        public void StringListPrepend(string key, string value)
+        {
+            device.SetPropertyString(key, value);
+        }
+        
+        public void StringListAppend(string key, string value)
+        {
+            device.StringListAppend(key, value);
+        }
+        
+        public void StringListRemove(string key, string value)
+        {
+            device.StringListRemove(key, value);
         }
         
         public void SetPropertyString(string key, string value)
@@ -247,6 +272,15 @@ namespace Hal
         public bool QueryCapability(string capability)
         {
             return device.QueryCapability(capability);
+        }
+        
+        public T CastDevice<T>()
+        {
+            if(!Bus.System.NameHasOwner("org.freedesktop.Hal")) {
+                throw new ApplicationException("Could not find org.freedesktop.Hal");
+            }
+            
+            return Bus.System.GetObject<T>("org.freedesktop.Hal", new ObjectPath(Udi));
         }
 
         public IEnumerator<KeyValuePair<string, object>> GetEnumerator()
@@ -301,6 +335,26 @@ namespace Hal
         
         public string Udi {
             get { return udi; }
+        }
+        
+        public bool IsVolume {
+            get {
+                if(!PropertyExists("info.interfaces")) {
+                    return false;
+                }
+                
+                foreach(string @interface in GetPropertyStringList("info.interfaces")) {
+                    if(@interface == "org.freedesktop.Hal.Device.Volume") {
+                       return true;
+                    }
+                }
+                
+                return false;
+            }
+        }
+        
+        public Volume Volume {
+            get { return new Volume(Udi); }
         }
         
         public Device Parent {
