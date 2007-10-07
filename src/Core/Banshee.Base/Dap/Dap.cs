@@ -658,6 +658,10 @@ namespace Banshee.Dap
             get { return Catalog.GetString("Unknown"); }
         }
         
+        public virtual bool ShowOwner {
+            get { return false; }
+        }
+        
         public virtual Gtk.Widget ViewWidget {
             get { return null; }
         }

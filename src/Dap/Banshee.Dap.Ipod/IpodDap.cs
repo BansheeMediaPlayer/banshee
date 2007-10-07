@@ -29,8 +29,10 @@
 using System; 
 using System.IO;
 using System.Collections;
+using System.Collections.Generic;
 using System.Reflection;
 using System.Diagnostics;
+using System.Globalization;
 using Mono.Unix;
 using Gtk;
 using Hal;
@@ -58,7 +60,7 @@ namespace Banshee.Dap.Ipod
     [SupportedCodec(CodecType.Mp4)]
     public sealed class IpodDap : DapDevice
     {
-        private IPod.Device device;
+        private IPod.PodSleuth.HalDevice device;
         private Hal.Device hal_device;
         private bool database_supported;
         private UnsupportedDatabaseView db_unsupported_container;
@@ -66,8 +68,8 @@ namespace Banshee.Dap.Ipod
     
         public override InitializeResult Initialize(Hal.Device halDevice)
         {
-            if (!metadata_provider_initialized) {
-                MetadataService.Instance.AddProvider (0, new IpodMetadataProvider ());
+            if(!metadata_provider_initialized) {
+                MetadataService.Instance.AddProvider(0, new IpodMetadataProvider());
                 metadata_provider_initialized = true;
             }
             
@@ -88,34 +90,34 @@ namespace Banshee.Dap.Ipod
 
             base.Initialize(halDevice);
             
-            InstallProperty("Generation", device.Generation.ToString());
-            InstallProperty("Model", device.Model.ToString());
-            InstallProperty("Model Number", device.ModelNumber);
+            InstallProperty("Model", String.Format("{0}{1}, {2}G", Char.ToUpper(device.ModelClass[0]), device.ModelClass.Substring(1), device.Generation));
+            InstallProperty(Catalog.GetString("Advertised Capacity"), device.AdvertisedCapacity);
+
+            if(device.ProductionYear > 0) {
+				CultureInfo culture = CultureInfo.CurrentCulture;
+            	DateTime production_date = culture.Calendar.AddWeeks(new DateTime((int)device.ProductionYear, 1, 1), (int)device.ProductionWeek);
+            	InstallProperty(Catalog.GetString("Manufactured In"), String.Format("{0}, {1}", 
+            		culture.DateTimeFormat.GetMonthName((int)production_date.Month), device.ProductionYear));
+           	}
+           	
             InstallProperty("Serial Number", device.SerialNumber);
             InstallProperty("Firmware Version", device.FirmwareVersion);
             InstallProperty("Database Version", device.TrackDatabase.Version.ToString());
-            
-            if(device.ProductionYear > 0) {
-                // Translators "Week 25 of 2006"
-                InstallProperty(Catalog.GetString("Manufactured During"), 
-                    String.Format(Catalog.GetString("Week {0} of {1}"), device.ProductionWeek, 
-                        device.ProductionYear.ToString("0000")));
-            }
             
             if(device.ShouldAskIfUnknown) {
                 GLib.Timeout.Add(5000, AskAboutUnknown);
             }
 
             ReloadDatabase(false);
-            
             CanCancelSave = false;
+            
             return InitializeResult.Valid;
         }
         
         private InitializeResult LoadIpod()
         {
             try {
-                device = new IPod.Device(hal_device["block.device"]);
+                device = new IPod.PodSleuth.HalDevice(hal_device.Volume);
                 if(File.Exists(Path.Combine(device.ControlPath, Path.Combine("iTunes", "iTunesDB")))) { 
                     device.LoadTrackDatabase();
                 } else {
@@ -170,19 +172,17 @@ namespace Banshee.Dap.Ipod
 
         private void AddTrack(TrackInfo track, bool loading)
         {
-            if (track == null || (IsReadOnly && !loading))
+            if(track == null || (IsReadOnly && !loading)) {
                 return;
-
-            TrackInfo new_track = null;
-
-            if(track is IpodDapTrackInfo)
-                new_track = track;
-            else
-                new_track = new IpodDapTrackInfo(track, device.TrackDatabase);
+			}
+			
+            TrackInfo new_track = (track is IpodDapTrackInfo)
+            	? track
+            	: new IpodDapTrackInfo(track, device.TrackDatabase);
+            	
             // FIXME: only add a new track if we don't have it already
 
-
-            if (new_track != null) {
+            if(new_track != null) {
                 tracks.Add(new_track);
                 OnTrackAdded(new_track);
             }
@@ -211,7 +211,7 @@ namespace Banshee.Dap.Ipod
                 device.TrackDatabase.Reload();
             }
             
-            if(database_supported || (device.IsNew && device.IsShuffle)) {
+            if(database_supported || (!device.HasDatabase && device.IsShuffle)) {
                 foreach(Track track in device.TrackDatabase.Tracks) {
                     IpodDapTrackInfo ti = new IpodDapTrackInfo(track);
                     AddTrack(ti, true);
@@ -330,87 +330,101 @@ namespace Banshee.Dap.Ipod
                 track.Genre = String.Empty;
             }
 
-            if (ti.CoverArtFileName != null && File.Exists (ti.CoverArtFileName)) {
+            if(ti.CoverArtFileName != null && File.Exists(ti.CoverArtFileName)) {
                 try {
-                    Gdk.Pixbuf pixbuf = new Gdk.Pixbuf (ti.CoverArtFileName);
+                    Gdk.Pixbuf pixbuf = new Gdk.Pixbuf(ti.CoverArtFileName);
 
-                    if (pixbuf != null) {
-                        SetCoverArt (track, ArtworkUsage.Cover, pixbuf);
-                        pixbuf.Dispose ();
+                    if(pixbuf != null) {
+                        SetCoverArt(track, ArtworkUsage.Cover, pixbuf);
+                        pixbuf.Dispose();
                     }
-                } catch (Exception e) {
-                    Console.Error.WriteLine ("Failed to set cover art from {0}: {1}", ti.CoverArtFileName, e);
+                } catch(Exception e) {
+                    Console.Error.WriteLine("Failed to set cover art from {0}: {1}", ti.CoverArtFileName, e);
                 }
             }
         }
 
         private void SetCoverArt (Track track, ArtworkUsage usage, Gdk.Pixbuf pixbuf)
         {
-            foreach (ArtworkFormat format in device.LookupArtworkFormats (usage)) {
-                if (!track.HasCoverArt (format)) {
-                    track.SetCoverArt (format, ArtworkHelpers.ToBytes (format, pixbuf));
+            foreach(ArtworkFormat format in device.LookupArtworkFormats(usage)) {
+                if(!track.HasCoverArt(format)) {
+                    track.SetCoverArt(format, ArtworkHelpers.ToBytes(format, pixbuf));
                 }
             }
         }
         
+        private Dictionary<int, Gdk.Pixbuf> icon_cache = new Dictionary<int, Gdk.Pixbuf>();
+        
         public override Gdk.Pixbuf GetIcon(int size)
+        {
+        	Gdk.Pixbuf icon = null;
+        	
+        	if(icon_cache.ContainsKey(size)) {
+        		icon = icon_cache[size];
+        	}
+        	
+        	if(icon == null) {
+        		icon = LookupIcon(size);
+        	} else {
+        		return icon;
+        	}
+        	
+        	if(icon == null) {
+        		return base.GetIcon(size);
+        	}
+        	
+        	icon_cache.Add(size, icon);
+        	return icon;
+        }
+        
+        private Gdk.Pixbuf LookupIcon(int size)
         {
             string prefix = "multimedia-player-";
             string id = null;
+            string fallback_id = null;
 
-            switch(device.Model) {
-                case DeviceModel.Color: id = "ipod-standard-color"; break;
-                case DeviceModel.ColorU2: id = "ipod-U2-color"; break;
-                case DeviceModel.Regular: id = "ipod-standard-monochrome"; break;
-                case DeviceModel.RegularU2: id = "ipod-U2-monochrome"; break;
-                case DeviceModel.Mini: id = "ipod-mini-silver"; break;
-                case DeviceModel.MiniBlue: id = "ipod-mini-blue"; break;
-                case DeviceModel.MiniPink: id = "ipod-mini-pink"; break;
-                case DeviceModel.MiniGreen: id = "ipod-mini-green"; break;
-                case DeviceModel.MiniGold: id = "ipod-mini-gold"; break;
-                case DeviceModel.Shuffle: id = "ipod-shuffle"; break;
-                case DeviceModel.NanoWhite: id = "ipod-nano-white"; break;
-                case DeviceModel.NanoBlack: id = "ipod-nano-black"; break;
-                case DeviceModel.VideoWhite: id = "ipod-video-white"; break;
-                case DeviceModel.VideoBlack: id = "ipod-video-black"; break;
-                default:
-                    if(device.IsShuffle) {
-                        id = "ipod-shuffle";
-                    } else if(device.Model >= DeviceModel.NanoSilver &&
-                        device.Model <= DeviceModel.NanoProductRed) {
-                        id = "ipod-nano-white";
-                    } else {
-                        id = "ipod-standard-monochrome";
-                    }
-                    break;
-            }
-            
-            Gdk.Pixbuf icon = IconThemeUtils.LoadIcon(prefix + id, size);
-            
+            Gdk.Pixbuf icon = IconThemeUtils.LoadIcon(device.IconName, size);
             if(icon != null) {
-                return icon;
-            }
-            
-            return base.GetIcon(size);
-        }
-        
-        public override void SetName(string name)
-        {
-            device.Name = name;
-            device.Save();
-        }
-        
-        public override void SetOwner(string owner)
-        {
-            device.UserName = owner;
-            device.Save();
+            	return icon;
+           	}
+           	
+           	switch(device.ModelClass) {
+           		case "grayscale": id = "ipod-standard-monochrome"; break;
+           		case "color": id="ipod-standard-color"; break;
+           		case "mini": 
+           			id = String.Format("ipod-mini-{0}", device.ModelColor);
+           			fallback_id = "ipod-mini-silver";
+           			break;
+           		case "shuffle": 
+           			id = String.Format("ipod-shuffle-{0}", device.ModelColor);
+           			fallback_id = "ipod-shuffle";
+           			break;
+           		case "nano":
+           		case "nano3":
+           			id = String.Format("ipod-nano-{0}", device.ModelColor);
+           			fallback_id = "ipod-nano-white";
+           			break;
+           		case "video":
+           			id = String.Format("ipod-video-{0}", device.ModelColor);
+           			fallback_id = "ipod-video-white";
+           			break;
+           		case "classic":
+           		case "touch":
+           		case "phone":
+           		default:
+           			id = "ipod-standard-color";
+           			break;
+           	}
+           	
+            return IconThemeUtils.LoadIcon(prefix + id, size) ??
+            	IconThemeUtils.LoadIcon(prefix + fallback_id, size);
         }
         
         private void BuildDatabaseUnsupportedWidget()
         {
             db_unsupported_container = new UnsupportedDatabaseView(this);
             db_unsupported_container.Show();
-            db_unsupported_container.Refresh += delegate(object o, EventArgs args) {
+            db_unsupported_container.Refresh += delegate {
                 LoadIpod();
                 ReloadDatabase(false);
                 OnReactivate();
@@ -419,7 +433,7 @@ namespace Banshee.Dap.Ipod
         
         public override string Name {
             get {
-                if(device.Name != null && device.Name != String.Empty) {
+                if(!String.IsNullOrEmpty(device.Name)) {
                     return device.Name;
                 } else if(hal_device.PropertyExists("volume.label")) {
                     return hal_device["volume.label"];
@@ -431,52 +445,32 @@ namespace Banshee.Dap.Ipod
             }
         }
         
-        public override string Owner {
-            get {
-                return device.UserName;
-            }
-        }
-        
         public override ulong StorageCapacity {
-            get {
-                return device.VolumeSize;
-            }
+            get { return device.VolumeSize; }
         }
         
         public override ulong StorageUsed {
-            get {
-                return device.VolumeUsed;
-            }
+            get { return device.VolumeUsed; }
         }
         
         public override bool IsReadOnly {
-            get {
-                return !device.CanWrite;
-            }
+            get { return !device.CanWrite; }
         }
         
         public override bool IsPlaybackSupported {
-            get {
-                return true;
-            }
+            get { return true; }
         }
         
         public override string GenericName {
-            get {
-                return "iPod";
-            }
+            get { return "iPod"; }
         }
         
         public override Gtk.Widget ViewWidget {
-            get {
-                return !database_supported ? db_unsupported_container : null;
-            }
+            get { return !database_supported ? db_unsupported_container : null; }
         }
         
         internal IPod.Device Device {
-            get {
-                return device;
-            }
+            get { return device; }
         }
     }
 }

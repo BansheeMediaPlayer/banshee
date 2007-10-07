@@ -1,3 +1,16 @@
+2007-10-07  Aaron Bockover  <abock@gnome.org>
+
+	* src/Core/Banshee.Base/Dap/Dap.cs:
+	* src/Core/Banshee.Base/Dap/DapPropertiesDialog.cs: Make it optional to
+	show the owner
+
+	* src/Dap/Banshee.Dap.Ipod/IpodDap.cs: Fixed to use the new API of
+	ipod-sharp
+
+	* src/Dap/Banshee.Dap.Ipod/SleuthDevice.cs: Added the PodSleuth device
+	wrapper that is used in ipod-sharp, but can't be used directly due to
+	a bug in managed DBus
+
 2007-08-19  Aaron Bockover  <abock@gnome.org>
 
 	0.13.1 Released

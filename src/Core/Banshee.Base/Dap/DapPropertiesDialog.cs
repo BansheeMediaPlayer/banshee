@@ -80,14 +80,16 @@ namespace Banshee.Dap
             } else {
                 table.AddLabel(Catalog.GetString("Device name"), device.Name);
             }
-                        
-            if(!device.IsReadOnly && device.CanSetOwner) {
-                ownerEntry = table.AddEntry(Catalog.GetString("Owner name"), device.Owner);
-                ownerEntry.Changed += OnEntryChanged;
-            } else {
-                table.AddLabel(Catalog.GetString("Owner name"), device.Owner);
+            
+            if(device.ShowOwner) {
+                if(!device.IsReadOnly && device.CanSetOwner) {
+                    ownerEntry = table.AddEntry(Catalog.GetString("Owner name"), device.Owner);
+                    ownerEntry.Changed += OnEntryChanged;
+                } else {
+                    table.AddLabel(Catalog.GetString("Owner name"), device.Owner);
+                }
             }
-    
+            
             if(!device.IsReadOnly) {   
                 try {
                     VBox profile_description_box = new VBox();
