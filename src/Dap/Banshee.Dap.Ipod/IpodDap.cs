@@ -211,7 +211,7 @@ namespace Banshee.Dap.Ipod
                 device.TrackDatabase.Reload();
             }
             
-            if(database_supported || (!device.HasDatabase && device.IsShuffle)) {
+            if(database_supported || (!device.HasTrackDatabase && device.IsShuffle)) {
                 foreach(Track track in device.TrackDatabase.Tracks) {
                     IpodDapTrackInfo ti = new IpodDapTrackInfo(track);
                     AddTrack(ti, true);
