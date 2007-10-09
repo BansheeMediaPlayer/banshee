@@ -62,7 +62,7 @@ namespace Banshee.Dap.Ipod
         private void RebuildDatabase()
         {
             DirectoryInfo music_dir = new DirectoryInfo(
-                dap.Device.MountPoint +
+                dap.Device.VolumeInfo.MountPoint +
                 Path.DirectorySeparatorChar +
                 "iPod_Control" +
                 Path.DirectorySeparatorChar + 
@@ -119,7 +119,7 @@ namespace Banshee.Dap.Ipod
 
             song.FileName = file.FullName;
             song.Album = af.Tag.Album;
-            song.Artist = af.Tag.FirstArtist;
+            song.Artist = af.Tag.FirstAlbumArtist;
             song.Title = af.Tag.Title;
             song.Genre = af.Tag.Genres[0];
             song.TrackNumber = (int)af.Tag.Track;

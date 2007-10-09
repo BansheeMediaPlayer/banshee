@@ -11,7 +11,7 @@ ASSEMBLY_SOURCES = \
 	$(srcdir)/IpodDapTrackInfo.cs \
 	$(srcdir)/UnsupportedDatabaseView.cs \
 	$(srcdir)/DatabaseRebuilder.cs \
-	$(srcdir)/SleuthDevice.cs
+	$(srcdir)/HalDevice.cs
 
 if ENABLE_IPOD
 bansheedapdir = $(pkglibdir)/Banshee.Dap

@@ -106,7 +106,9 @@ namespace Banshee.Dap.Ipod
                 pane.Append(link, Gtk.AttachOptions.Expand | Gtk.AttachOptions.Fill, 0, true);
             }
             
-            if(!dap.Device.CanWrite) {
+            if(dap.Device.VolumeInfo.IsMountedReadOnly) {
+                pane.Append(Catalog.GetString("Your iPod is mounted read only. Banshee can not restore your iPod."), 
+                    true, IconThemeUtils.LoadIcon(48, "dialog-error"));
                 return;
             }
             
