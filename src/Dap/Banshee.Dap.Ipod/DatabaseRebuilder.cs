@@ -61,12 +61,12 @@ namespace Banshee.Dap.Ipod
         
         private void RebuildDatabase()
         {
-            DirectoryInfo music_dir = new DirectoryInfo(
-                dap.Device.VolumeInfo.MountPoint +
-                Path.DirectorySeparatorChar +
-                "iPod_Control" +
-                Path.DirectorySeparatorChar + 
-                "Music");
+            string music_path = dap.Device.ControlPath + Path.DirectorySeparatorChar + "Music";
+            
+            Directory.CreateDirectory(dap.Device.ControlPath);
+            Directory.CreateDirectory(music_path);
+        
+            DirectoryInfo music_dir = new DirectoryInfo(music_path);
                 
             foreach(DirectoryInfo directory in music_dir.GetDirectories()) {
                 ScanMusicDirectory(directory);
