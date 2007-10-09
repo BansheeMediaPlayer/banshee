@@ -34,6 +34,7 @@ using Mono.Unix;
 using Gtk;
 using Gdk;
 
+using Banshee.Widgets;
 using Banshee.Base;
 using Banshee.Dap;
 
@@ -42,7 +43,8 @@ namespace Banshee.Sources
     public class DapSource : Source, IImportable, IImportSource
     {
         private Banshee.Dap.DapDevice device;
-        private EventBox syncing_container;
+        private ShadowContainer syncing_container;
+        private MessagePane message_pane;
         private Gtk.Image dap_syncing_image = new Gtk.Image();
         
         public bool NeedSync;
@@ -93,23 +95,18 @@ namespace Banshee.Sources
         {
             if(IsSyncing) {
                 if(syncing_container == null) {
-                    syncing_container = new EventBox();
-                    HBox syncing_box = new HBox();
-                    syncing_container.Add(syncing_box);
-                    syncing_box.Spacing = 20;
-                    syncing_box.PackStart(dap_syncing_image, false, false, 0);
-                    Label syncing_label = new Label();
-                                                    
-                    syncing_container.ModifyBg(StateType.Normal, new Color(0, 0, 0));
-                    syncing_label.ModifyFg(StateType.Normal, new Color(160, 160, 160));
-                
-                    syncing_label.Markup = "<big><b>" + GLib.Markup.EscapeText(
-                        Catalog.GetString("Synchronizing your Device, Please Wait...")) + "</b></big>";
-                    syncing_box.PackStart(syncing_label, false, false, 0);
-                    syncing_container.ShowAll ();
+                    syncing_container = new ShadowContainer();
+                    message_pane = new MessagePane();
+                    syncing_container.Add(message_pane);
+                    syncing_container.ShowAll();
                 }
                 
-                dap_syncing_image.Pixbuf = device.GetIcon(128);
+                message_pane.Clear();
+                message_pane.Append("<big><b>" + GLib.Markup.EscapeText(
+                    Catalog.GetString("Synchronizing your Device, Please Wait...")) + "</b></big>",
+                    true,
+                    device.GetIcon(128));
+                
                 Globals.ActionManager.DapActions.Sensitive = false;
             }
             

@@ -27,8 +27,10 @@
  */
  
 using System;
+using System.Text.RegularExpressions;
 using Mono.Unix;
 
+using Banshee.Metadata;
 using Banshee.Configuration.Schema;
 
 namespace Banshee.Base
@@ -105,7 +107,7 @@ namespace Banshee.Base
             
             track.Duration = file.Properties.Duration;
         }
-    
+   
         public static void TrackInfoMerge(TrackInfo track, StreamTag tag)
         {
             try {
@@ -113,8 +115,30 @@ namespace Banshee.Base
                     case CommonTags.Artist:
                         track.Artist = Choose((string)tag.Value, track.Artist);
                         break;
-                    case CommonTags.Title:
-                        track.Title = Choose((string)tag.Value, track.Title);
+                    case CommonTags.Title:                        
+                        string title = Choose((string)tag.Value, track.Title);
+
+                        // Try our best to figure out common patterns in poor radio metadata.
+                        // Often only one tag is sent on track changes inside the stream, 
+                        // which is title, and usually contains artist and track title, separated
+                        // with a " - " string.
+                        if(track.IsLive && title.Contains(" - ")) {
+                            string [] parts = Regex.Split(title, " - ");
+                            track.Title = parts[1].Trim();
+                            track.Artist = parts[0].Trim();
+                            
+                            // Often, the title portion contains a postfix with more information
+                            // that will confuse lookups, such as "Talk [Studio Version]".
+                            // Strip out the [] part.
+                            Match match = Regex.Match(track.Title, "^(.+)[ ]+\\[.*\\]$");
+                            if(match.Groups.Count == 2) {
+                                track.Title = match.Groups[1].Value;
+                            }                            
+                            
+                            MetadataService.Instance.Lookup(track);
+                        } else {
+                            track.Title = title;
+                        }
                         break;
                     case CommonTags.Album:
                         track.Album = Choose((string)tag.Value, track.Album);

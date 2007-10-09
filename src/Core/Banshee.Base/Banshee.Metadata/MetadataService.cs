@@ -38,7 +38,6 @@ namespace Banshee.Metadata
     public class MetadataService : BaseMetadataProvider
     {
         private static MetadataService instance;
-        
         public static MetadataService Instance {
             get {
                 if(instance == null) {
@@ -49,8 +48,21 @@ namespace Banshee.Metadata
             }
         }
         
-        private Dictionary<IBasicTrackInfo, IMetadataLookupJob> queries 
-            = new Dictionary<IBasicTrackInfo, IMetadataLookupJob>();
+        private class MetadataJobWrapper
+        {
+            public IMetadataLookupJob Job;
+            public int ScheduleCount;
+            public JobPriority Priority;
+            
+            public MetadataJobWrapper(IMetadataLookupJob job, JobPriority priority)
+            {
+                Job = job;
+                Priority = priority;
+                ScheduleCount = 1;
+            }
+        }
+        
+        private Dictionary<IBasicTrackInfo, MetadataJobWrapper> queries = new Dictionary<IBasicTrackInfo, MetadataJobWrapper>();
         private List<IMetadataProvider> providers = new List<IMetadataProvider>();
         private MetadataSettings settings;
 
@@ -82,15 +94,17 @@ namespace Banshee.Metadata
                 return;
             }
             
-            lock(((ICollection)queries).SyncRoot) {
+            lock(queries) {
                 if(!queries.ContainsKey(track)) {
                     IMetadataLookupJob job = CreateJob(track, Settings);
                     if(job == null) {
                         return;
                     }
                     
-                    queries.Add(track, job);
+                    queries.Add(track, new MetadataJobWrapper(job, priority));
                     Scheduler.Schedule(job, priority);
+                } else if(Scheduler.CurrentJob == queries[track].Job) {
+                    queries[track].ScheduleCount++;
                 }
             }
         }
@@ -124,7 +138,7 @@ namespace Banshee.Metadata
                 return false;
             }
             
-            lock(((ICollection)queries).SyncRoot) {
+            lock(queries) {
                 if(queries.ContainsKey(job.Track)) {
                     queries.Remove(job.Track);
                     return true;
@@ -141,7 +155,19 @@ namespace Banshee.Metadata
             }
             
             IMetadataLookupJob lookup_job = (IMetadataLookupJob)job;
-            if(RemoveJob(lookup_job)) {
+            bool remove_job = true;
+            
+            lock(queries) {
+                if(queries.ContainsKey(lookup_job.Track)) {
+                    MetadataJobWrapper wrapper = queries[lookup_job.Track];
+                    if(--wrapper.ScheduleCount > 0) {
+                        Scheduler.Schedule(job, wrapper.Priority);
+                        remove_job = false;
+                    }
+                }
+            }
+            
+            if(!remove_job || (remove_job && RemoveJob(lookup_job))) {
                 Settings.ProxyToMain(delegate { 
                     OnHaveResult(lookup_job.Track, lookup_job.ResultTags); 
                 });

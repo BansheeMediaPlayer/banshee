@@ -211,7 +211,13 @@ namespace Banshee.MediaEngine
             if(tag.Equals(StreamTag.Zero) || current_track == null || !current_track.IsLive) {
                 return;
             }
-                        
+            
+            if(tag.Name == CommonTags.Title) {
+                current_track.Album = null;
+                current_track.Artist = null;
+                current_track.CoverArtFileName = null;
+            }
+
             StreamTagger.TrackInfoMerge(current_track, tag);
             
             if(track_info_updated_timeout <= 0) {
@@ -223,6 +229,7 @@ namespace Banshee.MediaEngine
         {
             TrackInfoUpdated();
             track_info_updated_timeout = 0;
+            Console.WriteLine("PlayerEngine::OnTrackInfoUpdated()");
             return false;
         }
         
