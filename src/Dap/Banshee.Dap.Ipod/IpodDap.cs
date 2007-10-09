@@ -236,13 +236,19 @@ namespace Banshee.Dap.Ipod
         
         public override void Eject()
         {
-            try {
-                device.Eject();
-                base.Eject();
-            } catch(Exception e) {
-                LogCore.Instance.PushError(Catalog.GetString("Could not eject iPod"),
-                    e.Message);
-            }
+            base.Eject();
+            
+            ThreadAssist.Spawn(delegate {
+                try {
+                    Hal.Device eject_device = new Hal.Device(hal_device.Udi);
+                    LogCore.Instance.PushDebug("Ejecting iPod", eject_device.Udi);
+                    eject_device.Volume.Eject();
+                    LogCore.Instance.PushDebug("Finished Ejecting iPod", eject_device.Udi);
+                } catch(Exception e) {
+                    LogCore.Instance.PushError(Catalog.GetString("Could not eject iPod"),
+                        e.Message);
+                }
+            });
         }
         
         public override void Synchronize()
