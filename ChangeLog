@@ -1,5 +1,13 @@
 2007-10-10  Aaron Bockover  <abock@gnome.org>
 
+	* src/Dap/Banshee.Dap.Ipod/IpodDap.cs: Only show the 'rebuild database'
+	option when the iTunesDB is missing if there are actually music files
+	left over on the device; otherwise, just show an empty track list
+
+	* src/Core/Banshee.Base/Dap/Dap.cs: Null checks
+
+2007-10-10  Aaron Bockover  <abock@gnome.org>
+
 	* src/Dap/Banshee.Dap.MassStorage/MassStorageDap.cs:
 	* src/Dap/Banshee.Dap.Ipod/IpodDap.cs: Call UnmapPlayback before ejecting
 	to stop playback if the track that is playing is located on the device

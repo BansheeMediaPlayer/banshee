@@ -136,7 +136,11 @@ namespace Banshee.Dap.Ipod
                 if(File.Exists(device.TrackDatabasePath)) { 
                     device.LoadTrackDatabase();
                 } else {
-                    throw new DatabaseReadException("iTunesDB does not exist");
+                    int count = CountMusicFiles();
+                    Console.WriteLine("Found {0} files in /iPod_Control/Music", count);
+                    if(CountMusicFiles() > 5) {
+                        throw new DatabaseReadException("No database, but found a lot of music files");
+                    }
                 }
                 database_supported = true;
             } catch(DatabaseReadException) {
@@ -148,6 +152,22 @@ namespace Banshee.Dap.Ipod
             }
             
             return InitializeResult.Valid;
+        }
+        
+        private int CountMusicFiles()
+        {
+            try {
+                int file_count = 0;
+                
+                DirectoryInfo m_dir = new DirectoryInfo(Path.Combine(device.ControlPath, "Music"));
+                foreach(DirectoryInfo f_dir in m_dir.GetDirectories()) {
+                    file_count += f_dir.GetFiles().Length;
+                }
+                
+                return file_count;
+            } catch {
+                return 0;
+            }
         }
         
         private bool AskAboutUnknown()
@@ -227,7 +247,7 @@ namespace Banshee.Dap.Ipod
                 device.TrackDatabase.Reload();
             }
             
-            if(database_supported || (!device.HasTrackDatabase && device.ModelInfo.DeviceClass == "shuffle")) {
+            if(database_supported || (device.HasTrackDatabase && device.ModelInfo.DeviceClass == "shuffle")) {
                 foreach(Track track in device.TrackDatabase.Tracks) {
                     IpodDapTrackInfo ti = new IpodDapTrackInfo(track);
                     AddTrack(ti, true);
