@@ -325,19 +325,8 @@ namespace Banshee.Dap.MassStorage
 
         public override void Eject()
         {
-            // If we're playing a track on the device, stop playing it before trying to eject
-            if(PlayerEngineCore.CurrentTrack is MassStorageTrackInfo) {
-                LogCore.Instance.PushInformation(
-                    Catalog.GetString("Song Playing on Device"),
-                    Catalog.GetString("Before you can eject your device, you need to start playing a song that is not on it.  This is a known bug."),
-                    true
-                );
-
-                //PlayerEngineCore.StateChanged += HandleStopped;
-                //PlayerEngineCore.Close();
-            } else {
-                Unmount();
-            }
+            UnmapPlayback(typeof(MassStorageTrackInfo));
+            Unmount();
         }
 
         private void HandleStopped(object o, Banshee.MediaEngine.PlayerEngineStateArgs args)

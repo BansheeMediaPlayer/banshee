@@ -259,6 +259,18 @@ namespace Banshee.Dap
         public virtual void Activate()
         {
         }
+        
+        public virtual void UnmapPlayback(Type type)
+        {
+            if(PlayerEngineCore.CurrentTrack.GetType() == type && Tracks.Contains(PlayerEngineCore.CurrentTrack)) {
+                // very lame, you have to open something else in order for GStreamer 
+                // to release the current playing file, thus allowing the iPod to eject
+                
+                PlayerEngineCore.Close();
+                PlayerEngineCore.Open(new SafeUri("file:///dev/null"));
+                PlayerEngineCore.Close();
+            }
+        }
 
         public virtual void Eject()
         {

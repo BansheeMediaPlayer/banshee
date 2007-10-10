@@ -256,6 +256,7 @@ namespace Banshee.Dap.Ipod
         
         public override void Eject()
         {
+            UnmapPlayback(typeof(IpodDapTrackInfo));
             base.Eject();
             new AsyncEjectHandler(AsyncEject).BeginInvoke(hal_device, null, null);
         }

@@ -1,5 +1,14 @@
 2007-10-10  Aaron Bockover  <abock@gnome.org>
 
+	* src/Dap/Banshee.Dap.MassStorage/MassStorageDap.cs:
+	* src/Dap/Banshee.Dap.Ipod/IpodDap.cs: Call UnmapPlayback before ejecting
+	to stop playback if the track that is playing is located on the device
+	to be ejected (BGO #405267)
+
+	* src/Core/Banshee.Base/Dap/Dap.cs: Implemented UnmapPlayback
+
+2007-10-10  Aaron Bockover  <abock@gnome.org>
+
 	* src/Dap/Banshee.Dap.Ipod/DatabaseRebuilder.cs: Use FirstGenre
 
 	* src/Dap/Banshee.Dap.Ipod/HalDevice.cs: Fixed artwork bug on older iPods
