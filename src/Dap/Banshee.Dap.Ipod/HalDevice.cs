@@ -13,7 +13,7 @@ namespace IPod.HalClient
 {
     internal class HalDevice : IPod.Device 
     {
-        internal const string PodsleuthPrefix = "org.banshee-project.podsleuth.ipod.";
+        internal const string PodsleuthPrefix = "org.podsleuth.ipod.";
 
         public class HalProductionInfo : IPod.ProductionInfo
         {

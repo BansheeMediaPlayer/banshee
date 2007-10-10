@@ -1,5 +1,10 @@
 2007-10-10  Aaron Bockover  <abock@gnome.org>
 
+	* src/Dap/Banshee.Dap.Ipod/HalDevice.cs: Use org.podsleuth instead of
+	org.banshee-project.podsleuth 
+
+2007-10-10  Aaron Bockover  <abock@gnome.org>
+
 	* src/Dap/Banshee.Dap.Ipod/IpodDap.cs: Always save/read the iPod name
 	even if the database hasn't been saved/synced; make the cover art saving
 	somewhat generic so the database rebuilder can use it
