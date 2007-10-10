@@ -1,5 +1,22 @@
 2007-10-10  Aaron Bockover  <abock@gnome.org>
 
+	* src/Dap/Banshee.Dap.Ipod/IpodDap.cs: Always save/read the iPod name
+	even if the database hasn't been saved/synced; make the cover art saving
+	somewhat generic so the database rebuilder can use it
+
+	* src/Dap/Banshee.Dap.Ipod/DatabaseRebuilder.cs: Save the Name to the
+	restored database; restore cover art if it is on the local machine; use
+	the performer tag as the track artist; sort the restored tracks so they
+	are in order in the database instead of mixed up randomly as restored 
+	from the filesystem layout
+
+	* src/Dap/Banshee.Dap.Ipod/UnsupportedDatabaseView.cs: Fixed view when
+	restoring the database
+
+	* src/Core/Banshee.Base/IO/Unix.cs: Fixed writing stream
+
+2007-10-10  Aaron Bockover  <abock@gnome.org>
+
 	* src/Dap/Banshee.Dap.Ipod/IpodDap.cs: Use Async method invocation instead
 	of a direct thread to call Hal.Device.Volume.Eject on the iPod
 

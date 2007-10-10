@@ -142,12 +142,16 @@ namespace Banshee.Dap.Ipod
             }
             
             md.Destroy();
+            
+            pane.HeaderIcon = null;
+            pane.HeaderMarkup = null;
 
             pane.Clear();
-            pane.HeaderIcon = dap.GetIcon(48);
-            pane.HeaderMarkup = String.Format("<big><b>{0}</b></big>", 
-                GLib.Markup.EscapeText(Catalog.GetString("Rebuilding iPod Database...")));
-                
+            pane.Append(String.Format("<big><b>{0}</b></big>", 
+                GLib.Markup.EscapeText(Catalog.GetString("Rebuilding iPod Database..."))),
+                true,
+                dap.GetIcon(128));
+
             DatabaseRebuilder rebuilder = new DatabaseRebuilder(dap);
             rebuilder.Finished += delegate {
                 OnRefresh();

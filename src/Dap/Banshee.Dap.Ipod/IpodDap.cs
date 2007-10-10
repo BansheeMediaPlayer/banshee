@@ -65,6 +65,11 @@ namespace Banshee.Dap.Ipod
         private bool database_supported;
         private UnsupportedDatabaseView db_unsupported_container;
         private bool metadata_provider_initialized = false;
+        private string name_path;
+        
+        internal string NamePath {
+            get { return name_path; }
+        }
     
         public override InitializeResult Initialize(Hal.Device halDevice)
         {
@@ -126,7 +131,9 @@ namespace Banshee.Dap.Ipod
         {
             try {
                 device = new HalDevice(hal_device.Volume);
-                if(File.Exists(Path.Combine(device.ControlPath, Path.Combine("iTunes", "iTunesDB")))) { 
+                name_path = Path.Combine(Path.GetDirectoryName(device.TrackDatabasePath), "BansheeIPodName");
+                
+                if(File.Exists(device.TrackDatabasePath)) { 
                     device.LoadTrackDatabase();
                 } else {
                     throw new DatabaseReadException("iTunesDB does not exist");
@@ -253,6 +260,17 @@ namespace Banshee.Dap.Ipod
             new AsyncEjectHandler(AsyncEject).BeginInvoke(hal_device, null, null);
         }
         
+        public override void SetName(string name)
+        {
+            Directory.CreateDirectory(Path.GetDirectoryName(name_path));
+            
+            using(StreamWriter writer = new StreamWriter(File.Open(name_path, FileMode.Create), System.Text.Encoding.Unicode)) {
+                writer.Write(name);
+            }
+            
+            device.Name = name;
+        }
+        
         public override void Synchronize()
         {
             UpdateSaveProgress(
@@ -280,6 +298,10 @@ namespace Banshee.Dap.Ipod
 
             try {
                 device.Save();
+                try {
+                    File.Delete(name_path);
+                } catch {
+                }
             } catch(Exception e) {
                 Console.Error.WriteLine (e);
                 LogCore.Instance.PushError(Catalog.GetString("Failed to synchronize iPod"), e.Message);
@@ -347,21 +369,27 @@ namespace Banshee.Dap.Ipod
                 track.Genre = String.Empty;
             }
 
-            if(ti.CoverArtFileName != null && File.Exists(ti.CoverArtFileName)) {
-                try {
-                    Gdk.Pixbuf pixbuf = new Gdk.Pixbuf(ti.CoverArtFileName);
-
-                    if(pixbuf != null) {
-                        SetCoverArt(track, ArtworkUsage.Cover, pixbuf);
-                        pixbuf.Dispose();
-                    }
-                } catch(Exception e) {
-                    Console.Error.WriteLine("Failed to set cover art from {0}: {1}", ti.CoverArtFileName, e);
+            SetCoverArt(track, ti.CoverArtFileName);
+        }
+        
+        internal void SetCoverArt(Track track, string path)
+        {
+            if(path == null || !File.Exists(path)) {
+                return;
+            }
+            
+            try {
+                Gdk.Pixbuf pixbuf = new Gdk.Pixbuf(path);
+                if(pixbuf != null) {
+                    SetCoverArt(track, ArtworkUsage.Cover, pixbuf);
+                    pixbuf.Dispose();
                 }
+            } catch(Exception e) {
+                Console.Error.WriteLine("Failed to set cover art from {0}: {1}", path, e);
             }
         }
 
-        private void SetCoverArt (Track track, ArtworkUsage usage, Gdk.Pixbuf pixbuf)
+        private void SetCoverArt(Track track, ArtworkUsage usage, Gdk.Pixbuf pixbuf)
         {
             foreach(ArtworkFormat format in device.LookupArtworkFormats(usage)) {
                 if(!track.HasCoverArt(format)) {
@@ -450,8 +478,20 @@ namespace Banshee.Dap.Ipod
         
         public override string Name {
             get {
-                if(!String.IsNullOrEmpty(device.Name)) {
-                    return device.Name;
+                string name = null;
+                
+                if(File.Exists(name_path)) {
+                    using(StreamReader reader = new StreamReader(name_path, System.Text.Encoding.Unicode)) {
+                        name = reader.ReadLine();
+                    }
+                }
+                
+                if(String.IsNullOrEmpty(name)) {
+                    name = device.Name;
+                }
+                    
+                if(!String.IsNullOrEmpty(name)) {
+                    return name;
                 } else if(hal_device.PropertyExists("volume.label")) {
                     return hal_device["volume.label"];
                 } else if(hal_device.PropertyExists("info.product")) {

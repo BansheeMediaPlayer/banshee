@@ -28,7 +28,7 @@
 
 using System;
 using System.IO;
-using System.Collections;
+using System.Collections.Generic;
 using Mono.Unix;
 using IPod;
 
@@ -39,9 +39,43 @@ namespace Banshee.Dap.Ipod
 {
     public class DatabaseRebuilder
     {
+        private class FileContainer
+        {
+            public string Path;
+            public TagLib.File File;
+        }
+        
+        private class FileContainerComparer : IComparer<FileContainer>
+        {
+            public int Compare(FileContainer a, FileContainer b)
+            {
+                int artist = String.Compare(a.File.Tag.FirstPerformer, b.File.Tag.FirstPerformer);
+                if(artist != 0) {
+                    return artist;
+                }
+                
+                int album = String.Compare(a.File.Tag.Album, b.File.Tag.Album);
+                if(album != 0) {
+                    return album;
+                }
+                
+                int at = (int)a.File.Tag.Track;
+                int bt = (int)b.File.Tag.Track;
+                
+                if(at == bt) {
+                    return 0;
+                } else if(at < bt) {
+                    return -1;
+                }
+                
+                return 1;
+            }
+        }
+    
         private IpodDap dap;
         private ActiveUserEvent user_event;
-        private Queue song_queue = new Queue();
+        private Queue<FileInfo> song_queue = new Queue<FileInfo>();
+        private List<FileContainer> files = new List<FileContainer>();
         private int discovery_count;
 
         public event EventHandler Finished;
@@ -102,6 +136,16 @@ namespace Banshee.Dap.Ipod
                 }
             }
             
+            files.Sort(new FileContainerComparer());
+            
+            foreach(FileContainer container in files) {
+                ProcessTrack(container);
+                
+                if(user_event.IsCancelRequested) {
+                    break;
+                }
+            }
+            
             if(!user_event.IsCancelRequested) {
                 SaveDatabase();
             }
@@ -115,11 +159,20 @@ namespace Banshee.Dap.Ipod
         private void ProcessTrack(FileInfo file)
         {
             TagLib.File af = Banshee.IO.IOProxy.OpenFile(file.FullName);
+            FileContainer container = new FileContainer();
+            container.File = af;
+            container.Path = file.FullName;
+            files.Add(container);
+        }
+        
+        private void ProcessTrack(FileContainer container)
+        {
+            TagLib.File af = container.File;
             Track song = dap.Device.TrackDatabase.CreateTrack();
 
-            song.FileName = file.FullName;
+            song.FileName = container.Path;
             song.Album = af.Tag.Album;
-            song.Artist = af.Tag.FirstAlbumArtist;
+            song.Artist = af.Tag.FirstPerformer;
             song.Title = af.Tag.Title;
             song.Genre = af.Tag.Genres[0];
             song.TrackNumber = (int)af.Tag.Track;
@@ -128,6 +181,31 @@ namespace Banshee.Dap.Ipod
             song.Year = (int)af.Tag.Year;
             song.BitRate = af.Properties.AudioBitrate / 1024;
             song.SampleRate = (ushort)af.Properties.AudioSampleRate;
+            
+            ResolveCoverArt(song);
+        }
+        
+        private void ResolveCoverArt(Track track)
+        {
+            string cover_art_file = null;
+            string id = TrackInfo.CreateArtistAlbumID(track.Artist, track.Album, false);
+            
+            if(id == null) {
+                return;
+            }
+            
+            foreach(string ext in TrackInfo.CoverExtensions) {
+                string path = Paths.GetCoverArtPath(id, "." + ext);
+                if(File.Exists(path)) {
+                    cover_art_file = path;
+                }
+            }
+            
+            if(cover_art_file == null) {
+                return;
+            }
+            
+            dap.SetCoverArt(track, cover_art_file);
         }
         
         private void SaveDatabase()
@@ -137,7 +215,12 @@ namespace Banshee.Dap.Ipod
             user_event.Progress = 0.0;
             
             try {
+                dap.Device.Name = dap.Name;
                 dap.Device.TrackDatabase.Save();
+                try {
+                    File.Delete(dap.NamePath);
+                } catch {
+                }
             } catch(Exception e) {
                 LogCore.Instance.PushError(
                     Catalog.GetString("Error rebuilding iPod database"),
