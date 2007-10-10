@@ -217,13 +217,15 @@ namespace IPod.HalClient
                             switch (value) {
                                 case "photo": usage = ArtworkUsage.Photo; break;
                                 case "album": usage = ArtworkUsage.Cover; break;
-                                case "chapter": usage = ArtworkUsage.Chapter; break;
+                                /* we don't support this right now
+                                   case "chapter": usage = ArtworkUsage.Chapter; break;
+                                */
                             }
                             break;
                     }
                 }
 
-                if (pformat != PixelFormat.Unknown) {
+                if (pformat != PixelFormat.Unknown && usage != ArtworkUsage.Unknown) {
                     formats.Add (new ArtworkFormat (usage, width, height, correlationId, size, pformat, rotation));
                 }
             }

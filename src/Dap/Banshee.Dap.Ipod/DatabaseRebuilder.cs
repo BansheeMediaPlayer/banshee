@@ -136,10 +136,16 @@ namespace Banshee.Dap.Ipod
                 }
             }
             
+            user_event.Progress = 0.0;
+            user_event.Message = Catalog.GetString("Ordering Tracks...");
+            
             files.Sort(new FileContainerComparer());
             
             foreach(FileContainer container in files) {
-                ProcessTrack(container);
+                try {
+                    ProcessTrack(container);
+                } catch {
+                }
                 
                 if(user_event.IsCancelRequested) {
                     break;
@@ -174,7 +180,7 @@ namespace Banshee.Dap.Ipod
             song.Album = af.Tag.Album;
             song.Artist = af.Tag.FirstPerformer;
             song.Title = af.Tag.Title;
-            song.Genre = af.Tag.Genres[0];
+            song.Genre = af.Tag.FirstGenre;
             song.TrackNumber = (int)af.Tag.Track;
             song.TotalTracks = (int)af.Tag.TrackCount;
             song.Duration = af.Properties.Duration;
