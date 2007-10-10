@@ -272,7 +272,7 @@ namespace Banshee.Dap.Ipod
             {
                 double progress = args.CurrentTrack == null ? 0.0 : args.TotalProgress;
                 string message = args.CurrentTrack == null 
-                    ? Catalog.GetString("Flushing to Disk (may take time)")
+                    ? Catalog.GetString("Waiting for Media")
                     : args.CurrentTrack.Artist + " - " + args.CurrentTrack.Title;
                     
                 UpdateSaveProgress(Catalog.GetString("Synchronizing iPod"), message, progress);

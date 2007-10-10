@@ -206,7 +206,7 @@ namespace Banshee.IO.Unix
         }
         
         public Stream WriteStream {
-            get { return file_info.Open(FileMode.Create, FileAccess.ReadWrite, FilePermissions.DEFFILEMODE); }
+            get { return file_info.OpenWrite(); }
         }
    
         public bool IsReadable {
