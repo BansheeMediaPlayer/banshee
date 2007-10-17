@@ -9,7 +9,7 @@ AM_MAINTAINER_MODE
 DISTCHECK_CONFIGURE_FLAGS="--disable-docs"
 AC_SUBST(DISTCHECK_CONFIGURE_FLAGS)
 
-ASM_VERSION="$VERSION.*"
+ASM_VERSION="0.13.2.*"
 AC_SUBST(ASM_VERSION)
 
 dnl Pieces needed by gnome-autogen; can't be parsed from macros
