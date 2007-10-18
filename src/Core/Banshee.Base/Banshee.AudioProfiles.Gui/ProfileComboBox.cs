@@ -82,7 +82,14 @@ namespace Banshee.AudioProfiles.Gui
             
             if(manager.AvailableProfileCount == 0 || (mimetype_profiles.Count == 0 && mimetype_filter != null)) {
                 store.AppendValues(Catalog.GetString("No available profiles"), null);
+                
+                if(store.IterNthChild(out active_iter, 0)) {
+                    SetActiveIter(active_iter);
+                }
+                
                 Sensitive = false;
+                ActiveProfile = null;
+                return;
             } else {
                 Sensitive = true;
             }
@@ -100,6 +107,7 @@ namespace Banshee.AudioProfiles.Gui
             if(store.IterNthChild(out active_iter, 0)) {
                 SetActiveIter(active_iter);
             }
+            
             ActiveProfile = active_profile;
         }
 

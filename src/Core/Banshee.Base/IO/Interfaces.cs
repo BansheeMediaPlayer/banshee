@@ -58,6 +58,7 @@ namespace Banshee.IO
         void Delete(string directory);
         void Delete(string directory, bool recursive);
         bool Exists(string directory);
+        bool CanReadWrite(string directory);
         IEnumerable GetFiles(string directory);
         IEnumerable GetDirectories(string directory);
         void Move(SafeUri from, SafeUri to);

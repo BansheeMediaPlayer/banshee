@@ -37,6 +37,7 @@ namespace Banshee.AudioProfiles.Gui
         private ProfileConfigureButton button;
         private TextViewLabel description;
         private string configuration_id;
+        private Box parent;
         
         private static Gdk.Color window_color = Gdk.Color.Zero;
         
@@ -48,6 +49,7 @@ namespace Banshee.AudioProfiles.Gui
         public ProfileComboBoxConfigurable(ProfileManager manager, string configurationId, Box parent) 
         {
             HBox editor = new HBox();
+            this.parent = parent;
             
             configuration_id = configurationId;
             combo = new ProfileComboBox(manager);
@@ -63,7 +65,6 @@ namespace Banshee.AudioProfiles.Gui
             editor.Show();
             
             description = new TextViewLabel();
-            description.Show();
             
             TextTag tag = new TextTag("small");
             tag.Scale = Pango.Scale.Small;
@@ -74,32 +75,43 @@ namespace Banshee.AudioProfiles.Gui
             
             if(profile != null) {
                 Combo.SetActiveProfile(profile);
-                SetDescription();
             }
-            
-            Combo.Changed += delegate {
-                if(Combo.ActiveProfile != null) {
-                    ProfileConfiguration.SaveActiveProfile(Combo.ActiveProfile, configurationId);
-                    SetDescription();
-                }
-            };
-            
-            Spacing = 5;
-            PackStart(editor, true, true, 0);
-            
-            bool expand = parent != null;
             
             if(parent == null) {
                 parent = this;
             }
             
-            parent.PackStart(description, expand, expand, 0);
+            Combo.Changed += delegate {
+                if(Combo.ActiveProfile != null) {
+                    ProfileConfiguration.SaveActiveProfile(Combo.ActiveProfile, configurationId);
+                }
+                
+                SetDescription();
+            };
+            
+            Spacing = 5;
+            PackStart(editor, true, true, 0);
+            SetDescription();
         }
         
         private void SetDescription()
         {
-            description.Text = Combo.ActiveProfile.Description;
-            description.Buffer.ApplyTag("small", description.Buffer.StartIter, description.Buffer.EndIter);
+            if(Combo.ActiveProfile != null) {
+                description.Text = Combo.ActiveProfile.Description;
+                description.Buffer.ApplyTag("small", description.Buffer.StartIter, description.Buffer.EndIter);
+                bool expand = parent != null;
+                parent.PackStart(description, expand, expand, 0);
+                description.Show();
+            } else {
+                foreach(Widget child in parent.Children) {
+                    if(child == description) {
+                        parent.Remove(description);
+                        break;
+                    }
+                }
+                
+                description.Hide();
+            }
         }
         
         public ProfileComboBox Combo {

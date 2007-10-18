@@ -157,6 +157,15 @@ namespace Banshee.IO.Unix
             }
         }
         
+        public bool CanReadWrite(string directory)
+        {
+            try {
+                return new UnixDirectoryInfo(directory).CanAccess(AccessModes.R_OK | AccessModes.W_OK);
+            } catch {
+                return false;
+            }
+        }
+        
         public IEnumerable GetFiles(string directory)
         {
             UnixDirectoryInfo unix_dir = new UnixDirectoryInfo(directory);

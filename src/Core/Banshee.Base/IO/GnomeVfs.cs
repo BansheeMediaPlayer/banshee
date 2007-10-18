@@ -142,6 +142,12 @@ namespace Banshee.IO.GnomeVfs
             return (info.Type & FileType.Directory) != 0;
         }
         
+        public bool CanReadWrite(string directory)
+        {
+            // FIXME: Ugh
+            return true;
+        }
+        
         public IEnumerable GetFiles(string directory)
         {
             foreach(FileInfo file in Gnome.Vfs.Directory.GetEntries(directory)) {

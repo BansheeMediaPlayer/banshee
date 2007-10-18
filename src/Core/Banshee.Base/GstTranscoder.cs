@@ -73,6 +73,7 @@ namespace Banshee.Base
         private GstTranscoderFinishedCallback FinishedCallback;
         private GstTranscoderErrorCallback ErrorCallback;
         private string error_message;
+        private SafeUri managed_output_uri;
         
         public GstTranscoder()
         {
@@ -104,6 +105,7 @@ namespace Banshee.Base
                 throw new ApplicationException("Transcoder is busy");
             }
         
+            managed_output_uri = outputUri;
             IntPtr input_uri = GLib.Marshaller.StringToPtrGStrdup(inputUri.AbsoluteUri);
             IntPtr output_uri = GLib.Marshaller.StringToPtrGStrdup(outputUri.AbsoluteUri);
             
@@ -117,6 +119,7 @@ namespace Banshee.Base
         
         public override void Cancel()
         {
+            Banshee.IO.IOProxy.File.Delete(managed_output_uri);
             gst_transcoder_cancel(handle);
         }
         
@@ -140,6 +143,8 @@ namespace Banshee.Base
                     error_message += ": " + debug_string;
                 }
             }
+            
+            Banshee.IO.IOProxy.File.Delete(managed_output_uri);
             
             OnError();
         }

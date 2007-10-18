@@ -149,6 +149,28 @@ namespace Banshee.Base
             }
         }
         
+        private static string dap_cache_path;
+        public static string DapCachePath {
+            get { 
+                if(dap_cache_path != null) {
+                    return dap_cache_path;
+                }
+            
+                string path = Globals.Library.Location;
+                
+                if(Banshee.IO.IOProxy.Directory.CanReadWrite(path)) {
+                    path = Path.Combine(path, "DAP Cache");
+                } else {
+                    path = Path.Combine(TempDir, "dap_cache");
+                }
+                
+                Banshee.IO.IOProxy.Directory.Create(path);
+                dap_cache_path = path;
+                
+                return path;
+            }
+        }
+        
         public static string TempDir {
             get {
                 string dir = Paths.ApplicationData 

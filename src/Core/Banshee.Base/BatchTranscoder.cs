@@ -202,6 +202,8 @@ namespace Banshee.Base
                 transcoder = alt_transcoder;
             }
             
+            Banshee.IO.IOProxy.Directory.Create(Path.GetDirectoryName(output_uri.LocalPath));
+
             if(input_extension != profile.OutputFileExtension) {
                 transcoder.BeginTranscode(input_uri, output_uri, profile);
             } else if(desired_profile_name != null && profile.Name != desired_profile_name) {

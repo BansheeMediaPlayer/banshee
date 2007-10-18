@@ -94,7 +94,7 @@ namespace Banshee.Dap
                 try {
                     VBox profile_description_box = new VBox();
                     ProfileComboBoxConfigurable profile_box = new ProfileComboBoxConfigurable(Globals.AudioProfileManager, 
-                        device.ID, profile_description_box);
+                        device.Uuid, profile_description_box);
                     profile_box.Combo.MimeTypeFilter = device.SupportedPlaybackMimeTypes;
                     table.AddWidget(Catalog.GetString("Encode to"), profile_box);
                     table.AddWidget(null, profile_description_box);

@@ -237,6 +237,11 @@ namespace Banshee.Dap.Ipod
             }
         }
         
+        protected override void Reload()
+        {
+            ReloadDatabase(true);
+        }
+        
         private void ReloadDatabase(bool refresh)
         {
             bool previous_database_supported = database_supported;
@@ -523,6 +528,16 @@ namespace Banshee.Dap.Ipod
             }
         }
         
+        public override string Uuid {
+            get { 
+                if(device.ProductionInfo != null && device.ProductionInfo.SerialNumber != null) {
+                    return String.Format("ipod_{0}", device.ProductionInfo.SerialNumber);
+                } 
+                
+                return base.Uuid;
+            }
+        }
+
         public override ulong StorageCapacity {
             get { return device.VolumeInfo.Size; }
         }

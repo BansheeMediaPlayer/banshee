@@ -1,3 +1,42 @@
+2007-10-18  Aaron Bockover  <abock@gnome.org>
+
+	* src/Dap/Banshee.Dap.Ipod/IpodDap.cs: Implement Reload and Uuid
+
+	* src/Core/Banshee.Base/Banshee.AudioProfiles.Gui/ProfileComboBox.cs:
+	Ensure that if there are no profiles to show, the box actually reflects it
+	
+	* src/Core/Banshee.Base/Banshee.AudioProfiles.Gui/ProfileComboBoxConfigurable.cs: 
+	Show/hide the description box based on the selection; fix some display
+	logic bugs
+
+	* src/Core/Banshee.Base/Dap/DapPropertiesDialog.cs: Use the new Dap.Uuid
+	for identifying a DAP transcoding profile
+
+	* src/Core/Banshee.Base/Dap/Dap.cs: Added Uuid property that is based on
+	HAL IDs by default and can be implemented to a better specificity by
+	a given DAP; Fixed a handful of generic transcoding bugs; use a global
+	DAP transcoding cache instead of placing transcoded files a dot files
+	next to their original
+
+	* src/Core/Banshee.Base/IO/Interfaces.cs: Added a CanReadWrite(dir) method
+	that will return false if the directory cannot be written to and true if
+	it can
+
+	* src/Core/Banshee.Base/IO/SystemIO.cs:
+	* src/Core/Banshee.Base/IO/Unix.cs: Implement CanReadWrite(dir)
+
+	* src/Core/Banshee.Base/IO/GnomeVfs.cs: Always return true, needs work
+
+	* src/Core/Banshee.Base/BatchTranscoder.cs: Create the directory before
+	writing out the data
+
+	* src/Core/Banshee.Base/Paths.cs: Added DapCachePath which is either
+	a central place inside the Music directory or a temporary path if the 
+	Music directory is not writable
+
+	* src/Core/Banshee.Base/GstTranscoder.cs: Delete the transcoded file if
+	the operation is canceled or there is a fatal error during the transcode
+
 2007-10-10  Aaron Bockover  <abock@gnome.org>
 
 	* src/Dap/Banshee.Dap.Ipod/IpodDap.cs: Only show the 'rebuild database'

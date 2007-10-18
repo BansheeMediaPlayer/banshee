@@ -99,6 +99,17 @@ namespace Banshee.IO.SystemIO
             return System.IO.Directory.Exists(directory);
         }
         
+        public bool CanReadWrite(string directory)
+        {
+            // FIXME: This will need porting to System.IO - no clue how to do this
+            try {
+                return new Mono.Unix.UnixDirectoryInfo(directory).CanAccess(
+                    Mono.Unix.Native.AccessModes.R_OK | Mono.Unix.Native.AccessModes.W_OK);
+            } catch {
+                return false;
+            }
+        }
+        
         public IEnumerable GetFiles(string directory)
         {
             return System.IO.Directory.GetFiles(directory);

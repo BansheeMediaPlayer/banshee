@@ -260,6 +260,11 @@ namespace Banshee.Dap
         {
         }
         
+        protected virtual void Reload()
+        {
+            throw new NotImplementedException();
+        }
+        
         public virtual void UnmapPlayback(Type type)
         {
             if(PlayerEngineCore.CurrentTrack == null || Tracks == null || Tracks.Count == 0) {
@@ -391,33 +396,36 @@ namespace Banshee.Dap
         }
 
         private BatchTranscoder encoder = null;
+        private List<TrackInfo> pre_encoder_errors = new List<TrackInfo>();
 
         private void Transcode()
         {
-            Profile profile = Globals.AudioProfileManager.GetConfiguredActiveProfile(ID, SupportedPlaybackMimeTypes);
-            
-            Queue remove_queue = new Queue();
+            Profile profile = Globals.AudioProfileManager.GetConfiguredActiveProfile(Uuid, SupportedPlaybackMimeTypes);
+            pre_encoder_errors.Clear();
+            encoder = null;
             
             foreach(TrackInfo track in Tracks) {
                 if(track == null || track.Uri == null || !track.Uri.IsFile) {
                     continue;
                 }
             
-                string cached_filename = GetCachedSongFileName(track.Uri);
+                if(ValidSongFormat(track.Uri.LocalPath)) {
+                    continue;
+                }
+            
+                SafeUri cached_uri = profile == null ? null : GetCachedSongFileName(track, profile.OutputFileExtension);
                 
-                if(cached_filename == null) {
+                if(cached_uri == null || !File.Exists(cached_uri.LocalPath)) {
                     if(profile == null) {
-                        remove_queue.Enqueue(track);
+                        pre_encoder_errors.Add(track);
                         continue;
                     }
 
                     SafeUri old_uri = track.Uri;
-                    try {
-                        track.Uri = ConvertSongFileName(track.Uri, profile.OutputFileExtension);
-                    } catch {
-                        continue;
+                    if(cached_uri != null) {
+                        track.Uri = cached_uri;
                     }
-
+                    
                     if(encoder == null) {
                         encoder = new BatchTranscoder(profile, type_properties.PipelineName);
                         encoder.FileFinished += OnFileEncodeComplete;
@@ -426,22 +434,24 @@ namespace Banshee.Dap
                     }
                     
                     encoder.AddTrack(old_uri, track.Uri);
-                } else {
-                    if(System.IO.File.Exists(cached_filename)) {
-                        track.Uri = new SafeUri(cached_filename);
-                    } else {
-                        remove_queue.Enqueue(track);
-                    }
+                } else if(cached_uri != null) {
+                    track.Uri = cached_uri;
                 }
             }
             
-            while(remove_queue.Count > 0) {
-                RemoveTrack(remove_queue.Dequeue() as TrackInfo);
+            foreach(TrackInfo track in pre_encoder_errors) {
+                RemoveTrack(track);
             }
             
             if(encoder == null) {
                 save_report_event.Message = Catalog.GetString("Processing...");
-                Synchronize();
+                if(pre_encoder_errors.Count > 0) {
+                    ThreadAssist.ProxyToMain(delegate {
+                        HandleTranscodeErrors(null);
+                    });
+                } else {
+                    Synchronize();
+                }
             } else {
                 encoder.Start();
             }
@@ -452,6 +462,8 @@ namespace Banshee.Dap
         private void OnFileEncodeCanceled(object o, EventArgs args)
         {
             encoder_canceled = true;
+            Reload();
+            FinishSave();
         }
         
         private void OnFileEncodeComplete(object o, FileCompleteArgs args)
@@ -464,7 +476,7 @@ namespace Banshee.Dap
                 save_report_event.Message = Catalog.GetString("Processing...");
                 
                 BatchTranscoder encoder = o as BatchTranscoder;
-                if(encoder.ErrorCount > 0) {
+                if(encoder.ErrorCount > 0 || pre_encoder_errors.Count > 0) {
                     ThreadAssist.ProxyToMain(delegate {
                         HandleTranscodeErrors(encoder);
                     });
@@ -489,16 +501,22 @@ namespace Banshee.Dap
             dialog.AddStockButton(Gtk.Stock.Cancel, Gtk.ResponseType.Cancel);
             dialog.AddButton(Catalog.GetString("Continue synchronizing"), Gtk.ResponseType.Ok);
             
-            foreach(BatchTranscoder.QueueItem item in encoder.ErrorList) {
-                if(item.Source is TrackInfo) {
-                    TrackInfo track = item.Source as TrackInfo;
-                    dialog.AppendString(String.Format("{0} - {1}", track.Artist, track.Title));
-                } else if(item.Source is SafeUri) {
-                    SafeUri uri = item.Source as SafeUri;
-                    dialog.AppendString(System.IO.Path.GetFileName(uri.LocalPath));
-                } else {
-                    dialog.AppendString(item.Source.ToString());
+            if(encoder != null) {
+                foreach(BatchTranscoder.QueueItem item in encoder.ErrorList) {
+                    if(item.Source is TrackInfo) {
+                        TrackInfo track = item.Source as TrackInfo;
+                        dialog.AppendString(String.Format("{0} - {1}", track.DisplayArtist, track.DisplayTitle));
+                    } else if(item.Source is SafeUri) {
+                        SafeUri uri = item.Source as SafeUri;
+                        dialog.AppendString(System.IO.Path.GetFileName(uri.LocalPath));
+                    } else {
+                        dialog.AppendString(item.Source.ToString());
+                    }
                 }
+            }
+            
+            foreach(TrackInfo track in pre_encoder_errors) {
+                dialog.AppendString(String.Format("{0} - {1}", track.DisplayArtist, track.DisplayTitle));
             }
             
             try {
@@ -569,49 +587,18 @@ namespace Banshee.Dap
             return false;
         }
         
-        private string GetCachedSongFileName(SafeUri uri)
+        private SafeUri GetCachedSongFileName(TrackInfo track, string newext)
         {
-            string filename = uri.LocalPath;
-        
-            if(ValidSongFormat(filename)) {
-                return filename;
-            }
-                
-            string path = PathUtil.MakeFileNameKey(uri);
-            string dir = Path.GetDirectoryName(path);
-            string file = Path.GetFileNameWithoutExtension(filename);
-            
-            foreach(string vext in SupportedExtensions) {
-                string newfile = dir + Path.DirectorySeparatorChar + ".banshee-dap-" + file + "." + vext;
-                
-                if(File.Exists(newfile)) {
-                    return newfile;
-                }
+            if(ValidSongFormat(track.Uri.LocalPath)) {
+                return track.Uri;
             }
             
-            foreach(string vext in SupportedExtensions) {
-                string newfile = path + "." + vext;
-                
-                if(File.Exists(newfile)) {
-                    return newfile;
-                }
-            }   
-                 
-            return null;
+            string pattern = String.Format("{0}.{1}", FileNamePattern.CreateFromTrackInfo(track), newext);
+            string cache_path = Path.Combine(Paths.DapCachePath, Path.Combine(newext, pattern));
+            
+            return new SafeUri(cache_path);
         }
         
-        private SafeUri ConvertSongFileName(SafeUri uri, string newext)
-        {
-            string filename = uri.LocalPath;
-            
-            string path = PathUtil.MakeFileNameKey(uri);
-            string dir = Path.GetDirectoryName(path);
-            string file = Path.GetFileNameWithoutExtension(filename);
-            
-            return new SafeUri(dir + Path.DirectorySeparatorChar 
-                + ".banshee-dap-" + file + "." + newext);
-        }
-
         public virtual Gdk.Pixbuf GetIcon(int size)
         {
             Gdk.Pixbuf pixbuf = IconThemeUtils.LoadIcon("multimedia-player", size);
@@ -707,15 +694,15 @@ namespace Banshee.Dap
             }
         }
         
-        private string id;
-        public string ID { 
+        private string uuid;
+        public virtual string Uuid { 
             get { 
-                if(id == null) {
+                if(uuid == null) {
                     string [] parts = HalUdi.Split('/');
-                    id = parts[parts.Length - 1];
+                    uuid = parts[parts.Length - 1];
                 }
                 
-                return id;
+                return uuid;
             }
         }
         
