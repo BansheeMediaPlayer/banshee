@@ -1,5 +1,12 @@
 2007-10-18  Aaron Bockover  <abock@gnome.org>
 
+	* src/Dap/Banshee.Dap.MassStorage/MassStorageDap.cs: Better device name
+	detection by collecting a stack of USB parents for a DAP and using
+	info.product in high level order down; thus devices are identified
+	by their high level USB product name, not the storage volume name
+
+2007-10-18  Aaron Bockover  <abock@gnome.org>
+
 	* src/Dap/Banshee.Dap.Ipod/IpodDap.cs: Implement Reload and Uuid
 
 	* src/Core/Banshee.Base/Banshee.AudioProfiles.Gui/ProfileComboBox.cs:

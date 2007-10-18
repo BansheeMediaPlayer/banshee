@@ -205,7 +205,7 @@ namespace Banshee.Dap.MassStorage
             if(PlaybackFormats.Length > 0) {
                 InstallProperty(String.Format(
                     Catalog.GetPluralString("Audio Format", "Audio Formats", PlaybackFormats.Length), PlaybackFormats.Length),
-                    System.String.Join("\n", PlaybackFormats)
+                    System.String.Join(", ", PlaybackFormats)
                 );
             }
 
@@ -253,6 +253,11 @@ namespace Banshee.Dap.MassStorage
             ui_initialized = true;
             if(mounted)
                 ReloadDatabase();
+        }
+        
+        protected override void Reload ()
+        {
+            ReloadDatabase();
         }
  
         private void ReloadDatabase()
@@ -540,17 +545,89 @@ namespace Banshee.Dap.MassStorage
                 return null;
             }
         }
+        
+        private string GetDisplayStringProperty(Hal.Device device, string property)
+        {
+            if(device.PropertyExists(property)) {
+                string value = device[property];
+                if(String.IsNullOrEmpty(value)) {
+                    return null;
+                }
+                
+                return value;
+            }
+            
+            return null;
+        }
+ 
+        private Stack<Hal.Device> CollectUsbDeviceStack(Hal.Device device)
+        {
+            Stack<Hal.Device> device_stack = new Stack<Hal.Device>();
+            int usb_vendor_id = -1;
+            int usb_product_id = -1;
+
+            Hal.Device tmp_device = device;
+
+            while(tmp_device != null) {
+                // Skip the SCSI parents of the player volume if they are in the tree
+                if((tmp_device.PropertyExists("info.bus") && tmp_device["info.bus"] == "scsi") ||
+                    (tmp_device.PropertyExists("info.category") && tmp_device["info.category"] == "scsi_host")) {
+                    device_stack.Push(tmp_device);
+                    tmp_device = tmp_device.Parent;
+                    continue;
+                }
+
+                bool have_usb_ids = false;
+                int _usb_vendor_id = -1;
+                int _usb_product_id = -1;
+
+                // Figure out the IDs if they exist
+                if(tmp_device.PropertyExists("usb.vendor_id") && tmp_device.PropertyExists("usb.product_id")) {
+                    _usb_vendor_id = tmp_device.GetPropertyInteger("usb.vendor_id");
+                    _usb_product_id = tmp_device.GetPropertyInteger("usb.product_id");
+                    have_usb_ids = true;
+                } else if(tmp_device.PropertyExists("usb_device.vendor_id") && tmp_device.PropertyExists("usb_device.product_id")) {
+                    _usb_vendor_id = tmp_device.GetPropertyInteger("usb_device.vendor_id");
+                    _usb_product_id = tmp_device.GetPropertyInteger("usb_device.product_id");
+                    have_usb_ids = true;
+                }
+
+                if(have_usb_ids) {
+                    if(usb_vendor_id == -1 && usb_product_id == -1) {
+                        // We found the first raw USB device, remember it
+                        usb_vendor_id = _usb_vendor_id;
+                        usb_product_id = _usb_product_id;
+                    } else if(usb_vendor_id != _usb_vendor_id || usb_product_id != _usb_product_id) {
+                        // We are no longer looking at the device we care about (could now be at a hub or something)
+                        break;
+                    }
+                } else if(usb_vendor_id != -1 || usb_product_id != -1) {
+                    // We are no longer even looking at USB devices
+                    break;
+                }
+
+                device_stack.Push(tmp_device);
+                tmp_device = tmp_device.Parent;
+            }
+            
+            return device_stack;
+        }
  
         private string name = null;
         public override string Name {
             get {
                 if(name == null) {
-                    if(player_device.PropertyExists("info.product")) {
-                        name = player_device["info.product"];
-                    } else if(volume_device.PropertyExists("volume.label") && 
-                        volume_device["volume.label"].Length > 0) {
-                        name = volume_device["volume.label"];
-                    } else {
+                    Stack<Hal.Device> usb_devices = CollectUsbDeviceStack(player_device);
+                    
+                    while(usb_devices.Count > 0) {
+                        name = GetDisplayStringProperty(usb_devices.Pop(), "info.product");
+                        if(name != null) {
+                            return name;
+                        }
+                    }
+                
+                    name = GetDisplayStringProperty(volume_device, "volume.label");
+                    if(name == null) {
                         name = GenericName;
                     }
                 }
