@@ -1,5 +1,10 @@
 2007-10-22  Gabriel Burt  <gabriel.burt@gmail.com>
 
+	* src/Core/Banshee.Base/ImportManager.cs: Fix bug in code so .hidden
+	folders are indeed not scanned.  Fixes BGO #355878.
+
+2007-10-22  Gabriel Burt  <gabriel.burt@gmail.com>
+
 	* src/Core/Banshee.Base/BatchTranscoder.cs: Fix some issues with
 	transcoding when files are missing.
 

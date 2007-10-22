@@ -202,7 +202,7 @@ namespace Banshee.Base
             
             bool is_regular_file = false;
             bool is_directory = false;
-            
+
             SafeUri source_uri = new SafeUri(source);
             
             try {
@@ -212,18 +212,12 @@ namespace Banshee.Base
                 scan_ref_count--;
                 return;
             }
-            
-            if(is_regular_file) {
-                try {
-                    if(!Path.GetFileName(source).StartsWith(".")) {
+
+            try {
+                if(!Path.GetFileName(source).StartsWith(".")) {
+                    if(is_regular_file) {
                         Enqueue(source);
-                    }
-                } catch(System.ArgumentException) {
-                    // If there are illegal characters in path
-                }
-            } else if(is_directory) {
-                try {
-                    if(!Path.GetFileName(System.IO.Path.GetDirectoryName(source)).StartsWith(".")) {
+                    } else {
                         try {
                             foreach(string file in IOProxy.Directory.GetFiles(source)) {
                                 ScanForFiles(file);
@@ -235,11 +229,11 @@ namespace Banshee.Base
                         } catch {
                         }
                     }
-                } catch(System.ArgumentException) {
-                    // If there are illegal characters in path
                 }
+            } catch(System.ArgumentException) {
+                // If there are illegal characters in path
             }
-
+            
             scan_ref_count--;
         }
         
