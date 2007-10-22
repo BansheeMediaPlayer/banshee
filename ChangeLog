@@ -1,3 +1,9 @@
+2007-10-22  Gabriel Burt  <gabriel.burt@gmail.com>
+
+	* src/Core/Banshee.Base/BatchTranscoder.cs: Fix bug with silently ignoring
+	transcoding errors that led to the transcoding process never finishing.
+	Fixes BGO #477392 and BGO #451651.
+
 2007-10-18  Aaron Bockover  <abock@gnome.org>
 
 	* src/Dap/Banshee.Dap.MassStorage/MassStorageDap.cs: Better device name

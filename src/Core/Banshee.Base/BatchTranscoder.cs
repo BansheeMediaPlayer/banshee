@@ -183,6 +183,7 @@ namespace Banshee.Base
                 input_uri = current.Source as SafeUri;
                 user_event.Message = Path.GetFileName(input_uri.LocalPath);
             } else {
+                OnTranscoderError(this, new EventArgs());
                 return;
             }
             
@@ -190,7 +191,13 @@ namespace Banshee.Base
                 return;
             }
             
-            string input_extension = Path.GetExtension(input_uri.LocalPath).Substring(1);
+            string input_extension = Path.GetExtension(input_uri.LocalPath);
+            if(input_extension == String.Empty) {
+                OnTranscoderError(this, new EventArgs());
+                return;
+            }
+
+            input_extension = input_extension.Substring(1); // remove the leading .
             
             transcoder = default_transcoder;
             
