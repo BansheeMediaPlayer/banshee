@@ -144,7 +144,9 @@ namespace Banshee.Base
                 }
             }
             
-            Banshee.IO.IOProxy.File.Delete(managed_output_uri);
+            try {
+                Banshee.IO.IOProxy.File.Delete(managed_output_uri);
+            } catch {}
             
             OnError();
         }

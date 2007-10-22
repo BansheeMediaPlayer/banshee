@@ -81,7 +81,7 @@ namespace Banshee.Base
             }
         }
     
-        private ArrayList error_list = new ArrayList();
+        private List<QueueItem> error_list = new List<QueueItem>();
     
         private Queue batch_queue = new Queue();
         private QueueItem current = null;
@@ -92,6 +92,7 @@ namespace Banshee.Base
         private Profile profile;
         private int finished_count;
         private int total_count;
+        private bool finished = false;
         private string desired_profile_name;
         
         private ActiveUserEvent user_event;
@@ -150,7 +151,8 @@ namespace Banshee.Base
             } catch(Exception e) {
                 Console.WriteLine(e);
                 
-                error_list.Add(e.Message);
+                if (current != null)
+                    error_list.Add(current);
                 
                 if(user_event != null) {
                     user_event.Dispose();
@@ -242,6 +244,10 @@ namespace Banshee.Base
         
         private void OnBatchFinished()
         {
+            if (finished)
+                return;
+
+            finished = true;
             EventHandler handler = BatchFinished;
             if(handler != null) {
                 handler(this, new EventArgs());
@@ -271,7 +277,9 @@ namespace Banshee.Base
         
         private void OnTranscoderError(object o, EventArgs args)
         {
-            error_list.Add(current);
+            if (current != null)
+                error_list.Add(current);
+
             PostTranscode();
         }
         
