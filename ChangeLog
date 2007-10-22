@@ -1,5 +1,11 @@
 2007-10-22  Gabriel Burt  <gabriel.burt@gmail.com>
 
+	* src/Dap/Banshee.Dap.MassStorage/MassStorageDap.cs: Fix threading issue
+	where switching to a MassStorage DAP source while it was scanning for
+	tracks would crash with an enumeration modified exception.
+
+2007-10-22  Gabriel Burt  <gabriel.burt@gmail.com>
+
 	* src/Core/Banshee.Base/BatchTranscoder.cs: Fix bug with silently ignoring
 	transcoding errors that led to the transcoding process never finishing.
 	Fixes BGO #477392 and BGO #451651.

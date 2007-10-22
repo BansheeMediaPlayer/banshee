@@ -262,7 +262,9 @@ namespace Banshee.Dap.MassStorage
  
         private void ReloadDatabase()
         {
-            ClearTracks(false);
+            lock(Source.TracksMutex) {
+                ClearTracks(false);
+            }
 
             ImportManager importer = new ImportManager();
 
@@ -384,7 +386,9 @@ namespace Banshee.Dap.MassStorage
             if(track == null || IsReadOnly && !tracks.Contains(track))
                 return;
 
-            tracks.Add(track);
+            lock(Source.TracksMutex) {
+                tracks.Add(track);
+            }
             OnTrackAdded(track);
 
             if(!(track is MassStorageTrackInfo)) {
@@ -414,11 +418,15 @@ namespace Banshee.Dap.MassStorage
                     TrackInfo new_track = new MassStorageTrackInfo(new SafeUri(new_path));
 
                     // Add the new MassStorageTrackInfo and remove the old TrackInfo from the treeview
-                    tracks.Add(new_track);
+                    lock(Source.TracksMutex) {
+                        tracks.Add(new_track);
+                    }
                     OnTrackAdded(new_track);
                 }
 
-                tracks.Remove(track);
+                lock(Source.TracksMutex) {
+                    tracks.Remove(track);
+                }
             } catch (Exception e) {
                 LogCore.Instance.PushInformation("Unable to copy file", new_path + e.ToString(), false);
             }
