@@ -192,15 +192,13 @@ namespace Banshee.Plugins.Podcast.UI
 
                 if (feed.NewPodcasts > 0)
                 {
-                    string episode_str = Catalog.GetPluralString (
-                                             "Episode", "Episodes", feed.NewPodcasts
-                                         );
-
-                    renderer.Text = String.Format (
-                                        "{0} - {1} {2} {3}",
-                                        title, feed.NewPodcasts, Catalog.GetString ("New"), episode_str
-                                    );
-
+                    renderer.Text = String.Format(
+                        // Translators: {0} is the feed title, {1} is the number of new episodes
+                        Catalog.GetPluralString(
+                            "{0} - {1} New Episode",
+                            "{0} - {1} New Episodes", feed.NewPodcasts
+                        ), title, feed.NewPodcasts
+                    );
                 }
                 else
                 {
