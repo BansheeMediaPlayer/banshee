@@ -1,3 +1,10 @@
+2007-10-23  Gabriel Burt  <gabriel.burt@gmail.com>
+
+	* src/Core/Banshee.Base/Banshee.AudioProfiles/ProfileManager.cs: Fix bug
+	with not respecting configured audio properties for transcoding and
+	ripping making sure we actually set the audio profile to load the saved
+	configuration.  Fixes BGO #398278.
+
 2007-10-22  Gabriel Burt  <gabriel.burt@gmail.com>
 
 	* src/Plugins/Banshee.Plugins.Podcast/UI/PodcastFeedView.cs: Make strings

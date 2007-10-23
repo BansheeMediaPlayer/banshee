@@ -194,12 +194,14 @@ namespace Banshee.AudioProfiles
         {
             Profile profile = GetConfiguredActiveProfile(id);
             if(profile != null) {
+                profile.LoadConfiguration(id);
                 return profile;
             }
             
             foreach(string mimetype in mimetypes) {
                 profile = GetProfileForMimeType(mimetype);
                 if(profile != null) {
+                    profile.LoadConfiguration(id);
                     return profile;
                 }
             }
