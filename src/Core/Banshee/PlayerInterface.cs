@@ -116,6 +116,11 @@ namespace Banshee
                 Banshee.Gui.DragDrop.DragDropTarget.UriList
             };
 
+        private static TargetEntry [] coverArtSourceEntries = 
+            new TargetEntry [] {
+                Banshee.Gui.DragDrop.DragDropTarget.UriList
+            };
+            
         private static TargetEntry [] playlistViewSourceEntries = 
             new TargetEntry [] {
                 Banshee.Gui.DragDrop.DragDropTarget.PlaylistRows,
@@ -300,6 +305,8 @@ namespace Banshee
             trackInfoHeader = new TrackInfoHeader();
             trackInfoHeader.Cover.DragDataReceived += OnCoverArtDragDataReceived;
             Gtk.Drag.DestSet(trackInfoHeader.Cover, DestDefaults.All, coverArtDestEntries, DragAction.Copy | DragAction.Move);
+            trackInfoHeader.Cover.DragDataGet += OnCoverArtDragDataGet;
+            Gtk.Drag.SourceSet(trackInfoHeader.Cover, Gdk.ModifierType.Button1Mask, coverArtSourceEntries, DragAction.Copy);
             trackInfoHeader.Show();
             ((HBox)gxml["HeaderBox"]).PackStart(trackInfoHeader, true, true, 0);
             
@@ -382,6 +389,8 @@ namespace Banshee
             cover_art_view.Hide();
             cover_art_view.DragDataReceived += OnCoverArtDragDataReceived;
             Gtk.Drag.DestSet(cover_art_view, DestDefaults.All, coverArtDestEntries, DragAction.Copy | DragAction.Move);
+            cover_art_view.DragDataGet += OnCoverArtDragDataGet;
+            Gtk.Drag.SourceSet(cover_art_view, Gdk.ModifierType.Button1Mask, coverArtSourceEntries, DragAction.Copy);
             (gxml["LeftContainer"] as Box).PackStart(cover_art_view, false, false, 0);
             
             // Source View
@@ -683,6 +692,20 @@ namespace Banshee
             }
             
             Gtk.Drag.Finish (args.Context, success, false, args.Time);
+        }
+
+        private void OnCoverArtDragDataGet (object o, DragDataGetArgs args)
+        {
+            try {
+                TrackInfo track = PlayerEngineCore.CurrentTrack;
+                string filename = track.CoverArtFileName;
+                if (filename == null)
+                    return;
+
+                byte [] selection_data = System.Text.Encoding.UTF8.GetBytes(new UriList(new string[] {filename}).ToString());
+                args.SelectionData.Set(args.Context.Targets[0], 8, selection_data, selection_data.Length);
+            } catch {
+            }
         }
 
         // ---- Window Event Handlers ----
