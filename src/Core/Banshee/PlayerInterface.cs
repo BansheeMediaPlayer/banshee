@@ -111,6 +111,11 @@ namespace Banshee
         
         private SpecialKeys special_keys;
 
+        private static TargetEntry [] coverArtDestEntries = 
+            new TargetEntry [] {
+                Banshee.Gui.DragDrop.DragDropTarget.UriList
+            };
+
         private static TargetEntry [] playlistViewSourceEntries = 
             new TargetEntry [] {
                 Banshee.Gui.DragDrop.DragDropTarget.PlaylistRows,
@@ -293,6 +298,8 @@ namespace Banshee
             playback_box.PackStart(next_button, false, false, 0);
       
             trackInfoHeader = new TrackInfoHeader();
+            trackInfoHeader.Cover.DragDataReceived += OnCoverArtDragDataReceived;
+            Gtk.Drag.DestSet(trackInfoHeader.Cover, DestDefaults.All, coverArtDestEntries, DragAction.Copy | DragAction.Move);
             trackInfoHeader.Show();
             ((HBox)gxml["HeaderBox"]).PackStart(trackInfoHeader, true, true, 0);
             
@@ -371,9 +378,10 @@ namespace Banshee
             (gxml["BottomToolbar"] as Box).PackStart(song_properties_button, false, false, 0);
             
             // Cover Art View
-            
             cover_art_view = new CoverArtView();
             cover_art_view.Hide();
+            cover_art_view.DragDataReceived += OnCoverArtDragDataReceived;
+            Gtk.Drag.DestSet(cover_art_view, DestDefaults.All, coverArtDestEntries, DragAction.Copy | DragAction.Move);
             (gxml["LeftContainer"] as Box).PackStart(cover_art_view, false, false, 0);
             
             // Source View
@@ -636,13 +644,47 @@ namespace Banshee
             
             try {
                 trackInfoHeader.Cover.FileName = track.CoverArtFileName;
-                cover_art_view.FileName = track.CoverArtFileName;
+                cover_art_view.FileName = track.CoverArtFileName;				
                 trackInfoHeader.Cover.Label = String.Format("{0} - {1}", track.DisplayArtist, track.DisplayAlbum);
             } catch(Exception) {
             }
             
         }
-        
+
+        private void OnCoverArtDragDataReceived (object o, DragDataReceivedArgs args)
+        {
+            TrackInfo track = PlayerEngineCore.CurrentTrack;
+            bool success = false;
+            
+            try {
+                string data = DragDropUtilities.SelectionDataToString(args.SelectionData);
+                string [] uri_list = DragDropUtilities.SplitSelectionData(data);
+                SafeUri uri = new SafeUri(uri_list[0]);
+                string extension = Path.GetExtension(uri.ToString()).ToLower().Substring(1);
+
+                if (Array.IndexOf(TrackInfo.CoverExtensions, extension) != -1) {
+                    // Remove the old cover art to avoid having multiple coverart in different formats
+                    string old_filename = track.CoverArtFileName;
+                    if (old_filename != null && old_filename.Contains(Paths.CoverArtDirectory)) {
+                        File.Delete(old_filename);
+                    }
+
+                    string album_artist_id = TrackInfo.CreateArtistAlbumID(track.Artist, track.Album, false);
+                    string coverFileName = Paths.CoverArtDirectory + album_artist_id + "." + extension;
+                    track.CoverArtFileName = coverFileName;
+                    track.Save();
+               
+                    File.Copy(uri.LocalPath, coverFileName, true); 
+                    
+                    success = true;
+                    UpdateMetaDisplay();
+                }
+            } catch {
+            }
+            
+            Gtk.Drag.Finish (args.Context, success, false, args.Time);
+        }
+
         // ---- Window Event Handlers ----
         
         private void OnWindowPlayerDeleteEvent(object o, DeleteEventArgs args) 
