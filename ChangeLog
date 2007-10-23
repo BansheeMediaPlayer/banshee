@@ -1,5 +1,10 @@
 2007-10-23  Gabriel Burt  <gabriel.burt@gmail.com>
 
+	* data/UIManagerLayout.xml: Move the View menu to right after Edit.  Fixes
+	BGO #488353.
+
+2007-10-23  Gabriel Burt  <gabriel.burt@gmail.com>
+
 	* src/Core/Banshee.Base/Banshee.AudioProfiles/ProfileManager.cs: Fix bug
 	with not respecting configured audio properties for transcoding and
 	ripping making sure we actually set the audio profile to load the saved

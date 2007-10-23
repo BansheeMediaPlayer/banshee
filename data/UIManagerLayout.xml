@@ -38,6 +38,14 @@
             <menuitem name="Plugins" action="PluginsAction" />
             <menuitem name="Preferences" action="PreferencesAction" />
         </menu>
+        <menu name="ViewMenu" action="ViewMenuAction">
+            <menuitem name="ShowEqualizer" action="ShowEqualizerAction" />
+            <menuitem name="ShowCoverArt" action="ShowCoverArtAction" />
+            <placeholder name="ViewMenuAdditions" />
+            <menuitem name="FullScreen" action="FullScreenAction" />
+            <menuitem name="Columns" action="ColumnsAction" />
+            <menuitem name="Shell" action="ShellAction" />
+        </menu>
         <menu name="PlaybackMenu" action="PlaybackMenuAction">
             <menuitem name="PlayPause" action="PlayPauseAction" />
             <menuitem name="StopWhenFinished" action="StopWhenFinishedAction" />
@@ -59,14 +67,6 @@
         </menu>
         <menu name="ToolsMenu" action="ToolsMenuAction">
             <menuitem name="Scripts" action="ScriptsAction" />
-        </menu>
-        <menu name="ViewMenu" action="ViewMenuAction">
-            <menuitem name="ShowEqualizer" action="ShowEqualizerAction" />
-            <menuitem name="ShowCoverArt" action="ShowCoverArtAction" />
-            <placeholder name="ViewMenuAdditions" />
-            <menuitem name="FullScreen" action="FullScreenAction" />
-            <menuitem name="Columns" action="ColumnsAction" />
-            <menuitem name="Shell" action="ShellAction" />
         </menu>
         <menu name="HelpMenu" action="HelpMenuAction">
             <menu name="WebMenu" action="WebMenuAction">
