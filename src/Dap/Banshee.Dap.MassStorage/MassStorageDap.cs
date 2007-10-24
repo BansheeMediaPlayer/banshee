@@ -475,11 +475,24 @@ namespace Banshee.Dap.MassStorage
             } catch {}
         }
 
-        public override Gdk.Pixbuf GetIcon(int size)
+        private Dictionary<int, Gdk.Pixbuf> icon_cache = new Dictionary<int, Gdk.Pixbuf>(2);
+        const string icon_prefix = "multimedia-player-";
+        public override Gdk.Pixbuf GetIcon (int size)
         {
-            string prefix = "multimedia-player";
-            Gdk.Pixbuf icon = IconThemeUtils.LoadIcon(prefix + ((IconId == null) ? "" : "-" + IconId), size);
-            return icon == null ? base.GetIcon(size) : icon;
+            if (icon_cache.ContainsKey(size))
+                return icon_cache[size];
+
+            Gdk.Pixbuf icon = null;
+            string icon_id = IconId;
+
+            Console.WriteLine("getting icon size {0} for {1}", size, Name);
+            if (icon_id != null && IconThemeUtils.HasIcon (icon_prefix + icon_id))
+                icon = IconThemeUtils.LoadIcon (icon_prefix + icon_id, size);
+            else
+                icon = base.GetIcon (size);
+
+            icon_cache.Add(size, icon);
+            return icon;
         }
 
         private string GetTrackPath(TrackInfo track)
@@ -548,9 +561,17 @@ namespace Banshee.Dap.MassStorage
             set { remover = value; }
         }
 
+        private string icon_id = null;
         public virtual string IconId {
             get {
-                return null;
+                if (icon_id == null) {
+                    string vendor = player_device["info.vendor"];
+                    string product = player_device["info.product"];
+                    if (vendor != null && vendor != String.Empty && product != null && product != String.Empty)
+                        icon_id = (vendor.Trim () + "-" + product.Trim ()).Replace (' ', '-').ToLower ();
+                }
+
+                return icon_id;
             }
         }
         
