@@ -485,7 +485,6 @@ namespace Banshee.Dap.MassStorage
             Gdk.Pixbuf icon = null;
             string icon_id = IconId;
 
-            Console.WriteLine("getting icon size {0} for {1}", size, Name);
             if (icon_id != null && IconThemeUtils.HasIcon (icon_prefix + icon_id))
                 icon = IconThemeUtils.LoadIcon (icon_prefix + icon_id, size);
             else

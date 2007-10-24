@@ -1,5 +1,13 @@
 2007-10-24  Gabriel Burt  <gabriel.burt@gmail.com>
 
+	* src/Core/Banshee.Base/ActionManager.cs:
+	* src/Plugins/Banshee.Plugins.Podcast/UI/PodcastFeedView.cs: Revert string
+	changes, stable is string-frozen.
+
+	* src/Dap/Banshee.Dap.MassStorage/MassStorageDap.cs: Remove WriteLine.
+
+2007-10-24  Gabriel Burt  <gabriel.burt@gmail.com>
+
 	* src/Dap/Banshee.Dap.MassStorage/MassStorageDap.cs: Add support for
 	custom icons for MSC DAPs, of the form "multimedia-player-vendor-product",
 	where vendor and product are from the HAL info.vendor/product values
