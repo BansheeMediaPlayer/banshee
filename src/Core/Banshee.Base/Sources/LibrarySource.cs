@@ -159,6 +159,8 @@ namespace Banshee.Sources
                 Globals.ActionManager.UI.AddUiFromString(@"
                     <ui>
                         <popup name='LibraryMenu' action='LibraryMenuActions'>
+                            <menuitem name='NewPlaylist' action='NewPlaylistAction' />
+                            <menuitem name='ImportMusic' action='ImportMusicAction' />
                             <menu name='SortPlaylist' action='SortPlaylistAction'>
                                 <menuitem name='SortPlaylistNameAsc' action='SortPlaylistNameAscAction' />
                                 <menuitem name='SortPlaylistNameDesc' action='SortPlaylistNameDescAction' />
