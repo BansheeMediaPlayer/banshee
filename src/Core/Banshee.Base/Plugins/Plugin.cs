@@ -76,6 +76,8 @@ namespace Banshee.Plugins
             } catch(Exception e) {
                 LogCore.Instance.PushWarning(String.Format("Could not initialize plugin `{0}'", Name),
                     e.Message, false);
+                LogCore.Instance.PushDebug(String.Format("Exception caught while initializing plugin `{0}'", Name),
+                    e.ToString (), false);
                 broken = true;
                 initialized = false;
             }

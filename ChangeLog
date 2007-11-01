@@ -1,3 +1,15 @@
+2007-11-01  Gabriel Burt  <gabriel.burt@gmail.com>
+
+	* src/Extras/Last.FM/Last.FM/Account.cs: Add property Md5Password.
+
+	* src/Core/Banshee.Base/Plugins/Plugin.cs: More useful logging.
+
+	* src/Core/Banshee.Base/Banshee.Playlists.Formats.Xspf/Playlist.cs: Handle
+	Last.fm's not properly namespaced XSPFs.
+
+	* src/Core/Banshee.Base/Gui/GladeDialog.cs: Alternate constructor useful
+	for plugins using glade files.
+
 2007-10-29  Aaron Bockover  <abock@gnome.org>
 
 	* src/Plugins/Banshee.Plugins.NotificationAreaIcon/NotificationAreaIconPlugin.cs:

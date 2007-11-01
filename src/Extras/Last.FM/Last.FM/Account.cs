@@ -28,6 +28,8 @@
 
 using System;
 using System.Collections;
+using System.Text;
+using System.Security.Cryptography;
 
 using Gnome.Keyring;
 
@@ -174,6 +176,27 @@ namespace Last.FM
         public static string Password {
             get { return password; }
             set { password = value; }
+        }
+
+        public static string Md5Password {
+            get { return password == null ? null : MD5Encode (password); }
+            set { password = value; }
+        }
+
+        private static string MD5Encode (string text)
+        {
+            if(text == null || text == String.Empty)
+                return String.Empty;
+                
+            MD5 md5 = MD5.Create ();
+            byte[] hash = md5.ComputeHash (Encoding.ASCII.GetBytes (text));
+
+            StringBuilder shash = new StringBuilder ();
+            for (int i = 0; i < hash.Length; ++i) {
+                shash.Append (hash[i].ToString ("x2"));
+            }
+
+            return shash.ToString ();
         }
     }
 }
