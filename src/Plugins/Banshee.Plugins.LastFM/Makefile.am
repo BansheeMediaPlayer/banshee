@@ -4,9 +4,6 @@ lastfm_resources = \
 	data/lastfm.glade \
 	data/Actions.xml \
 	data/audioscrobbler.png \
-	data/loved.png \
-	data/person.png \
-	data/people.png \
 	data/recommended.png
 
 lastfm_resources_build = $(foreach res,$(lastfm_resources), $(addprefix -resource:,$(srcdir)/$(res)),$(notdir $(res)))

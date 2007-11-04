@@ -94,7 +94,7 @@ namespace Banshee.Plugins.LastFM
                 Catalog.GetString("Personal"),
                 Catalog.GetString("For User:"),
                 "user/{0}/personal",
-                "person",
+                "stock_person",
                 true
             ));
 
@@ -103,7 +103,7 @@ namespace Banshee.Plugins.LastFM
                 Catalog.GetString("Loved"),
                 Catalog.GetString("By User:"),
                 "user/{0}/loved",
-                "loved",
+                "emblem-favorite",
                 false
             ));
 
@@ -112,7 +112,7 @@ namespace Banshee.Plugins.LastFM
                 Catalog.GetString("Neighbors"),
                 Catalog.GetString("Of User:"),
                 "user/{0}/neighbours",
-                "people",
+                "stock_people",
                 false
             ));
 
@@ -121,7 +121,7 @@ namespace Banshee.Plugins.LastFM
                 Catalog.GetString("Group"),
                 Catalog.GetString("Group Name:"),
                 "group/{0}",
-                "people",
+                "stock_people",
                 false
             ));
 
@@ -139,7 +139,7 @@ namespace Banshee.Plugins.LastFM
                 Catalog.GetString("Fan"),
                 Catalog.GetString("Fans of:"),
                 "artist/{0}/fans",
-                "people",
+                "stock_people",
                 false
             ));
 

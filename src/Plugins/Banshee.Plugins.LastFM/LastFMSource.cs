@@ -178,11 +178,6 @@ namespace Banshee.Plugins.LastFM
         public override string SourcePropertiesLabel {
             get { return properties_label; }
         }
-        
-        private Gtk.Label label = new Label ("Nothing to see here yet, move along.");
-        public override Gtk.Widget ViewWidget {
-            get { return label; }
-        }
 
         public override bool SearchEnabled {
             get { return false; }
