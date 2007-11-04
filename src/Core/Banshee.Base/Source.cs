@@ -208,42 +208,44 @@ namespace Banshee.Sources
             }
         }
 
-        private class NameComparer : IComparer
+        public class NameComparer : IComparer<Source>
         {
-            public int Compare (object a, object b)
+            public int Compare (Source a, Source b)
             {
-                return (a as Source).Name.CompareTo ((b as Source).Name);
+                return a.Name.CompareTo (b.Name);
             }
         }
 
-        private class SizeComparer : IComparer
+        public class SizeComparer : IComparer<Source>
         {
-            public int Compare (object a, object b)
+            public int Compare (Source a, Source b)
             {
-                return (a as Source).Count.CompareTo ((b as Source).Count);
+                return a.Count.CompareTo (b.Count);
+            }
+        }
+
+        public virtual void SortChildSources (IComparer<Source> comparer, SortOrder order)
+        {
+            lock(Children) {
+                child_sources.Sort (comparer);
+                if (order == SortOrder.Descending) {
+                    child_sources.Reverse ();
+                }
+
+                int i = 0;
+                foreach (Source child in child_sources) {
+                    child.Order = i++;
+                    child.OnUpdated ();
+                }
             }
         }
 
         public virtual void SortChildren (SortCriteria criteria, SortOrder order)
         {
-            ArrayList copy = new ArrayList (child_sources);
-
-            ClearChildSources ();
-
-            if(criteria == SortCriteria.Name) {
-                copy.Sort (new NameComparer());
+            if (criteria == SortCriteria.Name) {
+                SortChildSources (new NameComparer(), order);
             } else if (criteria == SortCriteria.Size) {
-                copy.Sort (new SizeComparer());
-            }
-
-            if(order == SortOrder.Descending) {
-                copy.Reverse ();
-            }
-
-            lock(Children) {
-                foreach(ChildSource child in copy) {
-                    AddChildSource (child);
-                }
+                SortChildSources (new SizeComparer(), order);
             }
         }
         
@@ -426,6 +428,7 @@ namespace Banshee.Sources
         
         public int Order {
             get { return order; }
+            private set { order = value; }
         }
  
         public virtual bool HasEmphasis {

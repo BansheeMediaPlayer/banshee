@@ -107,7 +107,9 @@ namespace Banshee.Gui
             focus_column.SetCellDataFunc(renderer, new TreeCellDataFunc(SourceCellDataFunc));
             AppendColumn(focus_column);
             
-            store = new TreeStore(typeof(Source));
+            store = new TreeStore(typeof(Source), typeof(int));
+            store.SetSortColumnId (1, SortType.Ascending);
+            store.ChangeSortColumn ();
             Model = store;
             HeadersVisible = false;
             
@@ -119,7 +121,7 @@ namespace Banshee.Gui
             RefreshList();
 
             SourceManager.SourceAdded += delegate(SourceAddedArgs args) {
-                AddSource(args.Source, args.Position);
+                AddSource(args.Source);
             };
             
             SourceManager.SourceRemoved += delegate(SourceEventArgs args) {
@@ -131,6 +133,8 @@ namespace Banshee.Gui
             };
             
             SourceManager.SourceUpdated += delegate(SourceEventArgs args) {
+                TreeIter iter = FindSource (args.Source);
+                store.SetValue (iter, 1, args.Source.Order);
                 QueueDraw();
             };
         }
@@ -168,34 +172,36 @@ namespace Banshee.Gui
         
         private void AddSource(Source source)
         {
-            AddSource(source, -1);
+            AddSource(source, TreeIter.Zero);
         }
 
-        private void AddSource(Source source, int position)
+        private void AddSource(Source source, TreeIter parent)
         {
-            AddSource(source, position, TreeIter.Zero);
-        }
-        
-        private void AddSource(Source source, int position, TreeIter parent)
-        {
-            if(!FindSource(source).Equals(TreeIter.Zero)) {
+            // Don't add duplicates
+            if(!FindSource(source).Equals(TreeIter.Zero))
                 return;
-            }
+
+            // Don't add a child source before its parent
+            if(parent.Equals(TreeIter.Zero) && source is ChildSource)
+                return;
+
+            int position = source.Order;
             
             TreeIter iter = parent.Equals(TreeIter.Zero)
                 ? store.InsertNode(position) 
-                : store.AppendNode(parent);
+                : store.InsertNode(parent, position);
             
             store.SetValue(iter, 0, source);
+            store.SetValue(iter, 1, source.Order);
 
             lock(source.Children) {
                 foreach(ChildSource s in source.Children) {
-                    AddSource(s, position, iter);
+                    AddSource(s, iter);
                 }
             }
 
             source.ChildSourceAdded += delegate(SourceEventArgs e) {
-                AddSource(e.Source, position, iter);
+                AddSource(e.Source, iter);
             };
 
             source.ChildSourceRemoved += delegate(SourceEventArgs e) {
@@ -440,6 +446,7 @@ namespace Banshee.Gui
                 TreeIter library = FindSource(LibrarySource.Instance);
                 newPlaylistIter = store.AppendNode(library);
                 store.SetValue(newPlaylistIter, 0, newPlaylistSource);
+                store.SetValue(newPlaylistIter, 1, 999);
                 newPlaylistVisible = true;
 
                 UpdateView();

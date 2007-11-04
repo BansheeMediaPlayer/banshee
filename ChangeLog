@@ -1,3 +1,13 @@
+2007-11-03  Gabriel Burt  <gabriel.burt@gmail.com>
+
+	* src/Core/Banshee.Base/Gui/SourceView.cs: Add second hidden column to the
+	source model for sorting.  When a source's order (ie position) changes
+	update the TreeStore so it is reordered.  Avoid adding a child source before
+	its parent has been added.
+
+	* src/Core/Banshee.Base/Source.cs: Sort child sources without triggering
+	the ChildAdded and ChildRemoved events.
+
 2007-11-01  Gabriel Burt  <gabriel.burt@gmail.com>
 
 	* src/Extras/Last.FM/Last.FM/Account.cs: Add property Md5Password.
