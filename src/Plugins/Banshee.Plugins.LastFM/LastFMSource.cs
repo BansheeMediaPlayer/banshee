@@ -207,6 +207,14 @@ namespace Banshee.Plugins.LastFM
             get { return false; }
         }
 
+        public override bool? AutoExpand {
+            get { return true; }
+        }
+
+        public override bool CanActivate {
+            get { return false; }
+        }
+
         private Gdk.Pixbuf icon;
         public override Gdk.Pixbuf Icon {
             get { return icon; } 
