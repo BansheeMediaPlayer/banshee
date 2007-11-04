@@ -108,7 +108,7 @@ namespace Banshee.Plugins.LastFM
                      Catalog.GetString ("Connect"),
                      null, "", OnConnect
                 ),
-                new ActionEntry (
+                /*new ActionEntry (
                     "LastFMChangeStationAction", null,
                      Catalog.GetString ("Change to This Station"),
                      null, "", OnChangeStation
@@ -117,7 +117,7 @@ namespace Banshee.Plugins.LastFM
                     "LastFMRefreshStationAction", null,
                      Catalog.GetString ("Refresh This Station"),
                      null, "", OnRefreshStation
-                ),
+                ),*/
                 new Gtk.ActionEntry (
                     "LastFMSortAction", "gtk-sort-descending",
                     Catalog.GetString ("Sort Stations by"),

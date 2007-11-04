@@ -46,7 +46,6 @@ namespace Banshee.Plugins.LastFM
     {
         private List<TrackInfo> tracks = new List<TrackInfo> (6);
 
-        private int current_track;
         private Playlist playlist;
 
         private string station;
@@ -152,13 +151,10 @@ namespace Banshee.Plugins.LastFM
             //(Globals.ActionManager["ShuffleAction"] as ToggleAction).Active = false;
             //Globals.ActionManager["ShuffleAction"].Sensitive = false;
 
-            if (tracks.IndexOf (PlayerEngineCore.CurrentTrack) == -1) {
-                ThreadAssist.Spawn (delegate {
-                    ChangeToThisStation ();
-                    if (playlist == null)
-                        Refresh ();
-                });
-            }
+            ThreadAssist.Spawn (delegate {
+                ChangeToThisStation ();
+                Refresh ();
+            });
         }
 
         // Last.fm requires you to 'tune' to a station before requesting a track list/playing it
@@ -183,15 +179,38 @@ namespace Banshee.Plugins.LastFM
             ed.RunDialog ();
         }
 
+        /*private bool playback_requested = false;
         public override void StartPlayback()
         {
-            if (playlist != null && playlist.TrackCount > 0) {
-                if (current_track >= playlist.TrackCount)
-                    current_track = 0;
+            if (CurrentTrack != null) {
+                PlayerEngineCore.OpenPlay (CurrentTrack);
+            } else if (playback_requested == false) {
+                playback_requested = true;
+                Refresh ();
+            }
+        }*/
 
-                TrackInfo track = tracks[current_track];
-                Console.WriteLine ("Playing {0} at {1}", track.Title, track.Uri);
-                PlayerEngineCore.OpenPlay (track);
+        private int current_track = 0;
+        public TrackInfo CurrentTrack {
+            get { return GetTrack (current_track); }
+            set {
+                int i = tracks.IndexOf (value);
+                if (i != -1)
+                    current_track = i;
+            }
+        }
+
+        public TrackInfo NextTrack {
+            get { return GetTrack (current_track + 1); }
+        }
+
+        private TrackInfo GetTrack (int track_num) {
+            return (track_num > tracks.Count - 1) ? null : tracks[track_num];
+        }
+
+        private int TracksLeft {
+            get {
+                return tracks.Count - current_track - 1;
             }
         }
         
@@ -205,7 +224,7 @@ namespace Banshee.Plugins.LastFM
         public void Refresh ()
         {
             lock (this) {
-                if (refreshing)
+                if (refreshing || playlist != null)
                     return;
                 refreshing = true;
             }
@@ -221,11 +240,15 @@ namespace Banshee.Plugins.LastFM
                     }
                 }
 
-                //ThreadAssist.ProxyToMain (delegate {
+                ThreadAssist.ProxyToMain (delegate {
                     OnTrackAdded (null, new_tracks);
                     OnUpdated ();
-                    Console.WriteLine("added new tracks and updated");
-                //});
+
+                    /*if (playback_requested) {
+                        StartPlayback ();
+                        playback_requested = false;
+                    }*/
+                });
 
                 refreshing = false;
             });
@@ -266,41 +289,17 @@ namespace Banshee.Plugins.LastFM
         
         private void OnPlayerStateChanged(object o, PlayerEngineStateArgs args)
         {
-            //if(args.State == PlayerEngineState.Loaded && PlayerEngineCore.CurrentTrack is LastFMTrackInfo) {
+            if (args.State == PlayerEngineState.Loaded && tracks.Contains (PlayerEngineCore.CurrentTrack)) {
+                CurrentTrack = PlayerEngineCore.CurrentTrack;
+                if (TracksLeft <= 2) {
+                    playlist = null;
+                    Refresh ();
+                }
+            }
         }
         
-        private List<TrackInfo> removed_tracks = new List<TrackInfo> ();
         private void OnPlayerEventChanged(object o, PlayerEngineEventArgs args)
         {
-            switch (args.Event) {
-            case PlayerEngineEvent.TrackInfoUpdated:
-                /*lock (TracksMutex) {
-                    int i = tracks.IndexOf(PlayerEngineCore.CurrentTrack);
-                    if (i != -1) {
-                        for (int j = 0; j < i; j++) {
-                            removed_tracks.Add (tracks[j]);
-                            tracks.Remove (tracks[j]);
-                        }
-                    }
-
-                    if (removed_tracks.Count > 0) {
-                        foreach (TrackInfo ti in removed_tracks)
-                            OnTrackRemoved (ti);
-                        OnUpdated ();
-                        removed_tracks.Clear ();
-                    }
-                }*/
-
-                //if (tracks.Count <= 3) {
-                    //Refresh ();
-                //}
-                break;
-            /*case PlayerEngineEvent.Error:
-                Console.WriteLine ("player event changed -- trying to play next track");
-                current_track++;
-                Play ();
-                break;*/
-            }
         }
 
         public override bool Unmap()
