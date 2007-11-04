@@ -184,17 +184,6 @@ namespace Banshee.Plugins.LastFM
             get { return label; }
         }
 
-        private static string unmap_label = Catalog.GetString("Disable Last.fm Plugin");
-        public override string UnmapLabel {
-            get { return unmap_label; }
-        }
-
-        public override bool Unmap()
-        {
-            LastFMPlugin.Instance.Dispose ();
-            return true;
-        }
-        
         public override bool SearchEnabled {
             get { return false; }
         }
