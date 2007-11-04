@@ -152,6 +152,8 @@ src/Plugins/Banshee.Plugins.Audioscrobbler/Banshee.Plugins.Audioscrobbler.dll.co
 src/Plugins/Banshee.Plugins.Bookmarks/Makefile
 src/Plugins/Banshee.Plugins.Daap/Makefile
 src/Plugins/Banshee.Plugins.Daap/Banshee.Plugins.Daap.dll.config
+src/Plugins/Banshee.Plugins.LastFM/Makefile
+src/Plugins/Banshee.Plugins.LastFM/Banshee.Plugins.LastFM.dll.config
 src/Plugins/Banshee.Plugins.MetadataSearch/Makefile
 src/Plugins/Banshee.Plugins.MetadataSearch/Banshee.Plugins.MetadataSearch.dll.config
 src/Plugins/Banshee.Plugins.MiniMode/Makefile

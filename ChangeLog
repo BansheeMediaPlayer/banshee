@@ -1,5 +1,13 @@
 2007-11-03  Gabriel Burt  <gabriel.burt@gmail.com>
 
+	New Last.fm radio plugin.
+
+	* configure.ac:
+	* src/Plugins/Makefile.am:
+	* src/Plugins/Banshee.Plugins.LastFM/*: New files.
+
+2007-11-03  Gabriel Burt  <gabriel.burt@gmail.com>
+
 	* src/Core/Banshee.Base/Gui/SourceView.cs: Add second hidden column to the
 	source model for sorting.  When a source's order (ie position) changes
 	update the TreeStore so it is reordered.  Avoid adding a child source before

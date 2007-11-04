@@ -1,0 +1,23 @@
+<ui>
+    <popup name="LastFMSourcePopup" action="LastFMSourcePopupAction">
+        <menuitem name="Add" action="LastFMAddAction" />
+        <menu name='SortPlaylist' action='LastFMSortAction'>
+            <menuitem name='SortStationByName' action='LastFMSortStationsByNameAction' />
+            <menuitem name='SortStationByPlayCount' action='LastFMSortStationsByPlayCountAction' />
+            <menuitem name='SortStationByType' action='LastFMSortStationsByTypeAction' />
+        </menu>
+        <menuitem name="Connect" action="LastFMConnectAction" />
+        <menuitem name="UnmapSource" action="UnmapSourceAction" />
+        <separator />
+        <menuitem name="SelectedSourceProperties" action="SelectedSourcePropertiesAction" />
+    </popup>
+    <popup name="LastFMStationSourcePopup" action="LastFMStationSourcePopupAction">
+        <menuitem name="Change" action="LastFMChangeStationAction" />
+        <menuitem name="Refresh" action="LastFMRefreshStationAction" />
+        <separator />
+        <menuitem name="RenameSource" action="RenameSourceAction" />
+        <menuitem name="UnmapSource" action="UnmapSourceAction" />
+        <separator />
+        <menuitem name="SelectedSourceProperties" action="SelectedSourcePropertiesAction" />
+    </popup>
+</ui>

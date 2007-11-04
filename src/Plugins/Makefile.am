@@ -2,6 +2,7 @@ SUBDIRS = \
 	Banshee.Plugins.Audioscrobbler \
 	Banshee.Plugins.Bookmarks \
 	Banshee.Plugins.Daap \
+	Banshee.Plugins.LastFM \
 	Banshee.Plugins.MetadataSearch \
 	Banshee.Plugins.MiniMode \
 	Banshee.Plugins.MMKeys \
