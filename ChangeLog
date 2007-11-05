@@ -1,3 +1,11 @@
+2007-11-05  Gabriel Burt  <gabriel.burt@gmail.com>
+
+	* libbanshee/gst-playback-0.10.c: (gst_playback_bus_callback): Fix bug
+	where we ignored all gst error messages instead of just qtdemux ones.
+
+	* src/Plugins/Banshee.Plugins.LastFM/StationSource.cs: Just set as CanPlay
+	= false, not missing too.
+
 2007-11-04  Gabriel Burt  <gabriel.burt@gmail.com>
 
 	* src/Plugins/Banshee.Plugins.LastFM/LastFMTrackInfo.cs:

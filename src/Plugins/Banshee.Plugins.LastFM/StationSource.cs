@@ -381,7 +381,7 @@ namespace Banshee.Plugins.LastFM
                             break;
                         if (track.CanPlay) {
                             track.CanPlay = false;
-                            track.PlaybackError = TrackPlaybackError.ResourceNotFound;
+                            //track.PlaybackError = TrackPlaybackError.ResourceNotFound;
                         }
                     }
                     OnUpdated ();

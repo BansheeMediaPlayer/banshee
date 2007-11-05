@@ -220,7 +220,7 @@ gst_playback_bus_callback(GstBus *bus, GstMessage *message, gpointer data)
             // FIXME: This is to work around a bug in qtdemux in
             // -good <= 0.10.6
             if(message->src != NULL && message->src->name != NULL &&
-                strncmp(message->src->name, "qtdemux", 0) == 0) {
+                strncmp(message->src->name, "qtdemux", 7) == 0) {
                 break;
             }
             
