@@ -1,5 +1,17 @@
 2007-11-04  Gabriel Burt  <gabriel.burt@gmail.com>
 
+	* src/Plugins/Banshee.Plugins.LastFM/Connection.cs:
+	* src/Plugins/Banshee.Plugins.LastFM/Plugin.cs:
+	* src/Plugins/Banshee.Plugins.LastFM/StationSource.cs:
+	* src/Plugins/Banshee.Plugins.LastFM/StationType.cs:
+	* src/Plugins/Banshee.Plugins.LastFM/TODO: Add much better UI feedback for
+	what we are doing when changing stations and loading tracks.  Move station
+	changing and track loading code into Connection to avoid some threading
+	issues.  Don't connect to Last.fm automatically when Banshee starts.  Mark
+	Loved stations as subscriber only since they are.
+
+2007-11-04  Gabriel Burt  <gabriel.burt@gmail.com>
+
 	* src/Plugins/Banshee.Plugins.LastFM/LastFMSource.cs: Removed unused view
 	widget.
 

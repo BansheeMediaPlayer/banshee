@@ -104,7 +104,7 @@ namespace Banshee.Plugins.LastFM
                 Catalog.GetString("By User:"),
                 "user/{0}/loved",
                 "emblem-favorite",
-                false
+                true
             ));
 
             Types.Add (new StationType (
@@ -152,6 +152,5 @@ namespace Banshee.Plugins.LastFM
                 false
             ));
         }
-
     }
 }

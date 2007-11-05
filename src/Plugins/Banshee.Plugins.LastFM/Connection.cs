@@ -32,12 +32,14 @@ using System.IO;
 using System.Net;
 using System.Security.Cryptography;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Xml;
 using System.Web;
 
 using Mono.Gettext;
 
 using Banshee.Base;
+using Banshee.Playlists.Formats.Xspf;
 using Last.FM;
 
 namespace Banshee.Plugins.LastFM
@@ -60,6 +62,20 @@ namespace Banshee.Plugins.LastFM
         Connecting,
         Connected
     };
+
+    // Error codes returned when trying to adjust.php to a new station
+    public enum StationError
+    {
+        None = 0,
+        NotEnoughContent = 1,
+        FewGroupMembers,
+        FewFans,
+        Unavailable,
+        Subscribe,
+        FewNeighbors,
+        Offline,
+        Unknown // not an official code, just the fall back
+    }
 
 	public class Connection 
 	{
@@ -323,10 +339,92 @@ namespace Banshee.Plugins.LastFM
             request.Timeout = 10000;
             request.KeepAlive = false;
             request.AllowAutoRedirect = true;
-            
-            return ((HttpWebResponse) request.GetResponse ()).GetResponseStream ();
+
+            HttpWebResponse response = (HttpWebResponse) request.GetResponse ();
+            return response.GetResponseStream ();
         }
-	}
+
+        private static Regex station_error_regex = new Regex ("error=(\\d+)", RegexOptions.Compiled);
+        public StationError ChangeStationTo (string station)
+        {
+            lock (instance) {
+                if (Station == station)
+                    return StationError.None;
+
+                try {
+                    Stream stream = Get (StationUrlFor (station));
+                    using (StreamReader strm = new StreamReader (stream)) {
+                        string body = strm.ReadToEnd ();
+                        if (body.IndexOf ("response=OK") == -1) {
+                            Match match = station_error_regex.Match (body);
+                            if (match.Success) {
+                                int i = Int32.Parse (match.Groups[1].Value);
+                                return (StationError) i;
+                            } else {
+                                return StationError.Unknown;
+                            }
+                        }
+                    }
+
+                    this.station = station;
+                    return StationError.None;
+                } catch (Exception e) {
+                    Console.WriteLine(e.ToString());
+                    return StationError.Unknown;
+                }
+            }
+        }
+
+		public Playlist LoadPlaylistFor (string station) 
+		{
+            lock (instance) {
+                if (station != Station)
+                    return null;
+
+                string url = StationRefreshUrl ();
+                Playlist pl = new Playlist ();
+                Stream stream = null;
+                Console.WriteLine("StationSource Loading: {0}", url);
+                try {
+                    stream = Connection.Instance.GetXspfStream (new SafeUri (url));
+                    pl.Load (stream);
+                    LogCore.Instance.PushDebug (String.Format ("Adding {0} Tracks to Last.fm Station {1}", pl.TrackCount, station), null);
+                } catch (System.Net.WebException e) {
+                    LogCore.Instance.PushWarning ("Error Loading Last.fm Station", e.Message, false);
+                    return null;
+                } catch (Exception e) {
+                    string body = "Unable to get body";
+                    try {
+                        using (StreamReader strm = new StreamReader (stream)) {
+                            body = strm.ReadToEnd ();
+                        }
+                    } catch {}
+                    LogCore.Instance.PushWarning (
+                        "Error loading station",
+                        String.Format ("Exception:\n{0}\n\nResponse Body:\n{1}", e.ToString (), body), false
+                    );
+                    return null;
+                }
+
+                return pl;
+            }
+		}
+
+        public static string ErrorMessageFor (StationError error)
+        {
+            switch (error) {
+            case StationError.NotEnoughContent:  return Catalog.GetString ("There is not enough content to play this station.");
+            case StationError.FewGroupMembers:   return Catalog.GetString ("This group does not have enough members for radio.");
+            case StationError.FewFans:           return Catalog.GetString ("This artist does not have enough fans for radio.");
+            case StationError.Unavailable:       return Catalog.GetString ("This item is not available for streaming.");
+            case StationError.Subscribe:         return Catalog.GetString ("This feature is only available to subscribers.");
+            case StationError.FewNeighbors:      return Catalog.GetString ("There are not enough neighbours for this radio.");
+            case StationError.Offline:           return Catalog.GetString ("The streaming system is offline for maintenance, please try again later.");
+            case StationError.Unknown:           return Catalog.GetString ("There was an unknown error.");
+            }
+            return String.Empty;
+        }
+    }
 
 	public sealed class StringUtils {
 		public static string StringToUTF8 (string s)

@@ -57,12 +57,6 @@ namespace Banshee.Plugins.LastFM
             get { return source; }
         }
 
-        private string last_station = null;
-        public string LastStation {
-            get { return last_station; }
-            set { last_station = value; }
-        }
-
         private static LastFMPlugin instance = null;
         public static LastFMPlugin Instance {
             get { return instance; }
@@ -87,7 +81,7 @@ namespace Banshee.Plugins.LastFM
         protected override void PluginInitialize ()
         {
             instance = this;
-            Connection.Instance.Connect ();
+            //Connection.Instance.Connect ();
         }
 
         private uint actions_id;

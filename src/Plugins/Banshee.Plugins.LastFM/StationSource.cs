@@ -30,6 +30,7 @@ using System;
 using System.IO;
 using System.Data;
 using System.Collections.Generic;
+using System.Threading;
 using Mono.Gettext;
 using Gtk;
 
@@ -44,9 +45,11 @@ namespace Banshee.Plugins.LastFM
 {
     public class StationSource : ChildSource
     {
-        private List<TrackInfo> tracks = new List<TrackInfo> (6);
+        private static readonly Gdk.Pixbuf refresh_pixbuf = IconThemeUtils.LoadIcon (22, Stock.Refresh);
+        private static readonly Gdk.Pixbuf error_pixbuf = IconThemeUtils.LoadIcon (22, Stock.DialogError);
 
-        private Playlist playlist;
+        private List<TrackInfo> tracks = new List<TrackInfo> ();
+        private HighlightMessageArea status_bar;
 
         private string station;
         public string Station {
@@ -91,6 +94,8 @@ namespace Banshee.Plugins.LastFM
 
             PlayerEngineCore.EventChanged += OnPlayerEventChanged;
             PlayerEngineCore.StateChanged += OnPlayerStateChanged;
+
+            BuildInterface ();
         }
 
         public StationSource(string name, string type, string arg) : base(name, 150)
@@ -114,6 +119,17 @@ namespace Banshee.Plugins.LastFM
 
             PlayerEngineCore.EventChanged += OnPlayerEventChanged;
             PlayerEngineCore.StateChanged += OnPlayerStateChanged;
+
+            BuildInterface ();
+        }
+
+        private void BuildInterface ()
+        {
+            //box = new VBox ();
+            status_bar = new HighlightMessageArea();
+            status_bar.BorderWidth = 5;
+            status_bar.LeftPadding = 15;
+            status_bar.Hide();
         }
 
         protected override void OnDispose ()
@@ -145,32 +161,84 @@ namespace Banshee.Plugins.LastFM
         }
         
         private bool shuffle;
+        private Widget old_child;
         public override void Activate()
         {
             //shuffle = (Globals.ActionManager["ShuffleAction"] as ToggleAction).Active;
             //(Globals.ActionManager["ShuffleAction"] as ToggleAction).Active = false;
             //Globals.ActionManager["ShuffleAction"].Sensitive = false;
+ 
+            // Replace the default playlist view with a box so we can show our status bar
+            //old_child = InterfaceElements.MainContainer.Children[0];
+            //old_child.Reparent (box);
+            //InterfaceElements.PlaylistContainer.Remove (old_child);
+            //box.PackStart (old_child, true, true, 0);
+            //InterfaceElements.PlaylistContainer.Add (box);
+            //box.Show ();
+            status_bar.Hide ();
+            InterfaceElements.MainContainer.PackEnd (status_bar, false, false, 0);
 
             ThreadAssist.Spawn (delegate {
-                ChangeToThisStation ();
-                Refresh ();
+                if (ChangeToThisStation ()) {
+                    Thread.Sleep (250); // sleep for a bit to try to avoid Last.fm timeouts
+                    if (TracksLeft < 2)
+                        Refresh ();
+                }
             });
         }
 
-        // Last.fm requires you to 'tune' to a station before requesting a track list/playing it
-        public void ChangeToThisStation ()
+        public override void Deactivate()
         {
-            if (LastFMPlugin.Instance.LastStation != Station) {
-                try {
-                    Console.WriteLine("Getting {0}", Connection.Instance.StationUrlFor (Station));
-                    Connection.Instance.Get (Connection.Instance.StationUrlFor (Station));
-                    LastFMPlugin.Instance.LastStation = Station;
-                    playlist = null;
-                    Console.WriteLine("done");
-                } catch (Exception e) {
-                    LogCore.Instance.PushDebug ("Failed to Change Last.fm Station", e.ToString ());
-                }
+            //(Globals.ActionManager["ShuffleAction"] as ToggleAction).Active = shuffle;
+            //Globals.ActionManager["ShuffleAction"].Sensitive = true;
+
+            InterfaceElements.MainContainer.Remove (status_bar);
+            //InterfaceElements.PlaylistContainer.Remove (box);
+            //old_child.Reparent (InterfaceElements.PlaylistContainer);
+            //box.Remove (old_child);
+            //InterfaceElements.PlaylistContainer.Add (old_child);
+            //old_child = null;
+        }
+
+        // Last.fm requires you to 'tune' to a station before requesting a track list/playing it
+        public bool ChangeToThisStation ()
+        {
+            if (Connection.Instance.Station == Station)
+                return false;
+
+            LogCore.Instance.PushDebug (String.Format ("Tuning Last.fm to {0}", Name), null);
+            SetStatus (Catalog.GetString ("Tuning Last.fm to {0}."), false);
+            StationError error = Connection.Instance.ChangeStationTo (Station);
+
+            if (error == StationError.None) {
+                LogCore.Instance.PushDebug (String.Format ("Successfully tuned Last.fm to {0}", station), null);
+                return true;
+            } else {
+                LogCore.Instance.PushDebug (String.Format ("Failed to tune Last.fm to {0}", Name), Connection.ErrorMessageFor (error));
+                SetStatus (String.Format (
+                    // Translators: {0} is an error message sentence from Connection.cs.
+                    Catalog.GetString ("Failed to tune in station. {0}"), Connection.ErrorMessageFor (error)), true
+                );
+                return false;
             }
+        }
+
+        private void SetStatus (string message, bool error)
+        {
+            ThreadAssist.ProxyToMain(delegate {
+                string status_name = String.Format ("<i>{0}</i>", GLib.Markup.EscapeText (Name));
+                status_bar.Message = String.Format ("<big>{0}</big>", String.Format (GLib.Markup.EscapeText (message), status_name));
+                status_bar.Pixbuf = error ? error_pixbuf : refresh_pixbuf;
+                status_bar.ShowCloseButton = true;
+                status_bar.Show();
+            });
+        }
+
+        private void HideStatus ()
+        {
+            ThreadAssist.ProxyToMain(delegate {
+                status_bar.Hide ();
+            });
         }
 
         public override void ShowPropertiesDialog ()
@@ -210,45 +278,54 @@ namespace Banshee.Plugins.LastFM
 
         private int TracksLeft {
             get {
-                return tracks.Count - current_track - 1;
+                int left = tracks.Count - current_track - 1;
+                return (left < 0) ? 0 : left;
             }
-        }
-        
-        public override void Deactivate()
-        {
-            //(Globals.ActionManager["ShuffleAction"] as ToggleAction).Active = shuffle;
-            //Globals.ActionManager["ShuffleAction"].Sensitive = true;
         }
 
         private bool refreshing = false;
         public void Refresh ()
         {
             lock (this) {
-                if (refreshing || playlist != null)
+                if (refreshing || Connection.Instance.Station != Station) {
                     return;
+                }
                 refreshing = true;
             }
 
+            if (TracksLeft == 0) {
+                SetStatus (Catalog.GetString ("Getting new songs for {0}."), false);
+            }
+
             ThreadAssist.Spawn (delegate {
-                playlist = LoadPlaylist (Connection.Instance.StationRefreshUrl ());
-                List<TrackInfo> new_tracks = new List<TrackInfo> ();
-                foreach (Track track in playlist.Tracks) {
-                    TrackInfo ti = new LastFMTrackInfo (track, this);
-                    new_tracks.Add (ti);
-                    lock (TracksMutex) {
-                        tracks.Add (ti);
+                Playlist playlist = Connection.Instance.LoadPlaylistFor (Station);
+                if (playlist != null) {
+                    if (playlist.TrackCount == 0) {
+                        SetStatus (Catalog.GetString ("No new songs available for {0}."), true);
+                    } else {
+                        List<TrackInfo> new_tracks = new List<TrackInfo> ();
+                        foreach (Track track in playlist.Tracks) {
+                            TrackInfo ti = new LastFMTrackInfo (track, this);
+                            new_tracks.Add (ti);
+                            lock (TracksMutex) {
+                                tracks.Add (ti);
+                            }
+                        }
+                        HideStatus ();
+
+                        ThreadAssist.ProxyToMain (delegate {
+                            OnTrackAdded (null, new_tracks);
+                            OnUpdated ();
+
+                            /*if (playback_requested) {
+                                StartPlayback ();
+                                playback_requested = false;
+                            }*/
+                        });
                     }
+                } else {
+                    SetStatus (Catalog.GetString ("Failed to get new songs for {0}."), true);
                 }
-
-                ThreadAssist.ProxyToMain (delegate {
-                    OnTrackAdded (null, new_tracks);
-                    OnUpdated ();
-
-                    /*if (playback_requested) {
-                        StartPlayback ();
-                        playback_requested = false;
-                    }*/
-                });
 
                 refreshing = false;
             });
@@ -260,39 +337,11 @@ namespace Banshee.Plugins.LastFM
             OnUpdated ();
         }
 
-		private Playlist LoadPlaylist (string url) 
-		{
-            Playlist pl = new Playlist ();
-            Stream stream = null;
-            Console.WriteLine("StationSource Loading: {0}", url);
-            try {
-                stream = Connection.Instance.GetXspfStream (new SafeUri (url));
-                pl.Load (stream);
-                LogCore.Instance.PushDebug (String.Format ("Adding {0} Tracks to Last.fm Station {1}", pl.TrackCount, Name), null);
-            } catch (System.Net.WebException e) {
-                LogCore.Instance.PushWarning ("Error Loading Last.fm Station", e.Message, false);
-            } catch (Exception e) {
-                string body = "Unable to get body";
-                try {
-                    using (StreamReader strm = new StreamReader (stream)) {
-                        body = strm.ReadToEnd ();
-                    }
-                } catch {}
-                LogCore.Instance.PushWarning (
-                    "Error loading station",
-                    String.Format ("Exception:\n{0}\n\nResponse Body:\n{1}", e.ToString (), body), false
-                );
-            }
-
-            return pl;
-		}
-        
         private void OnPlayerStateChanged(object o, PlayerEngineStateArgs args)
         {
             if (args.State == PlayerEngineState.Loaded && tracks.Contains (PlayerEngineCore.CurrentTrack)) {
                 CurrentTrack = PlayerEngineCore.CurrentTrack;
                 if (TracksLeft <= 2) {
-                    playlist = null;
                     Refresh ();
                 }
             }
