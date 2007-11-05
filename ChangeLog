@@ -1,5 +1,15 @@
 2007-11-04  Gabriel Burt  <gabriel.burt@gmail.com>
 
+	* src/Plugins/Banshee.Plugins.LastFM/Connection.cs:
+	* src/Plugins/Banshee.Plugins.LastFM/LastFMSource.cs:
+	* src/Plugins/Banshee.Plugins.LastFM/Plugin.cs:
+	* src/Plugins/Banshee.Plugins.LastFM/StationSource.cs: Save the last
+	Last.fm username we logged in as in gconf so we can load the user's
+	stations when Banshee starts, but still don't auto login to Last.fm, now
+	until the user activates a station source.
+
+2007-11-04  Gabriel Burt  <gabriel.burt@gmail.com>
+
 	* src/Plugins/Banshee.Plugins.LastFM/Makefile.am:
 	* src/Plugins/Banshee.Plugins.LastFM/data/
 	* src/Plugins/Banshee.Plugins.LastFM/Resources: Move data/ to Resources/

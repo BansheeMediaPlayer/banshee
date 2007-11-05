@@ -44,7 +44,8 @@ namespace Banshee.Plugins.LastFM
 {   
     public class LastFMSource : Source
     {
-        public LastFMSource() : base("Last.fm", 150)
+        static string lastfm = "Last.fm";
+        public LastFMSource() : base(lastfm, 150)
         {
         }
 
@@ -199,9 +200,9 @@ namespace Banshee.Plugins.LastFM
             get { return false; }
         }
 
-        private Gdk.Pixbuf icon;
+        private Gdk.Pixbuf icon = Gdk.Pixbuf.LoadFromResource("audioscrobbler.png");
         public override Gdk.Pixbuf Icon {
-            get { return icon; } 
+            get { return icon; }
         }
 
         private void HandleConnectionStateChanged (object sender, ConnectionStateChangedArgs args)
@@ -214,6 +215,7 @@ namespace Banshee.Plugins.LastFM
             SortChildSources ();
         }
 
+        private string last_username;
         private bool updating = false;
         private void UpdateUI ()
         {
@@ -223,48 +225,33 @@ namespace Banshee.Plugins.LastFM
                 updating = true;
             }
 
-            UpdateIcon ();
-            bool connected = (Connection.Instance.State == ConnectionState.Connected);
-            Globals.ActionManager["LastFMAddAction"].Sensitive = connected;
-            Globals.ActionManager["LastFMSortAction"].Sensitive = connected;
+            bool have_user = (Connection.Instance.Username != null);
+            Globals.ActionManager["LastFMAddAction"].Sensitive = have_user;
+            Globals.ActionManager["LastFMSortAction"].Sensitive = have_user;
             Globals.ActionManager["LastFMConnectAction"].Visible = Connection.Instance.State == ConnectionState.Disconnected;
 
-            if (Connection.Instance.Connected) {
-                sorting = true;
-                foreach (StationSource child in StationSource.LoadAll (Connection.Instance.Username)) {
-                    if (!child.Type.SubscribersOnly || Connection.Instance.Subscriber) {
-                        AddChildSource (child);
-                        SourceManager.AddSource (child);
+            if (have_user) {
+                if (Connection.Instance.Username != last_username) {
+                    last_username = Connection.Instance.Username;
+                    LastFMPlugin.LastUserSchema.Set (last_username);
+                    ClearChildSources ();
+                    sorting = true;
+                    foreach (StationSource child in StationSource.LoadAll (Connection.Instance.Username)) {
+                        if (!child.Type.SubscribersOnly || Connection.Instance.Subscriber) {
+                            AddChildSource (child);
+                            SourceManager.AddSource (child);
+                        }
                     }
+                    sorting = false;
+                    SortChildSources ();
                 }
-                sorting = false;
-                SortChildSources ();
             } else {
                 ClearChildSources ();
             }
-            OnUpdated();
+
+            Name = (Connection.Instance.State == ConnectionState.Connected ) ? lastfm : Catalog.GetString ("Last.fm (Disconnected)");
+            OnUpdated ();
             updating = false;
-        }
-
-        private string last_icon_name = null;
-        private void UpdateIcon ()
-        {
-            string name;
-            switch (Connection.Instance.State) {
-            case ConnectionState.Connecting:    name = "connect_creating"; break;
-            case ConnectionState.Connected:     name = "audioscrobbler"; break;
-            case ConnectionState.Disconnected:  name = "gnome-netstatus-disconn"; break;
-            default:                            name = "gnome-netstatus-error"; break;
-            }
-
-            if (last_icon_name == name)
-                return;
-
-            if (icon != null)
-                icon.Dispose ();
-
-            last_icon_name = name;
-            icon = IconThemeUtils.LoadIcon (name, 24) ?? Gdk.Pixbuf.LoadFromResource(name + ".png");
         }
     }
 }

@@ -424,6 +424,18 @@ namespace Banshee.Plugins.LastFM
             }
             return String.Empty;
         }
+
+        public static string MessageFor (ConnectionState state)
+        {
+            switch (state) {
+            case ConnectionState.Disconnected:      return Catalog.GetString ("Not connected to Last.fm.");
+            case ConnectionState.NoAccount:         return Catalog.GetString ("Need account details before can connect to Last.fm");
+            case ConnectionState.InvalidAccount:    return Catalog.GetString ("Last.fm username or password is invalid.");
+            case ConnectionState.Connecting:        return Catalog.GetString ("Connecting to Last.fm.");
+            case ConnectionState.Connected:         return Catalog.GetString ("Connected to Last.fm.");
+            }
+            return String.Empty;
+        }
     }
 
 	public sealed class StringUtils {

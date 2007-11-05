@@ -81,7 +81,12 @@ namespace Banshee.Plugins.LastFM
         protected override void PluginInitialize ()
         {
             instance = this;
-            //Connection.Instance.Connect ();
+
+            // We don't automatically connect to Last.fm, but load the last Last.fm
+            // username we used so we can load the user's stations.
+            string last_user = LastUserSchema.Get ();
+            if (last_user != null && last_user != String.Empty)
+                Last.FM.Account.Username = last_user;
         }
 
         private uint actions_id;
@@ -102,16 +107,6 @@ namespace Banshee.Plugins.LastFM
                      Catalog.GetString ("Connect"),
                      null, "", OnConnect
                 ),
-                /*new ActionEntry (
-                    "LastFMChangeStationAction", null,
-                     Catalog.GetString ("Change to This Station"),
-                     null, "", OnChangeStation
-                ),
-                new ActionEntry (
-                    "LastFMRefreshStationAction", null,
-                     Catalog.GetString ("Refresh This Station"),
-                     null, "", OnRefreshStation
-                ),*/
                 new Gtk.ActionEntry (
                     "LastFMSortAction", "gtk-sort-descending",
                     Catalog.GetString ("Sort Stations by"),
@@ -193,6 +188,10 @@ namespace Banshee.Plugins.LastFM
 
         public static readonly SchemaEntry<int> StationSortSchema = new SchemaEntry<int> (
             "plugins.lastfm", "station_sort", 0, "Station sort criteria", "Last.fm station sort criteria. 0 = name, 1 = play count, 2 = type"
+        );
+
+        public static readonly SchemaEntry<string> LastUserSchema = new SchemaEntry<string> (
+            "plugins.lastfm", "username", "", "Last.fm user", "Last.fm username"
         );
     }
 }

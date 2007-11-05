@@ -94,6 +94,7 @@ namespace Banshee.Plugins.LastFM
 
             PlayerEngineCore.EventChanged += OnPlayerEventChanged;
             PlayerEngineCore.StateChanged += OnPlayerStateChanged;
+            Connection.Instance.StateChanged += HandleConnectionStateChanged;
 
             BuildInterface ();
         }
@@ -119,6 +120,7 @@ namespace Banshee.Plugins.LastFM
 
             PlayerEngineCore.EventChanged += OnPlayerEventChanged;
             PlayerEngineCore.StateChanged += OnPlayerStateChanged;
+            Connection.Instance.StateChanged += HandleConnectionStateChanged;
 
             BuildInterface ();
         }
@@ -130,12 +132,14 @@ namespace Banshee.Plugins.LastFM
             status_bar.BorderWidth = 5;
             status_bar.LeftPadding = 15;
             status_bar.Hide();
+            UpdateUI (Connection.Instance.State);
         }
 
         protected override void OnDispose ()
         {
             PlayerEngineCore.EventChanged -= OnPlayerEventChanged;
             PlayerEngineCore.StateChanged -= OnPlayerStateChanged;
+            Connection.Instance.StateChanged -= HandleConnectionStateChanged;
         }
 
         public override void Commit ()
@@ -175,9 +179,23 @@ namespace Banshee.Plugins.LastFM
             //box.PackStart (old_child, true, true, 0);
             //InterfaceElements.PlaylistContainer.Add (box);
             //box.Show ();
-            status_bar.Hide ();
+
+            if (show_status)
+                status_bar.Show ();
+            else
+                status_bar.Hide ();
+
             InterfaceElements.MainContainer.PackEnd (status_bar, false, false, 0);
 
+            // We lazy load the Last.fm connection, so if we're not already connected, do it
+            if (Connection.Instance.State == ConnectionState.Connected)
+                TuneAndLoad ();
+            else if (Connection.Instance.State == ConnectionState.Disconnected)
+                Connection.Instance.Connect ();
+        }
+
+        private void TuneAndLoad ()
+        {
             ThreadAssist.Spawn (delegate {
                 if (ChangeToThisStation ()) {
                     Thread.Sleep (250); // sleep for a bit to try to avoid Last.fm timeouts
@@ -225,9 +243,11 @@ namespace Banshee.Plugins.LastFM
             }
         }
 
+        bool show_status = false;
         private void SetStatus (string message, bool error)
         {
             ThreadAssist.ProxyToMain(delegate {
+                show_status = true;
                 string status_name = String.Format ("<i>{0}</i>", GLib.Markup.EscapeText (Name));
                 status_bar.Message = String.Format ("<big>{0}</big>", String.Format (GLib.Markup.EscapeText (message), status_name));
                 status_bar.Pixbuf = error ? error_pixbuf : refresh_pixbuf;
@@ -239,6 +259,7 @@ namespace Banshee.Plugins.LastFM
         private void HideStatus ()
         {
             ThreadAssist.ProxyToMain(delegate {
+                show_status = false;
                 status_bar.Hide ();
             });
         }
@@ -339,6 +360,16 @@ namespace Banshee.Plugins.LastFM
             OnUpdated ();
         }
 
+        private void ClearTracks ()
+        {
+            lock (TracksMutex) {
+                if (tracks.Count > 0) {
+                    OnTrackRemoved (null, tracks);
+                    tracks.Clear ();
+                }
+            }
+        }
+
         private void OnPlayerStateChanged(object o, PlayerEngineStateArgs args)
         {
             if (args.State == PlayerEngineState.Loaded && tracks.Contains (PlayerEngineCore.CurrentTrack)) {
@@ -351,6 +382,24 @@ namespace Banshee.Plugins.LastFM
         
         private void OnPlayerEventChanged(object o, PlayerEngineEventArgs args)
         {
+        }
+
+        private void HandleConnectionStateChanged (object sender, ConnectionStateChangedArgs args)
+        {
+            UpdateUI (args.State);
+        }
+
+        private void UpdateUI (ConnectionState state)
+        {
+            if (state == ConnectionState.Connected) {
+                HideStatus ();
+                if (this == SourceManager.ActiveSource) {
+                    TuneAndLoad ();
+                }
+            } else {
+                ClearTracks ();
+                SetStatus (Connection.MessageFor (state), state != ConnectionState.Connecting);
+            }
         }
 
         public override bool Unmap()
