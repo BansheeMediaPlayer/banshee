@@ -1,5 +1,12 @@
 2007-11-04  Gabriel Burt  <gabriel.burt@gmail.com>
 
+	* src/Plugins/Banshee.Plugins.LastFM/LastFMTrackInfo.cs:
+	* src/Plugins/Banshee.Plugins.LastFM/StationSource.cs: After playing or
+	skipping over a track, mark it CanPlay = false (thought it still seems to
+	be double-clickable for some reason).
+
+2007-11-04  Gabriel Burt  <gabriel.burt@gmail.com>
+
 	* src/Plugins/Banshee.Plugins.LastFM/Connection.cs:
 	* src/Plugins/Banshee.Plugins.LastFM/LastFMSource.cs:
 	* src/Plugins/Banshee.Plugins.LastFM/Plugin.cs:

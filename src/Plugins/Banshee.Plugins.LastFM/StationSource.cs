@@ -374,6 +374,19 @@ namespace Banshee.Plugins.LastFM
         {
             if (args.State == PlayerEngineState.Loaded && tracks.Contains (PlayerEngineCore.CurrentTrack)) {
                 CurrentTrack = PlayerEngineCore.CurrentTrack;
+
+                lock (TracksMutex) {
+                    foreach (TrackInfo track in tracks) {
+                        if (track == CurrentTrack)
+                            break;
+                        if (track.CanPlay) {
+                            track.CanPlay = false;
+                            track.PlaybackError = TrackPlaybackError.ResourceNotFound;
+                        }
+                    }
+                    OnUpdated ();
+                }
+
                 if (TracksLeft <= 2) {
                     Refresh ();
                 }

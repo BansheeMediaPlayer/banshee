@@ -42,13 +42,23 @@ namespace Banshee.Plugins.LastFM
     {
         private StationSource station;
         private Track track;
+        private bool loved, hated;
+
+        public LastFMTrackInfo ()
+        {
+        }
+
         public Track XspfTrack {
             get { return track; }
             set { track = value; }
         }
 
-        public LastFMTrackInfo ()
-        {
+        public bool Loved {
+            get { return loved; }
+        }
+
+        public bool Hated {
+            get { return hated; }
         }
 
         public LastFMTrackInfo (Track track, StationSource station)
@@ -71,11 +81,13 @@ namespace Banshee.Plugins.LastFM
 
 		public void Love () 
 		{
+            loved = true; hated = false;
             Connection.Instance.SendCommand ("love");
 		}
 
 		public void Hate () 
 		{
+            loved = false; hated = true;
             Connection.Instance.SendCommand ("ban");
 		}
     }
