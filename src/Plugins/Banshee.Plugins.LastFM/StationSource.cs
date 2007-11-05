@@ -183,6 +183,8 @@ namespace Banshee.Plugins.LastFM
                     Thread.Sleep (250); // sleep for a bit to try to avoid Last.fm timeouts
                     if (TracksLeft < 2)
                         Refresh ();
+                    else
+                        HideStatus ();
                 }
             });
         }

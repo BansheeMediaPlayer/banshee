@@ -1,10 +1,10 @@
 include $(top_srcdir)/build/Common.Makefile
 
 lastfm_resources = \
-	data/lastfm.glade \
-	data/Actions.xml \
-	data/audioscrobbler.png \
-	data/recommended.png
+	Resources/lastfm.glade \
+	Resources/Actions.xml \
+	Resources/audioscrobbler.png \
+	Resources/recommended.png
 
 lastfm_resources_build = $(foreach res,$(lastfm_resources), $(addprefix -resource:,$(srcdir)/$(res)),$(notdir $(res)))
 
