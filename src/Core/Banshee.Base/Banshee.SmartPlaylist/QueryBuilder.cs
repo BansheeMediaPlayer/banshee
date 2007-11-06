@@ -320,6 +320,9 @@ namespace Banshee.SmartPlaylist
 
         public QueryFilter Filter {
             get {
+                if (Op < 0 || Op > ValidFilters.Length) {
+                    Op = 0;
+                }
                 return ValidFilters [Op];
             }
         }
