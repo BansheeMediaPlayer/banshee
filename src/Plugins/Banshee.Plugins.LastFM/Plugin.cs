@@ -35,6 +35,8 @@ using Mono.Gettext;
 
 using Banshee.Base;
 using Banshee.Sources;
+using Banshee.Widgets;
+using Banshee.MediaEngine;
 using Banshee.Database;
 using Banshee.Configuration;
 
@@ -52,6 +54,10 @@ namespace Banshee.Plugins.LastFM
 {
     public class LastFMPlugin : Banshee.Plugins.Plugin
     {
+        private ActionButton love_button;
+        private ActionButton hate_button;
+        private bool last_track_was_lastfm = false;
+
         private LastFMSource source;
         public Source Source {
             get { return source; }
@@ -71,7 +77,7 @@ namespace Banshee.Plugins.LastFM
         }
         
         public override string Description {
-            get { return Catalog.GetString( "Play Last.fm radio stations."); }
+            get { return Catalog.GetString("Play music from Last.fm, the world's largest social music platform. Show off your taste, see what your friends are listening to, hear new music, get personal radio, recommendations, and downloads, all for free."); }
         }
         
         public override string [] Authors {
@@ -107,10 +113,20 @@ namespace Banshee.Plugins.LastFM
                      Catalog.GetString ("Connect"),
                      null, "", OnConnect
                 ),
-                new Gtk.ActionEntry (
+                new ActionEntry (
                     "LastFMSortAction", "gtk-sort-descending",
                     Catalog.GetString ("Sort Stations by"),
                     null, "", null
+                ),
+                new ActionEntry(
+                    "LastFMLoveAction", "face-smile",
+                    Catalog.GetString("Love Track"), null,
+                    Catalog.GetString("Mark current track as loved"), OnLoved
+                ),
+                new ActionEntry(
+                    "LastFMHateAction", "face-sad",
+                    Catalog.GetString("Ban Track"), null,
+                    Catalog.GetString("Mark current track as banned"), OnHated
                 )
             });
 
@@ -142,6 +158,37 @@ namespace Banshee.Plugins.LastFM
             Globals.ActionManager.UI.InsertActionGroup(actions, 0);
             actions_id = Globals.ActionManager.UI.AddUiFromResource ("Actions.xml");
 
+            Globals.ActionManager["LastFMLoveAction"].IsImportant = true;
+            Globals.ActionManager["LastFMHateAction"].IsImportant = true;
+            Globals.ActionManager["LastFMLoveAction"].Visible = false;
+            Globals.ActionManager["LastFMHateAction"].Visible = false;
+            ActionButton love_button = new ActionButton (actions.GetAction ("LastFMLoveAction"));
+            love_button.Pixbuf = IconThemeUtils.LoadIcon ("face-smile", 22);
+            love_button.Padding = 1;
+            ActionButton hate_button = new ActionButton (actions.GetAction ("LastFMHateAction"));
+            hate_button.Pixbuf = IconThemeUtils.LoadIcon ("face-sad", 22);
+            hate_button.Padding = 1;
+            InterfaceElements.ActionButtonBox.PackStart (love_button, false, false, 0);
+            InterfaceElements.ActionButtonBox.PackStart (hate_button, false, false, 0);
+
+            PlayerEngineCore.EventChanged += delegate (object o, PlayerEngineEventArgs args) {
+                if (args.Event == PlayerEngineEvent.TrackInfoUpdated) {
+                    if (PlayerEngineCore.CurrentTrack is LastFMTrackInfo) {
+                        if (!last_track_was_lastfm) {
+                            Globals.ActionManager["LastFMLoveAction"].Visible = true;
+                            Globals.ActionManager["LastFMHateAction"].Visible = true;
+                            last_track_was_lastfm = true;
+                        }
+                    } else {
+                        if (last_track_was_lastfm) {
+                            Globals.ActionManager["LastFMLoveAction"].Visible = false;
+                            Globals.ActionManager["LastFMHateAction"].Visible = false;
+                            last_track_was_lastfm = false;
+                        }
+                    }
+                }
+            };
+
             SourceManager.AddSource (source);
             source.Initialize ();
         }
@@ -152,6 +199,9 @@ namespace Banshee.Plugins.LastFM
                 source.Dispose ();
                 SourceManager.RemoveSource (source);
             }
+
+            //InterfaceElements.ActionButtonBox.Remove (love_button);
+            //InterfaceElements.ActionButtonBox.Remove (hate_button);
 
             Connection.Instance.Dispose ();
             Globals.ActionManager.UI.RemoveUi (actions_id);
@@ -180,6 +230,25 @@ namespace Banshee.Plugins.LastFM
         private void OnRefreshStation (object sender, EventArgs args)
         {
             (SourceManager.ActiveSource as StationSource).Refresh ();
+        }
+
+        private void OnLoved (object sender, EventArgs args)
+        {
+            LastFMTrackInfo track = PlayerEngineCore.CurrentTrack as LastFMTrackInfo;
+            if (track == null)
+                return;
+
+            track.Love ();
+        }
+
+        private void OnHated (object sender, EventArgs args)
+        {
+            LastFMTrackInfo track = PlayerEngineCore.CurrentTrack as LastFMTrackInfo;
+            if (track == null)
+                return;
+
+            track.Ban ();
+            Globals.ActionManager["NextAction"].Activate ();
         }
 
         public static readonly SchemaEntry<bool> EnabledSchema = new SchemaEntry<bool> (

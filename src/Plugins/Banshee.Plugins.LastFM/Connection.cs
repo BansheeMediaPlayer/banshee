@@ -91,6 +91,12 @@ namespace Banshee.Plugins.LastFM
 		private string station;
 		private string info_message;
 		private bool subscriber;
+        private bool connect_requested = false;
+
+        private static Connection instance;
+        private static Regex station_error_regex = new Regex ("error=(\\d+)", RegexOptions.Compiled);
+
+        // Properties
 
 		public bool Subscriber {
 			get { return subscriber; }
@@ -124,7 +130,6 @@ namespace Banshee.Plugins.LastFM
 			get { return station; }
 		}
 
-        private static Connection instance;
         public static Connection Instance {
             get {
                 if (instance == null)
@@ -132,6 +137,8 @@ namespace Banshee.Plugins.LastFM
                 return instance;
             }
         }
+
+        // Public Methods
 
 		private Connection () 
 		{
@@ -144,12 +151,6 @@ namespace Banshee.Plugins.LastFM
             Last.FM.Account.LoginCommitFinished += HandleKeyringEvent;
         }
 
-        private void Initialize ()
-        {
-            subscriber = false;
-            base_url = base_path = session = station = info_message = null;
-        }
-
         public void Dispose ()
         {
             Banshee.Base.NetworkDetect.Instance.StateChanged -= HandleNetworkStateChanged;
@@ -158,7 +159,6 @@ namespace Banshee.Plugins.LastFM
             instance = null;
         }
 
-        private bool connect_requested = false;
         public void Connect ()
         {
             connect_requested = true;
@@ -180,6 +180,84 @@ namespace Banshee.Plugins.LastFM
             State = ConnectionState.Connecting;
             Handshake ();
 		}
+
+        public bool Love    (TrackInfo track) { return PostTrackRequest ("loveTrack", track); }
+        public bool UnLove  (TrackInfo track) { return PostTrackRequest ("unLoveTrack", track); }
+        public bool Ban     (TrackInfo track) { return PostTrackRequest ("banTrack", track); }
+        public bool UnBan   (TrackInfo track) { return PostTrackRequest ("unBanTrack", track); }
+
+        public StationError ChangeStationTo (string station)
+        {
+            lock (instance) {
+                if (Station == station)
+                    return StationError.None;
+
+                try {
+                    Stream stream = Get (StationUrlFor (station));
+                    using (StreamReader strm = new StreamReader (stream)) {
+                        string body = strm.ReadToEnd ();
+                        if (body.IndexOf ("response=OK") == -1) {
+                            Match match = station_error_regex.Match (body);
+                            if (match.Success) {
+                                int i = Int32.Parse (match.Groups[1].Value);
+                                return (StationError) i;
+                            } else {
+                                return StationError.Unknown;
+                            }
+                        }
+                    }
+
+                    this.station = station;
+                    return StationError.None;
+                } catch (Exception e) {
+                    Console.WriteLine(e.ToString());
+                    return StationError.Unknown;
+                }
+            }
+        }
+
+		public Playlist LoadPlaylistFor (string station) 
+		{
+            lock (instance) {
+                if (station != Station)
+                    return null;
+
+                string url = StationRefreshUrl;
+                Playlist pl = new Playlist ();
+                Stream stream = null;
+                Console.WriteLine("StationSource Loading: {0}", url);
+                try {
+                    stream = Connection.Instance.GetXspfStream (new SafeUri (url));
+                    pl.Load (stream);
+                    LogCore.Instance.PushDebug (String.Format ("Adding {0} Tracks to Last.fm Station {1}", pl.TrackCount, station), null);
+                } catch (System.Net.WebException e) {
+                    LogCore.Instance.PushWarning ("Error Loading Last.fm Station", e.Message, false);
+                    return null;
+                } catch (Exception e) {
+                    string body = "Unable to get body";
+                    try {
+                        using (StreamReader strm = new StreamReader (stream)) {
+                            body = strm.ReadToEnd ();
+                        }
+                    } catch {}
+                    LogCore.Instance.PushWarning (
+                        "Error loading station",
+                        String.Format ("Exception:\n{0}\n\nResponse Body:\n{1}", e.ToString (), body), false
+                    );
+                    return null;
+                }
+
+                return pl;
+            }
+		}
+
+        // Private methods
+
+        private void Initialize ()
+        {
+            subscriber = false;
+            base_url = base_path = session = station = info_message = null;
+        }
 
         private void HandleKeyringEvent (AccountEventArgs args)
         {
@@ -239,7 +317,6 @@ namespace Banshee.Plugins.LastFM
             });
         }
 
-
 		private bool ParseHandshake (string content) 
 		{
             LogCore.Instance.PushDebug ("Got Last.fm Handshake Response", content, false);
@@ -291,41 +368,45 @@ namespace Banshee.Plugins.LastFM
 			return true;
 		}
 
-		public string StationUrlFor (string station) 
-		{
-            return String.Format (
-                "http://{0}{1}/adjust.php?session={2}&url={3}&lang=en",
-                base_url, base_path, session, HttpUtility.UrlEncode (station)
-            );
-		}
+        // Basic HTTP helpers
 
-        public string StationRefreshUrl ()
+        private HttpStatusCode Post (string uri, string body)
         {
-            return String.Format (
-                "http://{0}{1}/xspf.php?sk={2}&discovery=0&desktop=1.3.1.1",
-                base_url, base_path, session
-            );
+            if(!Globals.Network.Connected) {
+                throw new NetworkUnavailableException();
+            }
+        
+            HttpWebRequest request = (HttpWebRequest) WebRequest.Create (uri);
+            request.UserAgent = Banshee.Web.Browser.UserAgent;
+            request.Timeout = 10000;
+            request.Method = "POST";
+            request.KeepAlive = false;
+            request.ContentLength = body.Length;
+
+            using (StreamWriter writer = new StreamWriter (request.GetRequestStream ())) {
+                writer.Write (body);
+            }
+
+            HttpWebResponse response = (HttpWebResponse) request.GetResponse ();
+            using (Stream stream = response.GetResponseStream ()) {
+                using (StreamReader reader = new StreamReader (stream)) {
+                    Console.WriteLine ("Posted {0} got response {1}", body, reader.ReadToEnd ());
+                }
+            }
+            return response.StatusCode;
         }
 
-        public void SendCommand (string command)
-        {
-            Get (String.Format (
-                "http://{0}{1}/control.php?session={2}&command={3}&debug=0",
-                base_url, base_path, session, command
-            ));
-        }
-
-        public Stream GetXspfStream (SafeUri uri)
+        private Stream GetXspfStream (SafeUri uri)
         {
             return Get (uri, "application/xspf+xml");
         }
 
-        public Stream Get (string uri)
+        private Stream Get (string uri)
         {
             return Get (new SafeUri (uri), null);
         }
 
-        public Stream Get (SafeUri uri, string accept)
+        private Stream Get (SafeUri uri, string accept)
         {
             if(!Globals.Network.Connected) {
                 throw new NetworkUnavailableException();
@@ -344,71 +425,31 @@ namespace Banshee.Plugins.LastFM
             return response.GetResponseStream ();
         }
 
-        private static Regex station_error_regex = new Regex ("error=(\\d+)", RegexOptions.Compiled);
-        public StationError ChangeStationTo (string station)
-        {
-            lock (instance) {
-                if (Station == station)
-                    return StationError.None;
 
-                try {
-                    Stream stream = Get (StationUrlFor (station));
-                    using (StreamReader strm = new StreamReader (stream)) {
-                        string body = strm.ReadToEnd ();
-                        if (body.IndexOf ("response=OK") == -1) {
-                            Match match = station_error_regex.Match (body);
-                            if (match.Success) {
-                                int i = Int32.Parse (match.Groups[1].Value);
-                                return (StationError) i;
-                            } else {
-                                return StationError.Unknown;
-                            }
-                        }
-                    }
+        // URL generators for internal use
+ 
+        private string XmlRpcUrl {
+            get { return String.Format ("http://{0}/1.0/rw/xmlrpc.php", base_url); }
+        }
 
-                    this.station = station;
-                    return StationError.None;
-                } catch (Exception e) {
-                    Console.WriteLine(e.ToString());
-                    return StationError.Unknown;
-                }
+		private string StationUrlFor (string station) 
+		{
+            return String.Format (
+                "http://{0}{1}/adjust.php?session={2}&url={3}&lang=en",
+                base_url, base_path, session, HttpUtility.UrlEncode (station)
+            );
+		}
+
+        private string StationRefreshUrl {
+            get {
+                return String.Format (
+                    "http://{0}{1}/xspf.php?sk={2}&discovery=0&desktop=1.3.1.1",
+                    base_url, base_path, session
+                );
             }
         }
 
-		public Playlist LoadPlaylistFor (string station) 
-		{
-            lock (instance) {
-                if (station != Station)
-                    return null;
-
-                string url = StationRefreshUrl ();
-                Playlist pl = new Playlist ();
-                Stream stream = null;
-                Console.WriteLine("StationSource Loading: {0}", url);
-                try {
-                    stream = Connection.Instance.GetXspfStream (new SafeUri (url));
-                    pl.Load (stream);
-                    LogCore.Instance.PushDebug (String.Format ("Adding {0} Tracks to Last.fm Station {1}", pl.TrackCount, station), null);
-                } catch (System.Net.WebException e) {
-                    LogCore.Instance.PushWarning ("Error Loading Last.fm Station", e.Message, false);
-                    return null;
-                } catch (Exception e) {
-                    string body = "Unable to get body";
-                    try {
-                        using (StreamReader strm = new StreamReader (stream)) {
-                            body = strm.ReadToEnd ();
-                        }
-                    } catch {}
-                    LogCore.Instance.PushWarning (
-                        "Error loading station",
-                        String.Format ("Exception:\n{0}\n\nResponse Body:\n{1}", e.ToString (), body), false
-                    );
-                    return null;
-                }
-
-                return pl;
-            }
-		}
+        // Translated error message strings
 
         public static string ErrorMessageFor (StationError error)
         {
@@ -416,9 +457,9 @@ namespace Banshee.Plugins.LastFM
             case StationError.NotEnoughContent:  return Catalog.GetString ("There is not enough content to play this station.");
             case StationError.FewGroupMembers:   return Catalog.GetString ("This group does not have enough members for radio.");
             case StationError.FewFans:           return Catalog.GetString ("This artist does not have enough fans for radio.");
-            case StationError.Unavailable:       return Catalog.GetString ("This item is not available for streaming.");
-            case StationError.Subscribe:         return Catalog.GetString ("This feature is only available to subscribers.");
-            case StationError.FewNeighbors:      return Catalog.GetString ("There are not enough neighbours for this radio.");
+            case StationError.Unavailable:       return Catalog.GetString ("This station is not available.");
+            case StationError.Subscribe:         return Catalog.GetString ("This station is only available to subscribers.");
+            case StationError.FewNeighbors:      return Catalog.GetString ("There are not enough neighbours for this station.");
             case StationError.Offline:           return Catalog.GetString ("The streaming system is offline for maintenance, please try again later.");
             case StationError.Unknown:           return Catalog.GetString ("There was an unknown error.");
             }
@@ -436,6 +477,78 @@ namespace Banshee.Plugins.LastFM
             }
             return String.Empty;
         }
+
+        // XML-RPC foo
+
+        private bool PostTrackRequest (string method, TrackInfo track)
+        {
+            return PostXmlRpc (LastFMXmlRpcRequest (method).AddStringParams (track.Artist, track.Title));
+        }
+
+        private bool PostXmlRpc (LameXmlRpcRequest request)
+        {
+            if (State != ConnectionState.Connected)
+                return false;
+
+            return Post (XmlRpcUrl, request.ToString ()) == HttpStatusCode.OK;
+        }
+
+        private string UnixTime ()
+        {
+            return ((int) (DateTime.Now - new DateTime(1970, 1, 1)).TotalSeconds).ToString ();
+        }
+
+
+        private LameXmlRpcRequest LastFMXmlRpcRequest (string method)
+        {
+            string time = UnixTime ();
+            string auth_hash = Last.FM.Account.Md5Encode (md5_password + time);
+            return new LameXmlRpcRequest (method).AddStringParams (username, time, auth_hash);
+        }
+
+        protected class LameXmlRpcRequest
+        {
+            private StringBuilder sb = new StringBuilder ();
+            public LameXmlRpcRequest (string method_name)
+            {
+                sb.Append ("<?xml version=\"1.0\" encoding=\"us-ascii\"?>\n");
+                sb.Append ("<methodCall><methodName>");
+                sb.Append (Encode (method_name));
+                sb.Append ("</methodName>\n");
+                sb.Append ("<params>\n");
+            }
+
+            public LameXmlRpcRequest AddStringParams (params string [] values)
+            {
+                foreach (string value in values)
+                    AddStringParam (value);
+                return this;
+            }
+
+            public LameXmlRpcRequest AddStringParam (string value)
+            {
+                sb.Append ("<param><value><string>");
+                sb.Append (Encode (value));
+                sb.Append ("</string></value></param>\n");
+                return this;
+            }
+
+            public static string Encode (string val)
+            {
+                return HttpUtility.HtmlEncode (val);
+            }
+
+            private bool closed = false;
+            public override string ToString ()
+            {
+                if (!closed) {
+                    sb.Append ("</params>\n</methodCall>");
+                    closed = true;
+                }
+
+                return sb.ToString ();
+            }
+        }
     }
 
 	public sealed class StringUtils {
@@ -445,4 +558,5 @@ namespace Banshee.Plugins.LastFM
 			return System.Text.Encoding.UTF8.GetString (ba);
 		}
     }
+
 }

@@ -1,3 +1,16 @@
+2007-11-08  Gabriel Burt  <gabriel.burt@gmail.com>
+
+	* src/Extras/Last.FM/Last.FM/Account.cs: Provide public static md5 method.
+
+	* src/Plugins/Banshee.Plugins.LastFM/Connection.cs: Add support for simple
+	XML-RPC calls for loving/banning songs.
+
+	* src/Plugins/Banshee.Plugins.LastFM/LastFMTrackInfo.cs:
+	* src/Plugins/Banshee.Plugins.LastFM/Plugin.cs:
+	* src/Plugins/Banshee.Plugins.LastFM/StationSource.cs: Use the new
+	love/hate support.  Turn shuffle off when activating a station source.
+	Add action buttons for love/hate.
+
 2007-11-06  Gabriel Burt  <gabriel.burt@gmail.com>
 
 	* src/Core/Banshee.Base/Banshee.SmartPlaylist/QueryBuilder.cs: Port fix

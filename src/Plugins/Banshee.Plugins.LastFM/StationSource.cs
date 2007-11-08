@@ -38,6 +38,7 @@ using Banshee.Base;
 using Banshee.Widgets;
 using Banshee.Database;
 using Banshee.Sources;
+using Banshee.Metadata;
 using Banshee.MediaEngine;
 using Banshee.Playlists.Formats.Xspf;
  
@@ -92,7 +93,6 @@ namespace Banshee.Plugins.LastFM
             PlayCount = playCount;
             Station = Type.GetStationFor (arg);
 
-            PlayerEngineCore.EventChanged += OnPlayerEventChanged;
             PlayerEngineCore.StateChanged += OnPlayerStateChanged;
             Connection.Instance.StateChanged += HandleConnectionStateChanged;
 
@@ -118,7 +118,6 @@ namespace Banshee.Plugins.LastFM
 
             dbid = Globals.Library.Db.Execute(command);
 
-            PlayerEngineCore.EventChanged += OnPlayerEventChanged;
             PlayerEngineCore.StateChanged += OnPlayerStateChanged;
             Connection.Instance.StateChanged += HandleConnectionStateChanged;
 
@@ -137,7 +136,6 @@ namespace Banshee.Plugins.LastFM
 
         protected override void OnDispose ()
         {
-            PlayerEngineCore.EventChanged -= OnPlayerEventChanged;
             PlayerEngineCore.StateChanged -= OnPlayerStateChanged;
             Connection.Instance.StateChanged -= HandleConnectionStateChanged;
         }
@@ -168,23 +166,16 @@ namespace Banshee.Plugins.LastFM
         private Widget old_child;
         public override void Activate()
         {
-            //shuffle = (Globals.ActionManager["ShuffleAction"] as ToggleAction).Active;
-            //(Globals.ActionManager["ShuffleAction"] as ToggleAction).Active = false;
+            shuffle = (Globals.ActionManager["ShuffleAction"] as ToggleAction).Active;
+            (Globals.ActionManager["ShuffleAction"] as ToggleAction).Active = false;
             //Globals.ActionManager["ShuffleAction"].Sensitive = false;
  
-            // Replace the default playlist view with a box so we can show our status bar
-            //old_child = InterfaceElements.MainContainer.Children[0];
-            //old_child.Reparent (box);
-            //InterfaceElements.PlaylistContainer.Remove (old_child);
-            //box.PackStart (old_child, true, true, 0);
-            //InterfaceElements.PlaylistContainer.Add (box);
-            //box.Show ();
-
             if (show_status)
                 status_bar.Show ();
             else
                 status_bar.Hide ();
 
+            Globals.ActionManager["PreviousAction"].Sensitive = false;
             InterfaceElements.MainContainer.PackEnd (status_bar, false, false, 0);
 
             // We lazy load the Last.fm connection, so if we're not already connected, do it
@@ -209,15 +200,11 @@ namespace Banshee.Plugins.LastFM
 
         public override void Deactivate()
         {
-            //(Globals.ActionManager["ShuffleAction"] as ToggleAction).Active = shuffle;
+            (Globals.ActionManager["ShuffleAction"] as ToggleAction).Active = shuffle;
             //Globals.ActionManager["ShuffleAction"].Sensitive = true;
 
+            Globals.ActionManager["PreviousAction"].Sensitive = true;
             InterfaceElements.MainContainer.Remove (status_bar);
-            //InterfaceElements.PlaylistContainer.Remove (box);
-            //old_child.Reparent (InterfaceElements.PlaylistContainer);
-            //box.Remove (old_child);
-            //InterfaceElements.PlaylistContainer.Add (old_child);
-            //old_child = null;
         }
 
         // Last.fm requires you to 'tune' to a station before requesting a track list/playing it
@@ -330,6 +317,7 @@ namespace Banshee.Plugins.LastFM
                         foreach (Track track in playlist.Tracks) {
                             TrackInfo ti = new LastFMTrackInfo (track, this);
                             new_tracks.Add (ti);
+                            //MetadataService.Instance.Lookup (ti);
                             lock (TracksMutex) {
                                 tracks.Add (ti);
                             }
@@ -393,10 +381,6 @@ namespace Banshee.Plugins.LastFM
             }
         }
         
-        private void OnPlayerEventChanged(object o, PlayerEngineEventArgs args)
-        {
-        }
-
         private void HandleConnectionStateChanged (object sender, ConnectionStateChangedArgs args)
         {
             UpdateUI (args.State);

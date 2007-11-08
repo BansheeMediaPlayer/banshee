@@ -82,13 +82,17 @@ namespace Banshee.Plugins.LastFM
 		public void Love () 
 		{
             loved = true; hated = false;
-            Connection.Instance.SendCommand ("love");
+            ThreadAssist.Spawn (delegate {
+                Connection.Instance.Love (this);
+            });
 		}
 
-		public void Hate () 
+		public void Ban () 
 		{
             loved = false; hated = true;
-            Connection.Instance.SendCommand ("ban");
+            ThreadAssist.Spawn (delegate {
+                Connection.Instance.Ban (this);
+            });
 		}
     }
 }

@@ -179,11 +179,11 @@ namespace Last.FM
         }
 
         public static string Md5Password {
-            get { return password == null ? null : MD5Encode (password); }
+            get { return password == null ? null : Md5Encode (password); }
             set { password = value; }
         }
 
-        private static string MD5Encode (string text)
+        public static string Md5Encode (string text)
         {
             if(text == null || text == String.Empty)
                 return String.Empty;
