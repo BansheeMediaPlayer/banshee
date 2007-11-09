@@ -1,3 +1,13 @@
+2007-11-09  Sebastian Dröge  <slomo@circular-chaos.org>
+
+	* build/Common.Makefile:
+	* build/banshee.pc.in:
+	* build/m4/banshee/dbus.m4:
+	* build/m4/banshee/taglib.m4:
+	* configure.ac: Allow building against an external taglib-sharp and
+	create a proper pkg-config file if building against an external
+	ndesk-dbus or taglib-sharp (BGO: #447769, #447768).
+
 2007-11-08  Gabriel Burt  <gabriel.burt@gmail.com>
 
 	* src/Extras/Last.FM/Last.FM/Account.cs: Provide public static md5 method.

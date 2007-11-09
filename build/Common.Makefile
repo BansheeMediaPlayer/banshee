@@ -29,7 +29,6 @@ LINK_GTK = $(GTKSHARP_LIBS)
 LINK_MONO_UNIX = -r:Mono.Posix
 
 LINK_HAL = -r:$(DIR_HAL)/Hal.dll
-LINK_TAGLIB = -r:$(DIR_TAGLIB)/TagLib.dll
 LINK_LAST_FM = -r:$(DIR_LAST_FM)/Last.FM.dll
 LINK_MUSICBRAINZ = -r:$(DIR_MUSICBRAINZ)/MusicBrainz.dll
 LINK_GNOME_KEYRING = -r:$(DIR_GNOME_KEYRING)/Gnome.Keyring.dll
@@ -51,6 +50,12 @@ LINK_BOO = \
 	-r:$(DIR_BOO)/Boo.Lang.Interpreter.dll
 endif
 LINK_BOOBUDDY = -r:$(DIR_BOOBUDDY)/BooBuddy.dll
+
+if EXTERNAL_TAGLIB_SHARP
+LINK_TAGLIB = $(TAGLIB_SHARP_LIBS)
+else
+LINK_TAGLIB = -r:$(DIR_TAGLIB)/TagLib.dll
+endif
 
 LINK_BANSHEE_BASE = -r:$(DIR_BANSHEE_BASE)/Banshee.Base.dll
 LINK_BANSHEE_WIDGETS = -r:$(DIR_BANSHEE_WIDGETS)/Banshee.Widgets.dll

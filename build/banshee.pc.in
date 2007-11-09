@@ -8,6 +8,6 @@ pluginapi=2
 Name: Banshee
 Description: Mono/GStreamer based media playback and organization platform
 Version: @VERSION@
-Requires: gtk-sharp-2.0 gconf-sharp-2.0
-Libs: -r:@expanded_libdir@/banshee/Banshee.Base.dll -r:@expanded_libdir@/banshee/Banshee.Widgets.dll -r:@expanded_libdir@/banshee/TagLib.dll -r:@expanded_libdir@/banshee/Hal.dll -r:@expanded_libdir@/banshee/MusicBrainz.dll -r:@expanded_libdir@/banshee/NDesk.DBus.dll -r:@expanded_libdir@/banshee/NDesk.DBus.GLib.dll -r:Mono.Posix
+Requires: gtk-sharp-2.0 gconf-sharp-2.0 @TAGLIB_SHARP_PC_REQUIRES@ @NDESK_DBUS_PC_REQUIRES@
+Libs: -r:@expanded_libdir@/banshee/Banshee.Base.dll -r:@expanded_libdir@/banshee/Banshee.Widgets.dll @TAGLIB_SHARP_PC_LIBS@ -r:@expanded_libdir@/banshee/Hal.dll -r:@expanded_libdir@/banshee/MusicBrainz.dll @NDESK_DBUS_PC_LIBS@ -r:Mono.Posix
 
