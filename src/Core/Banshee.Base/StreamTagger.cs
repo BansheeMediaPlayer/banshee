@@ -48,19 +48,8 @@ namespace Banshee.Base
         }
     }
         
-    public class UnsupportedMimeTypeException : ApplicationException
-    {
-        public UnsupportedMimeTypeException(string msg) : base(msg)
-        {
-        }
-    }
-    
     public static class StreamTagger
     {
-        private static string [] valid_mimetype_prefixes = new string [] {
-            "audio/", "application/", "taglib/"
-        };
-    
         public static TagLib.File ProcessUri(SafeUri uri)
         {
             string mimetype = null;
@@ -71,22 +60,11 @@ namespace Banshee.Base
             } catch {
             }
 
-            if(mimetype != null) {
-                process = false;
-                foreach(string prefix in valid_mimetype_prefixes) {
-                    if(mimetype.StartsWith(prefix)) {
-                        process = true;
-                        break;
-                    }
-                }
-                
-                if(!process) {
-                    throw new UnsupportedMimeTypeException(mimetype);
-                }
-            }
+            TagLib.File file = Banshee.IO.IOProxy.OpenFile(uri.IsLocalPath ? uri.LocalPath : uri.AbsoluteUri, mimetype, TagLib.ReadStyle.Average);
 
-            return Banshee.IO.IOProxy.OpenFile(uri.IsLocalPath ? uri.LocalPath : uri.AbsoluteUri, 
-                mimetype, TagLib.ReadStyle.Average);
+            if (file.Properties.MediaTypes != TagLib.MediaTypes.Audio)
+                throw new TagLib.UnsupportedFormatException ("File doesn't contain only audio");
+            return file;
         }
     
         private static string Choose(string priority, string fallback)

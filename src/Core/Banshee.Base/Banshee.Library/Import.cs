@@ -73,7 +73,7 @@ namespace Banshee.Library
             } catch(Exception e) {
                 args.ReturnMessage = Catalog.GetString("Scanning") + "...";
                 
-                if(e is UnsupportedMimeTypeException) {
+                if(e is TagLib.UnsupportedFormatException) {
                     return;
                 }
                 

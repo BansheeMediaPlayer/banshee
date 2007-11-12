@@ -1,5 +1,12 @@
 2007-11-12  Sebastian Dröge  <slomo@circular-chaos.org>
 
+	* src/Core/Banshee.Base/Banshee.Library/Import.cs:
+	* src/Core/Banshee.Base/StreamTagger.cs: Use TagLib to filter files
+	that don't contain audio only instead of filtering by the mimetype
+	which breaks for some mp4 files (BGO #472747).
+
+2007-11-12  Sebastian Dröge  <slomo@circular-chaos.org>
+
 	* src/Core/Banshee/PlayerInterface.cs: Don't filter by
 	Artist/Album/Genre if the relevant field is empty or null. Before
 	Banshee crashed whenever the field was null. (BGO #479237)
