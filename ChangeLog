@@ -1,3 +1,10 @@
+2007-11-12  Sebastian Dröge  <slomo@circular-chaos.org>
+
+	* src/Core/Banshee/PlayerInterface.cs: Don't filter by
+	Artist/Album/Genre if the relevant field is empty or null. Before
+	Banshee crashed whenever the field was null. (BGO #479237)
+	While at that, also convert tabs to spaces.
+
 2007-11-09  Sebastian Dröge  <slomo@circular-chaos.org>
 
 	* build/m4/shamrock/gstreamer.m4: Allow disabling of the GStreamer

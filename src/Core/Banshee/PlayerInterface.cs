@@ -2088,7 +2088,7 @@ namespace Banshee
             string playlist_uri = null;
             int response = chooser.Run();            
 
-            if(response == (int) ResponseType.Ok) {            	
+            if(response == (int) ResponseType.Ok) {                    
                 playlist_uri = SafeUri.UriToFilename(chooser.Uri);              
                 chooser.Destroy(); 
             } else {
@@ -2099,8 +2099,8 @@ namespace Banshee
 
             // Read the contents of the playlist.
             string[] uris = null;
-            try {            	
-                uris = PlaylistFileUtil.ImportPlaylist(playlist_uri);            	
+            try {                    
+                uris = PlaylistFileUtil.ImportPlaylist(playlist_uri);                    
             } catch (Exception e) {
                 HigMessageDialog md = new HigMessageDialog(WindowPlayer, 
                     DialogFlags.DestroyWithParent, 
@@ -2117,7 +2117,7 @@ namespace Banshee
             // Import the tracks specified in the playlist.
             if (uris != null) {
                 ImportPlaylistWorker worker = new ImportPlaylistWorker(uris);
-                Thread t = new Thread(new ThreadStart(worker.Import));		        
+                Thread t = new Thread(new ThreadStart(worker.Import));                        
                 t.Start();
             } else {
                 HigMessageDialog md = new HigMessageDialog(WindowPlayer, 
@@ -2146,7 +2146,7 @@ namespace Banshee
             string uri = null;
             PlaylistFormatDescription format = null;
             int response = chooser.Run();            
-            if(response == (int) ResponseType.Ok) {            	
+            if(response == (int) ResponseType.Ok) {                    
                 uri = chooser.Uri;
                 // Get the format that the user selected.
                 format = chooser.GetExportFormat();
@@ -2559,16 +2559,22 @@ namespace Banshee
 
             switch(criteria) {
                 case SearchTrackCriteria.Album:
-                    searchEntry.ActivateFilter((int)TrackFilterType.AlbumTitle);
-                    searchEntry.Query = track.Album;
+                    if (track.Album != null && track.Album != String.Empty) {
+                        searchEntry.ActivateFilter((int)TrackFilterType.AlbumTitle);
+                        searchEntry.Query = track.Album;
+                    }
                     break;
                 case SearchTrackCriteria.Artist:
-                    searchEntry.ActivateFilter((int)TrackFilterType.ArtistName);
-                    searchEntry.Query = track.Artist;
+                    if (track.Artist != null && track.Artist != String.Empty) {
+                        searchEntry.ActivateFilter((int)TrackFilterType.ArtistName);
+                        searchEntry.Query = track.Artist;
+                    }
                     break;
                 case SearchTrackCriteria.Genre:
-                    searchEntry.ActivateFilter((int)TrackFilterType.Genre);
-                    searchEntry.Query = track.Genre;
+                    if (track.Genre != null && track.Genre != String.Empty) {
+                      searchEntry.ActivateFilter((int)TrackFilterType.Genre);
+                      searchEntry.Query = track.Genre;
+                    }
                     break;
             }
 
