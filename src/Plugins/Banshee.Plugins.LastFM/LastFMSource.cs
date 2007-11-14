@@ -45,7 +45,7 @@ namespace Banshee.Plugins.LastFM
     public class LastFMSource : Source
     {
         static string lastfm = "Last.fm";
-        public LastFMSource() : base(lastfm, 150)
+        public LastFMSource () : base (lastfm, 150)
         {
         }
 
@@ -55,15 +55,15 @@ namespace Banshee.Plugins.LastFM
             UpdateUI ();
         }
 
-        protected override void OnDispose()
+        protected override void OnDispose ()
         {
             Connection.Instance.StateChanged -= HandleConnectionStateChanged;
             ClearChildSources ();
         }
 
-        public override void ClearChildSources()
+        public override void ClearChildSources ()
         {
-            lock(Children) {
+            lock (Children) {
                 foreach (StationSource child in Children) {
                     if (SourceManager.ContainsSource (child))
                         SourceManager.RemoveSource (child);
@@ -74,14 +74,14 @@ namespace Banshee.Plugins.LastFM
             base.ClearChildSources ();
         }
 
-        public override void AddChildSource(ChildSource source)
+        public override void AddChildSource (ChildSource source)
         {
             base.AddChildSource (source);
             SortChildSources ();
             source.Updated += HandleChildUpdated;
         }
 
-        public override void RemoveChildSource(ChildSource source)
+        public override void RemoveChildSource (ChildSource source)
         {
             base.RemoveChildSource (source);
             source.Updated -= HandleChildUpdated;
@@ -166,16 +166,16 @@ namespace Banshee.Plugins.LastFM
             SortChildSources (ChildComparer, child_order);
         }
 
-        /*public override void Activate()
+        /*public override void Activate ()
         {
-            InterfaceElements.ActionButtonBox.PackStart(add_button, false, false, 0);
+            InterfaceElements.ActionButtonBox.PackStart (add_button, false, false, 0);
         }*/
 
         public override string ActionPath {
             get { return "/LastFMSourcePopup"; }
         }
 
-        private static string properties_label = Catalog.GetString("Edit Last.fm Settings");
+        private static string properties_label = Catalog.GetString ("Edit Last.fm Settings");
         public override string SourcePropertiesLabel {
             get { return properties_label; }
         }
@@ -200,7 +200,7 @@ namespace Banshee.Plugins.LastFM
             get { return false; }
         }
 
-        private Gdk.Pixbuf icon = Gdk.Pixbuf.LoadFromResource("audioscrobbler.png");
+        private Gdk.Pixbuf icon = Gdk.Pixbuf.LoadFromResource ("audioscrobbler.png");
         public override Gdk.Pixbuf Icon {
             get { return icon; }
         }

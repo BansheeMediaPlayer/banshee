@@ -52,7 +52,7 @@ namespace Banshee.Plugins.LastFM
 
         public string GetStationFor (string arg)
         {
-            return "lastfm://" + String.Format(station_format, arg);
+            return "lastfm://" + String.Format (station_format, arg);
         }
 
         public override string ToString ()
@@ -82,8 +82,8 @@ namespace Banshee.Plugins.LastFM
         static StationType () {
             Types.Add (new StationType (
                 "Recommended",
-                Catalog.GetString("Recommended"),
-                Catalog.GetString("For User:"),
+                Catalog.GetString ("Recommended"),
+                Catalog.GetString ("For User:"),
                 "user/{0}/recommended/100",
                 "recommended",
                 false
@@ -91,8 +91,8 @@ namespace Banshee.Plugins.LastFM
 
             Types.Add (new StationType (
                 "Personal",
-                Catalog.GetString("Personal"),
-                Catalog.GetString("For User:"),
+                Catalog.GetString ("Personal"),
+                Catalog.GetString ("For User:"),
                 "user/{0}/personal",
                 "stock_person",
                 true
@@ -100,8 +100,8 @@ namespace Banshee.Plugins.LastFM
 
             Types.Add (new StationType (
                 "Loved",
-                Catalog.GetString("Loved"),
-                Catalog.GetString("By User:"),
+                Catalog.GetString ("Loved"),
+                Catalog.GetString ("By User:"),
                 "user/{0}/loved",
                 "emblem-favorite",
                 true
@@ -109,8 +109,8 @@ namespace Banshee.Plugins.LastFM
 
             Types.Add (new StationType (
                 "Neighbor",
-                Catalog.GetString("Neighbors"),
-                Catalog.GetString("Of User:"),
+                Catalog.GetString ("Neighbors"),
+                Catalog.GetString ("Of User:"),
                 "user/{0}/neighbours",
                 "stock_people",
                 false
@@ -118,8 +118,8 @@ namespace Banshee.Plugins.LastFM
 
             Types.Add (new StationType (
                 "Group",
-                Catalog.GetString("Group"),
-                Catalog.GetString("Group Name:"),
+                Catalog.GetString ("Group"),
+                Catalog.GetString ("Group Name:"),
                 "group/{0}",
                 "stock_people",
                 false
@@ -127,8 +127,8 @@ namespace Banshee.Plugins.LastFM
 
             Types.Add (new StationType (
                 "Tag",
-                Catalog.GetString("Tag"),
-                Catalog.GetString("Tag Name:"),
+                Catalog.GetString ("Tag"),
+                Catalog.GetString ("Tag Name:"),
                 "globaltags/{0}",
                 null,
                 false
@@ -136,8 +136,8 @@ namespace Banshee.Plugins.LastFM
 
             Types.Add (new StationType (
                 "Fan",
-                Catalog.GetString("Fan"),
-                Catalog.GetString("Fans of:"),
+                Catalog.GetString ("Fan"),
+                Catalog.GetString ("Fans of:"),
                 "artist/{0}/fans",
                 "stock_people",
                 false
@@ -145,8 +145,8 @@ namespace Banshee.Plugins.LastFM
 
             Types.Add (new StationType (
                 "Similar",
-                Catalog.GetString("Similar"),
-                Catalog.GetString("Similar to:"),
+                Catalog.GetString ("Similar"),
+                Catalog.GetString ("Similar to:"),
                 "artist/{0}/similarartists",
                 null,
                 false

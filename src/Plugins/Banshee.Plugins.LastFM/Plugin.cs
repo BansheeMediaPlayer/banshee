@@ -42,10 +42,10 @@ using Banshee.Configuration;
 
 public static class PluginModuleEntry
 {
-    public static Type [] GetTypes()
+    public static Type [] GetTypes ()
     {
         return new Type [] {
-            typeof(Banshee.Plugins.LastFM.LastFMPlugin)
+            typeof (Banshee.Plugins.LastFM.LastFMPlugin)
         };
     }
 }
@@ -77,7 +77,7 @@ namespace Banshee.Plugins.LastFM
         }
         
         public override string Description {
-            get { return Catalog.GetString("Play music from Last.fm, the world's largest social music platform. Show off your taste, see what your friends are listening to, hear new music, get personal radio, recommendations, and downloads, all for free."); }
+            get { return Catalog.GetString ("Play music from Last.fm, the world's largest social music platform. Show off your taste, see what your friends are listening to, hear new music, get personal radio, recommendations, and downloads, all for free."); }
         }
         
         public override string [] Authors {
@@ -118,15 +118,15 @@ namespace Banshee.Plugins.LastFM
                     Catalog.GetString ("Sort Stations by"),
                     null, "", null
                 ),
-                new ActionEntry(
+                new ActionEntry (
                     "LastFMLoveAction", "face-smile",
-                    Catalog.GetString("Love Track"), null,
-                    Catalog.GetString("Mark current track as loved"), OnLoved
+                    Catalog.GetString ("Love Track"), null,
+                    Catalog.GetString ("Mark current track as loved"), OnLoved
                 ),
-                new ActionEntry(
+                new ActionEntry (
                     "LastFMHateAction", "face-sad",
-                    Catalog.GetString("Ban Track"), null,
-                    Catalog.GetString("Mark current track as banned"), OnHated
+                    Catalog.GetString ("Ban Track"), null,
+                    Catalog.GetString ("Mark current track as banned"), OnHated
                 )
             });
 
@@ -155,7 +155,7 @@ namespace Banshee.Plugins.LastFM
                 }
             );
 
-            Globals.ActionManager.UI.InsertActionGroup(actions, 0);
+            Globals.ActionManager.UI.InsertActionGroup (actions, 0);
             actions_id = Globals.ActionManager.UI.AddUiFromResource ("Actions.xml");
 
             Globals.ActionManager["LastFMLoveAction"].IsImportant = true;
@@ -193,7 +193,7 @@ namespace Banshee.Plugins.LastFM
             source.Initialize ();
         }
 
-        protected override void PluginDispose()
+        protected override void PluginDispose ()
         {
             if (source != null) {
                 source.Dispose ();

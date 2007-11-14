@@ -52,35 +52,35 @@ namespace Banshee.Plugins.LastFM
         [Widget] private Gtk.Label arg_label;
         [Widget] private Gtk.Button ok_button;
 
-        public Editor (StationSource source) : base(dialog_name, new Glade.XML(
-            System.Reflection.Assembly.GetExecutingAssembly(), dialog_resource, dialog_name, "banshee"))
+        public Editor (StationSource source) : base (dialog_name, new Glade.XML (
+            System.Reflection.Assembly.GetExecutingAssembly (), dialog_resource, dialog_name, "banshee"))
         {
             this.source = source;
             SourceName = source.Name;
             Arg = source.Arg;
-            Initialize();
+            Initialize ();
             Dialog.Title = Catalog.GetString ("Edit Station");
         }
     
-        public Editor () : base(dialog_name, new Glade.XML(
-            System.Reflection.Assembly.GetExecutingAssembly(), dialog_resource, dialog_name, "banshee"))
+        public Editor () : base (dialog_name, new Glade.XML (
+            System.Reflection.Assembly.GetExecutingAssembly (), dialog_resource, dialog_name, "banshee"))
         {
-            Initialize();
+            Initialize ();
             Dialog.Title = Catalog.GetString ("New Station");
         }
 
-        private void Initialize()
+        private void Initialize ()
         {
             // Pressing enter should save and close the dialog
             //Dialog.DefaultResponse = Gtk.ResponseType.Ok;
             ok_button.HasDefault = true;
 
-            Gdk.Geometry limits = new Gdk.Geometry();
-            limits.MinWidth = Dialog.SizeRequest().Width;
+            Gdk.Geometry limits = new Gdk.Geometry ();
+            limits.MinWidth = Dialog.SizeRequest ().Width;
             limits.MaxWidth = Gdk.Screen.Default.Width;
             limits.MinHeight = -1;
             limits.MaxHeight = -1;
-            Dialog.SetGeometryHints(Dialog, limits, Gdk.WindowHints.MaxSize | Gdk.WindowHints.MinSize);
+            Dialog.SetGeometryHints (Dialog, limits, Gdk.WindowHints.MaxSize | Gdk.WindowHints.MinSize);
 
             type_combo.RemoveText (0);
             int active_type = 0;
@@ -99,18 +99,18 @@ namespace Banshee.Plugins.LastFM
             type_combo.Active = active_type;
             arg_entry.Changed += HandleArgChanged;
             ok_button.Sensitive = true;
-            name_entry.GrabFocus();
+            name_entry.GrabFocus ();
         }
 
-        public void RunDialog()
+        public void RunDialog ()
         {
-            Run();
-            Dialog.Destroy();
+            Run ();
+            Dialog.Destroy ();
         }
 
-        public override ResponseType Run()
+        public override ResponseType Run ()
         {
-            Dialog.ShowAll();
+            Dialog.ShowAll ();
 
             ResponseType response = (ResponseType)Dialog.Run ();
 
@@ -127,7 +127,7 @@ namespace Banshee.Plugins.LastFM
                         source.Rename (name);
                         source.Type = type;
                         source.Arg = arg;
-                        source.Commit();
+                        source.Commit ();
                         //source.Refresh ();
                     }
                 });
@@ -136,7 +136,7 @@ namespace Banshee.Plugins.LastFM
             return response;
         }
 
-        private void HandleTypeChanged(object sender, EventArgs args)
+        private void HandleTypeChanged (object sender, EventArgs args)
         {
             StationType type = StationType.FindByLabel (type_combo.ActiveText);
             if (type == null)
@@ -146,7 +146,7 @@ namespace Banshee.Plugins.LastFM
         }
 
         private string last_arg = String.Empty;
-        private void HandleArgChanged(object sender, EventArgs args)
+        private void HandleArgChanged (object sender, EventArgs args)
         {
             if (name_entry.Text == last_arg) {
                 name_entry.Text = arg_entry.Text;

@@ -210,7 +210,7 @@ namespace Banshee.Plugins.LastFM
                     this.station = station;
                     return StationError.None;
                 } catch (Exception e) {
-                    Console.WriteLine(e.ToString());
+                    Console.WriteLine (e.ToString ());
                     return StationError.Unknown;
                 }
             }
@@ -225,7 +225,7 @@ namespace Banshee.Plugins.LastFM
                 string url = StationRefreshUrl;
                 Playlist pl = new Playlist ();
                 Stream stream = null;
-                Console.WriteLine("StationSource Loading: {0}", url);
+                Console.WriteLine ("StationSource Loading: {0}", url);
                 try {
                     stream = Connection.Instance.GetXspfStream (new SafeUri (url));
                     pl.Load (stream);
@@ -324,7 +324,7 @@ namespace Banshee.Plugins.LastFM
 			foreach (string line in lines) {
 				string [] opts = line.Split (new Char[] {'='});
 
-				switch (opts[0].Trim().ToLower()) {
+				switch (opts[0].Trim ().ToLower ()) {
 				case "session":
 					if (opts[1].ToLower () == "failed") {
 						session = null;
@@ -372,8 +372,8 @@ namespace Banshee.Plugins.LastFM
 
         private HttpStatusCode Post (string uri, string body)
         {
-            if(!Globals.Network.Connected) {
-                throw new NetworkUnavailableException();
+            if (!Globals.Network.Connected) {
+                throw new NetworkUnavailableException ();
             }
         
             HttpWebRequest request = (HttpWebRequest) WebRequest.Create (uri);
@@ -408,8 +408,8 @@ namespace Banshee.Plugins.LastFM
 
         private Stream Get (SafeUri uri, string accept)
         {
-            if(!Globals.Network.Connected) {
-                throw new NetworkUnavailableException();
+            if (!Globals.Network.Connected) {
+                throw new NetworkUnavailableException ();
             }
         
             HttpWebRequest request = (HttpWebRequest) WebRequest.Create (uri.AbsoluteUri);
@@ -495,7 +495,7 @@ namespace Banshee.Plugins.LastFM
 
         private string UnixTime ()
         {
-            return ((int) (DateTime.Now - new DateTime(1970, 1, 1)).TotalSeconds).ToString ();
+            return ((int) (DateTime.Now - new DateTime (1970, 1, 1)).TotalSeconds).ToString ();
         }
 
 
@@ -554,7 +554,7 @@ namespace Banshee.Plugins.LastFM
 	public sealed class StringUtils {
 		public static string StringToUTF8 (string s)
 		{
-			byte [] ba = (new UnicodeEncoding()).GetBytes(s);
+			byte [] ba = (new UnicodeEncoding ()).GetBytes (s);
 			return System.Text.Encoding.UTF8.GetString (ba);
 		}
     }

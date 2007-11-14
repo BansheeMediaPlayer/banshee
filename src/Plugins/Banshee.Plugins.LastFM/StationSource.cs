@@ -85,7 +85,7 @@ namespace Banshee.Plugins.LastFM
         private int dbid;
         
         // For StationSources that already exist in the db
-        protected StationSource(int dbId, string name, string type, string arg, int playCount) : base(name, 150)
+        protected StationSource (int dbId, string name, string type, string arg, int playCount) : base (name, 150)
         {
             dbid = dbId;
             Type = StationType.FindByName (type);
@@ -99,13 +99,13 @@ namespace Banshee.Plugins.LastFM
             BuildInterface ();
         }
 
-        public StationSource(string name, string type, string arg) : base(name, 150)
+        public StationSource (string name, string type, string arg) : base (name, 150)
         {
             Type = StationType.FindByName (type);
             Arg = arg;
             Station = Type.GetStationFor (arg);
 
-            DbCommand command = new DbCommand(@"
+            DbCommand command = new DbCommand (@"
                 INSERT INTO LastfmStations
                     (Creator, Name, Type, Arg, PlayCount)
                     VALUES (:creator, :name, :type, :arg, :play_count)",
@@ -116,7 +116,7 @@ namespace Banshee.Plugins.LastFM
                     "play_count", PlayCount
             );
 
-            dbid = Globals.Library.Db.Execute(command);
+            dbid = Globals.Library.Db.Execute (command);
 
             PlayerEngineCore.StateChanged += OnPlayerStateChanged;
             Connection.Instance.StateChanged += HandleConnectionStateChanged;
@@ -127,10 +127,10 @@ namespace Banshee.Plugins.LastFM
         private void BuildInterface ()
         {
             //box = new VBox ();
-            status_bar = new HighlightMessageArea();
+            status_bar = new HighlightMessageArea ();
             status_bar.BorderWidth = 5;
             status_bar.LeftPadding = 15;
-            status_bar.Hide();
+            status_bar.Hide ();
             UpdateUI (Connection.Instance.State);
         }
 
@@ -142,7 +142,7 @@ namespace Banshee.Plugins.LastFM
 
         public override void Commit ()
         {
-            DbCommand command = new DbCommand(@"
+            DbCommand command = new DbCommand (@"
                 UPDATE LastfmStations
                 SET 
                     Name = :name,
@@ -156,15 +156,14 @@ namespace Banshee.Plugins.LastFM
                 "play_count", PlayCount,
                 "station_id", dbid
             );
-            Globals.Library.Db.Execute(command);
+            Globals.Library.Db.Execute (command);
 
             Station = Type.GetStationFor (Arg);
             OnUpdated ();
         }
         
         private bool shuffle;
-        private Widget old_child;
-        public override void Activate()
+        public override void Activate ()
         {
             shuffle = (Globals.ActionManager["ShuffleAction"] as ToggleAction).Active;
             (Globals.ActionManager["ShuffleAction"] as ToggleAction).Active = false;
@@ -198,7 +197,7 @@ namespace Banshee.Plugins.LastFM
             });
         }
 
-        public override void Deactivate()
+        public override void Deactivate ()
         {
             (Globals.ActionManager["ShuffleAction"] as ToggleAction).Active = shuffle;
             //Globals.ActionManager["ShuffleAction"].Sensitive = true;
@@ -233,19 +232,19 @@ namespace Banshee.Plugins.LastFM
         bool show_status = false;
         private void SetStatus (string message, bool error)
         {
-            ThreadAssist.ProxyToMain(delegate {
+            ThreadAssist.ProxyToMain (delegate {
                 show_status = true;
                 string status_name = String.Format ("<i>{0}</i>", GLib.Markup.EscapeText (Name));
                 status_bar.Message = String.Format ("<big>{0}</big>", String.Format (GLib.Markup.EscapeText (message), status_name));
                 status_bar.Pixbuf = error ? error_pixbuf : refresh_pixbuf;
                 status_bar.ShowCloseButton = true;
-                status_bar.Show();
+                status_bar.Show ();
             });
         }
 
         private void HideStatus ()
         {
-            ThreadAssist.ProxyToMain(delegate {
+            ThreadAssist.ProxyToMain (delegate {
                 show_status = false;
                 status_bar.Hide ();
             });
@@ -258,7 +257,7 @@ namespace Banshee.Plugins.LastFM
         }
 
         /*private bool playback_requested = false;
-        public override void StartPlayback()
+        public override void StartPlayback ()
         {
             if (CurrentTrack != null) {
                 PlayerEngineCore.OpenPlay (CurrentTrack);
@@ -342,7 +341,7 @@ namespace Banshee.Plugins.LastFM
             });
         }
 
-        public override void RemoveTrack(TrackInfo track)
+        public override void RemoveTrack (TrackInfo track)
         {
             tracks.Remove (track);
             OnUpdated ();
@@ -358,7 +357,7 @@ namespace Banshee.Plugins.LastFM
             }
         }
 
-        private void OnPlayerStateChanged(object o, PlayerEngineStateArgs args)
+        private void OnPlayerStateChanged (object o, PlayerEngineStateArgs args)
         {
             if (args.State == PlayerEngineState.Loaded && tracks.Contains (PlayerEngineCore.CurrentTrack)) {
                 CurrentTrack = PlayerEngineCore.CurrentTrack;
@@ -399,19 +398,19 @@ namespace Banshee.Plugins.LastFM
             }
         }
 
-        public override bool Unmap()
+        public override bool Unmap ()
         {
-            Globals.Library.Db.Execute(String.Format(
+            Globals.Library.Db.Execute (String.Format (
                 @"DELETE FROM LastfmStations
                     WHERE StationID = '{0}'",
                     dbid
             ));
             Parent.RemoveChildSource (this);
-            SourceManager.RemoveSource(this);
+            SourceManager.RemoveSource (this);
             return true;
         }
 
-        protected override bool UpdateName(string oldName, string newName)
+        protected override bool UpdateName (string oldName, string newName)
         {
             Name = newName;
             Commit ();
@@ -438,17 +437,17 @@ namespace Banshee.Plugins.LastFM
             get { return tracks; }
         }
 
-        private static string unmap_label = Catalog.GetString("Delete Last.fm Station");
+        private static string unmap_label = Catalog.GetString ("Delete Last.fm Station");
         public override string UnmapLabel {
             get { return unmap_label; }
         }
 
-        private static string generic_name = Catalog.GetString("Last.fm Station");
+        private static string generic_name = Catalog.GetString ("Last.fm Station");
         public override string GenericName {
             get { return generic_name; }
         }
 
-        private static string properties_label = Catalog.GetString("Edit Last.fm Station");
+        private static string properties_label = Catalog.GetString ("Edit Last.fm Station");
         public override string SourcePropertiesLabel {
             get { return properties_label; }
         }
@@ -459,24 +458,24 @@ namespace Banshee.Plugins.LastFM
                 if (icon == null && Type != null && Type.IconName != null) {
                     icon = IconThemeUtils.LoadIcon (Type.IconName, 24);
                     if (icon == null)
-                        icon = Gdk.Pixbuf.LoadFromResource(Type.IconName + ".png");
+                        icon = Gdk.Pixbuf.LoadFromResource (Type.IconName + ".png");
                 }
                 return icon;
             }
         }
 
-        public static List<StationSource> LoadAll(string creator)
+        public static List<StationSource> LoadAll (string creator)
         {
-            List<StationSource> stations = new List<StationSource>();
+            List<StationSource> stations = new List<StationSource> ();
 
-            DbCommand command = new DbCommand(
+            DbCommand command = new DbCommand (
                 "SELECT StationID, Name, Type, Arg, PlayCount FROM LastfmStations WHERE Creator = :creator",
                 "creator", creator
             );
 
             IDataReader reader = Globals.Library.Db.Query (command);
 
-            while (reader.Read()) {
+            while (reader.Read ()) {
                 try {
                     stations.Add (new StationSource (
                         (int) reader[0], (string) reader[1], (string) reader[2], (string) reader[3], (int) reader[4]
@@ -485,7 +484,7 @@ namespace Banshee.Plugins.LastFM
                     LogCore.Instance.PushWarning ("Error Loading Last.fm Station", e.ToString (), false);
                 }
             }
-            reader.Dispose();
+            reader.Dispose ();
 
             // Create some default stations if the user has none
             if (stations.Count == 0) {
@@ -500,8 +499,8 @@ namespace Banshee.Plugins.LastFM
 
         static StationSource ()
         {
-            if (!Globals.Library.Db.TableExists("LastfmStations")) {
-                Globals.Library.Db.Execute(@"
+            if (!Globals.Library.Db.TableExists ("LastfmStations")) {
+                Globals.Library.Db.Execute (@"
                     CREATE TABLE LastfmStations (
                         StationID           INTEGER PRIMARY KEY,
                         Creator             STRING NOT NULL,
@@ -513,11 +512,11 @@ namespace Banshee.Plugins.LastFM
                 ");
             } else {
                 try {
-                    Globals.Library.Db.QuerySingle("SELECT PlayCount FROM LastfmStations LIMIT 1");
+                    Globals.Library.Db.QuerySingle ("SELECT PlayCount FROM LastfmStations LIMIT 1");
                 } catch {
-                    LogCore.Instance.PushDebug("Adding new database column", "Table: LastfmStations, Column: PlayCount INTEGER");
-                    Globals.Library.Db.Execute("ALTER TABLE LastfmStations ADD PlayCount INTEGER");
-                    Globals.Library.Db.Execute("UPDATE LastfmStations SET PlayCount = 0");
+                    LogCore.Instance.PushDebug ("Adding new database column", "Table: LastfmStations, Column: PlayCount INTEGER");
+                    Globals.Library.Db.Execute ("ALTER TABLE LastfmStations ADD PlayCount INTEGER");
+                    Globals.Library.Db.Execute ("UPDATE LastfmStations SET PlayCount = 0");
                 }
             }
         }
