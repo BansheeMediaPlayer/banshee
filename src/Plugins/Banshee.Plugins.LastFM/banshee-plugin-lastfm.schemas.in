@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<gconfschemafile>
+  <schemalist>
+    <schema>
+      <key>/schemas/apps/banshee/plugins/lastfm/enabled</key>
+      <applyto>/apps/banshee/plugins/lastfm/enabled</applyto>
+      <owner>banshee</owner>
+      <type>bool</type>
+      <default>false</default>
+      <locale name="C">
+        <short>Plugin enabled</short>
+        <long>Last.fm plugin enabled</long>
+      </locale>
+    </schema>
+    <schema>
+      <key>/schemas/apps/banshee/plugins/lastfm/station_sort</key>
+      <applyto>/apps/banshee/plugins/lastfm/station_sort</applyto>
+      <owner>banshee</owner>
+      <type>int</type>
+      <default>0</default>
+      <locale name="C">
+        <short>Station sort criteria</short>
+        <long>Last.fm station sort criteria. 0 = name, 1 = play count, 2 = type</long>
+      </locale>
+    </schema>
+    <schema>
+      <key>/schemas/apps/banshee/plugins/lastfm/username</key>
+      <applyto>/apps/banshee/plugins/lastfm/username</applyto>
+      <owner>banshee</owner>
+      <type>string</type>
+      <default></default>
+      <locale name="C">
+        <short>Last.fm user</short>
+        <long>Last.fm username</long>
+      </locale>
+    </schema>
+  </schemalist>
+</gconfschemafile>
