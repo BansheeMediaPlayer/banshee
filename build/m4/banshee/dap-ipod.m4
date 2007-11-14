@@ -13,7 +13,10 @@ AC_DEFUN([BANSHEE_CHECK_DAP_IPOD],
 		enable_ipodsharp="$enable_ipodsharp", enable_ipodsharp=no)
 
 	if test "x$enable_ipodsharp" = "xyes"; then
-		IPODSHARP_ASSEMBLIES="`$PKG_CONFIG --variable=Libraries ipod-sharp` `$PKG_CONFIG --variable=Libraries ipod-sharp-ui`"
+		asms="`$PKG_CONFIG --variable=Libraries ipod-sharp` `$PKG_CONFIG --variable=Libraries ipod-sharp-ui`"
+		for asm in $asms; do
+			IPODSHARP_ASSEMBLIES="$IPODSHARP_ASSEMBLIES $asm $asm.mdb"
+		done
 		AC_SUBST(IPODSHARP_ASSEMBLIES)
 		AC_SUBST(IPODSHARP_LIBS)
 	fi

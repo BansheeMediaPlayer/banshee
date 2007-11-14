@@ -131,7 +131,6 @@ src/Core/Banshee.Widgets/Banshee.Widgets.dll.config
 
 src/Dap/Makefile
 src/Dap/Banshee.Dap.Ipod/Makefile
-src/Dap/Banshee.Dap.Ipod/ipod-sharp.dll.config
 src/Dap/Banshee.Dap.Karma/Makefile
 src/Dap/Banshee.Dap.MassStorage/Makefile
 src/Dap/Banshee.Dap.Mtp/Makefile
