@@ -288,7 +288,10 @@ namespace Banshee.Plugins.NotificationAreaIcon
                 Notification nf = new Notification(Catalog.GetString("Now Playing"), message, image, event_box);
                 nf.Urgency = Urgency.Low;
                 nf.Timeout = 4500;
-                nf.AddAction("skip-song", Catalog.GetString("Play next song"), OnSongSkipped);
+                nf.AddHint("desktop-entry", "banshee.desktop");
+                if(Globals.ActionManager["NextAction"].Sensitive) {
+                    nf.AddAction("skip-song", Catalog.GetString("Play next song"), OnSongSkipped);
+                }
                 nf.Show();
             } catch(Exception e) {
                 LogCore.Instance.PushError(Catalog.GetString("Cannot show notification"), e.Message, false);
