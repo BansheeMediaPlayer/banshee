@@ -30,6 +30,7 @@ using System;
 using NDesk.DBus;
 
 using Banshee.Sources;
+using Banshee.Burner;
 using Banshee.MediaEngine;
 
 namespace Banshee.Base
@@ -48,6 +49,7 @@ namespace Banshee.Base
         void Previous();
         void SelectAudioCd(string device);
         void SelectDap(string device);
+        void SelectBlankCd(string device);
         void EnqueueFiles(string [] files);
         string GetPlayingArtist();
         string GetPlayingAlbum();
@@ -185,50 +187,67 @@ namespace Banshee.Base
             }
         }
 
-        public void SelectAudioCd(string device)
+        public void SelectDeviceSource(string device, string hint)
         {
             if(!Available) {
                 return;
             }
             
-            Source single_cd_source = null;
+            Source single_source = null;
         
             foreach(Source source in SourceManager.Sources) {
-                AudioCdSource audiocd_source = source as AudioCdSource;
-                if(audiocd_source == null) {
-                    continue;
-                }
-                
-                if(device == null || device == String.Empty) {
-                    single_cd_source = source;
-                } else if(audiocd_source.Disk.DeviceNode == device || audiocd_source.Disk.Udi == device) {
-                    SourceManager.SetActiveSource(audiocd_source);
-                    return;
+                if(source is DapSource) {
+                    if(single_source == null && hint == "dap") {
+                        single_source = source;
+                    }
+
+                    if(((DapSource)source).Device.HalUdi == device) {
+                        SourceManager.SetActiveSource(source);
+                        return;
+                    }
+                } else if(source is BurnerSource) {
+                    if(single_source == null && (hint == "blank-cd" || hint == "burn-cd")) {
+                        Console.WriteLine ("Selecting single");
+                        single_source = source;
+                    }
+
+                    BurnerSource blank_source = (BurnerSource)source;
+                    if (blank_source.Session.Recorder != null && 
+                        blank_source.Session.Recorder.Device == device) {
+                        SourceManager.SetActiveSource(source);
+                        return;
+                    }
+                } else if(source is AudioCdSource) {
+                    if(single_source == null && hint == "audio-cd") {
+                        single_source = source;
+                    }
+
+                    AudioCdSource cd_source = (AudioCdSource)source;
+                    if(cd_source.Disk.DeviceNode == device || cd_source.Disk.Udi == device) {
+                        SourceManager.SetActiveSource(source);
+                        return;
+                    }
                 }
             }
-            
-            SourceManager.SetActiveSource(single_cd_source ?? LibrarySource.Instance);
-        }
+
+            if(single_source != null) {
+                SourceManager.SetActiveSource(single_source);
+            }
+        } 
         
         public void SelectDap(string device)
         {
-            if(!Available) {
-                return;
-            }
-            
-            foreach(Source source in SourceManager.Sources) {
-                DapSource dap_source = source as DapSource;
-                if(dap_source == null) {
-                    continue;
-                }
-                
-                if(dap_source.Device.HalUdi == device) {
-                    SourceManager.SetActiveSource(dap_source);
-                    return;
-                }
-            }
-            
-            SourceManager.SetActiveSource(LibrarySource.Instance);
+            SelectDeviceSource(device, "dap");
+        }
+
+        public void SelectBlankCd(string device)
+        {
+            SelectDeviceSource(device, "blank-cd");
+        }
+
+        public void SelectAudioCd(string device)
+        {
+            SelectDeviceSource(device, "audio-cd");
         }
         
         public void EnqueueFiles(string [] files)

@@ -589,6 +589,10 @@ namespace Banshee
                 SourceManager.SetActiveSource(LocalQueueSource.Instance);
             } else if(Globals.ArgumentQueue.Contains("audio-cd")) {
                 Globals.DBusPlayer.SelectAudioCd(Globals.ArgumentQueue.Dequeue("audio-cd"));
+            } else if(Globals.ArgumentQueue.Contains("burn-cd")) {
+                Globals.DBusPlayer.SelectBlankCd(Globals.ArgumentQueue.Dequeue("burn-cd"));
+            } else if(Globals.ArgumentQueue.Contains("blank-cd")) {
+                Globals.DBusPlayer.SelectBlankCd(Globals.ArgumentQueue.Dequeue("blank-cd"));
             } else if(Globals.ArgumentQueue.Contains("dap")) {
                 Globals.DBusPlayer.SelectDap(Globals.ArgumentQueue.Dequeue("dap"));
             } else {

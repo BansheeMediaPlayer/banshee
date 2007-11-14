@@ -1,5 +1,20 @@
 2007-11-14  Aaron Bockover  <abock@gnome.org>
 
+	* src/Core/Banshee/PlayerInterface.cs: Support startup handling of burn-cd
+	and blank-cd arguments
+
+	* src/Core/Banshee/Main.cs: Proxy burn-cd and blank-cd arguments into
+	DBus method calls for source selection; added also the no-present argument
+
+	* src/Core/Banshee.Base/Banshee.Burner/BurnerCore.cs: Do not always
+	automatically select the new burn source as the active source
+
+	* src/Core/Banshee.Base/DBusPlayer.cs: Added SelectBlankCd method to 
+	complement the other Select methods; Added SelectDeviceSource to reduce
+	common code and work of a hint for doing all the device selection
+
+2007-11-14  Aaron Bockover  <abock@gnome.org>
+
 	* src/Plugins/Banshee.Plugins.NotificationAreaIcon/NotificationAreaIconPlugin.cs:
 	Only show the skip button if the action is allowed
 

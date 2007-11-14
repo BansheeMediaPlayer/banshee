@@ -94,8 +94,10 @@ namespace Banshee
                 new ArgumentLayout("hide-field",     "Do not display field name for --query-* results"),
                 new ArgumentLayout("help",           "List available command line arguments"),
                 new ArgumentLayout("audio-cd <dev>", "Start Banshee and/or select source mapped to <device>"),
+                new ArgumentLayout("blank-cd <dev>", "Start Banshee and/or select source mapped to <device>"),
                 new ArgumentLayout("dap <dev>",      "Start Banshee and/or select source mapped to <device>"),
                 new ArgumentLayout("no-source-change", "Do not change sources with --dap or --audio-cd"),
+                new ArgumentLayout("no-present",     "Do not bring the player window to the foreground"),
                 new ArgumentLayout("version",        "Show Banshee Version"),
             }, args, "enqueue");
             
@@ -253,7 +255,14 @@ namespace Banshee
                     }
                     
                     dequeue = false;
-                    Present(remote_player);
+                    break;
+                case "blank-cd":
+                case "burn-cd":
+                    if(!Globals.ArgumentQueue.Contains("no-source-change")) {
+                        remote_player.SelectAudioCd(Globals.ArgumentQueue[arg]);
+                    }
+
+                    dequeue = false;
                     break;
                 case "dap":
                     if(!Globals.ArgumentQueue.Contains("no-source-change")) {
@@ -261,10 +270,13 @@ namespace Banshee
                     }
                     
                     dequeue = false;
-                    Present(remote_player);
                     break;
                 case "hide-field":
                     dequeue = false;
+                    break;
+                case "no-present":
+                    present = false;
+                    dequeue = true;
                     break;
                 }
                 
