@@ -13,6 +13,17 @@
       </locale>
     </schema>
     <schema>
+      <key>/schemas/apps/banshee/plugins/radio/base_station_uri</key>
+      <applyto>/apps/banshee/plugins/radio/base_station_uri</applyto>
+      <owner>banshee</owner>
+      <type>string</type>
+      <default>http://radio.banshee-project.org/</default>
+      <locale name="C">
+        <short>URI for remote stations update</short>
+        <long>URI to update remote stations from</long>
+      </locale>
+    </schema>
+    <schema>
       <key>/schemas/apps/banshee/plugins/radio/enabled</key>
       <applyto>/apps/banshee/plugins/radio/enabled</applyto>
       <owner>banshee</owner>

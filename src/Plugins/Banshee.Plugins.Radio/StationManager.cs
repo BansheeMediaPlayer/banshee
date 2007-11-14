@@ -95,7 +95,6 @@ namespace Banshee.Plugins.Radio
         public delegate void StationGroupHandler(object o, StationGroupArgs args);
         public delegate void StationHandler(object o, StationArgs args);
         
-        private static readonly Uri master_xspf_uri = new Uri("http://radio.banshee-project.org/"); 
         private static readonly TimeSpan check_timeout = TimeSpan.FromDays(1);
         private static readonly string stations_path = Path.Combine(Paths.UserPluginDirectory, "stations");
         private static readonly string local_stations_path = Path.Combine(stations_path, "user");
@@ -377,6 +376,7 @@ namespace Banshee.Plugins.Radio
             }
             
             Playlist playlist = new Playlist();
+            Uri master_xspf_uri = new Uri(BaseStationUriSchema.Get()); 
             playlist.Load(CreateXspfWebStream(master_xspf_uri));
             
             DateTime master_last_modified = DateTime.MinValue;
@@ -500,5 +500,13 @@ namespace Banshee.Plugins.Radio
             "Show remote stations",
             "Update remote stations from radio.banshee-project.org"
         );
+
+        public static readonly SchemaEntry<string> BaseStationUriSchema = new SchemaEntry<string>(
+            "plugins.radio", "base_station_uri",
+            "http://radio.banshee-project.org/",
+            "URI for remote stations update",
+            "URI to update remote stations from"
+        );
+
     }
 }
