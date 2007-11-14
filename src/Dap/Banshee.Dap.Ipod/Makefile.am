@@ -15,7 +15,7 @@ ASSEMBLY_SOURCES = \
 
 if ENABLE_IPOD
 bansheedapdir = $(pkglibdir)/Banshee.Dap
-bansheedap_SCRIPTS = $(ASSEMBLY) $(ASSEMBLY).mdb ipod-sharp.dll.config
+bansheedap_SCRIPTS = $(ASSEMBLY) $(ASSEMBLY).mdb
 endif
 
 $(ASSEMBLY): $(ASSEMBLY_SOURCES)
@@ -31,7 +31,7 @@ uninstall-hook:
 		rm -f $(DESTDIR)$(bansheedapdir)/`basename $$ASM`; \
 	done;
 
-EXTRA_DIST = $(ASSEMBLY_SOURCES) ipod-sharp.dll.config.in
+EXTRA_DIST = $(ASSEMBLY_SOURCES)
 CLEANFILES = $(ASSEMBLY) 
 DISTCLEANFILES = $(ASSEMBLY).mdb
 MAINTAINERCLEANFILES = Makefile.in
