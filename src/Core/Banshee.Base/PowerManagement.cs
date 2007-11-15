@@ -65,25 +65,64 @@ namespace Banshee.Base
         event OnAcChangedHandler OnAcChanged;
     }
 
+    [Interface("org.freedesktop.PowerManagement.Inhibit")]
+    public interface IPowerManagementInhibit
+    {
+        uint Inhibit(string application, string reason);
+        void UnInhibit(uint cookie);
+        bool HasInhibit();
+    }
+
     public static class PowerManagement
     {
-        private const string BusName = "org.gnome.PowerManager";
-        private const string ObjectPath = "/org/gnome/PowerManager";
+        private const string oldBusName = "org.gnome.PowerManager";
+        private const string oldObjectPath = "/org/gnome/PowerManager";
 
-        private static IPowerManager FindInstance()
+        private const string BusName = "org.freedesktop.PowerManagement";
+        private const string ObjectPath = "/org/freedesktop/PowerManagement/Inhibit";
+
+        private static object FindInstance()
         {
-            if(!Bus.Session.NameHasOwner(BusName)) {
-                throw new ApplicationException(String.Format("Name {0} has no owner", BusName));
+            if (!Bus.Session.NameHasOwner(BusName)) {
+                if (!Bus.Session.NameHasOwner(oldBusName)) {
+                    throw new ApplicationException(String.Format("Name {0} or {1} has no owner", BusName, oldBusName));
+                }
+
+                old_gpm = true;
+
+                IPowerManager old_inhibit = Bus.Session.GetObject<IPowerManager>(
+                    oldBusName, new ObjectPath(oldObjectPath));
+                
+                try {
+                    //GetOnAc() was called getOnAc() in gpm version <= 2.14.x
+                    old_inhibit.GetOnAc();
+                } catch(Exception e) {
+                    throw new ApplicationException(String.Format(("Unsupported version of GNOME Power Manager: " + e.Message)));
+                }
+
+                return old_inhibit;
             }
             
-            return Bus.Session.GetObject<IPowerManager>(
+            old_gpm = false;
+            
+            IPowerManagementInhibit inhibit = Bus.Session.GetObject<IPowerManagementInhibit>(
                 BusName, new ObjectPath(ObjectPath));
+
+            // Check if calling HasInhibit() works, this was not there before
+            try {
+                inhibit.HasInhibit ();
+            } catch(Exception e) {
+                throw new ApplicationException(String.Format(("Unsupported version of GNOME Power Manager: " + e.Message)));
+            }
+            
+            return inhibit;
         }
 
         private static readonly string INHIBIT_PLAY_REASON = Catalog.GetString("Playing Music");
         
         private static Dictionary<string, uint> gpm_inhibit_cookie_map = null;
-        private static IPowerManager gpm = null;
+        private static object gpm = null;
+        private static bool old_gpm = false;
         
         public static void Initialize()
         {
@@ -91,16 +130,6 @@ namespace Banshee.Base
                 gpm = FindInstance();
             } catch(Exception e) {
                 LogError("Cannot find GNOME Power Manager: " + e.Message);
-                gpm = null;
-                return;
-            }
-            
-            //test for gpm version >= 2.15
-            try {
-                //GetOnAc() was called getOnAc() in gpm version <= 2.14.x
-                gpm.GetOnAc();
-            } catch(Exception e) {
-                LogError("Unsupported version of GNOME Power Manager: " + e.Message);
                 gpm = null;
                 return;
             }
@@ -139,7 +168,11 @@ namespace Banshee.Base
             }
             
             try {
-                uint cookie = gpm.Inhibit("Banshee", reason);
+                uint cookie;
+                if (old_gpm)
+                    cookie = ((IPowerManager) gpm).Inhibit("Banshee", reason);
+                else
+                    cookie = ((IPowerManagementInhibit) gpm).Inhibit("Banshee", reason);
                 gpm_inhibit_cookie_map[reason] = cookie;
             } catch(Exception e) {
                 LogError("Inhibit: " + e.Message);
@@ -159,7 +192,10 @@ namespace Banshee.Base
             
             try {
                 uint cookie = gpm_inhibit_cookie_map[reason];
-                gpm.UnInhibit(cookie);
+                if (old_gpm)
+                    ((IPowerManager) gpm).UnInhibit(cookie);
+                else
+                    ((IPowerManagementInhibit) gpm).UnInhibit(cookie);                    
             } catch(Exception e) {
                 LogError("UnInhibit: " + e.Message);
             }
