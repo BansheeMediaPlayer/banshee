@@ -1,0 +1,137 @@
+2007-12-03  Alan McGovern <alan.mcgovern@gmail.com> 
+
+	* Banshee.Dap.Mtp.mdp: Pushing MTP code into banshee. Huzzah!
+
+2007-11-14  Alan McGovern <alan.mcgovern@gmail.com> 
+
+	* MtpDap.cs: Cosmetic changes to the debug output
+
+2007-10-21  Alan McGovern <alan.mcgovern@gmail.com> 
+
+	* MtpDap.cs: If the camera hasn't initialised, return sane values rather
+	  than blowing up (fixed it this time)
+
+2007-10-20  Alan McGovern <alan.mcgovern@gmail.com> 
+
+	* MtpDap.cs: Updated the warning message a bit
+
+2007-10-20  Alan McGovern <alan.mcgovern@gmail.com> 
+
+	* MtpDap.cs: When the import is complete, dispose the user event
+
+2007-10-14  Alan McGovern <alan.mcgovern@gmail.com> 
+
+	* MtpDap.cs: if there's no space on the device, give a warning when trying
+	  to upload. Removed unneeded logic from AddTrack. Added some debug
+	  output.
+
+2007-10-14  Alan McGovern <alan.mcgovern@gmail.com> 
+
+	* MtpDap.cs: Updated to latest libgphoto-sharp API
+
+2007-10-14  Alan McGovern <alan.mcgovern@gmail.com> 
+
+	* MtpDap.cs: Removed debug speedup which i accidently commited 
+
+2007-10-13  Alan McGovern <alan.mcgovern@gmail.com> 
+
+	* MtpDap.cs: Implemented IImportable. Added speedups for library refreshing.
+	  Enabled metadata updating. 
+	* MtpDapTrackInfo.cs: Adding a URI (even though it's useless). Overrode
+	  WriteUpdate so changing metadata can be detected.
+
+2007-10-13  Alan McGovern <alan.mcgovern@gmail.com> 
+
+	* MtpDap.cs: Added logic to resolve folder/filename collisions and also
+	  intelligently create directories for files 
+
+2007-10-07  Alan McGovern <alan.mcgovern@gmail.com> 
+
+	* MtpDap.cs: Reverted the change to AddTrack. Added in time information to
+	  show user how long it took to load the filesystem.
+
+2007-10-07  Alan McGovern <alan.mcgovern@gmail.com> 
+
+	* MtpDap.cs: Removed excess debugging messages, bugfixed 'AddTrack'
+
+2007-10-07  Alan McGovern <alan.mcgovern@gmail.com> 
+
+	* MtpDap.cs: Spaces/tabs fix
+
+2007-10-06  Alan McGovern <alan.mcgovern@gmail.com> 
+
+	* Makefile.am: Updated  makefiles to fix compilation
+
+2007-10-06  Alan McGovern <alan.mcgovern@gmail.com> 
+
+	* MtpDap.cs: Added internal property to expose the camera. updated logic in
+	  AddTrack to be more like what i think it should be.
+	* MtpDapTrackInfo.cs: Cosmetic
+	* MtpDapPlaylistSource.cs: Initial version of MtpDapPlaylistSource
+
+2007-10-06  Alan McGovern <alan.mcgovern@gmail.com> 
+
+	* Banshee.Dap.Mtp.mdp, GPhotoDevicePlaylist.cs: Removed old unneeded file
+
+2007-10-06  Alan McGovern <alan.mcgovern@gmail.com> 
+
+	* GPhotoDevicePlaylist.cs: Began refactor of the 'Playlist' class.
+	* MtpDap.cs: Removed useless debug message
+
+2007-10-02  Alan McGovern <alan.mcgovern@gmail.com> 
+
+	* MtpDap.cs: Now identifying devices using the usb bus and device numbers.
+	  Multiple instances of the same mp3 player can be correctly used now.
+	  Removed debug speedup which shouldn't have hit SVN.
+
+2007-10-01  Alan McGovern <alan.mcgovern@gmail.com> 
+
+	* MtpDap.cs: Implemented track adding/removing so synching works.
+	* MtpDapTrackInfo.cs: Added method to make it easy to check if the file is
+	  on a camera. overrode equals.
+
+2007-10-01  Alan McGovern <alan.mcgovern@gmail.com> 
+
+	* MtpDap.cs: Cosmetic
+
+2007-10-01  Alan McGovern <alan.mcgovern@gmail.com> 
+
+	* MtpDap.cs: base.Initialize(HalDevice) was being called twice. Fixed some
+	  debug spew
+
+2007-10-01  Alan McGovern <alan.mcgovern@gmail.com> 
+
+	* MtpDap.cs: Added useful debug-spew when trying to connect to devices.
+
+2007-09-30  Alan McGovern <alan.mcgovern@gmail.com> 
+
+	* MtpDap.cs: Giving some stats about how many tracks were loaded
+
+2007-09-30  Alan McGovern <alan.mcgovern@gmail.com> 
+
+	* MtpDap.cs: Removed excess dead code
+
+2007-09-30  Alan McGovern <alan.mcgovern@gmail.com> 
+
+	* MtpDap.cs: Remvoed other half of speedup-hack
+
+2007-09-30  Alan McGovern <alan.mcgovern@gmail.com> 
+
+	* MtpDap.cs: Removed my debugging speedup-hack
+
+2007-09-30  Alan McGovern <alan.mcgovern@gmail.com> 
+
+	* GPhotoDeviceFile.cs, Banshee.Dap.Mtp.mdp, GPhotoUtilities.cs, Makefile.am:
+	  Deleted useless files
+	* MtpDap.cs, MtpDapTrackInfo.cs: Began initial work on updating the MTP code
+	  to work with the new API
+	* MtpDapPlaylistSource.cs, GPhotoDevicePlaylist.cs: Commented it all out, it
+	  needs to be redone
+
+2007-09-07  Alan McGovern <alan.mcgovern@gmail.com> 
+
+	* GPhotoDevice.cs, GPhotoDeviceFile.cs: Updated the parsing of the metadata
+	  so it only reads through the string once rather than doing lengthy full
+	  linear searches for each attribute. Replaced the DisposeCameraFile
+	  method with a standard Dispose
+

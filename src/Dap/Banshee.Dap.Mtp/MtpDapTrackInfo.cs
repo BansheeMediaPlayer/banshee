@@ -1,7 +1,7 @@
 /***************************************************************************
  *  MtpDapTrackInfo.cs
  *
- *  Copyright (C) 2006 Novell and Patrick van Staveren
+ *  Copyright (C) 2006-2007 Novell and Patrick van Staveren
  *  Written by Patrick van Staveren (trick@vanstaveren.us)
  ****************************************************************************/
 
@@ -30,72 +30,80 @@ using System;
 using System.IO;
 using Banshee.Base;
 using Banshee.Dap;
-using LibGPhoto2;
+using Gphoto2;
 
 namespace Banshee.Dap.Mtp
 {
     public sealed class MtpDapTrackInfo : DapTrackInfo
     {
-        GPhotoDeviceFile device_file;
-        public MtpDapTrackInfo(GPhotoDeviceFile DevFile) : base()
+        private Camera camera;
+        private Gphoto2.File file;
+        
+        public Gphoto2.File OriginalFile
         {
-            device_file = DevFile;
-            //uri = new SafeUri(String.Format("dap://{0}/{1}", DevFile.Directory, DevFile.Filename));
-                        // uri commented out on upgrade to banshee cvs on 2006-04-20 from a 2 month old snapshot - apparently safeuri is causing crashes in transcode in my system.  urgh.
-            //uri = new SafeUri(String.Format("dap://{0}/{1}/{2}", dap.Uid, DevFile.Directory, DevFile.Filename));
-            album = DevFile.AlbumName;
-            artist = DevFile.Artist;
-            title = DevFile.Name;
-            genre = DevFile.Genre;
-            duration = TimeSpan.FromMilliseconds(DevFile.Duration);;
-            play_count = DevFile.UseCount;
-            track_number = DevFile.Track;
-            year = DevFile.Year;
-            CanPlay = false;
-            this.NeedSync = false;
-        }
-
-        public GPhotoDeviceFile DeviceFile {
-            get {
-                return device_file;
-            }
+            get { return file; }
         }
         
-        public void MakeFileUri () {
-            try {
-                byte[] data = device_file.CameraFile.GetDataAndSize();
-                string temp_file_string = Path.GetTempFileName();
-                File.Delete(temp_file_string);
-                FileStream temp_file = File.Open(temp_file_string + device_file.Extension, FileMode.Create);
-                temp_file.Write(data, 0, data.Length);
-                temp_file.Close();
-                uri = new SafeUri("file://" + temp_file.Name);
-            } catch (Exception e) {
-                LogCore.Instance.PushDebug (String.Format("MTP DAP: Failed to copy track {0} locally for importing.  Exception: {1}", title, e.ToString()), "");
-            }
+        public MtpDapTrackInfo(Camera camera, MusicFile file) : base()
+		{
+            this.camera = camera;
+            this.file = file;
+			
+			album = file.Album;
+            artist = file.Artist;
+            date_added = file.DateAdded;
+            duration = TimeSpan.FromMilliseconds(file.Duration);
+            genre = file.Genre;
+            last_played = file.LastPlayed;
+            play_count = file.UseCount < 0 ? (uint)0 : (uint)file.UseCount;
+            rating = file.Rating < 0 ? (uint)0 : (uint)file.Rating;
+            title = file.Title;
+            track_number = file.Track < 0 ? (uint)0 : (uint)file.Track;
+            year = file.Year;
+            can_play = false;             // This can be implemented if there's enough people requesting it
+            can_save_to_database = true;
+            NeedSync = false;
+			
+			// Set a URI even though it's not actually accessible through normal API's.
+			uri = new SafeUri("mtp://" + FileSystem.CombinePath(file.Path, file.Filename));
         }
         
-        public override void Save() {
-            Console.WriteLine("track saving doesn't work.");
-            /*GpDeviceFile.AlbumName = album;
-            GpDeviceFile.Artist = artist;
-            GpDeviceFile.Genre = genre;
-            GpDeviceFile.Name = title;
-            GpDeviceFile.Track = track_number;
-            GpDeviceFile.UseCount = play_count;
-            GpDeviceFile.Year = year;
+        public override bool Equals (object o)
+        {
+            MtpDapTrackInfo dapInfo = o as MtpDapTrackInfo;
+            return dapInfo == null ? false : Equals(dapInfo);
+        }
+        
+        // FIXME: Is this enough? Does it matter if i just match metadata?
+        public bool Equals(MtpDapTrackInfo info)
+        {
+			return this.file.Equals(info.file);
+            return info == null ? false
+             : this.album == info.album
+             && this.artist == info.artist
+             && this.title == info.title
+             && this.track_number == info.track_number;
+        }
+        
+        public override int GetHashCode ()
+        {
+            int result = 0;
+            result ^= (int)track_number;
+            if(album != null) result ^= album.GetHashCode();
+            if(artist != null) result ^= artist.GetHashCode();
+            if(title != null) result ^= title.GetHashCode();
             
-            GpDeviceFile.SaveMetadata();
-            Console.WriteLine("Track Save just might have worked!");*/
+            return result;
         }
-
-        public override void IncrementPlayCount() {
-            play_count++;
-            Save();
+        
+        public bool OnCamera(Camera camera)
+        {
+            return this.camera == camera;
         }
-
-        protected override void SaveRating() {
-            Save();
-        }
+		
+		protected override void WriteUpdate ()
+		{
+			OnChanged();
+		}
     }
 }

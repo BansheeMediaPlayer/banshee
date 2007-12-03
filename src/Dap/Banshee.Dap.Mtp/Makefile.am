@@ -7,8 +7,7 @@ ASSEMBLY_SOURCES = \
 	$(top_srcdir)/src/AssemblyInfo.cs \
 	$(srcdir)/MtpDap.cs \
 	$(srcdir)/MtpDapTrackInfo.cs \
-	$(srcdir)/GPhotoDevice.cs \
-	$(srcdir)/GPhotoDeviceFile.cs
+	$(srcdir)/MtpDapPlaylistSource.cs
 
 if ENABLE_MTP
 bansheedapdir = $(pkglibdir)/Banshee.Dap
