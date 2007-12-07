@@ -46,6 +46,7 @@ namespace Banshee.Plugins.LastFM
 
         public LastFMTrackInfo ()
         {
+            CanSaveToDatabase = false;
         }
 
         public Track XspfTrack {
@@ -71,6 +72,7 @@ namespace Banshee.Plugins.LastFM
             Duration = track.Duration;
             TrackNumber = track.TrackNumber;
             XspfTrack = track;
+            CanSaveToDatabase = false;
         }
 
         public override void IncrementPlayCount ()

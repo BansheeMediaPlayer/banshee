@@ -316,7 +316,6 @@ namespace Banshee.Plugins.LastFM
                         foreach (Track track in playlist.Tracks) {
                             TrackInfo ti = new LastFMTrackInfo (track, this);
                             new_tracks.Add (ti);
-                            //MetadataService.Instance.Lookup (ti);
                             lock (TracksMutex) {
                                 tracks.Add (ti);
                             }
@@ -341,12 +340,6 @@ namespace Banshee.Plugins.LastFM
             });
         }
 
-        public override void RemoveTrack (TrackInfo track)
-        {
-            tracks.Remove (track);
-            OnUpdated ();
-        }
-
         private void ClearTracks ()
         {
             lock (TracksMutex) {
@@ -368,7 +361,6 @@ namespace Banshee.Plugins.LastFM
                             break;
                         if (track.CanPlay) {
                             track.CanPlay = false;
-                            //track.PlaybackError = TrackPlaybackError.ResourceNotFound;
                         }
                     }
                     OnUpdated ();

@@ -1,3 +1,11 @@
+2007-12-07  Gabriel Burt  <gabriel.burt@gmail.com>
+
+	* src/Plugins/Banshee.Plugins.LastFM/StationSource.cs: Don't allow
+	removing tracks from a StationSource.
+
+	* src/Plugins/Banshee.Plugins.LastFM/LastFMTrackInfo.cs: Set
+	CanSaveToDatabase = false.
+
 2007-11-15  Sebastian Dröge  <slomo@circular-chaos.org>
 
 	* src/Core/Banshee.Base/PowerManagement.cs: Add support for
