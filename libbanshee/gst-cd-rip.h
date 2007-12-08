@@ -61,7 +61,7 @@ GstCdRipper *gst_cd_ripper_new(gchar *device, gint paranoia_mode, gchar *encoder
 void gst_cd_ripper_free(GstCdRipper *ripper);
 gboolean gst_cd_ripper_rip_track(GstCdRipper *ripper, gchar *uri, gint track_number, 
     gchar *md_artist, gchar *md_album, gchar *md_title, gchar *md_genre,
-    gint md_track_number, gint md_track_count, gpointer user_info);
+    gint md_track_number, gint md_track_count, gint md_year, gpointer user_info);
 void gst_cd_ripper_set_progress_callback(GstCdRipper *ripper, GstCdRipperProgressCallback cb);
 void gst_cd_ripper_cancel(GstCdRipper *ripper);
 gchar *gst_cd_ripper_get_error(GstCdRipper *ripper);

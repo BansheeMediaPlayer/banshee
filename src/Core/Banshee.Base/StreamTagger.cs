@@ -74,7 +74,7 @@ namespace Banshee.Base
         
         public static void TrackInfoMerge(TrackInfo track, TagLib.File file)
         {
-            track.Artist = Choose(file.Tag.JoinedArtists, track.Artist);
+            track.Artist = Choose(file.Tag.JoinedPerformers, track.Artist);
             track.Album = Choose(file.Tag.Album, track.Album);
             track.Title = Choose(file.Tag.Title, track.Title);
             track.Genre = Choose(file.Tag.FirstGenre, track.Genre);
@@ -184,7 +184,7 @@ namespace Banshee.Base
             }
         
             TagLib.File file = StreamTagger.ProcessUri(track.Uri);
-            file.Tag.AlbumArtists = new string [] { track.Artist };
+            file.Tag.Performers = new string [] { track.Artist };
             file.Tag.Album = track.Album;
             file.Tag.Genres = new string [] { track.Genre };
             file.Tag.Title = track.Title;

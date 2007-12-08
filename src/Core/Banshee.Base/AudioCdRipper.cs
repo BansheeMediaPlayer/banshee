@@ -116,7 +116,7 @@ namespace Banshee.Base
             
             gst_cd_ripper_rip_track(handle, outputUri.AbsoluteUri, trackNumber, 
                 track.Artist, track.Album, track.Title, track.Genre, 
-                (int)track.TrackNumber, (int)track.TrackCount, IntPtr.Zero);
+                (int)track.TrackNumber, (int)track.TrackCount, (int)track.Year, IntPtr.Zero);
                 
             track = null;
         }
@@ -193,7 +193,7 @@ namespace Banshee.Base
         private static extern bool gst_cd_ripper_rip_track(HandleRef ripper, 
             string uri, int track_number, string md_artist, string md_album, 
             string md_title, string md_genre, int md_track_number, 
-            int md_track_count, IntPtr user_info);
+            int md_track_count, int md_year, IntPtr user_info);
             
         [DllImport("libbanshee")]
         private static extern void gst_cd_ripper_set_progress_callback(

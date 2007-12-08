@@ -374,12 +374,13 @@ gst_cd_ripper_free(GstCdRipper *ripper)
 gboolean
 gst_cd_ripper_rip_track(GstCdRipper *ripper, gchar *uri, gint track_number, 
     gchar *md_artist, gchar *md_album, gchar *md_title, gchar *md_genre,
-    gint md_track_number, gint md_track_count, gpointer user_info)
+    gint md_track_number, gint md_track_count, gint md_year, gpointer user_info)
 {
     GstIterator *bin_iterator;
     GstElement *bin_element;
     gboolean can_tag = FALSE;
     gboolean iterate_done = FALSE;
+    GDate *date;
 
     g_return_val_if_fail(ripper != NULL, FALSE);
 
@@ -390,6 +391,8 @@ gst_cd_ripper_rip_track(GstCdRipper *ripper, gchar *uri, gint track_number,
     // initialize the pipeline, set the sink output location
     gst_element_set_state(ripper->filesink, GST_STATE_NULL);
     g_object_set(G_OBJECT(ripper->filesink), "location", uri, NULL);
+
+    date = g_date_new_dmy (1, 1, md_year);
     
     // find an element to do the tagging and set tag data
     bin_iterator = gst_bin_iterate_all_by_interface(GST_BIN(ripper->encoder), GST_TYPE_TAG_SETTER);
@@ -403,13 +406,14 @@ gst_cd_ripper_rip_track(GstCdRipper *ripper, gchar *uri, gint track_number,
                     GST_TAG_ALBUM,  md_album,
                     GST_TAG_TRACK_NUMBER, md_track_number,
                     GST_TAG_TRACK_COUNT,  md_track_count,
+                    GST_TAG_DATE, date,
                     GST_TAG_ENCODER, _("Banshee"),
                     GST_TAG_ENCODER_VERSION, VERSION,
                     NULL);
                     
-                if(md_genre && strlen(md_genre) == 0) {
+                if(md_genre && strlen(md_genre) > 0) {
                     gst_tag_setter_add_tags(GST_TAG_SETTER(bin_element),
-                        GST_TAG_MERGE_APPEND,
+                        GST_TAG_MERGE_REPLACE_ALL,
                         GST_TAG_GENRE, md_genre,
                         NULL);
                 }
@@ -425,6 +429,8 @@ gst_cd_ripper_rip_track(GstCdRipper *ripper, gchar *uri, gint track_number,
                 break;
         }
     }
+
+    g_date_free (date);
     
     gst_iterator_free(bin_iterator);
     

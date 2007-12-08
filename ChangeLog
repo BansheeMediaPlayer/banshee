@@ -1,5 +1,17 @@
 2007-12-07  Gabriel Burt  <gabriel.burt@gmail.com>
 
+	* src/Core/Banshee.Base/StreamTagger.cs: Fix bug where we were writing the
+	Artist into the ID3v2 TPE2 frame instead of the TPE1 frame where it
+	belongs.  Should fix BGO #490254.
+
+	* src/Core/Banshee.Base/AudioCdRipper.cs: 
+	* libbanshee/gst-cd-rip.h:
+	* libbanshee/gst-cd-rip-0.10.c: Pass and set the year for the track, and
+	actually set the passed genre.  Fixes bug mentioned in comment on BGO
+	#490254.
+
+2007-12-07  Gabriel Burt  <gabriel.burt@gmail.com>
+
 	* src/Plugins/Banshee.Plugins.LastFM/StationSource.cs: Don't allow
 	removing tracks from a StationSource.
 
