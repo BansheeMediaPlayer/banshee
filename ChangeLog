@@ -1,5 +1,10 @@
 2007-12-07  Gabriel Burt  <gabriel.burt@gmail.com>
 
+	* libbanshee/gst-cd-rip-0.10.c: Avoid crashing when ripping and the year
+	isn't set for a track.
+
+2007-12-07  Gabriel Burt  <gabriel.burt@gmail.com>
+
 	* src/Core/Banshee.Base/StreamTagger.cs: Fix bug where we were writing the
 	Artist into the ID3v2 TPE2 frame instead of the TPE1 frame where it
 	belongs.  Should fix BGO #490254.

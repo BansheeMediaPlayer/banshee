@@ -392,7 +392,7 @@ gst_cd_ripper_rip_track(GstCdRipper *ripper, gchar *uri, gint track_number,
     gst_element_set_state(ripper->filesink, GST_STATE_NULL);
     g_object_set(G_OBJECT(ripper->filesink), "location", uri, NULL);
 
-    date = g_date_new_dmy (1, 1, md_year);
+    date = g_date_new();
     
     // find an element to do the tagging and set tag data
     bin_iterator = gst_bin_iterate_all_by_interface(GST_BIN(ripper->encoder), GST_TYPE_TAG_SETTER);
@@ -406,10 +406,18 @@ gst_cd_ripper_rip_track(GstCdRipper *ripper, gchar *uri, gint track_number,
                     GST_TAG_ALBUM,  md_album,
                     GST_TAG_TRACK_NUMBER, md_track_number,
                     GST_TAG_TRACK_COUNT,  md_track_count,
-                    GST_TAG_DATE, date,
                     GST_TAG_ENCODER, _("Banshee"),
                     GST_TAG_ENCODER_VERSION, VERSION,
                     NULL);
+
+                if (g_date_valid_dmy(1, 1, md_year)) {
+                    g_date_clear(date, 1);
+                    g_date_set_dmy(date, 1, 1, md_year);
+                    gst_tag_setter_add_tags(GST_TAG_SETTER(bin_element),
+                        GST_TAG_MERGE_REPLACE_ALL,
+                        GST_TAG_DATE, date,
+                        NULL);
+                }
                     
                 if(md_genre && strlen(md_genre) > 0) {
                     gst_tag_setter_add_tags(GST_TAG_SETTER(bin_element),
