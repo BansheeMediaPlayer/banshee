@@ -186,7 +186,7 @@ namespace Banshee.Plugins.LastFM
 
         private void TuneAndLoad ()
         {
-            ThreadAssist.Spawn (delegate {
+            ThreadPool.QueueUserWorkItem (delegate {
                 if (ChangeToThisStation ()) {
                     Thread.Sleep (250); // sleep for a bit to try to avoid Last.fm timeouts
                     if (TracksLeft < 2)
@@ -448,9 +448,10 @@ namespace Banshee.Plugins.LastFM
         public override Gdk.Pixbuf Icon {
             get {
                 if (icon == null && Type != null && Type.IconName != null) {
-                    icon = IconThemeUtils.LoadIcon (Type.IconName, 24);
-                    if (icon == null)
+                    icon = IconThemeUtils.LoadIcon (22, Type.IconName);
+                    if (icon == null) {
                         icon = Gdk.Pixbuf.LoadFromResource (Type.IconName + ".png");
+                    }
                 }
                 return icon;
             }

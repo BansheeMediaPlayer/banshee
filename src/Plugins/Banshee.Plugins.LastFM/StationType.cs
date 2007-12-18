@@ -94,7 +94,7 @@ namespace Banshee.Plugins.LastFM
                 Catalog.GetString ("Personal"),
                 Catalog.GetString ("For User:"),
                 "user/{0}/personal",
-                "stock_person",
+                "system-users",
                 true
             ));
 
@@ -112,7 +112,7 @@ namespace Banshee.Plugins.LastFM
                 Catalog.GetString ("Neighbors"),
                 Catalog.GetString ("Of User:"),
                 "user/{0}/neighbours",
-                "stock_people",
+                "system-users",
                 false
             ));
 

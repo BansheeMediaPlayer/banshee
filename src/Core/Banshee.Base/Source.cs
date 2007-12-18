@@ -458,7 +458,7 @@ namespace Banshee.Sources
         }
         
         public bool CanRemoveTracks {
-            get { return ReflectionUtil.IsVirtualMethodImplemented(GetType(), "RemoveTrack"); }
+            get { return ReflectionUtil.IsVirtualMethodImplemented(GetType(), "RemoveTrack", new Type [] { typeof (TrackInfo) }); }
         }
         
         public bool AcceptsSourceDrop {

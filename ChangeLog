@@ -1,3 +1,15 @@
+2007-12-18  Aaron Bockover  <abock@gnome.org>
+
+	* src/Core/Banshee.Base/Utilities.cs:
+	* src/Core/Banshee.Base/Source.cs: Fix the crash that occurs with Mono
+	1.2.6 or better
+
+	* src/Plugins/Banshee.Plugins.LastFM/StationType.cs: Use the system-users
+	icon instead of stock_people
+
+	* src/Plugins/Banshee.Plugins.LastFM/StationSource.cs: Try loading icons
+	from the theme first, then fall back to embedded resources
+
 2007-12-07  Gabriel Burt  <gabriel.burt@gmail.com>
 
 	* libbanshee/gst-cd-rip-0.10.c: Avoid crashing when ripping and the year
