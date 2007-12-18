@@ -7,7 +7,7 @@ theme_icons = \
 	apps,music-player-banshee-32.png \
 	apps,music-player-banshee-48.png \
 	apps,music-player-banshee-192.png \
-	apps,music-player-banshee-256.png
+	apps,music-player-banshee-scalable.png
 
 install_icon_exec = $(top_srcdir)/build/icon-theme-installer \
 	-t "$(theme)" \
@@ -24,5 +24,5 @@ uninstall-hook:
 	@-$(install_icon_exec) -u $(theme_icons)
 	
 MAINTAINERCLEANFILES = Makefile.in
-EXTRA_DIST = $(wildcard *.png *.svg)
+EXTRA_DIST = $(wildcard *.png *.svg) $(wildcard src/*.svg)
 
