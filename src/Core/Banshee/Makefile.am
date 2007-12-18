@@ -52,11 +52,6 @@ BANSHEE_RESOURCES = \
 	data/images/media-playback-pause.png \
 	data/images/media-playback-start.png \
 	data/images/media-skip-backward.png \
-	data/images/music-player-banshee-16.png \
-	data/images/music-player-banshee-22.png \
-	data/images/music-player-banshee-24.png \
-	data/images/music-player-banshee.png \
-	data/images/music-player-banshee.svg \
 	data/images/now-playing-arrow.png \
 	data/images/playlist-icon-large.png \
 	data/images/song-drm.png \

@@ -98,6 +98,7 @@ data/Makefile
 data/org.gnome.Banshee.service
 data/audio-profiles/Makefile
 data/images/Makefile
+data/images/app-icons/Makefile
 
 docs/Makefile
 tests/Makefile
