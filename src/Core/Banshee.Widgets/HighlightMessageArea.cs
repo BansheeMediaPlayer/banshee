@@ -88,11 +88,10 @@ namespace Banshee.Widgets
         protected override bool OnExposeEvent(Gdk.EventExpose evnt)
         {
             GdkWindow.DrawRectangle(Style.BackgroundGC(StateType.Normal), true, Allocation);
+
+            GdkWindow.DrawRectangle (Style.BackgroundGC(StateType.Selected), false,
+                Allocation.X, Allocation.Y, Allocation.Width - 1, Allocation.Height - 1);
                 
-            Gtk.Style.PaintFlatBox(Style, GdkWindow, StateType.Normal, ShadowType.Out,
-                Gdk.Rectangle.Zero, this, "tooltip", Allocation.X, Allocation.Y, 
-                Allocation.Width, Allocation.Height);
-            
             base.OnExposeEvent(evnt);
             return true;
         }
