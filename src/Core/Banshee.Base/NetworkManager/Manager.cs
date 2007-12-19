@@ -43,7 +43,7 @@ namespace NetworkManager
     }
     
     [Interface("org.freedesktop.NetworkManager")]
-    public interface IManager
+    public interface INetworkManager
     {
         event StateChangeHandler StateChange;
         State state();
@@ -56,7 +56,7 @@ namespace NetworkManager
         private const string BusName = "org.freedesktop.NetworkManager";
         private const string ObjectPath = "/org/freedesktop/NetworkManager";
 
-        private IManager manager;
+        private INetworkManager manager;
         
         public event StateChangeHandler StateChange;
 
@@ -66,7 +66,7 @@ namespace NetworkManager
                 throw new ApplicationException(String.Format("Name {0} has no owner", BusName));
             }
 
-            manager = Bus.System.GetObject<IManager>(BusName, new ObjectPath(ObjectPath));
+            manager = Bus.System.GetObject<INetworkManager>(BusName, new ObjectPath(ObjectPath));
             manager.StateChange += OnStateChange;
         }
         
