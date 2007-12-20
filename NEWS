@@ -1,5 +1,5 @@
 ===============================================================================
-WELCOME TO BANSHEE 0.13.1
+WELCOME TO BANSHEE 0.13.2
 ===============================================================================
 
  * Banshee is a music management and playback application for GNOME.
@@ -11,7 +11,7 @@ WELCOME TO BANSHEE 0.13.1
     and much more."
 
  * Learn More: http://banshee-project.org/Discover
- * Release Overview Page: http://banshee-project.org/Releases/0.13.1
+ * Release Overview Page: http://banshee-project.org/Releases/0.13.2
 
 
 ===============================================================================
@@ -30,7 +30,7 @@ TABLE OF CONTENTS
  * Bugzilla Overview
    - Noteworthy bugs fixes/enhancements embraced in this release
    - Show all bugs marked FIXED during this release cycle
-   - File Bugs... Be Proactive... Contribute to Open Source!
+   - File Bugs... Be Proactive... Contribute to Free Software!
  * Miscellaneous
    - Contributors for this release
    - Contributors for past releases
@@ -41,13 +41,16 @@ TABLE OF CONTENTS
 MODULE NOTES
 ===============================================================================
 
+ * Mono.Zeroconf (0.7.2) is now required by the DAAP plugin; avahi/mdns are not
+   at compile time, though at least one is required at runtime.
+
+ * Podsleuth (0.6.1) and ipod-sharp (0.8.0) are required for iPod support.
+
  * The location of the user configuration directory for Banshee changed from
    ~/.gnome2/banshee to and XDG based directory, typically ~/.config/banshee
 
  * The banshee-official-plugins module has been merged with core, so 
    banshee-official-plugins is now obsolete
- 
- * libipoddevice (0.5.3) and ipod-sharp (0.6.3) are required for iPod support
 
  * Helix support has been removed from core and is now available from
    the Helix Banshee community project. More information regarding Helix
@@ -61,15 +64,18 @@ GET THE GOODS
 Sources
 -------
 
- * Banshee 0.13.1 Tarballs:
-   http://banshee-project.org/files/banshee/banshee-0.13.1.tar.bz2
-   http://banshee-project.org/files/banshee/banshee-0.13.1.tar.gz
+ * Banshee 0.13.2 Tarballs:
+   http://banshee-project.org/files/banshee/banshee-0.13.2.tar.bz2
+   http://banshee-project.org/files/banshee/banshee-0.13.2.tar.gz
  
- * ipod-sharp 0.6.2 Tarball:
-   http://banshee-project.org/files/ipod-sharp/ipod-sharp-0.6.3.tar.gz
+ * ipod-sharp 0.8.0 Tarball:
+   http://banshee-project.org/files/ipod-sharp/ipod-sharp-0.8.0.tar.gz
 
- * libipoddevice 0.5.2 Tarball:
-   http://banshee-project.org/files/libipoddevice/libipoddevice-0.5.3.tar.gz
+ * podsleuth 0.6.2 Tarball:
+   ?? http://banshee-project.org/files/podsleuth/podsleuth-0.6.2.tar.gz
+
+ * Mono.Zeroconf 0.7.3 Tarball:
+   ?? http://banshee-project.org/files/mzc/mono-zeroconf-0.7.3.tar.gz
 
  * njb-sharp 0.3.0 Tarball:
    http://banshee-project.org/files/njb-sharp/njb-sharp-0.3.0.tar.gz
@@ -77,7 +83,7 @@ Sources
 ChangeLogs
 ----------
  
- * http://banshee-project.org/files/banshee/banshee-0.13.1.changes
+ * http://banshee-project.org/files/banshee/banshee-0.13.2.changes
 
 Dependencies
 ------------
@@ -99,9 +105,11 @@ NEW STUFF
 Features
 --------
 
- * Added Undo/Redo support to the track editor (BGO #465736)
+ * Support for new iPod Nano and Classic models (Aaron Bockover, James Willcox)
 
- * Play Internet Radio playlists from the open location dialog
+ * New Last.fm radio plugin (Gabriel Burt)
+
+ * Skip song button in the notification popup.
 
 ===============================================================================
 BUGZILLA OVERVIEW
@@ -112,19 +120,21 @@ Noteworthy bugs fixes/enhancements embraced in this release
 
  GNOME Bugzilla
 
- * 453420 - Fixed CD burning in GNOME 2.19.x+
- * 457711 - Added new managed playlist parsing that eliminates the need for
-            totem-plparser (Aaron Bockover)
- * 468216 - Support GZipped compressed HTTP streams from last.fm in the 
-            recommendation plugin (Christian Krause)
- * 451457 - Fixed parsing of similarity in recommendation plugin that would
-            allow it to surpass 100% in some locales (Aaron Bockover)
- * 461596 - Expand $HOME and ~ in XDG user-dirs.dirs
+ * 477392 - Fixed issue with transcoding failing silently and never finishing
+   451651   (Gabriel Burt)
+ * 398278 - Fixed issue with ripping/transcoding with old settings (Gabriel
+            Burt)
+ * 336350 - Added ability to set cover art by dropping images onto Banshee's
+   402011   cover art views. Added abilty to drag out of Banshee too (Pepijn
+            van de Geer)
+ * 479237 - Fixed crash when filtering caused by null fields (Sebastian Dröge)
+ * 490254 - Fixed bug with writing the Artist metadata in the wrong location,
+            and not writing the year or genre when ripping (Gabriel Burt)
 
 Show all bugs marked FIXED during this release cycle
 ----------------------------------------------------
 
- * http://banshee-project.org/files/closedbugs.php/2007-08-06,2007-08-20
+ * http://banshee-project.org/files/closedbugs.php/2007-08-20,2007-12-19
 
 File Bugs... Be Proactive... Contribute to Open Source!
 -------------------------------------------------------
@@ -146,7 +156,8 @@ Contributors for this release
    
    Community makes Open Source work!
 
-   Aaron Bockover, Christian Krause
+   Aaron Bockover, Gabriel Burt, Jackson Harper, Michael Monreal, Sebastian
+   Dröge, Stephane Loeuillet
 
 Contributors for past releases [1]
 ----------------------------------
@@ -168,5 +179,3 @@ Thanks!
 -------
 
    Enjoy the release! We appreciate your support and involvement!
-
-
