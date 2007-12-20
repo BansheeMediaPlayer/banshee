@@ -471,6 +471,7 @@ namespace Banshee.Plugins.LastFM
             switch (state) {
             case ConnectionState.Disconnected:      return Catalog.GetString ("Not connected to Last.fm.");
             case ConnectionState.NoAccount:         return Catalog.GetString ("Need account details before can connect to Last.fm");
+            case ConnectionState.NoNetwork:         return Catalog.GetString ("No network connection detected.");
             case ConnectionState.InvalidAccount:    return Catalog.GetString ("Last.fm username or password is invalid.");
             case ConnectionState.Connecting:        return Catalog.GetString ("Connecting to Last.fm.");
             case ConnectionState.Connected:         return Catalog.GetString ("Connected to Last.fm.");
@@ -497,7 +498,6 @@ namespace Banshee.Plugins.LastFM
         {
             return ((int) (DateTime.Now - new DateTime (1970, 1, 1)).TotalSeconds).ToString ();
         }
-
 
         private LameXmlRpcRequest LastFMXmlRpcRequest (string method)
         {
@@ -558,5 +558,4 @@ namespace Banshee.Plugins.LastFM
 			return System.Text.Encoding.UTF8.GetString (ba);
 		}
     }
-
 }
