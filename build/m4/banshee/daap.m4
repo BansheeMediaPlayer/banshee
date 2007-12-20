@@ -5,7 +5,7 @@ AC_DEFUN([BANSHEE_CHECK_DAAP],
 		enable_daap=no, enable_daap=yes)
 
 	if test "x$enable_daap" = "xyes"; then 
-        PKG_CHECK_MODULES(MONOZEROCONF, mono-zeroconf)
+        PKG_CHECK_MODULES(MONOZEROCONF, mono-zeroconf >= 0.7.2)
         AC_SUBST(MONOZEROCONF_LIBS)
 		AM_CONDITIONAL(DAAP_ENABLED, true)
 	else
