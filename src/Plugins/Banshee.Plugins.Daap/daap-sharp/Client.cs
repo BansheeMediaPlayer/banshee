@@ -79,7 +79,7 @@ namespace DAAP {
         public Client (Service service) : this (service.Address, service.Port) {
         }
 
-        public Client (string host, UInt16 port) : this (Dns.Resolve (host).AddressList[0], port) {
+        public Client (string host, UInt16 port) : this (Dns.GetHostEntry (host).AddressList[0], port) {
         }
 
         public Client (IPAddress address, UInt16 port) {
@@ -87,7 +87,6 @@ namespace DAAP {
             this.port = port;
             fetcher = new ContentFetcher (address, port);
 
-            bag = ContentCodeBag.ParseCodes (fetcher.Fetch ("/content-codes"));
 
             ContentNode node = ContentParser.Parse (ContentCodeBag.Default, fetcher.Fetch ("/server-info"));
             serverInfo = ServerInfo.FromNode (node);
@@ -123,6 +122,8 @@ namespace DAAP {
             fetcher.Password = password;
 
             try {
+                bag = ContentCodeBag.ParseCodes (fetcher.Fetch ("/content-codes"));
+
                 ContentNode node = ContentParser.Parse (bag, fetcher.Fetch ("/login"));
                 ParseSessionId (node);
 
@@ -150,7 +151,7 @@ namespace DAAP {
                 updateRunning = false;
                 fetcher.KillAll ();
                 fetcher.Fetch ("/logout");
-            } catch (WebException e) {
+            } catch (WebException) {
                 // some servers don't implement this, etc.
             }
             
@@ -213,7 +214,7 @@ namespace DAAP {
                         break;
                     
                     Refresh ();
-                } catch (WebException e) {
+                } catch (WebException) {
                     if (!updateRunning)
                         break;
                     

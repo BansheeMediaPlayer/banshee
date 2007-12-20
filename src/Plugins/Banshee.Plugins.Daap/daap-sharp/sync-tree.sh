@@ -5,7 +5,8 @@
 # your project repository as directed by this script when complete
 
 #ROOT="svn://svn.myrealbox.com/source/trunk"
-ROOT="svn+ssh://jwilcox@mono-cvs.ximian.com/source/trunk"
+#ROOT="svn+ssh://jwilcox@mono-cvs.ximian.com/source/trunk"
+ROOT="http://anonsvn.mono-project.com/source/trunk"
 MODULE=daap-sharp
 SRCDIR=src
 
@@ -36,39 +37,12 @@ for i in $MODULE/$SRCDIR/{*.cs,content-codes}; do
 	cp $MODULE/$SRCDIR/$FILE .
 done
 
-if [ ! -d Mono.Zeroconf ]; then
-	mkdir Mono.Zeroconf
-fi
-
-for i in $MODULE/$SRCDIR/Mono.Zeroconf/*.cs; do
-	FILE=`basename $i`
-
-	if [ -f Mono.Zeroconf/$FILE ]; then
-		echo "    U Mono.Zeroconf/$FILE"
-	else
-		echo "    A Mono.Zeroconf/$FILE"
-		FILES_ADDED="yes"
-	fi
-
-	cp $MODULE/$SRCDIR/Mono.Zeroconf/$FILE Mono.Zeroconf/
-done
-	
 for i in *.cs; do
 	FILE=`basename $i`
 
 	if [ ! -f $MODULE/$SRCDIR/$FILE ]; then
 		echo "    D $FILE"
 		mv $FILE $FILE.remove
-		FILES_REMOVED="yes"
-	fi
-done
-
-for i in Mono.Zeroconf/*.cs; do
-	FILE=`basename $i`
-
-	if [ ! -f $MODULE/$SRCDIR/Mono.Zeroconf/$FILE ]; then
-		echo "    D Mono.Zeroconf/$FILE"
-		mv Mono.Zeroconf/$FILE Mono.Zeroconf/$FILE.remove
 		FILES_REMOVED="yes"
 	fi
 done

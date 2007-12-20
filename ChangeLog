@@ -1,5 +1,18 @@
 2007-12-19  Gabriel Burt  <gabriel.burt@gmail.com>
 
+	* build/Common.Makefile:
+	* build/m4/banshee/daap.m4:
+	* configure.ac:
+	* src/Plugins/Banshee.Plugins.Daap/Makefile.am: Remove deps on avahi and
+	mdns, instead depend on Mono.Zeroconf if DAAP is enabled.
+
+	* src/Plugins/Banshee.Plugins.Daap/daap-sharp/*: Update to latest
+	daap-sharp.
+
+	* src/Plugins/Banshee.Plugins.Daap/daap-sharp/Mono.Zeroconf/*: Remove.
+
+2007-12-19  Gabriel Burt  <gabriel.burt@gmail.com>
+
 	* src/Plugins/Banshee.Plugins.LastFM/Connection.cs: Add missing error
 	string.
 

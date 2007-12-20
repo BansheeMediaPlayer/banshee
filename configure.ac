@@ -170,13 +170,6 @@ src/Plugins/Banshee.Plugins.Recommendation/Makefile
 src/Plugins/Banshee.Plugins.Sample/Makefile
 ])
 
-if test "x${enable_daap}" = "xyes"; then
-	zeroconf_lib=", Avahi"
-	if test "x${enable_mdnsd}" = "xyes"; then
-		zeroconf_lib=", mDNSResponder"
-	fi
-fi
-
 echo "
 banshee-$VERSION
 
@@ -194,7 +187,7 @@ banshee-$VERSION
       MTP:             ${enable_mtp_dap}
       Karma:           ${enable_karmasharp}
 
-    DAAP Support:      ${enable_daap}${zeroconf_lib}
+    DAAP Support:      ${enable_daap}
 "
 if test -d ${expanded_libdir}/banshee; then
 	echo "WARNING: An existing Banshee install is in ${expanded_libdir}/banshee"

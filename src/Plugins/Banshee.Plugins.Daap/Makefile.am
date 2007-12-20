@@ -21,11 +21,10 @@ ASSEMBLY_SOURCES = \
 	$(srcdir)/DaapProxyWebServer.cs \
 	$(srcdir)/DaapConfigPage.cs \
 	$(srcdir)/DaapErrorView.cs \
-	$(srcdir)/daap-sharp/*.cs \
-	$(srcdir)/daap-sharp/Mono.Zeroconf/*.cs
+	$(srcdir)/daap-sharp/*.cs
 
 $(ASSEMBLY): $(ASSEMBLY_SOURCES) 
-	$(BUILD_LIB_BANSHEE_CORE) -out:$@  $(DAAPSHARP_FLAGS) $(LINK_GTK) $(LINK_MONO_UNIX) -r:ICSharpCode.SharpZipLib -r:System.Web -resource:$(srcdir)/daap-sharp/content-codes,content-codes $(ASSEMBLY_SOURCES)
+	$(BUILD_LIB_BANSHEE_CORE) -out:$@  $(LINK_MONOZEROCONF) $(LINK_GTK) $(LINK_MONO_UNIX) -r:ICSharpCode.SharpZipLib -r:System.Web -resource:$(srcdir)/daap-sharp/content-codes,content-codes $(ASSEMBLY_SOURCES)
 
 include $(top_srcdir)/build/gconf-schema-rules
 
