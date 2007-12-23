@@ -117,6 +117,11 @@ namespace Banshee.Base
                 delegate(TrackInfo t, object r) {
                     return String.Format("{0}", t == null ? (uint)r : t.TrackNumber);
             });
+
+            AddConversion("year", Catalog.GetString("Year"),
+                delegate(TrackInfo t, object r) {
+                    return String.Format("{0}", t == null ? (int)r : t.Year);
+            });
             
             AddConversion("path_sep", Path.DirectorySeparatorChar.ToString(),
                 delegate(TrackInfo t, object r) {
@@ -143,6 +148,7 @@ namespace Banshee.Base
         private static string [] suggested_folders = new string [] {
             DefaultFolder,
             "%artist%%path_sep%%artist% - %album%",
+            "%artist%%path_sep%%album% (%year%)",
             "%artist% - %album%",
             "%album%",
             "%artist%"
