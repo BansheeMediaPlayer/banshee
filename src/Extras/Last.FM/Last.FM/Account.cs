@@ -68,7 +68,11 @@ namespace Last.FM
         }
         
         public static void RequestLoginSync()
-        {    
+        {
+            try {
+                Ring.Unlock (Ring.GetDefaultKeyring ());
+            } catch {}
+
             foreach(ItemData result in Ring.Find(ItemType.NetworkPassword, request_attributes)) {
                 if(result.Attributes["name"] as string != keyring_item_name) {
                     continue;
@@ -85,13 +89,20 @@ namespace Last.FM
 
         public static void CommitLoginSync()
         {
+            try {
+                Ring.Unlock (Ring.GetDefaultKeyring ());
+            } catch {}
+
             Hashtable update_request_attributes = request_attributes.Clone() as Hashtable;
             update_request_attributes["user"] = username;
 
-            ItemData [] items = Ring.Find(ItemType.NetworkPassword, request_attributes);
-            string keyring = Ring.GetDefaultKeyring();
+            ItemData [] items = null;
+            try {
+                items = Ring.Find(ItemType.NetworkPassword, request_attributes);
+            } catch {}
 
-            if(items.Length == 0) {
+            string keyring = Ring.GetDefaultKeyring();
+            if (items == null || items.Length == 0) {
                 Ring.CreateItem(keyring, ItemType.NetworkPassword, keyring_item_name, 
                    update_request_attributes, password, true);
             } else {
