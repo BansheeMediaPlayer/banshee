@@ -30,42 +30,39 @@ using System;
 using System.IO;
 using Banshee.Base;
 using Banshee.Dap;
-using Gphoto2;
+using libmtpsharp;
 
 namespace Banshee.Dap.Mtp
 {
     public sealed class MtpDapTrackInfo : DapTrackInfo
     {
-        private Camera camera;
-        private Gphoto2.File file;
+        private MtpDevice camera;
+        private Track file;
         
-        public Gphoto2.File OriginalFile
+        public Track OriginalFile
         {
             get { return file; }
         }
         
-        public MtpDapTrackInfo(Camera camera, MusicFile file) : base()
+        public MtpDapTrackInfo(MtpDevice camera, Track file) : base()
 		{
             this.camera = camera;
             this.file = file;
 			
 			album = file.Album;
             artist = file.Artist;
-            date_added = file.DateAdded;
             duration = TimeSpan.FromMilliseconds(file.Duration);
             genre = file.Genre;
-            last_played = file.LastPlayed;
             play_count = file.UseCount < 0 ? (uint)0 : (uint)file.UseCount;
             rating = file.Rating < 0 ? (uint)0 : (uint)file.Rating;
             title = file.Title;
-            track_number = file.Track < 0 ? (uint)0 : (uint)file.Track;
-            year = file.Year;
+            track_number = file.TrackNumber < 0 ? (uint)0 : file.TrackNumber;
+            year = (file.Date != null && file.Date.Length >= 4) ? int.Parse(file.Date.Substring(0, 4)) : 0;
             can_play = false;             // This can be implemented if there's enough people requesting it
             can_save_to_database = true;
             NeedSync = false;
-			
 			// Set a URI even though it's not actually accessible through normal API's.
-			uri = new SafeUri("mtp://" + FileSystem.CombinePath(file.Path, file.Filename));
+			uri = new SafeUri("mtp://invalid");
         }
         
         public override bool Equals (object o)
@@ -96,7 +93,7 @@ namespace Banshee.Dap.Mtp
             return result;
         }
         
-        public bool OnCamera(Camera camera)
+        public bool OnCamera(MtpDevice camera)
         {
             return this.camera == camera;
         }

@@ -1,3 +1,17 @@
+2007-12-28  Aaron Bockover  <abock@gnome.org>
+
+	* ext/libmtp-sharp/*: Added Alan's libmtp bindings
+
+	* ext/Makefile.am:
+	* configure.ac: 
+	* src/Dap/Banshee.Dap.Mtp/Makefile.am:
+	* build/m4/banshee/dap-mtp.m4: Build changes for libmtp
+
+	* src/Dap/Banshee.Dap.Mtp/MtpDapPlaylistSource.cs:
+	* src/Dap/Banshee.Dap.Mtp/MtpDapTrackInfo.cs: 
+	* src/Dap/Banshee.Dap.Mtp/MtpDap.cs: Patch from Alan to use libmtp-sharp
+	instead of gphoto for doing MTP
+
 2007-12-28  Gabriel Burt  <gabriel.burt@gmail.com>
 
 	* src/Core/Banshee/PlayerInterface.cs: Make sure a file exists before

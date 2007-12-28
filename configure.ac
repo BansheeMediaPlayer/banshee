@@ -115,6 +115,8 @@ ext/hal-sharp/Makefile
 ext/taglib-sharp/Makefile
 ext/dbus-sharp/Makefile
 ext/dbus-sharp/NDesk.DBus.GLib.dll.config
+ext/libmtp-sharp/Makefile
+ext/libmtp-sharp/libmtp-sharp.dll.config
 
 src/Makefile
 src/AssemblyInfo.cs

@@ -3,7 +3,7 @@
 //
 // To change standard headers go to Edit->Preferences->Coding->Standard Headers
 //
-
+/*
 using System;
 using System.Collections.Generic;
 using Banshee.Base;
@@ -45,7 +45,7 @@ namespace Banshee.Dap.Mtp
 			
 			Gphoto2.PlaylistFile playlist = new Gphoto2.PlaylistFile(Name);
 			playlist.Files.AddRange(uploads);
-			dap.Camera.FileSystems[0].Upload(playlist, dap.PlaylistDirectory);*/
+			dap.Camera.FileSystems[0].Upload(playlist, dap.PlaylistDirectory);
 		}
 		
 		private MtpDapTrackInfo FindDapTrack(TrackInfo info)
@@ -62,7 +62,7 @@ namespace Banshee.Dap.Mtp
 		}
 	}
 }
-		/*
+
 
         public override void AddTrack(TrackInfo track)
         {
@@ -166,5 +166,4 @@ namespace Banshee.Dap.Mtp
                 dialog.Destroy();
             }
         }
-        */
-
+*/

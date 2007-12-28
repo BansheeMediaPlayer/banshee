@@ -1,0 +1,44 @@
+<Project name="libmtp-sharp" fileversion="2.0" language="C#" clr-version="Net_2_0" ctype="DotNetProject">
+  <Configurations active="Debug">
+    <Configuration name="Debug" ctype="DotNetProjectConfiguration">
+      <Output directory="bin/Debug" assembly="libmtp-sharp" />
+      <Build debugmode="True" target="Library" />
+      <Execution runwithwarnings="True" consolepause="False" runtime="MsNet" clr-version="Net_2_0" />
+      <CodeGeneration compiler="Mcs" warninglevel="4" optimize="True" unsafecodeallowed="False" generateoverflowchecks="True" generatexmldocumentation="False" ctype="CSharpCompilerParameters" />
+    </Configuration>
+    <Configuration name="Release" ctype="DotNetProjectConfiguration">
+      <Output directory="bin/Release" assembly="libmtp-sharp" />
+      <Build debugmode="False" target="Library" />
+      <Execution runwithwarnings="True" consolepause="False" runtime="MsNet" clr-version="Net_2_0" />
+      <CodeGeneration compiler="Mcs" warninglevel="4" optimize="True" unsafecodeallowed="False" generateoverflowchecks="True" generatexmldocumentation="False" ctype="CSharpCompilerParameters" />
+    </Configuration>
+  </Configurations>
+  <Contents>
+    <File name="AssemblyInfo.cs" subtype="Code" buildaction="Compile" />
+    <File name="Base" subtype="Directory" buildaction="Compile" />
+    <File name="Base/MtpDeviceStruct.cs" subtype="Code" buildaction="Compile" />
+    <File name="Base/TrackStruct.cs" subtype="Code" buildaction="Compile" />
+    <File name="Base/Playlist.cs" subtype="Code" buildaction="Compile" />
+    <File name="Base/File.cs" subtype="Code" buildaction="Compile" />
+    <File name="Base/Error.cs" subtype="Code" buildaction="Compile" />
+    <File name="Base/FolderStruct.cs" subtype="Code" buildaction="Compile" />
+    <File name="Base/FileSampleData.cs" subtype="Code" buildaction="Compile" />
+    <File name="Base/DeviceStorage.cs" subtype="Code" buildaction="Compile" />
+    <File name="Base/DeviceEntry.cs" subtype="Code" buildaction="Compile" />
+    <File name="Base/Album.cs" subtype="Code" buildaction="Compile" />
+    <File name="Base/Enums.cs" subtype="Code" buildaction="Compile" />
+    <File name="Functions" subtype="Directory" buildaction="Compile" />
+    <File name="Functions/TrackManagement.cs" subtype="Code" buildaction="Compile" />
+    <File name="Functions/FunctionCalls.cs" subtype="Code" buildaction="Compile" />
+    <File name="Functions/FileManagement.cs" subtype="Code" buildaction="Compile" />
+    <File name="Functions/FolderManagement.cs" subtype="Code" buildaction="Compile" />
+    <File name="Functions/PlaylistManagement.cs" subtype="Code" buildaction="Compile" />
+    <File name="Functions/AlbumManagement.cs" subtype="Code" buildaction="Compile" />
+    <File name="MtpDevice.cs" subtype="Code" buildaction="Compile" />
+    <File name="Track.cs" subtype="Code" buildaction="Compile" />
+    <File name="Folder.cs" subtype="Code" buildaction="Compile" />
+  </Contents>
+  <References>
+    <ProjectReference type="Gac" localcopy="True" refto="System, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  </References>
+</Project>

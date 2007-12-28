@@ -35,7 +35,6 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading;
 using Hal;
-using Gphoto2;
 using Banshee.Dap;
 using Banshee.Base;
 using Banshee.Widgets;
@@ -43,6 +42,7 @@ using Banshee.Sources;
 using Mono;
 using Mono.Unix;
 using Gtk;
+using libmtpsharp;
 
 public static class PluginModuleEntry
 {
@@ -61,13 +61,13 @@ namespace Banshee.Dap.Mtp
 	
 	public sealed class MtpDap : DapDevice, IImportable//, IPlaylistCapable
 	{
-		private Camera camera;
+		private MtpDevice camera;
 		private List<MtpDapTrackInfo> metadataChangedQueue;
 		private Queue<MtpDapTrackInfo> removeQueue;
 		private List<MtpDapTrackInfo> allTracks;
 
 		
-		internal Camera Camera
+		internal MtpDevice Camera
 		{
 			get { return camera; }
 		}
@@ -87,8 +87,8 @@ namespace Banshee.Dap.Mtp
 		
 		public override void Eject ()
 		{
-			if (camera.Connected)
-				camera.Disconnect();
+			camera.Dispose();
+			base.Eject();
 		}
 		
 		public override InitializeResult Initialize(Hal.Device halDevice)
@@ -126,18 +126,19 @@ namespace Banshee.Dap.Mtp
 			                           string.Format("Name: {0}, Device: {1}, Bus:{2}",
 			                                         name, deviceNumber, busNumber));
 			
-			List<Camera> cameras = Gphoto2.Camera.Detect();
-			camera = cameras.Find(delegate (Camera c) { return c.UsbBusNumber == busNumber && c.UsbDeviceNumber == deviceNumber; });
+			List<MtpDevice> cameras = MtpDevice.Detect();
+			
+			//camera = cameras.Find(delegate (Camera c) { return c.UsbBusNumber == busNumber && c.UsbDeviceNumber == deviceNumber; });
 				
-			if(camera == null)
+			if(cameras.Count != 1)
 			{
-				LogCore.Instance.PushDebug("Connection failed", string.Format("MTP: found {0} devices, but not the one we're looking for.", cameras.Count));
-				foreach (Camera cam in cameras)
-					LogCore.Instance.PushDebug("Found", string.Format("name={2}, vendor={0}, prod={1}", cam.Vendor, cam.Product, cam.Name));
+				//LogCore.Instance.PushDebug("Connection failed", string.Format("MTP: found {0} devices, but not the one we're looking for.", cameras.Count));
+				//foreach (MtpDap cam in cameras)
+				//	LogCore.Instance.PushDebug("Found", string.Format("name={2}, vendor={0}, prod={1}", cam.Vendor, cam.Product, cam.Name));
 				
 				return Banshee.Dap.InitializeResult.Invalid;
 			}
-			
+			camera = cameras[0];
 			LogCore.Instance.PushDebug("MTP: device found", String.Format("vendor={0}, prod={1}", vendor_id, product_id));
 
 			base.Initialize(halDevice);
@@ -161,7 +162,6 @@ namespace Banshee.Dap.Mtp
 				userEvent.Message = Catalog.GetString("Connecting...");
 				try
 				{
-					camera.Connect();
 					ReloadDatabase(userEvent);
 				}
 				catch (Exception e)
@@ -186,18 +186,6 @@ namespace Banshee.Dap.Mtp
 			base.Dispose();
 		}
 		
-		private void LoadFiles(ActiveUserEvent userEvent, int total, FileSystem fs, string directory, List<Gphoto2.File> files)
-		{
-			if(userEvent.IsCancelRequested)
-				return;
-			
-			files.AddRange(fs.GetFiles(directory));
-			userEvent.Progress = (double)files.Count / total;
-
-			foreach(string folder in fs.GetFolders(directory))
-				LoadFiles(userEvent, total, fs, FileSystem.CombinePath(directory, folder), files);
-		}
-		
 		private void OnMetadataChanged(object sender, EventArgs e)
 		{
 			MtpDapTrackInfo info = (MtpDapTrackInfo)sender;
@@ -210,11 +198,6 @@ namespace Banshee.Dap.Mtp
 			ActiveUserEvent userEvent = new ActiveUserEvent("MTP Initialization");
 			try
 			{
-				if(reconnect)
-				{
-					userEvent.Message = "Syncing device library...";
-					camera.Reconnect();
-				}
 				ReloadDatabase(userEvent);
 			}
 			finally
@@ -233,18 +216,14 @@ namespace Banshee.Dap.Mtp
 			
 			// Clear the list of tracks that banshee keeps
 			ClearTracks(false);
+				
 			
-			userEvent.Message = Catalog.GetString("Counting tracks...");	
+			userEvent.Message = string.Format(Catalog.GetString("Loading database..."));
 			
-			int fileCount = 0;
-			foreach (FileSystem fs in camera.FileSystems)
-				fileCount += fs.Count(null, true);
-			
-			userEvent.Message = string.Format(Catalog.GetString("Loading database... {0}"), fileCount);
-			
-			List<Gphoto2.File> files = new List<Gphoto2.File>(fileCount);
-			foreach(FileSystem fs in camera.FileSystems)
-				LoadFiles(userEvent, fileCount, fs, "", files);
+			List<Track> files = camera.GetAllTracks(delegate (ulong current, ulong total, IntPtr data) {
+				userEvent.Progress = (double)current / total;
+				return userEvent.IsCancelRequested ? 1 : 0;
+			});
 			
 			if(userEvent.IsCancelRequested)
 			{
@@ -253,19 +232,16 @@ namespace Banshee.Dap.Mtp
 			}
 			
 			allTracks = new List<MtpDapTrackInfo>(files.Count + 50);
-			foreach (Gphoto2.File f in files)
+			foreach (Track f in files)
 			{
-				if(!(f is MusicFile))
-					continue;
-					
-				MtpDapTrackInfo track = new MtpDapTrackInfo(camera, (MusicFile)f);
+				MtpDapTrackInfo track = new MtpDapTrackInfo(camera, f);
 				track.Changed += new EventHandler(OnMetadataChanged);
 				AddTrack(track);
 				allTracks.Add(track);
 			}
 			
 			startTime = (Environment.TickCount - startTime) / 1000.0;
-			userEvent.Message = string.Format(Catalog.GetString("Loaded {0} of {1} files in {2:0.00}sec"), this.tracks.Count, fileCount, startTime);
+			userEvent.Message = string.Format(Catalog.GetString("Loaded {0} files in {1:0.00}sec"), this.tracks.Count, startTime);
 			userEvent.Header = Catalog.GetString(string.Format("{0}: Ready", camera.Name));
 		}
 		
@@ -317,21 +293,22 @@ namespace Banshee.Dap.Mtp
 		}
 		*/
 
-		private MusicFile ToMusicFile(TrackInfo track, string path, string filename, long length)
+		private Track ToMusicFile(TrackInfo track, string name, ulong length)
 		{
 			// FIXME: Set the length properly
 			// Fixme: update the reference i'm holding to the original music file?
 			// Why am i holding it anyway?
-			MusicFile f =  new MusicFile(path, filename);
+			Track f =  new Track(name, length);
 			f.Album = track.Album;
 			f.Artist = track.Artist;
-			f.Duration = (int)track.Duration.TotalMilliseconds;
+			f.Duration = (uint)track.Duration.TotalMilliseconds;
 			f.Genre = track.Genre;
-			f.Rating = (int)track.Rating;
+			f.Rating = (ushort)track.Rating;
 			f.Title = track.Title;
-			f.Track = (int)track.TrackNumber;
-			f.UseCount = (int)track.TrackCount;
-			f.Year = track.Year > 0 ? track.Year : 0;
+			f.TrackNumber = (ushort)track.TrackNumber;
+			f.UseCount = track.TrackCount;
+#warning FIX THIS
+			//f.Year = track.Year > 0 ? track.Year : 0;
 			return f;
 		}
 		
@@ -350,30 +327,20 @@ namespace Banshee.Dap.Mtp
 				if(!track.OnCamera(camera))
 					continue;
 				
-				foreach (FileSystem fs in camera.FileSystems)
-				{
-					if (fs.Contains(track.OriginalFile.Path, track.OriginalFile.Filename))
-					{
-						fs.DeleteFile(track.OriginalFile);
-						allTracks.Remove(track);
-						
-						if (metadataChangedQueue.Contains(track))
-							metadataChangedQueue.Remove(track);
-						
-						if (fs.Count(track.OriginalFile.Path) == 0)
-							fs.DeleteAll(track.OriginalFile.Path, true);
-						
-						track.Changed -= new EventHandler(OnMetadataChanged);
-					}
-				}
+				camera.Remove (track.OriginalFile);
+				allTracks.Remove(track);
+				
+				if (metadataChangedQueue.Contains(track))
+					metadataChangedQueue.Remove(track);
+				
+				track.Changed -= new EventHandler(OnMetadataChanged);
+				
+				// Optimisation - Delete the folder if it's empty
 			}
 		}
 		
 		private void UploadTracks()
 		{
-			string dapDirectory = "";
-			string dapFilename = "";
-
 			// For all the tracks that are listed to upload, find only the ones
 			// which exist and can be read.
 			// FIXME: I can upload 'MtpDapTrackInfo' types. Just make sure they dont
@@ -387,73 +354,21 @@ namespace Banshee.Dap.Mtp
 			
 			for (int i = 0; i < tracks.Count; i++)
 			{
-				string path = Path.GetDirectoryName(tracks[i].Uri.LocalPath);
-				string name = Path.GetFileName(tracks[i].Uri.LocalPath);
-				MusicFile f = ToMusicFile(tracks[i], path, name, 0);
-				
-				CreateDapDirectory(f, out dapDirectory, out dapFilename);
-				if (!camera.Abilities.CanCreateDirectory)
-					dapDirectory = "";
-				
-				// When we upload a file to the camera, we get returned a new file
-				// representing the file in it's location on the camera. We should
-				// store this instead of the old representation we had
-				FileSystem fs = camera.FileSystems.Find(delegate (FileSystem system) { return system.CanUpload(f); });
-				
-				if (fs == null)
-				{
-					LogCore.Instance.PushError("Device full", "There was not enough free space on your device to upload more files");
-					return;
-				}
+				FileInfo info = new FileInfo(tracks[i].Uri.AbsolutePath);
+				Track f = ToMusicFile(tracks[i], info.Name, (ulong)info.Length);
 				
 				string message = string.Format("Adding {0}/{1}: {2} - {3}",
 				                               i + 1, tracks.Count, f.Artist, f.Title);
 				UpdateSaveProgress("Synchronising...", message, (double)(i + 1) / tracks.Count);
+				camera.UploadTrack(tracks[i].Uri.AbsolutePath, f);
 				
-				// When a file is uploaded to the device, we are given a reference to it
-				// This reference is the one we add to 'allTracks'
-				f = (MusicFile)fs.Upload(f, dapDirectory, dapFilename);
+				// Create an MtpDapTrackInfo for the new file and add it to our lists
 				MtpDapTrackInfo newTrackInfo = new MtpDapTrackInfo(camera, f);
+				newTrackInfo.Changed += new EventHandler(OnMetadataChanged);
+				
 				allTracks.Add(newTrackInfo);
 				AddTrack(newTrackInfo);
-				newTrackInfo.Changed += new EventHandler(OnMetadataChanged);
 			}
-		}
-		
-		private void CreateDapDirectory(MusicFile track, out string dapDirectory, out string dapFilename)
-		{
-			char sep = Gphoto2.Camera.DirectorySeperator;
-			StringBuilder sb = new StringBuilder(32);
-			sb.Append(camera.MusicFolder);
-			sb.Append(sep);
-			
-			if(!string.IsNullOrEmpty(track.Artist))
-			{
-				sb.Append(track.Artist);
-				sb.Append(sep);
-			}
-			
-			sb.Append('(');
-			sb.Append(track.Year);
-			sb.Append(") ");
-			
-			if(!string.IsNullOrEmpty(track.Album))
-			{
-				sb.Append(track.Album);
-				sb.Append(sep);
-			}
-			
-			int count=0;
-			string filename = Path.GetFileNameWithoutExtension(track.Filename);
-			string ext = Path.GetExtension(track.Filename);
-			string fulldirectory = sb.ToString();
-			string fullname = filename + ext;
-			
-			while (camera.FileSystems.Find (delegate (FileSystem f) { return f.Contains(fulldirectory, fullname); }) != null)
-				fullname = filename + (++count).ToString() + ext;
-			
-			dapDirectory = fulldirectory;
-			dapFilename = fullname;
 		}
 		
 		private void UpdateMetadata()
@@ -463,20 +378,19 @@ namespace Banshee.Dap.Mtp
 				for (int i = 0; i < metadataChangedQueue.Count; i++)
 				{
 					MtpDapTrackInfo info = metadataChangedQueue[i];
-					MusicFile file = (MusicFile) info.OriginalFile;
+					Track file = info.OriginalFile;
 					file.Album = info.Album;
 					file.Artist = info.Artist;
 					//file.DateAdded = info.DateAdded;
-					file.Duration = (int) info.Duration.TotalMilliseconds;
+					file.Duration = (uint) info.Duration.TotalMilliseconds;
 					file.Genre = info.Genre;
 					//file.LastPlayed = info.LastPlayed;
-					file.Rating = (int) info.Rating;
+					file.Rating = (ushort) info.Rating;
 					file.Title = info.Title;
-					file.Track = (int) info.TrackNumber;
-					file.UseCount = (int) info.PlayCount;
-				
-					if (file.IsDirty)
-						file.Update();
+					file.TrackNumber = (ushort) info.TrackNumber;
+					file.UseCount = info.PlayCount;
+					file.Date = info.Year + "0101T0000.0";
+					file.UpdateMetadata();
 				}
 			}
 			finally
@@ -575,7 +489,7 @@ namespace Banshee.Dap.Mtp
 					FileInfo to_info = new FileInfo(destination);
 					
 					// FIXME: Probably already the same file. Is this ok?
-					if (track.OriginalFile.Size == to_info.Length)
+					if (track.OriginalFile.Filesize == (ulong)to_info.Length)
 					{
 						try
 						{
@@ -601,8 +515,8 @@ namespace Banshee.Dap.Mtp
 			
 			try
 			{
-				using (FileStream to_stream = new FileStream(destination, FileMode.Create, FileAccess.ReadWrite))
-					track.OriginalFile.Download(to_stream);
+				// Copy the track from the device to the destination file
+				track.OriginalFile.Download(destination);
 				
 				// Add the track to the library
 				new LibraryTrackInfo(new SafeUri(destination, false), track);
@@ -671,13 +585,12 @@ namespace Banshee.Dap.Mtp
 		{
 			get
 			{
-				if (!camera.Connected)
+				if (camera == null)
 					return 0;
 				
 				ulong count = 0;
-				foreach(FileSystem fs in camera.FileSystems)
-					count += (ulong)fs.Capacity;
-				
+				foreach (DeviceStorage s in camera.GetStorage())
+					count += s.MaxCapacity;
 				return count;
 			}
 		}
@@ -686,30 +599,18 @@ namespace Banshee.Dap.Mtp
 		{
 			get
 			{
-				if (!camera.Connected)
+				if (camera == null)
 					return 0;
-				
 				ulong count = 0;
-				foreach(FileSystem fs in camera.FileSystems)
-					count += (ulong)fs.UsedSpace;
-				
+				foreach (DeviceStorage s in this.camera.GetStorage())
+					count += s.MaxCapacity - s.FreeSpace;
 				return count;
 			}
 		}
 		
 		public override bool IsReadOnly
 		{
-			get
-			{
-				if (!camera.Connected)
-					return true;
-				
-				foreach(FileSystem fs in camera.FileSystems)
-					if(fs.CanDelete || fs.CanWrite)
-						return false;
-				
-				return true;
-			}
+			get { return false; }
 		}
 
 		public override bool IsPlaybackSupported {
