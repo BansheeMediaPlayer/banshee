@@ -1924,7 +1924,11 @@ namespace Banshee
 
         private void DeleteSong(TrackInfo ti)
         {
-            File.Delete(ti.Uri.LocalPath);
+            if (File.Exists(ti.Uri.LocalPath)) {
+                try {
+                    File.Delete(ti.Uri.LocalPath);
+                } catch(Exception) { }
+            }
 
             // trim empty parent directories
             try {
