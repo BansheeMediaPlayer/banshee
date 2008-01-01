@@ -97,7 +97,7 @@ namespace Banshee.Plugins.Podcast
                     feed_reader.GetInt32 (0), feed_reader.GetString (1),
                     feed_reader.GetString (2), GetStringSafe (feed_reader, 3),
                     GetStringSafe (feed_reader, 4), GetStringSafe (feed_reader, 5),
-                    GetDateTimeSafe (feed_reader, 6), feed_reader.GetBoolean (7),
+                    GetDateTimeSafe (feed_reader, 6).ToLocalTime (), feed_reader.GetBoolean (7),
                     (SyncPreference)feed_reader.GetInt32(8)
                 );
                 
@@ -127,7 +127,7 @@ namespace Banshee.Plugins.Podcast
                podcasts.Add(
                    new PodcastInfo (
                        feed, podcast_reader.GetInt32 (0), GetStringSafe (podcast_reader, 2),
-                       GetStringSafe (podcast_reader, 3), podcast_reader.GetDateTime (4),
+                       GetStringSafe (podcast_reader, 3), podcast_reader.GetDateTime (4).ToLocalTime (),
                        GetStringSafe (podcast_reader, 5), GetStringSafe (podcast_reader, 6),
                        GetStringSafe (podcast_reader, 7), podcast_reader.GetString (8),
                        podcast_reader.GetString (9), podcast_reader.GetInt64 (10),
@@ -175,7 +175,7 @@ namespace Banshee.Plugins.Podcast
                                                       "link", feed.Link,
                                                       "description", feed.Description,
                                                       "image", feed.Image,
-                                                      "last_updated", feed.LastUpdated.ToString(),
+                                                      "last_updated", feed.LastUpdated.ToUniversalTime ().ToString ("u"),
                                                       "subscribed", Convert.ToInt32(feed.IsSubscribed),
                                                       "sync_preference", (int)feed.SyncPreference,
                                                       "feed_id", feed.ID
@@ -192,7 +192,7 @@ namespace Banshee.Plugins.Podcast
                                                       "link", feed.Link,
                                                       "description", feed.Description,
                                                       "image", feed.Image,
-                                                      "last_updated", feed.LastUpdated.ToString(),
+                                                      "last_updated", feed.LastUpdated.ToUniversalTime ().ToString ("u"),
                                                       "subscribed", Convert.ToInt32(feed.IsSubscribed),
                                                       "sync_preference", (int)feed.SyncPreference
                                                   ));
@@ -217,7 +217,7 @@ namespace Banshee.Plugins.Podcast
                                                      "feed_id", pi.Feed.ID, 
                                                      "title", pi.Title,
                                                      "link", pi.Link, 
-                                                     "pubdate", pi.PubDate.ToString (),
+                                                     "pubdate", pi.PubDate.ToUniversalTime ().ToString ("u"),
                                                      "description", pi.Description,
                                                      "author", pi.Author,
                                                      "local_path", pi.LocalPath,
@@ -239,7 +239,7 @@ namespace Banshee.Plugins.Podcast
                                                      "feed_id", pi.Feed.ID, 
                                                      "title", pi.Title,
                                                      "link", pi.Link, 
-                                                     "pubdate", pi.PubDate.ToString (),
+                                                     "pubdate", pi.PubDate.ToUniversalTime ().ToString ("u"),
                                                      "description", pi.Description,
                                                      "author", pi.Author,
                                                      "local_path", pi.LocalPath,
@@ -365,7 +365,7 @@ namespace Banshee.Plugins.Podcast
 			try {
 				return reader.GetDateTime(index);
 			} catch {
-				return DateTime.MinValue;
+				return DateTime.Now;
 			}
 		}
     }
