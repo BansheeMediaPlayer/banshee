@@ -128,6 +128,7 @@ namespace Banshee.Dap.Mtp
 				//foreach (MtpDap cam in cameras)
 				//	LogCore.Instance.PushDebug("Found", string.Format("name={2}, vendor={0}, prod={1}", cam.Vendor, cam.Product, cam.Name));
 				
+				LogCore.Instance.PushDebug("Connection failed", "We can only handle 1 connected mtp device at a time.");
 				return Banshee.Dap.InitializeResult.Invalid;
 			}
 			camera = cameras[0];
