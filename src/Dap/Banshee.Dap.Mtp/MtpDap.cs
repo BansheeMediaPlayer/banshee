@@ -96,15 +96,14 @@ namespace Banshee.Dap.Mtp
 			HalDevice = halDevice;
 			if(!halDevice.PropertyExists("usb.vendor_id") ||
 			   !halDevice.PropertyExists("usb.product_id") ||
-			   !halDevice.PropertyExists("portable_audio_player.type") ||
-			   !halDevice.PropertyExists("camera.libgphoto2.support")) {
+			   !halDevice.PropertyExists("portable_audio_player.type")) {
 				return InitializeResult.Invalid;
 			}
 			
 			short product_id = (short) halDevice.GetPropertyInteger("usb.product_id");
 			short vendor_id  = (short) halDevice.GetPropertyInteger("usb.vendor_id");
 			string type = halDevice.GetPropertyString("portable_audio_player.type");
-			string name = halDevice.GetPropertyString("camera.libgphoto2.name");
+			string name = halDevice.PropertyExists("usb_device.product") ? GetPropertyString("usb_device.product") : "Mtp Device";
 			int deviceNumber = halDevice.GetPropertyInteger("usb.linux.device_number");
 			int busNumber = halDevice.GetPropertyInteger("usb.bus_number");
 
@@ -112,13 +111,6 @@ namespace Banshee.Dap.Mtp
 			{			
 				LogCore.Instance.PushDebug("MTP: Unsupported Device",
 				                           "The device's portable_audio_player.type IS NOT mtp");
-				return InitializeResult.Invalid;
-			}
-			
-			if (!halDevice.GetPropertyBoolean("camera.libgphoto2.support"))
-			{
-				LogCore.Instance.PushDebug("MTP: Unsupported Device",
-				                           "The device has camera.libgphoto2.support = false");
 				return InitializeResult.Invalid;
 			}
 			
