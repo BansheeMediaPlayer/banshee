@@ -118,11 +118,28 @@ namespace Banshee.Dap.Mtp
 			                           string.Format("Name: {0}, Device: {1}, Bus:{2}",
 			                                         name, deviceNumber, busNumber));
 			
-			List<MtpDevice> cameras = MtpDevice.Detect();
-			
+			List<MtpDevice> cameras = null;
+			try
+			{
+				cameras = MtpDevice.Detect();
+			}
+			catch(TypeInitializationException ex)
+			{
+				string message = "Required libraries could not be found. Read http://www.banshee-project.org/Guide/DAPs/MTP for more information. ";
+				message += (Environment.NewLine + Environment.NewLine);
+				message += ex.InnerException.Message;
+				message += " could not be found";
+				LogCore.Instance.PushError("Initialisation error", message);
+				return InitializeResult.Invalid;
+			}
+			catch (Exception ex)
+			{
+				ShowGeneralExceptionDialog(ex);
+				return InitializeResult.Invalid;
+			}
 			//camera = cameras.Find(delegate (Camera c) { return c.UsbBusNumber == busNumber && c.UsbDeviceNumber == deviceNumber; });
 				
-			if(cameras.Count != 1)
+			if(cameras == null || cameras.Count != 1)
 			{
 				//LogCore.Instance.PushDebug("Connection failed", string.Format("MTP: found {0} devices, but not the one we're looking for.", cameras.Count));
 				//foreach (MtpDap cam in cameras)
@@ -159,8 +176,7 @@ namespace Banshee.Dap.Mtp
 				}
 				catch (Exception e)
 				{
-					LogCore.Instance.PushDebug("Connection failed", e.ToString());
-					LogCore.Instance.PushWarning(String.Format("Initialization of your {0} failed. Try plugging the device out and back in again. If that fails, run banshee from a terminal and file a bug report on bugzilla.gnome.org with the terminal output attached", camera.Name), "");
+					ShowGeneralExceptionDialog(e);
 					Dispose();
 					return;
 				}
@@ -416,6 +432,15 @@ namespace Banshee.Dap.Mtp
 
 				FinishSave();
 			}
+		}
+		
+				
+		private void ShowGeneralExceptionDialog(Exception ex)
+		{
+			string message = "There was an error initializing the device. Read http://www.banshee-project.org/Guide/DAPs/MTP for more information. ";
+			message += (Environment.NewLine + Environment.NewLine);
+			message += ex.ToString();
+			LogCore.Instance.PushError("Initialisation error", message);
 		}
 
 		public void Import(IEnumerable<TrackInfo> tracks, PlaylistSource playlist) 
