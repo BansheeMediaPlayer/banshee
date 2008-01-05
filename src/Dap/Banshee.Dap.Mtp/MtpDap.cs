@@ -103,7 +103,7 @@ namespace Banshee.Dap.Mtp
 			short product_id = (short) halDevice.GetPropertyInteger("usb.product_id");
 			short vendor_id  = (short) halDevice.GetPropertyInteger("usb.vendor_id");
 			string type = halDevice.GetPropertyString("portable_audio_player.type");
-			string name = halDevice.PropertyExists("usb_device.product") ? GetPropertyString("usb_device.product") : "Mtp Device";
+			string name = halDevice.PropertyExists("usb_device.product") ? halDevice.GetPropertyString("usb_device.product") : "Mtp Device";
 			int deviceNumber = halDevice.GetPropertyInteger("usb.linux.device_number");
 			int busNumber = halDevice.GetPropertyInteger("usb.bus_number");
 
