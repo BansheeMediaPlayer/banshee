@@ -94,23 +94,29 @@ namespace Banshee.Dap.Mtp
 		public override InitializeResult Initialize(Hal.Device halDevice)
 		{
 			HalDevice = halDevice;
-			if(!halDevice.PropertyExists("usb.vendor_id") ||
-			   !halDevice.PropertyExists("usb.product_id") ||
-			   !halDevice.PropertyExists("portable_audio_player.type")) {
-				return InitializeResult.Invalid;
+			if (!halDevice.PropertyExists("usb.vendor_id"))
+			{
+				LogCore.Instance.PushDebug("Missing Properties", "Cannot find usb.vendor_id");
+			}
+			if (!halDevice.PropertyExists("usb.product_id"))
+			{
+				LogCore.Instance.PushDebug("Missing Properties", "Cannot find usb.product_id");
+			}
+			if (!halDevice.PropertyExists("portable_audio_player.type"))
+			{
+				LogCore.Instance.PushDebug("Missing Properties", "Cannot find portable_audio_player.type. Attempting to continue...");
 			}
 			
-			short product_id = (short) halDevice.GetPropertyInteger("usb.product_id");
-			short vendor_id  = (short) halDevice.GetPropertyInteger("usb.vendor_id");
-			string type = halDevice.GetPropertyString("portable_audio_player.type");
+			short product_id = 0;//(short) halDevice.GetPropertyInteger("usb.product_id");
+			short vendor_id  = 0;//(short) halDevice.GetPropertyInteger("usb.vendor_id");
+			string type = halDevice.PropertyExists("portable_audio_player.type") ? halDevice.GetPropertyString("portable_audio_player.type") : "mtp";
 			string name = halDevice.PropertyExists("usb_device.product") ? halDevice.GetPropertyString("usb_device.product") : "Mtp Device";
-			int deviceNumber = halDevice.GetPropertyInteger("usb.linux.device_number");
-			int busNumber = halDevice.GetPropertyInteger("usb.bus_number");
+			int deviceNumber = 0;//halDevice.GetPropertyInteger("usb.linux.device_number");
+			int busNumber = 0;//halDevice.GetPropertyInteger("usb.bus_number");
 
 			if (type != "mtp")
 			{			
-				LogCore.Instance.PushDebug("MTP: Unsupported Device",
-				                           "The device's portable_audio_player.type IS NOT mtp");
+				LogCore.Instance.PushDebug("MTP: Unsupported Device", "The device's portable_audio_player.type IS NOT mtp");
 				return InitializeResult.Invalid;
 			}
 			
@@ -433,14 +439,13 @@ namespace Banshee.Dap.Mtp
 				FinishSave();
 			}
 		}
-		
 				
 		private void ShowGeneralExceptionDialog(Exception ex)
 		{
-			string message = "There was an error initializing the device. Read http://www.banshee-project.org/Guide/DAPs/MTP for more information. ";
+			string message = "There was an error using the device. Read http://www.banshee-project.org/Guide/DAPs/MTP for more information. ";
 			message += (Environment.NewLine + Environment.NewLine);
 			message += ex.ToString();
-			LogCore.Instance.PushError("Initialisation error", message);
+			LogCore.Instance.PushError ("Device error", message);
 		}
 
 		public void Import(IEnumerable<TrackInfo> tracks, PlaylistSource playlist) 
@@ -533,6 +538,7 @@ namespace Banshee.Dap.Mtp
 			
 			try
 			{
+				LogCore.Instance.PushDebug("Import Operation", string.Format("Importing song to {0}", destination));
 				// Copy the track from the device to the destination file
 				track.OriginalFile.Download(destination);
 				
