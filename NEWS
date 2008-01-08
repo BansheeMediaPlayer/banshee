@@ -46,6 +46,8 @@ MODULE NOTES
 
  * Podsleuth (0.6.1) and ipod-sharp (0.8.0) are required for iPod support.
 
+ * libmtp (0.2.1) is required for MTP support (experimental)
+
  * The location of the user configuration directory for Banshee changed from
    ~/.gnome2/banshee to and XDG based directory, typically ~/.config/banshee
 
@@ -80,9 +82,6 @@ Sources
    http://banshee-project.org/files/mono-zeroconf/mono-zeroconf-0.7.3.tar.bz2
    http://banshee-project.org/files/mono-zeroconf/mono-zeroconf-0.7.3.tar.gz
 
- * njb-sharp 0.3.0 Tarball:
-   http://banshee-project.org/files/njb-sharp/njb-sharp-0.3.0.tar.gz
-
 ChangeLogs
 ----------
  
@@ -113,6 +112,10 @@ Features
  * New Last.fm radio plugin supporting streaming from Last.fm and creating 
    stations based on a number of metrics. (Gabriel Burt)
 
+ * MTP support (experimental, pass --enable-mtp to configure) through 
+   libmtp; we do not recommend distributions package MTP support at this
+   time as it is not fully tested nor stable (Alan McGovern)
+
  * Skip song button in the notification popup (Aaron Bockover, Jackson Harper)
 
 ===============================================================================
@@ -134,11 +137,13 @@ Noteworthy bugs fixes/enhancements embraced in this release
  * 479237 - Fixed crash when filtering caused by null fields (Sebastian Dröge)
  * 490254 - Fixed bug with writing the Artist metadata in the wrong location,
             and not writing the year or genre when ripping (Gabriel Burt)
+ * 502628 - Fixed metadata writing for OGG
+ * 495981 - Fixed ripping OGG to wrong bitrates
 
 Show all bugs marked FIXED during this release cycle
 ----------------------------------------------------
 
- * http://banshee-project.org/files/closedbugs.php/2007-08-20,2007-12-19
+ * http://banshee-project.org/files/closedbugs.php/2007-08-20,2008-01-09
 
 File Bugs... Be Proactive... Contribute to Open Source!
 -------------------------------------------------------
@@ -160,8 +165,9 @@ Contributors for this release
    
    Community makes Open Source work!
 
-   Aaron Bockover, Gabriel Burt, Jackson Harper, Michael Monreal, Sebastian
-   Dröge, Stephane Loeuillet, Wade Menard
+   Aaron Bockover, Gabriel Burt, Sebastian Dröge, Jackson Harper, 
+   Stephane Loeuillet, Alan McGovern, Wade Menard, Michael Monreal, 
+   Mike Urbanski
 
 Contributors for past releases [1]
 ----------------------------------
@@ -183,3 +189,4 @@ Thanks!
 -------
 
    Enjoy the release! We appreciate your support and involvement!
+

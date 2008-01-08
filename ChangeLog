@@ -1,3 +1,14 @@
+2008-01-08  Aaron Bockover  <abock@gnome.org>
+
+	* build/m4/banshee/dap-mtp.m4: Sweet ass find command to detect the 
+	newest libmtp soversion to build the dllmap
+
+	* ext/libmtp-sharp/libmtp-sharp.dll.config.in: Map to the soversion
+	found at configure time
+
+	* build/m4/banshee/dap-njb.m4:
+	* build/m4/banshee/dap-karma.m4: Remove some verbose spew
+
 2008-01-08  Gabriel Burt  <gabriel.burt@gmail.com>
 
 	* src/Core/Banshee/PlayerInterface.cs: Escape markup in log messages

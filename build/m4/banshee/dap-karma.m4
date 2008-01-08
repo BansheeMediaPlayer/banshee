@@ -11,8 +11,6 @@ AC_DEFUN([BANSHEE_CHECK_DAP_KARMA],
 		karma-sharp >= $KARMASHARP_REQUIRED,
 		enable_karmasharp="$enable_karmasharp", enable_karmasharp=no)
 
-	AC_MSG_RESULT([$enable_karmasharp])
-
 	if test "x$enable_karmasharp" = "xyes"; then
 		KARMASHARP_ASSEMBLIES="`$PKG_CONFIG --variable=Libraries karma-sharp`"
 		AC_SUBST(KARMASHARP_ASSEMBLIES)

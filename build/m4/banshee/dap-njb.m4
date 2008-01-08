@@ -27,8 +27,6 @@ AC_DEFUN([BANSHEE_CHECK_DAP_NJB],
 		fi
 		AC_SUBST(NJBSHARP_INSTALL_FILES)
 		AC_SUBST(NJBSHARP_LIBS)	
-	else 
-		AC_MSG_RESULT([no])
 	fi
 
 	AM_CONDITIONAL(ENABLE_NJB, test "x$enable_njbsharp" = "xyes")
