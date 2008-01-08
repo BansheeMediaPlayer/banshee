@@ -6,7 +6,6 @@ audioprofiles_in_files = \
 	mp3-xing.xml.in \
 	vorbis.xml.in \
 	wavpack.xml.in \
-	wav.xml.in \
 	wma.xml.in
 audioprofiles_DATA = $(audioprofiles_in_files:.xml.in=.xml)
 
