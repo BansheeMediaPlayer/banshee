@@ -27,9 +27,11 @@
  */
 
 using System;
+using System.Collections.Generic;
+using System.Text.RegularExpressions;
+
 using Gtk;
 using Glade;
-using System.Collections.Generic;
 using Mono.Unix;
 
 using Banshee.Base;
@@ -105,6 +107,18 @@ namespace Banshee.Gui.Dialogs
 
     public class TrackEditor : GladeWindow
     {
+        private struct PasteParseItem
+        {
+            public int TrackNumber;
+            public string Title;
+            
+            public PasteParseItem (int trackNumber, string title)
+            {
+                this.TrackNumber = trackNumber;
+                this.Title = title;
+            }
+        }
+    
         [Widget] private Button CancelButton;
         [Widget] private Button SaveButton;
         [Widget] private Button Previous;
@@ -188,6 +202,8 @@ namespace Banshee.Gui.Dialogs
             Year.Changed += OnValueEdited;
             Genre.Entry.Changed += OnValueEdited;
             rating_entry.Changed += OnValueEdited;
+            
+            Title.TextInserted += OnTitleTextInsertedEvent;
             
             ListStore genre_model = new ListStore(typeof(string));
             Genre.Model = genre_model;
@@ -488,6 +504,27 @@ namespace Banshee.Gui.Dialogs
             }
         }
         
+        private string pasted_text = null;
+        
+        private void OnTitleTextInsertedEvent (object o, TextInsertedArgs args)
+        {
+            if (currentIndex == 0 && args.Text.Length > 2 && (args.Text.Contains ("\n") || 
+                args.Text.Contains ("\t") || args.Text.Contains ("\r"))) {
+                int index = 0;
+                foreach (PasteParseItem item in ParsePaste (args.Text)) {
+                    if (index < TrackSet.Count) {
+                        if (index == 0) {
+                            Title.Text = item.Title;
+                        }
+                        
+                        TrackSet[index].Title = item.Title;
+                        TrackSet[index].TrackNumber = (uint)(item.TrackNumber > 0 ? item.TrackNumber : index + 1);
+                        index++;    
+                    }
+                }
+            }
+        }
+        
         private string last_path = null;
         
         private void OnCoverButtonClicked(object o, EventArgs args)
@@ -570,6 +607,25 @@ namespace Banshee.Gui.Dialogs
             }
             
             Window.Destroy();
+        }
+        
+        private static IEnumerable<PasteParseItem> ParsePaste (string input)
+        {
+            foreach (string track in Regex.Split (input, @"[\t\n\r]")) {
+                int track_number = 0;
+                string title = track.Trim ();
+                
+                try {
+                    Match match = Regex.Match (title, @"^([0-9]+)\.(.*)$");
+                    if (match.Groups.Count == 3) {
+                        track_number = Int32.Parse (match.Groups[1].Captures[0].Value);
+                        title = match.Groups[2].Captures[0].Value;
+                    }
+                } catch {
+                }
+                
+                yield return new PasteParseItem (track_number, title.Trim ());
+            }
         }
         
         private void SaveTrack(EditorTrack track, bool writeToDatabase)
