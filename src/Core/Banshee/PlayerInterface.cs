@@ -1384,8 +1384,9 @@ namespace Banshee
                 DialogFlags.Modal,
                 mtype,
                 ButtonsType.Close,
-                entry.ShortMessage,
-                entry.Details);
+                GLib.Markup.EscapeText(entry.ShortMessage),
+                GLib.Markup.EscapeText(entry.Details)
+            );
             
             dialog.Title = String.Empty;
             IconThemeUtils.SetWindowIcon(dialog);
