@@ -1,5 +1,0 @@
-SUBDIRS = \
-	Nereid
-
-MAINTAINERCLEANFILES = Makefile.in
-
