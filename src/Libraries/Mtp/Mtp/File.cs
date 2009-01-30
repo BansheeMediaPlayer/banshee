@@ -32,30 +32,26 @@ using System.Runtime.InteropServices;
 
 namespace Mtp
 {
-
-        // File Management
 		[DllImport("libmtp.dll")]
 		private static extern IntPtr LIBMTP_new_file_t (); // LIBMTP_file_t *
+
 		[DllImport("libmtp.dll")]
 		private static extern void LIBMTP_destroy_file_t (ref File file); // LIBMTP_file_t *
+
 		[DllImport("libmtp.dll")]
 		private static extern string LIBMTP_Get_Filetype_Description (FileType type); // char const *
+
 		[DllImport("libmtp.dll")]
 		private static extern IntPtr LIBMTP_Get_Filelisting (MtpDeviceHandle handle); // LIBMTP_file_t *
+
 		[DllImport("libmtp.dll")]
 		private static extern IntPtr LIBMTP_Get_Filelisting_With_Callback (MtpDeviceHandle handle, ProgressFunction function, IntPtr data); // LIBMTP_file_t *
+
 		[DllImport("libmtp.dll")]
 		private static extern IntPtr LIBMTP_Get_Filemetadata (MtpDeviceHandle handle, uint fileid); // LIBMTP_file_t *
+
 		[DllImport("libmtp.dll")]
 		private static extern int LIBMTP_Get_File_To_File (MtpDeviceHandle handle, uint fileId, string path, ProgressFunction function, IntPtr data);
-
-		[DllImport("libmtp.dll")]
-		private static extern int LIBMTP_Send_File_From_File (MtpDeviceHandle handle, string path, ref File fileData, ProgressFunction function, IntPtr data, uint parentHandle);
-		//int LIBMTP_Get_File_To_File_Descriptor (MtpDeviceHandle handle, uint32_t const, int const, ProgressFunction function, void const *const)
-		//int 	LIBMTP_Send_File_From_File_Descriptor (MtpDeviceHandle handle, int const, LIBMTP_file_t *const, ProgressFunction function, void const *const, uint32_t const)
-
-		//[DllImport("libmtp.dll")]
-		//public static extern IntPtr LIBMTP_new_filesampledata_t (); // LIBMTP_filesampledata_t *
 
 		[DllImport("libmtp.dll")]
 		public static extern void LIBMTP_destroy_filesampledata_t (ref FileSampleData data); // LIBMTP_filesampledata_t *
@@ -71,6 +67,9 @@ namespace Mtp
 	{
 		public int item_id;
 		public int parent_id;
+#ifdef LIBMTP8
+		public int storage_id;
+#endif
 		[MarshalAs(UnmanagedType.LPStr)]public string filename;
 		public long filesize;
 		public FileType filetype;

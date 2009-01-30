@@ -55,6 +55,7 @@ namespace Banshee.MediaEngine
         private PlayerEngine pending_engine;
         private object pending_playback_for_not_ready;
         private bool pending_playback_for_not_ready_play;
+        private TrackInfo synthesized_contacting_track;
 
         private string preferred_engine_id = null;
 
@@ -339,9 +340,9 @@ namespace Banshee.MediaEngine
                 // If we're at least 50% done playing a song, mark it as played, otherwise as skipped
                 // If the Length <= 0, assume the song was finished and increment its play count
                 if (active_engine.Length <= 0 || active_engine.Position >= active_engine.Length / 2) {
-                    active_engine.CurrentTrack.IncrementPlayCount ();
+                    CurrentTrack.IncrementPlayCount ();
                 } else {
-                    active_engine.CurrentTrack.IncrementSkipCount ();
+                    CurrentTrack.IncrementSkipCount ();
                 }
                 incremented_last_played = true;
             }
@@ -406,12 +407,32 @@ namespace Banshee.MediaEngine
                 active_engine.Pause ();
             }
         }
+
+        // For use by RadioTrackInfo
+        // TODO remove this method once RadioTrackInfo playlist downloading/parsing logic moved here?
+        internal void StartSynthesizeContacting (TrackInfo track)
+        {
+            //OnStateChanged (PlayerState.Contacting);
+            RaiseEvent (new PlayerEventStateChangeArgs (CurrentState, PlayerState.Contacting));
+            synthesized_contacting_track = track;
+        }
+
+        internal void EndSynthesizeContacting (TrackInfo track, bool idle)
+        {
+            if (track == synthesized_contacting_track) {
+                synthesized_contacting_track = null;
+
+                if (idle) {
+                    RaiseEvent (new PlayerEventStateChangeArgs (PlayerState.Contacting, PlayerState.Idle));
+                }
+            }
+        }
         
         public void TogglePlaying ()
         {
-            if (CurrentState == PlayerState.Playing) {
+            if (IsPlaying ()) {
                 Pause ();
-            } else {
+            } else if (CurrentState != PlayerState.NotReady) {
                 Play ();
             }
         }
@@ -439,7 +460,9 @@ namespace Banshee.MediaEngine
         {
             return CurrentState == PlayerState.Playing || 
                 CurrentState == PlayerState.Paused || 
-                CurrentState == PlayerState.Loaded;
+                CurrentState == PlayerState.Loaded ||
+                CurrentState == PlayerState.Loading ||
+                CurrentState == PlayerState.Contacting;
         }
 
         private void CheckPending ()
@@ -455,7 +478,7 @@ namespace Banshee.MediaEngine
         }
     
         public TrackInfo CurrentTrack {
-            get { return active_engine.CurrentTrack; }
+            get { return active_engine.CurrentTrack ?? synthesized_contacting_track; }
         }
         
         private Dictionary<string, object> dbus_sucks;
@@ -481,7 +504,7 @@ namespace Banshee.MediaEngine
         }
         
         public PlayerState CurrentState {
-            get { return active_engine.CurrentState; }
+            get { return synthesized_contacting_track != null ? PlayerState.Contacting : active_engine.CurrentState; }
         }
         
         string IPlayerEngineService.CurrentState {
@@ -531,11 +554,11 @@ namespace Banshee.MediaEngine
                 uint length = active_engine.Length;
                 if (length > 0) {
                     return length;
-                } else if (active_engine.CurrentTrack == null) {
+                } else if (CurrentTrack == null) {
                     return 0;
                 }
                 
-                return (uint) active_engine.CurrentTrack.Duration.TotalSeconds;
+                return (uint) CurrentTrack.Duration.TotalSeconds;
             }
         }
     

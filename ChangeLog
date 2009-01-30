@@ -1,5 +1,53 @@
 2009-01-30  Gabriel Burt  <gabriel.burt@gmail.com>
 
+	* src/Core/Banshee.ThickClient/Banshee.Gui/PlaybackActions.cs: Show the
+	pause/stop button when Loading/Loaded.
+
+	* src/Core/Banshee.ThickClient/Banshee.Gui.Widgets/ConnectedSeekSlider.cs:
+	Handle Loading player state, set Live property on the position label, and
+	use the position label's enum state property instead of a handful of bools
+
+	* src/Core/Banshee.Services/Banshee.Streaming/RadioTrackInfo.cs: Start
+	playing internet radio playlists in a separate thread to avoid blocking
+	the UI (BGO #548040, BNC #376532).  Handle the case where the user
+	presses stop or switches to a different track while we're
+	downloading/processing the playlist file (previously we would have started
+	playing once ready, even if the user had already moved on).  Also, fix
+	bug where errors reported by the MediaEngine (GStreamer) weren't shown to
+	the user.
+
+	* src/Core/Banshee.Services/Banshee.MediaEngine/PlayerEngine.cs: If the
+	engine is in PlayerState.Contacting, don't Close/stop since this is a
+	state we set in managed land for loading internet radio tracks.
+
+	* src/Core/Banshee.Services/Banshee.MediaEngine/PlayerEngineService.cs:
+	Add Start/EndSynthesizeContacting internal methods for use by
+	RadioTrackInfo - basically a hack until we move the playlist loading logic
+	from RadioTrackInfo to the PlayerENgine to get UI bits updated
+	appropriately.  Fix IsPlaying to include Contacting/Loading/Loaded, so
+	that TogglePlaying will Pause if in any of those states (not just if in
+	the Playing state), and Play only when in Ready, Idle, or Paused.
+
+	* src/Core/Banshee.Widgets/Banshee.Widgets/StreamPositionLabel.cs: Use an
+	enum to track the player state instead of a handful of bools.  Show the
+	"Contacting..." label when inthe Loading state (for now - will change to
+	Loading... in a separate patch).
+
+	* src/Core/Banshee.Widgets/Banshee.Widgets/SeekSlider.cs: If the new Value
+	is more than the Duration, set the Duration to MaxValue so that the slider
+	stays at the left side of the Range, avoiding the glitchy-looking UI going
+	from Idle (where the slider is all the way left) to playing radio (where
+	it was all the way right).
+
+2009-01-30  Gabriel Burt  <gabriel.burt@gmail.com>
+
+	* src/Libraries/Mtp/Mtp/File.cs:
+	* src/Libraries/Mtp/Mtp/Playlist.cs:
+	* src/Libraries/Mtp/Mtp/Track.cs: Fix up the libmtp8 support which was
+	crashing on loading MTP devices due to playlists (BGO #542117, BNC #470722)
+
+2009-01-29  Gabriel Burt  <gabriel.burt@gmail.com>
+
 	* src/Dap/Banshee.Dap/Banshee.Dap/DapService.cs: Patch from Félix Velasco
 	removing unnecessary lock that was causing some hangs (BGO #559479)
 

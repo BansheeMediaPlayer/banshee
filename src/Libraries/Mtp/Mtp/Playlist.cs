@@ -67,7 +67,12 @@ namespace Mtp
         protected override int Create ()
         {
             // TODO replace 0 w/ the folder id of the playlists folder?
+#if LIBMTP8
+            playlist.parent_id = Device.PlaylistFolder.FolderId;
+            return LIBMTP_Create_New_Playlist (Device.Handle, ref playlist);
+#else
             return LIBMTP_Create_New_Playlist (Device.Handle, ref playlist, Device.PlaylistFolder.FolderId);
+#endif
         }
 
         protected override int Update ()
@@ -81,29 +86,32 @@ namespace Mtp
         }
 
         // Playlist Management
-        [DllImport("libmtp.dll")]
-        internal static extern IntPtr LIBMTP_new_playlist_t (); // LIBMTP_playlist_t*
 
-        [DllImport("libmtp.dll")]
-        internal static extern void LIBMTP_destroy_playlist_t (ref PlaylistStruct playlist);
+        //[DllImport("libmtp.dll")]
+        //private static extern void LIBMTP_destroy_playlist_t (ref PlaylistStruct playlist);
 
         [DllImport("libmtp.dll")]
         internal static extern IntPtr LIBMTP_Get_Playlist_List (MtpDeviceHandle handle); // LIBMTP_playlist_t*
 
         [DllImport("libmtp.dll")]
-        internal static extern IntPtr LIBMTP_Get_Playlist (MtpDeviceHandle handle, uint playlistId); // LIBMTP_playlist_t*
+#if LIBMTP8
+        private static extern int LIBMTP_Create_New_Playlist (MtpDeviceHandle handle, ref PlaylistStruct metadata);
+#else
+        private static extern int LIBMTP_Create_New_Playlist (MtpDeviceHandle handle, ref PlaylistStruct metadata, uint parentHandle);
+#endif
 
         [DllImport("libmtp.dll")]
-        internal static extern int LIBMTP_Create_New_Playlist (MtpDeviceHandle handle, ref PlaylistStruct metadata, uint parentHandle);
-
-        [DllImport("libmtp.dll")]
-        internal static extern int LIBMTP_Update_Playlist (MtpDeviceHandle handle, ref PlaylistStruct playlist);
+        private static extern int LIBMTP_Update_Playlist (MtpDeviceHandle handle, ref PlaylistStruct playlist);
     }
 
 	[StructLayout(LayoutKind.Sequential)]
 	internal struct PlaylistStruct
 	{
 		public uint playlist_id;
+#if LIBMTP8
+		public uint parent_id;
+		public uint storage_id;
+#endif
 
 		[MarshalAs(UnmanagedType.LPStr)]
         public string Name;

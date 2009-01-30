@@ -143,8 +143,10 @@ namespace Banshee.Gui
 
             switch (args.Current) {
                 case PlayerState.Contacting:
+                case PlayerState.Loading:
+                case PlayerState.Loaded:
                 case PlayerState.Playing:
-                    ShowPlayAction ();
+                    ShowStopAction ();
                     break;
                 case PlayerState.Paused:
                     ShowPlay ();
@@ -169,10 +171,13 @@ namespace Banshee.Gui
                 this["RestartSongAction"].Sensitive = false;
                 this["SeekToAction"].Sensitive = false;
             }
+
+            // Disable all actions while NotReady
+            Sensitive = args.Current != PlayerState.NotReady;
         }
         
-        private void ShowPlayAction ()
-        { 
+        private void ShowStopAction ()
+        {
             if (ServiceManager.PlayerEngine.CanPause) {
                 ShowPause ();
             } else {

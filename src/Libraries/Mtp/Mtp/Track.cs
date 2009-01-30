@@ -217,6 +217,7 @@ namespace Mtp
 		internal static void SendTrack (MtpDeviceHandle handle, string path, ref TrackStruct metadata, ProgressFunction callback, IntPtr data, uint parent)
 		{
 #if LIBMTP8
+            metadata.parent_id = parent;
 			if (LIBMTP_Send_Track_From_File (handle, path, ref metadata, callback, data) != 0)
 #else
 			if (LIBMTP_Send_Track_From_File (handle, path, ref metadata, callback, data, parent) != 0)

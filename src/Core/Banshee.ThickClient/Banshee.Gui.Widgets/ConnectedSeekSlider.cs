@@ -128,33 +128,41 @@ namespace Banshee.Gui.Widgets
                     OnPlayerEngineTick ();
                     break;
                 case PlayerEvent.StartOfStream:
-                    stream_position_label.IsBuffering = false;
-                    seek_slider.CanSeek = true;
+                    stream_position_label.StreamState = StreamLabelState.Playing;
+                    seek_slider.CanSeek = ServiceManager.PlayerEngine.CanSeek;
                     break;
                 case PlayerEvent.Buffering:
                     PlayerEventBufferingArgs buffering = (PlayerEventBufferingArgs)args;
                     if (buffering.Progress >= 1.0) {
-                        stream_position_label.IsBuffering = false;
+                        stream_position_label.StreamState = StreamLabelState.Playing;
                         break;
                     }
                     
-                    stream_position_label.IsBuffering = true;
+                    stream_position_label.StreamState = StreamLabelState.Buffering;
                     stream_position_label.BufferingProgress = buffering.Progress;
                     seek_slider.SetIdle ();
                     break;
                 case PlayerEvent.StateChange:
                     switch (((PlayerEventStateChangeArgs)args).Current) {
                         case PlayerState.Contacting:
-                            stream_position_label.IsContacting = true;
+                            transitioning = false;
+                            stream_position_label.StreamState = StreamLabelState.Contacting;
                             seek_slider.SetIdle ();
+                            break;
+                        case PlayerState.Loading:
+                            transitioning = false;
+                            if (((PlayerEventStateChangeArgs)args).Previous == PlayerState.Contacting) {
+                                stream_position_label.StreamState = StreamLabelState.Loading;
+                                seek_slider.SetIdle ();
+                            }
                             break;
                         case PlayerState.Idle:
                             seek_slider.CanSeek = false;
                             if (!transitioning) {
+                                stream_position_label.StreamState = StreamLabelState.Idle;
                                 seek_slider.Duration = 0;
                                 seek_slider.SeekValue = 0;
                                 seek_slider.SetIdle ();
-                                stream_position_label.IsContacting = false;
                             }
                             break;
                         default:
@@ -171,12 +179,13 @@ namespace Banshee.Gui.Widgets
                 return;
             }
             
-            uint stream_length = ServiceManager.PlayerEngine.Length;
-            uint stream_position = ServiceManager.PlayerEngine.Position;
-            stream_position_label.IsContacting = false;
+            stream_position_label.StreamState = StreamLabelState.Playing;
+            Banshee.Collection.TrackInfo track = ServiceManager.PlayerEngine.CurrentTrack;
+            stream_position_label.IsLive = track == null ? false : track.IsLive;
+            stream_position_label.StreamState = StreamLabelState.Playing;
+            seek_slider.Duration = ServiceManager.PlayerEngine.Length;
+            seek_slider.SeekValue = ServiceManager.PlayerEngine.Position;
             seek_slider.CanSeek = ServiceManager.PlayerEngine.CanSeek;
-            seek_slider.Duration = stream_length;
-            seek_slider.SeekValue = stream_position;
         }
         
         private void OnSeekRequested (object o, EventArgs args)

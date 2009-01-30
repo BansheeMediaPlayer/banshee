@@ -32,14 +32,22 @@ using Gtk;
 
 namespace Banshee.Widgets
 {
+    public enum StreamLabelState {
+        Idle,
+        Contacting,
+        Loading,
+        Buffering,
+        Playing
+    }
+
     public class StreamPositionLabel : Alignment
     {
         private double buffering_progress;
-        private bool is_buffering;
-        private bool is_contacting;
+        private bool is_live;
         private SeekSlider seekRange;
         private string format_string = "<small>{0}</small>";
         private Pango.Layout layout;
+        private StreamLabelState state;
         
         public StreamPositionLabel (SeekSlider seekRange) : base (0.0f, 0.0f, 1.0f, 1.0f)
         {
@@ -101,7 +109,7 @@ namespace Banshee.Widgets
             int bar_width = (int)((double)Allocation.Width * buffering_progress);
             bool render_bar = false;
             
-            if (bar_width > 0 && is_buffering) {
+            if (bar_width > 0 && IsBuffering) {
                 bar_width -= 2 * Style.XThickness;
                 render_bar = true;
                 
@@ -146,15 +154,20 @@ namespace Banshee.Widgets
                 return;
             }
             
-            if (is_buffering) {
+            if (IsBuffering) {
                 double progress = buffering_progress * 100.0;
                 UpdateLabel (String.Format ("{0}: {1}%", Catalog.GetString("Buffering"), progress.ToString ("0.0")));
-            } else if (is_contacting) {
+            } else if (IsContacting) {
                 UpdateLabel (contacting);
-            } else if (seekRange.Value == 0 && seekRange.Duration == 0) {
+            } else if (IsLoading) {
+                // TODO replace w/ "Loading..." after string freeze
+                UpdateLabel (contacting);
+            } else if (IsIdle) {
                 UpdateLabel (idle);
-            } else if (seekRange.Value == seekRange.Duration) {
+            } else if (seekRange.Duration == Int64.MaxValue) {
                 UpdateLabel (FormatDuration ((long)seekRange.Value));
+            } else if (seekRange.Value == 0 && seekRange.Duration == 0) {
+                // nop
             } else {
                 UpdateLabel (String.Format (Catalog.GetString ("{0} of {1}"),
                     FormatDuration ((long)seekRange.Value), FormatDuration ((long)seekRange.Adjustment.Upper)));
@@ -193,22 +206,38 @@ namespace Banshee.Widgets
             }
         }
         
+        public bool IsIdle {
+            get { return StreamState == StreamLabelState.Idle; }
+        }
+
         public bool IsBuffering {
-            get { return is_buffering; }
+            get { return StreamState == StreamLabelState.Buffering; }
+        }
+        
+        public bool IsContacting {
+            get { return StreamState == StreamLabelState.Contacting; }
+        }
+
+        public bool IsLoading {
+            get { return StreamState == StreamLabelState.Loading; }
+        }
+
+        public StreamLabelState StreamState {
+            get { return state; }
             set { 
-                if (is_buffering != value) {
-                    is_buffering = value;
+                if (state != value) {
+                    state = value;
                     UpdateLabel ();
                     QueueDraw ();
                 }
             }
         }
-        
-        public bool IsContacting {
-            get { return is_contacting; }
+
+        public bool IsLive {
+            get { return is_live; }
             set { 
-                if (is_contacting != value) {
-                    is_contacting = value;
+                if (is_live != value) {
+                    is_live = value;
                     UpdateLabel ();
                     QueueDraw ();
                 }

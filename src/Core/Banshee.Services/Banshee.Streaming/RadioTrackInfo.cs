@@ -37,6 +37,8 @@ using Media.Playlists.Xspf;
 using Banshee.Base;
 using Banshee.Collection;
 using Banshee.ServiceStack;
+using Banshee.MediaEngine;
+using Banshee.PlaybackController;
 using Banshee.Playlists.Formats;
  
 namespace Banshee.Streaming
@@ -75,11 +77,13 @@ namespace Banshee.Streaming
             try {
                 RadioTrackInfo radio_track = new RadioTrackInfo (uri);
                 radio_track.ParsingPlaylistEvent += delegate {
-                    if (radio_track.PlaybackError != StreamPlaybackError.None) {
-                        Log.Error (Catalog.GetString ("Error opening stream"), 
-                            Catalog.GetString ("Could not open stream or playlist"), true);
-                        radio_track = null;
-                    }
+                    ThreadAssist.ProxyToMain (delegate {
+                        if (radio_track.PlaybackError != StreamPlaybackError.None) {
+                            Log.Error (Catalog.GetString ("Error opening stream"), 
+                                Catalog.GetString ("Could not open stream or playlist"), true);
+                            radio_track = null;
+                        }
+                    });
                 };
                 
                 return radio_track;
@@ -98,6 +102,7 @@ namespace Banshee.Streaming
         private int stream_index = 0;
         private bool loaded = false;
         private bool parsing_playlist = false;
+        private bool trying_to_play;
         
         private TrackInfo parent_track;
         public TrackInfo ParentTrack {
@@ -135,14 +140,67 @@ namespace Banshee.Streaming
 
         public void Play()
         {
-            if(!loaded) {
-                OnParsingPlaylistStarted();
-                ThreadPool.QueueUserWorkItem(delegate {
-                    LoadStreamUris();
-                });
+            if (trying_to_play) {
                 return;
             }
-            
+
+            trying_to_play = true;
+
+            if (loaded) {
+                PlayCore ();
+            } else {
+                // Stop playing until we load this radio station and play it
+                ServiceManager.PlayerEngine.Close ();
+
+                ServiceManager.PlayerEngine.TrackIntercept += OnTrackIntercept;
+
+                // Tell the seek slider that we're connecting
+                // TODO move all this playlist-downloading/parsing logic into PlayerEngine?
+                ServiceManager.PlayerEngine.StartSynthesizeContacting (this);
+
+                OnParsingPlaylistStarted ();
+                ThreadPool.QueueUserWorkItem (delegate {
+                    try {
+                        LoadStreamUris ();
+                    } catch (Exception e) {
+                        trying_to_play = false;
+                        Log.Exception (this.ToString (), e);
+                        SavePlaybackError (StreamPlaybackError.Unknown);
+                        OnParsingPlaylistFinished ();
+                        ServiceManager.PlayerEngine.Close ();
+                    }
+                });
+            }
+        }
+
+        public override StreamPlaybackError PlaybackError {
+            get { return ParentTrack == null ? base.PlaybackError : ParentTrack.PlaybackError; }
+            set {
+                if (value != StreamPlaybackError.None) {
+                    ServiceManager.PlayerEngine.EndSynthesizeContacting (this, true);
+                }
+
+                if (ParentTrack == null) {
+                    base.PlaybackError = value;
+                } else {
+                    ParentTrack.PlaybackError = value;
+                }
+            }
+        }
+
+        public new void SavePlaybackError (StreamPlaybackError value)
+        {
+            PlaybackError = value;
+            Save ();
+            if (ParentTrack != null) {
+                ParentTrack.Save ();
+            }
+        }
+
+        private void PlayCore ()
+        {
+            ServiceManager.PlayerEngine.EndSynthesizeContacting (this, false);
+
             if(track != null) {
                 TrackTitle = track.Title;
                 ArtistName = track.Creator;
@@ -158,6 +216,8 @@ namespace Banshee.Streaming
                     ServiceManager.PlayerEngine.OpenPlay(this);
                 }
             }
+
+            trying_to_play = false;
         }
         
         public bool PlayNextStream()
@@ -167,6 +227,7 @@ namespace Banshee.Streaming
                 Play();
                 return true;
             }
+            ServiceManager.PlaybackController.StopWhenFinished = true;
             return false;
         }
 
@@ -177,9 +238,10 @@ namespace Banshee.Streaming
                 Play();
                 return true;
             }
+            ServiceManager.PlaybackController.StopWhenFinished = true;
             return false;
         }
-        
+
         private void LoadStreamUris()
         {
             lock(stream_uris) {
@@ -193,19 +255,31 @@ namespace Banshee.Streaming
                 
                 loaded = true;
             }
-            
-            ThreadAssist.ProxyToMain(delegate {
-                OnParsingPlaylistFinished();
-                Play();
-            });
+
+            ServiceManager.PlayerEngine.TrackIntercept -= OnTrackIntercept;
+            OnParsingPlaylistFinished();
+
+            if (ServiceManager.PlayerEngine.CurrentTrack == this) {
+                PlayCore();
+            } else {
+                trying_to_play = false;
+            }
+        }
+
+        private bool OnTrackIntercept (TrackInfo track)
+        {
+            if (track != this && track != ParentTrack) {
+                ServiceManager.PlayerEngine.EndSynthesizeContacting (this, false);
+                ServiceManager.PlayerEngine.TrackIntercept -= OnTrackIntercept;
+            }
+            return false;
         }
         
         private void LoadStreamUri(string uri)
         {
             try {
-                Log.Debug("Attempting to parse radio playlist", uri);
                 PlaylistParser parser = new PlaylistParser();
-                if(parser.Parse(new SafeUri(uri))) {
+                if (parser.Parse(new SafeUri(uri))) {
                     foreach(Dictionary<string, object> element in parser.Elements) {
                         if(element.ContainsKey("uri")) {
                             stream_uris.Add(new SafeUri(((Uri)element["uri"]).AbsoluteUri));
@@ -214,12 +288,14 @@ namespace Banshee.Streaming
                 } else {
                     stream_uris.Add(new SafeUri(uri));
                 }
-            } catch(System.Net.WebException) {
+                Log.DebugFormat ("Parsed {0} URIs out of {1}", stream_uris.Count, this);
+            } catch (System.Net.WebException e) {
+                Hyena.Log.Exception (this.ToString (), e);
                 SavePlaybackError (StreamPlaybackError.ResourceNotFound);
-            } catch(Exception e) {
-                Console.WriteLine(e);
-                SavePlaybackError (StreamPlaybackError.ResourceNotFound);
-            }   
+            } catch (Exception e) {
+                Hyena.Log.Exception (this.ToString (), e);
+                SavePlaybackError (StreamPlaybackError.Unknown);
+            }
         }
         
         private void OnParsingPlaylistStarted()

@@ -107,10 +107,12 @@ namespace Banshee.Widgets
                 raise_seek_requested = false;
                 
                 if(value > Duration) {
-                    Duration = value;
+                    Duration = Int64.MaxValue;
+                    Value = value;
+                } else {
+                    Value = value;
                 }
-                
-                Value = value;
+
                 raise_seek_requested = true;
             }
         }

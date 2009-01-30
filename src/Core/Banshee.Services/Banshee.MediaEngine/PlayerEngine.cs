@@ -90,7 +90,7 @@ namespace Banshee.MediaEngine
 
         private void HandleOpen (SafeUri uri)
         {
-            if (current_state != PlayerState.Idle && current_state != PlayerState.NotReady) {
+            if (current_state != PlayerState.Idle && current_state != PlayerState.NotReady && current_state != PlayerState.Contacting) {
                 Close (false);
             }
         
@@ -106,7 +106,7 @@ namespace Banshee.MediaEngine
         public abstract void Play ();
 
         public abstract void Pause ();
-        
+
         public virtual void VideoExpose (IntPtr window, bool direct)
         {
             throw new NotImplementedException ("Engine must implement VideoExpose since this method only gets called when SupportsVideo is true");
