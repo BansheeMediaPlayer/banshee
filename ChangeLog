@@ -1,3 +1,13 @@
+2009-01-27  Gabriel Burt  <gabriel.burt@gmail.com>
+
+	* src/Extensions/Banshee.FileSystemQueue/Banshee.FileSystemQueue/FileSystemQueueSource.cs:
+	Set CanDeleteTracks to false until we actually implement DeleteTrack.
+
+2009-01-27  Gabriel Burt  <gabriel.burt@gmail.com>
+
+	* src/Extensions/Banshee.FileSystemQueue/Banshee.FileSystemQueue/FileSystemQueueSource.cs:
+	Fix crash on delete from FSQ (BNC #467377)
+
 2009-01-20  Aaron Bockover  <abock@gnome.org>
 
 	Banshee 1.4.2 Released
