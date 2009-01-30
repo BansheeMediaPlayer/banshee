@@ -154,9 +154,7 @@ namespace Banshee.Dap
         
         private void MapDevice (IDevice device)
         {
-            lock (sync) {
-                Scheduler.Schedule (new MapDeviceJob (this, device));
-            }
+            Scheduler.Schedule (new MapDeviceJob (this, device));
         }
 
         private class MapDeviceJob : IJob
