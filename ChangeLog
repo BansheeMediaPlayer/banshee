@@ -1,3 +1,9 @@
+2009-02-02  Gabriel Burt  <gabriel.burt@gmail.com>
+
+	* src/Core/Banshee.Services/Banshee.MediaEngine/PlayerEngineService.cs:
+	Fix bug I just introduced to TogglePlaying where if Paused we wouldn't
+	start playing again when called (BGO #570051).
+
 2009-01-30  Gabriel Burt  <gabriel.burt@gmail.com>
 
 	* src/Core/Banshee.ThickClient/Banshee.Gui/PlaybackActions.cs: Show the

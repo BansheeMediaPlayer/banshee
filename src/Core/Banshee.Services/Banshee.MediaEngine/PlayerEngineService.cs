@@ -430,7 +430,7 @@ namespace Banshee.MediaEngine
         
         public void TogglePlaying ()
         {
-            if (IsPlaying ()) {
+            if (IsPlaying () && CurrentState != PlayerState.Paused) {
                 Pause ();
             } else if (CurrentState != PlayerState.NotReady) {
                 Play ();
