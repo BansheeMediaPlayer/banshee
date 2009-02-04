@@ -185,8 +185,8 @@ namespace Mtp
             if (ext.Length > 0)
                 ext = ext.Substring (1, ext.Length - 1);
 
-            // this is a hack
-            if (ext == "m4v" || ext == "M4V")
+            // this is a hack; catch all m4(a|b|v|p)
+            if (ext != null && ext.ToLower ().StartsWith ("m4"))
                 ext = "mp4";
 
             FileType type = (FileType) Enum.Parse (typeof(FileType), ext, true);

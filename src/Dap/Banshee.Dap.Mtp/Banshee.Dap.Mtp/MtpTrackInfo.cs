@@ -97,13 +97,11 @@ namespace Banshee.Dap.Mtp
             f.Artist = track.ArtistName;
             f.Duration = (uint)track.Duration.TotalMilliseconds;
             f.Genre = track.Genre;
+            f.UseCount = (uint)track.PlayCount;
             f.Rating = (ushort)(track.Rating * 20);
             f.Title = track.TrackTitle;
             f.TrackNumber = (ushort)track.TrackNumber;
-            f.UseCount = (uint)track.PlayCount;
             f.Year = track.Year;
-            //f.Bitrate = (uint)track.BitRate;
-            f.FileSize = (ulong)track.FileSize;
         }
     }
 }

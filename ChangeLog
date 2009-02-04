@@ -1,5 +1,22 @@
 2009-02-03  Gabriel Burt  <gabriel.burt@gmail.com>
 
+	This patch fixes issues with adding tracks to a MTP device, the symptoms
+	of which are Banshee freezing and files not getting added (BGO #567093)
+
+	* Dap/Banshee.Dap.Mtp/Banshee.Dap.Mtp/MtpSource.cs: Do a better job of
+	locking various MTP functions.
+
+	* Dap/Banshee.Dap.Mtp/Banshee.Dap.Mtp/MtpTrackInfo.cs: Fix bug where we
+	set the filesize of the Mtp.Track to the TrackInfo's FileSize, when it
+	should be set to the file size of the passed in track URI (which might be
+	different than track.Uri if it was transcoded).
+
+	* Libraries/Mtp/Mtp/Error.cs: Style fix.
+
+	* Libraries/Mtp/Mtp/Track.cs: Treat any m4* extension as mp4.
+
+2009-02-03  Gabriel Burt  <gabriel.burt@gmail.com>
+
 	* src/Dap/Banshee.Dap/Banshee.Dap/DapLibrarySync.cs:
 	* src/Dap/Banshee.Dap/Banshee.Dap/DapSync.cs: Patch from Andrés G.
 	Aragoneses, moving the removal of DAP playlists from being called on each

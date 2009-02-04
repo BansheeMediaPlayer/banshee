@@ -61,7 +61,7 @@ namespace Banshee.Dap.Mtp
         private Dictionary<string, Album> album_cache = new Dictionary<string, Album> ();
 
         private bool supports_jpegs = false;
-        private bool can_sync = NeverSyncAlbumArtSchema.Get () == false;
+        private bool can_sync_albumart = NeverSyncAlbumArtSchema.Get () == false;
         private int thumb_width = AlbumArtWidthSchema.Get ();
 
         public override void DeviceInitialize (IDevice device)
@@ -150,13 +150,16 @@ namespace Banshee.Dap.Mtp
         {
             track_map = new Dictionary<int, Track> ();
             try {
-                List<Track> files = mtp_device.GetAllTracks (delegate (ulong current, ulong total, IntPtr data) {
-                    //user_event.Progress = (double)current / total;
-                    // Translators: {0} is the name of the MTP audio device (eg Gabe's Zen Player), {1} is the
-                    // track currently being loaded, and {2} is the total # of tracks that will be loaded.
-                    SetStatus (String.Format (Catalog.GetString ("Loading {0} - {1} of {2}"), Name, current, total), false);
-                    return 0;
-                });
+                List<Track> files = null;
+                lock (mtp_device) {
+                    files = mtp_device.GetAllTracks (delegate (ulong current, ulong total, IntPtr data) {
+                        //user_event.Progress = (double)current / total;
+                        // Translators: {0} is the name of the MTP audio device (eg Gabe's Zen Player), {1} is the
+                        // track currently being loaded, and {2} is the total # of tracks that will be loaded.
+                        SetStatus (String.Format (Catalog.GetString ("Loading {0} - {1} of {2}"), Name, current, total), false);
+                        return 0;
+                    });
+                }
 
                 /*if (user_event.IsCancelRequested) {
                     return;
@@ -178,15 +181,18 @@ namespace Banshee.Dap.Mtp
                 Hyena.Data.Sqlite.HyenaSqliteCommand insert_cmd = new Hyena.Data.Sqlite.HyenaSqliteCommand (
                     @"INSERT INTO CorePlaylistEntries (PlaylistID, TrackID)
                         SELECT ?, TrackID FROM CoreTracks WHERE PrimarySourceID = ? AND ExternalID = ?");
-                foreach (MTP.Playlist playlist in mtp_device.GetPlaylists ()) {
-                    PlaylistSource pl_src = new PlaylistSource (playlist.Name, this);
-                    pl_src.Save ();
-                    // TODO a transaction would make sense here (when the threading issue is fixed)
-                    foreach (int id in playlist.TrackIds) {
-                        ServiceManager.DbConnection.Execute (insert_cmd, pl_src.DbId, this.DbId, id);
+
+                lock (mtp_device) {
+                    foreach (MTP.Playlist playlist in mtp_device.GetPlaylists ()) {
+                        PlaylistSource pl_src = new PlaylistSource (playlist.Name, this);
+                        pl_src.Save ();
+                        // TODO a transaction would make sense here (when the threading issue is fixed)
+                        foreach (int id in playlist.TrackIds) {
+                            ServiceManager.DbConnection.Execute (insert_cmd, pl_src.DbId, this.DbId, id);
+                        }
+                        pl_src.UpdateCounts ();
+                        AddChildSource (pl_src);
                     }
-                    pl_src.UpdateCounts ();
-                    AddChildSource (pl_src);
                 }
 
             } catch (Exception e) {
@@ -272,27 +278,31 @@ namespace Banshee.Dap.Mtp
             }
         }
 
+        private long bytes_used;
         public override long BytesUsed {
             get {
-                long count = 0;
-                lock (mtp_device) {
+                if (Monitor.TryEnter (mtp_device)) {
+                    bytes_used = 0;
                     foreach (DeviceStorage s in mtp_device.GetStorage ()) {
-                        count += (long) s.MaxCapacity - (long) s.FreeSpaceInBytes;
+                        bytes_used += (long) s.MaxCapacity - (long) s.FreeSpaceInBytes;
                     }
+                    Monitor.Exit (mtp_device);
                 }
-                return count;
+                return bytes_used;
             }
         }
         
+        private long bytes_capacity;
         public override long BytesCapacity {
             get {
-                long count = 0;
-                lock (mtp_device) {
+                if (Monitor.TryEnter (mtp_device)) {
+                    bytes_capacity = 0;
                     foreach (DeviceStorage s in mtp_device.GetStorage ()) {
-                        count += (long) s.MaxCapacity;
+                        bytes_capacity += (long) s.MaxCapacity;
                     }
+                    Monitor.Exit (mtp_device);
                 }
-                return count;
+                return bytes_capacity;
             }
         }
 
@@ -305,43 +315,43 @@ namespace Banshee.Dap.Mtp
             if (track.PrimarySourceId == DbId)
                 return;
 
-            Track mtp_track = TrackInfoToMtpTrack (track, fromUri);
-            bool video = (track.MediaAttributes & TrackMediaAttributes.VideoStream) != 0;
             lock (mtp_device) {
+                Track mtp_track = TrackInfoToMtpTrack (track, fromUri);
+                bool video = track.HasAttribute (TrackMediaAttributes.VideoStream);
                 mtp_device.UploadTrack (fromUri.LocalPath, mtp_track, GetFolderForTrack (track), OnUploadProgress);
-            }
 
-            // Add/update album art
-            if (!video) {
-                string key = MakeAlbumKey (track.ArtistName, track.AlbumTitle);
-                if (!album_cache.ContainsKey (key)) {
-                    Album album = new Album (mtp_device, track.AlbumTitle, track.ArtistName, track.Genre);
-                    album.AddTrack (mtp_track);
+                // Add/update album art
+                if (!video) {
+                    string key = MakeAlbumKey (track.ArtistName, track.AlbumTitle);
+                    if (!album_cache.ContainsKey (key)) {
+                        Album album = new Album (mtp_device, track.AlbumTitle, track.ArtistName, track.Genre);
+                        album.AddTrack (mtp_track);
 
-                    if (supports_jpegs && can_sync) {
-                        try {
-                            Gdk.Pixbuf pic = ServiceManager.Get<Banshee.Collection.Gui.ArtworkManager> ().LookupScalePixbuf (
-                                track.ArtworkId, thumb_width
-                            );
-                            if (pic != null) {
-                                byte [] bytes = pic.SaveToBuffer ("jpeg");
-                                album.Save (bytes, (uint)pic.Width, (uint)pic.Height);
-                                Banshee.Collection.Gui.ArtworkManager.DisposePixbuf (pic);
-                            }
-                            album_cache[key] = album;
-                        } catch {}
+                        if (supports_jpegs && can_sync_albumart) {
+                            try {
+                                Gdk.Pixbuf pic = ServiceManager.Get<Banshee.Collection.Gui.ArtworkManager> ().LookupScalePixbuf (
+                                    track.ArtworkId, thumb_width
+                                );
+                                if (pic != null) {
+                                    byte [] bytes = pic.SaveToBuffer ("jpeg");
+                                    album.Save (bytes, (uint)pic.Width, (uint)pic.Height);
+                                    Banshee.Collection.Gui.ArtworkManager.DisposePixbuf (pic);
+                                }
+                                album_cache[key] = album;
+                            } catch {}
+                        }
+                    } else {
+                        Album album = album_cache[key];
+                        album.AddTrack (mtp_track);
+                        album.Save ();
                     }
-                } else {
-                    Album album = album_cache[key];
-                    album.AddTrack (mtp_track);
-                    album.Save ();
                 }
-            }
 
-            MtpTrackInfo new_track = new MtpTrackInfo (mtp_device, mtp_track);
-            new_track.PrimarySource = this;
-            new_track.Save (false);
-            track_map[new_track.TrackId] = mtp_track;
+                MtpTrackInfo new_track = new MtpTrackInfo (mtp_device, mtp_track);
+                new_track.PrimarySource = this;
+                new_track.Save (false);
+                track_map[new_track.TrackId] = mtp_track;
+            }
         }
 
         private Folder GetFolderForTrack (TrackInfo track)

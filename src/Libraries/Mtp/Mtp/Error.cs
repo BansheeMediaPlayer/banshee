@@ -55,8 +55,7 @@ namespace Mtp
 				return;
 			
 			LibMtpException ex = null;
-			while (ptr != IntPtr.Zero)
-			{
+			while (ptr != IntPtr.Zero) {
 				Error e = (Error)Marshal.PtrToStructure (ptr, typeof(Error));
 				ex = new LibMtpException (e.errornumber, e.error_text, ex);
 				ptr = e.next;
