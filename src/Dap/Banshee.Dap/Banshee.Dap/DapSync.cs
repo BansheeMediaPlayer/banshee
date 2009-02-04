@@ -285,11 +285,28 @@ namespace Banshee.Dap
         private void RateLimitedSync ()
         {
             syncing = true;
+
+            bool sync_playlists = false;
+            if (dap.SupportsPlaylists) {
+                foreach (DapLibrarySync library_sync in library_syncs) {
+                    if (library_sync.Library.SupportsPlaylists) {
+                        sync_playlists = true;
+                        break;
+                    }
+                }
+            }
             
+            if (sync_playlists) {
+                dap.RemovePlaylists ();
+            }
+
             foreach (DapLibrarySync library_sync in library_syncs) {
                 library_sync.Sync ();
             }
-            dap.SyncPlaylists ();
+
+            if (sync_playlists) {
+                dap.SyncPlaylists ();
+            }
 
             syncing = false;
         }

@@ -204,9 +204,8 @@ namespace Banshee.Dap
                 }
 
                 if (library.SupportsPlaylists && sync.Dap.SupportsPlaylists) {
-                    sync.Dap.RemovePlaylists ();
-
-                    // Then create the playlists, taking snapshots of smart playlists and saving them
+                    
+                    // Now create the playlists, taking snapshots of smart playlists and saving them
                     // as normal playlists
                     IList<AbstractPlaylistSource> playlists = GetSyncPlaylists ();
                     foreach (AbstractPlaylistSource from in playlists) {
