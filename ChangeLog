@@ -1,3 +1,9 @@
+2009-02-09  Gabriel Burt  <gabriel.burt@gmail.com>
+
+	* src/Libraries/Hyena.Gui/Hyena.Data.Gui/ListView/ListView_Header.cs:
+	Check for a very small change in the remaining width in the column size
+	calculation to avoid an infinite loop.
+
 2009-02-03  Gabriel Burt  <gabriel.burt@gmail.com>
 
 	This patch fixes issues with adding tracks to a MTP device, the symptoms
