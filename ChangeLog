@@ -1,3 +1,9 @@
+2009-02-25  Gabriel Burt  <gabriel.burt@gmail.com>
+
+	* src/Libraries/Hyena.Gui/Hyena.Data.Gui/ListView/ListView_Header.cs:
+	* src/Libraries/Hyena/Hyena.Data/ColumnDescription.cs: Fix another freeze
+	in the RecalculateColumnSize code due to some values getting set to NaN.
+
 2009-02-20  Gabriel Burt  <gabriel.burt@gmail.com>
 
 	* src/Core/Banshee.Widgets/Banshee.Widgets/Tile.cs:

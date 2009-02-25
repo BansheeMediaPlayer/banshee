@@ -37,6 +37,8 @@ namespace Hyena.Data
         private double width;
         private bool visible;
         private string property;
+
+        private bool initialized;
         
         public event EventHandler VisibilityChanged;
         public event EventHandler WidthChanged;
@@ -50,8 +52,9 @@ namespace Hyena.Data
             this.property = property;
             this.title = title;
             this.long_title = title;
-            this.width = width;
-            this.visible = visible;
+            Width = width;
+            Visible = visible;
+            initialized = true;
         }
                 
         protected virtual void OnVisibilityChanged ()
@@ -83,11 +86,14 @@ namespace Hyena.Data
         public double Width {
             get { return width; }
             set {
+                if (Double.IsNaN (value)) {
+                    return;
+                }
+
                 double old = width;
-                //Console.WriteLine ("Changing width of {0} from {1} to {2}", Title, Width, value);
                 width = value;
-                
-                if (value != old) {
+
+                if (initialized && value != old) {
                     OnWidthChanged ();
                 }
             }
@@ -104,7 +110,7 @@ namespace Hyena.Data
                 bool old = Visible;
                 visible = value;
                 
-                if(value != old) {
+                if(initialized && value != old) {
                     OnVisibilityChanged ();
                 }
             }

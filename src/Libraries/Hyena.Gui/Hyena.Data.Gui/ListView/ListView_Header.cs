@@ -230,10 +230,11 @@ namespace Hyena.Data.Gui
                 column_cache[i].ElasticWidth += delta;
             }
             
-            if (Math.Abs (total_width - remaining_width) < 1.0) {
+            if (Math.Abs (total_width - remaining_width) < 1.0 || remaining_width == Double.NaN) {
                 Hyena.Log.Warning ("Forcefully breaking out of RCS loop b/c change in total_width less than 1.0");
                 return 0;
             }
+
             return Math.Round (remaining_width);
         }
         
