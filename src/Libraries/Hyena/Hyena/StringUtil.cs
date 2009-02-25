@@ -159,5 +159,23 @@ namespace Hyena
             else
                 return (int)num + 1;
         }
+        
+        private static string invalid_path_characters = "\"\\:'~`!@#$%^&*_-+|?/><[]";
+        private static Regex invalid_path_regex;
+        
+        public static string EscapeFilename (string input)
+        {
+            if (invalid_path_regex == null) {
+                string regex_str = "[";
+                for (int i = 0; i < invalid_path_characters.Length; i++) {
+                    regex_str += "\\" + invalid_path_characters[i];
+                }
+                regex_str += "]+";
+                
+                invalid_path_regex = new Regex (regex_str, RegexOptions.Compiled);
+            }
+            
+            return invalid_path_regex.Replace (input, String.Empty);
+        }
     }
 }

@@ -1,5 +1,18 @@
 2009-02-10  Gabriel Burt  <gabriel.burt@gmail.com>
 
+	Patch from John Millikin fixing issue with downloading some podcasts.
+
+	* Core/Banshee.Core/Banshee.Base/FileNamePattern.cs:
+	* Libraries/Hyena/Hyena/StringUtil.cs: Move Escape method to Hyena so
+	reusable in Migo, and mark the Regex it uses as Compiled.
+
+	* Libraries/Migo/Migo.DownloadCore/DownloadManager.cs:
+	* Libraries/Migo/Migo.Syndication/Feed.cs: Use Hyena's new EscapeFilename
+	method to fix bug with downloading podcasts with special characters in
+	their title (BGO #567293).
+
+2009-02-10  Gabriel Burt  <gabriel.burt@gmail.com>
+
 	* src/Libraries/Mtp/Mtp/MtpDevice.cs:
 	* src/Libraries/Mtp/Mtp/Track.cs: Modified patch from William Pettersson
 	fixing NRE with transferring song to MTP devices (BGO #571023)

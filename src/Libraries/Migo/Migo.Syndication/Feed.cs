@@ -218,7 +218,10 @@ namespace Migo.Syndication
         
         //[DatabaseColumn]
         public string LocalEnclosurePath {
-            get { return Path.Combine (FeedsManager.Instance.PodcastStorageDirectory, Title); }
+            get {
+                string escaped = Hyena.StringUtil.EscapeFilename (Title);
+                return Path.Combine (FeedsManager.Instance.PodcastStorageDirectory, escaped);
+            }
             //set { local_enclosure_path = value; }
         }
 

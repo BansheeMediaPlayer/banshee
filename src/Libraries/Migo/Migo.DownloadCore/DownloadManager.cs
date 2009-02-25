@@ -126,7 +126,7 @@ namespace Migo.DownloadCore
             }
             
             string[] segments = uri.Segments;        
-            string fileName = segments[segments.Length-1].Trim ('/');
+            string fileName = System.Web.HttpUtility.UrlDecode (segments[segments.Length-1].Trim ('/'));
             
             MD5 hasher = MD5.Create ();
             
@@ -139,7 +139,7 @@ namespace Migo.DownloadCore
                                          .ToLower ();
             
             string remoteUri = url;
-            string localPath = tmpDir + urlHash + Path.DirectorySeparatorChar + System.Web.HttpUtility.UrlDecode (fileName);
+            string localPath = tmpDir + urlHash + Path.DirectorySeparatorChar + Hyena.StringUtil.EscapeFilename (fileName);
 
             HttpFileDownloadTask task = null;
             string [] parts = fileName.Split ('.');
