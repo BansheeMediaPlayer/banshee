@@ -1,5 +1,6 @@
 ===============================================================================
-WELCOME TO BANSHEE 1.4.2 - Released January 20, 2009 - "The Obama Release"
+WELCOME TO BANSHEE 1.4.3 - NOT YET RELEASED
+#WELCOME TO BANSHEE 1.4.3 - Released February 25, 2009
 ===============================================================================
 
   * Banshee is a multimedia management and playback application for GNOME.
@@ -10,53 +11,32 @@ WELCOME TO BANSHEE 1.4.2 - Released January 20, 2009 - "The Obama Release"
     experience automatic cover art fetching as you listen; and easily browse,
     search, and control your media collection."
 
-  * Learn More: http://banshee-project.org/download/archives/1.4.2/
+  * Learn More: http://banshee-project.org/download/archives/1.4.3/
 
 
 ===============================================================================
 NEW AWESOME FEATURES AND ENHANCEMENTS
 ===============================================================================
 
-    Banshee 1.4.2 is primarily a bug fix release, and is considered stable.
+    Banshee 1.4.3 is primarily a bug fix release, and is considered stable.
     
-    Improvements:
-
-      * Add support for itms:// podcast links (BNC #465149)
-      * Audio CDs appear in the Import Media dropdown (BNC #457918)
-      * Right align track #, disc #, bpm, play/skip count columns (BGO #553322)
-
     Notable bug fixes:
 
-      * Handle parsing non-UTF8 RSS feeds (BGO #538224)
-      * Fix bug with Rescan UI being glitchy, CPU heavy (BGO #552561)
-      * Don't import podcast episodes during Rescan (BGO #552976)
-      * Fix localization issue with audio profiles (BNC #449788)
-      * Fix duplicating and clearing File System Queue playlists
-      * Set the mimetype on ripped tracks (BGO #558526)
-      * Fix opening to a specific device/cd (BNC #461677)
-      * Fix support for playing m3u's etc passed in from Firefox (BNC #456120)
-      * Fixed Rio Karma support (BGO #566205)
-      * Escape closes the equalizer dialog (BGO #552818).
-      * Fix crash that occured near the end of syncing a DAP (BGO #558662)
-      * Fix audio cd crash when running in certain languages (BGO #565059)
-      * Deleting last track in a folder on MassStorage works (BGO #560550) 
-      * Support passing filenames with spaces to banshee-1 (BNC #440883) 
-      * Prevent browser panes from being made zero height (BGO #560675)
-      * Prevent DAAP-related freeze by delaying initialization (BNC #450125)
-      * Fix unsubscribing from the last podcast (BGO #560210)
-      * Fix issue with first track's TrackCount in editor (BGO #561083)
-      * Fix albums sometimes listed twice, as compilation and not (BGO #557313)
-      * Fix podcast episodes' published date when playing (BGO #565863)
-      * Fix bug with encoding/scrobbling non-ASCII info (BGO #539963)
-      * Fix case-sensitivity bug with genre smart playlists (BGO #555120)
-      * Support parsing dates for some invalid RSS feeds (BGO #561381)
-      * Files with uppercase extensions show in import dialog (BGO #566224)
-      * 62 bugs were FIXED since 1.4.1
+      * Common freeze triggered by column resizing
+      * Vastly improved MTP support
+	  * Occasional freeze when loading some devices
+      * Playing internet radio playlists blocking the UI
+      * Device playlist sync
+      * Some podcast files not downloadable due to illegal filename
+      * Show Recommendations check box state set properly
+	  * Crash on delete from File System Queue
+      * Minor recommendations theming issue
+
+      * 15 bugs were FIXED since 1.4.2
 
     OS X specific:
 
-      * Fix support for mp3 playback on OS X
-      * Updated to latest GStreamer release (0.10.22 core, 0.10.22 base)
+      * 
 
 
 ===============================================================================
@@ -66,9 +46,9 @@ SOURCES / PACKAGES
 Sources
 -------
 
-    * Banshee 1.4.2 Tarballs:
-      http://download.banshee-project.org/banshee/banshee-1-1.4.2.tar.bz2
-      http://download.banshee-project.org/banshee/banshee-1-1.4.2.tar.gz
+    * Banshee 1.4.3 Tarballs:
+      http://download.banshee-project.org/banshee/banshee-1-1.4.3.tar.bz2
+      http://download.banshee-project.org/banshee/banshee-1-1.4.3.tar.gz
 
 Packages
 --------
@@ -84,13 +64,13 @@ Packages
 
     Binaries for Mac OS X 10.4 and 10.5:
 
-    * http://download.banshee-project.org/banshee/banshee-1-1.4.2.macosx.intel.dmg
+    * http://download.banshee-project.org/banshee/banshee-1-1.4.3.macosx.intel.dmg
 
 ChangeLogs & Checksums
 ----------------------
 
-    * http://download.banshee-project.org/banshee/banshee-1-1.4.2.changes
-    * http://download.banshee-project.org/banshee/banshee-1-1.4.2.sha1sum
+    * http://download.banshee-project.org/banshee/banshee-1-1.4.3.changes
+    * http://download.banshee-project.org/banshee/banshee-1-1.4.3.sha1sum
 
 
 ===============================================================================
@@ -151,7 +131,7 @@ REPORT BUGS - HELP THE PROJECT - GROW THE COMMUNITY
     hesitate to file bugs!
 
     * http://banshee-project.org/contribute/file-bugs
-    * http://bugzilla.gnome.org/enter_bug.cgi?product=banshee&version=1.4.2
+    * http://bugzilla.gnome.org/enter_bug.cgi?product=banshee&version=1.4.3
 
 
 ===============================================================================
