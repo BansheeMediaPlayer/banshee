@@ -64,7 +64,8 @@ namespace Banshee.Lastfm.Recommendations
                 new ToggleActionEntry (
                     "ShowRecommendationAction", null,
                     Catalog.GetString("Show Recommendations"), "<control>R",
-                    Catalog.GetString("Show Recommendations"), OnToggleShow, true
+                    Catalog.GetString("Show Recommendations"), OnToggleShow,
+                    RecommendationService.ShowSchema.Get ()
                 )
             });
 
