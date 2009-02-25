@@ -214,13 +214,12 @@ namespace Mtp
 			return LIBMTP_Get_Tracklisting_With_Callback (handle, function, data);
 		}
 
-		internal static void SendTrack (MtpDeviceHandle handle, string path, ref TrackStruct metadata, ProgressFunction callback, IntPtr data, uint parent)
+		internal static void SendTrack (MtpDeviceHandle handle, string path, ref TrackStruct metadata, ProgressFunction callback, IntPtr data)
 		{
 #if LIBMTP8
-            metadata.parent_id = parent;
 			if (LIBMTP_Send_Track_From_File (handle, path, ref metadata, callback, data) != 0)
 #else
-			if (LIBMTP_Send_Track_From_File (handle, path, ref metadata, callback, data, parent) != 0)
+			if (LIBMTP_Send_Track_From_File (handle, path, ref metadata, callback, data, metadata.parent_id) != 0)
 #endif
 			{
 				LibMtpException.CheckErrorStack (handle);

@@ -1,5 +1,11 @@
 2009-02-10  Gabriel Burt  <gabriel.burt@gmail.com>
 
+	* src/Libraries/Mtp/Mtp/MtpDevice.cs:
+	* src/Libraries/Mtp/Mtp/Track.cs: Modified patch from William Pettersson
+	fixing NRE with transferring song to MTP devices (BGO #571023)
+
+2009-02-10  Gabriel Burt  <gabriel.burt@gmail.com>
+
 	* src/Dap/Banshee.Dap.Mtp/Banshee.Dap.Mtp/MtpSource.cs: Patch from William
 	Pettersson catching exceptions thrown when trying to get the battery level
 	(BGO #571022)
