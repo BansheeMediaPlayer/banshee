@@ -43,16 +43,17 @@ namespace Migo.Syndication.Tests
         [Test]
         public void TestParseDates ()
         {
+            // The local timezone for tests is America/Chicago (UTC -06:00)
             TransformPair<string, DateTime> [] pairs = TransformPair<string, DateTime>.GetFrom (
-                "Fri, 22 Feb 2008 16:00:00 EST",        DateTime.Parse ("22/02/2008 5.00.00"),
-                "Fri, 15 Feb 2008 4:10:00 EST",         DateTime.Parse ("14/02/2008 17.10.00"),
-                "Tue, 08 Apr 2008 03:37:04 -0400",      DateTime.Parse ("07/04/2008 18.37.04"),
-                "Tue, 26 Feb 2008 03:28:51 -0500",      DateTime.Parse ("25/02/2008 16.28.51"),
-                "Sun, 11 May 2008 01:33:26 -0400",      DateTime.Parse ("10/05/2008 16.33.26"),
-                "Fri, 16 May 2008 16:09:10 -0500",      DateTime.Parse ("16/05/2008 6.09.10"),
-                "Fri, 14 Mar 2008 13:44:53 -0500",      DateTime.Parse ("14/03/2008 3.44.53"),
-                "Fri, 07 December 2007 17:00:00 EST",   DateTime.Parse ("07/12/2007 6.00.00"),
-                "Sat, 08 Mar 2008 12:00:00 EST",        DateTime.Parse ("08/03/2008 1.00.00"),
+                "Fri, 22 Feb 2008 16:00:00 EST",        DateTime.Parse ("22/02/2008 15.00.00"),
+                "Fri, 15 Feb 2008 4:10:00 EST",         DateTime.Parse ("15/02/2008 3.10.00"),
+                "Tue, 08 Apr 2008 03:37:04 -0400",      DateTime.Parse ("08/04/2008 2.37.04"),
+                "Tue, 26 Feb 2008 03:28:51 -0500",      DateTime.Parse ("26/02/2008 2.28.51"),
+                "Sun, 11 May 2008 01:33:26 -0400",      DateTime.Parse ("11/05/2008 0.33.26"),
+                "Fri, 16 May 2008 16:09:10 -0500",      DateTime.Parse ("16/05/2008 16.09.10"),
+                "Fri, 14 Mar 2008 13:44:53 -0500",      DateTime.Parse ("14/03/2008 13.44.53"),
+                "Fri, 07 December 2007 17:00:00 EST",   DateTime.Parse ("07/12/2007 16.00.00"),
+                "Sat, 08 Mar 2008 12:00:00 EST",        DateTime.Parse ("08/03/2008 11.00.00"),
                 "Sat, 17 May 2008 20:47:57 +0000",      DateTime.Parse ("17/05/2008 15.47.57"),
                 "Sat, 17 May 2008 19:33:42 +0000",      DateTime.Parse ("17/05/2008 14.33.42")
             );

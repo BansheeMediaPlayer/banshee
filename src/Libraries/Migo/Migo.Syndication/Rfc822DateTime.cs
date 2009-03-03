@@ -94,7 +94,7 @@ namespace Migo.Syndication
 				ret = new DateTime (year, month, day, hours, minutes, seconds);
                                 
                 if (timeZone != String.Empty) {
-                    ret += ParseGmtOffset (timeZone);
+                    ret -= ParseGmtOffset (timeZone);
                 }
 				
                 return ret.ToLocalTime ();

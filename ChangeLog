@@ -1,3 +1,11 @@
+2009-02-08  Bertrand Lorentz  <bertrand.lorentz@gmail.com>
+
+	* src/Libraries/Migo/Migo.Syndication/Rfc822DateTime.cs: patch from
+	Christian Krause fixing the timezone handling (BGO #570721).
+
+	* src/Libraries/Migo/Migo.Syndication/Tests/XmlTests.cs: Update the 
+	tests for the above fix.
+
 2009-02-25  Gabriel Burt  <gabriel.burt@gmail.com>
 
 	* configure.ac:
