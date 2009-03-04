@@ -196,7 +196,9 @@ namespace Media.Playlists.Xspf
                         path = System.Reflection.Assembly.GetEntryAssembly().Location;
                     }
                     path = Path.GetFullPath(path);
-                    default_base_uri = new Uri(path);
+                    if (!Uri.TryCreate(path, UriKind.Absolute, out default_base_uri)) {
+                        default_base_uri = Location;
+                    }
                 }
                 
                 return default_base_uri;
