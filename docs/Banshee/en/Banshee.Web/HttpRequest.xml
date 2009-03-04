@@ -142,7 +142,7 @@
       <ReturnValue><ReturnType>System.Void</ReturnType></ReturnValue>
       <Parameters />
       <Docs><summary>To be added.</summary><remarks>To be added.</remarks></Docs>
-    </Member><Member MemberName="IgnoreMimeTypes">
+    </Member><Member MemberName="GetResponseStream"><MemberSignature Language="C#" Value="public System.IO.Stream GetResponseStream ();" /><MemberType>Method</MemberType><AssemblyInfo><AssemblyVersion>1.4.0.0</AssemblyVersion></AssemblyInfo><ReturnValue><ReturnType>System.IO.Stream</ReturnType></ReturnValue><Parameters /><Docs><summary>To be added.</summary><returns>To be added.</returns><remarks>To be added.</remarks></Docs></Member><Member MemberName="IgnoreMimeTypes">
       <MemberSignature Language="C#" Value="public string[] IgnoreMimeTypes { set; get; }" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
@@ -183,7 +183,7 @@
       <AssemblyVersion>1.3.1.0</AssemblyVersion><AssemblyVersion>1.4.0.0</AssemblyVersion></AssemblyInfo>
       <ReturnValue><ReturnType>System.Net.HttpWebResponse</ReturnType></ReturnValue>
       <Docs><summary>To be added.</summary><value>To be added.</value><remarks>To be added.</remarks></Docs>
-    </Member><Member MemberName="SaveResponseStream">
+    </Member><Member MemberName="ResponseBody"><MemberSignature Language="C#" Value="public string ResponseBody { get; }" /><MemberType>Property</MemberType><AssemblyInfo><AssemblyVersion>1.4.0.0</AssemblyVersion></AssemblyInfo><ReturnValue><ReturnType>System.String</ReturnType></ReturnValue><Docs><summary>To be added.</summary><value>To be added.</value><remarks>To be added.</remarks></Docs></Member><Member MemberName="SaveResponseStream">
       <MemberSignature Language="C#" Value="public void SaveResponseStream (Banshee.Base.SafeUri path);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>

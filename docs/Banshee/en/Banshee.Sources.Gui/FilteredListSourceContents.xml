@@ -119,7 +119,7 @@
       <ReturnValue><ReturnType>System.Void</ReturnType></ReturnValue>
       <Parameters><Parameter Name="model" Type="Hyena.Data.IListModel&lt;T&gt;" /></Parameters>
       <Docs><typeparam name="T">To be added.</typeparam><param name="model">To be added.</param><summary>To be added.</summary><remarks>To be added.</remarks></Docs>
-    </Member><Member MemberName="SetModel&lt;T&gt;">
+    <TypeParameters><TypeParameter Name="T" /></TypeParameters></Member><Member MemberName="SetModel&lt;T&gt;">
       <MemberSignature Language="C#" Value="protected void SetModel&lt;T&gt; (Hyena.Data.Gui.ListView&lt;T&gt; view, Hyena.Data.IListModel&lt;T&gt; model);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
@@ -128,7 +128,7 @@
       <ReturnValue><ReturnType>System.Void</ReturnType></ReturnValue>
       <Parameters><Parameter Name="view" Type="Hyena.Data.Gui.ListView&lt;T&gt;" /><Parameter Name="model" Type="Hyena.Data.IListModel&lt;T&gt;" /></Parameters>
       <Docs><typeparam name="T">To be added.</typeparam><param name="view">To be added.</param><param name="model">To be added.</param><summary>To be added.</summary><remarks>To be added.</remarks></Docs>
-    </Member><Member MemberName="SetSource">
+    <TypeParameters><TypeParameter Name="T" /></TypeParameters></Member><Member MemberName="SetSource">
       <MemberSignature Language="C#" Value="public abstract bool SetSource (Banshee.Sources.ISource source);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
@@ -146,7 +146,7 @@
       <ReturnValue><ReturnType>System.Void</ReturnType></ReturnValue>
       <Parameters><Parameter Name="filter_view" Type="Hyena.Data.Gui.ListView&lt;T&gt;" /></Parameters>
       <Docs><typeparam name="T">To be added.</typeparam><param name="filter_view">To be added.</param><summary>To be added.</summary><remarks>To be added.</remarks></Docs>
-    </Member><Member MemberName="SetupMainView&lt;T&gt;">
+    <TypeParameters><TypeParameter Name="T" /></TypeParameters></Member><Member MemberName="SetupMainView&lt;T&gt;">
       <MemberSignature Language="C#" Value="protected void SetupMainView&lt;T&gt; (Hyena.Data.Gui.ListView&lt;T&gt; main_view);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
@@ -155,7 +155,7 @@
       <ReturnValue><ReturnType>System.Void</ReturnType></ReturnValue>
       <Parameters><Parameter Name="main_view" Type="Hyena.Data.Gui.ListView&lt;T&gt;" /></Parameters>
       <Docs><typeparam name="T">To be added.</typeparam><param name="main_view">To be added.</param><summary>To be added.</summary><remarks>To be added.</remarks></Docs>
-    </Member><Member MemberName="source">
+    <TypeParameters><TypeParameter Name="T" /></TypeParameters></Member><Member MemberName="source">
       <MemberSignature Language="C#" Value="protected Banshee.Sources.ISource source;" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>

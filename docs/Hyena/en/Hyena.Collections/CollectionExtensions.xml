@@ -27,7 +27,7 @@
       <ReturnValue><ReturnType>System.String</ReturnType></ReturnValue>
       <Parameters><Parameter Name="list" Type="System.Collections.Generic.IList&lt;T&gt;" /></Parameters>
       <Docs><typeparam name="T">To be added.</typeparam><param name="list">To be added.</param><summary>To be added.</summary><returns>To be added.</returns><remarks>To be added.</remarks></Docs>
-    </Member><Member MemberName="Join&lt;T&gt;">
+    <TypeParameters><TypeParameter Name="T" /></TypeParameters></Member><Member MemberName="Join&lt;T&gt;">
       <MemberSignature Language="C#" Value="public static string Join&lt;T&gt; (System.Collections.Generic.IList&lt;T&gt; list, string separator);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
@@ -36,7 +36,7 @@
       <ReturnValue><ReturnType>System.String</ReturnType></ReturnValue>
       <Parameters><Parameter Name="list" Type="System.Collections.Generic.IList&lt;T&gt;" /><Parameter Name="separator" Type="System.String" /></Parameters>
       <Docs><typeparam name="T">To be added.</typeparam><param name="list">To be added.</param><param name="separator">To be added.</param><summary>To be added.</summary><returns>To be added.</returns><remarks>To be added.</remarks></Docs>
-    </Member><Member MemberName="Join&lt;T&gt;">
+    <TypeParameters><TypeParameter Name="T" /></TypeParameters></Member><Member MemberName="Join&lt;T&gt;">
       <MemberSignature Language="C#" Value="public static string Join&lt;T&gt; (System.Collections.Generic.IList&lt;T&gt; list, string wrapper, string separator);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
@@ -45,7 +45,7 @@
       <ReturnValue><ReturnType>System.String</ReturnType></ReturnValue>
       <Parameters><Parameter Name="list" Type="System.Collections.Generic.IList&lt;T&gt;" /><Parameter Name="wrapper" Type="System.String" /><Parameter Name="separator" Type="System.String" /></Parameters>
       <Docs><typeparam name="T">To be added.</typeparam><param name="list">To be added.</param><param name="wrapper">To be added.</param><param name="separator">To be added.</param><summary>To be added.</summary><returns>To be added.</returns><remarks>To be added.</remarks></Docs>
-    </Member><Member MemberName="Join&lt;T&gt;">
+    <TypeParameters><TypeParameter Name="T" /></TypeParameters></Member><Member MemberName="Join&lt;T&gt;">
       <MemberSignature Language="C#" Value="public static string Join&lt;T&gt; (System.Collections.Generic.IList&lt;T&gt; list, string front, string back, string separator);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
@@ -54,8 +54,8 @@
       <ReturnValue><ReturnType>System.String</ReturnType></ReturnValue>
       <Parameters><Parameter Name="list" Type="System.Collections.Generic.IList&lt;T&gt;" /><Parameter Name="front" Type="System.String" /><Parameter Name="back" Type="System.String" /><Parameter Name="separator" Type="System.String" /></Parameters>
       <Docs><typeparam name="T">To be added.</typeparam><param name="list">To be added.</param><param name="front">To be added.</param><param name="back">To be added.</param><param name="separator">To be added.</param><summary>To be added.</summary><returns>To be added.</returns><remarks>To be added.</remarks></Docs>
-    </Member><Member MemberName="SortedInsert&lt;T&gt;">
-      <MemberSignature Language="C#" Value="public static void SortedInsert&lt;T&gt; (System.Collections.Generic.List&lt;T&gt; list, T value);" />
+    <TypeParameters><TypeParameter Name="T" /></TypeParameters></Member><Member MemberName="SortedInsert&lt;T&gt;">
+      <MemberSignature Language="C#" Value="public static void SortedInsert&lt;T&gt; (System.Collections.Generic.List&lt;T&gt; list, T value) where T : IComparable;" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         
@@ -63,6 +63,6 @@
       <ReturnValue><ReturnType>System.Void</ReturnType></ReturnValue>
       <Parameters><Parameter Name="list" Type="System.Collections.Generic.List&lt;T&gt;" /><Parameter Name="value" Type="T" /></Parameters>
       <Docs><typeparam name="T">To be added.</typeparam><param name="list">To be added.</param><param name="value">To be added.</param><summary>To be added.</summary><remarks>To be added.</remarks></Docs>
-    </Member>
+    <TypeParameters><TypeParameter Name="T"><Constraints><InterfaceName>System.IComparable</InterfaceName></Constraints></TypeParameter></TypeParameters></Member>
   </Members>
 </Type>

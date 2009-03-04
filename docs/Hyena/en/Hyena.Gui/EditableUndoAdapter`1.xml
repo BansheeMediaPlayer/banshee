@@ -1,11 +1,16 @@
 <Type Name="EditableUndoAdapter&lt;T&gt;" FullName="Hyena.Gui.EditableUndoAdapter&lt;T&gt;">
-  <TypeSignature Language="C#" Value="public class EditableUndoAdapter&lt;T&gt;" />
+  <TypeSignature Language="C#" Value="public class EditableUndoAdapter&lt;T&gt; where T : Widget, Editable" />
   <AssemblyInfo>
     <AssemblyName>Hyena.Gui</AssemblyName>
     <AssemblyVersion>1.4.0.0</AssemblyVersion>
   </AssemblyInfo>
   <TypeParameters>
-    <TypeParameter>T</TypeParameter>
+    <TypeParameter Name="T">
+      <Constraints>
+        <BaseTypeName>Gtk.Widget</BaseTypeName>
+        <InterfaceName>Gtk.Editable</InterfaceName>
+      </Constraints>
+    </TypeParameter>
   </TypeParameters>
   <Base>
     <BaseTypeName>System.Object</BaseTypeName>

@@ -1,5 +1,5 @@
 <Type Name="BansheeModelProvider&lt;T&gt;" FullName="Banshee.Database.BansheeModelProvider&lt;T&gt;">
-  <TypeSignature Language="C#" Value="public class BansheeModelProvider&lt;T&gt; : Hyena.Data.Sqlite.SqliteModelProvider&lt;T&gt;" />
+  <TypeSignature Language="C#" Value="public class BansheeModelProvider&lt;T&gt; : Hyena.Data.Sqlite.SqliteModelProvider&lt;T&gt; where T : new()" />
   <AssemblyInfo>
     <AssemblyName>Banshee.Services</AssemblyName>
     <AssemblyVersion>0.90.1.25404</AssemblyVersion>
@@ -7,7 +7,11 @@
     <AssemblyVersion>1.4.0.0</AssemblyVersion>
   </AssemblyInfo>
   <TypeParameters>
-    <TypeParameter>T</TypeParameter>
+    <TypeParameter Name="T">
+      <Constraints>
+        <ParameterAttribute>DefaultConstructorConstraint</ParameterAttribute>
+      </Constraints>
+    </TypeParameter>
   </TypeParameters>
   <Base>
     <BaseTypeName>Hyena.Data.Sqlite.SqliteModelProvider&lt;T&gt;</BaseTypeName>

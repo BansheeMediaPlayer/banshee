@@ -1,11 +1,16 @@
 <Type Name="EditorEditableUndoAdapter&lt;T&gt;" FullName="Banshee.Gui.TrackEditor.EditorEditableUndoAdapter&lt;T&gt;">
-  <TypeSignature Language="C#" Value="public class EditorEditableUndoAdapter&lt;T&gt;" />
+  <TypeSignature Language="C#" Value="public class EditorEditableUndoAdapter&lt;T&gt; where T : Widget, Editable" />
   <AssemblyInfo>
     <AssemblyName>Banshee.ThickClient</AssemblyName>
     <AssemblyVersion>1.4.0.0</AssemblyVersion>
   </AssemblyInfo>
   <TypeParameters>
-    <TypeParameter>T</TypeParameter>
+    <TypeParameter Name="T">
+      <Constraints>
+        <BaseTypeName>Gtk.Widget</BaseTypeName>
+        <InterfaceName>Gtk.Editable</InterfaceName>
+      </Constraints>
+    </TypeParameter>
   </TypeParameters>
   <Base>
     <BaseTypeName>System.Object</BaseTypeName>

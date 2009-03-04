@@ -54,7 +54,7 @@
       <AssemblyVersion>1.3.1.0</AssemblyVersion><AssemblyVersion>1.4.0.0</AssemblyVersion></AssemblyInfo>
       <ReturnValue><ReturnType>Banshee.Hardware.DeviceAddedHandler</ReturnType></ReturnValue>
       <Docs><summary>To be added.</summary><remarks>To be added.</remarks></Docs>
-    </Member><Member MemberName="DeviceRemoved">
+    </Member><Member MemberName="DeviceCommand"><MemberSignature Language="C#" Value="public event Banshee.Hardware.DeviceCommandHandler DeviceCommand;" /><MemberType>Event</MemberType><AssemblyInfo><AssemblyVersion>1.4.0.0</AssemblyVersion></AssemblyInfo><ReturnValue><ReturnType>Banshee.Hardware.DeviceCommandHandler</ReturnType></ReturnValue><Docs><summary>To be added.</summary><remarks>To be added.</remarks></Docs></Member><Member MemberName="DeviceRemoved">
       <MemberSignature Language="C#" Value="public event Banshee.Hardware.DeviceRemovedHandler DeviceRemoved;" />
       <MemberType>Event</MemberType>
       <AssemblyInfo>
@@ -107,7 +107,7 @@
       <ReturnValue><ReturnType>System.Collections.Generic.IEnumerable&lt;Banshee.Hardware.IDiskDevice&gt;</ReturnType></ReturnValue>
       <Parameters />
       <Docs><summary>To be added.</summary><returns>To be added.</returns><remarks>To be added.</remarks></Docs>
-    </Member><Member MemberName="Test">
+    </Member><Member MemberName="StartupDeviceCommand"><MemberSignature Language="C#" Value="public Banshee.Hardware.DeviceCommand StartupDeviceCommand { get; }" /><MemberType>Property</MemberType><AssemblyInfo><AssemblyVersion>1.4.0.0</AssemblyVersion></AssemblyInfo><ReturnValue><ReturnType>Banshee.Hardware.DeviceCommand</ReturnType></ReturnValue><Docs><summary>To be added.</summary><value>To be added.</value><remarks>To be added.</remarks></Docs></Member><Member MemberName="Test">
       <MemberSignature Language="C#" Value="public void Test ();" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>

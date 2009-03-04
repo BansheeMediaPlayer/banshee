@@ -1,5 +1,5 @@
 <Type Name="ModelCache&lt;T&gt;" FullName="Hyena.Data.ModelCache&lt;T&gt;">
-  <TypeSignature Language="C#" Value="public abstract class ModelCache&lt;T&gt;" />
+  <TypeSignature Language="C#" Value="public abstract class ModelCache&lt;T&gt; where T : ICacheableItemnew()" />
   <AssemblyInfo>
     <AssemblyName>Hyena</AssemblyName>
     <AssemblyVersion>0.90.1.25402</AssemblyVersion>
@@ -7,7 +7,12 @@
     <AssemblyVersion>1.4.0.0</AssemblyVersion>
   </AssemblyInfo>
   <TypeParameters>
-    <TypeParameter>T</TypeParameter>
+    <TypeParameter Name="T">
+      <Constraints>
+        <ParameterAttribute>DefaultConstructorConstraint</ParameterAttribute>
+        <InterfaceName>Hyena.Data.ICacheableItem</InterfaceName>
+      </Constraints>
+    </TypeParameter>
   </TypeParameters>
   <Base>
     <BaseTypeName>System.Object</BaseTypeName>

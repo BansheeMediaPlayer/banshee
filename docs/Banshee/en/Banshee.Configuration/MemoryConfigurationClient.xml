@@ -43,7 +43,7 @@
       <ReturnValue><ReturnType>T</ReturnType></ReturnValue>
       <Parameters><Parameter Name="entry" Type="Banshee.Configuration.SchemaEntry&lt;T&gt;" /></Parameters>
       <Docs><typeparam name="T">To be added.</typeparam><param name="entry">To be added.</param><summary>To be added.</summary><returns>To be added.</returns><remarks>To be added.</remarks></Docs>
-    </Member><Member MemberName="Get&lt;T&gt;">
+    <TypeParameters><TypeParameter Name="T" /></TypeParameters></Member><Member MemberName="Get&lt;T&gt;">
       <MemberSignature Language="C#" Value="public T Get&lt;T&gt; (Banshee.Configuration.SchemaEntry&lt;T&gt; entry, T fallback);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
@@ -52,7 +52,7 @@
       <ReturnValue><ReturnType>T</ReturnType></ReturnValue>
       <Parameters><Parameter Name="entry" Type="Banshee.Configuration.SchemaEntry&lt;T&gt;" /><Parameter Name="fallback" Type="T" /></Parameters>
       <Docs><typeparam name="T">To be added.</typeparam><param name="entry">To be added.</param><param name="fallback">To be added.</param><summary>To be added.</summary><returns>To be added.</returns><remarks>To be added.</remarks></Docs>
-    </Member><Member MemberName="Get&lt;T&gt;">
+    <TypeParameters><TypeParameter Name="T" /></TypeParameters></Member><Member MemberName="Get&lt;T&gt;">
       <MemberSignature Language="C#" Value="public T Get&lt;T&gt; (string key, T fallback);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
@@ -61,7 +61,7 @@
       <ReturnValue><ReturnType>T</ReturnType></ReturnValue>
       <Parameters><Parameter Name="key" Type="System.String" /><Parameter Name="fallback" Type="T" /></Parameters>
       <Docs><typeparam name="T">To be added.</typeparam><param name="key">To be added.</param><param name="fallback">To be added.</param><summary>To be added.</summary><returns>To be added.</returns><remarks>To be added.</remarks></Docs>
-    </Member><Member MemberName="Get&lt;T&gt;">
+    <TypeParameters><TypeParameter Name="T" /></TypeParameters></Member><Member MemberName="Get&lt;T&gt;">
       <MemberSignature Language="C#" Value="public T Get&lt;T&gt; (string namespce, string key, T fallback);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
@@ -70,7 +70,7 @@
       <ReturnValue><ReturnType>T</ReturnType></ReturnValue>
       <Parameters><Parameter Name="namespce" Type="System.String" /><Parameter Name="key" Type="System.String" /><Parameter Name="fallback" Type="T" /></Parameters>
       <Docs><typeparam name="T">To be added.</typeparam><param name="namespce">To be added.</param><param name="key">To be added.</param><param name="fallback">To be added.</param><summary>To be added.</summary><returns>To be added.</returns><remarks>To be added.</remarks></Docs>
-    </Member><Member MemberName="MakeKey">
+    <TypeParameters><TypeParameter Name="T" /></TypeParameters></Member><Member MemberName="MakeKey">
       <MemberSignature Language="C#" Value="public static string MakeKey (string namespce, string key);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
@@ -88,7 +88,7 @@
       <ReturnValue><ReturnType>System.Void</ReturnType></ReturnValue>
       <Parameters><Parameter Name="entry" Type="Banshee.Configuration.SchemaEntry&lt;T&gt;" /><Parameter Name="value" Type="T" /></Parameters>
       <Docs><typeparam name="T">To be added.</typeparam><param name="entry">To be added.</param><param name="value">To be added.</param><summary>To be added.</summary><remarks>To be added.</remarks></Docs>
-    </Member><Member MemberName="Set&lt;T&gt;">
+    <TypeParameters><TypeParameter Name="T" /></TypeParameters></Member><Member MemberName="Set&lt;T&gt;">
       <MemberSignature Language="C#" Value="public void Set&lt;T&gt; (string key, T value);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
@@ -97,7 +97,7 @@
       <ReturnValue><ReturnType>System.Void</ReturnType></ReturnValue>
       <Parameters><Parameter Name="key" Type="System.String" /><Parameter Name="value" Type="T" /></Parameters>
       <Docs><typeparam name="T">To be added.</typeparam><param name="key">To be added.</param><param name="value">To be added.</param><summary>To be added.</summary><remarks>To be added.</remarks></Docs>
-    </Member><Member MemberName="Set&lt;T&gt;">
+    <TypeParameters><TypeParameter Name="T" /></TypeParameters></Member><Member MemberName="Set&lt;T&gt;">
       <MemberSignature Language="C#" Value="public void Set&lt;T&gt; (string namespce, string key, T value);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
@@ -106,6 +106,6 @@
       <ReturnValue><ReturnType>System.Void</ReturnType></ReturnValue>
       <Parameters><Parameter Name="namespce" Type="System.String" /><Parameter Name="key" Type="System.String" /><Parameter Name="value" Type="T" /></Parameters>
       <Docs><typeparam name="T">To be added.</typeparam><param name="namespce">To be added.</param><param name="key">To be added.</param><param name="value">To be added.</param><summary>To be added.</summary><remarks>To be added.</remarks></Docs>
-    </Member>
+    <TypeParameters><TypeParameter Name="T" /></TypeParameters></Member>
   </Members>
 </Type>

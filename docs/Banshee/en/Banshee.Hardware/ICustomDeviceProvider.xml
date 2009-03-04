@@ -16,7 +16,7 @@
   </Docs>
   <Members>
     <Member MemberName="GetCustomDevice&lt;T&gt;">
-      <MemberSignature Language="C#" Value="public T GetCustomDevice&lt;T&gt; (T device);" />
+      <MemberSignature Language="C#" Value="public T GetCustomDevice&lt;T&gt; (T device) where T : class, Banshee.Hardware.IDevice;" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         
@@ -24,6 +24,6 @@
       <ReturnValue><ReturnType>T</ReturnType></ReturnValue>
       <Parameters><Parameter Name="device" Type="T" /></Parameters>
       <Docs><typeparam name="T">To be added.</typeparam><param name="device">To be added.</param><summary>To be added.</summary><returns>To be added.</returns><remarks>To be added.</remarks></Docs>
-    </Member>
+    <TypeParameters><TypeParameter Name="T"><Constraints><ParameterAttribute>ReferenceTypeConstraint</ParameterAttribute><InterfaceName>Banshee.Hardware.IDevice</InterfaceName></Constraints></TypeParameter></TypeParameters></Member>
   </Members>
 </Type>

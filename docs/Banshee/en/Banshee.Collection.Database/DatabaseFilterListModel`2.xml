@@ -1,13 +1,23 @@
 <Type Name="DatabaseFilterListModel&lt;T,U&gt;" FullName="Banshee.Collection.Database.DatabaseFilterListModel&lt;T,U&gt;">
-  <TypeSignature Language="C#" Value="public abstract class DatabaseFilterListModel&lt;T,U&gt; : Banshee.Collection.FilterListModel&lt;U&gt;, Hyena.Data.Sqlite.ICacheableDatabaseModel" />
+  <TypeSignature Language="C#" Value="public abstract class DatabaseFilterListModel&lt;T,U&gt; : Banshee.Collection.FilterListModel&lt;U&gt;, Hyena.Data.Sqlite.ICacheableDatabaseModel where T : Unew() where U : ICacheableItemnew()" />
   <AssemblyInfo>
     <AssemblyName>Banshee.Services</AssemblyName>
     <AssemblyVersion>1.3.1.0</AssemblyVersion>
     <AssemblyVersion>1.4.0.0</AssemblyVersion>
   </AssemblyInfo>
   <TypeParameters>
-    <TypeParameter>T</TypeParameter>
-    <TypeParameter>U</TypeParameter>
+    <TypeParameter Name="T">
+      <Constraints>
+        <ParameterAttribute>DefaultConstructorConstraint</ParameterAttribute>
+        <BaseTypeName>U</BaseTypeName>
+      </Constraints>
+    </TypeParameter>
+    <TypeParameter Name="U">
+      <Constraints>
+        <ParameterAttribute>DefaultConstructorConstraint</ParameterAttribute>
+        <InterfaceName>Hyena.Data.ICacheableItem</InterfaceName>
+      </Constraints>
+    </TypeParameter>
   </TypeParameters>
   <Base>
     <BaseTypeName>Banshee.Collection.FilterListModel&lt;U&gt;</BaseTypeName>

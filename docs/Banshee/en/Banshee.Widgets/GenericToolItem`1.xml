@@ -1,5 +1,5 @@
 <Type Name="GenericToolItem&lt;T&gt;" FullName="Banshee.Widgets.GenericToolItem&lt;T&gt;">
-  <TypeSignature Language="C#" Value="public class GenericToolItem&lt;T&gt; : Gtk.ToolItem" />
+  <TypeSignature Language="C#" Value="public class GenericToolItem&lt;T&gt; : Gtk.ToolItem where T : Widget" />
   <AssemblyInfo>
     <AssemblyName>Banshee.Widgets</AssemblyName>
     <AssemblyVersion>0.90.1.25405</AssemblyVersion>
@@ -7,7 +7,11 @@
     <AssemblyVersion>1.4.0.0</AssemblyVersion>
   </AssemblyInfo>
   <TypeParameters>
-    <TypeParameter>T</TypeParameter>
+    <TypeParameter Name="T">
+      <Constraints>
+        <BaseTypeName>Gtk.Widget</BaseTypeName>
+      </Constraints>
+    </TypeParameter>
   </TypeParameters>
   <Base>
     <BaseTypeName>Gtk.ToolItem</BaseTypeName>

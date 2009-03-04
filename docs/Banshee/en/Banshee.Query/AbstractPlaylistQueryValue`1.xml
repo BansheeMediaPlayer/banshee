@@ -1,5 +1,5 @@
 <Type Name="AbstractPlaylistQueryValue&lt;T&gt;" FullName="Banshee.Query.AbstractPlaylistQueryValue&lt;T&gt;">
-  <TypeSignature Language="C#" Value="public abstract class AbstractPlaylistQueryValue&lt;T&gt; : Hyena.Query.IntegerKeyedObjectQueryValue&lt;T&gt;" />
+  <TypeSignature Language="C#" Value="public abstract class AbstractPlaylistQueryValue&lt;T&gt; : Hyena.Query.IntegerKeyedObjectQueryValue&lt;T&gt; where T : AbstractPlaylistSource" />
   <AssemblyInfo>
     <AssemblyName>Banshee.Services</AssemblyName>
     <AssemblyVersion>0.90.1.25404</AssemblyVersion>
@@ -7,7 +7,11 @@
     <AssemblyVersion>1.4.0.0</AssemblyVersion>
   </AssemblyInfo>
   <TypeParameters>
-    <TypeParameter>T</TypeParameter>
+    <TypeParameter Name="T">
+      <Constraints>
+        <BaseTypeName>Banshee.Playlist.AbstractPlaylistSource</BaseTypeName>
+      </Constraints>
+    </TypeParameter>
   </TypeParameters>
   <Base>
     <BaseTypeName>Hyena.Query.IntegerKeyedObjectQueryValue&lt;T&gt;</BaseTypeName>

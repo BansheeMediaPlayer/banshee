@@ -88,7 +88,7 @@
       <ReturnValue><ReturnType>System.Void</ReturnType></ReturnValue>
       <Parameters><Parameter Name="part" Type="System.String" /></Parameters>
       <Docs><param name="part">To be added.</param><summary>To be added.</summary><remarks>To be added.</remarks></Docs>
-    </Member><Member MemberName="Banshee.Collection.IExportableModel.GetLength">
+    </Member><Member MemberName="AddCondition"><MemberSignature Language="C#" Value="public void AddCondition (string tables, string part);" /><MemberType>Method</MemberType><AssemblyInfo><AssemblyVersion>1.4.0.0</AssemblyVersion></AssemblyInfo><ReturnValue><ReturnType>System.Void</ReturnType></ReturnValue><Parameters><Parameter Name="tables" Type="System.String" /><Parameter Name="part" Type="System.String" /></Parameters><Docs><param name="tables">To be added.</param><param name="part">To be added.</param><summary>To be added.</summary><remarks>To be added.</remarks></Docs></Member><Member MemberName="Banshee.Collection.IExportableModel.GetLength">
       <MemberSignature Language="C#" Value="int IExportableModel.GetLength ();" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
@@ -154,7 +154,7 @@
       <AssemblyVersion>1.3.1.0</AssemblyVersion><AssemblyVersion>1.4.0.0</AssemblyVersion></AssemblyInfo>
       <ReturnValue><ReturnType>System.String</ReturnType></ReturnValue>
       <Docs><summary>To be added.</summary><value>To be added.</value><remarks>To be added.</remarks></Docs>
-    </Member><Member MemberName="Connection">
+    </Member><Member MemberName="ConditionFromFragment"><MemberSignature Language="C#" Value="public string ConditionFromFragment { get; }" /><MemberType>Property</MemberType><AssemblyInfo><AssemblyVersion>1.4.0.0</AssemblyVersion></AssemblyInfo><ReturnValue><ReturnType>System.String</ReturnType></ReturnValue><Docs><summary>To be added.</summary><value>To be added.</value><remarks>To be added.</remarks></Docs></Member><Member MemberName="Connection">
       <MemberSignature Language="C#" Value="protected Hyena.Data.Sqlite.HyenaSqliteConnection Connection { get; }" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
@@ -194,7 +194,7 @@
       <AssemblyVersion>1.3.1.0</AssemblyVersion><AssemblyVersion>1.4.0.0</AssemblyVersion></AssemblyInfo>
       <ReturnValue><ReturnType>System.String</ReturnType></ReturnValue>
       <Docs><summary>To be added.</summary><value>To be added.</value><remarks>To be added.</remarks></Docs>
-    </Member><Member MemberName="From"><MemberSignature Language="C#" Value="protected string From { set; get; }" /><MemberType>Property</MemberType><AssemblyInfo><AssemblyVersion>1.4.0.0</AssemblyVersion></AssemblyInfo><ReturnValue><ReturnType>System.String</ReturnType></ReturnValue><Docs><summary>To be added.</summary><value>To be added.</value><remarks>To be added.</remarks></Docs></Member><Member MemberName="GenerateSortQueryPart">
+    </Member><Member MemberName="From"><MemberSignature Language="C#" Value="protected string From { set; get; }" /><MemberType>Property</MemberType><AssemblyInfo><AssemblyVersion>1.4.0.0</AssemblyVersion></AssemblyInfo><ReturnValue><ReturnType>System.String</ReturnType></ReturnValue><Docs><summary>To be added.</summary><value>To be added.</value><remarks>To be added.</remarks></Docs></Member><Member MemberName="FromFragment"><MemberSignature Language="C#" Value="public string FromFragment { get; }" /><MemberType>Property</MemberType><AssemblyInfo><AssemblyVersion>1.4.0.0</AssemblyVersion></AssemblyInfo><ReturnValue><ReturnType>System.String</ReturnType></ReturnValue><Docs><summary>To be added.</summary><value>To be added.</value><remarks>To be added.</remarks></Docs></Member><Member MemberName="GenerateSortQueryPart">
       <MemberSignature Language="C#" Value="protected virtual void GenerateSortQueryPart ();" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
