@@ -54,6 +54,7 @@ namespace Banshee.Collection.Indexer.RemoteHelper
         
         public void Start ()
         {
+            ShowDebugMessages = true;
             Debug ("Acquiring org.freedesktop.DBus session instance");
             session_bus = Bus.Session.GetObject<IBus> ("org.freedesktop.DBus", new ObjectPath ("/org/freedesktop/DBus"));
             session_bus.NameOwnerChanged += OnBusNameOwnerChanged;
@@ -71,10 +72,7 @@ namespace Banshee.Collection.Indexer.RemoteHelper
         {
             if (name == indexer_bus_name) {
                 Debug ("NameOwnerChanged: {0}, '{1}' => '{2}'", name, oldOwner, newOwner);
-                if (String.IsNullOrEmpty (newOwner)) {
-                    // Do not disconnect since we're already disconnected
-                    ResetInternalState ();
-                } else {
+                if (service == null && !String.IsNullOrEmpty (newOwner)) {
                     ConnectToIndexerService ();
                 }
             }
@@ -147,6 +145,11 @@ namespace Banshee.Collection.Indexer.RemoteHelper
             
             try {
                 service.CleanupAndShutdown -= OnCleanupAndShutdown;
+            } catch (Exception e) {
+                Debug (e.ToString ());
+            }
+
+            try {
                 service.Shutdown ();
             } catch (Exception e) {
                 Debug (e.ToString ());
@@ -157,6 +160,10 @@ namespace Banshee.Collection.Indexer.RemoteHelper
         
         private void ResetInternalState ()
         {
+            if (service == null) {
+                return;
+            }
+
             Debug ("Resetting internal state - service is no longer available or not needed");
             service = null;
             listening = false;
