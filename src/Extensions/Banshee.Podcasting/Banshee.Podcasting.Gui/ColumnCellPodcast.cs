@@ -51,7 +51,7 @@ namespace Banshee.Podcasting.Gui
         
         // TODO replace this w/ new icon installation etc
         private static ImageSurface default_cover_image 
-            = new PixbufImageSurface (IconThemeUtils.LoadIcon (image_size, "podcast"));
+            = PixbufImageSurface.Create (IconThemeUtils.LoadIcon (image_size, "podcast"));
         
         private ArtworkManager artwork_manager;
 

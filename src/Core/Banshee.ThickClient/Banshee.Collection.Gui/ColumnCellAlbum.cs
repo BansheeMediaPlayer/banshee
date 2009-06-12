@@ -45,7 +45,7 @@ namespace Banshee.Collection.Gui
         private static int image_size = 48;
         
         private static ImageSurface default_cover_image 
-            = new PixbufImageSurface (IconThemeUtils.LoadIcon (image_size, "media-optical", "browser-album-cover"));
+            = PixbufImageSurface.Create (IconThemeUtils.LoadIcon (image_size, "media-optical", "browser-album-cover"));
         
         private ArtworkManager artwork_manager;
 

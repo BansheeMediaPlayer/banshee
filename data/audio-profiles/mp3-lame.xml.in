@@ -19,10 +19,12 @@
             (gst-construct-pipeline
                 "audioconvert"
                 (gst-construct-element "lame"
-                    "mode" 4
-                    (if (= vbr_mode 0) 
-                        ("bitrate" bitrate)
-                        ("vbr" vbr_mode "vbr-quality" (- 9 vbr_quality))))
+                    (if (= vbr_mode -1)
+                        ("preset" preset)
+                        ("mode" 4
+                         (if (= vbr_mode 0)
+                             ("bitrate" bitrate)
+                             ("vbr" vbr_mode "vbr-quality" (- 9 vbr_quality))))))
                 (if (and 
                     (!= vbr_mode 0) 
                     (gst-element-is-available "xingmux")) 
@@ -38,9 +40,10 @@
           <control-type>combo</control-type>
           <default-value>0</default-value>
           <possible-values>
-            <_value value="0" enables="bitrate" disables="vbr_quality">Constant Bitrate</_value>
-            <_value value="4" disables="bitrate" enables="vbr_quality">Variable Bitrate</_value>
-            <_value value="3" disables="bitrate" enables="vbr_quality">Average Bitrate</_value>
+            <_value value="0" disables="vbr_quality,preset" enables="bitrate" >Constant Bitrate</_value>
+            <_value value="4" disables="bitrate,preset" enables="vbr_quality">Variable Bitrate</_value>
+            <_value value="3" disables="bitrate,preset" enables="vbr_quality">Average Bitrate</_value>
+            <_value value="-1" disables="bitrate,vbr_quality" enables="preset">Preset</_value>
           </possible-values>
         </variable>
         <variable id="vbr_quality">
@@ -65,6 +68,17 @@
             <value value="192">192 Kbps</value>
             <value value="256">256 Kbps</value>
             <value value="320">320 Kbps</value>
+          </possible-values>
+        </variable>
+        <variable id="preset">
+          <_name>LAME Preset</_name>
+          <control-type>combo</control-type>
+          <default-value>standard</default-value>
+          <possible-values>
+            <_value value="medium">Medium</_value>
+            <_value value="standard">Standard</_value>
+            <_value value="extreme">Extreme</_value>
+            <_value value="insane">Insane</_value>
           </possible-values>
         </variable>
       </pipeline>

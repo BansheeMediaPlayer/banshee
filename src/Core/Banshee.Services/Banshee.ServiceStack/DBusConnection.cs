@@ -66,7 +66,13 @@ namespace Banshee.ServiceStack
         }
         
         public static bool ApplicationInstanceAlreadyRunning {
-            get { return Bus.Session.NameHasOwner (DefaultBusName); }
+            get {
+                try {
+                    return Bus.Session.NameHasOwner (DefaultBusName);
+                } catch {
+                    return false;
+                }
+            }
         }
         
         public static bool ServiceIsConnected (string service)
@@ -111,7 +117,11 @@ namespace Banshee.ServiceStack
         
         public static bool NameHasOwner (string serviceName)
         {
-            return Bus.Session.NameHasOwner (MakeBusName (serviceName));
+            try {
+                return Bus.Session.NameHasOwner (MakeBusName (serviceName));
+            } catch {
+                return false;
+            }
         }
         
         private static RequestNameReply Connect (string serviceName, bool init)

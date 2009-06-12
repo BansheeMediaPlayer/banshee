@@ -186,7 +186,9 @@ namespace Banshee.Lastfm.Audioscrobbler
                 
                 if (ignorenext == 0) {
                     increase = (ServiceManager.PlayerEngine.Position - previouspos);
-                    playtime += increase;
+                    if (increase > 0) {
+                        playtime += increase;
+                    }
                 } else {
                     ignorenext--;
                 }

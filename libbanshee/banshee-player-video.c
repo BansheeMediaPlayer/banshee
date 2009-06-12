@@ -166,12 +166,16 @@ _bp_video_pipeline_setup (BansheePlayer *player, GstBus *bus)
     
     player->video_display_context_type = BP_VIDEO_DISPLAY_CONTEXT_UNSUPPORTED;
 
+    #ifndef WIN32
+
     videosink = gst_element_factory_make ("fakesink", "videosink");
     if (videosink != NULL) {
         g_object_set (G_OBJECT (videosink), "sync", TRUE, NULL);
     }
     
     g_object_set (G_OBJECT (player->playbin), "video-sink", videosink, NULL);
+
+    #endif
     
     #endif
 }

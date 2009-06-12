@@ -56,7 +56,7 @@ namespace Banshee.Database
         // NOTE: Whenever there is a change in ANY of the database schema,
         //       this version MUST be incremented and a migration method
         //       MUST be supplied to match the new version number
-        protected const int CURRENT_VERSION = 32;
+        protected const int CURRENT_VERSION = 33;
         protected const int CURRENT_METADATA_VERSION = 6;
         
 #region Migration Driver
@@ -759,6 +759,23 @@ namespace Banshee.Database
             return true;
         }
         
+#endregion
+
+#region Version 33
+
+        [DatabaseVersion (33)]
+        private bool Migrate_33 ()
+        {
+            // We used to have a bug where MimeType didn't get set for tracks we ripped,
+            // so set any blank ones now.  See BGO #536590
+            foreach (var ext in new string [] {"mp3", "ogg", "flac", "aac", "oga", "wma", "wm"}) {
+                Execute (String.Format (
+                    "UPDATE CoreTracks SET MimeType = 'taglib/{0}' WHERE PrimarySourceId = 1 AND (MimeType IS NULL OR MimeType = '') AND Uri LIKE '%.{0}'", ext
+                ));
+            }
+            return true;
+        }
+
 #endregion
 
 #pragma warning restore 0169

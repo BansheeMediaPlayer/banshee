@@ -80,7 +80,7 @@ namespace Banshee.Collection.Gui
             
             if (!drawBorder) {
                 if (dispose) {
-                    image.Destroy ();
+                    ((IDisposable)image).Dispose ();
                 }
                 
                 return;
@@ -100,7 +100,7 @@ namespace Banshee.Collection.Gui
             cr.Stroke ();
             
             if (dispose) {
-                image.Destroy ();
+                ((IDisposable)image).Dispose ();
             }
         }
     }

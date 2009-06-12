@@ -48,6 +48,10 @@ namespace Banshee.PlayerMigration
     public sealed class RhythmboxPlayerImportSource : ThreadPoolImportSource
     {
         private static readonly SafeUri rhythmbox_db_uri = new SafeUri (Banshee.Base.Paths.Combine (
+            Environment.GetFolderPath (Environment.SpecialFolder.Personal), ".local", "share", "rhythmbox", "rhythmdb.xml"
+        ));
+
+        private static readonly SafeUri rhythmbox_db_uri_old = new SafeUri (Banshee.Base.Paths.Combine (
             Environment.GetFolderPath (Environment.SpecialFolder.Personal), ".gnome2", "rhythmbox", "rhythmdb.xml"
         ));
 
@@ -57,20 +61,26 @@ namespace Banshee.PlayerMigration
         {
             LibraryImportManager import_manager = ServiceManager.Get<LibraryImportManager> ();
 
-            if (!IsValidXmlDocument (rhythmbox_db_uri)) {
-                LogError (SafeUri.UriToFilename (rhythmbox_db_uri), "Rhythmbox library is corrupted.");
+            SafeUri db_uri = rhythmbox_db_uri;
+            // Check if library is located in the old place (.gnome2/rhythmbox/rhythmdb.db)
+            if (!Banshee.IO.File.Exists (rhythmbox_db_uri)) {
+                db_uri = rhythmbox_db_uri_old;
+            }
+
+            if (!IsValidXmlDocument (db_uri)) {
+                LogError (SafeUri.UriToFilename (db_uri), "Rhythmbox library is corrupted.");
                 return;
             }
 
             // Load Rhythmbox library
-            Stream stream_db = Banshee.IO.File.OpenRead (rhythmbox_db_uri);
+            Stream stream_db = Banshee.IO.File.OpenRead (db_uri);
             XmlDocument xml_doc_db = new XmlDocument ();
             xml_doc_db.Load (stream_db);
             XmlElement db_root = xml_doc_db.DocumentElement;
             stream_db.Close ();
 
             if (db_root == null || !db_root.HasChildNodes || db_root.Name != "rhythmdb") {
-                LogError (SafeUri.UriToFilename (rhythmbox_db_uri), "Unable to open Rhythmbox library.");
+                LogError (SafeUri.UriToFilename (db_uri), "Unable to open Rhythmbox library.");
                 return;
             }
             
@@ -80,10 +90,21 @@ namespace Banshee.PlayerMigration
             // Import Rhythmbox playlists if playlist file is available
             SafeUri rhythmbox_playlists_uri = new SafeUri (Banshee.Base.Paths.Combine (
                 Environment.GetFolderPath (Environment.SpecialFolder.Personal),
-                ".gnome2", "rhythmbox", "playlists.xml"
+                ".local", "share", "rhythmbox", "playlists.xml"
             ));
 
             bool playlists_available = Banshee.IO.File.Exists (rhythmbox_playlists_uri);
+
+            // Look at the old location too
+            if (!playlists_available) {
+                rhythmbox_playlists_uri = new SafeUri (Banshee.Base.Paths.Combine (
+                    Environment.GetFolderPath (Environment.SpecialFolder.Personal),
+                    ".gnome2", "rhythmbox", "playlists.xml"
+                ));
+
+                playlists_available = Banshee.IO.File.Exists (rhythmbox_playlists_uri);
+            }
+
             XmlElement playlists_root = null;
             
             if (playlists_available) {
@@ -342,7 +363,7 @@ namespace Banshee.PlayerMigration
         }
         
         public override bool CanImport {
-            get { return Banshee.IO.File.Exists (rhythmbox_db_uri); }
+            get { return Banshee.IO.File.Exists (rhythmbox_db_uri) || Banshee.IO.File.Exists (rhythmbox_db_uri_old); }
         }
         
         public override string Name {

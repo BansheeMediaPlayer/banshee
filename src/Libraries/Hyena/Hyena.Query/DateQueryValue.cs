@@ -45,7 +45,7 @@ namespace Hyena.Query
         //public static readonly Operator LessThanEqual      = new Operator ("lessThanEquals", "<= {0}", "<=");
         //public static readonly Operator GreaterThanEqual   = new Operator ("greaterThanEquals", ">= {0}", ">=");
         public static readonly Operator LessThan           = new Operator ("lessThan", Catalog.GetString ("before"), "< {0}", true, "<");
-        public static readonly Operator GreaterThan        = new Operator ("greaterThan", Catalog.GetString ("after"), "> {0}", ">");
+        public static readonly Operator GreaterThan        = new Operator ("greaterThan", Catalog.GetString ("after"), ">= {0}", ">");
 
         protected DateTime value = DateTime.Now;
 
@@ -108,7 +108,11 @@ namespace Hyena.Query
 
         public override string ToSql (Operator op)
         {
-            return DateTimeUtil.FromDateTime (value).ToString (System.Globalization.CultureInfo.InvariantCulture);
+            if (op == GreaterThan) {
+                return DateTimeUtil.FromDateTime (value.AddDays (1.0)).ToString (System.Globalization.CultureInfo.InvariantCulture);
+            } else {
+                return DateTimeUtil.FromDateTime (value).ToString (System.Globalization.CultureInfo.InvariantCulture);
+            }
         }
 
         public DateTime DateTime {

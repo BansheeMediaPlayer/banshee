@@ -82,6 +82,10 @@ namespace Banshee.Equalizer.Gui
                 eq = active_eq;
             }
             
+            if (Entry == null) {
+                return;
+            }
+
             eq.Name = Entry.Text;
             
             TreeIter iter;
@@ -137,7 +141,9 @@ namespace Banshee.Equalizer.Gui
             
             if (!ActivateFirstEqualizer ()) {
                 active_eq = null;
-                Entry.Text = String.Empty;
+                if (Entry != null) {
+                    Entry.Text = String.Empty;
+                }
             }
         }
         

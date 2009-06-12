@@ -102,8 +102,6 @@ namespace Banshee.Gui
             this["ShuffleSongAction"].IconName = "media-playlist-shuffle";
             this["ShuffleArtistAction"].IconName = "media-playlist-shuffle";
             this["ShuffleAlbumAction"].IconName = "media-playlist-shuffle";
-            this["ShuffleArtistAction"].Sensitive = false;
-            this["ShuffleAlbumAction"].Sensitive = false;
 
             ServiceManager.PlaybackController.ShuffleModeChanged += OnShuffleModeChanged;
             ServiceManager.PlaybackController.SourceChanged += OnPlaybackSourceChanged;

@@ -154,7 +154,9 @@ namespace Banshee.NotificationArea
             }
             
             if (current_nf != null) {
-                current_nf.Close ();
+                try {
+                    current_nf.Close ();
+                } catch {}
             }
                 
             if (notif_area != null) {
@@ -446,11 +448,14 @@ namespace Banshee.NotificationArea
                 }
             }
             
-            try {
-                if (current_nf != null) {
+            if (current_nf != null) {
+                try {
                     current_nf.Close ();
-                }
-                
+                } catch {}
+                current_nf = null;
+            }
+
+            try {
                 Notification nf = new Notification (Catalog.GetString ("Now Playing"), 
                     message, image, notif_area.Widget);
                 nf.Urgency = Urgency.Low;

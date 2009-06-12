@@ -63,16 +63,29 @@ namespace Banshee.Base.Tests
         public void TestSystemIO ()
         {
             Banshee.IO.Provider.SetProvider (new Banshee.IO.SystemIO.Provider ());
-            WriteMetadata (files, "My Genre");
+            WriteMetadata (files, ChangeTrack, VerifyTrack);
         }
     
         [Test]
         public void TestUnixIO ()
         {
             Banshee.IO.Provider.SetProvider (CreateUnixIOProvider ());
-            WriteMetadata (files, "My Genre");
+            WriteMetadata (files, ChangeTrack, VerifyTrack);
         }
-    
+
+        [Test]
+        public void TestGenre ()
+        {
+            Banshee.IO.Provider.SetProvider (CreateUnixIOProvider ());
+            WriteMetadata (files, delegate (TrackInfo track) {
+                ChangeTrack (track);
+                track.Genre = "My Genre";
+            }, delegate (TrackInfo track) {
+                VerifyTrack (track);
+                Assert.AreEqual ("My Genre", track.Genre);
+            });
+        }
+
         [Test]
         public void TestNullGenreBug ()
         {
@@ -81,10 +94,62 @@ namespace Banshee.Base.Tests
             // (see http://forum.taglib-sharp.com/viewtopic.php?f=5&t=239 )
             // This tests our workaround.
             Banshee.IO.Provider.SetProvider (CreateUnixIOProvider ());
-            WriteMetadata (files, null);
+            WriteMetadata (files, delegate (TrackInfo track) {
+                ChangeTrack (track);
+                track.Genre = null;
+            }, delegate (TrackInfo track) {
+                VerifyTrack (track);
+                Assert.IsNull (track.Genre);
+            });
         }
-    
-        private void WriteMetadata (string [] files, string genre)
+
+        [Test]
+        public void TestIsCompilation ()
+        {
+            Banshee.IO.Provider.SetProvider (CreateUnixIOProvider ());
+            WriteMetadata (files, delegate (TrackInfo track) {
+                ChangeTrack (track);
+                // bgo#563283: IsCompilation was reset if AlbumArtist == Artist
+                track.AlbumArtist = track.ArtistName;
+                track.IsCompilation = true;
+            }, delegate (TrackInfo track) {
+                VerifyTrack (track);
+                Assert.AreEqual (track.ArtistName, track.AlbumArtist);
+                Assert.IsTrue (track.IsCompilation);
+            });
+        }
+
+        [Test]
+        public void TestIsNotCompilation ()
+        {
+            Banshee.IO.Provider.SetProvider (CreateUnixIOProvider ());
+            WriteMetadata (files, delegate (TrackInfo track) {
+                ChangeTrack (track);
+                track.AlbumArtist = track.ArtistName;
+                track.IsCompilation = false;
+            }, delegate (TrackInfo track) {
+                VerifyTrack (track);
+                Assert.AreEqual (track.ArtistName, track.AlbumArtist);
+                Assert.IsFalse (track.IsCompilation);
+            });
+        }
+
+        [Test]
+        public void TestIsCompilationAndAlbumArtist ()
+        {
+            Banshee.IO.Provider.SetProvider (CreateUnixIOProvider ());
+            WriteMetadata (files, delegate (TrackInfo track) {
+                ChangeTrack (track);
+                track.AlbumArtist = "My Album Artist";
+                track.IsCompilation = true;
+            }, delegate (TrackInfo track) {
+                VerifyTrack (track);
+                Assert.AreEqual ("My Album Artist", track.AlbumArtist);
+                Assert.IsTrue (track.IsCompilation);
+            });
+        }
+
+        private void WriteMetadata (string [] files, Action<TrackInfo> change, Action<TrackInfo> verify)
         {
             SafeUri newuri = null;
             bool write_metadata = LibrarySchema.WriteMetadata.Get();
@@ -96,7 +161,7 @@ namespace Banshee.Base.Tests
     
                     Banshee.IO.File.Copy (new SafeUri (uri), newuri, true);
     
-                    ChangeAndVerify (newuri, genre);
+                    ChangeAndVerify (newuri, change, verify);
                 });
             } finally {
                 LibrarySchema.WriteMetadata.Set (write_metadata);
@@ -105,20 +170,14 @@ namespace Banshee.Base.Tests
             }
         }
     
-        private void ChangeAndVerify (SafeUri uri, string genre)
+        private void ChangeAndVerify (SafeUri uri, Action<TrackInfo> change, Action<TrackInfo> verify)
         {
             TagLib.File file = StreamTagger.ProcessUri (uri);
             TrackInfo track = new TrackInfo ();
             StreamTagger.TrackInfoMerge (track, file);
     
             // Make changes
-            track.TrackTitle = "My Title";
-            track.ArtistName = "My Artist";
-            track.AlbumTitle = "My Album";
-            track.Genre = genre;
-            track.TrackNumber = 4;
-            track.DiscNumber = 4;
-            track.Year = 1999;
+            change (track);
     
             // Save changes
             bool saved = StreamTagger.SaveToFile (track);
@@ -130,15 +189,29 @@ namespace Banshee.Base.Tests
             StreamTagger.TrackInfoMerge (track, file);
     
             // Verify changes
+            verify (track);
+        }
+
+        private void ChangeTrack (TrackInfo track)
+        {
+            track.TrackTitle = "My Title";
+            track.ArtistName = "My Artist";
+            track.AlbumTitle = "My Album";
+            track.TrackNumber = 4;
+            track.DiscNumber = 4;
+            track.Year = 1999;
+        }
+
+        private void VerifyTrack (TrackInfo track)
+        {
             Assert.AreEqual ("My Title", track.TrackTitle);
             Assert.AreEqual ("My Artist", track.ArtistName);
             Assert.AreEqual ("My Album", track.AlbumTitle);
-            Assert.AreEqual (genre, track.Genre);
             Assert.AreEqual (4, track.TrackNumber);
             Assert.AreEqual (4, track.DiscNumber);
             Assert.AreEqual (1999, track.Year);
         }
-        
+
         private Type unix_io_type;
     
         private Banshee.IO.IProvider CreateUnixIOProvider ()

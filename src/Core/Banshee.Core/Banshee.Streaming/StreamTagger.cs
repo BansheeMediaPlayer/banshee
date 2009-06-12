@@ -145,7 +145,7 @@ namespace Banshee.Streaming
                 track.AlbumTitleSort = Choose (file.Tag.AlbumSort, track.AlbumTitleSort, preferTrackInfo);
                 track.AlbumArtist = Choose (file.Tag.FirstAlbumArtist, track.AlbumArtist, preferTrackInfo);
                 track.AlbumArtistSort = Choose (file.Tag.FirstAlbumArtistSort, track.AlbumArtistSort, preferTrackInfo);
-                track.IsCompilation = IsCompilation (file.Tag);
+                track.IsCompilation = IsCompilation (file);
                 
                 track.TrackTitle = Choose (file.Tag.Title, track.TrackTitle, preferTrackInfo);
                 track.TrackTitleSort = Choose (file.Tag.TitleSort, track.TrackTitleSort, preferTrackInfo);
@@ -187,39 +187,48 @@ namespace Banshee.Streaming
             // TODO these ideas could also be done in an extension that collects such hacks
         }
             
-        private static bool IsCompilation (TagLib.Tag tag)
+        private static bool IsCompilation (TagLib.File file)
         {
-            TagLib.Id3v2.Tag id3v2_tag = tag as TagLib.Id3v2.Tag;
-            if (id3v2_tag != null && id3v2_tag.IsCompilation)
-                return true;
+            try {
+                TagLib.Id3v2.Tag id3v2_tag = file.GetTag(TagLib.TagTypes.Id3v2, true) as TagLib.Id3v2.Tag;
+                if (id3v2_tag != null && id3v2_tag.IsCompilation)
+                    return true;
+            } catch {}
 
-            TagLib.Mpeg4.AppleTag apple_tag = tag as TagLib.Mpeg4.AppleTag;
-            if (apple_tag != null && apple_tag.IsCompilation)
-                return true;
+            try {
+                TagLib.Mpeg4.AppleTag apple_tag = file.GetTag(TagLib.TagTypes.Apple,true) as TagLib.Mpeg4.AppleTag;
+                if (apple_tag != null && apple_tag.IsCompilation)
+                    return true;
+            } catch {}
             
             // FIXME the FirstAlbumArtist != FirstPerformer check might return true for half the
             // tracks on a compilation album, but false for some
             // TODO checked for 'Soundtrack' (and translated) in the title?
-            if (tag.Performers.Length > 0 && tag.AlbumArtists.Length > 0 &&
-                (tag.Performers.Length != tag.AlbumArtists.Length || tag.FirstAlbumArtist != tag.FirstPerformer)) {
+            if (file.Tag.Performers.Length > 0 && file.Tag.AlbumArtists.Length > 0 &&
+                (file.Tag.Performers.Length != file.Tag.AlbumArtists.Length ||
+                file.Tag.FirstAlbumArtist != file.Tag.FirstPerformer)) {
                 return true;
             }
             return false;
         }
 
-        private static void SaveIsCompilation (TagLib.Tag tag, bool is_compilation)
+        private static void SaveIsCompilation (TagLib.File file, bool is_compilation)
         {
-            TagLib.Id3v2.Tag id3v2_tag = tag as TagLib.Id3v2.Tag;
-            if (id3v2_tag != null) {
-                id3v2_tag.IsCompilation = is_compilation;
-                return;
-            }
+            try {
+                TagLib.Id3v2.Tag id3v2_tag = file.GetTag(TagLib.TagTypes.Id3v2, true) as TagLib.Id3v2.Tag;
+                if (id3v2_tag != null) {
+                    id3v2_tag.IsCompilation = is_compilation;
+                    return;
+                }
+            } catch {}
 
-            TagLib.Mpeg4.AppleTag apple_tag = tag as TagLib.Mpeg4.AppleTag;
-            if (apple_tag != null) {
-                apple_tag.IsCompilation = is_compilation;
-                return;
-            }
+            try {
+                TagLib.Mpeg4.AppleTag apple_tag = file.GetTag(TagLib.TagTypes.Apple,true) as TagLib.Mpeg4.AppleTag;
+                if (apple_tag != null) {
+                    apple_tag.IsCompilation = is_compilation;
+                    return;
+                }
+            } catch {}
         }
 
         public static bool SaveToFile (TrackInfo track)
@@ -261,7 +270,7 @@ namespace Banshee.Streaming
             file.Tag.Year = (uint)track.Year;
             file.Tag.BeatsPerMinute = (uint)track.Bpm;
             
-            SaveIsCompilation (file.Tag, track.IsCompilation);
+            SaveIsCompilation (file, track.IsCompilation);
             file.Save ();
 
             track.FileSize = Banshee.IO.File.GetSize (track.Uri);

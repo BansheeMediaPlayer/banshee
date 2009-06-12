@@ -57,7 +57,7 @@ namespace Banshee.Collection.Gui
             protected override void ExpireItem (Cairo.ImageSurface item)
             {
                 if (item != null) {
-                    item.Destroy ();
+                    ((IDisposable)item).Dispose ();
                 }
             }
         }

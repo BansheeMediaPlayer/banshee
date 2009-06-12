@@ -48,7 +48,7 @@ namespace Muinshee
 
         protected override void RenderIdle (Cairo.Context cr)
         {
-            idle_album = idle_album ?? new PixbufImageSurface (Banshee.Gui.IconThemeUtils.LoadIcon (
+            idle_album = idle_album ?? PixbufImageSurface.Create (Banshee.Gui.IconThemeUtils.LoadIcon (
                 ArtworkSizeRequest, "media-optical"), true);
             
             ArtworkRenderer.RenderThumbnail (cr, idle_album, false, Allocation.X, Allocation.Y, 

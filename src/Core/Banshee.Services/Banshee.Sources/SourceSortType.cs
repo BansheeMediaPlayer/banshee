@@ -109,7 +109,12 @@ namespace Banshee.Sources
                 }
 
                 // If still equal, then order by name
-                return name_comparer.Compare (a.Name, b.Name);
+                comp = name_comparer.Compare (a.Name, b.Name);
+                if (comp != 0)
+                    return comp;
+
+                // And if still equal, order by UniqueId, to avoid the order arbitrarily swapping
+                return a.UniqueId.CompareTo (b.UniqueId);
             }
         }
     }

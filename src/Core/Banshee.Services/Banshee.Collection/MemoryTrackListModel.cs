@@ -81,7 +81,7 @@ namespace Banshee.Collection
             get { lock (this) { return (index >= 0 && index < tracks.Count) ? tracks[index] : null; } }
         }
 
-        public override TrackInfo GetRandom (DateTime since, bool repeat)
+        public override TrackInfo GetRandom (DateTime since, Banshee.PlaybackController.PlaybackShuffleMode mode, bool repeat)
         {
             if (Count == 0)
                 return null;

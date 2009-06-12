@@ -311,7 +311,7 @@ namespace Banshee.PlaybackController
             Log.DebugFormat ("Querying model for track to play in {0}:{1} mode", ShuffleMode, direction);
             return ShuffleMode == PlaybackShuffleMode.Linear
                 ? QueryTrackLinear (direction, restart)
-                : QueryTrackRandom (restart);
+                : QueryTrackRandom (ShuffleMode, restart);
         }
         
         private TrackInfo QueryTrackLinear (Direction direction, bool restart)
@@ -340,10 +340,9 @@ namespace Banshee.PlaybackController
             }
         }
         
-        private TrackInfo QueryTrackRandom (bool restart)
+        private TrackInfo QueryTrackRandom (PlaybackShuffleMode mode, bool restart)
         {
-            return Source.TrackModel.GetRandom (source_set_at, restart);
-            //return Source.TrackModel[random.Next (0, Source.TrackModel.Count - 1)];
+            return Source.TrackModel.GetRandom (source_set_at, mode, restart);
         }
         
         private void QueuePlayTrack ()

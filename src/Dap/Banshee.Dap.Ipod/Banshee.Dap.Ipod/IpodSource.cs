@@ -509,7 +509,7 @@ namespace Banshee.Dap.Ipod
         {
             lock (sync_mutex) {
                 if (sync_thread == null) {
-                    sync_thread_wait = new AutoResetEvent (true);
+                    sync_thread_wait = new AutoResetEvent (false);
                 
                     sync_thread = new Thread (new ThreadStart (PerformSyncThread));
                     sync_thread.Name = "iPod Sync Thread";

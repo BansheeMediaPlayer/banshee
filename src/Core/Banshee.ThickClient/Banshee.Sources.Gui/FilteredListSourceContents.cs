@@ -231,10 +231,7 @@ namespace Banshee.Sources.Gui
                     current_pane.Position = 350;
                     PersistentPaneController.Control (current_pane, ControllerName (top, i));
                 } else {
-                    /*if (i == 0)
-                        current_pane.Pack1 (window, false, false);
-                    else*/
-                        current_pane.Pack1 (window, true, false);
+                    current_pane.Pack1 (window, false, false);
                 }
                     
             }

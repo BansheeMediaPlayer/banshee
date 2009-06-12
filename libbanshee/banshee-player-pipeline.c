@@ -197,7 +197,9 @@ _bp_pipeline_construct (BansheePlayer *player)
     audiosink = gst_element_factory_make ("gconfaudiosink", "audiosink");
     if (audiosink == NULL) {
         audiosink = gst_element_factory_make ("directsoundsink", "audiosink");
-        if (audiosink == NULL) {
+        if (audiosink != NULL) {
+            g_object_set (G_OBJECT (audiosink), "volume", 1.0, NULL);
+        } else {
             audiosink = gst_element_factory_make ("autoaudiosink", "audiosink");
             if (audiosink == NULL) {
                 audiosink = gst_element_factory_make ("alsasink", "audiosink");

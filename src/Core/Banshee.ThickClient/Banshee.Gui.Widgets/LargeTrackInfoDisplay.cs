@@ -278,7 +278,7 @@ namespace Banshee.Gui.Widgets
         protected override void InvalidateCache ()
         {
             foreach (Surface surface in surfaces.Values) {
-                surface.Destroy ();
+                ((IDisposable)surface).Dispose ();
             }
             
             surfaces.Clear ();

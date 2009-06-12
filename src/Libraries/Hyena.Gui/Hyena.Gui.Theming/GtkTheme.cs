@@ -224,7 +224,9 @@ namespace Hyena.Gui.Theming
             bool filled, bool stroked, Cairo.Color color, CairoCorners corners)
         {
             Cairo.Color selection_color = color;
+            Cairo.Color selection_highlight = CairoExtensions.ColorShade (selection_color, 1.24);
             Cairo.Color selection_stroke = CairoExtensions.ColorShade (selection_color, 0.85);
+            selection_highlight.A = 0.5;
             selection_stroke.A = color.A;
             
             if (filled) {
@@ -244,7 +246,15 @@ namespace Hyena.Gui.Theming
                 cr.Fill ();
                 grad.Destroy ();
             }
-            
+
+            if (filled && stroked) {
+                cr.LineWidth = 1.0;
+                cr.Color = selection_highlight;
+                CairoExtensions.RoundedRectangle (cr, x + 1.5, y + 1.5, width - 3, height - 3,
+                    Context.Radius - 1, corners, true);
+                cr.Stroke ();
+            }
+
             if (stroked) {
                 cr.LineWidth = 1.0;
                 cr.Color = selection_stroke;

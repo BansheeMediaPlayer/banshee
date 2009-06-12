@@ -42,6 +42,7 @@ using Hyena.Query;
 using Banshee.Base;
 using Banshee.Query;
 using Banshee.Database;
+using Banshee.PlaybackController;
 
 namespace Banshee.Collection.Database
 {       
@@ -336,29 +337,135 @@ namespace Banshee.Collection.Database
             }
         }
 
+#region Get random methods
+
+        private const string random_condition = "AND LastStreamError = 0 AND (LastPlayedStamp < ? OR LastPlayedStamp IS NULL) AND (LastSkippedStamp < ? OR LastSkippedStamp IS NULL)";
+        private static string random_fragment = String.Format ("{0} ORDER BY RANDOM()", random_condition);
+        private static string random_by_album_fragment = String.Format ("AND CoreTracks.AlbumID = ? {0} ORDER BY Disc ASC, TrackNumber ASC", random_condition);
+        private static string random_by_artist_fragment = String.Format ("AND CoreAlbums.ArtistID = ? {0} ORDER BY CoreAlbums.TitleSortKey ASC, Disc ASC, TrackNumber ASC", random_condition);
+
         private DateTime random_began_at = DateTime.MinValue;
         private DateTime last_random = DateTime.MinValue;
-        private static string random_fragment = "AND (LastPlayedStamp < ? OR LastPlayedStamp IS NULL) AND (LastSkippedStamp < ? OR LastSkippedStamp IS NULL) ORDER BY RANDOM()";
-        public override TrackInfo GetRandom (DateTime notPlayedSince, bool repeat)
+        private int? random_album_id;
+        private int? random_artist_id;
+
+        public override TrackInfo GetRandom (DateTime notPlayedSince, PlaybackShuffleMode mode, bool repeat)
         {
             lock (this) {
-                if (Count == 0)
+                if (Count == 0) {
                     return null;
+                }
 
-                if (random_began_at < notPlayedSince)
+                if (random_began_at < notPlayedSince) {
                     random_began_at = last_random = notPlayedSince;
+                }
 
-                TrackInfo track = cache.GetSingle (random_fragment, random_began_at, random_began_at);
-
-                if (track == null && repeat) {
+                TrackInfo track = GetRandomTrack (mode, repeat);
+                if (track == null && (repeat || mode != PlaybackShuffleMode.Linear)) {
                     random_began_at = last_random;
-                    track = cache.GetSingle (random_fragment, random_began_at, random_began_at);
+                    random_album_id = random_artist_id = null;
+                    track = GetRandomTrack (mode, repeat);
                 }
 
                 last_random = DateTime.Now;
                 return track;
             }
         }
+
+        private TrackInfo GetRandomTrack (PlaybackShuffleMode mode, bool repeat)
+        {
+            if (mode == PlaybackShuffleMode.Album) {
+                random_artist_id = null;
+                if (random_album_id == null) {
+                    random_album_id = GetRandomAlbumId (random_began_at);
+                    if (random_album_id == null && repeat) {
+                        random_began_at = last_random;
+                        random_album_id = GetRandomAlbumId (random_began_at);
+                    }
+                }
+
+                if (random_album_id != null) {
+                    return cache.GetSingle (random_by_album_fragment, (int)random_album_id, random_began_at, random_began_at);
+                }
+            } else if (mode == PlaybackShuffleMode.Artist) {
+                random_album_id = null;
+                if (random_artist_id == null) {
+                    random_artist_id = GetRandomArtistId (random_began_at);
+                    if (random_artist_id == null && repeat) {
+                        random_began_at = last_random;
+                        random_artist_id = GetRandomArtistId (random_began_at);
+                    }
+                }
+
+                if (random_artist_id != null) {
+                    return cache.GetSingle (random_by_artist_fragment, (int)random_artist_id, random_began_at, random_began_at);
+                }
+            } else {
+                random_album_id = random_artist_id = null;
+            }
+
+            return cache.GetSingle (random_fragment, random_began_at, random_began_at);
+        }
+
+        private int? GetRandomAlbumId (DateTime stamp)
+        {
+            // Get a new Album that hasn't been played since y
+            int? album_id = null;
+            var reader = connection.Query (@"
+                    SELECT a.AlbumID, a.Title, MAX(t.LastPlayedStamp) as LastPlayed, MAX(t.LastSkippedStamp) as LastSkipped
+                    FROM CoreTracks t, CoreAlbums a, CoreCache c
+                    WHERE
+                        c.ModelID = ? AND
+                        t.TrackID = c.ItemID AND
+                        t.AlbumID = a.AlbumID AND
+                        t.LastStreamError = 0
+                    GROUP BY t.AlbumID
+                    HAVING
+                        (LastPlayed < ? OR LastPlayed IS NULL) AND
+                        (LastSkipped < ? OR LastSkipped IS NULL)
+                    ORDER BY RANDOM()
+                    LIMIT 1",
+                CacheId, stamp, stamp
+            );
+
+            if (reader.Read ()) {
+                album_id = Convert.ToInt32 (reader[0]);
+            }
+
+            reader.Dispose ();
+            return album_id;
+        }
+
+        private int? GetRandomArtistId (DateTime stamp)
+        {
+            // Get a new Artist that hasn't been played since y
+            int? artist_id = null;
+            var reader = connection.Query (@"
+                    SELECT a.ArtistID, a.ArtistName, MAX(t.LastPlayedStamp) as LastPlayed, MAX(t.LastSkippedStamp) as LastSkipped
+                    FROM CoreTracks t, CoreAlbums a, CoreCache c
+                    WHERE
+                        c.ModelID = ? AND
+                        t.TrackID = c.ItemID AND
+                        t.AlbumID = a.AlbumID AND
+                        t.LastStreamError = 0
+                    GROUP BY a.ArtistID
+                    HAVING
+                        (LastPlayed < ? OR LastPlayed IS NULL) AND
+                        (LastSkipped < ? OR LastSkipped IS NULL)
+                    ORDER BY RANDOM()
+                    LIMIT 1",
+                CacheId, stamp, stamp
+            );
+
+            if (reader.Read ()) {
+                artist_id = Convert.ToInt32 (reader[0]);
+            }
+
+            reader.Dispose ();
+            return artist_id;
+        }
+
+#endregion
 
         public override TrackInfo this[int index] {
             get {

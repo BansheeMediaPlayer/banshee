@@ -236,6 +236,15 @@ namespace Banshee.Widgets
             entry.Text = String.Empty;
         }
 
+        protected override bool OnKeyPressEvent (Gdk.EventKey evnt)
+        {
+            if (evnt.Key == Gdk.Key.Escape) {
+                entry.Text = String.Empty;
+                return true;
+            }
+            return base.OnKeyPressEvent (evnt);
+        }
+
         protected override bool OnExposeEvent(Gdk.EventExpose evnt)
         {
             PropagateExpose(Child, evnt);

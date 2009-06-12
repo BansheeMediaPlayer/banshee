@@ -100,13 +100,7 @@ namespace Hyena.Data.Gui
             context.Layout.FontDescription.Weight = font_weight;
             context.Layout.Ellipsize = EllipsizeMode;
             context.Layout.Alignment = alignment;
-
-            if (text_format == null) {
-                context.Layout.SetText (text);
-            } else {
-                context.Layout.SetText (String.Format (text_format, text));
-            }
-            
+            context.Layout.SetText (GetFormattedText (text));
             context.Layout.GetPixelSize (out text_width, out text_height);
             // Requires Gtk# 2.12
             //is_ellipsized = context.Layout.IsEllipsized;
@@ -115,6 +109,14 @@ namespace Hyena.Data.Gui
         protected virtual string GetText (object obj)
         {
             return obj == null ? String.Empty : obj.ToString ();
+        }
+
+        private string GetFormattedText (string text)
+        {
+            if (text_format == null) {
+                return text;
+            }
+            return String.Format (text_format, text);
         }
 
         /*private bool is_ellipsized = false;
@@ -177,14 +179,14 @@ namespace Hyena.Data.Gui
             min = max = -1;
             
             if (!String.IsNullOrEmpty (MinString)) {
-                layout.SetText (MinString);
+                layout.SetText (GetFormattedText (MinString));
                 layout.GetPixelSize (out min, out height);
                 min += 2*Spacing;
                 //Console.WriteLine ("for {0} got min {1} for {2}", this, min, MinString);
             }
 
             if (!String.IsNullOrEmpty (MaxString)) {
-                layout.SetText (MaxString);
+                layout.SetText (GetFormattedText (MaxString));
                 layout.GetPixelSize (out max, out height);
                 max += 2*Spacing;
                 //Console.WriteLine ("for {0} got max {1} for {2}", this, max, MaxString);
