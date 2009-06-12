@@ -43,7 +43,7 @@ AC_PROG_LIBTOOL
 AC_PROG_INSTALL
 
 dnl How to configure for distcheck
-DISTCHECK_CONFIGURE_FLAGS="--disable-docs --enable-mtp --enable-daap --enable-podcast --enable-release"
+DISTCHECK_CONFIGURE_FLAGS="--disable-docs --enable-mtp --enable-daap --enable-podcast --enable-release --enable-paas"
 AC_SUBST(DISTCHECK_CONFIGURE_FLAGS)
 
 dnl Export Version Info
@@ -148,6 +148,12 @@ AC_ARG_ENABLE(podcast,
 		[Disable Podcasting support]), 
 	, enable_podcast="yes")
 AM_CONDITIONAL(ENABLE_PODCAST, test "x$enable_podcast" = "xyes")
+
+AC_ARG_ENABLE(paas, 
+	AC_HELP_STRING([--disable-paas], 
+		[Disable Paas support]), 
+	, enable_paas="yes")
+AM_CONDITIONAL(ENABLE_PAAS, test "x$enable_paas" = "xyes")
 
 AC_ARG_ENABLE(release,
 	AC_HELP_STRING([--enable-release],
@@ -279,6 +285,7 @@ src/Extensions/Banshee.NotificationArea/Makefile
 src/Extensions/Banshee.NowPlaying/Makefile
 src/Extensions/Banshee.PlayQueue/Makefile
 src/Extensions/Banshee.PlayerMigration/Makefile
+src/Extensions/Banshee.Paas/Makefile
 src/Extensions/Banshee.Podcasting/Makefile
 src/Extensions/Banshee.SqlDebugConsole/Makefile
 src/Extensions/Banshee.Sample/Makefile
@@ -317,6 +324,7 @@ ${PACKAGE}-${VERSION}
 
   Extra Features:
     DAAP Support:      ${enable_daap}
+    Paas Support:      ${enable_paas}
     Podcast Support:   ${enable_podcast}
     Boo Scripting:     ${enable_boo}
 

@@ -13,6 +13,7 @@ SUBDIRS = \
 	Banshee.MultimediaKeys \
 	Banshee.NotificationArea \
 	Banshee.NowPlaying \
+	Banshee.Paas \
 	Banshee.PlayerMigration \
 	Banshee.PlayQueue \
 	Banshee.Podcasting \

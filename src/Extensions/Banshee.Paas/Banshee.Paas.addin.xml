@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Addin 
+    id="Banshee.Paas"
+    version="1.0"
+    compatVersion="1.0"
+    copyright="© 2009 Mike Urbanski.  Licensed under the MIT X11 license."
+    name="Podcasting as a Service"
+    category="User Interface"
+    description="Manage your podcasts on the web using Miro Guide!"
+    author="Mike Urbanski"
+    url="http://banshee-project.org/"
+    defaultEnabled="true">
+
+  <Dependencies>
+    <Addin id="Banshee.Services" version="1.0"/>
+    <Addin id="Banshee.ThickClient" version="1.0"/>
+  </Dependencies>
+
+  <Extension path="/Banshee/ServiceManager/Service">
+    <Service class="Banshee.Paas.PaasService"/>
+  </Extension>
+<!--
+  <Extension path="/Banshee/Gui/TrackEditor/NotebookPage">
+    <TrackEditorPage class="Banshee.Podcasting.Gui.PodcastEpisodePage"/>
+  </Extension>
+-->
+</Addin>

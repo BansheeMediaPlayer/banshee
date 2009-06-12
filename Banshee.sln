@@ -1,7 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 10.00
 # Visual Studio 2008
-# SharpDevelop 3.0.0.3800
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Banshee", "Banshee", "{E6AD3714-5EA3-49D9-BA8D-12C69B2B8067}"
 	ProjectSection(MonoDevelopProperties) = preProject
 		outputpath = .
@@ -11,121 +10,123 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Banshee", "Banshee", "{E6AD
 	ProjectSection(SolutionItems) = postProject
 	EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Libraries", "Libraries", "{4F47D6F1-4047-4A89-AE85-3AE5EF9F2961}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Clients", "Clients", "{EB1FDF3F-048C-4010-80F5-D936A312580F}"
 	ProjectSection(SolutionItems) = postProject
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mono.Data.Sqlite", "src\Libraries\Mono.Data.Sqlite\Mono.Data.Sqlite.csproj", "{BB1D1D81-7A74-4183-B7B1-3E78B32D42F1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Muinshee", "src\Clients\Muinshee\Muinshee.csproj", "{EABA3019-7539-4430-9935-D36CEA96F250}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Migo", "src\Libraries\Migo\Migo.csproj", "{9C7B8E9C-A4E6-4459-A2C4-3D2D199EA919}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nereid", "src\Clients\Nereid\Nereid.csproj", "{4F66A4DE-5204-4150-8D0B-CE21CA52E309}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MusicBrainz", "src\Libraries\MusicBrainz\MusicBrainz.csproj", "{C5DD02DE-4F0E-4DC0-ABC7-035A8217CD50}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Halie", "src\Clients\Halie\Halie.csproj", "{B574AEB0-59F1-4FB7-A91A-8E5A651970CE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mono.Media", "src\Libraries\Mono.Media\Mono.Media.csproj", "{A7566CDC-6033-4A16-9E9D-87D05A627066}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Booter", "src\Clients\Booter\Booter.csproj", "{4B890CB0-F5C8-4B1B-A1B8-3813BF5126C0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mtp", "src\Libraries\Mtp\Mtp.csproj", "{0DF72691-E61C-4E9C-A1F1-2F7F17958630}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lastfm.Gui", "src\Libraries\Lastfm.Gui\Lastfm.Gui.csproj", "{7271F1DF-1E15-4324-8102-E3D911A62BC5}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lastfm", "src\Libraries\Lastfm\Lastfm.csproj", "{C1F63FC5-4B96-48B2-B7F7-5B33FCC4F2A2}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hyena.Gui", "src\Libraries\Hyena.Gui\Hyena.Gui.csproj", "{C856EFD8-E812-4E61-8B76-E3583D94C233}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hyena", "src\Libraries\Hyena\Hyena.csproj", "{95374549-9553-4C1E-9D89-667755F90E12}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Extensions", "Extensions", "{4DD1DE63-F20B-4FC3-8FDA-F0BDF4183722}"
-	ProjectSection(SolutionItems) = postProject
-	EndProjectSection
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Banshee.Bpm", "src\Extensions\Banshee.Bpm\Banshee.Bpm.csproj", "{471E44F3-B404-413B-8E95-BCCA70C6E834}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Banshee.SqlDebugConsole", "src\Extensions\Banshee.SqlDebugConsole\Banshee.SqlDebugConsole.csproj", "{0E1A7F20-E49B-4F9D-AEA0-2B1AD64326AC}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Banshee.InternetRadio", "src\Extensions\Banshee.InternetRadio\Banshee.InternetRadio.csproj", "{12984BDF-C565-4452-AD47-79BD3C440E28}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Banshee.FileSystemQueue", "src\Extensions\Banshee.FileSystemQueue\Banshee.FileSystemQueue.csproj", "{A993A473-1A18-4D12-ADF1-9CF3E0E12637}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Banshee.CoverArt", "src\Extensions\Banshee.CoverArt\Banshee.CoverArt.csproj", "{0092BF81-ECAB-4D0C-8691-6D19FB7E04A1}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Banshee.BooScript", "src\Extensions\Banshee.BooScript\Banshee.BooScript.csproj", "{01818BD5-9A0C-4C89-84FB-08D0E968778F}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Banshee.Sample", "src\Extensions\Banshee.Sample\Banshee.Sample.csproj", "{6FF6F049-9DAB-48A7-BC4B-F7F3ED0EBA63}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Banshee.Podcasting", "src\Extensions\Banshee.Podcasting\Banshee.Podcasting.csproj", "{46AD1892-C5D3-4696-BA40-FBF7F4CE2B39}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Banshee.MiniMode", "src\Extensions\Banshee.MiniMode\Banshee.MiniMode.csproj", "{FCC1AE87-E10B-4B47-8ADE-D5F447E48518}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Banshee.AudioCd", "src\Extensions\Banshee.AudioCd\Banshee.AudioCd.csproj", "{F38B53BA-8F85-4DC6-9B94-029C1CF96F24}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Banshee.Bookmarks", "src\Extensions\Banshee.Bookmarks\Banshee.Bookmarks.csproj", "{0130499B-8A93-4CD9-8F3C-593B231609C7}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Banshee.NowPlaying", "src\Extensions\Banshee.NowPlaying\Banshee.NowPlaying.csproj", "{16FB0D3A-53FA-4B8E-B02B-4AF66E87829A}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Banshee.Lastfm", "src\Extensions\Banshee.Lastfm\Banshee.Lastfm.csproj", "{02FD8195-9796-4AF5-A9D2-D310721963F4}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Banshee.Wikipedia", "src\Extensions\Banshee.Wikipedia\Banshee.Wikipedia.csproj", "{BF5D1722-269B-452E-B577-AEBA0CB894BA}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Banshee.PlayQueue", "src\Extensions\Banshee.PlayQueue\Banshee.PlayQueue.csproj", "{74B2E4CC-2701-4C8B-A11D-6E4443F4B21B}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Banshee.MultimediaKeys", "src\Extensions\Banshee.MultimediaKeys\Banshee.MultimediaKeys.csproj", "{8E8D7EAD-3B7A-4F7D-8146-75AFCB9DEE83}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Banshee.NotificationArea", "src\Extensions\Banshee.NotificationArea\Banshee.NotificationArea.csproj", "{BFF64BCD-D7A7-4FB8-8147-7DEF7C3DC525}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Banshee.Daap", "src\Extensions\Banshee.Daap\Banshee.Daap.csproj", "{C9E904B1-1141-49F4-BE84-85222A8E8A79}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Dap", "Dap", "{057215DF-2773-4B42-8B8A-64F2CF7764F2}"
-	ProjectSection(SolutionItems) = postProject
-	EndProjectSection
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Banshee.Dap.Ipod", "src\Dap\Banshee.Dap.Ipod\Banshee.Dap.Ipod.csproj", "{371ECE68-8D0F-4AFE-AC8F-147167AE3674}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Banshee.Dap.Mtp", "src\Dap\Banshee.Dap.Mtp\Banshee.Dap.Mtp.csproj", "{3935AE8A-E283-4C0D-9094-7435A937DC90}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Banshee.Dap.MassStorage", "src\Dap\Banshee.Dap.MassStorage\Banshee.Dap.MassStorage.csproj", "{6B73E278-23FB-4A59-9B44-AB7F0212B936}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Banshee.Dap", "src\Dap\Banshee.Dap\Banshee.Dap.csproj", "{BC2E94DF-7A82-461E-BE7C-60E41ADC3562}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Backends", "Backends", "{A03B194F-F644-4E95-A602-87200029240D}"
-	ProjectSection(SolutionItems) = postProject
-	EndProjectSection
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Banshee.NowPlaying.X11", "src\Backends\Banshee.NowPlaying.X11\Banshee.NowPlaying.X11.csproj", "{46C02D13-5ED4-4A14-9ACF-125B1E4B6EB5}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Banshee.Hal", "src\Backends\Banshee.Hal\Banshee.Hal.csproj", "{3B7DD288-5546-4907-B302-0CD0271D9713}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Banshee.Unix", "src\Backends\Banshee.Unix\Banshee.Unix.csproj", "{C1065582-4F64-4810-8C35-E7EB2D2A432C}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Banshee.Gnome", "src\Backends\Banshee.Gnome\Banshee.Gnome.csproj", "{CA8BAD3C-1545-4B04-AF6B-4105DFD3A9A1}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Banshee.GStreamer", "src\Backends\Banshee.GStreamer\Banshee.GStreamer.csproj", "{6171E5DE-5B36-4AE4-8707-F6BEE0AD945B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Beroe", "src\Clients\Beroe\Beroe.csproj", "{E0E10333-9B05-4463-8A15-6738C186BF87}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{48EA1A64-29EE-4555-9E79-49453EB51976}"
 	ProjectSection(SolutionItems) = postProject
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Banshee.CollectionIndexer", "src\Core\Banshee.CollectionIndexer\Banshee.CollectionIndexer.csproj", "{CE2AB4B9-F618-4CCA-8805-E1603741147E}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Banshee.ThickClient", "src\Core\Banshee.ThickClient\Banshee.ThickClient.csproj", "{AC839523-7BDF-4AB6-8115-E17921B96EC6}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Banshee.Core", "src\Core\Banshee.Core\Banshee.Core.csproj", "{2ADB831A-A050-47D0-B6B9-9C19D60233BB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Banshee.Widgets", "src\Core\Banshee.Widgets\Banshee.Widgets.csproj", "{A3701765-E571-413D-808C-9788A22791AF}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Banshee.Services", "src\Core\Banshee.Services\Banshee.Services.csproj", "{B28354F0-BA87-44E8-989F-B864A3C7C09F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Banshee.Widgets", "src\Core\Banshee.Widgets\Banshee.Widgets.csproj", "{A3701765-E571-413D-808C-9788A22791AF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Banshee.Core", "src\Core\Banshee.Core\Banshee.Core.csproj", "{2ADB831A-A050-47D0-B6B9-9C19D60233BB}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Clients", "Clients", "{EB1FDF3F-048C-4010-80F5-D936A312580F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Banshee.ThickClient", "src\Core\Banshee.ThickClient\Banshee.ThickClient.csproj", "{AC839523-7BDF-4AB6-8115-E17921B96EC6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Banshee.CollectionIndexer", "src\Core\Banshee.CollectionIndexer\Banshee.CollectionIndexer.csproj", "{CE2AB4B9-F618-4CCA-8805-E1603741147E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Backends", "Backends", "{A03B194F-F644-4E95-A602-87200029240D}"
 	ProjectSection(SolutionItems) = postProject
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Beroe", "src\Clients\Beroe\Beroe.csproj", "{E0E10333-9B05-4463-8A15-6738C186BF87}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Banshee.GStreamer", "src\Backends\Banshee.GStreamer\Banshee.GStreamer.csproj", "{6171E5DE-5B36-4AE4-8707-F6BEE0AD945B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Booter", "src\Clients\Booter\Booter.csproj", "{4B890CB0-F5C8-4B1B-A1B8-3813BF5126C0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Banshee.Gnome", "src\Backends\Banshee.Gnome\Banshee.Gnome.csproj", "{CA8BAD3C-1545-4B04-AF6B-4105DFD3A9A1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Halie", "src\Clients\Halie\Halie.csproj", "{B574AEB0-59F1-4FB7-A91A-8E5A651970CE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Banshee.Unix", "src\Backends\Banshee.Unix\Banshee.Unix.csproj", "{C1065582-4F64-4810-8C35-E7EB2D2A432C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nereid", "src\Clients\Nereid\Nereid.csproj", "{4F66A4DE-5204-4150-8D0B-CE21CA52E309}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Banshee.Hal", "src\Backends\Banshee.Hal\Banshee.Hal.csproj", "{3B7DD288-5546-4907-B302-0CD0271D9713}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Muinshee", "src\Clients\Muinshee\Muinshee.csproj", "{EABA3019-7539-4430-9935-D36CEA96F250}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Banshee.NowPlaying.X11", "src\Backends\Banshee.NowPlaying.X11\Banshee.NowPlaying.X11.csproj", "{46C02D13-5ED4-4A14-9ACF-125B1E4B6EB5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Dap", "Dap", "{057215DF-2773-4B42-8B8A-64F2CF7764F2}"
+	ProjectSection(SolutionItems) = postProject
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Banshee.Dap", "src\Dap\Banshee.Dap\Banshee.Dap.csproj", "{BC2E94DF-7A82-461E-BE7C-60E41ADC3562}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Banshee.Dap.MassStorage", "src\Dap\Banshee.Dap.MassStorage\Banshee.Dap.MassStorage.csproj", "{6B73E278-23FB-4A59-9B44-AB7F0212B936}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Banshee.Dap.Mtp", "src\Dap\Banshee.Dap.Mtp\Banshee.Dap.Mtp.csproj", "{3935AE8A-E283-4C0D-9094-7435A937DC90}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Banshee.Dap.Ipod", "src\Dap\Banshee.Dap.Ipod\Banshee.Dap.Ipod.csproj", "{371ECE68-8D0F-4AFE-AC8F-147167AE3674}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Extensions", "Extensions", "{4DD1DE63-F20B-4FC3-8FDA-F0BDF4183722}"
+	ProjectSection(SolutionItems) = postProject
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Banshee.Daap", "src\Extensions\Banshee.Daap\Banshee.Daap.csproj", "{C9E904B1-1141-49F4-BE84-85222A8E8A79}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Banshee.NotificationArea", "src\Extensions\Banshee.NotificationArea\Banshee.NotificationArea.csproj", "{BFF64BCD-D7A7-4FB8-8147-7DEF7C3DC525}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Banshee.MultimediaKeys", "src\Extensions\Banshee.MultimediaKeys\Banshee.MultimediaKeys.csproj", "{8E8D7EAD-3B7A-4F7D-8146-75AFCB9DEE83}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Banshee.PlayQueue", "src\Extensions\Banshee.PlayQueue\Banshee.PlayQueue.csproj", "{74B2E4CC-2701-4C8B-A11D-6E4443F4B21B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Banshee.Lastfm", "src\Extensions\Banshee.Lastfm\Banshee.Lastfm.csproj", "{02FD8195-9796-4AF5-A9D2-D310721963F4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Banshee.Wikipedia", "src\Extensions\Banshee.Wikipedia\Banshee.Wikipedia.csproj", "{BF5D1722-269B-452E-B577-AEBA0CB894BA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Banshee.NowPlaying", "src\Extensions\Banshee.NowPlaying\Banshee.NowPlaying.csproj", "{16FB0D3A-53FA-4B8E-B02B-4AF66E87829A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Banshee.Bookmarks", "src\Extensions\Banshee.Bookmarks\Banshee.Bookmarks.csproj", "{0130499B-8A93-4CD9-8F3C-593B231609C7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Banshee.AudioCd", "src\Extensions\Banshee.AudioCd\Banshee.AudioCd.csproj", "{F38B53BA-8F85-4DC6-9B94-029C1CF96F24}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Banshee.MiniMode", "src\Extensions\Banshee.MiniMode\Banshee.MiniMode.csproj", "{FCC1AE87-E10B-4B47-8ADE-D5F447E48518}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Banshee.Podcasting", "src\Extensions\Banshee.Podcasting\Banshee.Podcasting.csproj", "{46AD1892-C5D3-4696-BA40-FBF7F4CE2B39}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Banshee.Sample", "src\Extensions\Banshee.Sample\Banshee.Sample.csproj", "{6FF6F049-9DAB-48A7-BC4B-F7F3ED0EBA63}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Banshee.BooScript", "src\Extensions\Banshee.BooScript\Banshee.BooScript.csproj", "{01818BD5-9A0C-4C89-84FB-08D0E968778F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Banshee.CoverArt", "src\Extensions\Banshee.CoverArt\Banshee.CoverArt.csproj", "{0092BF81-ECAB-4D0C-8691-6D19FB7E04A1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Banshee.FileSystemQueue", "src\Extensions\Banshee.FileSystemQueue\Banshee.FileSystemQueue.csproj", "{A993A473-1A18-4D12-ADF1-9CF3E0E12637}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Banshee.InternetRadio", "src\Extensions\Banshee.InternetRadio\Banshee.InternetRadio.csproj", "{12984BDF-C565-4452-AD47-79BD3C440E28}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Banshee.SqlDebugConsole", "src\Extensions\Banshee.SqlDebugConsole\Banshee.SqlDebugConsole.csproj", "{0E1A7F20-E49B-4F9D-AEA0-2B1AD64326AC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Banshee.Bpm", "src\Extensions\Banshee.Bpm\Banshee.Bpm.csproj", "{471E44F3-B404-413B-8E95-BCCA70C6E834}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Banshee.Paas", "src\Extensions\Banshee.Paas\Banshee.Paas.csproj", "{44C6535D-D467-44E7-9553-6020C540DD6C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Libraries", "Libraries", "{4F47D6F1-4047-4A89-AE85-3AE5EF9F2961}"
+	ProjectSection(SolutionItems) = postProject
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hyena", "src\Libraries\Hyena\Hyena.csproj", "{95374549-9553-4C1E-9D89-667755F90E12}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hyena.Gui", "src\Libraries\Hyena.Gui\Hyena.Gui.csproj", "{C856EFD8-E812-4E61-8B76-E3583D94C233}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lastfm", "src\Libraries\Lastfm\Lastfm.csproj", "{C1F63FC5-4B96-48B2-B7F7-5B33FCC4F2A2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lastfm.Gui", "src\Libraries\Lastfm.Gui\Lastfm.Gui.csproj", "{7271F1DF-1E15-4324-8102-E3D911A62BC5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mtp", "src\Libraries\Mtp\Mtp.csproj", "{0DF72691-E61C-4E9C-A1F1-2F7F17958630}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mono.Media", "src\Libraries\Mono.Media\Mono.Media.csproj", "{A7566CDC-6033-4A16-9E9D-87D05A627066}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MusicBrainz", "src\Libraries\MusicBrainz\MusicBrainz.csproj", "{C5DD02DE-4F0E-4DC0-ABC7-035A8217CD50}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Migo", "src\Libraries\Migo\Migo.csproj", "{9C7B8E9C-A4E6-4459-A2C4-3D2D199EA919}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mono.Data.Sqlite", "src\Libraries\Mono.Data.Sqlite\Mono.Data.Sqlite.csproj", "{BB1D1D81-7A74-4183-B7B1-3E78B32D42F1}"
 EndProject
 Project("{2857B73E-F847-4B02-9238-064979017E93}") = "libbanshee", "libbanshee\libbanshee.cproj", "{6B781836-AB65-49EF-BECD-CCC193C5D589}"
 EndProject
@@ -137,212 +138,152 @@ Global
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{0092BF81-ECAB-4D0C-8691-6D19FB7E04A1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{0092BF81-ECAB-4D0C-8691-6D19FB7E04A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0092BF81-ECAB-4D0C-8691-6D19FB7E04A1}.Windows|Any CPU.ActiveCfg = Windows|Any CPU
 		{0130499B-8A93-4CD9-8F3C-593B231609C7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{0130499B-8A93-4CD9-8F3C-593B231609C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0130499B-8A93-4CD9-8F3C-593B231609C7}.Windows|Any CPU.ActiveCfg = Windows|Any CPU
 		{01818BD5-9A0C-4C89-84FB-08D0E968778F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{01818BD5-9A0C-4C89-84FB-08D0E968778F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{01818BD5-9A0C-4C89-84FB-08D0E968778F}.Windows|Any CPU.ActiveCfg = Windows|Any CPU
 		{02FD8195-9796-4AF5-A9D2-D310721963F4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{02FD8195-9796-4AF5-A9D2-D310721963F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BF5D1722-269B-452E-B577-AEBA0CB894BA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BF5D1722-269B-452E-B577-AEBA0CB894BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{02FD8195-9796-4AF5-A9D2-D310721963F4}.Windows|Any CPU.ActiveCfg = Windows|Any CPU
 		{0DF72691-E61C-4E9C-A1F1-2F7F17958630}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{0DF72691-E61C-4E9C-A1F1-2F7F17958630}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0DF72691-E61C-4E9C-A1F1-2F7F17958630}.Windows|Any CPU.ActiveCfg = Windows|Any CPU
 		{0E1A7F20-E49B-4F9D-AEA0-2B1AD64326AC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{0E1A7F20-E49B-4F9D-AEA0-2B1AD64326AC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0E1A7F20-E49B-4F9D-AEA0-2B1AD64326AC}.Windows|Any CPU.ActiveCfg = Windows|Any CPU
 		{12984BDF-C565-4452-AD47-79BD3C440E28}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{12984BDF-C565-4452-AD47-79BD3C440E28}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{12984BDF-C565-4452-AD47-79BD3C440E28}.Windows|Any CPU.ActiveCfg = Windows|Any CPU
 		{16FB0D3A-53FA-4B8E-B02B-4AF66E87829A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{16FB0D3A-53FA-4B8E-B02B-4AF66E87829A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{16FB0D3A-53FA-4B8E-B02B-4AF66E87829A}.Windows|Any CPU.ActiveCfg = Windows|Any CPU
 		{2ADB831A-A050-47D0-B6B9-9C19D60233BB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{2ADB831A-A050-47D0-B6B9-9C19D60233BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2ADB831A-A050-47D0-B6B9-9C19D60233BB}.Windows|Any CPU.ActiveCfg = Windows|Any CPU
 		{371ECE68-8D0F-4AFE-AC8F-147167AE3674}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{371ECE68-8D0F-4AFE-AC8F-147167AE3674}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{371ECE68-8D0F-4AFE-AC8F-147167AE3674}.Windows|Any CPU.ActiveCfg = Windows|Any CPU
 		{3935AE8A-E283-4C0D-9094-7435A937DC90}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{3935AE8A-E283-4C0D-9094-7435A937DC90}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3935AE8A-E283-4C0D-9094-7435A937DC90}.Windows|Any CPU.ActiveCfg = Windows|Any CPU
 		{3B7DD288-5546-4907-B302-0CD0271D9713}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{3B7DD288-5546-4907-B302-0CD0271D9713}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3B7DD288-5546-4907-B302-0CD0271D9713}.Windows|Any CPU.ActiveCfg = Windows|Any CPU
+		{44C6535D-D467-44E7-9553-6020C540DD6C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{44C6535D-D467-44E7-9553-6020C540DD6C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{44C6535D-D467-44E7-9553-6020C540DD6C}.Windows|Any CPU.ActiveCfg = Windows|Any CPU
+		{44C6535D-D467-44E7-9553-6020C540DD6C}.Windows|Any CPU.Build.0 = Windows|Any CPU
 		{46AD1892-C5D3-4696-BA40-FBF7F4CE2B39}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{46AD1892-C5D3-4696-BA40-FBF7F4CE2B39}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{46AD1892-C5D3-4696-BA40-FBF7F4CE2B39}.Windows|Any CPU.ActiveCfg = Windows|Any CPU
 		{46C02D13-5ED4-4A14-9ACF-125B1E4B6EB5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{46C02D13-5ED4-4A14-9ACF-125B1E4B6EB5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{46C02D13-5ED4-4A14-9ACF-125B1E4B6EB5}.Windows|Any CPU.ActiveCfg = Windows|Any CPU
 		{471E44F3-B404-413B-8E95-BCCA70C6E834}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{471E44F3-B404-413B-8E95-BCCA70C6E834}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{471E44F3-B404-413B-8E95-BCCA70C6E834}.Windows|Any CPU.ActiveCfg = Windows|Any CPU
 		{4B890CB0-F5C8-4B1B-A1B8-3813BF5126C0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{4B890CB0-F5C8-4B1B-A1B8-3813BF5126C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4B890CB0-F5C8-4B1B-A1B8-3813BF5126C0}.Windows|Any CPU.ActiveCfg = Windows|Any CPU
 		{4F66A4DE-5204-4150-8D0B-CE21CA52E309}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{4F66A4DE-5204-4150-8D0B-CE21CA52E309}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4F66A4DE-5204-4150-8D0B-CE21CA52E309}.Windows|Any CPU.ActiveCfg = Windows|Any CPU
 		{6171E5DE-5B36-4AE4-8707-F6BEE0AD945B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{6171E5DE-5B36-4AE4-8707-F6BEE0AD945B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{694E4C7C-9385-47D6-A76E-911FC057E89D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{694E4C7C-9385-47D6-A76E-911FC057E89D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6171E5DE-5B36-4AE4-8707-F6BEE0AD945B}.Windows|Any CPU.ActiveCfg = Windows|Any CPU
 		{6B73E278-23FB-4A59-9B44-AB7F0212B936}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{6B73E278-23FB-4A59-9B44-AB7F0212B936}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6B73E278-23FB-4A59-9B44-AB7F0212B936}.Windows|Any CPU.ActiveCfg = Windows|Any CPU
 		{6B781836-AB65-49EF-BECD-CCC193C5D589}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{6B781836-AB65-49EF-BECD-CCC193C5D589}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6B781836-AB65-49EF-BECD-CCC193C5D589}.Windows|Any CPU.ActiveCfg = Debug|Any CPU
 		{6FF6F049-9DAB-48A7-BC4B-F7F3ED0EBA63}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{6FF6F049-9DAB-48A7-BC4B-F7F3ED0EBA63}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6FF6F049-9DAB-48A7-BC4B-F7F3ED0EBA63}.Windows|Any CPU.ActiveCfg = Windows|Any CPU
 		{7271F1DF-1E15-4324-8102-E3D911A62BC5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{7271F1DF-1E15-4324-8102-E3D911A62BC5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7271F1DF-1E15-4324-8102-E3D911A62BC5}.Windows|Any CPU.ActiveCfg = Windows|Any CPU
 		{74B2E4CC-2701-4C8B-A11D-6E4443F4B21B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{74B2E4CC-2701-4C8B-A11D-6E4443F4B21B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{74B2E4CC-2701-4C8B-A11D-6E4443F4B21B}.Windows|Any CPU.ActiveCfg = Windows|Any CPU
 		{8E8D7EAD-3B7A-4F7D-8146-75AFCB9DEE83}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{8E8D7EAD-3B7A-4F7D-8146-75AFCB9DEE83}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8E8D7EAD-3B7A-4F7D-8146-75AFCB9DEE83}.Windows|Any CPU.ActiveCfg = Windows|Any CPU
 		{95374549-9553-4C1E-9D89-667755F90E12}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{95374549-9553-4C1E-9D89-667755F90E12}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{95374549-9553-4C1E-9D89-667755F90E12}.Windows|Any CPU.ActiveCfg = Windows|Any CPU
 		{9C7B8E9C-A4E6-4459-A2C4-3D2D199EA919}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{9C7B8E9C-A4E6-4459-A2C4-3D2D199EA919}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9C7B8E9C-A4E6-4459-A2C4-3D2D199EA919}.Windows|Any CPU.ActiveCfg = Windows|Any CPU
 		{A3701765-E571-413D-808C-9788A22791AF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{A3701765-E571-413D-808C-9788A22791AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A3701765-E571-413D-808C-9788A22791AF}.Windows|Any CPU.ActiveCfg = Windows|Any CPU
 		{A7566CDC-6033-4A16-9E9D-87D05A627066}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{A7566CDC-6033-4A16-9E9D-87D05A627066}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A7566CDC-6033-4A16-9E9D-87D05A627066}.Windows|Any CPU.ActiveCfg = Windows|Any CPU
 		{A993A473-1A18-4D12-ADF1-9CF3E0E12637}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{A993A473-1A18-4D12-ADF1-9CF3E0E12637}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A993A473-1A18-4D12-ADF1-9CF3E0E12637}.Windows|Any CPU.ActiveCfg = Windows|Any CPU
 		{AC839523-7BDF-4AB6-8115-E17921B96EC6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{AC839523-7BDF-4AB6-8115-E17921B96EC6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AC839523-7BDF-4AB6-8115-E17921B96EC6}.Windows|Any CPU.ActiveCfg = Windows|Any CPU
 		{B28354F0-BA87-44E8-989F-B864A3C7C09F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{B28354F0-BA87-44E8-989F-B864A3C7C09F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B28354F0-BA87-44E8-989F-B864A3C7C09F}.Windows|Any CPU.ActiveCfg = Windows|Any CPU
 		{B574AEB0-59F1-4FB7-A91A-8E5A651970CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{B574AEB0-59F1-4FB7-A91A-8E5A651970CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B574AEB0-59F1-4FB7-A91A-8E5A651970CE}.Windows|Any CPU.ActiveCfg = Windows|Any CPU
+		{BB1D1D81-7A74-4183-B7B1-3E78B32D42F1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BB1D1D81-7A74-4183-B7B1-3E78B32D42F1}.Windows|Any CPU.ActiveCfg = Windows|Any CPU
 		{BC2E94DF-7A82-461E-BE7C-60E41ADC3562}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{BC2E94DF-7A82-461E-BE7C-60E41ADC3562}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BC2E94DF-7A82-461E-BE7C-60E41ADC3562}.Windows|Any CPU.ActiveCfg = Windows|Any CPU
+		{BF5D1722-269B-452E-B577-AEBA0CB894BA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BF5D1722-269B-452E-B577-AEBA0CB894BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BF5D1722-269B-452E-B577-AEBA0CB894BA}.Windows|Any CPU.ActiveCfg = Windows|Any CPU
 		{BFF64BCD-D7A7-4FB8-8147-7DEF7C3DC525}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{BFF64BCD-D7A7-4FB8-8147-7DEF7C3DC525}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BFF64BCD-D7A7-4FB8-8147-7DEF7C3DC525}.Windows|Any CPU.ActiveCfg = Windows|Any CPU
 		{C1065582-4F64-4810-8C35-E7EB2D2A432C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{C1065582-4F64-4810-8C35-E7EB2D2A432C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C1065582-4F64-4810-8C35-E7EB2D2A432C}.Windows|Any CPU.ActiveCfg = Windows|Any CPU
 		{C1F63FC5-4B96-48B2-B7F7-5B33FCC4F2A2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{C1F63FC5-4B96-48B2-B7F7-5B33FCC4F2A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C1F63FC5-4B96-48B2-B7F7-5B33FCC4F2A2}.Windows|Any CPU.ActiveCfg = Windows|Any CPU
 		{C5DD02DE-4F0E-4DC0-ABC7-035A8217CD50}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{C5DD02DE-4F0E-4DC0-ABC7-035A8217CD50}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C5DD02DE-4F0E-4DC0-ABC7-035A8217CD50}.Windows|Any CPU.ActiveCfg = Windows|Any CPU
 		{C856EFD8-E812-4E61-8B76-E3583D94C233}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{C856EFD8-E812-4E61-8B76-E3583D94C233}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C856EFD8-E812-4E61-8B76-E3583D94C233}.Windows|Any CPU.ActiveCfg = Windows|Any CPU
 		{C9E904B1-1141-49F4-BE84-85222A8E8A79}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{C9E904B1-1141-49F4-BE84-85222A8E8A79}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C9E904B1-1141-49F4-BE84-85222A8E8A79}.Windows|Any CPU.ActiveCfg = Windows|Any CPU
 		{CA8BAD3C-1545-4B04-AF6B-4105DFD3A9A1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{CA8BAD3C-1545-4B04-AF6B-4105DFD3A9A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CA8BAD3C-1545-4B04-AF6B-4105DFD3A9A1}.Windows|Any CPU.ActiveCfg = Windows|Any CPU
 		{CE2AB4B9-F618-4CCA-8805-E1603741147E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{CE2AB4B9-F618-4CCA-8805-E1603741147E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CE2AB4B9-F618-4CCA-8805-E1603741147E}.Windows|Any CPU.ActiveCfg = Windows|Any CPU
 		{E0E10333-9B05-4463-8A15-6738C186BF87}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{E0E10333-9B05-4463-8A15-6738C186BF87}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E0E10333-9B05-4463-8A15-6738C186BF87}.Windows|Any CPU.ActiveCfg = Windows|Any CPU
 		{EABA3019-7539-4430-9935-D36CEA96F250}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{EABA3019-7539-4430-9935-D36CEA96F250}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EABA3019-7539-4430-9935-D36CEA96F250}.Windows|Any CPU.ActiveCfg = Windows|Any CPU
 		{F38B53BA-8F85-4DC6-9B94-029C1CF96F24}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{F38B53BA-8F85-4DC6-9B94-029C1CF96F24}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F38B53BA-8F85-4DC6-9B94-029C1CF96F24}.Windows|Any CPU.ActiveCfg = Windows|Any CPU
 		{FCC1AE87-E10B-4B47-8ADE-D5F447E48518}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{FCC1AE87-E10B-4B47-8ADE-D5F447E48518}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BB1D1D81-7A74-4183-B7B1-3E78B32D42F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BB1D1D81-7A74-4183-B7B1-3E78B32D42F1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6B781836-AB65-49EF-BECD-CCC193C5D589}.Windows|Any CPU.Build.0 = Debug|Any CPU
-		{6B781836-AB65-49EF-BECD-CCC193C5D589}.Windows|Any CPU.ActiveCfg = Debug|Any CPU
-		{EABA3019-7539-4430-9935-D36CEA96F250}.Windows|Any CPU.Build.0 = Windows|Any CPU
-		{EABA3019-7539-4430-9935-D36CEA96F250}.Windows|Any CPU.ActiveCfg = Windows|Any CPU
-		{4F66A4DE-5204-4150-8D0B-CE21CA52E309}.Windows|Any CPU.Build.0 = Windows|Any CPU
-		{4F66A4DE-5204-4150-8D0B-CE21CA52E309}.Windows|Any CPU.ActiveCfg = Windows|Any CPU
-		{B574AEB0-59F1-4FB7-A91A-8E5A651970CE}.Windows|Any CPU.Build.0 = Windows|Any CPU
-		{B574AEB0-59F1-4FB7-A91A-8E5A651970CE}.Windows|Any CPU.ActiveCfg = Windows|Any CPU
-		{4B890CB0-F5C8-4B1B-A1B8-3813BF5126C0}.Windows|Any CPU.Build.0 = Windows|Any CPU
-		{4B890CB0-F5C8-4B1B-A1B8-3813BF5126C0}.Windows|Any CPU.ActiveCfg = Windows|Any CPU
-		{E0E10333-9B05-4463-8A15-6738C186BF87}.Windows|Any CPU.Build.0 = Windows|Any CPU
-		{E0E10333-9B05-4463-8A15-6738C186BF87}.Windows|Any CPU.ActiveCfg = Windows|Any CPU
-		{A3701765-E571-413D-808C-9788A22791AF}.Windows|Any CPU.Build.0 = Windows|Any CPU
-		{A3701765-E571-413D-808C-9788A22791AF}.Windows|Any CPU.ActiveCfg = Windows|Any CPU
-		{B28354F0-BA87-44E8-989F-B864A3C7C09F}.Windows|Any CPU.Build.0 = Windows|Any CPU
-		{B28354F0-BA87-44E8-989F-B864A3C7C09F}.Windows|Any CPU.ActiveCfg = Windows|Any CPU
-		{2ADB831A-A050-47D0-B6B9-9C19D60233BB}.Windows|Any CPU.Build.0 = Windows|Any CPU
-		{2ADB831A-A050-47D0-B6B9-9C19D60233BB}.Windows|Any CPU.ActiveCfg = Windows|Any CPU
-		{AC839523-7BDF-4AB6-8115-E17921B96EC6}.Windows|Any CPU.Build.0 = Windows|Any CPU
-		{AC839523-7BDF-4AB6-8115-E17921B96EC6}.Windows|Any CPU.ActiveCfg = Windows|Any CPU
-		{CE2AB4B9-F618-4CCA-8805-E1603741147E}.Windows|Any CPU.Build.0 = Windows|Any CPU
-		{CE2AB4B9-F618-4CCA-8805-E1603741147E}.Windows|Any CPU.ActiveCfg = Windows|Any CPU
-		{6171E5DE-5B36-4AE4-8707-F6BEE0AD945B}.Windows|Any CPU.Build.0 = Windows|Any CPU
-		{6171E5DE-5B36-4AE4-8707-F6BEE0AD945B}.Windows|Any CPU.ActiveCfg = Windows|Any CPU
-		{CA8BAD3C-1545-4B04-AF6B-4105DFD3A9A1}.Windows|Any CPU.Build.0 = Windows|Any CPU
-		{CA8BAD3C-1545-4B04-AF6B-4105DFD3A9A1}.Windows|Any CPU.ActiveCfg = Windows|Any CPU
-		{C1065582-4F64-4810-8C35-E7EB2D2A432C}.Windows|Any CPU.Build.0 = Windows|Any CPU
-		{C1065582-4F64-4810-8C35-E7EB2D2A432C}.Windows|Any CPU.ActiveCfg = Windows|Any CPU
-		{3B7DD288-5546-4907-B302-0CD0271D9713}.Windows|Any CPU.Build.0 = Windows|Any CPU
-		{3B7DD288-5546-4907-B302-0CD0271D9713}.Windows|Any CPU.ActiveCfg = Windows|Any CPU
-		{46C02D13-5ED4-4A14-9ACF-125B1E4B6EB5}.Windows|Any CPU.Build.0 = Windows|Any CPU
-		{46C02D13-5ED4-4A14-9ACF-125B1E4B6EB5}.Windows|Any CPU.ActiveCfg = Windows|Any CPU
-		{BC2E94DF-7A82-461E-BE7C-60E41ADC3562}.Windows|Any CPU.Build.0 = Windows|Any CPU
-		{BC2E94DF-7A82-461E-BE7C-60E41ADC3562}.Windows|Any CPU.ActiveCfg = Windows|Any CPU
-		{6B73E278-23FB-4A59-9B44-AB7F0212B936}.Windows|Any CPU.Build.0 = Windows|Any CPU
-		{6B73E278-23FB-4A59-9B44-AB7F0212B936}.Windows|Any CPU.ActiveCfg = Windows|Any CPU
-		{3935AE8A-E283-4C0D-9094-7435A937DC90}.Windows|Any CPU.Build.0 = Windows|Any CPU
-		{3935AE8A-E283-4C0D-9094-7435A937DC90}.Windows|Any CPU.ActiveCfg = Windows|Any CPU
-		{371ECE68-8D0F-4AFE-AC8F-147167AE3674}.Windows|Any CPU.Build.0 = Windows|Any CPU
-		{371ECE68-8D0F-4AFE-AC8F-147167AE3674}.Windows|Any CPU.ActiveCfg = Windows|Any CPU
-		{C9E904B1-1141-49F4-BE84-85222A8E8A79}.Windows|Any CPU.Build.0 = Windows|Any CPU
-		{C9E904B1-1141-49F4-BE84-85222A8E8A79}.Windows|Any CPU.ActiveCfg = Windows|Any CPU
-		{BFF64BCD-D7A7-4FB8-8147-7DEF7C3DC525}.Windows|Any CPU.Build.0 = Windows|Any CPU
-		{BFF64BCD-D7A7-4FB8-8147-7DEF7C3DC525}.Windows|Any CPU.ActiveCfg = Windows|Any CPU
-		{8E8D7EAD-3B7A-4F7D-8146-75AFCB9DEE83}.Windows|Any CPU.Build.0 = Windows|Any CPU
-		{8E8D7EAD-3B7A-4F7D-8146-75AFCB9DEE83}.Windows|Any CPU.ActiveCfg = Windows|Any CPU
-		{74B2E4CC-2701-4C8B-A11D-6E4443F4B21B}.Windows|Any CPU.Build.0 = Windows|Any CPU
-		{74B2E4CC-2701-4C8B-A11D-6E4443F4B21B}.Windows|Any CPU.ActiveCfg = Windows|Any CPU
-		{02FD8195-9796-4AF5-A9D2-D310721963F4}.Windows|Any CPU.Build.0 = Windows|Any CPU
-		{02FD8195-9796-4AF5-A9D2-D310721963F4}.Windows|Any CPU.ActiveCfg = Windows|Any CPU
-		{BF5D1722-269B-452E-B577-AEBA0CB894BA}.Windows|Any CPU.Build.0 = Windows|Any CPU
-		{BF5D1722-269B-452E-B577-AEBA0CB894BA}.Windows|Any CPU.ActiveCfg = Windows|Any CPU
-		{16FB0D3A-53FA-4B8E-B02B-4AF66E87829A}.Windows|Any CPU.Build.0 = Windows|Any CPU
-		{16FB0D3A-53FA-4B8E-B02B-4AF66E87829A}.Windows|Any CPU.ActiveCfg = Windows|Any CPU
-		{0130499B-8A93-4CD9-8F3C-593B231609C7}.Windows|Any CPU.Build.0 = Windows|Any CPU
-		{0130499B-8A93-4CD9-8F3C-593B231609C7}.Windows|Any CPU.ActiveCfg = Windows|Any CPU
-		{F38B53BA-8F85-4DC6-9B94-029C1CF96F24}.Windows|Any CPU.Build.0 = Windows|Any CPU
-		{F38B53BA-8F85-4DC6-9B94-029C1CF96F24}.Windows|Any CPU.ActiveCfg = Windows|Any CPU
-		{FCC1AE87-E10B-4B47-8ADE-D5F447E48518}.Windows|Any CPU.Build.0 = Windows|Any CPU
 		{FCC1AE87-E10B-4B47-8ADE-D5F447E48518}.Windows|Any CPU.ActiveCfg = Windows|Any CPU
-		{46AD1892-C5D3-4696-BA40-FBF7F4CE2B39}.Windows|Any CPU.Build.0 = Windows|Any CPU
-		{46AD1892-C5D3-4696-BA40-FBF7F4CE2B39}.Windows|Any CPU.ActiveCfg = Windows|Any CPU
-		{6FF6F049-9DAB-48A7-BC4B-F7F3ED0EBA63}.Windows|Any CPU.Build.0 = Windows|Any CPU
-		{6FF6F049-9DAB-48A7-BC4B-F7F3ED0EBA63}.Windows|Any CPU.ActiveCfg = Windows|Any CPU
-		{01818BD5-9A0C-4C89-84FB-08D0E968778F}.Windows|Any CPU.Build.0 = Windows|Any CPU
-		{01818BD5-9A0C-4C89-84FB-08D0E968778F}.Windows|Any CPU.ActiveCfg = Windows|Any CPU
-		{0092BF81-ECAB-4D0C-8691-6D19FB7E04A1}.Windows|Any CPU.Build.0 = Windows|Any CPU
-		{0092BF81-ECAB-4D0C-8691-6D19FB7E04A1}.Windows|Any CPU.ActiveCfg = Windows|Any CPU
-		{A993A473-1A18-4D12-ADF1-9CF3E0E12637}.Windows|Any CPU.Build.0 = Windows|Any CPU
-		{A993A473-1A18-4D12-ADF1-9CF3E0E12637}.Windows|Any CPU.ActiveCfg = Windows|Any CPU
-		{12984BDF-C565-4452-AD47-79BD3C440E28}.Windows|Any CPU.Build.0 = Windows|Any CPU
-		{12984BDF-C565-4452-AD47-79BD3C440E28}.Windows|Any CPU.ActiveCfg = Windows|Any CPU
-		{0E1A7F20-E49B-4F9D-AEA0-2B1AD64326AC}.Windows|Any CPU.Build.0 = Windows|Any CPU
-		{0E1A7F20-E49B-4F9D-AEA0-2B1AD64326AC}.Windows|Any CPU.ActiveCfg = Windows|Any CPU
+		{694E4C7C-9385-47D6-A76E-911FC057E89D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{694E4C7C-9385-47D6-A76E-911FC057E89D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{694E4C7C-9385-47D6-A76E-911FC057E89D}.Windows|Any CPU.Build.0 = Windows|Any CPU
 		{694E4C7C-9385-47D6-A76E-911FC057E89D}.Windows|Any CPU.ActiveCfg = Windows|Any CPU
-		{471E44F3-B404-413B-8E95-BCCA70C6E834}.Windows|Any CPU.Build.0 = Windows|Any CPU
-		{471E44F3-B404-413B-8E95-BCCA70C6E834}.Windows|Any CPU.ActiveCfg = Windows|Any CPU
-		{95374549-9553-4C1E-9D89-667755F90E12}.Windows|Any CPU.Build.0 = Windows|Any CPU
-		{95374549-9553-4C1E-9D89-667755F90E12}.Windows|Any CPU.ActiveCfg = Windows|Any CPU
-		{C856EFD8-E812-4E61-8B76-E3583D94C233}.Windows|Any CPU.Build.0 = Windows|Any CPU
-		{C856EFD8-E812-4E61-8B76-E3583D94C233}.Windows|Any CPU.ActiveCfg = Windows|Any CPU
-		{C1F63FC5-4B96-48B2-B7F7-5B33FCC4F2A2}.Windows|Any CPU.Build.0 = Windows|Any CPU
-		{C1F63FC5-4B96-48B2-B7F7-5B33FCC4F2A2}.Windows|Any CPU.ActiveCfg = Windows|Any CPU
-		{7271F1DF-1E15-4324-8102-E3D911A62BC5}.Windows|Any CPU.Build.0 = Windows|Any CPU
-		{7271F1DF-1E15-4324-8102-E3D911A62BC5}.Windows|Any CPU.ActiveCfg = Windows|Any CPU
-		{0DF72691-E61C-4E9C-A1F1-2F7F17958630}.Windows|Any CPU.Build.0 = Windows|Any CPU
-		{0DF72691-E61C-4E9C-A1F1-2F7F17958630}.Windows|Any CPU.ActiveCfg = Windows|Any CPU
-		{A7566CDC-6033-4A16-9E9D-87D05A627066}.Windows|Any CPU.Build.0 = Windows|Any CPU
-		{A7566CDC-6033-4A16-9E9D-87D05A627066}.Windows|Any CPU.ActiveCfg = Windows|Any CPU
-		{C5DD02DE-4F0E-4DC0-ABC7-035A8217CD50}.Windows|Any CPU.Build.0 = Windows|Any CPU
-		{C5DD02DE-4F0E-4DC0-ABC7-035A8217CD50}.Windows|Any CPU.ActiveCfg = Windows|Any CPU
-		{9C7B8E9C-A4E6-4459-A2C4-3D2D199EA919}.Windows|Any CPU.Build.0 = Windows|Any CPU
-		{9C7B8E9C-A4E6-4459-A2C4-3D2D199EA919}.Windows|Any CPU.ActiveCfg = Windows|Any CPU
-		{BB1D1D81-7A74-4183-B7B1-3E78B32D42F1}.Windows|Any CPU.Build.0 = Windows|Any CPU
-		{BB1D1D81-7A74-4183-B7B1-3E78B32D42F1}.Windows|Any CPU.ActiveCfg = Windows|Any CPU
-	EndGlobalSection
-	GlobalSection(MonoDevelopProperties) = preSolution
-		version = 1.3
-		outputpath = .
-		StartupItem = src\Clients\Nereid\Nereid.csproj
-		Policies = $0
-		$0.TextStylePolicy = $1
-		$1.FileWidth = 120
-		$1.TabWidth = 4
-		$1.TabsToSpaces = True
-		$1.NoTabsAfterNonTabs = False
-		$1.RemoveTrailingWhitespace = True
-		$1.EolMarker = Native
-		name = Banshee
-		MonoDevelop.ChangeLogAddIn.ChangeLogInfo = $2
-		$2.policy = UpdateNearestChangeLog
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{EB1FDF3F-048C-4010-80F5-D936A312580F} = {E6AD3714-5EA3-49D9-BA8D-12C69B2B8067}
@@ -351,15 +292,25 @@ Global
 		{057215DF-2773-4B42-8B8A-64F2CF7764F2} = {E6AD3714-5EA3-49D9-BA8D-12C69B2B8067}
 		{4DD1DE63-F20B-4FC3-8FDA-F0BDF4183722} = {E6AD3714-5EA3-49D9-BA8D-12C69B2B8067}
 		{4F47D6F1-4047-4A89-AE85-3AE5EF9F2961} = {E6AD3714-5EA3-49D9-BA8D-12C69B2B8067}
-		{95374549-9553-4C1E-9D89-667755F90E12} = {4F47D6F1-4047-4A89-AE85-3AE5EF9F2961}
-		{C856EFD8-E812-4E61-8B76-E3583D94C233} = {4F47D6F1-4047-4A89-AE85-3AE5EF9F2961}
-		{C1F63FC5-4B96-48B2-B7F7-5B33FCC4F2A2} = {4F47D6F1-4047-4A89-AE85-3AE5EF9F2961}
-		{7271F1DF-1E15-4324-8102-E3D911A62BC5} = {4F47D6F1-4047-4A89-AE85-3AE5EF9F2961}
-		{0DF72691-E61C-4E9C-A1F1-2F7F17958630} = {4F47D6F1-4047-4A89-AE85-3AE5EF9F2961}
-		{A7566CDC-6033-4A16-9E9D-87D05A627066} = {4F47D6F1-4047-4A89-AE85-3AE5EF9F2961}
-		{C5DD02DE-4F0E-4DC0-ABC7-035A8217CD50} = {4F47D6F1-4047-4A89-AE85-3AE5EF9F2961}
-		{9C7B8E9C-A4E6-4459-A2C4-3D2D199EA919} = {4F47D6F1-4047-4A89-AE85-3AE5EF9F2961}
-		{BB1D1D81-7A74-4183-B7B1-3E78B32D42F1} = {4F47D6F1-4047-4A89-AE85-3AE5EF9F2961}
+		{EABA3019-7539-4430-9935-D36CEA96F250} = {EB1FDF3F-048C-4010-80F5-D936A312580F}
+		{4F66A4DE-5204-4150-8D0B-CE21CA52E309} = {EB1FDF3F-048C-4010-80F5-D936A312580F}
+		{B574AEB0-59F1-4FB7-A91A-8E5A651970CE} = {EB1FDF3F-048C-4010-80F5-D936A312580F}
+		{4B890CB0-F5C8-4B1B-A1B8-3813BF5126C0} = {EB1FDF3F-048C-4010-80F5-D936A312580F}
+		{E0E10333-9B05-4463-8A15-6738C186BF87} = {EB1FDF3F-048C-4010-80F5-D936A312580F}
+		{A3701765-E571-413D-808C-9788A22791AF} = {48EA1A64-29EE-4555-9E79-49453EB51976}
+		{B28354F0-BA87-44E8-989F-B864A3C7C09F} = {48EA1A64-29EE-4555-9E79-49453EB51976}
+		{2ADB831A-A050-47D0-B6B9-9C19D60233BB} = {48EA1A64-29EE-4555-9E79-49453EB51976}
+		{AC839523-7BDF-4AB6-8115-E17921B96EC6} = {48EA1A64-29EE-4555-9E79-49453EB51976}
+		{CE2AB4B9-F618-4CCA-8805-E1603741147E} = {48EA1A64-29EE-4555-9E79-49453EB51976}
+		{6171E5DE-5B36-4AE4-8707-F6BEE0AD945B} = {A03B194F-F644-4E95-A602-87200029240D}
+		{CA8BAD3C-1545-4B04-AF6B-4105DFD3A9A1} = {A03B194F-F644-4E95-A602-87200029240D}
+		{C1065582-4F64-4810-8C35-E7EB2D2A432C} = {A03B194F-F644-4E95-A602-87200029240D}
+		{3B7DD288-5546-4907-B302-0CD0271D9713} = {A03B194F-F644-4E95-A602-87200029240D}
+		{46C02D13-5ED4-4A14-9ACF-125B1E4B6EB5} = {A03B194F-F644-4E95-A602-87200029240D}
+		{BC2E94DF-7A82-461E-BE7C-60E41ADC3562} = {057215DF-2773-4B42-8B8A-64F2CF7764F2}
+		{6B73E278-23FB-4A59-9B44-AB7F0212B936} = {057215DF-2773-4B42-8B8A-64F2CF7764F2}
+		{3935AE8A-E283-4C0D-9094-7435A937DC90} = {057215DF-2773-4B42-8B8A-64F2CF7764F2}
+		{371ECE68-8D0F-4AFE-AC8F-147167AE3674} = {057215DF-2773-4B42-8B8A-64F2CF7764F2}
 		{C9E904B1-1141-49F4-BE84-85222A8E8A79} = {4DD1DE63-F20B-4FC3-8FDA-F0BDF4183722}
 		{BFF64BCD-D7A7-4FB8-8147-7DEF7C3DC525} = {4DD1DE63-F20B-4FC3-8FDA-F0BDF4183722}
 		{8E8D7EAD-3B7A-4F7D-8146-75AFCB9DEE83} = {4DD1DE63-F20B-4FC3-8FDA-F0BDF4183722}
@@ -377,26 +328,32 @@ Global
 		{A993A473-1A18-4D12-ADF1-9CF3E0E12637} = {4DD1DE63-F20B-4FC3-8FDA-F0BDF4183722}
 		{12984BDF-C565-4452-AD47-79BD3C440E28} = {4DD1DE63-F20B-4FC3-8FDA-F0BDF4183722}
 		{0E1A7F20-E49B-4F9D-AEA0-2B1AD64326AC} = {4DD1DE63-F20B-4FC3-8FDA-F0BDF4183722}
-		{694E4C7C-9385-47D6-A76E-911FC057E89D} = {4DD1DE63-F20B-4FC3-8FDA-F0BDF4183722}
 		{471E44F3-B404-413B-8E95-BCCA70C6E834} = {4DD1DE63-F20B-4FC3-8FDA-F0BDF4183722}
-		{BC2E94DF-7A82-461E-BE7C-60E41ADC3562} = {057215DF-2773-4B42-8B8A-64F2CF7764F2}
-		{6B73E278-23FB-4A59-9B44-AB7F0212B936} = {057215DF-2773-4B42-8B8A-64F2CF7764F2}
-		{3935AE8A-E283-4C0D-9094-7435A937DC90} = {057215DF-2773-4B42-8B8A-64F2CF7764F2}
-		{371ECE68-8D0F-4AFE-AC8F-147167AE3674} = {057215DF-2773-4B42-8B8A-64F2CF7764F2}
-		{6171E5DE-5B36-4AE4-8707-F6BEE0AD945B} = {A03B194F-F644-4E95-A602-87200029240D}
-		{CA8BAD3C-1545-4B04-AF6B-4105DFD3A9A1} = {A03B194F-F644-4E95-A602-87200029240D}
-		{C1065582-4F64-4810-8C35-E7EB2D2A432C} = {A03B194F-F644-4E95-A602-87200029240D}
-		{3B7DD288-5546-4907-B302-0CD0271D9713} = {A03B194F-F644-4E95-A602-87200029240D}
-		{46C02D13-5ED4-4A14-9ACF-125B1E4B6EB5} = {A03B194F-F644-4E95-A602-87200029240D}
-		{A3701765-E571-413D-808C-9788A22791AF} = {48EA1A64-29EE-4555-9E79-49453EB51976}
-		{B28354F0-BA87-44E8-989F-B864A3C7C09F} = {48EA1A64-29EE-4555-9E79-49453EB51976}
-		{2ADB831A-A050-47D0-B6B9-9C19D60233BB} = {48EA1A64-29EE-4555-9E79-49453EB51976}
-		{AC839523-7BDF-4AB6-8115-E17921B96EC6} = {48EA1A64-29EE-4555-9E79-49453EB51976}
-		{CE2AB4B9-F618-4CCA-8805-E1603741147E} = {48EA1A64-29EE-4555-9E79-49453EB51976}
-		{EABA3019-7539-4430-9935-D36CEA96F250} = {EB1FDF3F-048C-4010-80F5-D936A312580F}
-		{4F66A4DE-5204-4150-8D0B-CE21CA52E309} = {EB1FDF3F-048C-4010-80F5-D936A312580F}
-		{B574AEB0-59F1-4FB7-A91A-8E5A651970CE} = {EB1FDF3F-048C-4010-80F5-D936A312580F}
-		{4B890CB0-F5C8-4B1B-A1B8-3813BF5126C0} = {EB1FDF3F-048C-4010-80F5-D936A312580F}
-		{E0E10333-9B05-4463-8A15-6738C186BF87} = {EB1FDF3F-048C-4010-80F5-D936A312580F}
+		{44C6535D-D467-44E7-9553-6020C540DD6C} = {4DD1DE63-F20B-4FC3-8FDA-F0BDF4183722}
+		{95374549-9553-4C1E-9D89-667755F90E12} = {4F47D6F1-4047-4A89-AE85-3AE5EF9F2961}
+		{C856EFD8-E812-4E61-8B76-E3583D94C233} = {4F47D6F1-4047-4A89-AE85-3AE5EF9F2961}
+		{C1F63FC5-4B96-48B2-B7F7-5B33FCC4F2A2} = {4F47D6F1-4047-4A89-AE85-3AE5EF9F2961}
+		{7271F1DF-1E15-4324-8102-E3D911A62BC5} = {4F47D6F1-4047-4A89-AE85-3AE5EF9F2961}
+		{0DF72691-E61C-4E9C-A1F1-2F7F17958630} = {4F47D6F1-4047-4A89-AE85-3AE5EF9F2961}
+		{A7566CDC-6033-4A16-9E9D-87D05A627066} = {4F47D6F1-4047-4A89-AE85-3AE5EF9F2961}
+		{C5DD02DE-4F0E-4DC0-ABC7-035A8217CD50} = {4F47D6F1-4047-4A89-AE85-3AE5EF9F2961}
+		{9C7B8E9C-A4E6-4459-A2C4-3D2D199EA919} = {4F47D6F1-4047-4A89-AE85-3AE5EF9F2961}
+		{BB1D1D81-7A74-4183-B7B1-3E78B32D42F1} = {4F47D6F1-4047-4A89-AE85-3AE5EF9F2961}
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		version = 1.3
+		outputpath = .
+		StartupItem = src\Clients\Nereid\Nereid.csproj
+		Policies = $0
+		$0.TextStylePolicy = $1
+		$1.FileWidth = 120
+		$1.TabWidth = 4
+		$1.TabsToSpaces = True
+		$1.NoTabsAfterNonTabs = False
+		$1.RemoveTrailingWhitespace = True
+		$1.EolMarker = Native
+		name = Banshee
+		MonoDevelop.ChangeLogAddIn.ChangeLogInfo = $2
+		$2.policy = UpdateNearestChangeLog
 	EndGlobalSection
 EndGlobal
