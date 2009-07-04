@@ -46,19 +46,6 @@ namespace Banshee.Paas.Data
 
     public class PaasChannel : ICacheableItem
     {
-        private long dbid;
-        private long miro_guide_id;
-        
-        private string description;
-        private string stripped_description;
-
-        private string license;        
-        private string link;
-        private DateTime modified;
-        private string name;
-        private string publisher;
-        private string url;
-        
         private static PaasChannelProvider provider;
         
         static PaasChannel () {
@@ -67,24 +54,50 @@ namespace Banshee.Paas.Data
 
         public static SqliteModelProvider<PaasChannel> Provider {
             get { return provider; }
-        }        
+        }
         
+        private long dbid;        
         [DatabaseColumn ("ID", Constraints = DatabaseColumnConstraints.PrimaryKey)]
         public long DbId {
             get { return dbid; }
             protected set { dbid = value; }
         }
 
+        private long client_id;
         [DatabaseColumn (
-            "MiroGuideID",
-            Index = "PaasChannelMiroGuideIDIndex",
-            Constraints = DatabaseColumnConstraints.Unique
+            "ClientID",
+            Index = "PaasChannelClientIDIndex"
         )]
-        public long MiroGuideID {
-            get { return miro_guide_id; }
-            set { miro_guide_id = value; }
+        public long ClientID {
+            get { return client_id; }
+            set { client_id = value; }
         }
 
+        private long external_id;
+        [DatabaseColumn (
+            "ExternalID",
+            Index = "PaasChannelExternalIDIndex"
+        )]
+        public long ExternalID {
+            get { return external_id; }
+            set { external_id = value; }
+        }
+
+        private string category;
+        [DatabaseColumn]
+        public string Category {
+            get { return category; }
+            set { category = value; }
+        }     
+
+        private string copyright;
+        [DatabaseColumn]
+        public string Copyright {
+            get { return copyright; }
+            set { copyright = value; }
+        }        
+
+        private string description;        
         [DatabaseColumn]
         public string Description {
             get { return description; }
@@ -94,42 +107,96 @@ namespace Banshee.Paas.Data
             }
         }
 
+        private int download_preference;        
+        [DatabaseColumn]
+        public int DownloadPreference {
+            get { return download_preference; }
+            set { 
+                download_preference = value;
+            }
+        }
+
+        private string image_url;
+        [DatabaseColumn]
+        public string ImageUrl {
+            get { return image_url; }
+            set { image_url = value; }
+        }        
+
+        private string language;
+        [DatabaseColumn]
+        public string Language {
+            get { return language; }
+            set { language = value; }
+        }        
+
+        private DateTime last_build_date;
+        [DatabaseColumn]
+        public DateTime LastBuildDate {
+            get { return last_build_date; }
+            set { last_build_date = value; }
+        }        
+
+        private DateTime last_download_time;
+        [DatabaseColumn]
+        public DateTime LastDownloadTime {
+            get { return last_download_time; }
+            set { last_download_time = value; }
+        } 
+
+        private string license;        
         [DatabaseColumn]
         public string License {
             get { return license; }
             set { license = value; }
         }
 
+        private string link;
         [DatabaseColumn]
         public string Link {
             get { return link; }
             set { link = value; }
         }
-        
+
+        private string name;
         [DatabaseColumn]
         public string Name {
-            get { return name; }
+            get { 
+                return String.IsNullOrEmpty (name) ? url : name; 
+            }
+            
             set { name = value; }
         }
 
+        private DateTime pub_date;
         [DatabaseColumn]
-        public DateTime Modified {
-            get { return modified; }
-            set { modified = value; }
-        }
+        public DateTime PubDate {
+            get { return pub_date; }
+            set { pub_date = value; }
+        }   
 
+        private string publisher;
         [DatabaseColumn]
         public string Publisher {
             get { return publisher; }
             set { publisher = value; }
         }
-
+        
+        private string stripped_description;
         [DatabaseColumn]
         public string StrippedDescription {
             get { return stripped_description; }
             set { stripped_description = value; }
         }
-
+        
+        private string keywords;
+        [DatabaseColumn]
+        public string Keywords {
+            get { return keywords; }
+            set { keywords = value; }
+        }
+        
+        private string url;
         [DatabaseColumn]
         public string Url {
             get { return url; }
@@ -148,64 +215,17 @@ namespace Banshee.Paas.Data
             set { cache_model_id = value; }
         }
 
-        public void Delete ()
-        {
-            Delete (true);
-            //Manager.OnFeedsChanged ();                    
+        public IEnumerable<PaasItem> Items {
+            get {
+                foreach (PaasItem item in PaasItem.Provider.FetchAllMatching ("ChannelID = ?", DbId)) {
+                    yield return item;
+                }
+            }
         }
-            
-        public void Delete (bool deleteEnclosures)
-        {
-            Hyena.Log.Information ("Handle Channel File Deletions!!!!!!!!!!!!!!!");
-            Hyena.Log.Information ("Handle Item File Deletions!!!!!!!!!!!!!!!");            
-        
-            //lock (sync) {
-                //if (deleted)
-                //    return;
-                
-                //if (updating) {
-                //    Manager.CancelUpdate (this);                 
-                //}
-
-                //foreach (FeedItem item in Items) {
-                   // item.Delete (deleteEnclosures);
-                //}
-
-                Provider.Delete (this);
-            //}
-            
-            //updatingHandle.WaitOne ();
-            //Manager.OnFeedsChanged ();
-        }
-
-//        public void MarkAllItemsRead ()
-//        {
-//            lock (sync) {
-//                foreach (FeedItem i in Items) {
-//                    i.IsRead = true;
-//                }
-//            }
-//        }
 
         public void Save ()
-        {
-            Save (true);
-        }
-
-        public void Save (bool notify)
-        {
-            Hyena.Log.Information ("PaasChannel.Save Still needs work!!!!!");         
-                
+        {                
             Provider.Save (this);
-/*            
-            if (LastBuildDate > LastAutoDownload) {
-                CheckForItemsToDownload ();
-            }
-
-            if (notify) {
-                Manager.OnFeedsChanged ();
-            }
-*/            
         }
     }
 }

@@ -44,6 +44,9 @@ using Banshee.Paas.Aether;
 using Banshee.Paas.Gui;
 
 // remove
+using Migo2.Async;
+using Migo2.DownloadService;
+
 using Banshee.Paas.Data;
 using Hyena.Json;
 using Hyena;
@@ -51,30 +54,74 @@ using Hyena;
 
 namespace Banshee.Paas
 {
+    delegate void Updater ();
+    
     public partial class PaasService : IExtensionService, IDisposable, IDelayedInitializeService
     {
-        private static AetherClient aether_client;
-        
-        private PaasSource source;
-        private PaasActions actions = null;
-
         private bool disposing, disposed;
-        private AutoResetEvent clientHandle;
+                
+        private readonly string tmp_download_path = Paths.Combine (
+            Paths.ExtensionCacheRoot, "paas", "partial-downloads"
+        );
+
+        private PaasSource source;
+        
+        private MiroGuideClient mg_client;
+        private SyndicationClient syndication_client;
+        
+        private AutoResetEvent client_handle;
+        
+        private PaasDownloadManager download_manager;
+        private DownloadManagerInterface download_manager_interface;
+        
         private readonly object sync = new object ();
+
+        // There needs to be a DownloadManager service in the service manager.
+        // There are issues adding a service to the service manager from an extension...
+        // It shouldn't be in the extension anyway.
+        public PaasDownloadManager DownloadManager {
+            get { return download_manager; }
+        }
 
         public string ServiceName {
             get { return "PaasService"; } 
         }
 
+        public SyndicationClient SyndicationClient {
+            get { return syndication_client; }
+        }
+
         private bool Disposed { 
-            get { lock (sync) { return (disposed | disposing); } }
+            get { 
+                return (disposed | disposing); 
+            }
         }
 
         public PaasService ()
         {
-            clientHandle = new AutoResetEvent (true);
+            Updater reload = delegate {
+                lock (sync) {
+                    if (Disposed) {
+                        return;
+                    }
+                    
+                    source.Reload ();
+                }
+            };
+
+            Updater redraw = delegate {
+                lock (sync) {
+                    if (Disposed) {
+                        return;
+                    }
+                    
+                    source.QueueDraw ();
+                }
+            };
+
+            client_handle = new AutoResetEvent (true);
             
-            aether_client = new AetherClient () {
+            mg_client = new MiroGuideClient () {
                 Timeout    = (60 * 1000), // one minute.
                 ServiceUri = "http://127.0.0.1:8000",
                 ClientID   = ClientID.Get (),
@@ -82,36 +129,56 @@ namespace Banshee.Paas
                 UserAgent  = Banshee.Web.Browser.UserAgent,
             };
 
-            aether_client.StateChanged += (sender, e) => {
+            mg_client.StateChanged += (sender, e) => {
                 if (e.NewState == AetherClientState.Idle) {
-                    clientHandle.Set ();
-                    source.HideStatus ();
+                    client_handle.Set ();
                 } else {
-                    clientHandle.Reset ();
+                    client_handle.Reset ();
                 }
             };
 
-            aether_client.RequestDeltasCompleted += ClientUpdatedHandler;
+            mg_client.RequestDeltasCompleted += ClientUpdatedHandler;
 
-            //System.Threading.Timer t = new System.Threading.Timer (delegate { Update (); });
-            //t.Change (10, 10);
+            syndication_client = new SyndicationClient ();
+            syndication_client.StateChanged += (sender, e) => {
+                lock (sync) {
+                    if (!Disposed) {
+                        if (e.NewState == AetherClientState.Busy) { 
+                            source.SetStatus ("Updating...", false, true, null);                            
+                        } else {
+                            source.HideStatus ();
+                        }
+                    }
+                }
+            };
+
+            syndication_client.ChannelAdded += (sender, e) => { reload (); };
+            syndication_client.ChannelRemoved += (sender, e) => { reload (); };
+            
+            syndication_client.ItemsAdded += OnItemsAddedHandler;
+            syndication_client.ItemsRemoved += OnItemsRemovedHandler;
+            
+            download_manager = new PaasDownloadManager (2, tmp_download_path);
+            download_manager.TaskCompleted += (sender, e) => { redraw (); };
+            download_manager.TaskStateChanged += (sender, e) => { redraw (); };
         }
-
+        
         public void UpdateAsync ()
         {
-            if (!Disposed) {
-                source.SetStatus ("Updating...", false, true, null);
-                aether_client.RequestDeltasAsync ();                
+            lock (sync) {
+                if (!Disposed) {
+                    //mg_client.RequestDeltasAsync ();
+                    syndication_client.UpdateAsync ();
+                }
             }
         }
 
         public void Initialize ()
         {        
         }
-        
+
         public void DelayedInitialize ()
         {
-            MigrateLegacyIfNeeded ();
             InitializeInterface ();
         }
 
@@ -126,51 +193,63 @@ namespace Banshee.Paas
             }
 
             DisposeInterface ();
-
-            aether_client.CancelAsync ();
-            clientHandle.WaitOne ();
             
-            aether_client.RequestDeltasCompleted -= ClientUpdatedHandler;
-            aether_client = null;
+            mg_client.CancelAsync ();
+            client_handle.WaitOne ();
 
-            clientHandle.Close ();
-            clientHandle = null;
+            mg_client.RequestDeltasCompleted -= ClientUpdatedHandler;
+            mg_client = null;
+
+            client_handle.Close ();
+            client_handle = null;
+
+            syndication_client.Dispose ();
+            syndication_client.ItemsAdded -= OnItemsAddedHandler;
+            syndication_client.ItemsRemoved -= OnItemsRemovedHandler;
+            
+            syndication_client = null;
+
+            download_manager.Dispose ();
+            download_manager = null;
 
             lock (sync) {
                 disposing = false;            
-                disposed = true;
+                disposed  = true;
             }
         }
 
         private void InitializeInterface ()
         {
-            source = new PaasSource ();
-
+            source = new PaasSource (this);            
             ServiceManager.SourceManager.AddSource (source);
-            actions = new PaasActions (this);
+
+            download_manager_interface = new DownloadManagerInterface (source, download_manager);
         }
         
         private void DisposeInterface ()
         {
             if (source != null) {
                 ServiceManager.SourceManager.RemoveSource (source);
+                source.Dispose ();
                 source = null;
             }
-            
-            if (actions != null) {
-                actions.Dispose ();
-                actions = null;
-            }            
-        }
 
+            if (download_manager_interface != null) {
+                download_manager_interface.Dispose ();
+            }
+        }
+/*
         private void ApplyUpdate (AetherDelta delta)
         {
+            Dictionary<long, PaasChannel> channel_cache = new Dictionary<long, PaasChannel> ();
+            
             ServiceManager.DbConnection.BeginTransaction ();
 
             try {
                 foreach (PaasChannel pc in delta.NewChannels) {
                     try {
                         PaasChannel.Provider.Save (pc);
+                        channel_cache.Add (pc.ExternalID, pc);
                     } catch (Exception e) {
                         Hyena.Log.Exception (e);
                         continue;
@@ -179,6 +258,8 @@ namespace Banshee.Paas
                 
                 foreach (PaasItem pi in delta.NewItems) {
                     try {
+                        pi.ChannelID = GetChannelIDFromExternalID (channel_cache, pi.ExternalChannelID);
+                        pi.Save ();
                         AddItem (pi);
                     } catch (Exception e) {
                         Hyena.Log.Exception (e);
@@ -186,15 +267,16 @@ namespace Banshee.Paas
                     }                
                 }
 
-                string[] cids = delta.RemovedChannels.Select (id => id.ToString () ).ToArray<string> ();
-                string[] iids = delta.RemovedItems.Select (id => id.ToString () ).ToArray<string> ();
+                string[] cids = delta.RemovedChannels.Select (id => id.ToString ()).ToArray<string> ();
+                string[] iids = delta.RemovedItems.Select (id => id.ToString ()).ToArray<string> ();
 
                 // Talk to Scott about adding, or add, a '*.Provider.Delete (IEnumerable<int> ids)'
 
                 if (cids.Length > 0) {
                     List<PaasChannel> removed_channels = new List<PaasChannel> (
                         PaasChannel.Provider.FetchAllMatching (
-                            String.Format ("MiroGuideID IN ({0})", String.Join (",", cids))
+                            String.Format ("ClientID = {0} ExternalID IN ({1})", 
+                            (long)AetherClientID.MiroGuide, String.Join (",", cids))
                         )
                     );
     
@@ -204,7 +286,8 @@ namespace Banshee.Paas
                 if (iids.Length > 0) {
                     List<PaasItem> removed_items = new List<PaasItem> (
                         PaasItem.Provider.FetchAllMatching (
-                            String.Format ("MiroGuideID IN ({0})", String.Join (",", iids))
+                            String.Format ("ClientID = {0} AND ExternalID IN ({1})", 
+                            (long)AetherClientID.MiroGuide, String.Join (",", iids))
                         )
                     );
     
@@ -212,46 +295,40 @@ namespace Banshee.Paas
                 }
                 
                 ServiceManager.DbConnection.CommitTransaction ();                
-            } catch (Exception e) {
-                Log.Exception (e);
-                ServiceManager.DbConnection.RollbackTransaction  ();            
+            } catch {
+                ServiceManager.DbConnection.RollbackTransaction  ();
+                throw;
             }            
         }
-        
-        private void AddItem (PaasItem item)
+
+        private long GetChannelIDFromExternalID (Dictionary<long, PaasChannel> channel_cache, long external_id)
         {
-            if (item != null) {
-                item.Save ();            
-                DatabaseTrackInfo track = new DatabaseTrackInfo ();
-                track.ExternalId = item.DbId;
-                track.PrimarySource = source;
-                (track.ExternalObject as PaasTrackInfo).SyncWithItem ();
-                track.Save (false);
-                //RefreshArtworkFor (item.Feed);
-            } 
-        }
-        
-        private void ClientUpdatedHandler (object sender, AetherAsyncCompletedEventArgs e)
-        {
-            if (Log.Debugging) {
-                Log.Debug ("ClientUpdatedHandler - Completed.");
-                Log.Debug (String.Format ("ClientUpdatedHandler - Timed Out:  {0}", e.Timedout));
-                Log.Debug (String.Format ("ClientUpdatedHandler - Cancelled:  {0}", e.Cancelled));            
+            PaasChannel c;
+
+            if (channel_cache.ContainsKey (external_id)) {
+                c = channel_cache[external_id];
+            } else {
+                c = PaasChannel.Provider.FetchFirstMatching ("ExternalID = ?", external_id);
+                channel_cache.Add (external_id, c);
             }
 
+            return c.DbId;
+        }
+*/    
+        private void ClientUpdatedHandler (object sender, AetherAsyncCompletedEventArgs e)
+        {       /* 
             if (Disposed) {
-                if (Log.Debugging) {
-                    Log.Debug ("ClientUpdatedHandler - Dispose called.");
-                }
-                
                 return;
             }
     
             if (e.Timedout) {
+                Log.Error ("AetherClient:  Timeouted while updating.");
+
                 source.ErrorSource.AddMessage (
                     Catalog.GetString ("Update Error"), 
                     Catalog.GetString ("Request timed out while attempting to contact server.")
                 );
+                
                 return;
             } else if (e.Error != null) {
                 Log.Exception ("PaasService:  ", e.Error);
@@ -263,21 +340,65 @@ namespace Banshee.Paas
                 ApplyUpdate (new AetherDelta (e.Data));
                 source.Reload (); 
             } catch (Exception ex) {
-                if (Log.Debugging) {
-                    Log.Exception (ex);
-                }
-                
+                Log.Exception (ex);                
                 source.ErrorSource.AddMessage (                    
                     Catalog.GetString ("Update Error"),
                     Catalog.GetString ("Parsing Error:  ") + ex.Message
                 );
             }
+                source.ErrorSource.Reload ();            
+       */ }
+
+        private void OnItemsAddedHandler (object sender, ItemEventArgs e)
+        {
+            lock (sync) {
+                if (Disposed) {
+                    return;
+                }
+    
+                ServiceManager.DbConnection.BeginTransaction ();
+                
+                try {
+                    if (e.Item != null) {
+                        source.AddItem (e.Item);                        
+                    } else {
+                        source.AddItems (e.Items);
+                    }
+                } catch (Exception ex) {
+                    ServiceManager.DbConnection.RollbackTransaction ();
+                    Hyena.Log.Exception (ex);                           
+                    throw;
+                }
+                
+                ServiceManager.DbConnection.CommitTransaction ();
+                source.Reload ();
+            }
         }
 
-        private void MigrateLegacyIfNeeded ()
+        private void OnItemsRemovedHandler (object sender, ItemEventArgs e)
         {
-            // Not yet.
-            // Upload an OPML file of all currently subscribed feeds to MG.
+            lock (sync) {
+                if (Disposed) {
+                    return;
+                }
+    
+                ServiceManager.DbConnection.BeginTransaction ();
+                
+                try {
+                    if (e.Item != null) {
+                        source.RemoveItem (e.Item);
+                    } else {
+                        source.RemoveItems (e.Items);
+                    }
+                } catch (Exception ex) {
+                    ServiceManager.DbConnection.RollbackTransaction ();
+                    Hyena.Log.Exception (ex);                           
+                    throw;
+                }
+                
+                ServiceManager.DbConnection.CommitTransaction ();
+                source.Reload ();
+            }
         }
 
         public static readonly SchemaEntry<string> ClientID = new SchemaEntry<string> (

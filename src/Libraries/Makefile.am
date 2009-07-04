@@ -3,6 +3,7 @@ SUBDIRS = \
    Hyena \
    Hyena.Gui \
    Migo \
+   Migo2 \
    Mono.Media \
    Mtp \
    MusicBrainz \

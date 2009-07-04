@@ -115,12 +115,12 @@ namespace Banshee.Paas.Gui
                 layout.FontDescription.Size = (int)(old_size * Pango.Scale.Small);
                 layout.FontDescription.Style = Pango.Style.Italic;
                 
-                if (channel.Modified == DateTime.MinValue) {
+                if (channel.LastBuildDate == DateTime.MinValue) {
                     layout.SetText (Catalog.GetString ("Never updated"));
-                } else if (channel.Modified.Date == DateTime.Now.Date) {
-                    layout.SetText (String.Format (Catalog.GetString ("Last modified at {0}"), channel.Modified.ToShortTimeString ()));
+                } else if (channel.LastBuildDate.Date == DateTime.Now.Date) {
+                    layout.SetText (String.Format (Catalog.GetString ("Last modified at {0}"), channel.LastBuildDate.ToShortTimeString ()));
                 } else {
-                    layout.SetText (String.Format (Catalog.GetString ("Last modified on {0}"), channel.Modified.ToLongDateString ()));
+                    layout.SetText (String.Format (Catalog.GetString ("Last modified on {0}"), channel.LastBuildDate.ToLongDateString ()));
                 }
 
                 layout.GetPixelSize (out sl_width, out sl_height);

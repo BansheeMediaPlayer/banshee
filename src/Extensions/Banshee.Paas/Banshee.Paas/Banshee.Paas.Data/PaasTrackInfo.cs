@@ -34,17 +34,6 @@ using Banshee.Collection.Database;
 
 namespace Banshee.Paas.Data 
 {
-    public enum PodcastItemActivity : int {
-        Downloading = 0,
-        DownloadPending = 1,        
-        DownloadFailed = 2,
-        DownloadPaused = 3,        
-        //NewPodcastItem = 4,
-        //Video = 5,
-        Downloaded = 6,
-        None = 7
-    }
-
     public class PaasTrackInfo
     {
         public static PaasTrackInfo From (TrackInfo track)
@@ -58,6 +47,7 @@ namespace Banshee.Paas.Data
                 
                 return pi;
             }
+            
             return null;
         }
 
@@ -92,9 +82,14 @@ namespace Banshee.Paas.Data
                 if (item == null && track.ExternalId > 0) {
                     item = PaasItem.Provider.FetchSingle (track.ExternalId);
                 }
+                
                 return item;
             }
-            set { item = value; track.ExternalId = value.DbId; }
+            
+            set { 
+                item = value; 
+                track.ExternalId = value.DbId; 
+            }
         }
         
         public DateTime PubDate {
@@ -110,8 +105,7 @@ namespace Banshee.Paas.Data
         }
         
         public bool IsDownloaded {
-            get { return false; }
-            //get { return !String.IsNullOrEmpty (Enclosure.LocalPath); }
+            get { return !String.IsNullOrEmpty (Item.LocalPath); }
         }
         
         public int Position {
@@ -121,32 +115,7 @@ namespace Banshee.Paas.Data
 
         public DateTime ReleaseDate {
             get { return Item.PubDate; }
-        }
-/*
-        public PodcastItemActivity Activity {
-            get {
-                switch (Item.Enclosure.DownloadStatus) {
-                case FeedDownloadStatus.Downloaded:
-                    return PodcastItemActivity.Downloaded;
-               
-                case FeedDownloadStatus.DownloadFailed:
-                    return PodcastItemActivity.Downloaded;
-                    
-                case FeedDownloadStatus.Downloading:
-                    return PodcastItemActivity.Downloading;
-                    
-                case FeedDownloadStatus.Pending:
-                    return PodcastItemActivity.DownloadPending;
-                    
-                case FeedDownloadStatus.Paused:
-                    return PodcastItemActivity.DownloadPaused;
-
-                default:
-                    return PodcastItemActivity.None;   
-                }
-            }
-        }
-*/            
+        }         
 
 #endregion
 
@@ -183,9 +152,6 @@ namespace Banshee.Paas.Data
         
         public void SyncWithItem ()
         {
-            Console.WriteLine ("SyncWithItem: ID - {0}", Item.DbId);
-            Console.WriteLine ("SyncWithItem: ChannelID - {0}", Item.Channel.DbId);
-            
             track.ArtistName = Item.Channel.Publisher;
             track.AlbumTitle = Item.Channel.Name;
             track.TrackTitle = Item.Name;
@@ -194,22 +160,18 @@ namespace Banshee.Paas.Data
             track.Genre = track.Genre ?? "Podcast";
             track.ReleaseDate = Item.PubDate;
             track.MimeType = Item.MimeType;
-            //track.Duration = Item.Enclosure.Duration;
+            track.Duration = Item.Duration;
             track.FileSize = Item.Size;
             track.LicenseUri = Item.Channel.License;
- 
-            track.Uri = new Banshee.Base.SafeUri (Item.Url);
-
-            Hyena.Log.Information ("Handle Local Files!!!!!!!!!!!!!!!");            
-/*            
-            track.Uri = new Banshee.Base.SafeUri (Item.Enclosure.LocalPath ?? Item.Enclosure.Url);
-            if (!String.IsNullOrEmpty (Item.Enclosure.LocalPath)) {
+        
+            track.Uri = new Banshee.Base.SafeUri (Item.LocalPath ?? Item.Url);
+            
+            if (!String.IsNullOrEmpty (Item.LocalPath)) {
                 try {
                     TagLib.File file = Banshee.Streaming.StreamTagger.ProcessUri (track.Uri);
                     Banshee.Streaming.StreamTagger.TrackInfoMerge (track, file, true);
                 } catch {}
             }
-*/            
 
             track.MediaAttributes |= TrackMediaAttributes.Podcast;
         }

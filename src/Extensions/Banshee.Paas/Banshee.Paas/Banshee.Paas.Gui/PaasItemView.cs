@@ -28,15 +28,35 @@
 
 using System;
 
+using Gtk;
+
+using Banshee.ServiceStack;
+
+using Banshee.Gui;
 using Banshee.Collection.Gui;
 
 namespace Banshee.Paas.Gui
 {
     public class PaasItemView : TrackListView
     {
-        
+        // Awful, dirty, filthy hack.
+        // I'm having a similar problem and just need to move on...
+        // http://lists.ximian.com/archives/public/gtk-sharp-list/2006-June/007247.html
+        public EventHandler<EventArgs> FuckedPopupMenu;
+
         public PaasItemView ()
         {
+        }
+
+        protected override bool OnPopupMenu ()
+        {
+            EventHandler<EventArgs> handler = FuckedPopupMenu;
+
+            if (handler != null) {
+                handler (this, EventArgs.Empty);
+            }
+
+            return base.OnPopupMenu ();
         }
     }
 }

@@ -30,6 +30,7 @@ using System;
 
 using Hyena.Data.Gui;
 
+using Banshee.Gui;
 using Banshee.ServiceStack;
 using Banshee.Collection.Gui;
 
@@ -52,7 +53,7 @@ namespace Banshee.Paas.Gui
         
         protected override bool OnPopupMenu ()
         {
-            //ServiceManager.Get<InterfaceActionService> ().FindAction ("Podcast.PodcastFeedPopupAction").Activate ();
+            ServiceManager.Get<InterfaceActionService> ().FindAction ("Paas.PaasChannelPopupAction").Activate ();
             return true;
         }
     }

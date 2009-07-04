@@ -43,17 +43,15 @@ namespace Banshee.Paas.Gui
 {
     public class PaasSourceContents : FilteredListSourceContents, ITrackModelSourceContents
     {
-        
-        public PaasSourceContents () : base ("paas")
-        {
-        }
-
         private PaasItemView item_view;
         private PaasChannelView channel_view;
 /*        
         private PodcastUnheardFilterView unheard_view;
         private DownloadStatusFilterView download_view;
-*/        
+*/            
+        public PaasSourceContents () : base ("paas")
+        {
+        }
         
         protected override void InitializeViews ()
         {
@@ -63,7 +61,6 @@ namespace Banshee.Paas.Gui
 */
             SetupMainView   (item_view    = new PaasItemView ());
             SetupFilterView (channel_view = new PaasChannelView ());
-             
         }
         
         protected override void ClearFilterSelections ()

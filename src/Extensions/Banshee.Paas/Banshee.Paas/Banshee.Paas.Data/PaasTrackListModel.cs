@@ -49,9 +49,12 @@ namespace Banshee.Paas.Data
 
             int paas_library_dbid = (source as PaasSource ?? source.Parent as PaasSource).DbId;
             AddCondition (From, String.Format (
-                "CoreTracks.PrimarySourceID = {2} AND {0}.MiroGuideID = {1}.ChannelID AND CoreTracks.ExternalID = {1}.ID",
+                @"CoreTracks.PrimarySourceID = {2} AND 
+                    {0}.ID = {1}.ChannelID         AND 
+                    CoreTracks.ExternalID = {1}.ID AND
+                    {1}.Active = 1",
                 PaasChannel.Provider.TableName, PaasItem.Provider.TableName, paas_library_dbid
-            ));
+            ));            
         }
 
         protected override void GenerateSortQueryPart ()
@@ -64,7 +67,7 @@ namespace Banshee.Paas.Data
         public override void UpdateUnfilteredAggregates ()
         {
             HyenaSqliteCommand count_command = new HyenaSqliteCommand (String.Format (
-                "SELECT COUNT(*) {0} AND PaasItems.IsNew = 1", UnfilteredQuery
+                "SELECT COUNT(*) {0} AND PaasItems.DownloadedAt NOT NULL", UnfilteredQuery
             ));
             
             UnfilteredCount = Connection.Query<int> (count_command);

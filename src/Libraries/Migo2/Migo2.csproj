@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="3.5" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{FC311410-8638-4A66-A8A5-1E900CDC6C7B}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AssemblyName>Migo2</AssemblyName>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>none</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Migo2.Async\CommandQueue\CommandDelegate.cs" />
+    <Compile Include="Migo2.Async\CommandQueue\CommandQueue.cs" />
+    <Compile Include="Migo2.Async\CommandQueue\CommandWrapper.cs" />
+    <Compile Include="Migo2.Async\CommandQueue\EventWrapper.cs" />
+    <Compile Include="Migo2.Async\CommandQueue\ICommand.cs" />
+    <Compile Include="Migo2.Async\Task\CancellationType.cs" />
+    <Compile Include="Migo2.Async\Task\Task.cs" />
+    <Compile Include="Migo2.Async\Task\TaskCompletedEventArgs.cs" />
+    <Compile Include="Migo2.Async\Task\TaskEventArgs.cs" />
+    <Compile Include="Migo2.Async\Task\TaskState.cs" />
+    <Compile Include="Migo2.Async\Task\TaskStateChangedEventArgs.cs" />
+    <Compile Include="Migo2.Async\Task\WaitableTask.cs" />
+    <Compile Include="Migo2.Async\TaskGroup\EventArgs\GroupStatusChangedEventArgs.cs" />
+    <Compile Include="Migo2.Async\TaskGroup\EventArgs\ManipulatedEventArgs.cs" />
+    <Compile Include="Migo2.Async\TaskGroup\EventArgs\ReorderedEventArgs.cs" />
+    <Compile Include="Migo2.Async\TaskGroup\EventArgs\TaskAddedEventArgs.cs" />
+    <Compile Include="Migo2.Async\TaskGroup\EventArgs\TaskProgressChangedEventArgs.cs" />
+    <Compile Include="Migo2.Async\TaskGroup\EventArgs\TaskRemovedEventArgs.cs" />
+    <Compile Include="Migo2.Async\TaskGroup\GroupProgressManager.cs" />
+    <Compile Include="Migo2.Async\TaskGroup\GroupStatusManager.cs" />
+    <Compile Include="Migo2.Async\TaskGroup\TaskGroup.cs" />
+    <Compile Include="Migo2.Async\TaskGroup\TaskGroup_Collection.cs" />
+    <Compile Include="Migo2.Async\AsyncStateManager.cs" />
+    <Compile Include="Migo2.Collections\Pair.cs" />
+    <Compile Include="Migo2.DownloadService\DownloadStatusManager.cs" />
+    <Compile Include="Migo2.DownloadService\DownloadTaskStatusUpdatedEventArgs.cs" />
+    <Compile Include="Migo2.DownloadService\HttpDownloadGroup.cs" />
+    <Compile Include="Migo2.DownloadService\HttpDownloadGroupStatusChangedEventArgs.cs" />
+    <Compile Include="Migo2.DownloadService\HttpDownloadManager.cs" />
+    <Compile Include="Migo2.DownloadService\HttpFileDownloadErrors.cs" />
+    <Compile Include="Migo2.DownloadService\HttpFileDownloadTask.cs" />
+    <Compile Include="Migo2.Net\AsyncWebClient\AsyncWebClient.cs" />
+    <Compile Include="Migo2.Net\AsyncWebClient\DownloadDataCompletedEventArgs.cs" />
+    <Compile Include="Migo2.Net\AsyncWebClient\DownloadProgressChangedEventArgs.cs" />
+    <Compile Include="Migo2.Net\AsyncWebClient\DownloadStatus.cs" />
+    <Compile Include="Migo2.Net\AsyncWebClient\DownloadStatusUpdatedEventArgs.cs" />
+    <Compile Include="Migo2.Net\AsyncWebClient\DownloadStringCompletedEventArgs.cs" />
+    <Compile Include="Migo2.Net\AsyncWebClient\RemoteFileModifiedException.cs" />
+    <Compile Include="Migo2.Net\AsyncWebClient\TransferStatusManager.cs" />
+    <Compile Include="Migo2.Net\AsyncWebClient\TransferStatusManager_Rate.cs" />
+    <Compile Include="Migo2.Utils\Rfc822DateTime.cs" />
+    <Compile Include="Migo2.Utils\UnitUtils.cs" />
+    <Compile Include="Migo2.Utils\XmlUtils.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ProjectExtensions>
+    <MonoDevelop>
+      <Properties xmlns="">
+        <MonoDevelop.Autotools.MakefileInfo IntegrationEnabled="true" RelativeMakefileName="Makefile.am" IsAutotoolsProject="true" RelativeConfigureInPath="../../..">
+          <BuildFilesVar Sync="true" Name="SOURCES" />
+          <DeployFilesVar />
+          <ResourcesVar />
+          <OthersVar />
+          <GacRefVar />
+          <AsmRefVar />
+          <ProjectRefVar />
+          <MessageRegex Name="Vala" />
+        </MonoDevelop.Autotools.MakefileInfo>
+      </Properties>
+    </MonoDevelop>
+  </ProjectExtensions>
+</Project>

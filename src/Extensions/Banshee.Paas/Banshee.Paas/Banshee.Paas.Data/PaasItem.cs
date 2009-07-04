@@ -47,23 +47,6 @@ namespace Banshee.Paas.Data
     public class PaasItem : ICacheableItem
     {
         private long dbid;
-        private long channel_id;
-        private long miro_guide_id;        
-
-        private string name;
-        private DateTime date;
-
-        private string description;
-        private string stripped_description;
-
-        private bool is_new;
-        private string guid;
-        private string url;
-        private string image;        
-        private string mime_type;
-        private long size;
-
-        private PaasChannel channel;
 
         private static SqliteModelProvider<PaasItem> provider;
         
@@ -81,34 +64,75 @@ namespace Banshee.Paas.Data
             protected set { dbid = value; }
         }
 
+        private long track_id;
         [DatabaseColumn (
-            "MiroGuideID",
-            Index = "PaasItemsMiroGuideIDIndex",
-            Constraints = DatabaseColumnConstraints.Unique
+            "TrackID",
+            Index = "PaasItemsTrackIDIndex"
         )]
-        public long MiroGuideID {
-            get { return miro_guide_id; }
-            set { miro_guide_id = value; }
+        public long TrackID {
+            get { return track_id; }
+            set { track_id = value; }
+        } 
+
+        private long external_id;
+        [DatabaseColumn (
+            "ExternalID",
+            Index = "PaasItemsExternalIDIndex"
+        )]
+        public long ExternalID {
+            get { return external_id; }
+            set { external_id = value; }
         }        
-        
+
+        private long external_channel_id;
+        [DatabaseColumn (
+            "ExternalChannelID",
+            Index = "PaasItemsExternalChannelIDIndex"
+        )]
+        public long ExternalChannelID {
+            get { return external_channel_id; }
+            set { external_channel_id = value; }
+        }  
+
+        private long channel_id;
         [DatabaseColumn ("ChannelID", Index = "PaasChannelIDIndex")]
         public long ChannelID {
             get { return channel_id; }
-            set { channel_id = value; }            
-        }        
-        
-        [DatabaseColumn]
-        public string Name {
-            get { return name; } 
-            set { name = value; }
+            set { 
+                channel = null;
+                channel_id = value;
+            }
         }
-        
+
+        private bool active = true;
+        [DatabaseColumn]
+        public bool Active {
+            get { return active; } 
+            set { active = value; }
+        }  
+
+        private DateTime date;
         [DatabaseColumn]
         public DateTime PubDate {
             get { return date; } 
             set { date = value; }
         }  
-        
+
+        private string author;
+        [DatabaseColumn]
+        public string Author {
+            get { return author; }
+            set { author = value; }
+        }  
+
+        private string comments;
+        [DatabaseColumn]
+        public string Comments {
+            get { return comments; }
+            set { comments = value; }
+        }  
+
+        private string description;
         [DatabaseColumn]
         public string Description {
             get { return description; }
@@ -117,53 +141,122 @@ namespace Banshee.Paas.Data
                 StrippedDescription = StringUtils.StripHtml (value);
             }
         }  
+        
+        private DateTime downloaded_at;
+        [DatabaseColumn]
+        public DateTime DownloadedAt {
+            get { return downloaded_at; }
+            internal set { downloaded_at = value; }
+        }
 
+        private TimeSpan duration;
+        [DatabaseColumn]
+        public TimeSpan Duration { 
+            get { return duration; } 
+            set { duration = value; }
+        }
+
+        public bool IsDownloaded {
+            get { return String.IsNullOrEmpty (local_path); }
+        } 
+
+        private bool is_new;
         [DatabaseColumn]
         public bool IsNew {
             get { return is_new; }
             set { is_new = value; }
-        }         
+        }            
 
-        [DatabaseColumn]
-        public string Guid {
-            get { return guid; }
-            set { guid = value; }
-        } 
-
-        [DatabaseColumn]
-        public string Url {
-            get { return url; }
-            set { url = value; }
-        }         
-        
+        private string image;        
         [DatabaseColumn]
         public string ImageUrl {
             get { return image; }
             set { image = value; }
         }
-                
+
+        private string keywords;
+        [DatabaseColumn]
+        public string Keywords { 
+            get { return keywords; } 
+            set { keywords = value; }
+        }
+        
+        private string license_uri;
+        [DatabaseColumn]
+        public string LicenseUri {
+            get { return license_uri; }
+            set { license_uri = value; }
+        }   
+
+        private string link;
+        [DatabaseColumn]
+        public string Link {
+            get { return link; }
+            set { link = value; }
+        }   
+
+        private string local_path;
+        [DatabaseColumn]
+        public string LocalPath { 
+            get { return local_path; }
+            set { local_path = value; }
+        }
+
+        private string mime_type;
         [DatabaseColumn]
         public string MimeType {
             get { return mime_type; }
-            set { mime_type = value; }
-        }          
+            set {
+                mime_type = value;
+                
+                if (String.IsNullOrEmpty (mime_type)) {
+                    mime_type = "application/octet-stream";
+                }
+            }
+        }    
         
+        private DateTime modified;
+        [DatabaseColumn]
+        public DateTime Modified {
+            get { return modified; } 
+            set { modified = value; }
+        }
+        
+        private string name;
+        [DatabaseColumn]
+        public string Name {
+            get { return name; } 
+            set { name = value; }
+        }
+
+        private long size;
         [DatabaseColumn]
         public long Size {
             get { return size; } 
             set { size = value; }
         }
 
+        private string stripped_description;
         [DatabaseColumn]
         public string StrippedDescription {
             get { return stripped_description; }
-            set { stripped_description = value; }
+            protected set { 
+                stripped_description = value;
+            }
         }
 
+        private string url;
+        [DatabaseColumn]
+        public string Url { 
+            get { return url; } 
+            set { url = value; }
+        }
+        
+        private PaasChannel channel;
         public PaasChannel Channel {
             get { 
                 if (channel == null && ChannelID > 0) {
-                    channel = PaasChannel.Provider.FetchFirstMatching ("MiroGuideID = ?", ChannelID);
+                    channel = PaasChannel.Provider.FetchSingle (ChannelID);
                 }
                 
                 return channel;
@@ -184,17 +277,7 @@ namespace Banshee.Paas.Data
 
         public void Save ()
         {
-            //bool is_new = DbId < 1;
             Provider.Save (this);
-            Hyena.Log.Information ("Handle Item Updates!!!!!!!!!!!!!!!");
-            
-/*
-            if (is_new) {
-                Manager.OnItemAdded (this);
-            } else {
-                Manager.OnItemChanged (this);
-            }
-*/            
         }
         
         public void Delete (bool delete_file)
@@ -202,6 +285,19 @@ namespace Banshee.Paas.Data
             Hyena.Log.Information ("Handle File Deletions!!!!!!!!!!!!!!!");
             Provider.Delete (this);
             //Manager.OnItemRemoved (this);
+        }
+    }
+
+    public class PaasItemEqualityComparer : IEqualityComparer<PaasItem>
+    {
+        public bool Equals (PaasItem lhs, PaasItem rhs)
+        {
+            return lhs.Url == rhs.Url && lhs.Name == rhs.Name;
+        }
+
+        public int GetHashCode (PaasItem obj)
+        {
+            return base.GetHashCode ();
         }
     }
 }

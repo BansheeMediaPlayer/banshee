@@ -43,11 +43,8 @@ namespace Banshee.Paas.Data
             : base ("paas", Catalog.GetString ("Paas"), source, trackModel, connection, PaasChannel.Provider, new PaasChannel (), uuid)
         {
             ReloadFragmentFormat = @"
-                FROM PaasChannels 
-                    WHERE MiroGuideID IN (SELECT DISTINCT ChannelID FROM PaasItems)
-                ORDER BY lower(Name)
+                FROM PaasChannels ORDER BY HYENA_COLLATION_KEY(Name)
             ";
-
             /*
             ReloadFragmentFormat = @"
                 FROM PodcastSyndications WHERE FeedID IN

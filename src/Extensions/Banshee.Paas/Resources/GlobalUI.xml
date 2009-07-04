@@ -1,12 +1,26 @@
 <ui>
+    <popup name="PaasSourcePopup" action="PaasSourcePopupAction">
+        <menuitem name="PaasUpdate" action="PaasUpdateAction"/>
+        <menuitem name="PaasSubscribe" action="PaasSubscribeAction" />
+        <separator/>
+        <menuitem name="SourcePreferences" action="SourcePreferencesAction"/>
+    </popup>
+
+    <popup name="PaasChannelPopup" action="PaasChannelPopupAction">
+<!--
+        <menuitem name="PaasUpdateChannel" action="PaasUpdateChannelAction" />
+    
+        <menuitem name="PodcastDownloadAll" action="PodcastDownloadAllAction"/>
+        <menuitem name="PodcastHomepage" action="PodcastHomepageAction" /> 
+-->
+        <menuitem name="PaasDeleteChannel" action="PaasDeleteChannelAction" />
+        <separator />
+<!--    <menuitem name="PaasChannelProperties" action="PaasChannelPropertiesAction" /> -->
+    </popup>
 <!--
     <popup name="PodcastSourcePopup" action="PodcastSourcePopupAction">
         <menuitem name="PodcastAdd" action="PodcastAddAction" />
-        <menuitem name="PodcastUpdateAll" action="PodcastUpdateAllAction"/>
-        <separator/>
-        <menuitem name="NewPlaylist" action="NewPlaylistAction"/>
-        <menuitem name="NewSmartPlaylist" action="NewSmartPlaylistAction"/>
-        <menu name="SortChildren" action="SortChildrenAction" />
+        <menuitem name="PaasUpdate" action="PaasUpdateAction"/>
         <separator/>
         <menuitem name="SourcePreferences" action="SourcePreferencesAction"/>
     </popup>
