@@ -86,7 +86,8 @@ namespace Banshee.Base
                 ? null 
                 : String.Format ("{0}{1}{2}", sm_artist, asUriPart ? "/" : "-", sm_album); 
         }
-        
+
+        private static Regex filter_regex = new Regex (@"[^A-Za-z0-9]*", RegexOptions.Compiled);
         public static string EscapePart (string part)
         {
             if (String.IsNullOrEmpty (part)) {
@@ -98,8 +99,7 @@ namespace Banshee.Base
                 part = part.Substring (0, lp_index);
             }
             
-            // TODO compile regex
-            return Regex.Replace (part, @"[^A-Za-z0-9]*", "").ToLower ();
+            return filter_regex.Replace (part, "").ToLower ();
         }
         
         private static string root_path = Path.Combine (XdgBaseDirectorySpec.GetUserDirectory (

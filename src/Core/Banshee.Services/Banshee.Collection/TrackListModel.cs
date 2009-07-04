@@ -51,6 +51,6 @@ namespace Banshee.Collection
         
         public abstract int IndexOf (TrackInfo track);
 
-        public abstract TrackInfo GetRandom (DateTime notPlayedSince, Banshee.PlaybackController.PlaybackShuffleMode mode, bool repeat);
+        public abstract TrackInfo GetRandom (DateTime notPlayedSince, Banshee.PlaybackController.PlaybackShuffleMode mode, bool repeat, bool lastWasSkipped);
     }
 }

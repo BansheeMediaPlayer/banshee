@@ -47,11 +47,12 @@ namespace Banshee.Library.Gui
             
             chooser.AddButton (Stock.Cancel, ResponseType.Cancel);
             chooser.AddButton (Stock.Open, ResponseType.Ok);
+            chooser.SelectMultiple = true;
             chooser.DefaultResponse = ResponseType.Ok;
             FileImportSource.SetChooserShortcuts (chooser);
             
             if (chooser.Run () == (int)ResponseType.Ok) {
-                Banshee.ServiceStack.ServiceManager.Get<LibraryImportManager> ().Enqueue (chooser.Uri);
+                Banshee.ServiceStack.ServiceManager.Get<LibraryImportManager> ().Enqueue (chooser.Uris);
             }
             
             chooser.Destroy ();

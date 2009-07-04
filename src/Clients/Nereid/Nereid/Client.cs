@@ -43,6 +43,12 @@ namespace Nereid
 {
     public class Client : Banshee.Gui.GtkBaseClient
     {
+
+#if WIN32
+        // Extracted from Scott's old windows-port branch.  I believe this is needed
+        // for COM-interop needed by the notification-area widget.
+        [STAThread]
+#endif
         public static void Main (string [] args)
         {
             Startup<Nereid.Client> (args);

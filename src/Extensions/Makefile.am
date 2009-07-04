@@ -8,7 +8,6 @@ SUBDIRS = \
 	Banshee.FileSystemQueue \
 	Banshee.InternetRadio \
 	Banshee.Lastfm \
-	Banshee.MediaWeb \
 	Banshee.MiniMode \
 	Banshee.MultimediaKeys \
 	Banshee.NotificationArea \

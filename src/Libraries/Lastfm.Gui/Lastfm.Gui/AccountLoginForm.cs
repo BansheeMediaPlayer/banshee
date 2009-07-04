@@ -110,8 +110,7 @@ namespace Lastfm.Gui
             }
             
             Resize (3, 2);
-            signup_button = new LinkButton (Catalog.GetString ("Sign up for Last.fm"));
-            signup_button.Clicked += delegate { account.SignUp (); };
+            signup_button = new LinkButton (account.SignUpUrl, Catalog.GetString ("Sign up for Last.fm"));
             signup_button.Show ();
             Attach (signup_button, 1, 2, 2, 3, AttachOptions.Shrink, AttachOptions.Shrink, 0, 0);
         }

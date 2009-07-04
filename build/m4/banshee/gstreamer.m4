@@ -26,5 +26,12 @@ AC_DEFUN([BANSHEE_CHECK_GSTREAMER],
 	
 	AC_SUBST(GST_CFLAGS)
 	AC_SUBST(GST_LIBS)
+
+	dnl Builtin equalizer (optional)
+	AC_ARG_ENABLE(builtin-equalizer,
+		AC_HELP_STRING([--disable-builtin-equalizer],
+			[Disable builtin equalizer]),
+		, enable_builtin_equalizer="yes")
+	AM_CONDITIONAL(ENABLE_BUILTIN_EQUALIZER, test "x$enable_builtin_equalizer" = "xyes")
 ])
 

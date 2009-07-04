@@ -14,8 +14,8 @@ msgstr ""
 "Project-Id-Version: banshee.HEAD\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=banshee&component=general\n"
-"POT-Creation-Date: 2009-05-18 17:22+0000\n"
-"PO-Revision-Date: 2009-05-18 23:23+0200\n"
+"POT-Creation-Date: 2009-06-14 00:57+0000\n"
+"PO-Revision-Date: 2009-06-14 12:33+0200\n"
 "Last-Translator: Benjamín Valero Espinosa <benjavalero@gmail.com>\n"
 "Language-Team: Español <gnome-es-list@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -72,22 +72,46 @@ msgid "Constant Bitrate"
 msgstr "Tasa de bits constante"
 
 #: ../data/audio-profiles/mp3-lame.xml.in.h:6
+msgid "Extreme"
+msgstr "Extrema"
+
+#: ../data/audio-profiles/mp3-lame.xml.in.h:7
+msgid "Insane"
+msgstr "Demente"
+
+#: ../data/audio-profiles/mp3-lame.xml.in.h:8
+msgid "LAME Preset"
+msgstr "Predefinidos LAME"
+
+#: ../data/audio-profiles/mp3-lame.xml.in.h:9
 msgid "MP3 (LAME Encoder)"
 msgstr "MP3 (codificador LAME)"
 
-#: ../data/audio-profiles/mp3-lame.xml.in.h:7
+#: ../data/audio-profiles/mp3-lame.xml.in.h:10
+msgid "Medium"
+msgstr "Media"
+
+#: ../data/audio-profiles/mp3-lame.xml.in.h:11
+msgid "Preset"
+msgstr "Predefinido"
+
+#: ../data/audio-profiles/mp3-lame.xml.in.h:12
+msgid "Standard"
+msgstr "Estándar"
+
+#: ../data/audio-profiles/mp3-lame.xml.in.h:13
 msgid "VBR Mode"
 msgstr "Modo VBR"
 
-#: ../data/audio-profiles/mp3-lame.xml.in.h:8
+#: ../data/audio-profiles/mp3-lame.xml.in.h:14
 msgid "VBR Quality"
 msgstr "Calidad VBR"
 
-#: ../data/audio-profiles/mp3-lame.xml.in.h:9
+#: ../data/audio-profiles/mp3-lame.xml.in.h:15
 msgid "Variable Bitrate"
 msgstr "Tasa de bits variable"
 
-#: ../data/audio-profiles/mp3-lame.xml.in.h:10
+#: ../data/audio-profiles/mp3-lame.xml.in.h:16
 #: ../data/audio-profiles/vorbis.xml.in.h:5
 #: ../data/audio-profiles/wavpack.xml.in.h:15
 #: ../data/audio-profiles/wma.xml.in.h:7
@@ -244,35 +268,35 @@ msgstr "No se pudo crear complemento de colas"
 msgid "Could not create filesink plugin"
 msgstr "No se pudo crear el complemento «filesink»"
 
-#: ../libbanshee/banshee-transcoder.c:241
+#: ../libbanshee/banshee-transcoder.c:240
 msgid "Could not create 'filesrc' plugin"
 msgstr "No se pudo crear el complemento «filesrc»"
 
-#: ../libbanshee/banshee-transcoder.c:247
+#: ../libbanshee/banshee-transcoder.c:246
 msgid "Could not create 'decodebin' plugin"
 msgstr "No se pudo crear el complemento «decodebin»"
 
-#: ../libbanshee/banshee-transcoder.c:253
+#: ../libbanshee/banshee-transcoder.c:252
 msgid "Could not create 'filesink' plugin"
 msgstr "No se pudo crear el complemento «filesink»"
 
-#: ../libbanshee/banshee-transcoder.c:259
+#: ../libbanshee/banshee-transcoder.c:258
 msgid "Could not create 'sinkben' plugin"
 msgstr "No se pudo crear el complemento «sinkben»"
 
-#: ../libbanshee/banshee-transcoder.c:265
+#: ../libbanshee/banshee-transcoder.c:264
 msgid "Could not create 'audioconvert' plugin"
 msgstr "No se pudo crear el complemento «audioconvert»"
 
-#: ../libbanshee/banshee-transcoder.c:271
+#: ../libbanshee/banshee-transcoder.c:270
 msgid "Could not create encoding pipeline"
 msgstr "No se pudo crear el pipeline de codificación"
 
-#: ../libbanshee/banshee-transcoder.c:277
+#: ../libbanshee/banshee-transcoder.c:276
 msgid "Could not get sink pad from encoder"
 msgstr "No se pudo obtener el sink pad del codificador"
 
-#: ../libbanshee/banshee-transcoder.c:345
+#: ../libbanshee/banshee-transcoder.c:344
 msgid "Could not construct pipeline"
 msgstr "No se pudo crear el pipeline"
 
@@ -292,7 +316,7 @@ msgstr "No se pudo grabar el CD"
 msgid "Brasero could not be started"
 msgstr "No se pudo iniciar Brasero"
 
-#: ../src/Backends/Banshee.Gnome/Banshee.GnomeBackend/GnomeScreensaverManager.cs:78
+#: ../src/Backends/Banshee.Gnome/Banshee.GnomeBackend/GnomeScreensaverManager.cs:79
 msgid "Fullscreen video playback active"
 msgstr "Reproducción de vídeo a pantalla completa activa"
 
@@ -308,20 +332,20 @@ msgstr "No se pudo crear el controlador extractor de CD."
 msgid "Could not create BPM detection driver."
 msgstr "No se pudo crear el controlador de detección de PPM."
 
-#: ../src/Backends/Banshee.GStreamer/Banshee.GStreamer/PlayerEngine.cs:134
-#: ../src/Backends/Banshee.GStreamer/Banshee.GStreamer/PlayerEngine.cs:162
+#: ../src/Backends/Banshee.GStreamer/Banshee.GStreamer/PlayerEngine.cs:122
+#: ../src/Backends/Banshee.GStreamer/Banshee.GStreamer/PlayerEngine.cs:153
 msgid "Could not initialize GStreamer library"
 msgstr "No se ha podido inicializar la biblioteca de GStreamer"
 
-#: ../src/Backends/Banshee.GStreamer/Banshee.GStreamer/PlayerEngine.cs:271
+#: ../src/Backends/Banshee.GStreamer/Banshee.GStreamer/PlayerEngine.cs:262
 msgid "Unknown Error"
 msgstr "Error desconocido"
 
-#: ../src/Backends/Banshee.GStreamer/Banshee.GStreamer/PlayerEngine.cs:560
+#: ../src/Backends/Banshee.GStreamer/Banshee.GStreamer/PlayerEngine.cs:555
 msgid "_Enable ReplayGain correction"
 msgstr "Activar corrección _ReplayGain"
 
-#: ../src/Backends/Banshee.GStreamer/Banshee.GStreamer/PlayerEngine.cs:561
+#: ../src/Backends/Banshee.GStreamer/Banshee.GStreamer/PlayerEngine.cs:556
 msgid ""
 "For tracks that have ReplayGain data, automatically scale (normalize) "
 "playback volume."
@@ -562,6 +586,11 @@ msgid "Specify an alternate database to use"
 msgstr "Especifica una base de datos alternativa que usar"
 
 #: ../src/Clients/Booter/Booter/Entry.cs:205
+msgid "Specify an alternate key, default is /apps/banshee-1/"
+msgstr ""
+"Especifica una clave alternativa, la predeterminada es /apps/banshee-1/"
+
+#: ../src/Clients/Booter/Booter/Entry.cs:206
 msgid ""
 "Optimize instance for running uninstalled; most notably, this will create an "
 "alternate Mono.Addins database in the working directory"
@@ -569,16 +598,16 @@ msgstr ""
 "Optimiza la instancia para ejecutarse sin instalación; en particular, esto "
 "crea una base de datos de Mono.Addins alternativa en el directorio de trabajo"
 
-#: ../src/Clients/Booter/Booter/Entry.cs:207
+#: ../src/Clients/Booter/Booter/Entry.cs:208
 msgid "Disable DBus support completely"
 msgstr "Desactiva completamente el soporte de DBus"
 
-#: ../src/Clients/Booter/Booter/Entry.cs:209
+#: ../src/Clients/Booter/Booter/Entry.cs:210
 #, csharp-format
 msgid "Skip loading a custom gtkrc file ({0}) if it exists"
 msgstr "Omitir la carga de un archivo gtkrc personalizado ({0}) si existe"
 
-#: ../src/Clients/Booter/Booter/Entry.cs:240
+#: ../src/Clients/Booter/Booter/Entry.cs:241
 #, csharp-format
 msgid "The following help arguments are invalid: {0}"
 msgstr "Los siguientes argumentos para la ayuda son no válidos: {0}"
@@ -765,7 +794,7 @@ msgid "Scanning for media"
 msgstr "Examinando contenido multimedia"
 
 #: ../src/Core/Banshee.Services/Banshee.Collection/ImportManager.cs:187
-#: ../src/Core/Banshee.Services/Banshee.Database/BansheeDbFormatMigrator.cs:1142
+#: ../src/Core/Banshee.Services/Banshee.Database/BansheeDbFormatMigrator.cs:1171
 msgid "Scanning..."
 msgstr "Examinando…"
 
@@ -805,7 +834,7 @@ msgid ""
 msgstr ""
 "Espere mientras se migra su antigua base de datos Banshee al nuevo formato."
 
-#: ../src/Core/Banshee.Services/Banshee.Database/BansheeDbFormatMigrator.cs:1139
+#: ../src/Core/Banshee.Services/Banshee.Database/BansheeDbFormatMigrator.cs:1168
 msgid "Refreshing Metadata"
 msgstr "Actualizando metadatos"
 
@@ -947,11 +976,11 @@ msgstr "No vistos"
 msgid "Videos that haven't been played yet"
 msgstr "Vídeos que no han sido reproducidos aún"
 
-#: ../src/Core/Banshee.Services/Banshee.MediaEngine/PlayerEngineService.cs:95
+#: ../src/Core/Banshee.Services/Banshee.MediaEngine/PlayerEngineService.cs:98
 msgid "Default player engine"
 msgstr "Motor de reproducción predeterminado"
 
-#: ../src/Core/Banshee.Services/Banshee.MediaEngine/PlayerEngineService.cs:102
+#: ../src/Core/Banshee.Services/Banshee.MediaEngine/PlayerEngineService.cs:105
 msgid ""
 "No player engines were found. Please ensure Banshee has been cleanly "
 "installed."
@@ -959,7 +988,7 @@ msgstr ""
 "No se ha encontrado ningún motor de reproducción. Asegúrese de que Banshee "
 "se ha instalado correctamente."
 
-#: ../src/Core/Banshee.Services/Banshee.MediaEngine/PlayerEngineService.cs:288
+#: ../src/Core/Banshee.Services/Banshee.MediaEngine/PlayerEngineService.cs:320
 msgid "Problem with Player Engine"
 msgstr "Problema con el motor de reproducción"
 
@@ -1910,7 +1939,7 @@ msgstr "Importar contenido multimedia desde diversas fuentes"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui/GlobalActions.cs:57
 msgid "Import _Playlist..."
-msgstr "Importar _lista de reproducción…"
+msgstr "Importar lista de _reproducción…"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui/GlobalActions.cs:58
 msgid "Import a playlist"
@@ -2152,6 +2181,16 @@ msgid "Play all songs from an album, then randomly choose another album"
 msgstr ""
 "Reproducir todas las canciones de un álbum, después elegir aleatoriamente "
 "otro álbum"
+
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/PlaybackShuffleActions.cs:101
+msgid "Shuffle by _Rating"
+msgstr "Mezclar por _puntuación"
+
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/PlaybackShuffleActions.cs:102
+msgid "Play songs randomly, prefer higher rated songs"
+msgstr ""
+"Reproducir las canciones aleatoriamente, dando preferencia a las canciones "
+"con mayor puntuación"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui/SourceActions.cs:73
 msgid "_New Playlist"
@@ -2743,17 +2782,11 @@ msgstr "_Pantalla completa"
 msgid "Enter or leave fullscreen mode"
 msgstr "Entrar en modo a pantalla completa"
 
-#. Translators: the number of jobs running is available for your use via {0}
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui.Widgets/TaskStatusIcon.cs:83
-#, csharp-format
-msgid "Background Task Running:"
-msgid_plural "Background Tasks Running:"
-msgstr[0] "Tarea en ejecución en segundo plano:"
-msgstr[1] "Tareas en ejecución en segundo plano:"
-
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui.Widgets/TaskStatusIcon.cs:89
-msgid "No background tasks running"
-msgstr "No hay tareas en ejecución en segundo plano"
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui.Widgets/TaskStatusIcon.cs:92
+msgid "Active Task Running"
+msgid_plural "Active Tasks Running"
+msgstr[0] "Tarea activa en ejecución"
+msgstr[1] "Tareas activas en ejecución"
 
 #. Translators: {0} and {1} are for markup so ignore them, {2} and {3}
 #. are Podcast Name and Published Date, respectively;
@@ -3867,35 +3900,35 @@ msgstr "Descripción:"
 msgid "Rating:"
 msgstr "Puntuación:"
 
-#: ../src/Extensions/Banshee.Lastfm/Banshee.Lastfm.Audioscrobbler/AudioscrobblerService.cs:125
+#: ../src/Extensions/Banshee.Lastfm/Banshee.Lastfm.Audioscrobbler/AudioscrobblerService.cs:126
 msgid "_Last.fm"
 msgstr "_Last.fm"
 
-#: ../src/Extensions/Banshee.Lastfm/Banshee.Lastfm.Audioscrobbler/AudioscrobblerService.cs:126
+#: ../src/Extensions/Banshee.Lastfm/Banshee.Lastfm.Audioscrobbler/AudioscrobblerService.cs:127
 msgid "Configure the Audioscrobbler plugin"
 msgstr "Configurar el complemento de Audioscrobbler"
 
-#: ../src/Extensions/Banshee.Lastfm/Banshee.Lastfm.Audioscrobbler/AudioscrobblerService.cs:129
+#: ../src/Extensions/Banshee.Lastfm/Banshee.Lastfm.Audioscrobbler/AudioscrobblerService.cs:130
 msgid "Visit _User Profile Page"
 msgstr "Visitar la página del perfil de _usuario"
 
-#: ../src/Extensions/Banshee.Lastfm/Banshee.Lastfm.Audioscrobbler/AudioscrobblerService.cs:130
+#: ../src/Extensions/Banshee.Lastfm/Banshee.Lastfm.Audioscrobbler/AudioscrobblerService.cs:131
 msgid "Visit Your Last.fm Profile Page"
 msgstr "Visitar la página de su perfil de Last.fm"
 
-#: ../src/Extensions/Banshee.Lastfm/Banshee.Lastfm.Audioscrobbler/AudioscrobblerService.cs:133
+#: ../src/Extensions/Banshee.Lastfm/Banshee.Lastfm.Audioscrobbler/AudioscrobblerService.cs:134
 msgid "_Configure..."
 msgstr "_Configurar…"
 
-#: ../src/Extensions/Banshee.Lastfm/Banshee.Lastfm.Audioscrobbler/AudioscrobblerService.cs:134
+#: ../src/Extensions/Banshee.Lastfm/Banshee.Lastfm.Audioscrobbler/AudioscrobblerService.cs:135
 msgid "Configure the Last.fm Extension"
 msgstr "Configurar la extensión para Last.fm"
 
-#: ../src/Extensions/Banshee.Lastfm/Banshee.Lastfm.Audioscrobbler/AudioscrobblerService.cs:139
+#: ../src/Extensions/Banshee.Lastfm/Banshee.Lastfm.Audioscrobbler/AudioscrobblerService.cs:140
 msgid "_Enable Song Reporting"
 msgstr "Activar _informe de canciones"
 
-#: ../src/Extensions/Banshee.Lastfm/Banshee.Lastfm.Audioscrobbler/AudioscrobblerService.cs:140
+#: ../src/Extensions/Banshee.Lastfm/Banshee.Lastfm.Audioscrobbler/AudioscrobblerService.cs:141
 msgid "Enable song reporting"
 msgstr "Activar informe de canciones"
 
@@ -4277,11 +4310,11 @@ msgstr "Mostrar _notificaciones"
 msgid "Show notifications when item changes"
 msgstr "Mostrar notificaciones al cambiar de elemento"
 
-#: ../src/Extensions/Banshee.NotificationArea/Banshee.NotificationArea/NotificationAreaService.cs:334
+#: ../src/Extensions/Banshee.NotificationArea/Banshee.NotificationArea/NotificationAreaService.cs:336
 msgid "Still Running"
 msgstr "Aún en ejecución"
 
-#: ../src/Extensions/Banshee.NotificationArea/Banshee.NotificationArea/NotificationAreaService.cs:335
+#: ../src/Extensions/Banshee.NotificationArea/Banshee.NotificationArea/NotificationAreaService.cs:337
 msgid ""
 "Banshee was closed to the notification area. Use the <i>Quit</i> option to "
 "end your session."
@@ -4289,24 +4322,18 @@ msgstr ""
 "Banshee se cerró en el área de notificación. Use la opción <i>Salir</i> para "
 "finalizar la sesión."
 
-#: ../src/Extensions/Banshee.NotificationArea/Banshee.NotificationArea/NotificationAreaService.cs:454
+#: ../src/Extensions/Banshee.NotificationArea/Banshee.NotificationArea/NotificationAreaService.cs:459
 #: ../src/Extensions/Banshee.NowPlaying/Banshee.NowPlaying/NowPlayingSource.cs:48
 msgid "Now Playing"
 msgstr "Reproduciendo ahora"
 
-#: ../src/Extensions/Banshee.NotificationArea/Banshee.NotificationArea/NotificationAreaService.cs:459
+#: ../src/Extensions/Banshee.NotificationArea/Banshee.NotificationArea/NotificationAreaService.cs:464
 msgid "Skip this item"
 msgstr "Saltar este elemento"
 
-#: ../src/Extensions/Banshee.NotificationArea/Banshee.NotificationArea/NotificationAreaService.cs:465
+#: ../src/Extensions/Banshee.NotificationArea/Banshee.NotificationArea/NotificationAreaService.cs:470
 msgid "Cannot show notification"
 msgstr "No se pudo mostrar la notificación"
-
-#: ../src/Extensions/Banshee.NowPlaying.Clutter/Banshee.NowPlaying.Clutter/NowPlayingSource.cs:48
-#, fuzzy
-#| msgid "Now Playing"
-msgid "Now Playing Clutter"
-msgstr "Reproduciendo ahora"
 
 #: ../src/Extensions/Banshee.PlayerMigration/Banshee.PlayerMigration/AmarokPlayerImportSource.cs:143
 #, csharp-format
@@ -4321,11 +4348,11 @@ msgstr "Falló la importación desde Amarok"
 msgid "Amarok"
 msgstr "Amarok"
 
-#: ../src/Extensions/Banshee.PlayerMigration/Banshee.PlayerMigration/RhythmboxPlayerImportSource.cs:215
+#: ../src/Extensions/Banshee.PlayerMigration/Banshee.PlayerMigration/RhythmboxPlayerImportSource.cs:236
 msgid "Unable to import song."
 msgstr "No se pudo importar la canción."
 
-#: ../src/Extensions/Banshee.PlayerMigration/Banshee.PlayerMigration/RhythmboxPlayerImportSource.cs:349
+#: ../src/Extensions/Banshee.PlayerMigration/Banshee.PlayerMigration/RhythmboxPlayerImportSource.cs:370
 msgid "Rhythmbox Music Player"
 msgstr "Reproductor de música Rhythmbox"
 
@@ -4769,7 +4796,7 @@ msgstr "Guardar e iniciar sesión"
 msgid "Sign up for Last.fm"
 msgstr "Registrarse en Last.fm"
 
-#: ../src/Libraries/Lastfm/Lastfm/AudioscrobblerConnection.cs:439
+#: ../src/Libraries/Lastfm/Lastfm/AudioscrobblerConnection.cs:446
 #: ../src/Libraries/Lastfm/Lastfm/RadioConnection.cs:458
 msgid "Last.fm username or password is invalid."
 msgstr "El usuario o la contraseña de Last.fm no son válidos."
@@ -4840,6 +4867,14 @@ msgstr "Conectado a Last.fm"
 #: ../src/Libraries/Migo/Migo.Syndication/Feed.cs:149
 msgid "Unknown Podcast"
 msgstr "Podcast desconocido"
+
+#~ msgid "No background tasks running"
+#~ msgstr "No hay tareas en ejecución en segundo plano"
+
+#, fuzzy
+#~| msgid "Now Playing"
+#~ msgid "Now Playing Clutter"
+#~ msgstr "Reproduciendo ahora"
 
 #~ msgid "Saving tags for {0}"
 #~ msgstr "Guardar etiquetas para {0}"

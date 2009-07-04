@@ -52,6 +52,12 @@ namespace Banshee.Collection.Gui
             RowActivated += OnRowActivated;
         }
 
+        protected override void OnModelReloaded ()
+        {
+            base.OnModelReloaded ();
+            CenterOnSelection ();
+        }
+
         protected virtual void OnRowActivated (object o, EventArgs args)
         {
             ServiceManager.PlaybackController.NextSource = (ServiceManager.SourceManager.ActiveSource as Banshee.Sources.ITrackModelSource);

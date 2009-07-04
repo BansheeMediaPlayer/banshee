@@ -134,8 +134,7 @@ namespace Banshee.NotificationArea
             });
             
             interface_action_service.AddActionGroup (actions);
-            
-            ui_manager_id = -1;
+            ui_manager_id = (int)interface_action_service.UIManager.AddUiFromResource ("NotificationAreaMenu.xml");
             
             ServiceManager.PlayerEngine.ConnectEvent (OnPlayerEvent,
                PlayerEvent.StartOfStream |
@@ -242,7 +241,6 @@ namespace Banshee.NotificationArea
                 return;
             }
             
-            ui_manager_id = (int)interface_action_service.UIManager.AddUiFromResource ("NotificationAreaMenu.xml");
             menu = (Menu)interface_action_service.UIManager.GetWidget("/NotificationAreaIconMenu");
             menu.Show ();
             

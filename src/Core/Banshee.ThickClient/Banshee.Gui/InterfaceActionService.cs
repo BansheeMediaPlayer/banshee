@@ -31,18 +31,23 @@ using System.IO;
 using System.Reflection;
 using System.Collections.Generic;
 
+using Mono.Addins;
+
 using Gtk;
 using Action = Gtk.Action;
+
+using Hyena;
 
 using Banshee.Sources;
 using Banshee.ServiceStack;
 
 namespace Banshee.Gui
 {
-    public class InterfaceActionService : IService
+    public class InterfaceActionService : IInitializeService
     {
-        private UIManager ui_manager = new UIManager ();    
+        private UIManager ui_manager;
         private Dictionary<string, ActionGroup> action_groups = new Dictionary<string, ActionGroup> ();
+        private Dictionary<string, ActionGroup> extension_actions = new Dictionary<string, ActionGroup> ();
 
         private GlobalActions   global_actions;
         private ViewActions     view_actions;
@@ -55,23 +60,23 @@ namespace Banshee.Gui
         
         public InterfaceActionService ()
         {
-            global_actions      = new GlobalActions (this);
-            view_actions        = new ViewActions (this);
-            playback_actions    = new PlaybackActions (this);
-            track_actions       = new TrackActions (this);
-            source_actions      = new SourceActions (this);
+            ui_manager = new UIManager ();
 
-            AddActionGroup (global_actions);
-            AddActionGroup (view_actions);
-            AddActionGroup (playback_actions);
-            AddActionGroup (track_actions);
-            AddActionGroup (source_actions);
-
-            ui_manager.AddUiFromResource ("core-ui-actions-layout.xml");    
-            
             ServiceManager.SourceManager.ActiveSourceChanged += OnActiveSourceChanged;
         }
-        
+
+        public void Initialize ()
+        {
+            AddActionGroup (global_actions      = new GlobalActions ());
+            AddActionGroup (view_actions        = new ViewActions ());
+            AddActionGroup (playback_actions    = new PlaybackActions ());
+            AddActionGroup (track_actions       = new TrackActions ());
+            AddActionGroup (source_actions      = new SourceActions ());
+            ui_manager.AddUiFromResource ("core-ui-actions-layout.xml");
+
+            AddinManager.AddExtensionNodeHandler ("/Banshee/ThickClient/ActionGroup", OnExtensionChanged);
+        }
+
         private void InnerAddActionGroup (ActionGroup group)
         {
             action_groups.Add (group.Name, group);
@@ -200,6 +205,30 @@ namespace Banshee.Gui
                 Assembly.GetAssembly (active_source.GetType ());
 
             active_source_uiid = AddUiFromFile (active_source.GetProperty<string> ("ActiveSourceUIResource", propagate), assembly);
+        }
+
+        private void OnExtensionChanged (object o, ExtensionNodeEventArgs args) 
+        {
+            try {
+                TypeExtensionNode node = (TypeExtensionNode)args.ExtensionNode;
+                
+                if (args.Change == ExtensionChange.Add) {
+                    if (!extension_actions.ContainsKey (node.Id)) {
+                        ActionGroup group = (ActionGroup)node.CreateInstance (typeof (ActionGroup));
+                        extension_actions[node.Id] = group;
+                        AddActionGroup (group);
+                        Log.DebugFormat ("Extension actions loaded: {0}", node.Type);
+                    }
+                } else if (args.Change == ExtensionChange.Remove) {
+                    if (extension_actions.ContainsKey (node.Id)) {
+                        extension_actions[node.Id].Dispose ();
+                        extension_actions.Remove (node.Id);
+                        Log.DebugFormat ("Extension actions unloaded: {0}", node.Type);
+                    }
+                }
+            } catch (Exception e) {
+                Log.Exception (e);
+            }
         }
 
         public uint AddUiFromFileInCurrentAssembly (string ui_file)

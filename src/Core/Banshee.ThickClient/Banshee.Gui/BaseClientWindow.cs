@@ -60,8 +60,8 @@ namespace Banshee.Gui
     
         public BaseClientWindow (string title, string configNameSpace, int defaultWidth, int defaultHeight) : base (title)
         {
-            elements_service = ServiceManager.Get<GtkElementsService> ("GtkElementsService");
-            action_service = ServiceManager.Get<InterfaceActionService> ("InterfaceActionService");
+            elements_service = ServiceManager.Get<GtkElementsService> ();
+            action_service = ServiceManager.Get<InterfaceActionService> ();
             
             ConfigureWindow ();
 

@@ -360,7 +360,8 @@ namespace Banshee.SmartPlaylist
             // Wipe the member list clean and repopulate it 
             string reload_str = String.Format (
                 @"DELETE FROM CoreSmartPlaylistEntries WHERE SmartPlaylistID = {0};
-                  INSERT INTO CoreSmartPlaylistEntries 
+                  INSERT INTO CoreSmartPlaylistEntries
+                    (EntryID, SmartPlaylistID, TrackID)
                     SELECT NULL, {0} as SmartPlaylistID, TrackId FROM {1}
                         WHERE {2} AND CoreTracks.PrimarySourceID = {3}
                         {4} {5} {6}",

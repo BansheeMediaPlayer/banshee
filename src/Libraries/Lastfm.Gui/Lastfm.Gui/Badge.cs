@@ -34,31 +34,26 @@ using Lastfm;
 
 namespace Lastfm.Gui
 {
-    public class Badge : Gtk.EventBox
+    public class Badge : Gtk.LinkButton
     {
-        private static Gdk.Cursor hand_cursor = new Gdk.Cursor (Gdk.CursorType.Hand1);
         private static Gdk.Pixbuf pixbuf = Gdk.Pixbuf.LoadFromResource ("badge.png");
         private static Gdk.Pixbuf pixbuf_hover = Gdk.Pixbuf.LoadFromResource ("badge-hover.png");
         
-        private Account account;
         private Image image;
         private bool link = true;
         
-        public Badge (Account account) : base ()
+        public Badge (Account account) : base (account.HomePageUrl)
         {
-            this.account = account;
             image = new Image ();
             image.Pixbuf = pixbuf;
             image.Xalign = 0.0f;
-            image.Show ();
-            Add (image);
+            Image = image;
         }
                 
         protected override bool OnEnterNotifyEvent (Gdk.EventCrossing evnt)
         {
             if (link) {
-                GdkWindow.Cursor = hand_cursor;
-                image.Pixbuf = pixbuf_hover;
+                (Image as Image).Pixbuf = pixbuf_hover;
             }
             
             return base.OnEnterNotifyEvent (evnt);
@@ -66,24 +61,9 @@ namespace Lastfm.Gui
 
         protected override bool OnLeaveNotifyEvent (Gdk.EventCrossing evnt)
         {
-            image.Pixbuf = pixbuf;
-            GdkWindow.Cursor = null;
+            (Image as Image).Pixbuf = pixbuf;
             
             return base.OnLeaveNotifyEvent (evnt);
-        }
-        
-        protected override bool OnButtonReleaseEvent (Gdk.EventButton evnt)
-        {
-            if (evnt.Button == 1) {
-                account.VisitHomePage ();
-            }
-            
-            return base.OnButtonReleaseEvent (evnt);
-        }
-        
-        public bool Link {
-            get { return link; }
-            set { link = value; }
         }
         
         public static Gdk.Pixbuf Pixbuf {

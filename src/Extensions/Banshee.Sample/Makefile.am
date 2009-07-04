@@ -1,6 +1,7 @@
 ASSEMBLY = Banshee.Sample
 TARGET = library
 LINK = $(REF_EXTENSION_SAMPLE)
+INSTALL_DIR = $(EXTENSIONS_INSTALL_DIR)
 
 SOURCES =  \
 	Banshee.Sample/SampleSource.cs \

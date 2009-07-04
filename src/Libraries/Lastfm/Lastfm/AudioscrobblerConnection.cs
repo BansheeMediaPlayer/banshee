@@ -514,7 +514,7 @@ namespace Lastfm
                                         HttpUtility.UrlEncode(artist),
                                         HttpUtility.UrlEncode(title),
                                         HttpUtility.UrlEncode(album),
-                                        duration.ToString(),
+                                        duration.ToString("F0"),
                                         str_track_number,
                                         mbrainzid);
 

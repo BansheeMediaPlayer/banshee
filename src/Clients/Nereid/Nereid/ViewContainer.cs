@@ -57,7 +57,7 @@ namespace Nereid
         {
             BuildHeader ();           
             
-            Spacing = 8;
+            Spacing = 6;
             SearchSensitive = false;
         }
         

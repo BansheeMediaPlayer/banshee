@@ -57,6 +57,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
     <Reference Include="Mono.Data.Sqlite" />
     <Reference Include="Mono.Posix" />
     <Reference Include="Mono.Addins, Version=0.4.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756" />
@@ -95,6 +96,11 @@
     <Compile Include="Banshee.Collection.Database\DatabaseArtistListModel.cs" />
     <Compile Include="Banshee.Collection.Database\DatabaseTrackInfo.cs" />
     <Compile Include="Banshee.Collection.Database\DatabaseTrackListModel.cs" />
+    <Compile Include="Banshee.Collection.Database\RandomBy.cs" />
+    <Compile Include="Banshee.Collection.Database\RandomByArtist.cs" />
+    <Compile Include="Banshee.Collection.Database\RandomByAlbum.cs" />
+    <Compile Include="Banshee.Collection.Database\RandomByTrack.cs" />
+    <Compile Include="Banshee.Collection.Database\RandomByRating.cs" />
     <Compile Include="Banshee.Sources\Source.cs" />
     <Compile Include="Banshee.Sources\SourceManager.cs" />
     <Compile Include="Banshee.Sources\DatabaseSource.cs" />
@@ -114,7 +120,6 @@
     <Compile Include="Banshee.MediaEngine\PlayerEvent.cs" />
     <Compile Include="Banshee.Collection\AlbumListModel.cs" />
     <Compile Include="Banshee.Collection\ArtistListModel.cs" />
-    <Compile Include="Banshee.Collection\ExportableModel.cs" />
     <Compile Include="Banshee.Collection\IExportableModel.cs" />
     <Compile Include="Banshee.Collection\ModelHelper.cs" />
     <Compile Include="Banshee.Collection\TrackListModel.cs" />

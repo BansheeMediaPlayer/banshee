@@ -56,6 +56,7 @@ namespace Banshee.PlaybackController
         private TrackInfo changing_to_track;
         private bool raise_started_after_transition = false;
         private bool transition_track_started = false;
+        private bool last_was_skipped = true;
         private int consecutive_errors;
         private uint error_transition_id;
         private DateTime source_auto_set_at = DateTime.MinValue;
@@ -180,6 +181,7 @@ namespace Banshee.PlaybackController
                 if (RepeatMode == PlaybackRepeatMode.RepeatSingle) {
                     QueuePlayTrack ();
                 } else {
+                    last_was_skipped = false;
                     Next ();
                 }
             } else {
@@ -342,7 +344,10 @@ namespace Banshee.PlaybackController
         
         private TrackInfo QueryTrackRandom (PlaybackShuffleMode mode, bool restart)
         {
-            return Source.TrackModel.GetRandom (source_set_at, mode, restart);
+            var track = Source.TrackModel.GetRandom (source_set_at, mode, restart, last_was_skipped);
+            // Reset to default of true, only ever set to false by EosTransition
+            last_was_skipped = true;
+            return track;
         }
         
         private void QueuePlayTrack ()

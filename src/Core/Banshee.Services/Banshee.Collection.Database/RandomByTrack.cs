@@ -1,10 +1,10 @@
 //
-// PlaybackShuffleMode.cs
+// RandomByTrack.cs
 //
 // Author:
-//   Aaron Bockover <abockover@novell.com>
+//   Gabriel Burt <gburt@novell.com>
 //
-// Copyright (C) 2007-2008 Novell, Inc.
+// Copyright (C) 2009 Novell, Inc.
 //
 // Permission is hereby granted, free of charge, to any person obtaining
 // a copy of this software and associated documentation files (the
@@ -28,27 +28,31 @@
 
 using System;
 
-namespace Banshee.PlaybackController
-{
-    public enum PlaybackShuffleMode
-    {
-        Linear,
-        Song,
-        Artist,
-        Album,
-        Rating
-    }
+using Hyena;
+using Hyena.Data;
+using Hyena.Data.Sqlite;
 
-    public class ShuffleModeChangedEventArgs : EventArgs
+using Banshee.ServiceStack;
+using Banshee.PlaybackController;
+
+namespace Banshee.Collection.Database
+{
+    public class RandomByTrack : RandomBy
     {
-        private PlaybackShuffleMode shuffle_mode;
-        public PlaybackShuffleMode ShuffleMode {
-            get { return shuffle_mode; }
+        private static string track_condition = String.Format ("{0} ORDER BY RANDOM()", RANDOM_CONDITION);
+
+        public RandomByTrack () : base (PlaybackShuffleMode.Song)
+        {
         }
 
-        public ShuffleModeChangedEventArgs (PlaybackShuffleMode shuffle_mode)
+        public override bool Next (DateTime after)
         {
-            this.shuffle_mode = shuffle_mode;
+            return true;
+        }
+
+        public override TrackInfo GetTrack (DateTime after)
+        {
+            return Cache.GetSingle (track_condition, after, after);
         }
     }
 }

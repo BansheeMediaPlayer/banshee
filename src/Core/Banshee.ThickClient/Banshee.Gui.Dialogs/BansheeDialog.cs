@@ -68,41 +68,42 @@ namespace Banshee.Gui.Dialogs
             AddAccelGroup (accel_group);
         }
         
-        public void AddDefaultCloseButton ()
+        public Button AddDefaultCloseButton ()
         {
-            AddStockButton (Stock.Close, ResponseType.Close);
+            return AddStockButton (Stock.Close, ResponseType.Close);
         }
         
-        public new void AddButton (string message, ResponseType response)
+        public new Button AddButton (string message, ResponseType response)
         {
-            AddButton (message, response, false);
+            return AddButton (message, response, false);
         }
         
-        public void AddStockButton (string stock, ResponseType response)
+        public Button AddStockButton (string stock, ResponseType response)
         {
-            AddStockButton (stock, response, false);
+            return AddStockButton (stock, response, false);
         }
 
-        public new void AddButton (string message, ResponseType response, bool isDefault)
+        public new Button AddButton (string message, ResponseType response, bool isDefault)
         {
-            AddButton (message, response, isDefault, false);
+            return AddButton (message, response, isDefault, false);
         }
 
-        public void AddStockButton (string stock, ResponseType response, bool isDefault)
+        public Button AddStockButton (string stock, ResponseType response, bool isDefault)
         {
-            AddButton (stock, response, isDefault, true);
+            return AddButton (stock, response, isDefault, true);
         }
         
-        public new void AddButton (string message, ResponseType response, bool isDefault, bool isStock)
+        public new Button AddButton (string message, ResponseType response, bool isDefault, bool isStock)
         {
             Button button = new Button (message);
             button.CanDefault = true;
             button.UseStock = isStock;
             button.Show ();
             AddButton (button, response, isDefault);
+            return button;
         }
 
-        public void AddButton (Button button, ResponseType response, bool isDefault)
+        public Button AddButton (Button button, ResponseType response, bool isDefault)
         {
             AddActionWidget (button, response);
 
@@ -110,6 +111,8 @@ namespace Banshee.Gui.Dialogs
                 DefaultResponse = response;
                 button.AddAccelerator ("activate", accel_group, (uint)Gdk.Key.Return, 0, AccelFlags.Visible);
             }
+
+            return button;
         }
     }
 }

@@ -1,11 +1,10 @@
 //
-// BansheeListModel.cs
+// RandomBy.cs
 //
 // Author:
-//   Aaron Bockover <abockover@novell.com>
 //   Gabriel Burt <gburt@novell.com>
 //
-// Copyright (C) 2007 Novell, Inc.
+// Copyright (C) 2009 Novell, Inc.
 //
 // Permission is hereby granted, free of charge, to any person obtaining
 // a copy of this software and associated documentation files (the
@@ -29,46 +28,47 @@
 
 using System;
 
+using Hyena;
 using Hyena.Data;
-using Hyena.Collections;
+using Hyena.Data.Sqlite;
+
 using Banshee.ServiceStack;
+using Banshee.PlaybackController;
 
-namespace Banshee.Collection
+namespace Banshee.Collection.Database
 {
-    public abstract class BansheeListModel<T> : BaseListModel<T>, IDBusExportable
+    public abstract class RandomBy
     {
-        private IDBusExportable parent;
+        protected const string RANDOM_CONDITION = "AND LastStreamError = 0 AND (LastPlayedStamp < ? OR LastPlayedStamp IS NULL) AND (LastSkippedStamp < ? OR LastSkippedStamp IS NULL)";
 
-        public BansheeListModel ()
+        protected DatabaseTrackListModel Model { get; private set; }
+        protected IDatabaseTrackModelCache Cache { get; private set; }
+
+        public virtual bool IsReady { get { return true; } }
+        public PlaybackShuffleMode Mode { get; private set; }
+
+        public RandomBy (PlaybackShuffleMode mode)
+        {
+            Mode = mode;
+        }
+
+        public void SetModelAndCache (DatabaseTrackListModel model, IDatabaseTrackModelCache cache)
+        {
+            if (Model != model) {
+                Model = model;
+                Cache = cache;
+                Reset ();
+
+                OnModelAndCacheUpdated ();
+            }
+        }
+
+        protected virtual void OnModelAndCacheUpdated ()
         {
         }
 
-        public BansheeListModel (IDBusExportable parent)
-        {
-            Parent = parent;
-        }
-
-        public virtual string ServiceName {
-            get { return GetType().Name; }
-        }
-
-        public virtual IDBusExportable Parent {
-            set { parent = value; }
-            get { return parent; }
-        }
-
-        protected override void OnCleared ()
-        {
-            Banshee.Base.ThreadAssist.ProxyToMain (delegate {
-                base.OnCleared ();
-            });
-        }
-
-        protected override void OnReloaded ()
-        {
-            Banshee.Base.ThreadAssist.ProxyToMain (delegate {
-                base.OnReloaded ();
-            });
-        }
+        public virtual void Reset () {}
+        public abstract bool Next (DateTime after);
+        public abstract TrackInfo GetTrack (DateTime after);
     }
 }

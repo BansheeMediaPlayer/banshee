@@ -55,7 +55,7 @@ namespace Banshee.Gui
             }
         }
     
-        public ViewActions (InterfaceActionService actionService) : base (actionService, "View")
+        public ViewActions () : base ("View")
         {
             Add (new ActionEntry [] {
                 new ActionEntry ("ViewMenuAction", null,

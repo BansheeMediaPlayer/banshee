@@ -5,8 +5,7 @@ LINK = $(REF_LASTFM_GUI)
 SOURCES =  \
 	Lastfm.Gui/AccountLoginDialog.cs \
 	Lastfm.Gui/AccountLoginForm.cs \
-	Lastfm.Gui/Badge.cs \
-	Lastfm.Gui/LinkButton.cs
+	Lastfm.Gui/Badge.cs
 
 RESOURCES =  \
 	Resources/badge.png \

@@ -60,6 +60,10 @@ namespace Hyena.Widgets
             }
             
             layout.Ellipsize = wrap ? Pango.EllipsizeMode.None : Pango.EllipsizeMode.End;
+
+            if (text == null) {
+                text = "";
+            }
             
             if (use_markup) {
                 layout.SetMarkup (text);

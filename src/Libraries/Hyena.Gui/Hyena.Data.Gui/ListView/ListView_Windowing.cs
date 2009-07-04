@@ -175,7 +175,7 @@ namespace Hyena.Data.Gui
             InvalidateList ();
         }
         
-        private int RowsInView {
+        protected int RowsInView {
             get { return (int) Math.Ceiling ((list_rendering_alloc.Height + RowHeight) / (double) RowHeight); }
         }
     }

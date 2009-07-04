@@ -109,43 +109,44 @@ namespace Hyena.Data.Sqlite
             execution_exception = null;
             result = null;
 
-            SqliteCommand sql_command = new SqliteCommand (CurrentSqlText);
-            sql_command.Connection = connection;
+            using (SqliteCommand sql_command = new SqliteCommand (CurrentSqlText)) {
+                sql_command.Connection = connection;
 
-            hconnection.OnExecuting (sql_command);
+                hconnection.OnExecuting (sql_command);
 
-            try {
-                if (log_all)
-                    ticks = System.Environment.TickCount;
+                try {
+                    if (log_all)
+                        ticks = System.Environment.TickCount;
 
-                switch (command_type) {
-                    case HyenaCommandType.Reader:
-                        using (SqliteDataReader reader = sql_command.ExecuteReader ()) {
-                            result = new HyenaSqliteArrayDataReader (reader);
-                        }
-                        break;
+                    switch (command_type) {
+                        case HyenaCommandType.Reader:
+                            using (SqliteDataReader reader = sql_command.ExecuteReader ()) {
+                                result = new HyenaSqliteArrayDataReader (reader);
+                            }
+                            break;
 
-                    case HyenaCommandType.Scalar:
-                        result = sql_command.ExecuteScalar ();
-                        break;
+                        case HyenaCommandType.Scalar:
+                            result = sql_command.ExecuteScalar ();
+                            break;
 
-                    case HyenaCommandType.Execute:
-                    default:
-                        sql_command.ExecuteNonQuery ();
-                        result = sql_command.LastInsertRowID ();
-                        break;
-                }
-
-                if (log_all) {
-                    Log.DebugFormat ("Executed in {0}ms {1}", System.Environment.TickCount - ticks, sql_command.CommandText);
-                    CommandExecutedHandler handler = CommandExecuted;
-                    if (handler != null) {
-                        handler (this, new CommandExecutedArgs (Text, sql_command.CommandText, null, System.Environment.TickCount - ticks));
+                        case HyenaCommandType.Execute:
+                        default:
+                            sql_command.ExecuteNonQuery ();
+                            result = sql_command.LastInsertRowID ();
+                            break;
                     }
+
+                    if (log_all) {
+                        Log.DebugFormat ("Executed in {0}ms {1}", System.Environment.TickCount - ticks, sql_command.CommandText);
+                        CommandExecutedHandler handler = CommandExecuted;
+                        if (handler != null) {
+                            handler (this, new CommandExecutedArgs (Text, sql_command.CommandText, null, System.Environment.TickCount - ticks));
+                        }
+                    }
+                } catch (Exception e) {
+                    Log.DebugFormat (String.Format ("Exception executing command: {0}", sql_command.CommandText), e.ToString ());
+                    execution_exception = e;
                 }
-            } catch (Exception e) {
-                Log.DebugFormat (String.Format ("Exception executing command: {0}", sql_command.CommandText), e.ToString ()); 
-                execution_exception = e;
             }
 
             finished_event.Reset ();

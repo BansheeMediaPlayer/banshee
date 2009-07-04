@@ -63,7 +63,7 @@ namespace Hyena.Data.Gui
                 return false;
             }
             
-            if (last_pressed_bound == BoundObjectParent) {
+            if (last_pressed_bound != null && last_pressed_bound.Equals (BoundObjectParent)) {
                 Value = !Value;
                 last_pressed_bound = null;
             }

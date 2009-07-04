@@ -1,6 +1,7 @@
 ASSEMBLY = Banshee.MediaWeb
 TARGET = library
 LINK = $(LINK_BANSHEE_THICKCLIENT_DEPS) $(LINK_WEBKIT)
+INSTALL_DIR = $(EXTENSIONS_INSTALL_DIR)
 
 SOURCES =  \
 	Banshee.MediaWeb/MediaWebSource.cs \

@@ -113,7 +113,8 @@ namespace Banshee.MediaEngine
             MetadataService.Instance.HaveResult += OnMetadataServiceHaveResult;
             
             TrackInfo.IsPlayingMethod = track => IsPlaying (track) &&
-                ServiceManager.PlaybackController.Source == ServiceManager.SourceManager.ActiveSource;
+                track.CacheModelId == CurrentTrack.CacheModelId &&
+                (track.CacheEntryId == null || track.CacheEntryId.Equals (CurrentTrack.CacheEntryId));
         }
 
         private void InitializeEngine (PlayerEngine engine)

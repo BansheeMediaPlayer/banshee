@@ -338,7 +338,7 @@ namespace Banshee.Database
         [DatabaseVersion (6)]
         private bool Migrate_6 ()
         {
-            Execute ("INSERT INTO CoreConfiguration VALUES (null, 'MetadataVersion', 0)");
+            Execute ("INSERT INTO CoreConfiguration (EntryID, Key, Value) VALUES (null, 'MetadataVersion', 0)");
             return true;
         }
         
@@ -803,9 +803,9 @@ namespace Banshee.Database
                     Value               TEXT
                 )
             ");
-            Execute (String.Format ("INSERT INTO CoreConfiguration VALUES (null, 'DatabaseVersion', {0})", CURRENT_VERSION));
+            Execute (String.Format ("INSERT INTO CoreConfiguration (EntryID, Key, Value) VALUES (null, 'DatabaseVersion', {0})", CURRENT_VERSION));
             if (!refresh_metadata) {
-                Execute (String.Format ("INSERT INTO CoreConfiguration VALUES (null, 'MetadataVersion', {0})", CURRENT_METADATA_VERSION));
+                Execute (String.Format ("INSERT INTO CoreConfiguration (EntryID, Key, Value) VALUES (null, 'MetadataVersion', {0})", CURRENT_METADATA_VERSION));
             }
             
             Execute(@"
@@ -993,26 +993,34 @@ namespace Banshee.Database
         private void MigrateFromLegacyBanshee()
         {
             Execute(@"
-                INSERT INTO CoreArtists 
-                    SELECT DISTINCT null, 0, null, Artist, NULL, 0 
+                INSERT INTO CoreArtists
+                    (ArtistID, TagSetID, MusicBrainzID, Name, NameLowered, NameSort, Rating)
+                    SELECT DISTINCT null, 0, null, Artist, NULL, NULL, 0
                         FROM Tracks 
                         ORDER BY Artist
             ");
             
             Execute(@"
                 INSERT INTO CoreAlbums
+                    (AlbumID, ArtistID, TagSetID, MusicBrainzID, Title, TitleLowered, TitleSort, ReleaseDate,
+                    Duration, Year, IsCompilation, ArtistName, ArtistNameLowered, ArtistNameSort, Rating)
                     SELECT DISTINCT null,
                         (SELECT ArtistID 
                             FROM CoreArtists 
                             WHERE Name = Tracks.Artist
                             LIMIT 1),
-                        0, null, AlbumTitle, NULL, ReleaseDate, 0, 0, 0, Artist, NULL, 0
+                        0, null, AlbumTitle, NULL, NULL, ReleaseDate, 0, 0, 0, Artist, NULL, NULL, 0
                         FROM Tracks
                         ORDER BY AlbumTitle
             ");
             
             Execute (String.Format (@"
                 INSERT INTO CoreTracks
+                    (PrimarySourceID, TrackID, ArtistID, AlbumID, TagSetID, ExternalID, MusicBrainzID, Uri, MimeType,
+                    FileSize, BitRate, Attributes, LastStreamError, Title, TitleLowered, TrackNumber, TrackCount,
+                    Disc, DiscCount, Duration, Year, Genre, Composer, Conductor, Grouping, Copyright, LicenseUri,
+                    Comment, Rating, Score, PlayCount, SkipCount, LastPlayedStamp, LastSkippedStamp, DateAddedStamp,
+                    DateUpdatedStamp, MetadataHash, BPM, LastSyncedStamp, FileModifiedStamp)
                     SELECT 
                         1,
                         TrackID, 
@@ -1060,6 +1068,7 @@ namespace Banshee.Database
                     INSERT INTO CorePlaylists (PlaylistID, Name, SortColumn, SortType)
                         SELECT * FROM Playlists;
                     INSERT INTO CorePlaylistEntries
+                        (EntryID, PlaylistID, TrackID, ViewOrder)
                         SELECT * FROM PlaylistEntries
                 ");
             } catch (Exception e) {
@@ -1212,7 +1221,7 @@ namespace Banshee.Database
             }
 
             if (ServiceManager.DbConnection.Query<int> ("SELECT count(*) FROM CoreConfiguration WHERE Key = 'MetadataVersion'") == 0) {
-                Execute (String.Format ("INSERT INTO CoreConfiguration VALUES (null, 'MetadataVersion', {0})", CURRENT_METADATA_VERSION));
+                Execute (String.Format ("INSERT INTO CoreConfiguration (EntryID, Key, Value) VALUES (null, 'MetadataVersion', {0})", CURRENT_METADATA_VERSION));
             } else {
                 Execute (String.Format ("UPDATE CoreConfiguration SET Value = {0} WHERE Key = 'MetadataVersion'", CURRENT_METADATA_VERSION));
             }

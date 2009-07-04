@@ -104,11 +104,11 @@ namespace Banshee.Sources
         protected bool error_source_visible = false;
 
         protected string remove_range_sql = @"
-            INSERT INTO CoreRemovedTracks SELECT ?, TrackID, Uri FROM CoreTracks WHERE TrackID IN (SELECT {0});
+            INSERT INTO CoreRemovedTracks (DateRemovedStamp, TrackID, Uri) SELECT ?, TrackID, Uri FROM CoreTracks WHERE TrackID IN (SELECT {0});
             DELETE FROM CoreTracks WHERE TrackID IN (SELECT {0})";
 
         protected HyenaSqliteCommand remove_list_command = new HyenaSqliteCommand (@"
-            INSERT INTO CoreRemovedTracks SELECT ?, TrackID, Uri FROM CoreTracks WHERE TrackID IN (SELECT ItemID FROM CoreCache WHERE ModelID = ?);
+            INSERT INTO CoreRemovedTracks (DateRemovedStamp, TrackID, Uri) SELECT ?, TrackID, Uri FROM CoreTracks WHERE TrackID IN (SELECT ItemID FROM CoreCache WHERE ModelID = ?);
             DELETE FROM CoreTracks WHERE TrackID IN (SELECT ItemID FROM CoreCache WHERE ModelID = ?)
         ");
 
