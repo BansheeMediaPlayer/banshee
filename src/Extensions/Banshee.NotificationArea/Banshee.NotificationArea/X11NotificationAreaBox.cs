@@ -51,6 +51,7 @@ namespace Banshee.NotificationArea
         private TrackInfoPopup popup;
         private bool can_show_popup = false;
         private bool cursor_over_trayicon = false;
+        private bool hide_delay_started = false;
         private int panel_size;
         
         public event EventHandler Disconnected;
@@ -216,6 +217,16 @@ namespace Banshee.NotificationArea
             }
             
             popup = new TrackInfoPopup ();
+            popup.EnterNotifyEvent += delegate {
+                hide_delay_started = false;
+            };
+            popup.LeaveNotifyEvent += delegate(object o, LeaveNotifyEventArgs args) {
+                Gdk.Rectangle rect;
+                if (!popup.Intersect (new Gdk.Rectangle ((int)args.Event.X, (int)args.Event.Y, 1, 1), out rect)) {
+                    OnLeaveNotifyEvent (o, args);
+                }
+            };
+
             PositionPopup ();
 
             popup.Show ();
@@ -229,15 +240,15 @@ namespace Banshee.NotificationArea
             
             PositionWidget (popup, out x, out y, 5);
             
-            x = x - (popup_req.Width / 2) + (event_box_req.Width / 2);     
-
             int monitor = event_box.Screen.GetMonitorAtPoint (x, y);
-            int monitor_width = event_box.Screen.GetMonitorGeometry(monitor).Width;
+            var monitor_rect = event_box.Screen.GetMonitorGeometry(monitor);
 
-            if (x + popup_req.Width >= monitor_width) {
-                x = monitor_width - popup_req.Width - 5;
-            } else if (x < 5) {
-                x = 5;
+            x = x - (popup_req.Width / 2) + (event_box_req.Width / 2);
+
+            if (x + popup_req.Width >= monitor_rect.Right - 5) {
+                x = monitor_rect.Right - popup_req.Width - 5;
+            } else if (x < monitor_rect.Left + 5) {
+                x = monitor_rect.Left + 5;
             }
             
             popup.Move (x, y);
@@ -301,6 +312,7 @@ namespace Banshee.NotificationArea
         
         private void OnEnterNotifyEvent (object o, EnterNotifyEventArgs args) 
         {
+            hide_delay_started = false;
             cursor_over_trayicon = true;
             if (can_show_popup) {
                 // only show the popup when the cursor is still over the
@@ -316,8 +328,18 @@ namespace Banshee.NotificationArea
         
         private void OnLeaveNotifyEvent (object o, LeaveNotifyEventArgs args) 
         {
-            cursor_over_trayicon = false;
-            HidePopup ();
+            // Give the user half a second to move the mouse cursor to the popup.
+            if (!hide_delay_started) {
+                hide_delay_started = true;
+                GLib.Timeout.Add (500, delegate {
+                    if (hide_delay_started) {
+                        hide_delay_started = false;
+                        cursor_over_trayicon = false;
+                        HidePopup ();
+                    }
+                    return false;
+                });
+            }
         }
         
         public void OnPlayerEvent (PlayerEventArgs args)

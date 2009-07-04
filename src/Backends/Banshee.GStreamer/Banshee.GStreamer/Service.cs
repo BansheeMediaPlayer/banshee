@@ -59,7 +59,7 @@ namespace Banshee.GStreamer
             }
             
             // Setup the gst plugins/registry paths if running Windows
-            if (!Banshee.Base.PlatformHacks.IsRunningUnix) {
+            if (!Hyena.PlatformUtil.IsRunningUnix) {
                 string [] gst_paths = new String [] {
                     "gst-plugins"
                 };

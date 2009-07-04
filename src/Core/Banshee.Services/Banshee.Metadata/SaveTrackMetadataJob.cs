@@ -92,8 +92,8 @@ namespace Banshee.Metadata
             } finally {
                 if (wrote || renamed) {
                     // Save the resulting changes to FileSize, LastSyncedStamp, possibly to Uri, etc
-                    // TODO need to clear track model caches if URI changed
-                    track.Save (false);
+                    // Clear track model caches if URI changed
+                    track.Save (renamed);
                 } else {
                     if (update_synced_at == null) {
                         update_synced_at = new HyenaSqliteCommand (

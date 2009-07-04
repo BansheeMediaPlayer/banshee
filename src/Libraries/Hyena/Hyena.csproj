@@ -37,6 +37,7 @@
     <PlatformTarget>x86</PlatformTarget>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Hyena.Data\BaseListModel.cs" />
     <Compile Include="Hyena.Data\ICareAboutView.cs" />
     <Compile Include="Hyena.Data\IFilterable.cs" />
     <Compile Include="Hyena.Data\IListModel.cs" />
@@ -109,6 +110,7 @@
     <Compile Include="Hyena.Data.Sqlite\SqliteUtils.cs" />
     <Compile Include="Hyena\Log.cs" />
     <Compile Include="Hyena\CryptoUtil.cs" />
+    <Compile Include="Hyena\PlatformUtil.cs" />
     <Compile Include="Hyena.Query\IntegerKeyedObjectQueryValue.cs" />
     <Compile Include="Hyena\ConsoleCrayon.cs" />
     <Compile Include="Hyena.Data\ISelectable.cs" />

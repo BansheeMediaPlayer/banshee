@@ -88,19 +88,6 @@ namespace Hyena.Data.Gui
             } else if (Model.Count <= RowsInView) {
                 // If our view fits all rows at once, make sure we're scrolled to the top
                 ScrollTo (0.0);
-            } else if (Selection != null && Selection.Count > 0 && !Selection.AllSelected) {
-                bool selection_in_view = false;
-                int first_row = GetRowAtY (0);
-                for (int i = 0; i < RowsInView; i++) {
-                    if (Selection.Contains (first_row + i)) {
-                        selection_in_view = true;
-                        break;
-                    }
-                }
-
-                if (!selection_in_view) {
-                    CenterOn (Selection.Ranges[0].Start);
-                }
             } else if (vadjustment != null) {
                 ScrollTo (vadjustment.Value);
             }

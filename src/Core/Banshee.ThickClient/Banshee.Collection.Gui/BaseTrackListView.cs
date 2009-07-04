@@ -34,6 +34,7 @@ using Hyena.Data;
 using Hyena.Data.Gui;
 using Hyena.Gui;
 
+using Banshee.Collection.Database;
 using Banshee.Sources;
 using Banshee.ServiceStack;
 using Banshee.MediaEngine;
@@ -51,7 +52,8 @@ namespace Banshee.Collection.Gui
             RowSensitivePropertyName = "CanPlay";
             RowBoldPropertyName = "IsPlaying";
             
-            ServiceManager.PlayerEngine.ConnectEvent (OnPlayerEvent, PlayerEvent.StateChange);
+            ServiceManager.PlayerEngine.ConnectEvent (
+                OnPlayerEvent, PlayerEvent.StartOfStream | PlayerEvent.StateChange);
             
             ForceDragSourceSet = true;
             IsEverReorderable = true;
@@ -88,10 +90,62 @@ namespace Banshee.Collection.Gui
             ServiceManager.Get<InterfaceActionService> ().TrackActions["TrackContextMenuAction"].Activate ();
             return true;
         }
-        
+
+        private string user_query;
+        protected override void OnModelReloaded ()
+        {
+            base.OnModelReloaded ();
+
+            var model = Model as IFilterable;
+            if (model != null && user_query != model.UserQuery) {
+                // Make sure selected tracks are visible as the user edits the query.
+                CenterOnSelection ();
+                user_query = model.UserQuery;
+            }
+        }
+
         private void OnPlayerEvent (PlayerEventArgs args)
         {
-            QueueDraw ();
+            if (args.Event == PlayerEvent.StartOfStream) {
+                UpdateSelection ();
+            } else if (args.Event == PlayerEvent.StateChange) {
+                QueueDraw ();
+            }
+        }
+
+        private TrackInfo current_track;
+        private void UpdateSelection ()
+        {
+            TrackInfo old_track = current_track;
+            current_track = ServiceManager.PlayerEngine.CurrentTrack;
+
+            var track_model = Model as TrackListModel;
+            if (track_model == null) {
+                return;
+            }
+
+            if (Selection.Count > 1) {
+                return;
+            }
+
+            int old_index = Selection.FirstIndex;
+            TrackInfo selected_track = Selection.Count == 1 ? track_model[old_index] : null;
+            if (selected_track != null && !selected_track.TrackEqual (old_track)) {
+                return;
+            }
+
+            int current_index = track_model.IndexOf (current_track);
+            if (current_index == -1) {
+                return;
+            }
+
+            Selection.Clear (false);
+            Selection.QuietSelect (current_index);
+            Selection.FocusedIndex = current_index;
+
+            if (old_index == -1 || IsRowVisible (old_index)) {
+                CenterOn (current_index);
+            }
         }
 
 #region Drag and Drop

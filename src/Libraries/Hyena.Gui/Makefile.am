@@ -16,6 +16,7 @@ SOURCES =  \
 	Hyena.Data.Gui/IListView.cs \
 	Hyena.Data.Gui/ISizeRequestCell.cs \
 	Hyena.Data.Gui/ITextCell.cs \
+	Hyena.Data.Gui/ITooltipCell.cs \
 	Hyena.Data.Gui/ListView/ListView.cs \
 	Hyena.Data.Gui/ListView/ListView_DragAndDrop.cs \
 	Hyena.Data.Gui/ListView/ListView_Header.cs \

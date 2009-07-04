@@ -72,9 +72,13 @@ namespace Lastfm
             set { scrobble_url = value; }
         }
 
+        public string SignUpUrl {
+            get { return "http://www.last.fm/join"; }
+        }
+
         public void SignUp ()
         {
-            Browser.Open ("http://www.last.fm/join");
+            Browser.Open (SignUpUrl);
         }
         
         public void VisitUserProfile (string username)
@@ -82,9 +86,13 @@ namespace Lastfm
             Browser.Open (String.Format ("http://last.fm/user/{0}", username));
         }
         
+        public string HomePageUrl {
+            get { return "http://www.last.fm/"; }
+        }
+        
         public void VisitHomePage ()
         {
-            Browser.Open ("http://last.fm/");
+            Browser.Open (HomePageUrl);
         }
         
         public virtual void Save ()

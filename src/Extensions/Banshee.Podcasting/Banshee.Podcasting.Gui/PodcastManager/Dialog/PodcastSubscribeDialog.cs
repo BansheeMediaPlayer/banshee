@@ -132,8 +132,8 @@ namespace Banshee.Podcasting.Gui
                 string pasted = clipboard.WaitForText ();
                 if (!String.IsNullOrEmpty (pasted)) {
                     if (pasted.StartsWith ("http")) {
-                        url_entry.Text = pasted;
-                        url_entry.SelectRegion (0, pasted.Length);
+                        url_entry.Text = pasted.Trim ();
+                        url_entry.SelectRegion (0, url_entry.Text.Length);
                     }
                 }
             }

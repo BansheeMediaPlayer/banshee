@@ -39,8 +39,6 @@ namespace Banshee.GnomeBackend
 {
     public class GConfConfigurationClient : IConfigurationClient
     {
-        private static string base_key = "/apps/banshee-1/";
-        
         private GConf.Client client;
         private Dictionary<string, string> key_table = new Dictionary<string, string> ();
         
@@ -58,6 +56,20 @@ namespace Banshee.GnomeBackend
             }
         }
 
+        private static string base_key;
+        private static string BaseKey {
+            get {
+                if (base_key == null) {
+                    base_key = ApplicationContext.CommandLine["gconf-base-key"];
+                    if (!base_key.StartsWith ("/apps/") || !base_key.EndsWith ("/")) {
+                        Log.Debug ("Using default gconf-base-key");
+                        base_key = "/apps/banshee-1/";
+                    }
+                }
+                return base_key;
+            }
+        }
+
         private string CreateKey (string @namespace, string part)
         {
             string hash_key = String.Concat (@namespace, part);
@@ -65,13 +77,13 @@ namespace Banshee.GnomeBackend
                 if (!key_table.ContainsKey (hash_key)) {
                     part = part.Replace ('/', '_');
                     if (@namespace == null) {
-                        key_table.Add (hash_key, String.Concat (base_key, StringUtil.CamelCaseToUnderCase (part)));
+                        key_table.Add (hash_key, String.Concat (BaseKey, StringUtil.CamelCaseToUnderCase (part)));
                     } else if (@namespace.StartsWith ("/")) {
                         key_table.Add (hash_key, String.Concat (@namespace,
                             @namespace.EndsWith ("/") ? String.Empty : "/", StringUtil.CamelCaseToUnderCase (part)));
                     } else {
                         @namespace = @namespace.Replace ('/', '_');
-                        key_table.Add (hash_key, String.Concat (base_key,
+                        key_table.Add (hash_key, String.Concat (BaseKey,
                             StringUtil.CamelCaseToUnderCase (String.Concat (@namespace.Replace (".", "/"), "/", part))
                         ));
                     }

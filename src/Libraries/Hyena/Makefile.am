@@ -33,6 +33,7 @@ SOURCES =  \
 	Hyena.Data.Sqlite/Tests/SqliteModelProviderTests.cs \
 	Hyena.Data.Sqlite/Tests/SqliteUtilTests.cs \
 	Hyena.Data/ArrayModelCache.cs \
+	Hyena.Data/BaseListModel.cs \
 	Hyena.Data/ColumnDescription.cs \
 	Hyena.Data/DictionaryModelCache.cs \
 	Hyena.Data/ICacheableItem.cs \
@@ -110,6 +111,7 @@ SOURCES =  \
 	Hyena/Delegates.cs \
 	Hyena/IUndoAction.cs \
 	Hyena/Log.cs \
+	Hyena/PlatformUtil.cs \
 	Hyena/StringUtil.cs \
 	Hyena/Tests/CryptoUtilTests.cs \
 	Hyena/Tests/StringUtilTests.cs \

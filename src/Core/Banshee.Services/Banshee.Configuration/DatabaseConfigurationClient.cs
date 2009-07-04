@@ -58,7 +58,7 @@ namespace Banshee.Configuration
                 "SELECT EntryID FROM {0} WHERE Key=?", TableName));
             
             insert_command = new HyenaSqliteCommand (String.Format (
-                "INSERT INTO {0} VALUES (NULL, ?, ?)", TableName));
+                "INSERT INTO {0} (EntryID, Key, Value) VALUES (NULL, ?, ?)", TableName));
             
             update_command = new HyenaSqliteCommand (String.Format (
                 "UPDATE {0} SET Value=? WHERE Key=?", TableName));

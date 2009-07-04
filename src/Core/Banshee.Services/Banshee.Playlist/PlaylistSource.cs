@@ -81,6 +81,7 @@ namespace Banshee.Playlist
         {
             add_track_range_command = new HyenaSqliteCommand (@"
                 INSERT INTO CorePlaylistEntries
+                    (EntryID, PlaylistID, TrackID, ViewOrder)
                     SELECT null, ?, ItemID, OrderId + ?
                         FROM CoreCache WHERE ModelID = ?
                         LIMIT ?, ?"
@@ -88,11 +89,13 @@ namespace Banshee.Playlist
 
             add_track_command = new HyenaSqliteCommand (@"
                 INSERT INTO CorePlaylistEntries
+                    (EntryID, PlaylistID, TrackID, ViewOrder)
                     VALUES (null, ?, ?, ?)"
             );
 
             add_track_range_from_joined_model_sql = @"
                 INSERT INTO CorePlaylistEntries
+                    (EntryID, PlaylistID, TrackID, ViewOrder)
                     SELECT null, ?, TrackID, OrderId + ?
                         FROM CoreCache c INNER JOIN {0} e ON c.ItemID = e.{1}
                         WHERE ModelID = ?

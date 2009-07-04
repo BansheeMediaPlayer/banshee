@@ -504,8 +504,8 @@ namespace Hyena.Data.Gui
                         case SortType.None:         sort_column.SortType = SortType.Ascending; break;
                     }
 
-                    // If we're switching from a different column, or we aren't reorderable, make sure sort type isn't None
-                    if ((sort_column != ColumnController.SortColumn || !IsEverReorderable) && sort_column.SortType == SortType.None) {
+                    // If we're switching to a different column or we aren't reorderable and the type is None, sort Ascending
+                    if (sort_column != ColumnController.SortColumn || (!IsEverReorderable && sort_column.SortType == SortType.None)) {
                         sort_column.SortType = SortType.Ascending;
                     }
 
@@ -784,7 +784,31 @@ namespace Hyena.Data.Gui
         {
             ScrollTo (index - RowsInView/2 + 1);
         }
-                
+
+        public bool IsRowVisible (int index)
+        {
+            double y = GetYAtRow (index);
+            return vadjustment.Value <= y && y < vadjustment.Value + vadjustment.PageSize;
+        }
+
+        protected void CenterOnSelection ()
+        {
+            if (Selection != null && Selection.Count > 0 && !Selection.AllSelected) {
+                bool selection_in_view = false;
+                int first_row = GetRowAtY (0);
+                for (int i = 0; i < RowsInView; i++) {
+                    if (Selection.Contains (first_row + i)) {
+                        selection_in_view = true;
+                        break;
+                    }
+                }
+
+                if (!selection_in_view) {
+                    CenterOn (Selection.Ranges[0].Start);
+                }
+            }
+        }
+
         protected override void OnSetScrollAdjustments (Adjustment hadj, Adjustment vadj)
         {
             if (hadj == null || vadj == null) {

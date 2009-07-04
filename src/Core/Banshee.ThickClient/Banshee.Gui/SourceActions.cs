@@ -66,7 +66,7 @@ namespace Banshee.Gui
             get { return (SourceView.HighlightedSource as PrimarySource) ?? base.ActivePrimarySource; }
         }
 
-        public SourceActions (InterfaceActionService actionService) : base (actionService, "Source")
+        public SourceActions () : base ("Source")
         {
             Add (new ActionEntry [] {
                 new ActionEntry ("NewPlaylistAction", null,

@@ -1,10 +1,10 @@
-//
-// PlaybackShuffleMode.cs
+// 
+// PlatformUtil.cs
 //
 // Author:
-//   Aaron Bockover <abockover@novell.com>
+//   Gabriel Burt <gburt@novell.com>
 //
-// Copyright (C) 2007-2008 Novell, Inc.
+// Copyright (C) 2009 Novell, Inc.
 //
 // Permission is hereby granted, free of charge, to any person obtaining
 // a copy of this software and associated documentation files (the
@@ -27,28 +27,19 @@
 //
 
 using System;
+using System.Text;
+using System.Runtime.InteropServices;
 
-namespace Banshee.PlaybackController
+namespace Hyena
 {
-    public enum PlaybackShuffleMode
+    public static class PlatformUtil
     {
-        Linear,
-        Song,
-        Artist,
-        Album,
-        Rating
-    }
-
-    public class ShuffleModeChangedEventArgs : EventArgs
-    {
-        private PlaybackShuffleMode shuffle_mode;
-        public PlaybackShuffleMode ShuffleMode {
-            get { return shuffle_mode; }
-        }
-
-        public ShuffleModeChangedEventArgs (PlaybackShuffleMode shuffle_mode)
-        {
-            this.shuffle_mode = shuffle_mode;
+        public static bool IsRunningUnix {
+            get {
+                // From http://www.mono-project.com/FAQ:_Technical
+                int p = (int) System.Environment.OSVersion.Platform;
+                return (p == 4) || (p == 6) || (p == 128);
+            }
         }
     }
 }

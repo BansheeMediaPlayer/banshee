@@ -57,7 +57,7 @@ namespace Banshee.Gui
             get { return shuffle_actions; }
         }
         
-        public PlaybackActions (InterfaceActionService actionService) : base (actionService, "Playback")
+        public PlaybackActions () : base ("Playback")
         {
             ImportantByDefault = false;
 
@@ -94,7 +94,7 @@ namespace Banshee.Gui
                     OnStopWhenFinishedAction, false)
             });
             
-            actionService.GlobalActions.Add (new ActionEntry [] {
+            Actions.GlobalActions.Add (new ActionEntry [] {
                 new ActionEntry ("PlaybackMenuAction", null,
                     Catalog.GetString ("_Playback"), null, null, null),
             });
@@ -112,8 +112,8 @@ namespace Banshee.Gui
                 PlayerEvent.EndOfStream | 
                 PlayerEvent.StateChange);
             
-            repeat_actions = new PlaybackRepeatActions (actionService);
-            shuffle_actions = new PlaybackShuffleActions (actionService, this);
+            repeat_actions = new PlaybackRepeatActions (Actions);
+            shuffle_actions = new PlaybackShuffleActions (Actions, this);
         }
         
         private void OnPlayerEvent (PlayerEventArgs args)

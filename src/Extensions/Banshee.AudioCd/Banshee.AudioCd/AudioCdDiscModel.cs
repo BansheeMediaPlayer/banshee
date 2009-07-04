@@ -116,100 +116,105 @@ namespace Banshee.AudioCd
         
         private void LoadDiscMetadata (object state)
         {
-            LocalDisc mb_disc = (LocalDisc)state;
-            
-            OnMetadataQueryStarted (mb_disc);
-            
-            Release release = Release.Query (mb_disc).PerfectMatch ();
-
-            var tracks = release.GetTracks ();
-            if (release == null || tracks.Count != Count) {
-                OnMetadataQueryFinished (false);
-                return;
-            }
-                        
-            disc_title = release.GetTitle ();
-            
-            int disc_number = 1;
-            int i = 0;
-            
-            foreach (Disc disc in release.GetDiscs ()) {
-                i++;
-                if (disc.Id == mb_disc.Id) {
-                    disc_number = i;
+            try {
+                LocalDisc mb_disc = (LocalDisc)state;
+                
+                OnMetadataQueryStarted (mb_disc);
+                
+                Release release = Release.Query (mb_disc).PerfectMatch ();
+    
+                var tracks = release.GetTracks ();
+                if (release == null || tracks.Count != Count) {
+                    OnMetadataQueryFinished (false);
+                    return;
                 }
-            }
-            
-            DateTime release_date = DateTime.MaxValue;
- 
-            foreach (Event release_event in release.GetEvents ()) {
-                if (release_event.Date != null) {
-                    try {
-                        // Handle "YYYY" dates
-                        var date_str = release_event.Date;
-                        DateTime date = DateTime.Parse (
-                            date_str.Length > 4 ? date_str : date_str + "-01",
-                            ApplicationContext.InternalCultureInfo
-                        );
-
-                        if (date < release_date) {
-                            release_date = date;
-                        }
-                    } catch {
+                            
+                disc_title = release.GetTitle ();
+                
+                int disc_number = 1;
+                int i = 0;
+                
+                foreach (Disc disc in release.GetDiscs ()) {
+                    i++;
+                    if (disc.Id == mb_disc.Id) {
+                        disc_number = i;
                     }
                 }
-            }
-            
-            DatabaseArtistInfo artist = new DatabaseArtistInfo ();
-            var mb_artist = release.GetArtist ();
-            artist.Name = mb_artist.GetName ();
-            artist.NameSort = mb_artist.GetSortName ();
-            artist.MusicBrainzId = mb_artist.Id;
-            bool is_compilation = false;
-            
-            DatabaseAlbumInfo album = new DatabaseAlbumInfo ();
-            album.Title = disc_title;
-            album.ArtistName = artist.Name;
-            album.MusicBrainzId = release.Id;
-            album.ReleaseDate = release_date == DateTime.MaxValue ? DateTime.MinValue : release_date;
-            
-            i = 0;
-            foreach (Track track in tracks) {
-                AudioCdTrackInfo model_track = (AudioCdTrackInfo)this[i++];
-                var mb_track_artist = track.GetArtist ();
                 
-                model_track.MusicBrainzId = track.Id;
-                model_track.TrackTitle = track.GetTitle ();
-                model_track.ArtistName = mb_track_artist.GetName ();
-                model_track.AlbumTitle = disc_title;
-                model_track.DiscNumber = disc_number;
-                model_track.Album = album;
-
-                model_track.Artist = new DatabaseArtistInfo ();
-                model_track.Artist.Name = model_track.ArtistName;
-                model_track.Artist.NameSort = mb_track_artist.GetSortName ();
-                model_track.Artist.MusicBrainzId = mb_track_artist.Id;
+                DateTime release_date = DateTime.MaxValue;
+     
+                foreach (Event release_event in release.GetEvents ()) {
+                    if (release_event.Date != null) {
+                        try {
+                            // Handle "YYYY" dates
+                            var date_str = release_event.Date;
+                            DateTime date = DateTime.Parse (
+                                date_str.Length > 4 ? date_str : date_str + "-01",
+                                ApplicationContext.InternalCultureInfo
+                            );
+    
+                            if (date < release_date) {
+                                release_date = date;
+                            }
+                        } catch {
+                        }
+                    }
+                }
                 
-                if (release_date != DateTime.MinValue) {
-                    model_track.Year = release_date.Year;
+                DatabaseArtistInfo artist = new DatabaseArtistInfo ();
+                var mb_artist = release.GetArtist ();
+                artist.Name = mb_artist.GetName ();
+                artist.NameSort = mb_artist.GetSortName ();
+                artist.MusicBrainzId = mb_artist.Id;
+                bool is_compilation = false;
+                
+                DatabaseAlbumInfo album = new DatabaseAlbumInfo ();
+                album.Title = disc_title;
+                album.ArtistName = artist.Name;
+                album.MusicBrainzId = release.Id;
+                album.ReleaseDate = release_date == DateTime.MaxValue ? DateTime.MinValue : release_date;
+                
+                i = 0;
+                foreach (Track track in tracks) {
+                    AudioCdTrackInfo model_track = (AudioCdTrackInfo)this[i++];
+                    var mb_track_artist = track.GetArtist ();
+                    
+                    model_track.MusicBrainzId = track.Id;
+                    model_track.TrackTitle = track.GetTitle ();
+                    model_track.ArtistName = mb_track_artist.GetName ();
+                    model_track.AlbumTitle = disc_title;
+                    model_track.DiscNumber = disc_number;
+                    model_track.Album = album;
+    
+                    model_track.Artist = new DatabaseArtistInfo ();
+                    model_track.Artist.Name = model_track.ArtistName;
+                    model_track.Artist.NameSort = mb_track_artist.GetSortName ();
+                    model_track.Artist.MusicBrainzId = mb_track_artist.Id;
+                    
+                    if (release_date != DateTime.MinValue) {
+                        model_track.Year = release_date.Year;
+                    }
+    
+                    if (!is_compilation && mb_track_artist.Id != artist.MusicBrainzId) {
+                        is_compilation = true;
+                    }
                 }
-
-                if (!is_compilation && mb_track_artist.Id != artist.MusicBrainzId) {
-                    is_compilation = true;
+    
+                if (is_compilation) {
+                    album.IsCompilation = true;
+                    for (i = 0; i < tracks.Count; i++) {
+                        AudioCdTrackInfo model_track = (AudioCdTrackInfo)this[i];
+                        model_track.IsCompilation = true;
+                        model_track.AlbumArtist = artist.Name;
+                        model_track.AlbumArtistSort = artist.NameSort;
+                    }
                 }
+                
+                OnMetadataQueryFinished (true);
+            } catch (Exception ex) {
+                Log.DebugException (ex);
+                OnMetadataQueryFinished (false);
             }
-
-            if (is_compilation) {
-                album.IsCompilation = true;
-                for (i = 0; i < tracks.Count; i++) {
-                    AudioCdTrackInfo model_track = (AudioCdTrackInfo)this[i];
-                    model_track.IsCompilation = true;
-                    model_track.AlbumArtist = artist.Name;
-                    model_track.AlbumArtistSort = artist.NameSort;
-                }
-            }
-            
-            OnMetadataQueryFinished (true);
         }
         
         private void OnMetadataQueryStarted (LocalDisc mb_disc)

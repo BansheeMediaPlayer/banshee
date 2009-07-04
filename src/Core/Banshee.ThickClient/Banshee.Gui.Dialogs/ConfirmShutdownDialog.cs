@@ -89,6 +89,10 @@ namespace Banshee.Gui.Dialogs
                 Dialog.Respond(Gtk.ResponseType.Ok);
                 return;
             }
+
+            if (ListView == null || ListView.Model == null) {
+                return;
+            }
             
             for(int i = 0, n = ListView.Model.IterNChildren(); i < n; i++) {
                 TreeIter iter;

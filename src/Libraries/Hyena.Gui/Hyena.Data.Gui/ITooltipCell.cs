@@ -1,10 +1,10 @@
 //
-// ExportableModel.cs
+// ITooltipCell.cs
 //
 // Author:
-//   Aaron Bockover <abockover@novell.com>
+//   Gabriel Burt <gburt@novell.com>
 //
-// Copyright (C) 2007 Novell, Inc.
+// Copyright (C) 2009 Novell, Inc.
 //
 // Permission is hereby granted, free of charge, to any person obtaining
 // a copy of this software and associated documentation files (the
@@ -26,29 +26,13 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using Banshee.ServiceStack;
+using System;
+using Gdk;
 
-namespace Banshee.Collection
+namespace Hyena.Data.Gui
 {
-    public class ExportableModel : IDBusExportable
+    public interface ITooltipCell
     {
-        private IDBusExportable parent;
-        
-        public ExportableModel()
-        {
-        }
-        
-        public ExportableModel(IDBusExportable parent)
-        {
-        }
-        
-        public virtual string ServiceName {
-            get { return GetType().Name; }   
-        }
-        
-        public virtual IDBusExportable Parent {
-            set { parent = value; }
-            get { return parent; }
-        }
+        string GetTooltipMarkup (CellContext cellContext, double columnWidth);
     }
 }

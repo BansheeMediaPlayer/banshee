@@ -417,7 +417,10 @@ namespace MusicBrainz
                 throw new MusicBrainzNotFoundException ();
             }
 
-            bool from_cache = cache_implemented && response.IsFromCache;
+            bool from_cache = false;
+            try {
+                from_cache = cache_implemented && response.IsFromCache;
+            } catch (NotImplementedException) {}
 
             if (from_cache) Monitor.Exit (server_mutex);
 

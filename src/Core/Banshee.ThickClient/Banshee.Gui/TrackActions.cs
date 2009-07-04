@@ -57,7 +57,7 @@ namespace Banshee.Gui
         
         public event EventHandler SelectionChanged;
 
-        public TrackActions (InterfaceActionService actionService) : base (actionService, "Track")
+        public TrackActions () : base ("Track")
         {
             Add (new ActionEntry [] {
                 new ActionEntry("TrackContextMenuAction", null, 

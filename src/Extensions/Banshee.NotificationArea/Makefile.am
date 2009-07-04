@@ -23,7 +23,7 @@ SOURCES =  \
 SOURCES += $(NOTIFY_SHARP_SOURCES)
 
 RESOURCES =  \
-	Resources/Banshee.NotificationArea.addin.xml \
+	Banshee.NotificationArea.addin.xml \
 	Resources/NotificationAreaMenu.xml
 
 if ENABLE_OSX

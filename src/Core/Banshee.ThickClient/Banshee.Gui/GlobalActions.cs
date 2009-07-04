@@ -42,7 +42,7 @@ namespace Banshee.Gui
 {
     public class GlobalActions : BansheeActionGroup
     {
-        public GlobalActions (InterfaceActionService actionService) : base (actionService, "Global")
+        public GlobalActions () : base ("Global")
         {
             Add (new ActionEntry [] {
                 // Media Menu

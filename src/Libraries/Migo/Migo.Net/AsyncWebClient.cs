@@ -721,30 +721,33 @@ namespace Migo.Net
                     OnDownloadFileCompleted (errPtr, cancelledCpy, userStatePtr);
                     break;
                 case DownloadType.String:
-                    string s;
-                    try {
-                        s = Encoding.GetString (resultPtr).TrimStart ();
-    
-                        // Workaround if the string is a XML to set the encoding from it
-                        if (s.StartsWith("<?xml")) {
-                            Match match = encoding_regexp.Match (s);
-                            if (match.Success && match.Groups.Count > 0) {
-                                string encodingStr = match.Groups[1].Value;
-                                try {
-                                    Encoding enc = Encoding.GetEncoding (encodingStr);
-                                    if (!enc.Equals (Encoding)) {
-                                        s = enc.GetString (resultPtr);
-                                    }
-                                } catch (ArgumentException) {}
+                    string s = null;
+
+                    if (resultPtr != null) {
+                        try {
+                            s = Encoding.GetString (resultPtr).TrimStart ();
+        
+                            // Workaround if the string is a XML to set the encoding from it
+                            if (s.StartsWith("<?xml")) {
+                                Match match = encoding_regexp.Match (s);
+                                if (match.Success && match.Groups.Count > 0) {
+                                    string encodingStr = match.Groups[1].Value;
+                                    try {
+                                        Encoding enc = Encoding.GetEncoding (encodingStr);
+                                        if (!enc.Equals (Encoding)) {
+                                            s = enc.GetString (resultPtr);
+                                        }
+                                    } catch (ArgumentException) {}
+                                }
                             }
+                        } catch (Exception ex) {
+                            Hyena.Log.DebugException (ex);
+                            s = String.Empty;
                         }
-                    } catch (Exception ex) {
-                        Hyena.Log.DebugException (ex);
-                        s = String.Empty;
                     }
                 
                     OnDownloadStringCompleted (
-                        s, errPtr, cancelledCpy, userStatePtr
+                        s ?? "", errPtr, cancelledCpy, userStatePtr
                     );
                     break;
             }

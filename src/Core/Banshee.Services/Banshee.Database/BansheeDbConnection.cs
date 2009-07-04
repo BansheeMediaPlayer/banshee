@@ -99,15 +99,17 @@ namespace Banshee.Database
             
             if (TableExists ("sqlite_stat1")) {
                 foreach (string table_name in tables_with_indexes) {
-                    long count = Query<long> (String.Format ("SELECT COUNT(*) FROM {0}", table_name));
-                    string stat = Query<string> ("SELECT stat FROM sqlite_stat1 WHERE tbl = ? LIMIT 1", table_name);
-                    // stat contains space-separated integers,
-                    // the first is the number of records in the table
-                    long items_indexed = stat != null ? long.Parse (stat.Split (' ')[0]) : 0;
-                    
-                    if (Math.Abs (count - items_indexed) > analyze_threshold) {
-                        needs_analyze = true;
-                        break;
+                    if (TableExists (table_name)) {
+                        long count = Query<long> (String.Format ("SELECT COUNT(*) FROM {0}", table_name));
+                        string stat = Query<string> ("SELECT stat FROM sqlite_stat1 WHERE tbl = ? LIMIT 1", table_name);
+                        // stat contains space-separated integers,
+                        // the first is the number of records in the table
+                        long items_indexed = stat != null ? long.Parse (stat.Split (' ')[0]) : 0;
+
+                        if (Math.Abs (count - items_indexed) > analyze_threshold) {
+                            needs_analyze = true;
+                            break;
+                        }
                     }
                 }
             } else {

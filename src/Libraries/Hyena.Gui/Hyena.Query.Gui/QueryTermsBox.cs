@@ -4,8 +4,10 @@
 // Authors:
 //   Aaron Bockover <abockover@novell.com>
 //   Gabriel Burt <gburt@novell.com>
+//   Alexander Kojevnikov <alexander@kojevnikov.com>
 //
 // Copyright (C) 2005-2008 Novell, Inc.
+// Copyright (C) 2009 Alexander Kojevnikov
 //
 // Permission is hereby granted, free of charge, to any person obtaining
 // a copy of this software and associated documentation files (the
@@ -30,6 +32,7 @@
 using System;
 using System.Text;
 using System.Collections.Generic;
+using System.Linq;
 
 using Gtk;
 using Hyena;
@@ -37,50 +40,29 @@ using Hyena.Query;
 
 namespace Hyena.Query.Gui
 {
-    public class QueryTermsBox : HBox
+    public class QueryTermsBox : Table
     {
         private QueryField [] sorted_fields;
         private List<QueryTermBox> terms = new List<QueryTermBox> ();
-        private VBox field_box, op_box, entry_box, button_box;
 
         public QueryTermBox FirstRow {
             get { return terms.Count > 0 ? terms[0] : null; }
         }
         
-        public QueryTermsBox (QueryFieldSet fieldSet) : base ()
+        public QueryTermsBox (QueryFieldSet fieldSet) : base (1, 4, false)
         {
             // Sort the fields alphabetically by their label
-            sorted_fields = new QueryField [fieldSet.Fields.Length];
-            Array.Copy (fieldSet.Fields, sorted_fields, sorted_fields.Length);
-            Array.Sort<QueryField> (sorted_fields, delegate (QueryField a, QueryField b) { return a.Label.CompareTo (b.Label); });
+            sorted_fields = fieldSet.OrderBy (f => f.Label).ToArray ();
 
-            Spacing = 5;
-
-            field_box = new VBox ();
-            op_box = new VBox ();
-            entry_box = new VBox ();
-            button_box = new VBox ();
-
-            field_box.Spacing = 5;
-            op_box.Spacing = 5;
-            entry_box.Spacing = 5;
-            button_box.Spacing = 5;
-
-            PackStart (field_box,   false, false, 0);
-            PackStart (op_box,      false, false, 0);
-            PackStart (entry_box,   false, true, 0);
-            PackStart (button_box,  false, false, 0);
+            ColumnSpacing = 5;
+            RowSpacing = 5;
 
             CreateRow (false);
         }
 
         public List<QueryNode> QueryNodes {
             get {
-                List<QueryNode> nodes = new List<QueryNode> ();
-                foreach (QueryTermBox term_box in terms) {
-                    nodes.Add (term_box.QueryNode);
-                }
-                return nodes;
+                return terms.Select<QueryTermBox, QueryNode> (t => t.QueryNode).ToList ();
             }
             set {
                 ClearRows ();
@@ -110,10 +92,11 @@ namespace Hyena.Query.Gui
             row.ValueEntry.HeightRequest = 31;
             row.Buttons.HeightRequest = 31;
 
-            field_box.PackStart  (row.FieldChooser, false, false, 0);
-            op_box.PackStart     (row.OpChooser, false, false, 0);
-            entry_box.PackStart  (row.ValueEntry, false, false, 0);
-            button_box.PackStart (row.Buttons, false, false, 0);
+            Resize ((uint) terms.Count + 1, NColumns);
+            Attach (row.FieldChooser, 0, 1, NRows - 1, NRows);
+            Attach (row.OpChooser, 1, 2, NRows - 1, NRows);
+            Attach (row.ValueEntry, 2, 3, NRows - 1, NRows);
+            Attach (row.Buttons, 3, 4, NRows - 1, NRows);
 
             if (terms.Count > 0) {
                 row.FieldChooser.Active = terms[terms.Count - 1].FieldChooser.Active;
@@ -143,23 +126,39 @@ namespace Hyena.Query.Gui
         
         protected void OnRowRemoveRequest (object o, EventArgs args)
         {
-            RemoveRow (o as QueryTermBox);
+            RemoveRow (terms.IndexOf (o as QueryTermBox));
         }
 
         private void ClearRows ()
         {
-            while (terms.Count > 1) {
-                RemoveRow (terms[1]);
+            for (int index = terms.Count - 1; index > 0; index--) {
+                RemoveRow (index);
             }
         }
 
-        private void RemoveRow (QueryTermBox row)
+        private void RemoveRow (int index)
         {
-            field_box.Remove (row.FieldChooser);
-            op_box.Remove (row.OpChooser);
-            entry_box.Remove (row.ValueEntry);
-            button_box.Remove (row.Buttons);
+            FreezeChildNotify ();
 
+            QueryTermBox row = terms [index];
+            Remove (row.FieldChooser);
+            Remove (row.OpChooser);
+            Remove (row.ValueEntry);
+            Remove (row.Buttons);
+
+            for (int i = index + 1; i < terms.Count; i++) {
+                Remove (terms[i].FieldChooser);
+                Remove (terms[i].OpChooser);
+                Remove (terms[i].ValueEntry);
+                Remove (terms[i].Buttons);
+
+                Attach (terms[i].FieldChooser, 0, 1, (uint) i - 1, (uint) i);
+                Attach (terms[i].OpChooser, 1, 2, (uint) i - 1, (uint) i);
+                Attach (terms[i].ValueEntry, 2, 3, (uint) i - 1, (uint) i);
+                Attach (terms[i].Buttons, 3, 4, (uint) i - 1, (uint) i);
+            }
+
+            ThawChildNotify ();
             terms.Remove (row);
             UpdateCanDelete ();
         }
@@ -169,6 +168,12 @@ namespace Hyena.Query.Gui
             if (FirstRow != null) {
                 FirstRow.CanDelete = terms.Count > 1;
             }
+        }
+
+        private new void Attach (Widget widget, uint left_attach, uint right_attach, uint top_attach, uint bottom_attach)
+        {
+            Attach (widget, left_attach, right_attach, top_attach, bottom_attach,
+                AttachOptions.Expand | AttachOptions.Fill, AttachOptions.Shrink, 0, 0);
         }
     }
 }
