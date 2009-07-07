@@ -133,10 +133,7 @@ namespace Banshee.Paas.Aether
                     }
                     
                     if (item != null) {
-                        Console.WriteLine ("Item:  {0}", item.Name);                    
                         yield return item;
-                    } else {
-                        Console.WriteLine ("Item is null");
                     }
                 }
             }

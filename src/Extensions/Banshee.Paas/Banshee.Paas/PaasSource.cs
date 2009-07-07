@@ -181,10 +181,7 @@ namespace Banshee.Paas
         {
             if (items != null) {
                 RangeCollection rc = new RangeCollection ();
-                // This sucks, PaasItem needs to inherit from DatabaseTrackInfo                
-                
-                //Console.WriteLine (TrackModel.IndexOf (item.Track));
-                
+
                 foreach (PaasItem item in items) {
                     rc.Add ((int)item.TrackID);
                 }
@@ -254,13 +251,13 @@ namespace Banshee.Paas
         [GLib.ConnectBefore]
         private void OnPopupMenuHandler (object sender, Gtk.PopupMenuArgs e)
         {
-            Console.WriteLine ("Popup");
+            //Console.WriteLine ("Popup");
             actions.UpdateItemActions ();
         }
 
         private void OnFuckedPopupMenuHandler (object sender, EventArgs e)
         {
-            Console.WriteLine ("FuckedPopup");
+            //Console.WriteLine ("FuckedPopup");
             actions.UpdateItemActions ();
         }
 /*
