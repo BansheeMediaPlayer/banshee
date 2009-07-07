@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -26,12 +26,18 @@
       </CustomCommands>
     </CustomCommands>
     <AssemblyKeyFile>.</AssemblyKeyFile>
+    <OutputPath>bin\Debug</OutputPath>
+    <WarningLevel>4</WarningLevel>
+    <Optimize>false</Optimize>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Windows|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <PlatformTarget>x86</PlatformTarget>
     <AssemblyKeyFile>.</AssemblyKeyFile>
+    <OutputPath>bin\Windows</OutputPath>
+    <WarningLevel>4</WarningLevel>
+    <Optimize>false</Optimize>
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Core\Banshee.Core\Banshee.Core.csproj">
@@ -57,14 +63,8 @@
     <Reference Include="gdk-sharp" />
     <Reference Include="glib-sharp" />
     <Reference Include="gtk-sharp" />
-    <Reference Include="Mono.Posix">
-      <HintPath>..\..\..\winbin\Mono.Posix.dll</HintPath>
-    </Reference>
-    <Reference Include="MonoPosixHelper">
-      <HintPath>..\..\..\winbin\MonoPosixHelper.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-  <ItemGroup>
+    <Reference Include="Mono.Posix" />
+    <Reference Include="MonoPosixHelper" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
   </ItemGroup>

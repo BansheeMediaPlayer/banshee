@@ -39,7 +39,10 @@ using Banshee.Paas;
 using Banshee.Paas.Data;
 
 namespace Banshee.Paas.Gui
-{    
+{
+    // This can be removed if the DownloadManager is turned into a service.
+    public delegate object DataHelper (ColumnCell cell, object state);
+    
     public class ColumnCellPaasStatusIndicator : ColumnCellStatusIndicator
     {
         protected enum Offset : int {
@@ -50,6 +53,8 @@ namespace Banshee.Paas.Gui
 
         private int  icon_index = -1;
         private bool sensitive = true;
+
+        public DataHelper DataHelper;
 
         protected override int PixbufCount {
             get { return base.PixbufCount + (int)Offset.Count; }
@@ -85,7 +90,7 @@ namespace Banshee.Paas.Gui
                 icon_index = -1;
             } else {
                 TaskState task_state = (DataHelper != null) ? (TaskState)DataHelper (this, pti.Item) : TaskState.None;
-            
+                
                 switch (task_state) {                
                     case TaskState.Ready:
                         sensitive = pti.Track.IsPlaying;

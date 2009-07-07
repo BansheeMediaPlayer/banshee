@@ -41,9 +41,9 @@ using Banshee.Paas.Gui;
 
 namespace Banshee.Paas.Data
 {
-    public class PodcastTrackListModel : DatabaseTrackListModel
+    public class PaasTrackListModel : DatabaseTrackListModel
     {
-        public PodcastTrackListModel (BansheeDbConnection conn, IDatabaseTrackModelProvider provider, DatabaseSource source) : base (conn, provider, source)
+        public PaasTrackListModel (BansheeDbConnection conn, IDatabaseTrackModelProvider provider, DatabaseSource source) : base (conn, provider, source)
         {
             From = String.Format ("{0}, {1}, {2}", provider.From, PaasChannel.Provider.TableName, PaasItem.Provider.TableName);
 

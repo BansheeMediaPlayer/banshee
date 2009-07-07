@@ -87,22 +87,14 @@ namespace Banshee.Paas.Gui
             Catalog.GetString ("Downloaded"), Catalog.GetString ("Description")
         );
 
-        public void SetIndicatorColumnDataHelper (ColumnCellDataHelper helper)
-        {
-            this.IndicatorColumn.GetCell (0).DataHelper = helper;
+        public PaasColumnController () : base (ColumnXml)
+        {           
         }
 
-        public PaasColumnController () : base (ColumnXml)
+        public void SetIndicatorColumnDataHelper (DataHelper dataHelper)
         {
-        /*
-            ColumnInfo info = new ColumnInfo () {
-                ID = "IndicatorColumn",
-                ColumnCell = indicator,
-                Visible = true,
-            };
-            
-            ModifyDefaultColumn (info);
-        */            
+            ColumnCellPaasStatusIndicator indicator = IndicatorColumn.GetCell (0) as ColumnCellPaasStatusIndicator;
+            indicator.DataHelper = dataHelper;
         }
     }
 }

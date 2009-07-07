@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -22,31 +22,33 @@
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
-    <DebugType>Full</DebugType>
+    <DebugType>full</DebugType>
     <CustomCommands>
       <CustomCommands>
         <Command type="Build" command="make" workingdir="${SolutionDir}" />
         <Command type="Execute" command="make run" workingdir="${SolutionDir}" />
       </CustomCommands>
     </CustomCommands>
+    <OutputPath>bin\Debug</OutputPath>
+    <WarningLevel>4</WarningLevel>
+    <Optimize>false</Optimize>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Windows|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
-    <DebugType>Full</DebugType>
+    <DebugType>full</DebugType>
     <PlatformTarget>x86</PlatformTarget>
+    <OutputPath>bin\Windows</OutputPath>
+    <WarningLevel>4</WarningLevel>
+    <Optimize>false</Optimize>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="ICSharpCode.SharpZipLib">
-      <HintPath>..\..\..\winbin\ICSharpCode.SharpZipLib.dll</HintPath>
-    </Reference>
-    <Reference Include="Mono.Posix">
-      <HintPath>..\..\..\winbin\Mono.Posix.dll</HintPath>
-    </Reference>
-    <Reference Include="MonoPosixHelper">
-      <HintPath>..\..\..\winbin\MonoPosixHelper.dll</HintPath>
-    </Reference>
+    <Reference Include="ICSharpCode.SharpZipLib" />
+    <Reference Include="Mono.Posix" />
+    <Reference Include="MonoPosixHelper" />
     <Reference Include="System" />
-    <Reference Include="System.Core" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
     <Reference Include="gtk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
     <Reference Include="gdk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
     <Reference Include="Mono.Cairo" />

@@ -26,7 +26,6 @@ SOURCES =  \
 	Banshee.Paas/Banshee.Paas.Data/PaasItem.cs \
 	Banshee.Paas/Banshee.Paas.Data/PaasTrackInfo.cs \
 	Banshee.Paas/Banshee.Paas.Data/PaasTrackListModel.cs \
-	Banshee.Paas/Banshee.Paas.Data/PodcastUnheardFilterModel.cs \
 	Banshee.Paas/Banshee.Paas.Gui/ColumnCellChannel.cs \
 	Banshee.Paas/Banshee.Paas.Gui/ColumnCellPaasStatusIndicator.cs \
 	Banshee.Paas/Banshee.Paas.Gui/ColumnCellPublished.cs \
@@ -38,7 +37,6 @@ SOURCES =  \
 	Banshee.Paas/Banshee.Paas.Gui/PaasChannelView.cs \
 	Banshee.Paas/Banshee.Paas.Gui/PaasColumnController.cs \
 	Banshee.Paas/Banshee.Paas.Gui/PaasItemView.cs \
-	Banshee.Paas/Banshee.Paas.Gui/PaasSource.cs \
 	Banshee.Paas/Banshee.Paas.Gui/PaasSourceContents.cs \
 	Banshee.Paas/Banshee.Paas.Utils/StringUtils.cs \
 	Banshee.Paas/DownloadManagerInterface.cs \

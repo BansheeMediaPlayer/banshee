@@ -45,6 +45,10 @@ using Banshee.Collection.Database;
 using Banshee.Paas.Gui;
 using Banshee.Paas.Data;
 
+// remove
+using Hyena.Data;
+// remove
+
 namespace Banshee.Paas
 { 
     public class PaasSource : Banshee.Library.LibrarySource
@@ -177,9 +181,11 @@ namespace Banshee.Paas
         {
             if (items != null) {
                 RangeCollection rc = new RangeCollection ();
-                // This sucks, PaasItem needs to inherit from DatabaseTrackInfo
+                // This sucks, PaasItem needs to inherit from DatabaseTrackInfo                
+                
+                //Console.WriteLine (TrackModel.IndexOf (item.Track));
+                
                 foreach (PaasItem item in items) {
-                    Console.WriteLine (item.TrackID);
                     rc.Add ((int)item.TrackID);
                 }
 
@@ -224,6 +230,17 @@ namespace Banshee.Paas
             base.Dispose ();
         }
 
+        // Right now there's no way to get a track's CacheEntryID from the items removed during an update...
+        // Meaning PrimarySource.RemoveTrackRange is useless because of its DatabaseTrackListModel.TrackIdsSql dep.  
+        // Yell at me is this sucks.
+        protected override void RemoveTrackRange (DatabaseTrackListModel model, RangeCollection.Range range)
+        {
+            ServiceManager.DbConnection.Execute (
+                String.Format (remove_range_sql, "TrackID FROM CoreTracks WHERE TrackID >= ? AND TrackID <= ?"),
+                DateTime.Now, range.Start, range.End, range.Start, range.End
+            );
+        }
+
         private object GetPaasTrackInfo (DatabaseTrackInfo track)
         {
             return new PaasTrackInfo (track);
@@ -231,7 +248,7 @@ namespace Banshee.Paas
 
         protected override DatabaseTrackListModel CreateTrackModelFor (DatabaseSource src)
         {
-            return new PodcastTrackListModel (ServiceManager.DbConnection, DatabaseTrackInfo.Provider, src);
+            return new PaasTrackListModel (ServiceManager.DbConnection, DatabaseTrackInfo.Provider, src);
         }
 
         [GLib.ConnectBefore]
@@ -252,8 +269,6 @@ namespace Banshee.Paas
             return PodcastService.ArtworkIdFor (PodcastTrackInfo.From (track).Feed);
         }
 
-
-        
         protected override IEnumerable<IFilterListModel> CreateFiltersFor (DatabaseSource src)
         {
             PodcastFeedModel feed_model;

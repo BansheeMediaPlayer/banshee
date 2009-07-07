@@ -27,11 +27,12 @@
 using System;
 using System.Collections.Generic;
 
-using Banshee.ServiceStack;
-
 using Hyena;
 using Hyena.Data;
 using Hyena.Data.Sqlite;
+
+using Banshee.ServiceStack;
+using Banshee.Collection.Database;
 
 using Banshee.Paas.Utils;
 
@@ -58,7 +59,10 @@ namespace Banshee.Paas.Data
             get { return provider; }
         }        
         
-        [DatabaseColumn ("ID", Constraints = DatabaseColumnConstraints.PrimaryKey)]
+        [DatabaseColumn (
+            "ID", 
+            Constraints = DatabaseColumnConstraints.PrimaryKey
+        )]
         public long DbId {
             get { return dbid; }
             protected set { dbid = value; }

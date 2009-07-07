@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -22,10 +22,11 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
+    <ApplicationIcon>..\..\..\data\banshee.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
-    <DebugType>Full</DebugType>
+    <DebugType>full</DebugType>
     <AssemblyKeyFile>.</AssemblyKeyFile>
     <CustomCommands>
       <CustomCommands>
@@ -34,6 +35,9 @@
       </CustomCommands>
     </CustomCommands>
     <Externalconsole>true</Externalconsole>
+    <OutputPath>bin\Debug</OutputPath>
+    <WarningLevel>4</WarningLevel>
+    <Optimize>false</Optimize>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <StartAction>Project</StartAction>
@@ -43,11 +47,13 @@
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Windows|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
-    <DebugType>Full</DebugType>
+    <DebugType>full</DebugType>
     <PlatformTarget>x86</PlatformTarget>
     <AssemblyKeyFile>.</AssemblyKeyFile>
     <Externalconsole>true</Externalconsole>
-    <ApplicationIcon>..\..\..\data\banshee.ico</ApplicationIcon>
+    <OutputPath>bin\Windows</OutputPath>
+    <WarningLevel>4</WarningLevel>
+    <Optimize>false</Optimize>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Windows' ">
     <StartAction>Project</StartAction>
@@ -57,12 +63,8 @@
     <Reference Include="gdk-sharp" />
     <Reference Include="glib-sharp" />
     <Reference Include="gtk-sharp" />
-    <Reference Include="Mono.Posix">
-      <HintPath>..\..\..\winbin\Mono.Posix.dll</HintPath>
-    </Reference>
-    <Reference Include="MonoPosixHelper">
-      <HintPath>..\..\..\winbin\MonoPosixHelper.dll</HintPath>
-    </Reference>
+    <Reference Include="Mono.Posix" />
+    <Reference Include="MonoPosixHelper" />
     <Reference Include="pango-sharp" />
     <Reference Include="System" />
   </ItemGroup>

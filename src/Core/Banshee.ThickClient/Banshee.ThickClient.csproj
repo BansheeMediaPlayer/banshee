@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -25,11 +25,17 @@
         <Command type="Execute" command="make run" workingdir="${SolutionDir}" />
       </CustomCommands>
     </CustomCommands>
+    <OutputPath>bin\Debug</OutputPath>
+    <WarningLevel>4</WarningLevel>
+    <Optimize>false</Optimize>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Windows|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <PlatformTarget>x86</PlatformTarget>
+    <OutputPath>bin\Windows</OutputPath>
+    <WarningLevel>4</WarningLevel>
+    <Optimize>false</Optimize>
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Libraries\Hyena.Gui\Hyena.Gui.csproj">
@@ -65,44 +71,36 @@
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
-    <Reference Include="ICSharpCode.SharpZipLib">
-      <HintPath>..\..\..\winbin\ICSharpCode.SharpZipLib.dll</HintPath>
-    </Reference>
+    <Reference Include="ICSharpCode.SharpZipLib" />
     <Reference Include="Mono.Addins">
-      <HintPath>..\..\..\winbin\Mono.Addins.dll</HintPath>
+      <Package>mono-addins-0.2</Package>
     </Reference>
     <Reference Include="Mono.Addins.Gui">
-      <HintPath>..\..\..\winbin\Mono.Addins.Gui.dll</HintPath>
+      <Package>mono-addins-gui-0.2</Package>
     </Reference>
     <Reference Include="Mono.Addins.Setup">
-      <HintPath>..\..\..\winbin\Mono.Addins.Setup.dll</HintPath>
+      <Package>mono-addins-setup-0.2</Package>
     </Reference>
-    <Reference Include="Mono.Posix">
-      <HintPath>..\..\..\winbin\Mono.Posix.dll</HintPath>
-    </Reference>
-    <Reference Include="Mono.Security">
-      <HintPath>..\..\..\winbin\Mono.Security.dll</HintPath>
-    </Reference>
-    <Reference Include="MonoPosixHelper">
-      <HintPath>..\..\..\winbin\MonoPosixHelper.dll</HintPath>
-    </Reference>
+    <Reference Include="Mono.Posix" />
+    <Reference Include="Mono.Security" />
     <Reference Include="NDesk.DBus">
-      <HintPath>..\..\..\winbin\NDesk.DBus.dll</HintPath>
+      <Package>ndesk-dbus-1.0</Package>
     </Reference>
     <Reference Include="NDesk.DBus.GLib">
-      <HintPath>..\..\..\winbin\NDesk.DBus.GLib.dll</HintPath>
+      <Package>ndesk-dbus-glib-1.0</Package>
     </Reference>
     <Reference Include="taglib-sharp">
-      <HintPath>..\..\..\winbin\taglib-sharp.dll</HintPath>
+      <Package>taglib-sharp</Package>
     </Reference>
-  </ItemGroup>
-  <ItemGroup>
     <Reference Include="System" />
     <Reference Include="Mono.Posix" />
     <Reference Include="Mono.Cairo" />
     <Reference Include="pango-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
     <Reference Include="System.Xml" />
-    <Reference Include="taglib-sharp, Version=2.0.3.1, Culture=neutral, PublicKeyToken=db62eba44689b5b0" />
+    <Reference Include="taglib-sharp, Version=2.0.3.1, Culture=neutral, PublicKeyToken=db62eba44689b5b0">
+      <Package>taglib-sharp</Package>
+    </Reference>
+    <Reference Include="MonoPosixHelper" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\browser-album-cover.png">

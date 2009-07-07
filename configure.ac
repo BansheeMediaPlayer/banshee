@@ -257,6 +257,7 @@ src/Libraries/Hyena.Gui/Makefile
 src/Libraries/Lastfm/Makefile
 src/Libraries/Lastfm.Gui/Makefile
 src/Libraries/Migo/Makefile
+src/Libraries/Migo2/Makefile
 src/Libraries/Mono.Data.Sqlite/Makefile
 src/Libraries/Mono.Media/Makefile
 src/Libraries/Mtp/Makefile

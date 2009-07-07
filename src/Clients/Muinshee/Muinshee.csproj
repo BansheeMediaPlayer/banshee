@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -28,6 +28,9 @@
       </CustomCommands>
     </CustomCommands>
     <Externalconsole>true</Externalconsole>
+    <OutputPath>bin\Debug</OutputPath>
+    <WarningLevel>4</WarningLevel>
+    <Optimize>false</Optimize>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Windows|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -35,6 +38,9 @@
     <PlatformTarget>x86</PlatformTarget>
     <AssemblyKeyFile>.</AssemblyKeyFile>
     <Externalconsole>true</Externalconsole>
+    <OutputPath>bin\Windows</OutputPath>
+    <WarningLevel>4</WarningLevel>
+    <Optimize>false</Optimize>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="atk-sharp" />
@@ -43,17 +49,13 @@
     <Reference Include="gtk-sharp" />
     <Reference Include="gtk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
     <Reference Include="Mono.Cairo" />
-    <Reference Include="Mono.Posix">
-      <HintPath>..\..\..\winbin\Mono.Posix.dll</HintPath>
-    </Reference>
-    <Reference Include="MonoPosixHelper">
-      <HintPath>..\..\..\winbin\MonoPosixHelper.dll</HintPath>
-    </Reference>
+    <Reference Include="Mono.Posix" />
+    <Reference Include="MonoPosixHelper" />
     <Reference Include="NDesk.DBus">
-      <HintPath>..\..\..\winbin\NDesk.DBus.dll</HintPath>
+      <Package>ndesk-dbus-1.0</Package>
     </Reference>
     <Reference Include="NDesk.DBus.GLib">
-      <HintPath>..\..\..\winbin\NDesk.DBus.GLib.dll</HintPath>
+      <Package>ndesk-dbus-glib-1.0</Package>
     </Reference>
     <Reference Include="System" />
     <Reference Include="gdk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
@@ -93,7 +95,6 @@
       <Project>{74B2E4CC-2701-4C8B-A11D-6E4443F4B21B}</Project>
       <Name>Banshee.PlayQueue</Name>
     </ProjectReference>
-    <Folder Include="Resources" />
     <EmbeddedResource Include="Resources\GlobalUI.xml">
       <LogicalName>GlobalUI.xml</LogicalName>
     </EmbeddedResource>

@@ -75,7 +75,6 @@
     <Compile Include="Banshee.Paas\Banshee.Paas.Data\PaasItem.cs" />
     <Compile Include="Banshee.Paas\Banshee.Paas.Data\PaasTrackInfo.cs" />
     <Compile Include="Banshee.Paas\Banshee.Paas.Data\PaasTrackListModel.cs" />
-    <Compile Include="Banshee.Paas\Banshee.Paas.Data\PodcastUnheardFilterModel.cs" />
     <Compile Include="Banshee.Paas\Banshee.Paas.Gui\Dialogs\DownloadPreferenceComboBox.cs" />
     <Compile Include="Banshee.Paas\Banshee.Paas.Gui\Dialogs\SubscribeDialog.cs" />
     <Compile Include="Banshee.Paas\Banshee.Paas.Gui\Download\DownloadSource.cs" />
@@ -87,8 +86,25 @@
     <Compile Include="Banshee.Paas\Banshee.Paas.Gui\PaasChannelView.cs" />
     <Compile Include="Banshee.Paas\Banshee.Paas.Gui\PaasColumnController.cs" />
     <Compile Include="Banshee.Paas\Banshee.Paas.Gui\PaasItemView.cs" />
-    <Compile Include="Banshee.Paas\Banshee.Paas.Gui\PaasSource.cs" />
     <Compile Include="Banshee.Paas\Banshee.Paas.Gui\PaasSourceContents.cs" />
     <Compile Include="Banshee.Paas\Banshee.Paas.Utils\StringUtils.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Core\Banshee.Core\Banshee.Core.csproj">
+      <Project>{2ADB831A-A050-47D0-B6B9-9C19D60233BB}</Project>
+      <Name>Banshee.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Core\Banshee.Services\Banshee.Services.csproj">
+      <Project>{B28354F0-BA87-44E8-989F-B864A3C7C09F}</Project>
+      <Name>Banshee.Services</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Libraries\Hyena.Gui\Hyena.Gui.csproj">
+      <Project>{C856EFD8-E812-4E61-8B76-E3583D94C233}</Project>
+      <Name>Hyena.Gui</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Libraries\Migo2\Migo2.csproj">
+      <Project>{FC311410-8638-4A66-A8A5-1E900CDC6C7B}</Project>
+      <Name>Migo2</Name>
+    </ProjectReference>
   </ItemGroup>
 </Project>

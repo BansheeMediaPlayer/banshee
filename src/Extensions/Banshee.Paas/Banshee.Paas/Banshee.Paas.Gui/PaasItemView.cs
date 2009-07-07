@@ -40,7 +40,7 @@ namespace Banshee.Paas.Gui
     public class PaasItemView : TrackListView
     {
         // Awful, dirty, filthy hack.
-        // I'm having a similar problem and just need to move on...
+        // I'm having a similar problem, probably just need to tinker with the event flags... Need to move on for now...
         // http://lists.ximian.com/archives/public/gtk-sharp-list/2006-June/007247.html
         public EventHandler<EventArgs> FuckedPopupMenu;
 
