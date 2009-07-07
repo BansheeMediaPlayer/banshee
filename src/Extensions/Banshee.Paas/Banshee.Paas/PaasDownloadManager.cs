@@ -52,6 +52,11 @@ namespace Banshee.Paas
             };
         }
 
+        public TaskState CheckActiveDownloadStatus (PaasItem item)
+        {
+            return CheckActiveDownloadStatus (item.DbId);
+        }
+
         public TaskState CheckActiveDownloadStatus (long itemID)
         {
             lock (SyncRoot) {
@@ -61,6 +66,18 @@ namespace Banshee.Paas
 
                 return TaskState.None;
             }
+        }
+
+        public bool Contains (PaasItem item)
+        {
+            return Contains (item.DbId);
+        }
+        
+        public bool Contains (long itemID)
+        {
+            lock (SyncRoot) {
+                return downloads.ContainsKey (itemID);
+            }            
         }
 
         public void QueueDownload (PaasItem item)

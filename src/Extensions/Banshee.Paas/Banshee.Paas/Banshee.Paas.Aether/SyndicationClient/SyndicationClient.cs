@@ -99,6 +99,10 @@ namespace Banshee.Paas.Aether
 
         public void DeleteChannel (PaasChannel channel, bool keepFiles)
         {
+            if (channel == null) {
+                throw new ArgumentNullException ("channel");
+            }
+        
             lock (sync) {
                 if (!disposed) {
                     if (updating.ContainsKey (channel.DbId)) {
@@ -117,6 +121,10 @@ namespace Banshee.Paas.Aether
 
         public void DeleteChannels (IEnumerable<PaasChannel> channels, bool keepFiles)
         {
+            if (channels == null) {
+                throw new ArgumentNullException ("channels");
+            }
+        
             foreach (PaasChannel channel in channels) {
                 DeleteChannel (channel, keepFiles);
             }
@@ -127,12 +135,91 @@ namespace Banshee.Paas.Aether
             List<PaasItem> items = new List<PaasItem> (channel.Items);
 
             if (items != null) {
-                PaasItem.Provider.Delete (items);
-                OnItemsRemoved (items);
+                DeleteItems (items, keepFiles);
             }                
 
             PaasChannel.Provider.Delete (channel);
             OnChannelRemoved (channel);
+        }
+
+//        private void DeleteItem (PaasItem item)
+//        {
+//            DeleteItem (item, false);
+//        }
+
+//        private void DeleteItem (PaasItem item, bool keepFile)
+//        {
+//            if (item == null) {
+//                throw new ArgumentNullException ("item");
+//            }
+//
+//            lock (sync) {
+//                if (!disposed) {
+//                    PaasItem.Provider.Delete (item);
+//                    OnItemRemoved (item);                
+//                }
+//            }
+//        }
+
+        private void DeleteItems (IEnumerable<PaasItem> items, bool keepFiles)
+        {
+            if (items == null) {
+                throw new ArgumentNullException ("items");
+            }
+
+            lock (sync) {
+                if (!disposed) {
+                    PaasItem.Provider.Delete (items);
+                    OnItemsRemoved (items);                
+                }
+            }            
+        }
+
+        public void RemoveItem (PaasItem item)
+        {
+            RemoveItem (item, false);
+        }
+
+        public void RemoveItem (PaasItem item, bool keepFile)
+        {
+            if (item == null) {
+                throw new ArgumentNullException ("item");
+            }
+
+            lock (sync) {
+                if (!disposed) {
+                    item.Active = false;
+                    item.Save ();
+                    
+                    OnItemRemoved (item);
+                }
+            }
+        }
+
+        public void RemoveItems (IEnumerable<PaasItem> items, bool keepFiles)
+        {
+            if (items == null) {
+                throw new ArgumentNullException ("items");
+            }
+
+            lock (sync) {
+                if (!disposed) {
+                    ServiceManager.DbConnection.BeginTransaction ();
+
+                    try {
+                        foreach (PaasItem item in items) {
+                            item.Active = false;
+                            item.Save ();
+                        }
+                        
+                        ServiceManager.DbConnection.CommitTransaction ();
+                        OnItemsRemoved (items);
+                    } catch (Exception e) {
+                        Hyena.Log.Exception (e);
+                        ServiceManager.DbConnection.RollbackTransaction ();
+                    }
+                }
+            }            
         }
 
         public void SubscribeToChannel (string url, DownloadPreference download_pref)
@@ -151,8 +238,8 @@ namespace Banshee.Paas.Aether
                 if (channel == null)  {
                     channel = new PaasChannel () {
                         Url = url,
-                        DownloadPreference = (int)download_pref,
-                        ClientID = (long)AetherClientID.Syndication
+                        DownloadPreference = (int) download_pref,
+                        ClientID = (long) AetherClientID.Syndication
                     };
                     
                     channel.Save ();
@@ -170,7 +257,7 @@ namespace Banshee.Paas.Aether
                 }
 
                 QueueUpdate (
-                    PaasChannel.Provider.FetchAllMatching ("ClientID = ?", (long)AetherClientID.Syndication)
+                    PaasChannel.Provider.FetchAllMatching ("ClientID = ?", (long) AetherClientID.Syndication)
                 );
             }
         }
@@ -201,7 +288,7 @@ namespace Banshee.Paas.Aether
                 
                 foreach (PaasChannel channel in channels.Where (
                     (channel) => 
-                        channel.ClientID == (long)AetherClientID.Syndication &&
+                        channel.ClientID == (long) AetherClientID.Syndication &&
                         !updating.ContainsKey (channel.DbId)
                     )) {
                     
@@ -243,7 +330,11 @@ namespace Banshee.Paas.Aether
 
                 if (deleted.ContainsKey (channel.DbId)) {
                     DeleteChannelImpl (channel, deleted[channel.DbId].KeepFiles);
-                    deleted.Remove (channel.DbId);                    
+                    
+                    deleted.Remove (channel.DbId);
+                    updating.Remove (channel.DbId);
+                    
+                    return;
                 }                
 
                 try {
@@ -324,7 +415,25 @@ namespace Banshee.Paas.Aether
                 handler (this, new ItemEventArgs (items));
             }            
         }
-        
+/*
+        private void OnItemAdded (PaasItem item)
+        {
+            EventHandler<ItemEventArgs> handler = ItemsAdded;
+
+            if (handler != null) {
+                handler (this, new ItemEventArgs (item));
+            }            
+        }
+*/
+        private void OnItemRemoved (PaasItem item)
+        {
+            EventHandler<ItemEventArgs> handler = ItemsRemoved;
+
+            if (handler != null) {
+                handler (this, new ItemEventArgs (item));
+            }            
+        }
+
         private void OnItemsRemoved (IEnumerable<PaasItem> items)
         {
             EventHandler<ItemEventArgs> handler = ItemsRemoved;

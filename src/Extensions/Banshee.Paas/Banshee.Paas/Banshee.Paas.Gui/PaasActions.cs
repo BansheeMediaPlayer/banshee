@@ -100,6 +100,11 @@ namespace Banshee.Paas.Gui
                      Catalog.GetString ("Resume"), OnPaasItemResumeHandler
                 ),
                 new ActionEntry (
+                    "PaasItemRemoveAction", Stock.Remove,
+                     Catalog.GetString ("Remove From Library"), null,
+                     Catalog.GetString ("Remove From Library"), OnPaasItemRemovedHandler
+                ),                
+                new ActionEntry (
                     "PaasChannelPopupAction", null, null, null, null, OnChannelPopup
                 ),                    
                 new ActionEntry (
@@ -296,6 +301,13 @@ namespace Banshee.Paas.Gui
             service.DownloadManager.PauseDownload (
                 items.Select (ti => ti.Item).Where  (i => CheckStatus (i, TaskState.CanPause))
             );
+        }
+
+        private void OnPaasItemRemovedHandler (object sender, EventArgs args)
+        {
+            // Run dialog to determine the fate of downloaded files.
+            var items = GetSelectedItems ();
+            service.SyndicationClient.RemoveItems (items.Select (ti => ti.Item), true);
         }
 
         private void OnChannelPopup (object o, EventArgs args)

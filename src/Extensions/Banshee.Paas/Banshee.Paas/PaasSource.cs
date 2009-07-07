@@ -251,13 +251,11 @@ namespace Banshee.Paas
         [GLib.ConnectBefore]
         private void OnPopupMenuHandler (object sender, Gtk.PopupMenuArgs e)
         {
-            //Console.WriteLine ("Popup");
             actions.UpdateItemActions ();
         }
 
         private void OnFuckedPopupMenuHandler (object sender, EventArgs e)
         {
-            //Console.WriteLine ("FuckedPopup");
             actions.UpdateItemActions ();
         }
 /*

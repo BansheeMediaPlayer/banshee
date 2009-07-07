@@ -116,11 +116,7 @@ namespace Banshee.Paas.Aether
             if (wc != null) {
                 wc.DownloadStringCompleted -= OnDownloadDataReceived;
             }
-//
-//            if (e != null) {
-//                Hyena.Log.Exception (e);            
-//            }
-//            
+     
             OnTaskCompleted (e, state_manager.Cancelled);            
         }
     }

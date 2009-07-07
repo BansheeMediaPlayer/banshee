@@ -66,7 +66,7 @@ namespace Banshee.Paas
 
         private PaasSource source;
         
-        private MiroGuideClient mg_client;
+        //private MiroGuideClient mg_client;
         private SyndicationClient syndication_client;
         
         private AutoResetEvent client_handle;
@@ -159,10 +159,17 @@ namespace Banshee.Paas
             syndication_client.ItemsRemoved += OnItemsRemovedHandler;
             
             download_manager = new PaasDownloadManager (2, tmp_download_path);
-            download_manager.TaskCompleted += (sender, e) => { redraw (); };
+            download_manager.TaskCompleted += (sender, e) => { 
+                if (e.State == TaskState.Succeeded) {
+                    reload ();
+                } else { 
+                    redraw (); 
+                }
+            };
+            
             download_manager.TaskStateChanged += (sender, e) => { redraw (); };
         }
-        
+
         public void UpdateAsync ()
         {
             lock (sync) {
@@ -194,11 +201,11 @@ namespace Banshee.Paas
 
             DisposeInterface ();
             
-            mg_client.CancelAsync ();
+            //mg_client.CancelAsync ();
             client_handle.WaitOne ();
 
-            mg_client.RequestDeltasCompleted -= ClientUpdatedHandler;
-            mg_client = null;
+            //mg_client.RequestDeltasCompleted -= ClientUpdatedHandler;
+            //mg_client = null;
 
             client_handle.Close ();
             client_handle = null;
@@ -314,9 +321,9 @@ namespace Banshee.Paas
 
             return c.DbId;
         }
-*/    
+   
         private void ClientUpdatedHandler (object sender, AetherAsyncCompletedEventArgs e)
-        {       /* 
+        {        
             if (Disposed) {
                 return;
             }
@@ -347,8 +354,8 @@ namespace Banshee.Paas
                 );
             }
                 source.ErrorSource.Reload ();            
-       */ }
-
+        }
+*/
         private void OnItemsAddedHandler (object sender, ItemEventArgs e)
         {
             lock (sync) {
@@ -386,8 +393,18 @@ namespace Banshee.Paas
                 
                 try {
                     if (e.Item != null) {
+                        if (download_manager.Contains (e.Item)) {
+                            download_manager.CancelDownload (e.Item);
+                        }
+                        
                         source.RemoveItem (e.Item);
                     } else {
+                        foreach (PaasItem item in e.Items) {
+                            if (download_manager.Contains (item)) {
+                                download_manager.CancelDownload (item);
+                            }                        
+                        }
+                        
                         source.RemoveItems (e.Items);
                     }
                 } catch (Exception ex) {

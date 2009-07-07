@@ -8,7 +8,7 @@
     <ProjectGuid>{EEA0F24F-3180-4C63-993C-84179711C7EF}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AssemblyName>Banshee.Paas</AssemblyName>
-    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -106,5 +106,9 @@
       <Project>{FC311410-8638-4A66-A8A5-1E900CDC6C7B}</Project>
       <Name>Migo2</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ActiveSourceUI.xml" />
+    <None Include="Resources\GlobalUI.xml" />
   </ItemGroup>
 </Project>
