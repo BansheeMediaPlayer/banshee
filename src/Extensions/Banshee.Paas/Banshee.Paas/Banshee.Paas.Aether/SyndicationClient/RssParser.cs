@@ -176,8 +176,6 @@ namespace Banshee.Paas.Aether
             try {
                 item.Url = XmlUtils.GetXmlNodeText (node, "enclosure/@url", mgr);
 
-                Console.WriteLine ("Url:  {0}", item.Url);
-
                 if (item.Url == null) {
                     return false;
                 }
