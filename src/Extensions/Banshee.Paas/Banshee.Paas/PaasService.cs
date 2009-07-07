@@ -120,7 +120,7 @@ namespace Banshee.Paas
             };
 
             client_handle = new AutoResetEvent (true);
-            
+/*            
             mg_client = new MiroGuideClient () {
                 Timeout    = (60 * 1000), // one minute.
                 ServiceUri = "http://127.0.0.1:8000",
@@ -138,7 +138,7 @@ namespace Banshee.Paas
             };
 
             mg_client.RequestDeltasCompleted += ClientUpdatedHandler;
-
+*/
             syndication_client = new SyndicationClient ();
             syndication_client.StateChanged += (sender, e) => {
                 lock (sync) {
