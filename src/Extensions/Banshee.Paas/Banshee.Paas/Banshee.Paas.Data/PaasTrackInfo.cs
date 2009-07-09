@@ -101,7 +101,7 @@ namespace Banshee.Paas.Data
         }
         
         public bool IsNew {
-            get { return Item.IsNew; }
+            get { return IsDownloaded && Item.IsNew; }
         }
         
         public bool IsDownloaded {

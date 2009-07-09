@@ -33,6 +33,7 @@ using Mono.Unix;
 using Gtk;
 
 using Migo2.Async;
+using Hyena.Collections;
 
 using Banshee.Gui;
 using Banshee.Widgets;
@@ -53,7 +54,14 @@ namespace Banshee.Paas.Gui
         One,
         Multiple
     }
-    
+
+    [Flags]
+    enum SelectionOldNewInfo {
+        Zero    = 0x00,
+        ShowNew = 0x01,
+        ShowOld = 0x02
+    }
+
     public class PaasActions : BansheeActionGroup
     {
         private uint actions_id;
@@ -99,6 +107,16 @@ namespace Banshee.Paas.Gui
                      Catalog.GetString ("Resume"), null,
                      Catalog.GetString ("Resume"), OnPaasItemResumeHandler
                 ),
+                new ActionEntry (
+                    "PaasItemMarkNewAction", null,
+                     Catalog.GetString ("Mark as New"), null,
+                     Catalog.GetString ("Mark as New"), OnPaasItemMarkedNewHandler
+                ),                    
+                new ActionEntry (
+                    "PaasItemMarkOldAction", null,
+                     Catalog.GetString ("Mark as Old"), null,
+                     Catalog.GetString ("Mark as Old"), OnPaasItemMarkedOldHandler
+                ),                   
                 new ActionEntry (
                     "PaasItemRemoveAction", Stock.Remove,
                      Catalog.GetString ("Remove From Library"), null,
@@ -164,7 +182,12 @@ namespace Banshee.Paas.Gui
             }
         }
 
-        private SelectionInfo GetItemSelectionStatus (IEnumerable<PaasTrackInfo> items, TaskState state)
+        private bool GetItemDownloadSelectionStatus (IEnumerable<PaasTrackInfo> items)
+        {
+            return GetItemDownloadSelectionStatus (items.Where (i => !i.IsDownloaded), TaskState.None) != SelectionInfo.None;
+        }
+
+        private SelectionInfo GetItemDownloadSelectionStatus (IEnumerable<PaasTrackInfo> items, TaskState state)
         {
             int cnt = -1;
             
@@ -186,6 +209,33 @@ namespace Banshee.Paas.Gui
             }
         }
 
+        private SelectionOldNewInfo GetItemOldNewSelectionStatus (IEnumerable<PaasTrackInfo> items)
+        {
+            // C# needs multiple returns
+            bool show_new = false, show_old = false;
+            SelectionOldNewInfo info = SelectionOldNewInfo.Zero;
+            
+            foreach (PaasItem i in items.Select (ti => ti.Item)) {
+                if (!i.IsDownloaded) {
+                    continue;
+                }
+
+                if (!show_old && i.IsNew) {
+                    show_old = true;
+                    info |= SelectionOldNewInfo.ShowOld;
+                } else if (!show_new && !i.IsNew) {
+                    show_new = true;
+                    info |= SelectionOldNewInfo.ShowNew;
+                }
+
+                if (show_new && show_old) {
+                    break;
+                }
+            }
+
+            return info;
+        }
+
         private bool CheckStatus (PaasItem item, TaskState flags)
         {
             return (service.DownloadManager.CheckActiveDownloadStatus (item.DbId) & flags) != TaskState.Zero;
@@ -202,15 +252,22 @@ namespace Banshee.Paas.Gui
                 return;
             }
     
-            bool show_download = GetItemSelectionStatus (items, TaskState.None)      != SelectionInfo.None;            
-            bool show_cancel   = GetItemSelectionStatus (items, TaskState.CanCancel) != SelectionInfo.None;
-            bool show_resume   = GetItemSelectionStatus (items, TaskState.Paused)    != SelectionInfo.None;
-            bool show_pause    = GetItemSelectionStatus (items, TaskState.CanPause)  != SelectionInfo.None;
+            bool show_download = GetItemDownloadSelectionStatus (items);            
+            bool show_cancel   = GetItemDownloadSelectionStatus (items, TaskState.CanCancel) != SelectionInfo.None;
+            bool show_resume   = GetItemDownloadSelectionStatus (items, TaskState.Paused)    != SelectionInfo.None;
+            bool show_pause    = GetItemDownloadSelectionStatus (items, TaskState.CanPause)  != SelectionInfo.None;
 
+            SelectionOldNewInfo selection = GetItemOldNewSelectionStatus (items);
+            bool show_mark_new = ((selection & SelectionOldNewInfo.ShowNew) != SelectionOldNewInfo.Zero);
+            bool show_mark_old = ((selection & SelectionOldNewInfo.ShowOld) != SelectionOldNewInfo.Zero);
+            
             UpdateAction ("PaasItemDownloadAction", show_download);              
             UpdateAction ("PaasItemCancelAction", show_cancel);
             UpdateAction ("PaasItemPauseAction", show_pause);
             UpdateAction ("PaasItemResumeAction", show_resume);
+
+            UpdateAction ("PaasItemMarkNewAction", show_mark_new);
+            UpdateAction ("PaasItemMarkOldAction", show_mark_old);
             
             if (ActiveDbSource.TrackModel.Selection.Count == 1) {
                 //UpdateAction ("PodcastItemLinkAction", true);                
@@ -255,6 +312,34 @@ namespace Banshee.Paas.Gui
             }        
         }
 
+        private void MarkItems (IEnumerable<PaasTrackInfo> items, bool _new)
+        {
+            PaasSource s = ActiveDbSource as PaasSource;
+            
+            if (s == null) {
+                return;
+            }
+            
+            RangeCollection rc = new RangeCollection ();
+            
+            foreach (var i in items.Select (i => i.Item)) {
+                if (_new && !i.IsNew) {
+                    rc.Add ((int)i.DbId);
+                } else if (i.IsNew) {
+                    rc.Add ((int)i.DbId);
+                }
+            }
+
+            foreach (var range in rc.Ranges) {
+                ServiceManager.DbConnection.Execute (
+                    String.Format ("UPDATE PaasItems SET IsNew = ? WHERE ID >= ? AND ID <= ?"),
+                    (_new ? 1 : 0), range.Start, range.End
+                );
+            }
+
+            s.Reload ();
+        }
+
         private void OnPaasSubscribeHandler (object sender, EventArgs args)
         {
             RunSubscribeDialog ();
@@ -264,11 +349,10 @@ namespace Banshee.Paas.Gui
         {
             service.UpdateAsync ();
         }
-
         private void OnPaasItemDownloadHandler (object sender, EventArgs args)
         {
             var items = GetSelectedItems ();
-            service.DownloadManager.QueueDownload (items.Select (ti => ti.Item));
+            service.DownloadManager.QueueDownload (items.Select (ti => ti.Item).Where (i => !i.IsDownloaded));
         }
 
         private void OnPaasItemCancelHandler (object sender, EventArgs args)
@@ -281,7 +365,7 @@ namespace Banshee.Paas.Gui
             var items = GetSelectedItems ();
                         
             service.DownloadManager.CancelDownload (
-                items.Select (ti => ti.Item).Where  (i => CheckStatus (i, TaskState.CanCancel))
+                items.Select (t => t.Item).Where  (i => CheckStatus (i, TaskState.CanCancel))
             );
         }
 
@@ -290,7 +374,7 @@ namespace Banshee.Paas.Gui
             var items = GetSelectedItems ();
 
             service.DownloadManager.ResumeDownload (
-                items.Select (ti => ti.Item).Where  (i => CheckStatus (i, TaskState.Paused))
+                items.Select (t => t.Item).Where  (i => CheckStatus (i, TaskState.Paused))
             );
         }
         
@@ -299,7 +383,7 @@ namespace Banshee.Paas.Gui
             var items = GetSelectedItems ();
 
             service.DownloadManager.PauseDownload (
-                items.Select (ti => ti.Item).Where  (i => CheckStatus (i, TaskState.CanPause))
+                items.Select (t => t.Item).Where  (i => CheckStatus (i, TaskState.CanPause))
             );
         }
 
@@ -307,7 +391,19 @@ namespace Banshee.Paas.Gui
         {
             // Run dialog to determine the fate of downloaded files.
             var items = GetSelectedItems ();
-            service.SyndicationClient.RemoveItems (items.Select (ti => ti.Item), true);
+            service.SyndicationClient.RemoveItems (items.Select (t => t.Item), true);
+        }
+
+        private void OnPaasItemMarkedNewHandler (object sender, EventArgs e)
+        {
+            var items = GetSelectedItems ();
+            MarkItems (items, true);
+        }
+
+        private void OnPaasItemMarkedOldHandler (object sender, EventArgs e)
+        {
+            var items = GetSelectedItems ();
+            MarkItems (items, false);
         }
 
         private void OnChannelPopup (object o, EventArgs args)

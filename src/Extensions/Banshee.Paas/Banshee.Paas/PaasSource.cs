@@ -151,10 +151,12 @@ namespace Banshee.Paas
             if (item != null) {
                 DatabaseTrackInfo track = new DatabaseTrackInfo ();
                 track.ExternalId = item.DbId;
-                item.TrackID = item.DbId;
                 track.PrimarySource = this;
                 (track.ExternalObject as PaasTrackInfo).SyncWithItem ();
+                
                 track.Save (false);
+
+                item.TrackID = track.TrackId;
                 item.Save ();            
 
                 //RefreshArtworkFor (item.Feed);
@@ -277,19 +279,5 @@ namespace Banshee.Paas
             }
         }
 */
-        
-        // Probably don't want this -- do we want to allow actually removing the item?  It will be
-        // repopulated the next time we update the podcast feed...
-        /*protected override void DeleteTrack (DatabaseTrackInfo track)
-        {
-            PodcastTrackInfo episode = track as PodcastTrackInfo;
-            if (episode != null) {
-                if (episode.Uri.IsFile)
-                    base.DeleteTrack (track);
-                
-                episode.Delete ();
-                episode.Item.Delete (false);
-            }
-        }*/    
     }
 }

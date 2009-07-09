@@ -161,7 +161,7 @@ namespace Banshee.Paas.Data
         }
 
         public bool IsDownloaded {
-            get { return String.IsNullOrEmpty (local_path); }
+            get { return !String.IsNullOrEmpty (LocalPath); }
         } 
 
         private bool is_new;
@@ -241,7 +241,6 @@ namespace Banshee.Paas.Data
         }
 
         private string stripped_description;
-        [DatabaseColumn]
         public string StrippedDescription {
             get { return stripped_description; }
             protected set { 

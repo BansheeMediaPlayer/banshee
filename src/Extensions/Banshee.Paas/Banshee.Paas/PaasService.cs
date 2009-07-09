@@ -32,6 +32,7 @@ using System.Collections.Generic;
 
 using Mono.Unix;
 
+using Banshee.IO;
 using Banshee.Web;
 using Banshee.Base;
 using Banshee.Sources;
@@ -40,12 +41,14 @@ using Banshee.ServiceStack;
 using Banshee.Configuration;
 using Banshee.Collection.Database;
 
-using Banshee.Paas.Aether;
 using Banshee.Paas.Gui;
+using Banshee.Paas.Utils;
+using Banshee.Paas.Aether;
 
-// remove
 using Migo2.Async;
 using Migo2.DownloadService;
+
+// remove
 
 using Banshee.Paas.Data;
 using Hyena.Json;
@@ -73,6 +76,8 @@ namespace Banshee.Paas
         
         private PaasDownloadManager download_manager;
         private DownloadManagerInterface download_manager_interface;
+
+        private Updater redraw, reload;
         
         private readonly object sync = new object ();
 
@@ -99,7 +104,7 @@ namespace Banshee.Paas
 
         public PaasService ()
         {
-            Updater reload = delegate {
+            reload = delegate {
                 lock (sync) {
                     if (Disposed) {
                         return;
@@ -109,7 +114,7 @@ namespace Banshee.Paas
                 }
             };
 
-            Updater redraw = delegate {
+            redraw = delegate {
                 lock (sync) {
                     if (Disposed) {
                         return;
@@ -152,21 +157,25 @@ namespace Banshee.Paas
                 }
             };
 
-            syndication_client.ChannelAdded += (sender, e) => { reload (); };
-            syndication_client.ChannelRemoved += (sender, e) => { reload (); };
+            syndication_client.ChannelAdded += (sender, e) => { 
+                PaasChannel channel = e.Channel;
+                
+                string escaped = Hyena.StringUtil.EscapeFilename (channel.Name);
+                channel.LocalEnclosurePath = Path.Combine (source.BaseDirectory, escaped);
+                channel.Save ();
+                
+                reload ();
+            };
             
+            syndication_client.ChannelRemoved += (sender, e) => { reload (); };
+
+            syndication_client.ChannelUpdateCompleted += OnChannelUpdatedHandler;
+
             syndication_client.ItemsAdded += OnItemsAddedHandler;
             syndication_client.ItemsRemoved += OnItemsRemovedHandler;
             
             download_manager = new PaasDownloadManager (2, tmp_download_path);
-            download_manager.TaskCompleted += (sender, e) => { 
-                if (e.State == TaskState.Succeeded) {
-                    reload ();
-                } else { 
-                    redraw (); 
-                }
-            };
-            
+            download_manager.TaskCompleted += OnDownloadTaskCompletedHandler;
             download_manager.TaskStateChanged += (sender, e) => { redraw (); };
         }
 
@@ -213,10 +222,12 @@ namespace Banshee.Paas
             syndication_client.Dispose ();
             syndication_client.ItemsAdded -= OnItemsAddedHandler;
             syndication_client.ItemsRemoved -= OnItemsRemovedHandler;
+            syndication_client.ChannelUpdateCompleted -= OnChannelUpdatedHandler;            
             
             syndication_client = null;
 
             download_manager.Dispose ();
+            download_manager.TaskCompleted -= OnDownloadTaskCompletedHandler;
             download_manager = null;
 
             lock (sync) {
@@ -356,6 +367,33 @@ namespace Banshee.Paas
                 source.ErrorSource.Reload ();            
         }
 */
+        private DatabaseTrackInfo GetTrackByItemId (long item_id)
+        {
+            return DatabaseTrackInfo.Provider.FetchFirstMatching (
+                "PrimarySourceID = ? AND ExternalID = ?", source.DbId, item_id
+            );
+        }
+
+        private void OnChannelUpdatedHandler (object sender, ChannelUpdateCompletedEventArgs e)
+        {
+            lock (sync) {
+                if (!Disposed && e.Succeeded) {
+                    IEnumerable<PaasItem> items = e.Channel.Items.OrderByDescending (i => i.PubDate);
+
+                    switch (e.Channel.DownloadPreference) {
+                    case (int)DownloadPreference.One:
+                        items = items.Take (1);
+                        break;
+                    case (int)DownloadPreference.None:
+                        items = items.Take (0);
+                        break;
+                    }
+
+                    download_manager.QueueDownload (items.Where (i => !i.IsDownloaded));
+                }
+            }
+        }
+
         private void OnItemsAddedHandler (object sender, ItemEventArgs e)
         {
             lock (sync) {
@@ -416,6 +454,106 @@ namespace Banshee.Paas
                 ServiceManager.DbConnection.CommitTransaction ();
                 source.Reload ();
             }
+        }
+
+        private void OnDownloadTaskCompletedHandler (object sender, TaskCompletedEventArgs<HttpFileDownloadTask> e)
+        {
+            PaasItem item = e.UserState as PaasItem;
+
+            if (item == null) {
+                return;
+            }
+
+            lock (sync) {
+                if (Disposed) {
+                    return;
+                } else if (e.State != TaskState.Succeeded) {
+                    source.QueueDraw ();
+                    return;
+                }   
+
+                string path = Path.GetDirectoryName (e.Task.LocalPath);                
+                string filename = Path.GetFileName (e.Task.LocalPath);             
+                string full_path = path;
+                string tmp_local_path;                   
+                
+                string local_enclosure_path = item.Channel.LocalEnclosurePath;
+                
+                if (!local_enclosure_path.EndsWith (Path.DirectorySeparatorChar.ToString ())) {
+                    local_enclosure_path += Path.DirectorySeparatorChar;
+                }
+                
+                if (!full_path.EndsWith (Path.DirectorySeparatorChar.ToString ())) {
+                    full_path += Path.DirectorySeparatorChar;
+                }           
+                
+                full_path += filename;
+                tmp_local_path = local_enclosure_path+StringUtils.DecodeUrl (filename);            
+    
+                try {
+                    if (!Banshee.IO.Directory.Exists (path)) {
+                        throw new InvalidOperationException ("Directory specified by path does not exist");             
+                    } else if (!Banshee.IO.File.Exists (new SafeUri (full_path))) {
+                        throw new InvalidOperationException (
+                            String.Format ("File:  {0}, does not exist", full_path)
+                        );
+                    }
+    
+                    if (!Banshee.IO.Directory.Exists (local_enclosure_path)) {
+                        Banshee.IO.Directory.Create (local_enclosure_path);
+                    }
+    
+                    if (Banshee.IO.File.Exists (new SafeUri (tmp_local_path))) {
+                        int last_dot = tmp_local_path.LastIndexOf (".");
+                        
+                        if (last_dot == -1) {
+                            last_dot = tmp_local_path.Length-1;
+                        }
+                        
+                        string rep = String.Format (
+                            "-{0}", 
+                            Guid.NewGuid ().ToString ()
+                                           .Replace ("-", String.Empty)
+                                           .ToLower ()
+                        );
+                        
+                        tmp_local_path = tmp_local_path.Insert (last_dot, rep);
+                    }
+                
+                    Banshee.IO.File.Move (new SafeUri (full_path), new SafeUri (tmp_local_path));
+                    
+                    try {
+                        Banshee.IO.Directory.Delete (path, true);
+                    } catch {}
+
+                    item.IsNew = true;
+                    item.LocalPath = tmp_local_path;
+                    item.MimeType = e.Task.MimeType;
+                    item.DownloadedAt = DateTime.Now;
+                    
+                    item.Save ();
+                    
+                    DatabaseTrackInfo track = GetTrackByItemId (item.DbId);
+                    
+                    if (track != null) {
+                        PaasTrackInfo pti = track.ExternalObject as PaasTrackInfo;
+                        
+                        if (pti != null) {
+                            pti.SyncWithItem ();
+                            track.Save (true);
+                        }
+                    }                    
+                } catch (Exception ex) {
+                    source.ErrorSource.AddMessage (                    
+                        Catalog.GetString ("Error Saving File"), ex.Message
+                    );
+
+                    Hyena.Log.Exception (ex);
+                }
+
+                source.Reload ();
+                source.NotifyUser ();
+            }            
         }
 
         public static readonly SchemaEntry<string> ClientID = new SchemaEntry<string> (

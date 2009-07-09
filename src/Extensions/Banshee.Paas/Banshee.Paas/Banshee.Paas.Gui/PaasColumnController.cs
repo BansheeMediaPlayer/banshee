@@ -45,13 +45,13 @@ namespace Banshee.Paas.Gui
                   <remove-default column=""TrackColumn"" />
                   <remove-default column=""DiscColumn"" />
                   <remove-default column=""ComposerColumn"" />
-                  <remove-default column=""ArtistColumn"" />                 
+                  <remove-default column=""ArtistColumn"" />
                   <column modify-default=""AlbumColumn"">
                     <title>{0}</title>
                     <long-title>{0}</long-title>
                   </column>
                   <column>
-                      <visible>true</visible>
+                      <visible>false</visible>
                       <title>{4}</title>
                       <renderer type=""Hyena.Data.Gui.ColumnCellText"" property=""ExternalObject.Description"" />
                       <sort-key>Description</sort-key>

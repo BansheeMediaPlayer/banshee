@@ -67,7 +67,7 @@ namespace Banshee.Paas.Data
         public override void UpdateUnfilteredAggregates ()
         {
             HyenaSqliteCommand count_command = new HyenaSqliteCommand (String.Format (
-                "SELECT COUNT(*) {0} AND PaasItems.DownloadedAt NOT NULL", UnfilteredQuery
+                "SELECT COUNT(*) {0} AND PaasItems.Active = 1 AND PaasItems.DownloadedAt NOT NULL", UnfilteredQuery
             ));
             
             UnfilteredCount = Connection.Query<int> (count_command);
@@ -80,24 +80,25 @@ namespace Banshee.Paas.Data
 
             switch (key) {
                 case "PubDate":
-                    sort_query = String.Format (@"
-                        PaasItems.PubDate {0}", ascDesc);
+                    sort_query = String.Format ("PaasItems.PubDate {0}", ascDesc);
                     break;
 
                 case "IsNew":
-                    sort_query = String.Format (@"
-                        -PaasItems.IsNew {0}, PaasItems.PubDate DESC", ascDesc);
+                    sort_query = String.Format ("-PaasItems.IsNew {0}, PaasItems.PubDate DESC", ascDesc);
                     break;
-/*
-                case "IsDownloaded":
-                    sort_query = String.Format (@"
-                        PodcastEnclosures.LocalPath IS NOT NULL {0}, PodcastItems.PubDate DESC", ascDesc);
+
+//                case "IsDownloaded":
+//                    sort_query = String.Format (@"
+//                        PodcastEnclosures.LocalPath IS NOT NULL {0}, PodcastItems.PubDate DESC", ascDesc);
+//                    break;
+
+                case "album":
+                    sort_query = String.Format ("PaasChannels.Name {0}, PaasItems.PubDate DESC", ascDesc);
                     break;
-*/
+                    
                 case "Description":
-                    sort_query = String.Format (@"
-                        PaasItems.StrippedDescription {0}, PaasItems.PubDate DESC", ascDesc);
-                    break;
+                    sort_query = String.Format ("PaasItems.StrippedDescription {0}, PaasItems.PubDate DESC", ascDesc);
+                    break;                 
             }
 
             return sort_query ?? Banshee.Query.BansheeQuery.GetSort (key, asc);

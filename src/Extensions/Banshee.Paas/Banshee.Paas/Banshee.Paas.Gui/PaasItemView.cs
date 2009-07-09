@@ -30,10 +30,15 @@ using System;
 
 using Gtk;
 
-using Banshee.ServiceStack;
+using Hyena.Data.Gui;
 
 using Banshee.Gui;
+using Banshee.ServiceStack;
+
+using Banshee.Collection;
 using Banshee.Collection.Gui;
+
+using Banshee.Paas.Data;
 
 namespace Banshee.Paas.Gui
 {
@@ -57,6 +62,28 @@ namespace Banshee.Paas.Gui
             }
 
             return base.OnPopupMenu ();
+        }
+
+        protected override void ColumnCellDataProvider (ColumnCell cell, object boundItem)
+        {
+            ColumnCellText text_cell = cell as ColumnCellText;
+            
+            if (text_cell == null) {
+                return;
+            }
+
+            TrackInfo track = boundItem as TrackInfo;
+            PaasTrackInfo pti = PaasTrackInfo.From (track);
+            
+            if (pti == null) {
+                return;
+            }
+
+            if (track.IsPlaying || pti.IsDownloaded) {
+                text_cell.Opacity = 1.0;
+            } else {
+                text_cell.Opacity = 0.5;                                    
+            }
         }
     }
 }

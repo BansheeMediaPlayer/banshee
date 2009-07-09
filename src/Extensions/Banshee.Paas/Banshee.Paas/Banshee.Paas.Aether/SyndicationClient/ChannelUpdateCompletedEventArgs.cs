@@ -1,5 +1,5 @@
 // 
-// StringUtils.cs
+// ChannelUpdateCompletedEventArgs.cs
 //  
 // Author:
 //       Mike Urbanski <michael.c.urbanski@gmail.com>
@@ -25,30 +25,23 @@
 // THE SOFTWARE.
 
 using System;
-using System.Web;
+using System.Collections.Generic;
 
-namespace Banshee.Paas.Utils
+using Banshee.Paas.Data;
+
+namespace Banshee.Paas.Aether
 {
-    public static class StringUtils
+    public class ChannelUpdateCompletedEventArgs : ChannelEventArgs
     {
-        public static string StripHtml (string str)
-        {
-            str = Hyena.StringUtil.RemoveHtml (str);
-            
-            if (str != null) {
-                str = HttpUtility.HtmlDecode (str);
-            }
-
-            return str;
+        private readonly bool succeeded;
+        
+        public bool Succeeded {
+            get { return succeeded; }
         }
 
-        public static string DecodeUrl (string str)
+        public ChannelUpdateCompletedEventArgs (PaasChannel channel, bool succeeded) : base (channel)
         {
-            if (str != null) {
-                str = Uri.UnescapeDataString (str);
-            }
-
-            return str;
+            this.succeeded = succeeded;
         }
     }
 }

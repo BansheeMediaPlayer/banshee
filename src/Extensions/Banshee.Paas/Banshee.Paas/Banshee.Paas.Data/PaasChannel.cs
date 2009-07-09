@@ -158,6 +158,13 @@ namespace Banshee.Paas.Data
             set { link = value; }
         }
 
+        private string local_enclosure_path;
+        [DatabaseColumn]        
+        public string LocalEnclosurePath {
+            get { return local_enclosure_path; }
+            set { local_enclosure_path = value; }
+        }
+        
         private string name;
         [DatabaseColumn]
         public string Name {

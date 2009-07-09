@@ -53,11 +53,11 @@ namespace Banshee.Paas.Aether
         public event EventHandler<ChannelEventArgs> ChannelRemoved;
 
         public event EventHandler<ChannelEventArgs> ChannelUpdating;
-        public event EventHandler<ChannelEventArgs> ChannelUpdateCompleted;
+        public event EventHandler<ChannelUpdateCompletedEventArgs> ChannelUpdateCompleted;
 
         public SyndicationClient ()
         {
-            channel_manager = new ChannelUpdateManager (2);
+            channel_manager = new ChannelUpdateManager (4);
             channel_manager.TaskCompleted += TaskCompletedHandler;
             
             channel_manager.Started += (sender, e) => {
@@ -66,7 +66,11 @@ namespace Banshee.Paas.Aether
             
             channel_manager.Stopped += (sender, e) => {
                 OnStateChanged (AetherClientState.Busy, AetherClientState.Idle); 
-            };            
+            };
+
+            channel_manager.TaskStarted += (sender, e) => {
+                OnChannelUpdating (e.Task.UserState as PaasChannel);
+            };
 
             deleted = new Dictionary<long, DeletedChannelInfo> ();
             updating = new Dictionary<long, ChannelUpdateTask> ();
@@ -333,12 +337,12 @@ namespace Banshee.Paas.Aether
                     
                     deleted.Remove (channel.DbId);
                     updating.Remove (channel.DbId);
-                    
+                    OnChannelUpdateCompleted (channel, false);
                     return;
                 }                
 
                 try {
-                    if (e.Error == null && !String.IsNullOrEmpty (task.Result)) {
+                    if (e.Error == null && e.State == TaskState.Succeeded && !String.IsNullOrEmpty (task.Result)) {
                         RssParser parser = new RssParser (task.Result);
     
                         ServiceManager.DbConnection.BeginTransaction ();
@@ -354,7 +358,7 @@ namespace Banshee.Paas.Aether
 
                             new_items = new List<PaasItem> (remote_items.Except (local_items, cmp));
                             removed_items = new List<PaasItem> (local_items.Except (remote_items, cmp));
-                            
+
                             if (new_items.Count > 0) {
                                 foreach (PaasItem item in new_items) {
                                     item.ChannelID = channel.DbId;
@@ -363,7 +367,7 @@ namespace Banshee.Paas.Aether
                             }
                             
                             if (removed_items.Count > 0) {
-                                PaasItem.Provider.Delete (removed_items.Where ((i) => !i.IsDownloaded));
+                                DeleteItems (removed_items.Where ((i) => !i.IsDownloaded), true);
                             }
                         } catch (Exception ex) {
                             ServiceManager.DbConnection.RollbackTransaction ();
@@ -371,27 +375,48 @@ namespace Banshee.Paas.Aether
                             throw;
                         }
     
-                        ServiceManager.DbConnection.CommitTransaction ();                        
+                        ServiceManager.DbConnection.CommitTransaction ();
+        
+                        if (new_items != null && new_items.Count > 0) {
+                            OnItemsAdded (new_items);                    
+                        }
+            
+                        if (removed_items != null && removed_items.Count > 0) {
+                            OnItemsRemoved (removed_items);                    
+                        }
+
+                        OnChannelUpdateCompleted (channel, true);
                     }
                 } catch (Exception ex) {
-                    Hyena.Log.Exception (ex);                    
+                    Hyena.Log.Exception (ex);
+                    OnChannelUpdateCompleted (channel, false);
                 } finally {
-                    updating.Remove (channel.DbId);
-                    
-                    if (new_items != null && new_items.Count > 0) {
-                        OnItemsAdded (new_items);                    
-                    }
-        
-                    if (removed_items != null && removed_items.Count > 0) {
-                        OnItemsRemoved (removed_items);                    
-                    }                          
+                    updating.Remove (channel.DbId);                       
                 }
+            }            
+        }
+
+        private void OnChannelUpdating (PaasChannel channel)
+        {
+            var handler = ChannelUpdating;
+
+            if (handler != null) {
+                handler (this, new ChannelEventArgs (channel));
+            }            
+        }
+
+        private void OnChannelUpdateCompleted (PaasChannel channel, bool succeeded)
+        {
+            var handler = ChannelUpdateCompleted;
+
+            if (handler != null) {
+                handler (this, new ChannelUpdateCompletedEventArgs (channel, succeeded));
             }            
         }
 
         private void OnChannelAdded (PaasChannel channel)
         {
-            EventHandler<ChannelEventArgs> handler = ChannelAdded;
+            var handler = ChannelAdded;
 
             if (handler != null) {
                 handler (this, new ChannelEventArgs (channel));
@@ -400,7 +425,7 @@ namespace Banshee.Paas.Aether
 
         private void OnChannelRemoved (PaasChannel channel)
         {
-            EventHandler<ChannelEventArgs> handler = ChannelRemoved;
+            var handler = ChannelRemoved;
 
             if (handler != null) {
                 handler (this, new ChannelEventArgs (channel));
@@ -409,7 +434,7 @@ namespace Banshee.Paas.Aether
 
         private void OnItemsAdded (IEnumerable<PaasItem> items)
         {
-            EventHandler<ItemEventArgs> handler = ItemsAdded;
+            var handler = ItemsAdded;
 
             if (handler != null) {
                 handler (this, new ItemEventArgs (items));
@@ -427,7 +452,7 @@ namespace Banshee.Paas.Aether
 */
         private void OnItemRemoved (PaasItem item)
         {
-            EventHandler<ItemEventArgs> handler = ItemsRemoved;
+            var handler = ItemsRemoved;
 
             if (handler != null) {
                 handler (this, new ItemEventArgs (item));
@@ -436,7 +461,7 @@ namespace Banshee.Paas.Aether
 
         private void OnItemsRemoved (IEnumerable<PaasItem> items)
         {
-            EventHandler<ItemEventArgs> handler = ItemsRemoved;
+            var handler = ItemsRemoved;
 
             if (handler != null) {
                 handler (this, new ItemEventArgs (items));
