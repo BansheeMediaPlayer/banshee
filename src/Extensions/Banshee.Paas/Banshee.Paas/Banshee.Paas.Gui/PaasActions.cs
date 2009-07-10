@@ -75,7 +75,7 @@ namespace Banshee.Paas.Gui
             
             AddImportant (
                 new ActionEntry (
-                    "PaasUpdateAction", Stock.Refresh,
+                    "PaasUpdateAllAction", Stock.Refresh,
                      Catalog.GetString ("Update Channels"), "<control><shift>U",
                      Catalog.GetString ("Recieve updates from Miro Guide"), OnPaasUpdateHandler
                 ),

@@ -1,26 +1,25 @@
 <ui>
-    <popup name="PaasSourcePopup" action="PaasSourcePopupAction">
-        <menuitem name="PaasUpdate" action="PaasUpdateAction"/>
-        <menuitem name="PaasSubscribe" action="PaasSubscribeAction" />
-        <separator/>
-        <menuitem name="SourcePreferences" action="SourcePreferencesAction"/>
-    </popup>
+  <popup name="PaasSourcePopup" action="PaasSourcePopupAction">
+    <menuitem name="PaasUpdateAll" action="PaasUpdateAllAction"/>
+    <menuitem name="PaasSubscribe" action="PaasSubscribeAction" />
+    <separator/>
+    <menuitem name="SourcePreferences" action="SourcePreferencesAction"/>
+  </popup>
 
-    <popup name="PaasChannelPopup" action="PaasChannelPopupAction">
+  <popup name="PaasChannelPopup" action="PaasChannelPopupAction">
 <!--
-        <menuitem name="PaasUpdateChannel" action="PaasUpdateChannelAction" />
+    <menuitem name="PaasUpdateChannel" action="PaasUpdateChannelAction" />
     
-        <menuitem name="PodcastDownloadAll" action="PodcastDownloadAllAction"/>
-        <menuitem name="PodcastHomepage" action="PodcastHomepageAction" /> 
+    <menuitem name="PodcastDownloadAll" action="PodcastDownloadAllAction"/>
+    <menuitem name="PodcastHomepage" action="PodcastHomepageAction" /> 
 -->
-        <menuitem name="PaasDeleteChannel" action="PaasDeleteChannelAction" />
-        <separator />
+    <menuitem name="PaasDeleteChannel" action="PaasDeleteChannelAction" />
+    <separator />
 <!--    <menuitem name="PaasChannelProperties" action="PaasChannelPropertiesAction" /> -->
-    </popup>
-<!--
-    <popup name="PodcastAllFeedsContextMenu" action="PodcastAllFeedsContextMenuAction">
-        <menuitem name="PodcastAdd" action="PodcastAddAction" />
-        <menuitem name="PodcastUpdateAll" action="PodcastUpdateAllAction"/>
-    </popup>
--->
+  </popup>
+
+  <popup name="PaasAllChannelsContextMenu" action="PaasAllChannelsContextMenuAction">
+    <menuitem name="PaasUpdateAll" action="PaasUpdateAllAction" />    
+    <menuitem name="PaasSubscribe" action="PaasSubscribeAction" />
+  </popup>
 </ui>
