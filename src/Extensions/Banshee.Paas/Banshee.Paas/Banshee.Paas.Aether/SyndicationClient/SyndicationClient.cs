@@ -244,7 +244,7 @@ namespace Banshee.Paas.Aether
                 if (channel == null)  {
                     channel = new PaasChannel () {
                         Url = url,
-                        DownloadPreference = (int) download_pref,
+                        DownloadPreference = download_pref,
                         ClientID = (long) AetherClientID.Syndication
                     };
                     

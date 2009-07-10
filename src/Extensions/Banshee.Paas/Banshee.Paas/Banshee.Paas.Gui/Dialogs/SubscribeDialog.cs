@@ -34,7 +34,7 @@ using Hyena.Widgets;
 using Banshee.Gui;
 using Banshee.Base;
 
-using Banshee.Paas.Aether;
+using Banshee.Paas.Data;
 
 namespace Banshee.Paas.Gui
 {

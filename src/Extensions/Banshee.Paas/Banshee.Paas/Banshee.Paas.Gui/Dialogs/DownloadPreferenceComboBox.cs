@@ -28,7 +28,7 @@ using Gtk;
 using System;
 using Mono.Unix;
 
-using Banshee.Paas.Aether;
+using Banshee.Paas.Data;
 
 namespace Banshee.Paas.Gui
 {

@@ -57,7 +57,6 @@
     <Compile Include="Banshee.Paas\Banshee.Paas.Aether\AetherClientID.cs" />
     <Compile Include="Banshee.Paas\Banshee.Paas.Aether\AetherClientState.cs" />
     <Compile Include="Banshee.Paas\Banshee.Paas.Aether\AetherClientStateChangedEventArgs.cs" />
-    <Compile Include="Banshee.Paas\Banshee.Paas.Aether\DownloadPreference.cs" />
     <Compile Include="Banshee.Paas\Banshee.Paas.Aether\MiroGuideClient\AetherAsyncCompletedEventArgs.cs" />
     <Compile Include="Banshee.Paas\Banshee.Paas.Aether\MiroGuideClient\AetherDelta.cs" />
     <Compile Include="Banshee.Paas\Banshee.Paas.Aether\MiroGuideClient\HttpMethod.cs" />
@@ -90,6 +89,8 @@
     <Compile Include="Banshee.Paas\Banshee.Paas.Utils\StringUtils.cs" />
     <Compile Include="Banshee.Paas\Banshee.Paas.Aether\SyndicationClient\ChannelUpdateCompletedEventArgs.cs" />
     <Compile Include="Banshee.Paas\Banshee.Paas.Gui\PaasItemPage.cs" />
+    <Compile Include="Banshee.Paas\Banshee.Paas.Gui\Dialogs\ChannelPropertiesDialog.cs" />
+    <Compile Include="Banshee.Paas\Banshee.Paas.Data\DownloadPreference.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Core\Banshee.Core\Banshee.Core.csproj">

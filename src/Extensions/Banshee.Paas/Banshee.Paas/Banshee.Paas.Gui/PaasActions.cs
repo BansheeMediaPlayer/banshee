@@ -129,6 +129,10 @@ namespace Banshee.Paas.Gui
                     "PaasDeleteChannelAction", Stock.Delete,
                      Catalog.GetString ("Delete"), null,
                      Catalog.GetString ("Delete Channel"), OnPaasChannelDeleteHandler
+                ), new ActionEntry (
+                    "PaasChannelPropertiesAction", Stock.Preferences,
+                     Catalog.GetString ("Properties"), null,
+                     Catalog.GetString ("Properties"), OnPaasChannelPropertiesHandler
                 )                   
             });
             
@@ -417,7 +421,17 @@ namespace Banshee.Paas.Gui
 
         private void OnPaasChannelDeleteHandler (object sender, EventArgs e)
         {
-            service.SyndicationClient.DeleteChannels (ActiveChannelModel.SelectedItems, true);
-        }      
+            var channels = ActiveChannelModel.SelectedItems;
+            service.SyndicationClient.DeleteChannels (channels, true);
+        }
+        
+        private void OnPaasChannelPropertiesHandler (object sender, EventArgs e)
+        {
+            PaasChannel channel = ActiveChannelModel.FocusedItem;
+            
+            if (channel != null) {
+                new ChannelPropertiesDialog (channel).Run ();
+            }
+        }
     }
 }

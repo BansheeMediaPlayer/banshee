@@ -8,7 +8,6 @@ SOURCES =  \
 	Banshee.Paas/Banshee.Paas.Aether/AetherClientID.cs \
 	Banshee.Paas/Banshee.Paas.Aether/AetherClientState.cs \
 	Banshee.Paas/Banshee.Paas.Aether/AetherClientStateChangedEventArgs.cs \
-	Banshee.Paas/Banshee.Paas.Aether/DownloadPreference.cs \
 	Banshee.Paas/Banshee.Paas.Aether/MiroGuideClient/AetherAsyncCompletedEventArgs.cs \
 	Banshee.Paas/Banshee.Paas.Aether/MiroGuideClient/AetherDelta.cs \
 	Banshee.Paas/Banshee.Paas.Aether/MiroGuideClient/HttpMethod.cs \
@@ -22,6 +21,7 @@ SOURCES =  \
 	Banshee.Paas/Banshee.Paas.Aether/SyndicationClient/ItemEventArgs.cs \
 	Banshee.Paas/Banshee.Paas.Aether/SyndicationClient/RssParser.cs \
 	Banshee.Paas/Banshee.Paas.Aether/SyndicationClient/SyndicationClient.cs \
+	Banshee.Paas/Banshee.Paas.Data/DownloadPreference.cs \
 	Banshee.Paas/Banshee.Paas.Data/PaasChannel.cs \
 	Banshee.Paas/Banshee.Paas.Data/PaasChannelModel.cs \
 	Banshee.Paas/Banshee.Paas.Data/PaasItem.cs \
@@ -30,6 +30,7 @@ SOURCES =  \
 	Banshee.Paas/Banshee.Paas.Gui/ColumnCellChannel.cs \
 	Banshee.Paas/Banshee.Paas.Gui/ColumnCellPaasStatusIndicator.cs \
 	Banshee.Paas/Banshee.Paas.Gui/ColumnCellPublished.cs \
+	Banshee.Paas/Banshee.Paas.Gui/Dialogs/ChannelPropertiesDialog.cs \
 	Banshee.Paas/Banshee.Paas.Gui/Dialogs/DownloadPreferenceComboBox.cs \
 	Banshee.Paas/Banshee.Paas.Gui/Dialogs/SubscribeDialog.cs \
 	Banshee.Paas/Banshee.Paas.Gui/Download/DownloadSource.cs \

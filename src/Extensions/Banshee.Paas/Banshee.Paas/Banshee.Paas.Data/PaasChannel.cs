@@ -107,9 +107,9 @@ namespace Banshee.Paas.Data
             }
         }
 
-        private int download_preference;        
+        private DownloadPreference download_preference;        
         [DatabaseColumn]
-        public int DownloadPreference {
+        public DownloadPreference DownloadPreference {
             get { return download_preference; }
             set { 
                 download_preference = value;

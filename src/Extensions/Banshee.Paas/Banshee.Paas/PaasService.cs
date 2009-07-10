@@ -381,10 +381,10 @@ namespace Banshee.Paas
                     IEnumerable<PaasItem> items = e.Channel.Items.OrderByDescending (i => i.PubDate);
 
                     switch (e.Channel.DownloadPreference) {
-                    case (int)DownloadPreference.One:
+                    case DownloadPreference.One:
                         items = items.Take (1);
                         break;
-                    case (int)DownloadPreference.None:
+                    case DownloadPreference.None:
                         items = items.Take (0);
                         break;
                     }
