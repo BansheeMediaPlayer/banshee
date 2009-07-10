@@ -89,6 +89,7 @@
     <Compile Include="Banshee.Paas\Banshee.Paas.Gui\PaasSourceContents.cs" />
     <Compile Include="Banshee.Paas\Banshee.Paas.Utils\StringUtils.cs" />
     <Compile Include="Banshee.Paas\Banshee.Paas.Aether\SyndicationClient\ChannelUpdateCompletedEventArgs.cs" />
+    <Compile Include="Banshee.Paas\Banshee.Paas.Gui\PaasItemPage.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Core\Banshee.Core\Banshee.Core.csproj">
@@ -119,5 +120,6 @@
   <ItemGroup>
     <None Include="Resources\ActiveSourceUI.xml" />
     <None Include="Resources\GlobalUI.xml" />
+    <None Include="Banshee.Paas.addin.xml" />
   </ItemGroup>
 </Project>

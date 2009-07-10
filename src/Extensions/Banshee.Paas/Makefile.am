@@ -37,6 +37,7 @@ SOURCES =  \
 	Banshee.Paas/Banshee.Paas.Gui/PaasActions.cs \
 	Banshee.Paas/Banshee.Paas.Gui/PaasChannelView.cs \
 	Banshee.Paas/Banshee.Paas.Gui/PaasColumnController.cs \
+	Banshee.Paas/Banshee.Paas.Gui/PaasItemPage.cs \
 	Banshee.Paas/Banshee.Paas.Gui/PaasItemView.cs \
 	Banshee.Paas/Banshee.Paas.Gui/PaasSourceContents.cs \
 	Banshee.Paas/Banshee.Paas.Utils/StringUtils.cs \
