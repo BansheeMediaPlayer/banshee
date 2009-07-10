@@ -503,7 +503,7 @@ namespace Banshee.Paas.Gui
                     }
                 }
                 
-                if (cnt > 1) {
+                if (cnt > 0) {
                     RunConfirmDeleteDialog (true, cnt, out delete, out delete_files);
                     break;
                 }
