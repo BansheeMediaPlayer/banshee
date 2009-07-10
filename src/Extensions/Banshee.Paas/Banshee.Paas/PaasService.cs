@@ -229,7 +229,7 @@ namespace Banshee.Paas
             download_manager.Dispose ();
             download_manager.TaskCompleted -= OnDownloadTaskCompletedHandler;
             download_manager = null;
-
+            
             lock (sync) {
                 disposing = false;            
                 disposed  = true;
@@ -389,7 +389,7 @@ namespace Banshee.Paas
                         break;
                     }
 
-                    download_manager.QueueDownload (items.Where (i => !i.IsDownloaded));
+                    download_manager.QueueDownload (items.Where (i => i.Active && !i.IsDownloaded));
                 }
             }
         }
@@ -426,7 +426,7 @@ namespace Banshee.Paas
                 if (Disposed) {
                     return;
                 }
-    
+                
                 ServiceManager.DbConnection.BeginTransaction ();
                 
                 try {
@@ -434,13 +434,12 @@ namespace Banshee.Paas
                         if (download_manager.Contains (e.Item)) {
                             download_manager.CancelDownload (e.Item);
                         }
-                        
                         source.RemoveItem (e.Item);
                     } else {
                         foreach (PaasItem item in e.Items) {
                             if (download_manager.Contains (item)) {
                                 download_manager.CancelDownload (item);
-                            }                        
+                            }
                         }
                         
                         source.RemoveItems (e.Items);
@@ -545,7 +544,7 @@ namespace Banshee.Paas
                     }                    
                 } catch (Exception ex) {
                     source.ErrorSource.AddMessage (                    
-                        Catalog.GetString ("Error Saving File"), ex.Message
+                        Catalog.GetString (String.Format ("Error Saving File:  {0}", tmp_local_path)), ex.Message
                     );
 
                     Hyena.Log.Exception (ex);

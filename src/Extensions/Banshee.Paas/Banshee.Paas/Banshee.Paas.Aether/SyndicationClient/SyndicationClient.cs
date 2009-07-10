@@ -30,6 +30,7 @@ using System.Collections.Generic;
 
 using Migo2.Async;
 
+using Banshee.Base;
 using Banshee.ServiceStack;
 
 using Banshee.Paas.Data;
@@ -101,7 +102,7 @@ namespace Banshee.Paas.Aether
             DeleteChannel (channel, false);
         }
 
-        public void DeleteChannel (PaasChannel channel, bool keepFiles)
+        public void DeleteChannel (PaasChannel channel, bool deleteFiles)
         {
             if (channel == null) {
                 throw new ArgumentNullException ("channel");
@@ -112,34 +113,34 @@ namespace Banshee.Paas.Aether
                     if (updating.ContainsKey (channel.DbId)) {
                         deleted.Add (
                             channel.DbId, 
-                            new DeletedChannelInfo { KeepFiles = keepFiles, Channel = channel }
+                            new DeletedChannelInfo { DeleteFiles = deleteFiles, Channel = channel }
                         );
                         
                         updating[channel.DbId].CancelAsync ();
                     } else {
-                        DeleteChannelImpl (channel, keepFiles);
+                        DeleteChannelImpl (channel, deleteFiles);
                     }
                 }
             }
         }
 
-        public void DeleteChannels (IEnumerable<PaasChannel> channels, bool keepFiles)
+        public void DeleteChannels (IEnumerable<PaasChannel> channels, bool deleteFiles)
         {
             if (channels == null) {
                 throw new ArgumentNullException ("channels");
             }
         
             foreach (PaasChannel channel in channels) {
-                DeleteChannel (channel, keepFiles);
+                DeleteChannel (channel, deleteFiles);
             }
         }
 
-        private void DeleteChannelImpl (PaasChannel channel, bool keepFiles)
+        private void DeleteChannelImpl (PaasChannel channel, bool deleteFiles)
         {
             List<PaasItem> items = new List<PaasItem> (channel.Items);
 
             if (items != null) {
-                DeleteItems (items, keepFiles, true);
+                DeleteItems (items, deleteFiles, true);
             }                
 
             PaasChannel.Provider.Delete (channel);
@@ -165,7 +166,7 @@ namespace Banshee.Paas.Aether
 //            }
 //        }
 
-        private void DeleteItems (IEnumerable<PaasItem> items, bool keepFiles, bool notify)
+        private void DeleteItems (IEnumerable<PaasItem> items, bool deleteFiles, bool notify)
         {
             if (items == null) {
                 throw new ArgumentNullException ("items");
@@ -174,6 +175,15 @@ namespace Banshee.Paas.Aether
             lock (sync) {
                 if (!disposed) {
                     PaasItem.Provider.Delete (items);
+                    
+                    foreach (var item in items) {
+                        if (deleteFiles && item.IsDownloaded) {
+                            try  {
+                                Banshee.IO.Utilities.DeleteFileTrimmingParentDirectories (new SafeUri (item.LocalPath));
+                            } catch {}
+                        }
+                    }
+                    
                     if (notify) {
                         OnItemsRemoved (items);                                        
                     }
@@ -202,7 +212,12 @@ namespace Banshee.Paas.Aether
             }
         }
 
-        public void RemoveItems (IEnumerable<PaasItem> items, bool keepFiles)
+        public void RemoveItems (IEnumerable<PaasItem> items)
+        {
+            RemoveItems (items, true);
+        }
+
+        public void RemoveItems (IEnumerable<PaasItem> items, bool deleteFiles)
         {
             if (items == null) {
                 throw new ArgumentNullException ("items");
@@ -216,6 +231,12 @@ namespace Banshee.Paas.Aether
                         foreach (PaasItem item in items) {
                             item.Active = false;
                             item.Save ();
+                            
+                            if (deleteFiles && item.IsDownloaded) {
+                                try  {
+                                    Banshee.IO.Utilities.DeleteFileTrimmingParentDirectories (new SafeUri (item.LocalPath));
+                                } catch {}
+                            }
                         }
                         
                         ServiceManager.DbConnection.CommitTransaction ();
@@ -335,7 +356,7 @@ namespace Banshee.Paas.Aether
                 PaasChannel channel = task.Channel;
 
                 if (deleted.ContainsKey (channel.DbId)) {
-                    DeleteChannelImpl (channel, deleted[channel.DbId].KeepFiles);
+                    DeleteChannelImpl (channel, deleted[channel.DbId].DeleteFiles);
                     
                     deleted.Remove (channel.DbId);
                     updating.Remove (channel.DbId);
@@ -444,16 +465,7 @@ namespace Banshee.Paas.Aether
                 handler (this, new ItemEventArgs (items));
             }            
         }
-/*
-        private void OnItemAdded (PaasItem item)
-        {
-            EventHandler<ItemEventArgs> handler = ItemsAdded;
 
-            if (handler != null) {
-                handler (this, new ItemEventArgs (item));
-            }            
-        }
-*/
         private void OnItemRemoved (PaasItem item)
         {
             var handler = ItemsRemoved;
@@ -474,7 +486,7 @@ namespace Banshee.Paas.Aether
 
         private class DeletedChannelInfo
         {
-            public bool KeepFiles { get; set; }
+            public bool DeleteFiles { get; set; }
             public PaasChannel Channel { get; set; }
         }
     }

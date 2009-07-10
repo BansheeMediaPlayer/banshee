@@ -116,11 +116,16 @@ namespace Banshee.Paas.Gui
                     "PaasItemMarkOldAction", null,
                      Catalog.GetString ("Mark as Old"), null,
                      Catalog.GetString ("Mark as Old"), OnPaasItemMarkedOldHandler
-                ),                   
+                ),         
                 new ActionEntry (
                     "PaasItemRemoveAction", Stock.Remove,
                      Catalog.GetString ("Remove From Library"), null,
                      Catalog.GetString ("Remove From Library"), OnPaasItemRemovedHandler
+                ),                
+                new ActionEntry (
+                    "PaasItemDeleteAction", null,
+                     Catalog.GetString ("Delete From Drive"), null,
+                     Catalog.GetString ("Delete From Drive"), OnPaasItemDeletedHandler
                 ),                
                 new ActionEntry (
                     "PaasChannelPopupAction", null, null, null, null, OnChannelPopup
@@ -344,6 +349,50 @@ namespace Banshee.Paas.Gui
             s.Reload ();
         }
 
+        private void RunConfirmDeleteDialog (bool channel, int selCount, out bool delete, out bool deleteFiles)
+        {
+            
+            delete = false;
+            deleteFiles = false;        
+            string header = null;
+            int plural = (channel | (selCount > 1)) ? 2 : 1;
+
+            if (channel) {
+                header = Catalog.GetPluralString ("Delete Channel", "Delete Channels", selCount);
+            } else {
+                header = Catalog.GetPluralString ("Delete Item?", "Delete Items?", selCount);
+            }
+                
+            HigMessageDialog md = new HigMessageDialog (
+                ServiceManager.Get<GtkElementsService> ("GtkElementsService").PrimaryWindow,
+                DialogFlags.DestroyWithParent, 
+                MessageType.Question,
+                ButtonsType.None, header, 
+                Catalog.GetPluralString (
+                    "Would you like to delete the associated file?",
+                    "Would you like to delete the associated files?", plural                
+                )
+            );
+            
+            md.AddButton (Stock.Cancel, ResponseType.Cancel, true);
+            md.AddButton (Catalog.GetPluralString ("Keep File", "Keep Files", plural), ResponseType.No, false);
+            
+            md.AddButton (Stock.Delete, ResponseType.Yes, false);
+            
+            try {
+                switch ((ResponseType)md.Run ()) {
+                case ResponseType.Yes:
+                    deleteFiles = true;
+                    goto case ResponseType.No;
+                case ResponseType.No:
+                    delete = true;
+                    break;
+                }                
+            } finally {
+                md.Destroy ();
+            }       
+        }
+
         private void OnPaasSubscribeHandler (object sender, EventArgs args)
         {
             RunSubscribeDialog ();
@@ -391,11 +440,30 @@ namespace Banshee.Paas.Gui
             );
         }
 
+        private void OnPaasItemDeletedHandler (object sender, EventArgs args)
+        {
+            var items = GetSelectedItems ();
+            service.SyndicationClient.RemoveItems (items.Select (t => t.Item));
+        }
+
         private void OnPaasItemRemovedHandler (object sender, EventArgs args)
         {
-            // Run dialog to determine the fate of downloaded files.
-            var items = GetSelectedItems ();
-            service.SyndicationClient.RemoveItems (items.Select (t => t.Item), true);
+            bool delete, delete_files;
+            
+            var items = GetSelectedItems ().Select (t => t.Item).Where (i => !i.IsDownloaded);
+            var downloaded_items = GetSelectedItems ().Select (t => t.Item).Where (i => i.IsDownloaded);
+            
+            int cnt = downloaded_items.Count ();
+
+            if (cnt > 0) {
+                RunConfirmDeleteDialog (false, cnt, out delete, out delete_files);
+                
+                if (delete) {
+                    service.SyndicationClient.RemoveItems (downloaded_items, delete_files);                
+                }              
+            }
+
+            service.SyndicationClient.RemoveItems (items);
         }
 
         private void OnPaasItemMarkedNewHandler (object sender, EventArgs e)
@@ -421,8 +489,29 @@ namespace Banshee.Paas.Gui
 
         private void OnPaasChannelDeleteHandler (object sender, EventArgs e)
         {
-            var channels = ActiveChannelModel.SelectedItems;
-            service.SyndicationClient.DeleteChannels (channels, true);
+            int cnt = 0;
+            bool delete = true, delete_files = false;
+            
+            var channels = new List<PaasChannel> (ActiveChannelModel.SelectedItems);
+
+            foreach (var channel in channels) {
+                foreach (var item in channel.Items) {
+                    if (item.Active && item.IsDownloaded) {
+                        if (++cnt == 2) {
+                            break;
+                        }
+                    }
+                }
+                
+                if (cnt > 1) {
+                    RunConfirmDeleteDialog (true, cnt, out delete, out delete_files);
+                    break;
+                }
+            }
+
+            if (delete) {
+                service.SyndicationClient.DeleteChannels (channels, delete_files);                
+            }
         }
         
         private void OnPaasChannelPropertiesHandler (object sender, EventArgs e)
