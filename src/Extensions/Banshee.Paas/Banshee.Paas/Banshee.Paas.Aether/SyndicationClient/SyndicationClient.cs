@@ -139,7 +139,7 @@ namespace Banshee.Paas.Aether
             List<PaasItem> items = new List<PaasItem> (channel.Items);
 
             if (items != null) {
-                DeleteItems (items, keepFiles);
+                DeleteItems (items, keepFiles, true);
             }                
 
             PaasChannel.Provider.Delete (channel);
@@ -165,7 +165,7 @@ namespace Banshee.Paas.Aether
 //            }
 //        }
 
-        private void DeleteItems (IEnumerable<PaasItem> items, bool keepFiles)
+        private void DeleteItems (IEnumerable<PaasItem> items, bool keepFiles, bool notify)
         {
             if (items == null) {
                 throw new ArgumentNullException ("items");
@@ -174,7 +174,9 @@ namespace Banshee.Paas.Aether
             lock (sync) {
                 if (!disposed) {
                     PaasItem.Provider.Delete (items);
-                    OnItemsRemoved (items);                
+                    if (notify) {
+                        OnItemsRemoved (items);                                        
+                    }
                 }
             }            
         }
@@ -357,7 +359,9 @@ namespace Banshee.Paas.Aether
                             var cmp = new PaasItemEqualityComparer ();
 
                             new_items = new List<PaasItem> (remote_items.Except (local_items, cmp));
-                            removed_items = new List<PaasItem> (local_items.Except (remote_items, cmp));
+                            removed_items = new List<PaasItem> (
+                                local_items.Except (remote_items, cmp).Where ((i) => (!i.IsDownloaded || !i.Active))
+                            );
 
                             if (new_items.Count > 0) {
                                 foreach (PaasItem item in new_items) {
@@ -367,7 +371,7 @@ namespace Banshee.Paas.Aether
                             }
                             
                             if (removed_items.Count > 0) {
-                                DeleteItems (removed_items.Where ((i) => !i.IsDownloaded), true);
+                                DeleteItems (removed_items, true, false);
                             }
                         } catch (Exception ex) {
                             ServiceManager.DbConnection.RollbackTransaction ();

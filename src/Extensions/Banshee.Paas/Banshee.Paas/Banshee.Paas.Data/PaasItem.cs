@@ -161,7 +161,9 @@ namespace Banshee.Paas.Data
         }
 
         public bool IsDownloaded {
-            get { return !String.IsNullOrEmpty (LocalPath); }
+            get { 
+                return (DownloadedAt != DateTime.MinValue) || !String.IsNullOrEmpty (LocalPath); 
+            }
         } 
 
         private bool is_new;
