@@ -1,8 +1,8 @@
 <ui>
   <toolbar name="HeaderToolbar">
     <placeholder name="SourceActions">
-        <toolitem name="PaasSubscribe" action="PaasSubscribeAction" />
-        <toolitem name="PaasUpdate" action="PaasUpdateAction" />
+      <toolitem name="PaasSubscribe" action="PaasSubscribeAction" />
+      <toolitem name="PaasUpdate"    action="PaasUpdateAction" />
     </placeholder>
   </toolbar>
 
@@ -37,17 +37,18 @@
 
   <popup name="TrackContextMenu" action="TrackContextMenuAction">
     <placeholder name="BelowAddToPlaylist">
-<!--        <menuitem name="PodcastItemLink" action="PodcastItemLinkAction" /> -->
-        <separator />
-        <menuitem name="PaasItemPause" action="PaasItemPauseAction" />
-        <menuitem name="PaasItemResume" action="PaasItemResumeAction" />                
-        <menuitem name="PaasItemCancel" action="PaasItemCancelAction" />
-        <menuitem name="PaasItemDownload" action="PaasItemDownloadAction" />
-        <separator />
-        <menuitem name="PaasItemRemove" action="PaasItemRemoveAction" />
-        <separator />        
-        <menuitem name="PaasItemMarkNew" action="PaasItemMarkNewAction" />
-        <menuitem name="PaasItemMarkOld" action="PaasItemMarkOldAction" />
+      <!--<menuitem name="PodcastItemLink" action="PodcastItemLinkAction" /> -->
+      <separator />
+      <menuitem name="PaasItemPause"    action="PaasItemPauseAction" />
+      <menuitem name="PaasItemResume"   action="PaasItemResumeAction" />                
+      <menuitem name="PaasItemCancel"   action="PaasItemCancelAction" />
+      <menuitem name="PaasItemDownload" action="PaasItemDownloadAction" />
+      <separator />
+      <menuitem name="PaasItemRemove"   action="PaasItemRemoveAction" />
+      <separator />        
+      <menuitem name="PaasItemMarkNew"  action="PaasItemMarkNewAction" />
+      <menuitem name="PaasItemMarkOld"  action="PaasItemMarkOldAction" />
+      <separator />                
     </placeholder>
   </popup>
 </ui>
