@@ -1,12 +1,10 @@
 // 
-// PaasChannelView.cs
+// IWaitableTask.cs
 //  
-// Authors:
-//   Mike Urbanski <michael.c.urbanski@gmail.com>
-//   Gabriel Burt <gburt@novell.com>
-//
-// Copyright (C) 2009 Michael C. Urbanski
-// Copyright (C) 2008 Novell, Inc.
+// Author:
+//       Mike Urbanski <michael.c.urbanski@gmail.com>
+// 
+// Copyright (c) 2009 Michael C. Urbanski
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -27,33 +25,12 @@
 // THE SOFTWARE.
 
 using System;
+using System.Threading;
 
-using Hyena.Data.Gui;
-
-using Banshee.Gui;
-using Banshee.ServiceStack;
-using Banshee.Collection.Gui;
-
-using Banshee.Paas.Data;
-
-namespace Banshee.Paas.Gui
+namespace Migo2.Async
 {
-    public class PaasChannelView : TrackFilterListView<PaasChannel>
-    {        
-        public PaasChannelView ()            
-        {
-            ColumnCellChannel renderer = new ColumnCellChannel ();
-            
-            column_controller.Add (new Column ("Channels", renderer, 1.0));
-            
-            ColumnController  = column_controller;
-            RowHeightProvider = renderer.ComputeRowHeight;
-        }
-        
-        protected override bool OnPopupMenu ()
-        {
-            ServiceManager.Get<InterfaceActionService> ().FindAction ("Paas.PaasChannelPopupAction").Activate ();
-            return true;
-        }
+    public interface IWaitableTask
+    {
+        WaitHandle WaitHandle { get; }        
     }
 }

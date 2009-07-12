@@ -52,7 +52,6 @@ namespace Migo2.Async
         public EventHandler<TaskCompletedEventArgs> Completed;
         
         public EventHandler<TaskEventArgs> Updated; // General update, name, other properties for re-draw.
-        //public EventHandler<EventArgs> ResumeRequested;
         
         public EventHandler<TaskStateChangedEventArgs> StateChanged;
         public EventHandler<ProgressChangedEventArgs>  ProgressChanged;

@@ -373,10 +373,9 @@ namespace Banshee.Paas.Gui
                     "Would you like to delete the associated files?", plural                
                 )
             );
-            
+
             md.AddButton (Stock.Cancel, ResponseType.Cancel, true);
             md.AddButton (Catalog.GetPluralString ("Keep File", "Keep Files", plural), ResponseType.No, false);
-            
             md.AddButton (Stock.Delete, ResponseType.Yes, false);
             
             try {

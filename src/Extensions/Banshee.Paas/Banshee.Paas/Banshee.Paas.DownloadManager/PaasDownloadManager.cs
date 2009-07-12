@@ -33,7 +33,7 @@ using Migo2.DownloadService;
 
 using Banshee.Paas.Data;
 
-namespace Banshee.Paas
+namespace Banshee.Paas.DownloadManager
 {
     public class PaasDownloadManager : HttpDownloadManager
     {

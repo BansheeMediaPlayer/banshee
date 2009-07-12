@@ -9,12 +9,12 @@ SOURCES =  \
 	Migo2.Async/CommandQueue/EventWrapper.cs \
 	Migo2.Async/CommandQueue/ICommand.cs \
 	Migo2.Async/Task/CancellationType.cs \
+	Migo2.Async/Task/IWaitableTask.cs \
 	Migo2.Async/Task/Task.cs \
 	Migo2.Async/Task/TaskCompletedEventArgs.cs \
 	Migo2.Async/Task/TaskEventArgs.cs \
 	Migo2.Async/Task/TaskState.cs \
 	Migo2.Async/Task/TaskStateChangedEventArgs.cs \
-	Migo2.Async/Task/WaitableTask.cs \
 	Migo2.Async/TaskGroup/EventArgs/GroupStatusChangedEventArgs.cs \
 	Migo2.Async/TaskGroup/EventArgs/ManipulatedEventArgs.cs \
 	Migo2.Async/TaskGroup/EventArgs/ReorderedEventArgs.cs \

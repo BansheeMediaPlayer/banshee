@@ -68,7 +68,7 @@ namespace Banshee.Paas.Gui
             }
             
             if (!(BoundObject is PaasChannel)) {
-                throw new InvalidCastException("ColumnCellPodcast can only bind to Feed objects");
+                throw new InvalidCastException("ColumnCellChannel can only bind to PaasChannel objects");
             }
             
             PaasChannel channel = (PaasChannel)BoundObject;
@@ -115,12 +115,12 @@ namespace Banshee.Paas.Gui
                 layout.FontDescription.Size = (int)(old_size * Pango.Scale.Small);
                 layout.FontDescription.Style = Pango.Style.Italic;
                 
-                if (channel.LastBuildDate == DateTime.MinValue) {
+                if (channel.LastDownloadTime == DateTime.MinValue) {
                     layout.SetText (Catalog.GetString ("Never updated"));
-                } else if (channel.LastBuildDate.Date == DateTime.Now.Date) {
-                    layout.SetText (String.Format (Catalog.GetString ("Last modified at {0}"), channel.LastBuildDate.ToShortTimeString ()));
+                } else if (channel.LastDownloadTime.Date == DateTime.Now.Date) {
+                    layout.SetText (String.Format (Catalog.GetString ("Last updated at {0}"), channel.LastDownloadTime.ToShortTimeString ()));
                 } else {
-                    layout.SetText (String.Format (Catalog.GetString ("Last modified on {0}"), channel.LastBuildDate.ToLongDateString ()));
+                    layout.SetText (String.Format (Catalog.GetString ("Last updated on {0}"), channel.LastDownloadTime.ToLongDateString ()));
                 }
 
                 layout.GetPixelSize (out sl_width, out sl_height);

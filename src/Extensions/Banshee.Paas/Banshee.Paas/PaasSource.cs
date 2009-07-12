@@ -229,9 +229,6 @@ namespace Banshee.Paas
             base.Dispose ();
         }
 
-        // Right now there's no way to get a track's CacheEntryID from the items removed during an update...
-        // Meaning PrimarySource.RemoveTrackRange is useless because of its DatabaseTrackListModel.TrackIdsSql dep.  
-        // Yell at me is this sucks.
         protected override void RemoveTrackRange (DatabaseTrackListModel model, RangeCollection.Range range)
         {
             ServiceManager.DbConnection.Execute (

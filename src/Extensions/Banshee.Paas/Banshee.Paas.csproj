@@ -49,8 +49,6 @@
     </MonoDevelop>
   </ProjectExtensions>
   <ItemGroup>
-    <Compile Include="Banshee.Paas\DownloadManagerInterface.cs" />
-    <Compile Include="Banshee.Paas\PaasDownloadManager.cs" />
     <Compile Include="Banshee.Paas\PaasService.cs" />
     <Compile Include="Banshee.Paas\PaasSource.cs" />
     <Compile Include="Banshee.Paas\Banshee.Paas.Aether\AetherClient.cs" />
@@ -76,8 +74,6 @@
     <Compile Include="Banshee.Paas\Banshee.Paas.Data\PaasTrackListModel.cs" />
     <Compile Include="Banshee.Paas\Banshee.Paas.Gui\Dialogs\DownloadPreferenceComboBox.cs" />
     <Compile Include="Banshee.Paas\Banshee.Paas.Gui\Dialogs\SubscribeDialog.cs" />
-    <Compile Include="Banshee.Paas\Banshee.Paas.Gui\Download\DownloadSource.cs" />
-    <Compile Include="Banshee.Paas\Banshee.Paas.Gui\Download\DownloadUserJob.cs" />
     <Compile Include="Banshee.Paas\Banshee.Paas.Gui\ColumnCellChannel.cs" />
     <Compile Include="Banshee.Paas\Banshee.Paas.Gui\ColumnCellPaasStatusIndicator.cs" />
     <Compile Include="Banshee.Paas\Banshee.Paas.Gui\ColumnCellPublished.cs" />
@@ -91,6 +87,13 @@
     <Compile Include="Banshee.Paas\Banshee.Paas.Gui\PaasItemPage.cs" />
     <Compile Include="Banshee.Paas\Banshee.Paas.Gui\Dialogs\ChannelPropertiesDialog.cs" />
     <Compile Include="Banshee.Paas\Banshee.Paas.Data\DownloadPreference.cs" />
+    <Compile Include="Banshee.Paas\Banshee.Paas.DownloadManager\PaasDownloadManager.cs" />
+    <Compile Include="Banshee.Paas\Banshee.Paas.DownloadManager.Gui\DownloadListModel.cs" />
+    <Compile Include="Banshee.Paas\Banshee.Paas.DownloadManager.Gui\DownloadListView.cs" />
+    <Compile Include="Banshee.Paas\Banshee.Paas.DownloadManager.Gui\DownloadManagerInterface.cs" />
+    <Compile Include="Banshee.Paas\Banshee.Paas.DownloadManager.Gui\DownloadSource.cs" />
+    <Compile Include="Banshee.Paas\Banshee.Paas.DownloadManager.Gui\DownloadSourceContents.cs" />
+    <Compile Include="Banshee.Paas\Banshee.Paas.DownloadManager.Gui\DownloadUserJob.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Core\Banshee.Core\Banshee.Core.csproj">
@@ -122,5 +125,8 @@
     <None Include="Resources\ActiveSourceUI.xml" />
     <None Include="Resources\GlobalUI.xml" />
     <None Include="Banshee.Paas.addin.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Banshee.Paas\Banshee.Paas.DownloadManager\" />
   </ItemGroup>
 </Project>

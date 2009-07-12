@@ -33,7 +33,7 @@ using Migo2.Utils;
 
 using Banshee.ServiceStack;
 
-namespace Banshee.Paas.Gui
+namespace Banshee.Paas.DownloadManager.Gui
 {
     public class DownloadUserJob : UserJob 
     {

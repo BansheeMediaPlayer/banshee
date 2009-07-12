@@ -1,5 +1,5 @@
 // 
-// WaitableTask.cs
+// DownloadSourceContents.cs
 //  
 // Author:
 //       Mike Urbanski <michael.c.urbanski@gmail.com>
@@ -25,14 +25,52 @@
 // THE SOFTWARE.
 
 using System;
-using System.Threading;
 
-namespace Migo2.Async
+using Gtk;
+
+using Banshee.Sources;
+using Banshee.Sources.Gui;
+
+namespace Banshee.Paas.DownloadManager.Gui
 {
-    public abstract class WaitableTask : Task
+    public class DownloadSourceContents : ISourceContents
     {
-        public abstract WaitHandle WaitHandle {
-            get;
-        }        
+        DownloadSource download_source;
+        DownloadListView download_view;
+
+        public ISource Source { 
+            get { return download_source; } 
+        }
+        
+        public Widget Widget { 
+            get { return download_view as Widget; }
+        }
+
+        public DownloadSourceContents (DownloadListView view)
+        {
+            download_view = view;
+        }
+
+        public bool SetSource (ISource source)
+        {
+            download_source = source as DownloadSource;
+            
+            if (download_source == null) {
+                return false;
+            }
+
+            download_view.HeaderVisible = true;
+            download_view.SetModel (download_source.DownloadListModel);
+            
+            return true;
+        }
+
+        public void ResetSource ()
+        {            
+            download_source = null;
+            
+            download_view.SetModel (null);
+            download_view.HeaderVisible = false;
+        }
     }
 }

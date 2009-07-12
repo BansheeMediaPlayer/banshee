@@ -45,6 +45,9 @@ using Banshee.Paas.Gui;
 using Banshee.Paas.Utils;
 using Banshee.Paas.Aether;
 
+using Banshee.Paas.DownloadManager;
+using Banshee.Paas.DownloadManager.Gui;
+
 using Migo2.Async;
 using Migo2.DownloadService;
 

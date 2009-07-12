@@ -36,19 +36,21 @@ using Banshee.ServiceStack;
 
 using Banshee.Paas.Gui;
 
-namespace Banshee.Paas
+namespace Banshee.Paas.DownloadManager.Gui
 {
     public class DownloadManagerInterface : IDisposable 
     {
         private bool cancelled;
         private PaasSource source;
-        private HttpDownloadManager manager;
-        private DownloadUserJob downloadJob;        
+        private PaasDownloadManager manager;
+        private DownloadUserJob downloadJob;
+
         private DownloadSource downloadSource;        
-        
+        private DownloadListModel download_model;
+
         private readonly object sync = new object ();        
         
-        public DownloadManagerInterface (PaasSource source, HttpDownloadManager manager)
+        public DownloadManagerInterface (PaasSource source, PaasDownloadManager manager)
         {
             if (manager == null) {
                 throw new ArgumentNullException ("manager");
@@ -56,8 +58,12 @@ namespace Banshee.Paas
 
             this.source = source;
             this.manager = manager;
+
+            download_model = new DownloadListModel ();
+            DownloadListView download_view = new DownloadListView (manager);
             
-            downloadSource = new DownloadSource ();
+            downloadSource = new DownloadSource (download_model, download_view);
+            
             manager.Started += OnManagerStartedHandler;   
             manager.Stopped += OnManagerStoppedHandler;  
             manager.ProgressChanged += OnManagerProgressChangedHandler;
@@ -65,13 +71,13 @@ namespace Banshee.Paas
             
             manager.TaskAdded += OnManagerTaskAddedHandler;
             manager.TaskProgressChanged += (sender, e) => {
-                lock (this) {
+                lock (sync) {
                     if (cancelled) {
                         return;
                     }
                 }
 
-                downloadSource.Reload ();
+                download_model.Reload ();
             };
         
             manager.TaskCompleted += (sender, e) => {
@@ -82,10 +88,11 @@ namespace Banshee.Paas
                         }
                     }
                     
-                    downloadSource.RemoveTask (e.Task);                    
+                    download_model.RemoveTask (e.Task);                    
                 }
             };
-            //manager.Group.TaskCompleted += OnManagerTaskCompletedHandler;            
+
+            manager.Reordered += (sender, e) => { download_model.Reorder (e.NewOrder); };
         }
         
         public void Dispose ()
@@ -135,7 +142,7 @@ namespace Banshee.Paas
         {
             ServiceStack.Application.Invoke (delegate {            
                 lock (sync) {
-                    downloadSource.Clear ();
+                    download_model.Clear ();
 
                     if (downloadJob != null) {                        
                         downloadJob.CancelRequested -= OnCancelRequested;
@@ -174,9 +181,9 @@ namespace Banshee.Paas
         private void OnManagerTaskAddedHandler (object sender, TaskAddedEventArgs<HttpFileDownloadTask> e)
         {
             if (e.TaskPair != null) {
-                downloadSource.AddTaskPair (e.TaskPair);
+                download_model.AddTaskPair (e.TaskPair);
             } else if (e.TaskPairs != null) {
-                downloadSource.AddTaskPairs (e.TaskPairs);                
+                download_model.AddTaskPairs (e.TaskPairs);                
             }
         }
 

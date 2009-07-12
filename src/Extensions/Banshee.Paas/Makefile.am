@@ -27,14 +27,19 @@ SOURCES =  \
 	Banshee.Paas/Banshee.Paas.Data/PaasItem.cs \
 	Banshee.Paas/Banshee.Paas.Data/PaasTrackInfo.cs \
 	Banshee.Paas/Banshee.Paas.Data/PaasTrackListModel.cs \
+	Banshee.Paas/Banshee.Paas.DownloadManager.Gui/DownloadListModel.cs \
+	Banshee.Paas/Banshee.Paas.DownloadManager.Gui/DownloadListView.cs \
+	Banshee.Paas/Banshee.Paas.DownloadManager.Gui/DownloadManagerInterface.cs \
+	Banshee.Paas/Banshee.Paas.DownloadManager.Gui/DownloadSource.cs \
+	Banshee.Paas/Banshee.Paas.DownloadManager.Gui/DownloadSourceContents.cs \
+	Banshee.Paas/Banshee.Paas.DownloadManager.Gui/DownloadUserJob.cs \
+	Banshee.Paas/Banshee.Paas.DownloadManager/PaasDownloadManager.cs \
 	Banshee.Paas/Banshee.Paas.Gui/ColumnCellChannel.cs \
 	Banshee.Paas/Banshee.Paas.Gui/ColumnCellPaasStatusIndicator.cs \
 	Banshee.Paas/Banshee.Paas.Gui/ColumnCellPublished.cs \
 	Banshee.Paas/Banshee.Paas.Gui/Dialogs/ChannelPropertiesDialog.cs \
 	Banshee.Paas/Banshee.Paas.Gui/Dialogs/DownloadPreferenceComboBox.cs \
 	Banshee.Paas/Banshee.Paas.Gui/Dialogs/SubscribeDialog.cs \
-	Banshee.Paas/Banshee.Paas.Gui/Download/DownloadSource.cs \
-	Banshee.Paas/Banshee.Paas.Gui/Download/DownloadUserJob.cs \
 	Banshee.Paas/Banshee.Paas.Gui/PaasActions.cs \
 	Banshee.Paas/Banshee.Paas.Gui/PaasChannelView.cs \
 	Banshee.Paas/Banshee.Paas.Gui/PaasColumnController.cs \
@@ -42,8 +47,6 @@ SOURCES =  \
 	Banshee.Paas/Banshee.Paas.Gui/PaasItemView.cs \
 	Banshee.Paas/Banshee.Paas.Gui/PaasSourceContents.cs \
 	Banshee.Paas/Banshee.Paas.Utils/StringUtils.cs \
-	Banshee.Paas/DownloadManagerInterface.cs \
-	Banshee.Paas/PaasDownloadManager.cs \
 	Banshee.Paas/PaasService.cs \
 	Banshee.Paas/PaasSource.cs
 
