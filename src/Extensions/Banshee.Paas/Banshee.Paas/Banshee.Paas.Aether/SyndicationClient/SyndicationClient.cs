@@ -44,7 +44,9 @@ namespace Banshee.Paas.Aether
         
         private Dictionary<long, DeletedChannelInfo> deleted;
         private Dictionary<long, ChannelUpdateTask> updating;        
-        
+
+        private CommandQueue event_queue = new CommandQueue ();
+
         private readonly object sync = new object ();
 
         public event EventHandler<ItemEventArgs>    ItemsAdded;
@@ -82,10 +84,13 @@ namespace Banshee.Paas.Aether
             lock (sync) {
                 disposed = true;
             }
-            
+
             channel_manager.Dispose ();
             channel_manager.TaskCompleted -= TaskCompletedHandler;
             
+            event_queue.Dispose ();
+            
+            event_queue = null;
             channel_manager = null;
         }
 
@@ -270,7 +275,6 @@ namespace Banshee.Paas.Aether
                     };
                     
                     channel.Save ();
-                    QueueUpdate (channel);
                     OnChannelAdded (channel);
                 }
             }                
@@ -392,7 +396,7 @@ namespace Banshee.Paas.Aether
                             }
                             
                             if (removed_items.Count > 0) {
-                                DeleteItems (removed_items, true, false);
+                                DeleteItems (removed_items, false, false);
                             }
                         } catch (Exception ex) {
                             ServiceManager.DbConnection.RollbackTransaction ();
@@ -426,8 +430,10 @@ namespace Banshee.Paas.Aether
             var handler = ChannelUpdating;
 
             if (handler != null) {
-                handler (this, new ChannelEventArgs (channel));
-            }            
+                event_queue.Register (
+                    new EventWrapper<ChannelEventArgs> (handler, this, new ChannelEventArgs (channel))
+                );            
+            }
         }
 
         private void OnChannelUpdateCompleted (PaasChannel channel, bool succeeded)
@@ -435,17 +441,23 @@ namespace Banshee.Paas.Aether
             var handler = ChannelUpdateCompleted;
 
             if (handler != null) {
-                handler (this, new ChannelUpdateCompletedEventArgs (channel, succeeded));
-            }            
+                event_queue.Register (
+                    new EventWrapper<ChannelUpdateCompletedEventArgs> (
+                        handler, this, new ChannelUpdateCompletedEventArgs (channel, succeeded)
+                    )
+                );            
+            }
         }
-
+        
         private void OnChannelAdded (PaasChannel channel)
         {
             var handler = ChannelAdded;
 
             if (handler != null) {
-                handler (this, new ChannelEventArgs (channel));
-            }            
+                event_queue.Register (
+                    new EventWrapper<ChannelEventArgs> (handler, this, new ChannelEventArgs (channel))
+                );
+            }
         }
 
         private void OnChannelRemoved (PaasChannel channel)
@@ -453,8 +465,10 @@ namespace Banshee.Paas.Aether
             var handler = ChannelRemoved;
 
             if (handler != null) {
-                handler (this, new ChannelEventArgs (channel));
-            }            
+                event_queue.Register (
+                    new EventWrapper<ChannelEventArgs> (handler, this, new ChannelEventArgs (channel))
+                );
+            }
         }
 
         private void OnItemsAdded (IEnumerable<PaasItem> items)
@@ -462,8 +476,10 @@ namespace Banshee.Paas.Aether
             var handler = ItemsAdded;
 
             if (handler != null) {
-                handler (this, new ItemEventArgs (items));
-            }            
+                event_queue.Register (
+                    new EventWrapper<ItemEventArgs> (handler, this, new ItemEventArgs (items))
+                );
+            }
         }
 
         private void OnItemRemoved (PaasItem item)
@@ -471,17 +487,21 @@ namespace Banshee.Paas.Aether
             var handler = ItemsRemoved;
 
             if (handler != null) {
-                handler (this, new ItemEventArgs (item));
-            }            
+                event_queue.Register (
+                    new EventWrapper<ItemEventArgs> (handler, this, new ItemEventArgs (item))
+                );            
+            }
         }
 
         private void OnItemsRemoved (IEnumerable<PaasItem> items)
         {
             var handler = ItemsRemoved;
-
+            
             if (handler != null) {
-                handler (this, new ItemEventArgs (items));
-            }            
+                event_queue.Register (
+                    new EventWrapper<ItemEventArgs> (handler, this, new ItemEventArgs (items))
+                );
+            }
         }
 
         private class DeletedChannelInfo

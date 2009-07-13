@@ -372,9 +372,7 @@ namespace Banshee.Paas
 */
         private DatabaseTrackInfo GetTrackByItemId (long item_id)
         {
-            return DatabaseTrackInfo.Provider.FetchFirstMatching (
-                "PrimarySourceID = ? AND ExternalID = ?", source.DbId, item_id
-            );
+            return DatabaseTrackInfo.Provider.FetchSingle (item_id);
         }
 
         private void OnChannelUpdatedHandler (object sender, ChannelUpdateCompletedEventArgs e)
@@ -534,8 +532,8 @@ namespace Banshee.Paas
                     item.DownloadedAt = DateTime.Now;
                     
                     item.Save ();
-                    
-                    DatabaseTrackInfo track = GetTrackByItemId (item.DbId);
+
+                    DatabaseTrackInfo track = GetTrackByItemId (item.TrackID);
                     
                     if (track != null) {
                         PaasTrackInfo pti = track.ExternalObject as PaasTrackInfo;
