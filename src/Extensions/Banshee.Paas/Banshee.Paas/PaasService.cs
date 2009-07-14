@@ -170,6 +170,18 @@ namespace Banshee.Paas
                 reload ();
             };
             
+            syndication_client.ChannelAdded += (sender, e) => {
+                lock (sync) {
+                    if (Disposed) {
+                        return;
+                    }
+
+                    syndication_client.QueueUpdate (e.Channel);
+                }
+                
+                reload ();
+            };
+            
             syndication_client.ChannelRemoved += (sender, e) => { reload (); };
 
             syndication_client.ChannelUpdateCompleted += OnChannelUpdatedHandler;
@@ -372,7 +384,7 @@ namespace Banshee.Paas
 */
         private DatabaseTrackInfo GetTrackByItemId (long item_id)
         {
-            return DatabaseTrackInfo.Provider.FetchFirstMatching (
+           return DatabaseTrackInfo.Provider.FetchFirstMatching (
                 "PrimarySourceID = ? AND ExternalID = ?", source.DbId, item_id
             );
         }
@@ -466,7 +478,7 @@ namespace Banshee.Paas
                 return;
             }
 
-            lock (sync) {
+            lock (sync) {                
                 if (Disposed) {
                     return;
                 } else if (e.State != TaskState.Succeeded) {
@@ -536,13 +548,13 @@ namespace Banshee.Paas
                     item.Save ();
 
                     DatabaseTrackInfo track = GetTrackByItemId (item.TrackID);
-                    
+
                     if (track != null) {
-                        PaasTrackInfo pti = track.ExternalObject as PaasTrackInfo;
-                        
+                        PaasTrackInfo pti = PaasTrackInfo.From (track);
+
                         if (pti != null) {
                             pti.SyncWithItem ();
-                            track.Save (true);
+                            pti.Track.Save (true);
                         }
                     }                    
                 } catch (Exception ex) {
