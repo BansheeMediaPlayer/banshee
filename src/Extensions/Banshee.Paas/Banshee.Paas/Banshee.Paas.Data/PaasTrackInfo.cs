@@ -80,10 +80,7 @@ namespace Banshee.Paas.Data
         public PaasItem Item {
             get {
                 if (item == null && track.ExternalId > 0) {
-                    item = PaasItem.Provider.FetchFirstMatching (
-                        "PrimarySourceID = ? AND ExternalID = ?", 
-                        track.PrimarySourceId, track.ExternalId
-                    );
+                    item = PaasItem.Provider.FetchSingle (track.ExternalId);
                 }
                 
                 return item;
