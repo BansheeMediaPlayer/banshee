@@ -372,7 +372,9 @@ namespace Banshee.Paas
 */
         private DatabaseTrackInfo GetTrackByItemId (long item_id)
         {
-            return DatabaseTrackInfo.Provider.FetchSingle (item_id);
+            return DatabaseTrackInfo.Provider.FetchFirstMatching (
+                "PrimarySourceID = ? AND ExternalID = ?", source.DbId, item_id
+            );
         }
 
         private void OnChannelUpdatedHandler (object sender, ChannelUpdateCompletedEventArgs e)
