@@ -35,20 +35,25 @@ namespace Banshee.Paas.DownloadManager.Gui
 {
     public class DownloadSourceContents : ISourceContents
     {
-        DownloadSource download_source;
-        DownloadListView download_view;
+        private ScrolledWindow sw;    
+        private DownloadSource download_source;
+        private DownloadListView download_view;
 
         public ISource Source { 
             get { return download_source; } 
         }
         
         public Widget Widget { 
-            get { return download_view as Widget; }
+            get { return sw as Widget; }
         }
 
         public DownloadSourceContents (DownloadListView view)
         {
             download_view = view;
+            
+            sw = new ScrolledWindow ();
+            sw.Add (download_view);
+            sw.ShowAll ();
         }
 
         public bool SetSource (ISource source)

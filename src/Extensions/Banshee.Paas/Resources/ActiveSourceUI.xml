@@ -13,31 +13,9 @@
       </placeholder>
     </menu>
   </menubar>
-<!--
-  <menubar name="MainMenu" action="MainMenuAction">
-    <menu name="MediaMenu" action="MediaMenuAction">
-      <placeholder name="BelowOpenLocation">
-        <menuitem name="PodcastAdd" action="PodcastAddAction" />
-      </placeholder>
-    </menu>
-
-    <menu name="EditMenu" action="EditMenuAction">
-      <placeholder name="BelowAddToPlaylist">
-        <separator />
-        <menuitem name="PodcastItemDownload" action="PodcastItemDownloadAction" />
-        <menuitem name="PodcastItemDeleteFile" action="PodcastItemDeleteFileAction" />
-        <menuitem name="PodcastItemCancel" action="PodcastItemCancelAction" />
-        <menuitem name="PodcastItemMarkNew" action="PodcastItemMarkNewAction" />
-        <menuitem name="PodcastItemMarkOld" action="PodcastItemMarkOldAction" />
-        <separator />
-      </placeholder>
-    </menu>
-  </menubar>
--->  
 
   <popup name="TrackContextMenu" action="TrackContextMenuAction">
     <placeholder name="BelowAddToPlaylist">
-      <!--<menuitem name="PodcastItemLink" action="PodcastItemLinkAction" /> -->
       <separator />
       <menuitem name="PaasItemPause"    action="PaasItemPauseAction" />
       <menuitem name="PaasItemResume"   action="PaasItemResumeAction" />                
@@ -49,7 +27,8 @@
       <separator />        
       <menuitem name="PaasItemMarkNew"  action="PaasItemMarkNewAction" />
       <menuitem name="PaasItemMarkOld"  action="PaasItemMarkOldAction" />
-      <separator />                
+      <separator />
+      <!--<menuitem name="PodcastItemLink" action="PodcastItemLinkAction" /> -->      
     </placeholder>
   </popup>
 </ui>

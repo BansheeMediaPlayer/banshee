@@ -39,7 +39,12 @@ using Banshee.Paas.Data;
 namespace Banshee.Paas.Gui
 {
     public class PaasChannelView : TrackFilterListView<PaasChannel>
-    {        
+    {
+        // Awful, dirty, filthy hack.
+        // I'm having a similar problem, probably just need to tinker with the event flags... Need to move on for now...
+        // http://lists.ximian.com/archives/public/gtk-sharp-list/2006-June/007247.html
+        public EventHandler<EventArgs> FuckedPopupMenu;
+        
         public PaasChannelView ()            
         {
             ColumnCellChannel renderer = new ColumnCellChannel ();
@@ -52,6 +57,12 @@ namespace Banshee.Paas.Gui
         
         protected override bool OnPopupMenu ()
         {
+            EventHandler<EventArgs> handler = FuckedPopupMenu;
+
+            if (handler != null) {
+                handler (this, EventArgs.Empty);
+            }
+        
             ServiceManager.Get<InterfaceActionService> ().FindAction ("Paas.PaasChannelPopupAction").Activate ();
             return true;
         }

@@ -127,8 +127,9 @@ namespace Banshee.Paas
             Properties.SetString ("GtkActionPath", "/PaasSourcePopup");
             
             contents = new PaasSourceContents ();
-            (contents.TrackView as PaasItemView).PopupMenu += OnPopupMenuHandler;
-            (contents.TrackView as PaasItemView).FuckedPopupMenu += OnFuckedPopupMenuHandler;            
+            
+            (contents.TrackView as PaasItemView).PopupMenu += OnItemViewPopupMenuHandler;
+            (contents.TrackView as PaasItemView).FuckedPopupMenu += OnItemViewFuckedPopupMenuHandler;
             
             Properties.Set<ISourceContents> ("Nereid.SourceContents", contents);
             Properties.Set<bool> ("Nereid.SourceContentsPropagate", false);
@@ -207,6 +208,8 @@ namespace Banshee.Paas
                 src, src.DatabaseTrackModel, ServiceManager.DbConnection, 
                 String.Format ("PaasChannels-{0}", src.UniqueId)
             );
+
+            channel_model.Selection.Changed += (sender, e) => { actions.UpdateChannelActions (); };
             
             yield return channel_model;
 /*
@@ -225,6 +228,9 @@ namespace Banshee.Paas
                 actions.Dispose ();
                 actions = null;
             }
+
+            (contents.TrackView as PaasItemView).PopupMenu -= OnItemViewPopupMenuHandler;
+            (contents.TrackView as PaasItemView).FuckedPopupMenu -= OnItemViewFuckedPopupMenuHandler;
             
             base.Dispose ();
         }
@@ -248,12 +254,12 @@ namespace Banshee.Paas
         }
 
         [GLib.ConnectBefore]
-        private void OnPopupMenuHandler (object sender, Gtk.PopupMenuArgs e)
+        private void OnItemViewPopupMenuHandler (object sender, Gtk.PopupMenuArgs e)
         {
             actions.UpdateItemActions ();
         }
 
-        private void OnFuckedPopupMenuHandler (object sender, EventArgs e)
+        private void OnItemViewFuckedPopupMenuHandler (object sender, EventArgs e)
         {
             actions.UpdateItemActions ();
         }

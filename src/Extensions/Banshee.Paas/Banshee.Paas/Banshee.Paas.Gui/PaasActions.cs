@@ -82,7 +82,7 @@ namespace Banshee.Paas.Gui
                 new ActionEntry (
                     "PaasSubscribeAction", Stock.Add,
                      Catalog.GetString ("Subscribe to Channel"), null,
-                     Catalog.GetString ("Subscribe to Channel"), OnPaasSubscribeHandler
+                     null, OnPaasSubscribeHandler
                 )
             );
 
@@ -90,17 +90,17 @@ namespace Banshee.Paas.Gui
                 new ActionEntry (
                     "PaasItemDownloadAction", Stock.SaveAs,
                      Catalog.GetString ("Download"), null,
-                     Catalog.GetString ("Download"), OnPaasItemDownloadHandler
+                     null, OnPaasItemDownloadHandler
                 ),
                 new ActionEntry (
                     "PaasItemCancelAction", Stock.Cancel,
                      Catalog.GetString ("Cancel"), null,
-                     Catalog.GetString ("Cancel"), OnPaasItemCancelHandler
+                     null, OnPaasItemCancelHandler
                 ),
                 new ActionEntry (
                     "PaasItemPauseAction", Stock.MediaPause,
                      Catalog.GetString ("Pause"), null,
-                     Catalog.GetString ("Pause"), OnPaasItemPauseHandler
+                     null, OnPaasItemPauseHandler
                 ),
                 new ActionEntry (
                     "PaasItemResumeAction", Stock.Redo,
@@ -110,34 +110,49 @@ namespace Banshee.Paas.Gui
                 new ActionEntry (
                     "PaasItemMarkNewAction", null,
                      Catalog.GetString ("Mark as New"), null,
-                     Catalog.GetString ("Mark as New"), OnPaasItemMarkedNewHandler
+                     null, OnPaasItemMarkedNewHandler
                 ),                    
                 new ActionEntry (
                     "PaasItemMarkOldAction", null,
                      Catalog.GetString ("Mark as Old"), null,
-                     Catalog.GetString ("Mark as Old"), OnPaasItemMarkedOldHandler
+                     null, OnPaasItemMarkedOldHandler
                 ),         
                 new ActionEntry (
                     "PaasItemRemoveAction", Stock.Remove,
                      Catalog.GetString ("Remove From Library"), null,
-                     Catalog.GetString ("Remove From Library"), OnPaasItemRemovedHandler
+                     null, OnPaasItemRemovedHandler
                 ),                
                 new ActionEntry (
                     "PaasItemDeleteAction", null,
                      Catalog.GetString ("Delete From Drive"), null,
-                     Catalog.GetString ("Delete From Drive"), OnPaasItemDeletedHandler
+                     null, OnPaasItemDeletedHandler
                 ),                
                 new ActionEntry (
                     "PaasChannelPopupAction", null, null, null, null, OnChannelPopup
-                ),                    
+                ),
                 new ActionEntry (
-                    "PaasDeleteChannelAction", Stock.Delete,
-                     Catalog.GetString ("Delete"), null,
-                     Catalog.GetString ("Delete Channel"), OnPaasChannelDeleteHandler
+                    "PaasChannelUpdateAction", Stock.Refresh,
+                     Catalog.GetString ("Update"), null,
+                     null, OnPaasChannelUpdateHandler
+                ),                  
+                new ActionEntry (
+                    "PaasChannelDeleteAction", Stock.Delete,
+                     Catalog.GetString ("Unsubscribe and Delete"), null,
+                     null, OnPaasChannelDeleteHandler
+                ),                   
+                new ActionEntry (
+                    "PaasChannelHomepageAction", Stock.JumpTo,
+                     Catalog.GetString ("Visit Homepage"), null,
+                     null, OnPaasChannelHomepageHandler
+                ),                 
+                new ActionEntry (
+                    "PaasChannelDownloadAllAction", Stock.SaveAs,
+                     Catalog.GetString ("Download All Episodes"), null,
+                     null, OnPaasChannelDownloadAllHandler
                 ), new ActionEntry (
                     "PaasChannelPropertiesAction", Stock.Preferences,
                      Catalog.GetString ("Properties"), null,
-                     Catalog.GetString ("Properties"), OnPaasChannelPropertiesHandler
+                     null, OnPaasChannelPropertiesHandler
                 )                   
             });
             
@@ -278,11 +293,29 @@ namespace Banshee.Paas.Gui
             UpdateAction ("PaasItemMarkNewAction", show_mark_new);
             UpdateAction ("PaasItemMarkOldAction", show_mark_old);
             
-            if (ActiveDbSource.TrackModel.Selection.Count == 1) {
-                //UpdateAction ("PodcastItemLinkAction", true);                
-            }
+            //UpdateAction ("PaasItemLinkAction", ActiveDbSource.TrackModel.Selection.Count == 1);                
         }
-        
+
+        public void UpdateChannelActions ()
+        {
+            if (!IsPaasSource) {
+                return;
+            }
+
+            UpdateActions (
+                true,
+                (ActiveChannelModel.Selection.Count == 1 && 
+                !ActiveChannelModel.Selection.AllSelected),
+                "PaasChannelHomepageAction",
+                "PaasChannelPropertiesAction"
+            );
+        }
+
+        private IEnumerable<PaasChannel> GetSelectedChannels ()
+        {
+            return new List<PaasChannel> (ActiveChannelModel.SelectedItems);
+        }
+
         private IEnumerable<PaasTrackInfo> GetSelectedItems ()
         {
             return new List<PaasTrackInfo> (
@@ -486,12 +519,18 @@ namespace Banshee.Paas.Gui
             }
         }
 
+        private void OnPaasChannelUpdateHandler (object sender, EventArgs e)
+        {
+            var channels = GetSelectedChannels ();
+            service.SyndicationClient.QueueUpdate (channels);
+        }
+
         private void OnPaasChannelDeleteHandler (object sender, EventArgs e)
         {
             int cnt = 0;
             bool delete = true, delete_files = false;
             
-            var channels = new List<PaasChannel> (ActiveChannelModel.SelectedItems);
+            var channels = GetSelectedChannels ();
 
             foreach (var channel in channels) {
                 foreach (var item in channel.Items) {
@@ -510,6 +549,23 @@ namespace Banshee.Paas.Gui
 
             if (delete) {
                 service.SyndicationClient.DeleteChannels (channels, delete_files);                
+            }
+        }
+
+        private void OnPaasChannelHomepageHandler (object sender, EventArgs e)
+        {
+            PaasChannel channel = ActiveChannelModel.FocusedItem;
+            
+            if (channel != null && !String.IsNullOrEmpty (channel.Link)) {
+                Banshee.Web.Browser.Open (channel.Link);
+            }    
+        }
+        private void OnPaasChannelDownloadAllHandler (object sender, EventArgs e)
+        {
+            var channels = GetSelectedChannels ();
+
+            foreach (var c in channels) {
+                service.DownloadManager.QueueDownload (c.Items.Where (i => !i.IsDownloaded));
             }
         }
         

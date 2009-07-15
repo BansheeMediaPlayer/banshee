@@ -48,7 +48,12 @@ namespace Banshee.Paas.Gui
 /*        
         private PodcastUnheardFilterView unheard_view;
         private DownloadStatusFilterView download_view;
-*/            
+*/
+        public PaasChannelView ChannelView
+        {
+            get { return channel_view; }
+        }
+        
         public PaasSourceContents () : base ("paas")
         {
         }

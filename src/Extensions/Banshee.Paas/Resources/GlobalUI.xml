@@ -7,13 +7,10 @@
   </popup>
 
   <popup name="PaasChannelPopup" action="PaasChannelPopupAction">
-<!--
-    <menuitem name="PaasUpdateChannel" action="PaasUpdateChannelAction" />
-    
-    <menuitem name="PodcastDownloadAll" action="PodcastDownloadAllAction"/>
-    <menuitem name="PodcastHomepage" action="PodcastHomepageAction" /> 
--->
-    <menuitem name="PaasDeleteChannel" action="PaasDeleteChannelAction" />
+    <menuitem name="PaasChannelUpdate" action="PaasChannelUpdateAction" />    
+    <menuitem name="PaasChannelHomepage" action="PaasChannelHomepageAction" />
+    <menuitem name="PaasChannelDownloadAll" action="PaasChannelDownloadAllAction"/>    
+    <menuitem name="PaasChannelDelete" action="PaasChannelDeleteAction" />
     <separator />
     <menuitem name="PaasChannelProperties" action="PaasChannelPropertiesAction" />
   </popup>

@@ -95,6 +95,10 @@ namespace Banshee.Paas
             get { return "PaasService"; } 
         }
 
+        public PaasSource Source {
+            get { return source; }
+        }
+
         public SyndicationClient SyndicationClient {
             get { return syndication_client; }
         }
@@ -563,6 +567,7 @@ namespace Banshee.Paas
                     );
 
                     Hyena.Log.Exception (ex);
+                    Hyena.Log.Error (ex.StackTrace);
                 }
 
                 source.Reload ();
