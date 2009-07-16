@@ -24,6 +24,19 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
+// People have been asking for the ability to select a specific directory for
+// podcasts for almost four years.  I've been hesitant because it raises a number 
+// of issues related to migrating existing tracks (notice that iTunes doesn't even 
+// allow this.)  Right now you can select a directory for FUTURE downloads while
+// previously downloaded files remain in the previous directory.
+
+// I'm putting this in to satisfy certain people.  Honestly I don't plan to include 
+// it when it comes time for a larger release (too many people are going to bitch
+// about it not moving existing existing files.  I may implement that at some point
+// just not now.)
+
+#define EDIT_DIR_TEST
+
 using System;
 
 using Mono.Unix;
@@ -39,6 +52,9 @@ namespace Banshee.Paas.Gui
     internal class ChannelPropertiesDialog : Dialog
     {
         private PaasChannel channel;
+#if EDIT_DIR_TEST        
+        private FileChooserButton chooser;
+#endif        
         private DownloadPreferenceComboBox download_preference_combo; 
 
         public ChannelPropertiesDialog (PaasChannel channel)
@@ -46,27 +62,26 @@ namespace Banshee.Paas.Gui
             this.channel = channel;
 
             Title = channel.Name;
-            //IconThemeUtils.SetWindowIcon (this);
-
+            
             BuildWindow ();
         }
 
-        private void BuildWindow()
+        private void BuildWindow ()
         {
             BorderWidth = 6;
             VBox.Spacing = 12;
             HasSeparator = false;
 
-            HBox box = new HBox();
+            HBox box = new HBox ();
             box.BorderWidth = 6;
             box.Spacing = 12;
 
-            Button save_button = new Button("gtk-save");
+            Button save_button = new Button ("gtk-save");
             save_button.CanDefault = true;
             save_button.Show();
 
             // For later additions to the dialog.  (I.E. Feed art)
-            HBox content_box = new HBox();
+            HBox content_box = new HBox ();
             content_box.Spacing = 12;
 
             Table table = new Table (2, 4, false);
@@ -97,6 +112,12 @@ namespace Banshee.Paas.Gui
             new_episode_option_label.SetAlignment (0f, 0.5f);
             new_episode_option_label.Justify = Justification.Left;
 
+#if EDIT_DIR_TEST
+            Label enclosure_folder_label = new Label (Catalog.GetString ("Folder:"));
+            enclosure_folder_label.SetAlignment (0f, 0.5f);
+            enclosure_folder_label.Justify = Justification.Left;
+#endif
+
             Label last_updated_text = new Label (channel.LastDownloadTime.ToString ("f"));
             last_updated_text.Justify = Justification.Left;
             last_updated_text.SetAlignment (0f, 0f);
@@ -118,17 +139,22 @@ namespace Banshee.Paas.Gui
             descrition_text.Wrap = true;
             descrition_text.Selectable = true;
 
-            Viewport description_viewport = new Viewport();
-            description_viewport.SetSizeRequest(-1, 150);
+            Viewport description_viewport = new Viewport ();
+            description_viewport.SetSizeRequest (-1, 150);
             description_viewport.ShadowType = ShadowType.None;
 
-            ScrolledWindow description_scroller = new ScrolledWindow ();
-            description_scroller.HscrollbarPolicy = PolicyType.Never;
-            description_scroller.VscrollbarPolicy = PolicyType.Automatic;
+            ScrolledWindow description_scroller = new ScrolledWindow () { 
+                HscrollbarPolicy = PolicyType.Never,
+                VscrollbarPolicy = PolicyType.Automatic
+            };
 
             description_viewport.Add (descrition_text);
             description_scroller.Add (description_viewport);
 
+#if EDIT_DIR_TEST
+            chooser = new FileChooserButton (Catalog.GetString ("File..."), FileChooserAction.SelectFolder);
+            chooser.SetCurrentFolder (channel.LocalEnclosurePath);
+#endif
             download_preference_combo = new DownloadPreferenceComboBox (channel.DownloadPreference);
 
             // First column
@@ -148,6 +174,12 @@ namespace Banshee.Paas.Gui
                 AttachOptions.Fill, AttachOptions.Fill, 0, 0
             );
 
+#if EDIT_DIR_TEST        
+            table.Attach (
+                enclosure_folder_label, 0, 1, i, ++i,
+                AttachOptions.Fill, AttachOptions.Fill, 0, 0
+            );
+#endif
             table.Attach (
                 new_episode_option_label, 0, 1, i, ++i,
                 AttachOptions.Fill, AttachOptions.Fill, 0, 0
@@ -175,22 +207,27 @@ namespace Banshee.Paas.Gui
                 AttachOptions.Fill, AttachOptions.Fill, 0, 0
             );
 
+#if EDIT_DIR_TEST
+            table.Attach (chooser, 1, 2, i, ++i,
+                AttachOptions.Fill, AttachOptions.Fill, 0, 0
+            );
+#endif
             table.Attach (
                 download_preference_combo, 1, 2, i, ++i,
                 AttachOptions.Fill, AttachOptions.Fill, 0, 0
             );
-
+            
             table.Attach (description_scroller, 1, 2, i, ++i,
                 AttachOptions.Expand | AttachOptions.Fill,
                 AttachOptions.Expand | AttachOptions.Fill, 0, 0
-            );
+            );           
 
             content_box.PackStart (table, true, true, 0);
             box.PackStart (content_box, true, true, 0);
 
             Button cancel_button = new Button("gtk-cancel");
             cancel_button.CanDefault = true;
-            cancel_button.Show();
+            cancel_button.Show ();
 
             AddActionWidget (cancel_button, ResponseType.Cancel);
             AddActionWidget (save_button, ResponseType.Ok);
@@ -206,19 +243,25 @@ namespace Banshee.Paas.Gui
 
         private void OnResponse (object sender, ResponseArgs args)
         {
-            Destroy ();
+            if (args.ResponseId == Gtk.ResponseType.Ok) { 
 
-            if (args.ResponseId == Gtk.ResponseType.Ok) {
-                DownloadPreference new_sync_pref = download_preference_combo.ActiveDownloadPreference;
-
-                if (channel.DownloadPreference != new_sync_pref) {
-                    channel.DownloadPreference = new_sync_pref;
+#if EDIT_DIR_TEST
+                if (channel.DownloadPreference != download_preference_combo.ActiveDownloadPreference ||
+                    channel.LocalEnclosurePath != chooser.CurrentFolder) {
+                    channel.LocalEnclosurePath = chooser.CurrentFolder;
+                    channel.DownloadPreference = download_preference_combo.ActiveDownloadPreference;
                     channel.Save ();
                 }
+#else
+                if (channel.DownloadPreference != download_preference_combo.ActiveDownloadPreference) {
+                    channel.DownloadPreference = download_preference_combo.ActiveDownloadPreference;
+                    channel.Save ();
+                }
+#endif
             }
-
+            
             (sender as Dialog).Response -= OnResponse;
-            (sender as Dialog).Destroy();
+            (sender as Dialog).Destroy ();
         }
     }
 }

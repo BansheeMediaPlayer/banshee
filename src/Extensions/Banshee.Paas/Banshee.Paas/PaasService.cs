@@ -164,16 +164,6 @@ namespace Banshee.Paas
                 }
             };
 
-            syndication_client.ChannelAdded += (sender, e) => { 
-                PaasChannel channel = e.Channel;
-                
-                string escaped = Hyena.StringUtil.EscapeFilename (channel.Name);
-                channel.LocalEnclosurePath = Path.Combine (source.BaseDirectory, escaped);
-                channel.Save ();
-                
-                reload ();
-            };
-            
             syndication_client.ChannelAdded += (sender, e) => {
                 lock (sync) {
                     if (Disposed) {
@@ -181,9 +171,8 @@ namespace Banshee.Paas
                     }
 
                     syndication_client.QueueUpdate (e.Channel);
+                    source.Reload ();
                 }
-                
-                reload ();
             };
             
             syndication_client.ChannelRemoved += (sender, e) => { reload (); };
@@ -397,6 +386,21 @@ namespace Banshee.Paas
         {
             lock (sync) {
                 if (!Disposed && e.Succeeded) {
+                    PaasChannel channel = e.Channel;
+                    
+                    if (String.IsNullOrEmpty (channel.LocalEnclosurePath)) {
+                        string escaped = Hyena.StringUtil.EscapeFilename (channel.Name);
+                        
+                        channel.LocalEnclosurePath = Path.Combine (source.BaseDirectory, escaped);
+                        channel.Save ();
+
+                        try {
+                            Banshee.IO.Directory.Create (channel.LocalEnclosurePath);
+                        } catch (Exception ex) {
+                            Hyena.Log.Exception (ex);
+                        }
+                    }
+
                     IEnumerable<PaasItem> items = e.Channel.Items.OrderByDescending (i => i.PubDate);
 
                     switch (e.Channel.DownloadPreference) {
