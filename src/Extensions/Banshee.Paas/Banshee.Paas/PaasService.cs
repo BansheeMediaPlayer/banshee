@@ -394,12 +394,13 @@ namespace Banshee.Paas
                         
                         channel.LocalEnclosurePath = Path.Combine (source.BaseDirectory, escaped);
                         channel.Save ();
-
+#if EDIT_DIR_TEST
                         try {
                             Banshee.IO.Directory.Create (channel.LocalEnclosurePath);
                         } catch (Exception ex) {
                             Hyena.Log.Exception (ex);
                         }
+#endif                        
                     }
 
                     IEnumerable<PaasItem> items = e.Channel.Items.OrderByDescending (i => i.PubDate);
