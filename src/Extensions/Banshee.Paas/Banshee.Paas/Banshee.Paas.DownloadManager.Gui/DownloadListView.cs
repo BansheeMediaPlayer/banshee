@@ -111,7 +111,10 @@ namespace Banshee.Paas.DownloadManager.Gui
                         return false;
                     }
 
-                    manager.Move (row, model.GetSelected ());                    
+                    try {
+                        manager.Move (row, model.GetSelected ());
+                    } catch {}
+                    
                     return true;
                 }
             }
