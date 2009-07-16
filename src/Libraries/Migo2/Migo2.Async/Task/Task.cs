@@ -248,7 +248,7 @@ namespace Migo2.Async
             }
         }
 
-        protected bool SetRequestedCancellationType (CancellationType type)
+        protected virtual bool SetRequestedCancellationType (CancellationType type)
         {
             lock (syncRoot) {
                 if (requestedCancellationType == CancellationType.None || 
@@ -261,7 +261,7 @@ namespace Migo2.Async
             return false;
         }
         
-        protected bool SetResumeRequested ()
+        protected virtual bool SetResumeRequested ()
         {
             lock (syncRoot) {
                 if (!completed && !busy && cancellationType == CancellationType.Paused) {
@@ -274,7 +274,7 @@ namespace Migo2.Async
             return false;
         }        
 
-        private void SetState (TaskState state)
+        protected virtual void SetState (TaskState state)
         {
             if (this.state != state) {
                 TaskState oldState = this.state;

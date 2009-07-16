@@ -77,7 +77,7 @@ namespace Hyena.Gui
                 ImageSurface target = new ImageSurface (Format.ARGB32, pixbuf.Width, pixbuf.Height);
                 Context context = new Context (target);
                 Gdk.CairoHelper.SetSourcePixbuf (context, pixbuf, 0, 0);
-                context.Paint ();
+                context.PaintWithAlpha (0.5);
                 ((IDisposable)context).Dispose ();
 
                 if (disposePixbuf) {

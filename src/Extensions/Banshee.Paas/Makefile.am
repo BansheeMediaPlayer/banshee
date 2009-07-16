@@ -17,6 +17,7 @@ SOURCES =  \
 	Banshee.Paas/Banshee.Paas.Aether/SyndicationClient/ChannelEventArgs.cs \
 	Banshee.Paas/Banshee.Paas.Aether/SyndicationClient/ChannelUpdateCompletedEventArgs.cs \
 	Banshee.Paas/Banshee.Paas.Aether/SyndicationClient/ChannelUpdateManager.cs \
+	Banshee.Paas/Banshee.Paas.Aether/SyndicationClient/ChannelUpdateStatus.cs \
 	Banshee.Paas/Banshee.Paas.Aether/SyndicationClient/ChannelUpdateTask.cs \
 	Banshee.Paas/Banshee.Paas.Aether/SyndicationClient/ItemEventArgs.cs \
 	Banshee.Paas/Banshee.Paas.Aether/SyndicationClient/RssParser.cs \
@@ -40,6 +41,7 @@ SOURCES =  \
 	Banshee.Paas/Banshee.Paas.Gui/Dialogs/ChannelPropertiesDialog.cs \
 	Banshee.Paas/Banshee.Paas.Gui/Dialogs/DownloadPreferenceComboBox.cs \
 	Banshee.Paas/Banshee.Paas.Gui/Dialogs/SubscribeDialog.cs \
+	Banshee.Paas/Banshee.Paas.Gui/IColumnCellDataHelper.cs \
 	Banshee.Paas/Banshee.Paas.Gui/PaasActions.cs \
 	Banshee.Paas/Banshee.Paas.Gui/PaasChannelView.cs \
 	Banshee.Paas/Banshee.Paas.Gui/PaasColumnController.cs \

@@ -32,6 +32,7 @@
     <Reference Include="System" />
     <Reference Include="gdk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
     <Reference Include="gtk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
+    <Reference Include="Mono.Cairo" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>
@@ -96,6 +97,8 @@
     <Compile Include="Banshee.Paas\Banshee.Paas.DownloadManager.Gui\DownloadSource.cs" />
     <Compile Include="Banshee.Paas\Banshee.Paas.DownloadManager.Gui\DownloadSourceContents.cs" />
     <Compile Include="Banshee.Paas\Banshee.Paas.DownloadManager.Gui\DownloadUserJob.cs" />
+    <Compile Include="Banshee.Paas\Banshee.Paas.Gui\IColumnCellDataHelper.cs" />
+    <Compile Include="Banshee.Paas\Banshee.Paas.Aether\SyndicationClient\ChannelUpdateStatus.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Core\Banshee.Core\Banshee.Core.csproj">

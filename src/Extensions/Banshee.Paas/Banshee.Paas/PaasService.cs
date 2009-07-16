@@ -176,7 +176,7 @@ namespace Banshee.Paas
             };
             
             syndication_client.ChannelRemoved += (sender, e) => { reload (); };
-
+            syndication_client.ChannelUpdating += (sender, e) => { redraw (); };
             syndication_client.ChannelUpdateCompleted += OnChannelUpdatedHandler;
 
             syndication_client.ItemsAdded += OnItemsAddedHandler;
@@ -414,6 +414,8 @@ namespace Banshee.Paas
 
                     download_manager.QueueDownload (items.Where (i => i.Active && !i.IsDownloaded));
                 }
+
+                source.Reload ();
             }
         }
 
@@ -457,6 +459,7 @@ namespace Banshee.Paas
                         if (download_manager.Contains (e.Item)) {
                             download_manager.CancelDownload (e.Item);
                         }
+                        
                         source.RemoveItem (e.Item);
                     } else {
                         foreach (PaasItem item in e.Items) {

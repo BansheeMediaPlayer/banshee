@@ -50,7 +50,7 @@ namespace Banshee.Paas.Aether
             get { return result; }
         }
 
-        public ChannelUpdateTask (PaasChannel channel)
+        public ChannelUpdateTask (PaasChannel channel) : base (null, channel)
         {
             this.channel = channel;
             state_manager = new AsyncStateManager ();
@@ -60,6 +60,8 @@ namespace Banshee.Paas.Aether
         {
             lock (SyncRoot) {
                 if (state_manager.SetCancelled ()) {
+                    SetState (TaskState.Cancelled);
+                    
                     if (wc == null) {
                         EmitCompletionEvent (null);
                     } else {
@@ -73,16 +75,14 @@ namespace Banshee.Paas.Aether
         {
             lock (SyncRoot) {
                 if (state_manager.SetBusy ()) {
+                    SetState (TaskState.Running);
+                    
                     OnStarted ();
                     
                     try {
                         wc = new AsyncWebClient ();                  
                         wc.Timeout = (30 * 1000); // 30 Seconds  
     
-                        if (channel.LastDownloadTime != DateTime.MinValue) {
-                            wc.IfModifiedSince = channel.LastDownloadTime.ToUniversalTime ();
-                        }
-                        
                         wc.DownloadStringCompleted += OnDownloadDataReceived;
                         wc.DownloadStringAsync (new Uri (channel.Url));
                     } catch (Exception e) {
@@ -112,7 +112,7 @@ namespace Banshee.Paas.Aether
         }
         
         private void EmitCompletionEvent (Exception e)
-        {
+        {   
             if (wc != null) {
                 wc.DownloadStringCompleted -= OnDownloadDataReceived;
             }

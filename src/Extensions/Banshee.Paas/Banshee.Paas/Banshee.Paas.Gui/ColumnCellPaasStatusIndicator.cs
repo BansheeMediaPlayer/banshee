@@ -40,10 +40,7 @@ using Banshee.Paas.Data;
 
 namespace Banshee.Paas.Gui
 {
-    // This can be removed if the DownloadManager is turned into a service.
-    public delegate object DataHelper (ColumnCell cell, object state);
-    
-    public class ColumnCellPaasStatusIndicator : ColumnCellStatusIndicator
+    public class ColumnCellPaasStatusIndicator : ColumnCellStatusIndicator, IColumnCellDataHelper
     {
         protected enum Offset : int {
             New         = 0,
@@ -54,7 +51,7 @@ namespace Banshee.Paas.Gui
         private int  icon_index = -1;
         private bool sensitive = true;
 
-        public DataHelper DataHelper;
+        public ColumnCellDataHelper DataHelper { get; set; }
 
         protected override int PixbufCount {
             get { return base.PixbufCount + (int)Offset.Count; }
@@ -73,7 +70,7 @@ namespace Banshee.Paas.Gui
             base.LoadPixbufs ();
             
             Pixbufs[base.PixbufCount + (int)Offset.New]         = IconThemeUtils.LoadIcon (PixbufSize, "podcast-new");
-            Pixbufs[base.PixbufCount + (int)Offset.Downloading] = IconThemeUtils.LoadIcon (PixbufSize, "document-save", "go-bottom");            
+            Pixbufs[base.PixbufCount + (int)Offset.Downloading] = IconThemeUtils.LoadIcon (PixbufSize, "document-save");            
         }
         
         protected override int GetIconIndex (TrackInfo track)

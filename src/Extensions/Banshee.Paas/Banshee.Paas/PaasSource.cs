@@ -142,6 +142,10 @@ namespace Banshee.Paas
                 )
             );
 
+            contents.ChannelView.SetChannelDataHelper (
+                (cell, channel) => service.SyndicationClient.GetUpdateStatus (channel as PaasChannel)
+            );
+
             Properties.Set<PaasColumnController> ("TrackView.ColumnController", column_controller);
         }
         

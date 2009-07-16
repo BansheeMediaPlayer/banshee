@@ -91,7 +91,7 @@ namespace Banshee.Paas.Gui
         {           
         }
 
-        public void SetIndicatorColumnDataHelper (DataHelper dataHelper)
+        public void SetIndicatorColumnDataHelper (ColumnCellDataHelper dataHelper)
         {
             ColumnCellPaasStatusIndicator indicator = IndicatorColumn.GetCell (0) as ColumnCellPaasStatusIndicator;
             indicator.DataHelper = dataHelper;

@@ -44,7 +44,7 @@ using Banshee.Paas.Data;
 
 namespace Banshee.Paas.Gui
 {
-    public class ColumnCellChannel : ColumnCell
+    public class ColumnCellChannel : ColumnCell, IColumnCellDataHelper
     {
         private static int image_spacing = 4;
         private static int image_size = 48;
@@ -53,8 +53,14 @@ namespace Banshee.Paas.Gui
         private static ImageSurface default_cover_image = new PixbufImageSurface (
             IconThemeUtils.LoadIcon (image_size, "podcast")
         );
-        
+
+        private static ImageSurface updating_image = PixbufImageSurface.Create (
+            IconThemeUtils.LoadIcon (image_size, Stock.Refresh), true
+        );
+
         private ArtworkManager artwork_manager;
+
+        public ColumnCellDataHelper DataHelper { get; set; }
 
         public ColumnCellChannel () : base (null, true)
         {
@@ -73,18 +79,32 @@ namespace Banshee.Paas.Gui
             
             PaasChannel channel = (PaasChannel)BoundObject;
             
-            bool is_default = false;
+            bool disable_border = false;
             // remove
             artwork_manager.ToString ();
             // remove
+
             ImageSurface image = null;/*
             artwork_manager == null ? null
                 : artwork_manager.LookupScaleSurface (PodcastService.ArtworkIdFor (feed), image_size, true);
             */
+            bool waiting = false;
+            
+            if (DataHelper != null) {
+                switch ((ChannelUpdateStatus)DataHelper (this, channel)) {
+                case ChannelUpdateStatus.Waiting:
+                    waiting = true;
+                    goto case ChannelUpdateStatus.Updating;
+                case ChannelUpdateStatus.Updating:
+                    image = updating_image;
+                    disable_border = true;
+                    break;
+                }    
+            }
             
             if (image == null) {
                 image = default_cover_image;
-                is_default = true;
+                disable_border = true;
             }
             
             // int image_render_size = is_default ? image.Height : (int)cellHeight - 8;
@@ -92,8 +112,9 @@ namespace Banshee.Paas.Gui
             int x = image_spacing;
             int y = ((int)cellHeight - image_render_size) / 2;
 
-            ArtworkRenderer.RenderThumbnail (context.Context, image, false, x, y, 
-                image_render_size, image_render_size, !is_default, context.Theme.Context.Radius);
+            ArtworkRenderer.RenderThumbnail (context.Context, image, false, x, y,
+                image_render_size, image_render_size, !disable_border, context.Theme.Context.Radius, !waiting
+            );
                 
             int fl_width = 0, fl_height = 0, sl_width = 0, sl_height = 0;
             Cairo.Color text_color = context.Theme.Colors.GetWidgetColor (GtkColorClass.Text, state);

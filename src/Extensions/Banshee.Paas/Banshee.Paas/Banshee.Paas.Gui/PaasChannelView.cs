@@ -44,17 +44,24 @@ namespace Banshee.Paas.Gui
         // I'm having a similar problem, probably just need to tinker with the event flags... Need to move on for now...
         // http://lists.ximian.com/archives/public/gtk-sharp-list/2006-June/007247.html
         public EventHandler<EventArgs> FuckedPopupMenu;
-        
+
+        private ColumnCellChannel renderer;
+
         public PaasChannelView ()            
         {
-            ColumnCellChannel renderer = new ColumnCellChannel ();
+            renderer = new ColumnCellChannel ();
             
             column_controller.Add (new Column ("Channels", renderer, 1.0));
             
             ColumnController  = column_controller;
             RowHeightProvider = renderer.ComputeRowHeight;
         }
-        
+
+        public void SetChannelDataHelper (ColumnCellDataHelper dataHelper)
+        {
+            renderer.DataHelper = dataHelper;
+        }
+
         protected override bool OnPopupMenu ()
         {
             EventHandler<EventArgs> handler = FuckedPopupMenu;
@@ -64,6 +71,7 @@ namespace Banshee.Paas.Gui
             }
         
             ServiceManager.Get<InterfaceActionService> ().FindAction ("Paas.PaasChannelPopupAction").Activate ();
+            
             return true;
         }
     }

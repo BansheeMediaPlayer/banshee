@@ -60,9 +60,8 @@ namespace Banshee.Paas.Aether
 
         public SyndicationClient ()
         {
-            channel_manager = new ChannelUpdateManager (4);
-            channel_manager.TaskCompleted += TaskCompletedHandler;
-            
+            channel_manager = new ChannelUpdateManager (2);
+
             channel_manager.Started += (sender, e) => {
                 OnStateChanged (AetherClientState.Idle, AetherClientState.Busy);
             };
@@ -74,6 +73,18 @@ namespace Banshee.Paas.Aether
             channel_manager.TaskStarted += (sender, e) => {
                 OnChannelUpdating (e.Task.UserState as PaasChannel);
             };
+            
+            channel_manager.TaskAdded += (sender, e) => {
+                if (e.Task != null) {
+                    OnChannelUpdating (e.Task.UserState as PaasChannel);                    
+                } else {
+                    foreach (Task t in e.Tasks) {
+                        OnChannelUpdating (t.UserState as PaasChannel);                    
+                    }
+                }
+            };
+            
+            channel_manager.TaskCompleted += TaskCompletedHandler;
 
             deleted = new Dictionary<long, DeletedChannelInfo> ();
             updating = new Dictionary<long, ChannelUpdateTask> ();
@@ -94,10 +105,17 @@ namespace Banshee.Paas.Aether
             channel_manager = null;
         }
 
-        public bool IsUpdating (PaasChannel channel)
+        public ChannelUpdateStatus GetUpdateStatus (PaasChannel channel)
         {
             lock (sync) {
-                return updating.ContainsKey (channel.DbId);
+                ChannelUpdateTask task;            
+
+                if (updating.TryGetValue (channel.DbId, out task)) {
+                    return (task.State == TaskState.Running) ? 
+                        ChannelUpdateStatus.Updating : ChannelUpdateStatus.Waiting;
+                }
+                
+                return ChannelUpdateStatus.None;
             }
         }
 
@@ -288,7 +306,9 @@ namespace Banshee.Paas.Aether
                 }
 
                 QueueUpdate (
-                    PaasChannel.Provider.FetchAllMatching ("ClientID = ?", (long) AetherClientID.Syndication)
+                    PaasChannel.Provider.FetchAllMatching (
+                        "ClientID = ? ORDER BY HYENA_COLLATION_KEY(Name), Url", (long) AetherClientID.Syndication
+                    )
                 );
             }
         }

@@ -54,7 +54,6 @@ namespace Migo2.Async
                 throw new ArgumentNullException ("task");
             }            
             
-            this.taskPairs = null;
             this.taskPair = new Pair<int,T> (pos, task);                       
         }
         
