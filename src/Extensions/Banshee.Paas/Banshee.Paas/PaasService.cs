@@ -183,6 +183,7 @@ namespace Banshee.Paas
             syndication_client.ItemsRemoved += OnItemsRemovedHandler;
             
             download_manager = new PaasDownloadManager (2, tmp_download_path);
+            download_manager.TaskAdded += (sender, e) => { redraw (); };            
             download_manager.TaskCompleted += OnDownloadTaskCompletedHandler;
             download_manager.TaskStateChanged += (sender, e) => { redraw (); };
         }
