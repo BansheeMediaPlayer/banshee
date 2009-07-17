@@ -137,7 +137,7 @@ namespace Banshee.Paas.Gui
                 layout.FontDescription.Style = Pango.Style.Italic;
                 
                 if (channel.LastDownloadTime == DateTime.MinValue) {
-                    layout.SetText (Catalog.GetString ("Never updated"));
+                    layout.SetText (Catalog.GetString ("New!"));
                 } else if (channel.LastDownloadTime.Date == DateTime.Now.Date) {
                     layout.SetText (String.Format (Catalog.GetString ("Last updated at {0}"), channel.LastDownloadTime.ToShortTimeString ()));
                 } else {

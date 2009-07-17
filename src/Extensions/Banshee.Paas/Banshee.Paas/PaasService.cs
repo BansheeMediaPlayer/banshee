@@ -407,22 +407,21 @@ namespace Banshee.Paas
 
                 if (e.Succeeded) {                
                     PaasChannel channel = e.Channel;
-                    
+#if EDIT_DIR_TEST                    
                     if (String.IsNullOrEmpty (channel.LocalEnclosurePath)) {
                         string escaped = Hyena.StringUtil.EscapeFilename (channel.Name);
                         
                         channel.LocalEnclosurePath = Path.Combine (source.BaseDirectory, escaped);
                         channel.Save ();
-#if EDIT_DIR_TEST
+                        
                         try {
                             Banshee.IO.Directory.Create (channel.LocalEnclosurePath);
                         } catch (Exception ex) {
                             Hyena.Log.Exception (ex);
                         }
-#endif                        
                     }
-                    
-                    IEnumerable<PaasItem> items = e.Channel.Items.OrderByDescending (i => i.PubDate);
+#endif                                            
+                    IEnumerable<PaasItem> items = channel.Items.OrderByDescending (i => i.PubDate);
 
                     switch (e.Channel.DownloadPreference) {
                     case DownloadPreference.One:
@@ -527,9 +526,15 @@ namespace Banshee.Paas
                 string filename = Path.GetFileName (e.Task.LocalPath);             
                 string full_path = path;
                 string tmp_local_path;                   
-                
-                string local_enclosure_path = item.Channel.LocalEnclosurePath;
-                
+
+#if EDIT_DIR_TEST
+                string local_enclosure_path = item.Channel.LocalEnclosurePath;        
+#else
+
+                string escaped = Hyena.StringUtil.EscapeFilename (item.Channel.Name);
+                string local_enclosure_path = Path.Combine (source.BaseDirectory, escaped);        
+#endif
+
                 if (!local_enclosure_path.EndsWith (Path.DirectorySeparatorChar.ToString ())) {
                     local_enclosure_path += Path.DirectorySeparatorChar;
                 }
@@ -577,7 +582,7 @@ namespace Banshee.Paas
                         Banshee.IO.Directory.Delete (path, true);
                     } catch {}
 
-                    item.IsNew = true;
+                    //item.IsNew = true;
                     item.LocalPath = tmp_local_path;
                     item.MimeType = e.Task.MimeType;
                     item.DownloadedAt = DateTime.Now;

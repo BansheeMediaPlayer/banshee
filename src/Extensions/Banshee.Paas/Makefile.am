@@ -23,11 +23,14 @@ SOURCES =  \
 	Banshee.Paas/Banshee.Paas.Aether/SyndicationClient/RssParser.cs \
 	Banshee.Paas/Banshee.Paas.Aether/SyndicationClient/SyndicationClient.cs \
 	Banshee.Paas/Banshee.Paas.Data/DownloadPreference.cs \
+	Banshee.Paas/Banshee.Paas.Data/DownloadStatusFilterModel.cs \
 	Banshee.Paas/Banshee.Paas.Data/PaasChannel.cs \
 	Banshee.Paas/Banshee.Paas.Data/PaasChannelModel.cs \
 	Banshee.Paas/Banshee.Paas.Data/PaasItem.cs \
 	Banshee.Paas/Banshee.Paas.Data/PaasTrackInfo.cs \
 	Banshee.Paas/Banshee.Paas.Data/PaasTrackListModel.cs \
+	Banshee.Paas/Banshee.Paas.Data/PaasUnheardFilterModel.cs \
+	Banshee.Paas/Banshee.Paas.DownloadManager.Gui/ColumnCellDownloadStatus.cs \
 	Banshee.Paas/Banshee.Paas.DownloadManager.Gui/DownloadListModel.cs \
 	Banshee.Paas/Banshee.Paas.DownloadManager.Gui/DownloadListView.cs \
 	Banshee.Paas/Banshee.Paas.DownloadManager.Gui/DownloadManagerInterface.cs \
@@ -36,11 +39,14 @@ SOURCES =  \
 	Banshee.Paas/Banshee.Paas.DownloadManager.Gui/DownloadUserJob.cs \
 	Banshee.Paas/Banshee.Paas.DownloadManager/PaasDownloadManager.cs \
 	Banshee.Paas/Banshee.Paas.Gui/ColumnCellChannel.cs \
+	Banshee.Paas/Banshee.Paas.Gui/ColumnCellDownloadStatus.cs \
 	Banshee.Paas/Banshee.Paas.Gui/ColumnCellPaasStatusIndicator.cs \
 	Banshee.Paas/Banshee.Paas.Gui/ColumnCellPublished.cs \
+	Banshee.Paas/Banshee.Paas.Gui/ColumnCellUnheard.cs \
 	Banshee.Paas/Banshee.Paas.Gui/Dialogs/ChannelPropertiesDialog.cs \
 	Banshee.Paas/Banshee.Paas.Gui/Dialogs/DownloadPreferenceComboBox.cs \
 	Banshee.Paas/Banshee.Paas.Gui/Dialogs/SubscribeDialog.cs \
+	Banshee.Paas/Banshee.Paas.Gui/DownloadStatusFilterView.cs \
 	Banshee.Paas/Banshee.Paas.Gui/IColumnCellDataHelper.cs \
 	Banshee.Paas/Banshee.Paas.Gui/PaasActions.cs \
 	Banshee.Paas/Banshee.Paas.Gui/PaasChannelView.cs \
@@ -48,6 +54,7 @@ SOURCES =  \
 	Banshee.Paas/Banshee.Paas.Gui/PaasItemPage.cs \
 	Banshee.Paas/Banshee.Paas.Gui/PaasItemView.cs \
 	Banshee.Paas/Banshee.Paas.Gui/PaasSourceContents.cs \
+	Banshee.Paas/Banshee.Paas.Gui/PaasUnheardFilterView.cs \
 	Banshee.Paas/Banshee.Paas.Utils/StringUtils.cs \
 	Banshee.Paas/PaasService.cs \
 	Banshee.Paas/PaasSource.cs

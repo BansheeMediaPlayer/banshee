@@ -26,6 +26,8 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
+#undef SHOW_EXTRA_FILTERS
+
 using System;
 
 using Hyena.Data;
@@ -45,10 +47,12 @@ namespace Banshee.Paas.Gui
     {
         private PaasItemView item_view;
         private PaasChannelView channel_view;
-/*        
-        private PodcastUnheardFilterView unheard_view;
+
+#if SHOW_EXTRA_FILTERS
+        private PaasUnheardFilterView unheard_view;
         private DownloadStatusFilterView download_view;
-*/
+#endif
+
         public PaasChannelView ChannelView
         {
             get { return channel_view; }
@@ -60,12 +64,12 @@ namespace Banshee.Paas.Gui
         
         protected override void InitializeViews ()
         {
-/*
-            SetupFilterView (unheard_view = new PodcastUnheardFilterView ());
-            SetupFilterView (download_view = new DownloadStatusFilterView ());
-*/
             SetupMainView   (item_view    = new PaasItemView ());
-            SetupFilterView (channel_view = new PaasChannelView ());
+            SetupFilterView (channel_view = new PaasChannelView ());            
+#if SHOW_EXTRA_FILTERS
+            SetupFilterView (unheard_view = new PaasUnheardFilterView ());
+            SetupFilterView (download_view);
+#endif
         }
         
         protected override void ClearFilterSelections ()
@@ -73,10 +77,10 @@ namespace Banshee.Paas.Gui
 
             if (channel_view.Model != null) {
                 channel_view.Selection.Clear ();
-/*
+#if SHOW_EXTRA_FILTERS
                 unheard_view.Selection.Clear ();
                 download_view.Selection.Clear ();
-*/
+#endif                
             }            
         }
 
@@ -104,15 +108,17 @@ namespace Banshee.Paas.Gui
             foreach (IListModel model in track_source.CurrentFilters) {
                 if (model is PaasChannelModel) {
                     SetModel (channel_view, (model as IListModel<PaasChannel>));
-                }
-/*
-                else if (model is PodcastUnheardFilterModel)
+                } 
+#if SHOW_EXTRA_FILTERS                
+                else if (model is PaasUnheardFilterModel) {
                     SetModel (unheard_view, (model as IListModel<OldNewFilter>));
-                else if (model is DownloadStatusFilterModel)
+                } else if (model is DownloadStatusFilterModel) {
                     SetModel (download_view, (model as IListModel<DownloadedStatusFilter>));
-                else
-                    Hyena.Log.DebugFormat ("PodcastContents got non-feed filter model: {0}", model);
-*/                    
+                } 
+#endif                
+                else {
+                    Hyena.Log.DebugFormat ("PaasSourceContents got non-channel filter model: {0}", model);
+                } 
             }
 
             item_view.HeaderVisible = true;
@@ -122,14 +128,15 @@ namespace Banshee.Paas.Gui
 
         public override void ResetSource ()
         {
-/*        
-            SetModel (unheard_view, null);
-            SetModel (download_view, null);
-*/            
             source = null;
             
             SetModel (item_view, null);
             SetModel (channel_view, null);
+
+#if SHOW_EXTRA_FILTERS
+            SetModel (download_view, null);
+            SetModel (unheard_view, null);
+#endif            
             item_view.HeaderVisible = false;
         }
 

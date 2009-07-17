@@ -161,6 +161,7 @@ namespace Banshee.Paas
                 
                 track.Save (false);
 
+                item.IsNew = true;
                 item.TrackID = track.TrackId;
                 item.Save ();            
 
@@ -216,10 +217,10 @@ namespace Banshee.Paas
             channel_model.Selection.Changed += (sender, e) => { actions.UpdateChannelActions (); };
             
             yield return channel_model;
-/*
-            yield return new PodcastUnheardFilterModel (src.DatabaseTrackModel);
+
+            yield return new PaasUnheardFilterModel (src.DatabaseTrackModel);
             yield return new DownloadStatusFilterModel (src.DatabaseTrackModel);
-*/
+
             if (src == this) {
                 this.channel_model = channel_model;
                 AfterInitialized ();
@@ -271,19 +272,6 @@ namespace Banshee.Paas
         private string GetTrackArtworkId (DatabaseTrackInfo track)
         {
             return PodcastService.ArtworkIdFor (PodcastTrackInfo.From (track).Feed);
-        }
-
-        protected override IEnumerable<IFilterListModel> CreateFiltersFor (DatabaseSource src)
-        {
-            PodcastFeedModel feed_model;
-            yield return feed_model = new PodcastFeedModel (src, src.DatabaseTrackModel, ServiceManager.DbConnection, String.Format ("PodcastFeeds-{0}", src.UniqueId));
-            yield return new PodcastUnheardFilterModel (src.DatabaseTrackModel);
-            yield return new DownloadStatusFilterModel (src.DatabaseTrackModel);
-
-            if (src == this) {
-                this.feed_model = feed_model;
-                AfterInitialized ();
-            }
         }
 */
     }
