@@ -33,14 +33,20 @@ namespace Banshee.Paas.Aether
 {
     public class ChannelUpdateCompletedEventArgs : ChannelEventArgs
     {
+        private readonly Exception err;
         private readonly bool succeeded;
+
+        public Exception Error {
+            get { return err; }
+        }
         
         public bool Succeeded {
             get { return succeeded; }
         }
 
-        public ChannelUpdateCompletedEventArgs (PaasChannel channel, bool succeeded) : base (channel)
+        public ChannelUpdateCompletedEventArgs (PaasChannel channel, bool succeeded, Exception err) : base (channel)
         {
+            this.err = err; 
             this.succeeded = succeeded;
         }
     }

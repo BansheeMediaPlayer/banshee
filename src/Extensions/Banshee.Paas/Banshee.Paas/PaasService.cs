@@ -395,7 +395,17 @@ namespace Banshee.Paas
         private void OnChannelUpdatedHandler (object sender, ChannelUpdateCompletedEventArgs e)
         {
             lock (sync) {
-                if (!Disposed && e.Succeeded) {
+                if (Disposed) {
+                    return;
+                }
+
+                Console.WriteLine ("OnChannelUpdatedHandler - {0}", e.Succeeded);
+
+                if (e.Error != null) {
+                    Console.WriteLine (e.Error.Message);
+                }
+
+                if (e.Succeeded) {                
                     PaasChannel channel = e.Channel;
                     
                     if (String.IsNullOrEmpty (channel.LocalEnclosurePath)) {
@@ -411,7 +421,7 @@ namespace Banshee.Paas
                         }
 #endif                        
                     }
-
+                    
                     IEnumerable<PaasItem> items = e.Channel.Items.OrderByDescending (i => i.PubDate);
 
                     switch (e.Channel.DownloadPreference) {
@@ -424,6 +434,11 @@ namespace Banshee.Paas
                     }
 
                     download_manager.QueueDownload (items.Where (i => i.Active && !i.IsDownloaded));
+                } else if (e.Error != null) {
+                    source.ErrorSource.AddMessage (                    
+                        String.Format (Catalog.GetString (@"Error while updating channel ""{0}"""), e.Channel.Name),
+                        e.Error.Message
+                    );                    
                 }
 
                 source.Reload ();

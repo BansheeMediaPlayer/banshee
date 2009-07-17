@@ -384,12 +384,12 @@ namespace Banshee.Paas.Aether
                     
                     deleted.Remove (channel.DbId);
                     updating.Remove (channel.DbId);
-                    OnChannelUpdateCompleted (channel, false);
+                    OnChannelUpdateCompleted (channel, false, null);
                     return;
                 }                
 
                 try {
-                    if (e.Error == null && e.State == TaskState.Succeeded && !String.IsNullOrEmpty (task.Result)) {
+                    if (e.Error == null && e.State == TaskState.Succeeded) {
                         RssParser parser = new RssParser (task.Result);
     
                         ServiceManager.DbConnection.BeginTransaction ();
@@ -418,9 +418,8 @@ namespace Banshee.Paas.Aether
                             if (removed_items.Count > 0) {
                                 DeleteItems (removed_items, false, false);
                             }
-                        } catch (Exception ex) {
+                        } catch {
                             ServiceManager.DbConnection.RollbackTransaction ();
-                            Hyena.Log.Exception (ex);                           
                             throw;
                         }
     
@@ -433,12 +432,12 @@ namespace Banshee.Paas.Aether
                         if (removed_items != null && removed_items.Count > 0) {
                             OnItemsRemoved (removed_items);                    
                         }
-
-                        OnChannelUpdateCompleted (channel, true);
                     }
+                    
+                    OnChannelUpdateCompleted (channel, e.Error);
                 } catch (Exception ex) {
                     Hyena.Log.Exception (ex);
-                    OnChannelUpdateCompleted (channel, false);
+                    OnChannelUpdateCompleted (channel, ex);
                 } finally {
                     updating.Remove (channel.DbId);                       
                 }
@@ -456,14 +455,19 @@ namespace Banshee.Paas.Aether
             }
         }
 
-        private void OnChannelUpdateCompleted (PaasChannel channel, bool succeeded)
+        private void OnChannelUpdateCompleted (PaasChannel channel, Exception err)
+        {
+            OnChannelUpdateCompleted (channel, err == null, err);
+        }
+
+        private void OnChannelUpdateCompleted (PaasChannel channel, bool succeeded, Exception e)
         {
             var handler = ChannelUpdateCompleted;
 
             if (handler != null) {
                 event_queue.Register (
                     new EventWrapper<ChannelUpdateCompletedEventArgs> (
-                        handler, this, new ChannelUpdateCompletedEventArgs (channel, succeeded)
+                        handler, this, new ChannelUpdateCompletedEventArgs (channel, succeeded, e)
                     )
                 );            
             }
