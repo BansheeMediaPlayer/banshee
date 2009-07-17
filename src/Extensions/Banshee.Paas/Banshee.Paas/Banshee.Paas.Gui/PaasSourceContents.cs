@@ -68,7 +68,7 @@ namespace Banshee.Paas.Gui
             SetupFilterView (channel_view = new PaasChannelView ());            
 #if SHOW_EXTRA_FILTERS
             SetupFilterView (unheard_view = new PaasUnheardFilterView ());
-            SetupFilterView (download_view);
+            SetupFilterView (download_view = new DownloadStatusFilterView ());
 #endif
         }
         
