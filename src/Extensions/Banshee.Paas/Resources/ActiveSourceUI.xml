@@ -17,6 +17,8 @@
   <popup name="TrackContextMenu" action="TrackContextMenuAction">
     <placeholder name="BelowAddToPlaylist">
       <separator />
+      <menuitem name="PaastItemLink" action="PaasItemLinkAction" />
+      <separator />      
       <menuitem name="PaasItemPause"    action="PaasItemPauseAction" />
       <menuitem name="PaasItemResume"   action="PaasItemResumeAction" />                
       <menuitem name="PaasItemCancel"   action="PaasItemCancelAction" />
@@ -28,7 +30,6 @@
       <menuitem name="PaasItemMarkNew"  action="PaasItemMarkNewAction" />
       <menuitem name="PaasItemMarkOld"  action="PaasItemMarkOldAction" />
       <separator />
-      <!--<menuitem name="PodcastItemLink" action="PodcastItemLinkAction" /> -->      
     </placeholder>
   </popup>
 </ui>

@@ -24,6 +24,8 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
+#undef MIRO_GUIDE
+
 using System;
 using System.IO;
 using System.Linq;
@@ -71,8 +73,9 @@ namespace Banshee.Paas
         );
 
         private PaasSource source;
-        
-        //private MiroGuideClient mg_client;
+#if MIRO_GUIDE        
+        private MiroGuideClient mg_client;
+#endif        
         private SyndicationClient syndication_client;
         
         private AutoResetEvent client_handle;
@@ -132,7 +135,8 @@ namespace Banshee.Paas
             };
 
             client_handle = new AutoResetEvent (true);
-/*            
+
+#if MIRO_GUIDE
             mg_client = new MiroGuideClient () {
                 Timeout    = (60 * 1000), // one minute.
                 ServiceUri = "http://127.0.0.1:8000",
@@ -150,7 +154,7 @@ namespace Banshee.Paas
             };
 
             mg_client.RequestDeltasCompleted += ClientUpdatedHandler;
-*/
+#endif
             syndication_client = new SyndicationClient ();
             syndication_client.StateChanged += (sender, e) => {
                 lock (sync) {
@@ -192,7 +196,9 @@ namespace Banshee.Paas
         {
             lock (sync) {
                 if (!Disposed) {
-                    //mg_client.RequestDeltasAsync ();
+#if MIRO_GUIDE                            
+                    mg_client.RequestDeltasAsync ();
+#endif                    
                     syndication_client.UpdateAsync ();
                 }
             }
@@ -219,11 +225,13 @@ namespace Banshee.Paas
 
             DisposeInterface ();
             
-            //mg_client.CancelAsync ();
+#if MIRO_GUIDE                    
+            mg_client.CancelAsync ();
             client_handle.WaitOne ();
 
-            //mg_client.RequestDeltasCompleted -= ClientUpdatedHandler;
-            //mg_client = null;
+            mg_client.RequestDeltasCompleted -= ClientUpdatedHandler;
+            mg_client = null;
+#endif            
 
             client_handle.Close ();
             client_handle = null;
@@ -265,7 +273,7 @@ namespace Banshee.Paas
                 download_manager_interface.Dispose ();
             }
         }
-/*
+#if MIRO_GUIDE        
         private void ApplyUpdate (AetherDelta delta)
         {
             Dictionary<long, PaasChannel> channel_cache = new Dictionary<long, PaasChannel> ();
@@ -375,7 +383,8 @@ namespace Banshee.Paas
             }
                 source.ErrorSource.Reload ();            
         }
-*/
+#endif
+
         private DatabaseTrackInfo GetTrackByItemId (long item_id)
         {
            return DatabaseTrackInfo.Provider.FetchFirstMatching (

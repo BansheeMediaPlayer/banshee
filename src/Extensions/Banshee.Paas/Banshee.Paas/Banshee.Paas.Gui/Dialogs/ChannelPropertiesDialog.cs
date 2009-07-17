@@ -35,7 +35,7 @@
 // about it not moving existing existing files.  I may implement that at some point
 // just not now.)
 
-//#define EDIT_DIR_TEST
+#undef EDIT_DIR_TEST
 
 using System;
 

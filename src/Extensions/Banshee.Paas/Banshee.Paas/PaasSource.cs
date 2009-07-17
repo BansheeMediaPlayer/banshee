@@ -121,7 +121,7 @@ namespace Banshee.Paas
             Properties.SetString ("Icon.Name", "weather-storm");
             
             Properties.SetString ("ActiveSourceUIResource", "ActiveSourceUI.xml");
-            Properties.Set<bool> ("ActiveSourceUIResourcePropagate", true);
+            Properties.Set<bool> ("ActiveSourceUIResourcePropagate", false);
             Properties.Set<System.Reflection.Assembly> ("ActiveSourceUIResource.Assembly", typeof(PaasSource).Assembly);
 
             Properties.SetString ("GtkActionPath", "/PaasSourcePopup");

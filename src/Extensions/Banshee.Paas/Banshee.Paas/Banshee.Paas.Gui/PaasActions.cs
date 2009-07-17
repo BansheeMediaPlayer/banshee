@@ -126,6 +126,11 @@ namespace Banshee.Paas.Gui
                     "PaasItemDeleteAction", null,
                      Catalog.GetString ("Delete From Drive"), null,
                      null, OnPaasItemDeletedHandler
+                ),
+                new ActionEntry (
+                    "PaasItemLinkAction", Stock.JumpTo,
+                     Catalog.GetString ("Visit Homepage"), null,
+                     null, OnPaasItemHomepageHandler
                 ),                
                 new ActionEntry (
                     "PaasChannelPopupAction", null, null, null, null, OnChannelPopup
@@ -293,7 +298,7 @@ namespace Banshee.Paas.Gui
             UpdateAction ("PaasItemMarkNewAction", show_mark_new);
             UpdateAction ("PaasItemMarkOldAction", show_mark_old);
             
-            //UpdateAction ("PaasItemLinkAction", ActiveDbSource.TrackModel.Selection.Count == 1);                
+            UpdateAction ("PaasItemLinkAction", (ActiveDbSource.TrackModel.Selection.Count == 1));                
         }
 
         public void UpdateChannelActions ()
@@ -472,6 +477,15 @@ namespace Banshee.Paas.Gui
             );
         }
 
+        private void OnPaasItemHomepageHandler (object sender, EventArgs e)
+        {
+            PaasItem item = PaasTrackInfo.From (ActiveDbSource.TrackModel.FocusedItem).Item;
+            
+            if (item != null && !String.IsNullOrEmpty (item.Link)) {
+                Banshee.Web.Browser.Open (item.Link);
+            }    
+        }
+
         private void OnPaasItemDeletedHandler (object sender, EventArgs args)
         {
             var items = GetSelectedItems ();
@@ -560,6 +574,7 @@ namespace Banshee.Paas.Gui
                 Banshee.Web.Browser.Open (channel.Link);
             }    
         }
+        
         private void OnPaasChannelDownloadAllHandler (object sender, EventArgs e)
         {
             var channels = GetSelectedChannels ();
