@@ -30,7 +30,6 @@ SOURCES =  \
 	Banshee.Paas/Banshee.Paas.Data/PaasTrackInfo.cs \
 	Banshee.Paas/Banshee.Paas.Data/PaasTrackListModel.cs \
 	Banshee.Paas/Banshee.Paas.Data/PaasUnheardFilterModel.cs \
-	Banshee.Paas/Banshee.Paas.DownloadManager.Gui/ColumnCellDownloadStatus.cs \
 	Banshee.Paas/Banshee.Paas.DownloadManager.Gui/DownloadListModel.cs \
 	Banshee.Paas/Banshee.Paas.DownloadManager.Gui/DownloadListView.cs \
 	Banshee.Paas/Banshee.Paas.DownloadManager.Gui/DownloadManagerInterface.cs \
