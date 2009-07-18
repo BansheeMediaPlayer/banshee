@@ -55,8 +55,9 @@ SOURCES =  \
 	Banshee.Paas/Banshee.Paas.Gui/PaasSourceContents.cs \
 	Banshee.Paas/Banshee.Paas.Gui/PaasUnheardFilterView.cs \
 	Banshee.Paas/Banshee.Paas.Utils/StringUtils.cs \
-	Banshee.Paas/PaasService.cs \
-	Banshee.Paas/PaasSource.cs
+	Banshee.Paas/Banshee.Paas/PaasImageFetchJob.cs \
+	Banshee.Paas/Banshee.Paas/PaasService.cs \
+	Banshee.Paas/Banshee.Paas/PaasSource.cs
 
 RESOURCES =  \
 	Banshee.Paas.addin.xml \

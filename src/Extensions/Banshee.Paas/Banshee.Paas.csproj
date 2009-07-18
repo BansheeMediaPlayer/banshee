@@ -53,8 +53,6 @@
     </MonoDevelop>
   </ProjectExtensions>
   <ItemGroup>
-    <Compile Include="Banshee.Paas\PaasService.cs" />
-    <Compile Include="Banshee.Paas\PaasSource.cs" />
     <Compile Include="Banshee.Paas\Banshee.Paas.Aether\AetherClient.cs" />
     <Compile Include="Banshee.Paas\Banshee.Paas.Aether\AetherClientID.cs" />
     <Compile Include="Banshee.Paas\Banshee.Paas.Aether\AetherClientState.cs" />
@@ -106,6 +104,9 @@
     <Compile Include="Banshee.Paas\Banshee.Paas.Gui\ColumnCellDownloadStatus.cs" />
     <Compile Include="Banshee.Paas\Banshee.Paas.Data\DownloadStatusFilterModel.cs" />
     <Compile Include="Banshee.Paas\Banshee.Paas.Gui\DownloadStatusFilterView.cs" />
+    <Compile Include="Banshee.Paas\Banshee.Paas\PaasImageFetchJob.cs" />
+    <Compile Include="Banshee.Paas\Banshee.Paas\PaasService.cs" />
+    <Compile Include="Banshee.Paas\Banshee.Paas\PaasSource.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Core\Banshee.Core\Banshee.Core.csproj">
@@ -140,5 +141,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Banshee.Paas\Banshee.Paas.DownloadManager\" />
+    <Folder Include="Banshee.Paas\Banshee.Paas\" />
   </ItemGroup>
 </Project>

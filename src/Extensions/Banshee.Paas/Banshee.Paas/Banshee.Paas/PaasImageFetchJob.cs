@@ -26,37 +26,26 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-/*
+
 using System;
-//using System.IO;
-//using System.Net;
-//using System.Xml;
-//using System.Text;
-//using System.Collections.Generic;
 
 using Hyena;
 
-//using Migo.Syndication;
+using Banshee.Base;
+using Banshee.Metadata;
+using Banshee.ServiceStack;
 
-//using Banshee.Base;
-//using Banshee.Metadata;
-//using Banshee.ServiceStack;
-//using Banshee.Kernel;
-//using Banshee.Collection;
-//using Banshee.Streaming;
-//using Banshee.Networking;
+using Banshee.Paas.Data;
 
-//using Banshee.Podcasting.Gui;
-
-namespace Banshee.Podcasting
+namespace Banshee.Paas
 {
-    public class PodcastImageFetchJob : MetadataServiceJob
+    public class PaasImageFetchJob : MetadataServiceJob
     {
-        private Feed feed;
+        private PaasChannel channel;
         
-        public PodcastImageFetchJob (Feed feed) : base ()
+        public PaasImageFetchJob (PaasChannel channel) : base ()
         {
-            this.feed = feed;
+            this.channel = channel;
         }
         
         public override void Run()
@@ -66,11 +55,11 @@ namespace Banshee.Podcasting
         
         public void Fetch ()
         {
-            if (feed.ImageUrl == null) {
+            if (channel.ImageUrl == null) {
                 return;
             }
             
-            string cover_art_id = PodcastService.ArtworkIdFor (feed);
+            string cover_art_id = PaasService.ArtworkIdFor (channel);
             
             if (cover_art_id == null) {
                 return;
@@ -80,14 +69,15 @@ namespace Banshee.Podcasting
                 return;
             }
             
-            if (SaveHttpStreamCover (new Uri (feed.ImageUrl), cover_art_id, null)) {
+            if (SaveHttpStreamCover (new Uri (channel.ImageUrl), cover_art_id, null)) {
                 Banshee.Sources.Source src = ServiceManager.SourceManager.ActiveSource;
-                if (src != null && (src is PodcastSource || src.Parent is PodcastSource)) {
+                
+                if (src != null && (src is PaasSource || src.Parent is PaasSource)) {
                     (src as Banshee.Sources.DatabaseSource).Reload ();
                 }
+                
                 return;
             }
         }
     }
 }
-*/

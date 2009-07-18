@@ -84,10 +84,9 @@ namespace Banshee.Paas.Gui
             artwork_manager.ToString ();
             // remove
 
-            ImageSurface image = null;/*
-            artwork_manager == null ? null
-                : artwork_manager.LookupScaleSurface (PodcastService.ArtworkIdFor (feed), image_size, true);
-            */
+            ImageSurface image = (artwork_manager == null) ? null
+                : artwork_manager.LookupScaleSurface (PaasService.ArtworkIdFor (channel), image_size, true);
+                
             bool waiting = false;
             
             if (DataHelper != null) {

@@ -273,6 +273,7 @@ namespace Banshee.Paas
                 download_manager_interface.Dispose ();
             }
         }
+        
 #if MIRO_GUIDE        
         private void ApplyUpdate (AetherDelta delta)
         {
@@ -429,7 +430,8 @@ namespace Banshee.Paas
                         items = items.Take (0);
                         break;
                     }
-
+                    
+                    RefreshArtworkFor (channel);
                     download_manager.QueueDownload (items.Where (i => i.Active && !i.IsDownloaded));
                 } else if (e.Error != null) {
                     source.ErrorSource.AddMessage (                    
@@ -616,6 +618,18 @@ namespace Banshee.Paas
                 source.Reload ();
                 source.NotifyUser ();
             }            
+        }
+        
+        private void RefreshArtworkFor (PaasChannel channel)
+        {
+            if (channel.LastDownloadTime != DateTime.MinValue && !CoverArtSpec.CoverExists (ArtworkIdFor (channel))) {
+                Banshee.Kernel.Scheduler.Schedule (new PaasImageFetchJob (channel), Banshee.Kernel.JobPriority.BelowNormal);
+            }
+        }
+        
+        public static string ArtworkIdFor (PaasChannel channel)
+        {
+            return String.Format ("paas-{0}", Banshee.Base.CoverArtSpec.EscapePart (channel.Name));
         }
 
         public static readonly SchemaEntry<string> ClientID = new SchemaEntry<string> (
