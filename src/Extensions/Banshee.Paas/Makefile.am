@@ -21,6 +21,7 @@ SOURCES =  \
 	Banshee.Paas/Banshee.Paas.Aether/SyndicationClient/ChannelUpdateStatus.cs \
 	Banshee.Paas/Banshee.Paas.Aether/SyndicationClient/ChannelUpdateTask.cs \
 	Banshee.Paas/Banshee.Paas.Aether/SyndicationClient/ItemEventArgs.cs \
+	Banshee.Paas/Banshee.Paas.Aether/SyndicationClient/ItmsPodcast.cs \
 	Banshee.Paas/Banshee.Paas.Aether/SyndicationClient/RssParser.cs \
 	Banshee.Paas/Banshee.Paas.Aether/SyndicationClient/SyndicationClient.cs \
 	Banshee.Paas/Banshee.Paas.Data/DownloadPreference.cs \

@@ -1,10 +1,12 @@
 // 
 // PaasService.cs
 //  
-// Author:
+// Authors:
 //   Mike Urbanski <michael.c.urbanski@gmail.com>
+//   Gabriel Burt <gburt@novell.com>
 //
 // Copyright (C) 2009 Michael C. Urbanski
+// Copyright (C) 2008 Novell, Inc.
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -211,6 +213,7 @@ namespace Banshee.Paas
         public void DelayedInitialize ()
         {
             InitializeInterface ();
+            ServiceManager.Get<DBusCommandService> ().ArgumentPushed += OnCommandLineArgument;            
         }
 
         public void Dispose ()
@@ -224,6 +227,7 @@ namespace Banshee.Paas
             }
 
             DisposeInterface ();
+            ServiceManager.Get<DBusCommandService> ().ArgumentPushed -= OnCommandLineArgument;            
             
 #if MIRO_GUIDE                    
             mg_client.CancelAsync ();
@@ -646,6 +650,59 @@ namespace Banshee.Paas
 
                 source.Reload ();
                 source.NotifyUser ();
+            }            
+        }
+
+        private void OnCommandLineArgument (string uri, object value, bool isFile)
+        {
+            Console.WriteLine ("OPML!!!!!!!!!!!");
+            
+            if (!isFile || String.IsNullOrEmpty (uri)) {
+                return;
+            }
+
+            lock (sync) {
+                if (Disposed) {
+                    return;
+                }
+
+                // Handle OPML files
+                if (uri.Contains ("opml") || uri.EndsWith (".miro") || uri.EndsWith (".democracy")) {
+                    Console.WriteLine ("OPML!!!!!!!!!!!");
+                    try {
+                        OpmlParser opml_parser = new OpmlParser (uri, true);
+                        
+                        foreach (string channel in opml_parser.Feeds) {
+                            ServiceManager.Get<DBusCommandService> ().PushFile (channel);
+                        }
+                    } catch (Exception e) {
+                        Log.Exception (e);
+                    }
+                } else if (uri.Contains ("xml") || uri.Contains ("rss") || uri.Contains ("feed") || uri.StartsWith ("itpc") || uri.StartsWith ("pcast")) {
+                    if (uri.StartsWith ("feed://") || uri.StartsWith ("itpc://")) {
+                        uri = String.Format ("http://{0}", uri.Substring (7));
+                    } else if (uri.StartsWith ("pcast://")) {
+                        uri = String.Format ("http://{0}", uri.Substring (8));
+                    }
+    
+                    syndication_client.SubscribeToChannel (uri, DownloadPreference.One);                
+                    source.NotifyUser ();
+                } else if (uri.StartsWith ("itms://")) {
+                    System.Threading.ThreadPool.QueueUserWorkItem (delegate {
+                        try {
+                            string feed_url = new ItmsPodcast (uri).FeedUrl;
+                            
+                            if (feed_url != null) {
+                                ThreadAssist.ProxyToMain (delegate {
+                                    syndication_client.SubscribeToChannel (feed_url, DownloadPreference.None);
+                                    source.NotifyUser ();
+                                });
+                            }
+                        } catch (Exception e) {
+                            Hyena.Log.Exception (e);
+                        }
+                    });
+                }
             }            
         }
         
