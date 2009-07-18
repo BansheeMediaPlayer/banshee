@@ -1,7 +1,9 @@
 <ui>
   <popup name="PaasSourcePopup" action="PaasSourcePopupAction">
-    <menuitem name="PaasSubscribe" action="PaasSubscribeAction" />    
+    <menuitem name="PaasSubscribe" action="PaasSubscribeAction" />
+    <separator />    
     <menuitem name="PaasUpdateAll" action="PaasUpdateAllAction"/>
+    <menuitem name="PaasDownloadAll" action="PaasDownloadAllAction"/>        
     <separator/>
     <menuitem name="SourcePreferences" action="SourcePreferencesAction"/>
   </popup>
@@ -16,7 +18,9 @@
   </popup>
 
   <popup name="PaasAllChannelsContextMenu" action="PaasAllChannelsContextMenuAction">
-    <menuitem name="PaasSubscribe" action="PaasSubscribeAction" />    
+    <menuitem name="PaasSubscribe" action="PaasSubscribeAction" />
+    <separator />    
     <menuitem name="PaasUpdateAll" action="PaasUpdateAllAction" />
+    <menuitem name="PaasDownloadAll" action="PaasDownloadAllAction"/>            
   </popup>
 </ui>

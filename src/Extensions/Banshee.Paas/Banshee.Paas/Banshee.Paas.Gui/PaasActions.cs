@@ -149,7 +149,12 @@ namespace Banshee.Paas.Gui
                     "PaasChannelHomepageAction", Stock.JumpTo,
                      Catalog.GetString ("Visit Homepage"), null,
                      null, OnPaasChannelHomepageHandler
-                ),                 
+                ),
+                new ActionEntry (
+                    "PaasDownloadAllAction", Stock.SaveAs,
+                     Catalog.GetString ("Download All Episodes"), null,
+                     null, OnPaasDownloadAllHandler
+                ),                
                 new ActionEntry (
                     "PaasChannelDownloadAllAction", Stock.SaveAs,
                      Catalog.GetString ("Download All Episodes"), null,
@@ -574,7 +579,16 @@ namespace Banshee.Paas.Gui
                 Banshee.Web.Browser.Open (channel.Link);
             }    
         }
-        
+
+        private void OnPaasDownloadAllHandler (object sender, EventArgs e)
+        {
+            var channels = new List<PaasChannel> (PaasChannel.Provider.FetchAll ());
+
+            foreach (var c in channels) {
+                service.DownloadManager.QueueDownload (c.Items.Where (i => !i.IsDownloaded));
+            }
+        }
+
         private void OnPaasChannelDownloadAllHandler (object sender, EventArgs e)
         {
             var channels = GetSelectedChannels ();
