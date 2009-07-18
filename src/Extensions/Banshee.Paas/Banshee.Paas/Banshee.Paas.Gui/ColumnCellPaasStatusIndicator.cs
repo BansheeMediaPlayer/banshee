@@ -102,8 +102,7 @@ namespace Banshee.Paas.Gui
                         icon_index = (int)Icon.Error;
                         break;                        
                     default:
-                        icon_index = -1;
-                        icon_index = pti.IsNew ? base.PixbufCount + (int)Offset.New : -1;
+                        icon_index = pti.IsNew ? base.PixbufCount + (int) Offset.New : -1;
                         break;
                 }
             }

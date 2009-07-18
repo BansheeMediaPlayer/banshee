@@ -516,6 +516,14 @@ namespace Banshee.Paas
                 if (Disposed) {
                     return;
                 } else if (e.State != TaskState.Succeeded) {
+                    if (e.Error != null) {
+                        source.ErrorSource.AddMessage (                                                
+                            String.Format (
+                                Catalog.GetString ("Error Downloading:  {0}"), (e.Task as HttpFileDownloadTask).Name
+                            ), e.Error.Message
+                        );
+                    }
+                
                     source.QueueDraw ();
                     return;
                 }   
@@ -598,7 +606,7 @@ namespace Banshee.Paas
                     }                    
                 } catch (Exception ex) {
                     source.ErrorSource.AddMessage (                    
-                        Catalog.GetString (String.Format ("Error Saving File:  {0}", tmp_local_path)), ex.Message
+                        String.Format (Catalog.GetString ("Error Saving File:  {0}"), tmp_local_path), ex.Message
                     );
 
                     Hyena.Log.Exception (ex);
