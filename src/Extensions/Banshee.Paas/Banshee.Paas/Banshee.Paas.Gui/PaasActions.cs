@@ -88,6 +88,11 @@ namespace Banshee.Paas.Gui
 
             Add (new ActionEntry [] {
                 new ActionEntry (
+                    "PaasImportOpmlAction", Stock.New,
+                     Catalog.GetString ("Import Channels from OPML"), null,
+                     null, OnPaasImportOpmlHandler
+                ),            
+                new ActionEntry (
                     "PaasItemDownloadAction", Stock.SaveAs,
                      Catalog.GetString ("Download"), null,
                      null, OnPaasItemDownloadHandler
@@ -435,22 +440,62 @@ namespace Banshee.Paas.Gui
             }       
         }
 
-        private void OnPaasSubscribeHandler (object sender, EventArgs args)
+        private void OnPaasSubscribeHandler (object sender, EventArgs e)
         {
             RunSubscribeDialog ();
         }
 
-        private void OnPaasUpdateHandler (object sender, EventArgs args)
+        private void OnPaasImportOpmlHandler (object sender, EventArgs e)
+        {
+            FileChooserDialog chooser = new FileChooserDialog (
+                Catalog.GetString ("Please Select a File to Import..."), null, FileChooserAction.Open, 
+                new object[] { Catalog.GetString ("Import"), ResponseType.Ok }
+            );
+            
+            FileFilter filter = new FileFilter () {
+                Name = "OPML"
+            };
+
+            FileFilter unfiltered = new FileFilter () { 
+                Name = "All" 
+            };
+            
+            unfiltered.AddPattern ("*");
+            filter.AddPattern ("*.opml");
+            filter.AddPattern ("*.miro");
+
+            chooser.AddFilter (filter);
+            chooser.AddFilter (unfiltered);
+
+            chooser.Response += (o, ea) => {
+                if (ea.ResponseId == Gtk.ResponseType.Ok) { 
+                    try {
+                        service.ImportOpmlFile (chooser.Filename);
+                    } catch (Exception ex) {
+                       HigMessageDialog.RunHigMessageDialog (
+                            null, DialogFlags.Modal, MessageType.Warning, ButtonsType.Ok,
+                            Catalog.GetString ("Error Importing Channels!"), ex.Message   
+                        );
+                    }
+                }
+                
+                (o as Dialog).Destroy ();
+            };
+
+            chooser.Run ();
+        }
+
+        private void OnPaasUpdateHandler (object sender, EventArgs e)
         {
             service.UpdateAsync ();
         }
-        private void OnPaasItemDownloadHandler (object sender, EventArgs args)
+        private void OnPaasItemDownloadHandler (object sender, EventArgs e)
         {
             var items = GetSelectedItems ();
             service.DownloadManager.QueueDownload (items.Select (ti => ti.Item).Where (i => !i.IsDownloaded));
         }
 
-        private void OnPaasItemCancelHandler (object sender, EventArgs args)
+        private void OnPaasItemCancelHandler (object sender, EventArgs e)
         {
             if (ActiveDbSource.TrackModel.Selection.AllSelected) {
                 service.DownloadManager.CancelAsync ();
@@ -464,7 +509,7 @@ namespace Banshee.Paas.Gui
             );
         }
 
-        private void OnPaasItemResumeHandler (object sender, EventArgs args)
+        private void OnPaasItemResumeHandler (object sender, EventArgs e)
         {
             var items = GetSelectedItems ();
 
@@ -473,7 +518,7 @@ namespace Banshee.Paas.Gui
             );
         }
         
-        private void OnPaasItemPauseHandler (object sender, EventArgs args)
+        private void OnPaasItemPauseHandler (object sender, EventArgs e)
         {
             var items = GetSelectedItems ();
 
@@ -491,13 +536,13 @@ namespace Banshee.Paas.Gui
             }    
         }
 
-        private void OnPaasItemDeletedHandler (object sender, EventArgs args)
+        private void OnPaasItemDeletedHandler (object sender, EventArgs e)
         {
             var items = GetSelectedItems ();
             service.SyndicationClient.RemoveItems (items.Select (t => t.Item));
         }
 
-        private void OnPaasItemRemovedHandler (object sender, EventArgs args)
+        private void OnPaasItemRemovedHandler (object sender, EventArgs e)
         {
             bool delete, delete_files;
             
@@ -529,7 +574,7 @@ namespace Banshee.Paas.Gui
             MarkItems (items, false);
         }
 
-        private void OnChannelPopup (object o, EventArgs args)
+        private void OnChannelPopup (object o, EventArgs e)
         {
             if (ActiveChannelModel.Selection.AllSelected) {
                 ShowContextMenu ("/PaasAllChannelsContextMenu");

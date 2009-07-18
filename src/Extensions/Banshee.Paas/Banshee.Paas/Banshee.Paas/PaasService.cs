@@ -253,6 +253,35 @@ namespace Banshee.Paas
             }
         }
 
+        public void ImportOpmlFile (string path)
+        {
+            if (String.IsNullOrEmpty (path)) {
+                throw new ArgumentNullException ("path");
+            }
+            
+            lock (sync) {
+                if (Disposed) {
+                    return;
+                }
+
+                try {
+                    OpmlParser opml_parser = new OpmlParser (path, true);
+                    
+                    foreach (string channel in opml_parser.Feeds) {
+                        try {
+                            syndication_client.SubscribeToChannel (channel, DownloadPreference.One);
+                            source.NotifyUser ();                            
+                        } catch (Exception e) {
+                            Log.Exception (e);
+                        }
+                    }
+                } catch (Exception e) {
+                    Log.Exception (e);
+                    throw;
+                }
+            }
+        }
+
         private void InitializeInterface ()
         {
             source = new PaasSource (this);            

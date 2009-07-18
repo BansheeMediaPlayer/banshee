@@ -14,6 +14,7 @@ SOURCES =  \
 	Banshee.Paas/Banshee.Paas.Aether/MiroGuideClient/MiroGuideClient.cs \
 	Banshee.Paas/Banshee.Paas.Aether/MiroGuideClient/RequestState.cs \
 	Banshee.Paas/Banshee.Paas.Aether/MiroGuideClient/ServiceMethodFlags.cs \
+	Banshee.Paas/Banshee.Paas.Aether/OpmlParser.cs \
 	Banshee.Paas/Banshee.Paas.Aether/SyndicationClient/ChannelEventArgs.cs \
 	Banshee.Paas/Banshee.Paas.Aether/SyndicationClient/ChannelUpdateCompletedEventArgs.cs \
 	Banshee.Paas/Banshee.Paas.Aether/SyndicationClient/ChannelUpdateManager.cs \
