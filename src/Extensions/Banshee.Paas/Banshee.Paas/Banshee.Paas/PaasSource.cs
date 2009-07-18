@@ -107,7 +107,7 @@ namespace Banshee.Paas
 
 #region Constructors
 
-        public PaasSource (PaasService service) : base (Catalog.GetString ("Paas"), "PaasLibrary", 200)
+        public PaasSource (PaasService service) : base (Catalog.GetString ("Podcasts"), "PaasLibrary", 200)
         {
             actions = new PaasActions (service);
 
@@ -118,7 +118,7 @@ namespace Banshee.Paas
             NotMediaTypes = TrackMediaAttributes.AudioBook;
             //SyncCondition = "(substr(CoreTracks.Uri, 0, 4) != 'http' AND CoreTracks.PlayCount = 0)";
             
-            Properties.SetString ("Icon.Name", "weather-storm");
+            Properties.SetString ("Icon.Name", "podcast");
             
             Properties.SetString ("ActiveSourceUIResource", "ActiveSourceUI.xml");
             Properties.Set<bool> ("ActiveSourceUIResourcePropagate", false);

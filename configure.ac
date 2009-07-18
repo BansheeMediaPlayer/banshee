@@ -45,7 +45,7 @@ AC_PROG_LIBTOOL
 AC_PROG_INSTALL
 
 dnl How to configure for distcheck
-DISTCHECK_CONFIGURE_FLAGS="--disable-docs --enable-mtp --enable-daap --enable-podcast --enable-release --enable-paas"
+DISTCHECK_CONFIGURE_FLAGS="--disable-docs --enable-mtp --enable-daap --disable-podcast --enable-release --enable-paas"
 AC_SUBST(DISTCHECK_CONFIGURE_FLAGS)
 
 dnl Export Version Info
@@ -148,7 +148,7 @@ dnl the bird is the word
 AC_ARG_ENABLE(podcast, 
 	AC_HELP_STRING([--disable-podcast], 
 		[Disable Podcasting support]), 
-	, enable_podcast="yes")
+	, enable_podcast="no")
 AM_CONDITIONAL(ENABLE_PODCAST, test "x$enable_podcast" = "xyes")
 
 AC_ARG_ENABLE(paas, 

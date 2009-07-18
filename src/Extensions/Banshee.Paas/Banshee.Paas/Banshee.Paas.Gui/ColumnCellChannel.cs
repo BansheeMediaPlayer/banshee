@@ -80,9 +80,6 @@ namespace Banshee.Paas.Gui
             PaasChannel channel = (PaasChannel)BoundObject;
             
             bool disable_border = false;
-            // remove
-            artwork_manager.ToString ();
-            // remove
 
             ImageSurface image = (artwork_manager == null) ? null
                 : artwork_manager.LookupScaleSurface (PaasService.ArtworkIdFor (channel), image_size, true);
