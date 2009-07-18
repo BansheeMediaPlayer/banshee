@@ -60,6 +60,8 @@ namespace Banshee.Paas.DownloadManager.Gui
                 throw new ArgumentNullException ("model");
             }
 
+            TypeUniqueId = "DownloadSource";
+
             download_model = model;
             download_model.Cleared  += (sender, e) => { OnUpdated (); };
             download_model.Reloaded += (sender, e) => { QueueDraw (); OnUpdated (); };
