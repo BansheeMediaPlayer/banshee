@@ -399,10 +399,8 @@ namespace Banshee.Paas
                     return;
                 }
 
-                Console.WriteLine ("OnChannelUpdatedHandler - {0}", e.Succeeded);
-
                 if (e.Error != null) {
-                    Console.WriteLine (e.Error.Message);
+                    Log.Exception (e.Error);
                 }
 
                 if (e.Succeeded) {                
@@ -582,14 +580,13 @@ namespace Banshee.Paas
                         Banshee.IO.Directory.Delete (path, true);
                     } catch {}
 
-                    //item.IsNew = true;
                     item.LocalPath = tmp_local_path;
                     item.MimeType = e.Task.MimeType;
                     item.DownloadedAt = DateTime.Now;
                     
                     item.Save ();
 
-                    DatabaseTrackInfo track = GetTrackByItemId (item.TrackID);
+                    DatabaseTrackInfo track = GetTrackByItemId (item.DbId);
 
                     if (track != null) {
                         PaasTrackInfo pti = PaasTrackInfo.From (track);
