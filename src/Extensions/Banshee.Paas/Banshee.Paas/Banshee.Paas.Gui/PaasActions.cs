@@ -457,7 +457,7 @@ namespace Banshee.Paas.Gui
             };
 
             FileFilter unfiltered = new FileFilter () { 
-                Name = "All" 
+                Name = Catalog.GetString ("All") 
             };
             
             unfiltered.AddPattern ("*");
@@ -497,11 +497,6 @@ namespace Banshee.Paas.Gui
 
         private void OnPaasItemCancelHandler (object sender, EventArgs e)
         {
-            if (ActiveDbSource.TrackModel.Selection.AllSelected) {
-                service.DownloadManager.CancelAsync ();
-                return;
-            }
-            
             var items = GetSelectedItems ();
                         
             service.DownloadManager.CancelDownload (
