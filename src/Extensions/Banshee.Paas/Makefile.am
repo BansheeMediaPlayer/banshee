@@ -32,12 +32,12 @@ SOURCES =  \
 	Banshee.Paas/Banshee.Paas.Data/PaasTrackInfo.cs \
 	Banshee.Paas/Banshee.Paas.Data/PaasTrackListModel.cs \
 	Banshee.Paas/Banshee.Paas.Data/PaasUnheardFilterModel.cs \
-	Banshee.Paas/Banshee.Paas.DownloadManager.Gui/DownloadListModel.cs \
 	Banshee.Paas/Banshee.Paas.DownloadManager.Gui/DownloadListView.cs \
 	Banshee.Paas/Banshee.Paas.DownloadManager.Gui/DownloadManagerInterface.cs \
 	Banshee.Paas/Banshee.Paas.DownloadManager.Gui/DownloadSource.cs \
 	Banshee.Paas/Banshee.Paas.DownloadManager.Gui/DownloadSourceContents.cs \
 	Banshee.Paas/Banshee.Paas.DownloadManager.Gui/DownloadUserJob.cs \
+	Banshee.Paas/Banshee.Paas.DownloadManager/DownloadListModel.cs \
 	Banshee.Paas/Banshee.Paas.DownloadManager/PaasDownloadManager.cs \
 	Banshee.Paas/Banshee.Paas.Gui/ColumnCellChannel.cs \
 	Banshee.Paas/Banshee.Paas.Gui/ColumnCellDownloadStatus.cs \

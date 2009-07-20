@@ -42,18 +42,7 @@ namespace Banshee.Paas.Data
         public PaasChannelModel (Banshee.Sources.DatabaseSource source, DatabaseTrackListModel trackModel, BansheeDbConnection connection, string uuid)
             : base ("paas", Catalog.GetString ("Paas"), source, trackModel, connection, PaasChannel.Provider, new PaasChannel (), uuid)
         {
-            ReloadFragmentFormat = @"
-                FROM PaasChannels ORDER BY HYENA_COLLATION_KEY(Name)
-            ";
-            /*
-            ReloadFragmentFormat = @"
-                FROM PodcastSyndications WHERE FeedID IN
-                    (SELECT DISTINCT PodcastSyndications.FeedID FROM PodcastItems, CoreTracks, PodcastEnclosures, PodcastSyndications, CoreCache{0}
-                        WHERE PodcastSyndications.FeedID = PodcastItems.FeedID AND 
-                          PodcastItems.ItemID = CoreTracks.ExternalID AND PodcastEnclosures.ItemID = PodcastItems.ItemID AND
-                          CoreCache.ModelID = {1} AND CoreCache.ItemId = {2} {3})
-                    ORDER BY lower(Title)";
-            */
+            ReloadFragmentFormat = "FROM PaasChannels ORDER BY HYENA_COLLATION_KEY(Name)";
         }
        
         public override string FilterColumn {
