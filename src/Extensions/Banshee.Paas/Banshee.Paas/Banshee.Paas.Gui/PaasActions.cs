@@ -440,6 +440,26 @@ namespace Banshee.Paas.Gui
             }       
         }
 
+        private ResponseType RunConfirmRemoveDeleteDialog (bool delete, int itemCount)
+        {
+            return HigMessageDialog.RunHigMessageDialog (
+                null,
+                DialogFlags.Modal,
+                MessageType.Question,
+                ButtonsType.YesNo,
+                String.Format (
+                    "{0} {1}", 
+                    delete ? Catalog.GetString ("Delete") : Catalog.GetString ("Remove"), 
+                    Catalog.GetPluralString ("Item?", "Items?", itemCount)
+                ),
+                String.Format (
+                    Catalog.GetString ("Are you sure that you want to {0} the selected {1}?"),
+                    delete ? Catalog.GetString ("delete") : Catalog.GetString ("remove"),                     
+                    Catalog.GetPluralString ("item", "items", itemCount)
+                )
+            );
+        }
+
         private void OnPaasSubscribeHandler (object sender, EventArgs e)
         {
             RunSubscribeDialog ();
@@ -534,27 +554,30 @@ namespace Banshee.Paas.Gui
         private void OnPaasItemDeletedHandler (object sender, EventArgs e)
         {
             var items = GetSelectedItems ();
-            service.SyndicationClient.RemoveItems (items.Select (t => t.Item));
+
+            if (RunConfirmRemoveDeleteDialog (true, items.Count ()) == ResponseType.Yes) {
+                service.SyndicationClient.RemoveItems (items.Select (t => t.Item), true);
+            }
         }
 
         private void OnPaasItemRemovedHandler (object sender, EventArgs e)
         {
             bool delete, delete_files;
             
-            var items = GetSelectedItems ().Select (t => t.Item).Where (i => !i.IsDownloaded);
-            var downloaded_items = GetSelectedItems ().Select (t => t.Item).Where (i => i.IsDownloaded);
+            var items = GetSelectedItems ().Select (t => t.Item);
+            int cnt = GetSelectedItems ().Select (t => t.Item).Where (i => i.IsDownloaded).Count ();
             
-            int cnt = downloaded_items.Count ();
-
             if (cnt > 0) {
                 RunConfirmDeleteDialog (false, cnt, out delete, out delete_files);
                 
                 if (delete) {
-                    service.SyndicationClient.RemoveItems (downloaded_items, delete_files);                
+                    service.SyndicationClient.RemoveItems (items, delete_files);                
                 }              
+            } else {
+                if (RunConfirmRemoveDeleteDialog (false, items.Count ()) == ResponseType.Yes) {
+                    service.SyndicationClient.RemoveItems (items);
+                }
             }
-
-            service.SyndicationClient.RemoveItems (items);
         }
 
         private void OnPaasItemMarkedNewHandler (object sender, EventArgs e)
@@ -625,7 +648,7 @@ namespace Banshee.Paas.Gui
             var channels = new List<PaasChannel> (PaasChannel.Provider.FetchAll ());
 
             foreach (var c in channels) {
-                service.DownloadManager.QueueDownload (c.Items.Where (i => !i.IsDownloaded));
+                service.DownloadManager.QueueDownload (c.Items.Where (i => i.Active && !i.IsDownloaded));
             }
         }
 
