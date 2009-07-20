@@ -634,7 +634,7 @@ namespace Banshee.Paas.Gui
             var channels = GetSelectedChannels ();
 
             foreach (var c in channels) {
-                service.DownloadManager.QueueDownload (c.Items.Where (i => !i.IsDownloaded));
+                service.DownloadManager.QueueDownload (c.Items.Where (i => i.Active && !i.IsDownloaded));
             }
         }
         
