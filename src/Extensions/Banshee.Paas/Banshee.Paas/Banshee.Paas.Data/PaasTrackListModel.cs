@@ -82,23 +82,16 @@ namespace Banshee.Paas.Data
                 case "PubDate":
                     sort_query = String.Format ("PaasItems.PubDate {0}", ascDesc);
                     break;
-
                 case "IsNew":
                     sort_query = String.Format ("-PaasItems.IsNew {0}, PaasItems.PubDate DESC", ascDesc);
                     break;
-
-//                case "IsDownloaded":
-//                    sort_query = String.Format (@"
-//                        PodcastEnclosures.LocalPath IS NOT NULL {0}, PodcastItems.PubDate DESC", ascDesc);
-//                    break;
-
+                case "IsDownloaded":
+                    sort_query = String.Format (@"
+                        PaasItems.LocalPath IS NOT NULL {0}, PaasItems.PubDate DESC", ascDesc);
+                    break;
                 case "album":
                     sort_query = String.Format ("PaasChannels.Name {0}, PaasItems.PubDate DESC", ascDesc);
-                    break;
-                    
-                case "Description":
-                    sort_query = String.Format ("PaasItems.StrippedDescription {0}, PaasItems.PubDate DESC", ascDesc);
-                    break;                 
+                    break;              
             }
 
             return sort_query ?? Banshee.Query.BansheeQuery.GetSort (key, asc);

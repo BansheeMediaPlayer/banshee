@@ -64,20 +64,14 @@ namespace Banshee.Paas.Data
         }
 
         private long client_id;
-        [DatabaseColumn (
-            "ClientID",
-            Index = "PaasChannelClientIDIndex"
-        )]
+        [DatabaseColumn ("ClientID", Index = "PaasChannelClientIDIndex")]
         public long ClientID {
             get { return client_id; }
             set { client_id = value; }
         }
 
         private long external_id;
-        [DatabaseColumn (
-            "ExternalID",
-            Index = "PaasChannelExternalIDIndex"
-        )]
+        [DatabaseColumn ("ExternalID", Index = "PaasChannelExternalIDIndex")]
         public long ExternalID {
             get { return external_id; }
             set { external_id = value; }
@@ -166,7 +160,7 @@ namespace Banshee.Paas.Data
         }
         
         private string name;
-        [DatabaseColumn]
+        [DatabaseColumn (Index = "PaasChannelNameIndex")]
         public string Name {
             get { 
                 return String.IsNullOrEmpty (name) ? url : name; 

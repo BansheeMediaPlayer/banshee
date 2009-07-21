@@ -59,10 +59,7 @@ namespace Banshee.Paas.Data
             get { return provider; }
         }        
         
-        [DatabaseColumn (
-            "ID", 
-            Constraints = DatabaseColumnConstraints.PrimaryKey
-        )]
+        [DatabaseColumn ("ID", Constraints = DatabaseColumnConstraints.PrimaryKey)]
         public long DbId {
             get { return dbid; }
             protected set { dbid = value; }
@@ -79,27 +76,21 @@ namespace Banshee.Paas.Data
         } 
 
         private long external_id;
-        [DatabaseColumn (
-            "ExternalID",
-            Index = "PaasItemsExternalIDIndex"
-        )]
+        [DatabaseColumn ("ExternalID", Index = "PaasItemsExternalIDIndex")]
         public long ExternalID {
             get { return external_id; }
             set { external_id = value; }
         }        
 
         private long external_channel_id;
-        [DatabaseColumn (
-            "ExternalChannelID",
-            Index = "PaasItemsExternalChannelIDIndex"
-        )]
+        [DatabaseColumn ("ExternalChannelID", Index = "PaasItemsExternalChannelIDIndex")]
         public long ExternalChannelID {
             get { return external_channel_id; }
             set { external_channel_id = value; }
         }  
 
         private long channel_id;
-        [DatabaseColumn ("ChannelID", Index = "PaasChannelIDIndex")]
+        [DatabaseColumn ("ChannelID", Index = "PaasItemChannelIDIndex")]
         public long ChannelID {
             get { return channel_id; }
             set { 
@@ -109,14 +100,14 @@ namespace Banshee.Paas.Data
         }
 
         private bool active = true;
-        [DatabaseColumn]
+        [DatabaseColumn (Index = "PaasItemActiveIndex")]
         public bool Active {
             get { return active; } 
             set { active = value; }
         }  
 
         private DateTime date;
-        [DatabaseColumn]
+        [DatabaseColumn (Index = "PaasItemPubDateIndex")]
         public DateTime PubDate {
             get { return date; } 
             set { date = value; }
@@ -167,7 +158,7 @@ namespace Banshee.Paas.Data
         } 
 
         private bool is_new;
-        [DatabaseColumn]
+        [DatabaseColumn (Index = "PaasItemIsNewIndex")]
         public bool IsNew {
             get { return is_new; }
             set { is_new = value; }
@@ -202,7 +193,7 @@ namespace Banshee.Paas.Data
         }   
 
         private string local_path;
-        [DatabaseColumn]
+        [DatabaseColumn (Index = "PaasItemLocalPathIndex")]
         public string LocalPath { 
             get { return local_path; }
             set { local_path = value; }
@@ -229,7 +220,7 @@ namespace Banshee.Paas.Data
         }
         
         private string name;
-        [DatabaseColumn]
+        [DatabaseColumn (Index = "PaasItemNameIndex")]
         public string Name {
             get { return name; } 
             set { name = value; }
