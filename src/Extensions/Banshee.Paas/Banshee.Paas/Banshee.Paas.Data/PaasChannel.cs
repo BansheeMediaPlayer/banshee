@@ -52,7 +52,7 @@ namespace Banshee.Paas.Data
             provider = new PaasChannelProvider (ServiceManager.DbConnection);
         }
 
-        public static SqliteModelProvider<PaasChannel> Provider {
+        public static PaasChannelProvider Provider {
             get { return provider; }
         }
         

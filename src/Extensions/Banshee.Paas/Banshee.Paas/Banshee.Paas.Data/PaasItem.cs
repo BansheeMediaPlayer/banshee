@@ -25,6 +25,7 @@
 // THE SOFTWARE.
 
 using System;
+using System.Data;
 using System.Collections.Generic;
 
 using Hyena;
@@ -35,6 +36,7 @@ using Banshee.ServiceStack;
 using Banshee.Collection.Database;
 
 using Banshee.Paas.Utils;
+using Banshee.Paas.DownloadManager.Data;
 
 namespace Banshee.Paas.Data
 {
@@ -43,19 +45,36 @@ namespace Banshee.Paas.Data
         public PaasItemProvider (HyenaSqliteConnection connection) : base (connection, "PaasItems")
         {
         }
+
+        public IEnumerable<PaasItem> FetchQueued (long primarySourceID)
+        {
+            string restore_command = String.Format (
+                @"SELECT {0} FROM {1} 
+                    JOIN {2} ON {1}.ID = {2}.ExternalID 
+                  WHERE PrimarySourceID = ? AND {1}.LocalPath IS NULL
+                    ORDER BY {2}.Position ASC", Select, From, 
+                    QueuedDownloadTask.Provider.From
+            );
+            
+            using (IDataReader reader = Connection.Query (restore_command, primarySourceID)) {
+                while (reader.Read ()) {
+                    yield return Load (reader);
+                }
+            } 
+        }
     }
 
     public class PaasItem : ICacheableItem
     {
         private long dbid;
 
-        private static SqliteModelProvider<PaasItem> provider;
+        private static PaasItemProvider provider;
         
         static PaasItem () {
             provider = new PaasItemProvider (ServiceManager.DbConnection);
         }
 
-        public static SqliteModelProvider<PaasItem> Provider {
+        public static PaasItemProvider Provider {
             get { return provider; }
         }        
         

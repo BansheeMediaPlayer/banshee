@@ -754,7 +754,7 @@ namespace Banshee.Paas.Gui
 
         private void OnPaasDownloadAllHandler (object sender, EventArgs e)
         {
-            var channels = new List<PaasChannel> (PaasChannel.Provider.FetchAll ());
+            var channels = new List<PaasChannel> (PaasChannel.Provider.FetchAll ().OrderBy (c => c.Name));
             foreach (var c in channels) {
                 service.DownloadManager.QueueDownload (c.Items.Where (i => i.Active && !i.IsDownloaded));
             }

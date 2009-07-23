@@ -25,7 +25,6 @@
 // THE SOFTWARE.
 
 using System;
-using System.Data;
 using System.Linq;
 using System.Collections.Generic;
 
@@ -219,27 +218,8 @@ namespace Banshee.Paas.DownloadManager
                     return;
                 }
 
-                QueueDownload (FetchQueued ());
+                QueueDownload (PaasItem.Provider.FetchQueued (primary_source_id));
             }
-        }
-
-        private IEnumerable<PaasItem> FetchQueued ()
-        {
-            string restore_command = String.Format (
-                @"SELECT {0} FROM {1} 
-                    JOIN {2} ON {1}.ID = {2}.ExternalID 
-                  WHERE PrimarySourceID = ? AND {1}.LocalPath IS NULL
-                    ORDER BY {2}.Position ASC",
-                PaasItem.Provider.Select, 
-                PaasItem.Provider.From,
-                QueuedDownloadTask.Provider.From
-            );
-            
-            using (IDataReader reader = ServiceManager.DbConnection.Query (restore_command, primary_source_id)) {
-                while (reader.Read ()) {
-                    yield return PaasItem.Provider.Load (reader);
-                }
-            } 
         }
 
         private void SaveQueuedDownloads ()
