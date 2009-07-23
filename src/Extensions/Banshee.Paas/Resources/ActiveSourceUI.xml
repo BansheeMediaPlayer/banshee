@@ -9,7 +9,11 @@
   <menubar name="MainMenu" action="MainMenuAction">
     <menu name="MediaMenu" action="MediaMenuAction">
       <placeholder name="BelowOpenLocation">
+        <separator />      
         <menuitem name="PaasSubscribe" action="PaasSubscribeAction" />
+        <separator />              
+        <menuitem name="PaasExportAllOpml" action="PaasExportAllOpmlAction" />                  
+        <menuitem name="PaasImportOpml" action="PaasImportOpmlAction" />
       </placeholder>
     </menu>
   </menubar>
@@ -19,16 +23,16 @@
       <separator />
       <menuitem name="PaastItemLink" action="PaasItemLinkAction" />
       <separator />      
-      <menuitem name="PaasItemPause"    action="PaasItemPauseAction" />
-      <menuitem name="PaasItemResume"   action="PaasItemResumeAction" />                
-      <menuitem name="PaasItemCancel"   action="PaasItemCancelAction" />
+      <menuitem name="PaasItemPause" action="PaasItemPauseAction" />
+      <menuitem name="PaasItemResume" action="PaasItemResumeAction" />                
+      <menuitem name="PaasItemCancel" action="PaasItemCancelAction" />
       <menuitem name="PaasItemDownload" action="PaasItemDownloadAction" />
       <separator />
-      <menuitem name="PaasItemRemove"   action="PaasItemRemoveAction" />
-      <menuitem name="PaasItemDelete"   action="PaasItemDeleteAction" />      
+      <menuitem name="PaasItemRemove" action="PaasItemRemoveAction" />
+      <menuitem name="PaasItemDelete" action="PaasItemDeleteAction" />      
       <separator />        
-      <menuitem name="PaasItemMarkNew"  action="PaasItemMarkNewAction" />
-      <menuitem name="PaasItemMarkOld"  action="PaasItemMarkOldAction" />
+      <menuitem name="PaasItemMarkNew" action="PaasItemMarkNewAction" />
+      <menuitem name="PaasItemMarkOld" action="PaasItemMarkOldAction" />
       <separator />
     </placeholder>
   </popup>

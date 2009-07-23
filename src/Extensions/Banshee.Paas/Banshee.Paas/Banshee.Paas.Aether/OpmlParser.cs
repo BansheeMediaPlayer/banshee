@@ -70,6 +70,8 @@ namespace Banshee.Paas.Aether
             foreach (XmlNode node in nodes) {
                 if (node.Attributes["xmlUrl"] != null) {
                     feeds.Add (node.Attributes["xmlUrl"].Value);
+                } else if (node.Attributes["url"] != null) {
+                    feeds.Add (node.Attributes["url"].Value);
                 }
 
                 // Parse outline nodes recursively.

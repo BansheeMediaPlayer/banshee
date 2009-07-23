@@ -113,7 +113,7 @@ namespace Banshee.Paas
 
             SupportsPlaylists = false;
             TrackExternalObjectHandler = GetPaasTrackInfo;
-            //TrackArtworkIdHandler = GetTrackArtworkId;
+            TrackArtworkIdHandler = GetTrackArtworkId;
             MediaTypes = TrackMediaAttributes.Podcast;
             NotMediaTypes = TrackMediaAttributes.AudioBook;
             //SyncCondition = "(substr(CoreTracks.Uri, 0, 4) != 'http' AND CoreTracks.PlayCount = 0)";
@@ -154,18 +154,13 @@ namespace Banshee.Paas
         public void AddItem (PaasItem item)
         {
             if (item != null) {
-                DatabaseTrackInfo track = new DatabaseTrackInfo ();
-                track.ExternalId = item.DbId;
-                track.PrimarySource = this;
-                (track.ExternalObject as PaasTrackInfo).SyncWithItem ();
-                
-                track.Save (false);
-
                 item.IsNew = true;
-                item.TrackID = track.TrackId;
-                item.Save ();            
-
-                //RefreshArtworkFor (item.Feed);
+                
+                PaasTrackInfo pti = new PaasTrackInfo (new DatabaseTrackInfo (), item);
+                pti.Track.PrimarySource = this;
+                
+                pti.Track.Save (false);
+                item.Save ();                            
             } 
         }
 
@@ -181,7 +176,7 @@ namespace Banshee.Paas
         public void RemoveItem (PaasItem item)
         {
             if (item != null) {
-                RemoveTrack ((int)item.TrackID);
+                RemoveTrack ((int)item.DbId);
             }
         }
 
@@ -191,7 +186,7 @@ namespace Banshee.Paas
                 RangeCollection rc = new RangeCollection ();
 
                 foreach (PaasItem item in items) {
-                    rc.Add ((int)item.TrackID);
+                    rc.Add ((int)item.DbId);
                 }
 
                 foreach (RangeCollection.Range range in rc.Ranges) {
@@ -243,8 +238,9 @@ namespace Banshee.Paas
         protected override void RemoveTrackRange (DatabaseTrackListModel model, RangeCollection.Range range)
         {
             ServiceManager.DbConnection.Execute (
-                String.Format (remove_range_sql, "TrackID FROM CoreTracks WHERE TrackID >= ? AND TrackID <= ?"),
-                DateTime.Now, range.Start, range.End, range.Start, range.End
+                String.Format (remove_range_sql, 
+                    "TrackID FROM CoreTracks WHERE PrimarySourceID = ? AND ExternalID >= ? AND ExternalID <= ?"
+                ), DateTime.Now, DbId, range.Start, range.End, DbId, range.Start, range.End
             );
         }
 
@@ -268,11 +264,10 @@ namespace Banshee.Paas
         {
             actions.UpdateItemActions ();
         }
-/*
+
         private string GetTrackArtworkId (DatabaseTrackInfo track)
         {
-            return PodcastService.ArtworkIdFor (PodcastTrackInfo.From (track).Feed);
+            return PaasService.ArtworkIdFor (PaasTrackInfo.From (track).Channel);
         }
-*/
     }
 }

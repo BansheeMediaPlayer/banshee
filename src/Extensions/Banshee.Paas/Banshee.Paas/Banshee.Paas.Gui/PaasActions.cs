@@ -76,8 +76,8 @@ namespace Banshee.Paas.Gui
             AddImportant (
                 new ActionEntry (
                     "PaasUpdateAllAction", Stock.Refresh,
-                     Catalog.GetString ("Update Channels"), "<control><shift>U",
-                     Catalog.GetString ("Recieve updates from Miro Guide"), OnPaasUpdateHandler
+                     Catalog.GetString ("Update Channels"), "<control><shift>U", 
+                     null, OnPaasUpdateHandler
                 ),
                 new ActionEntry (
                     "PaasSubscribeAction", Stock.Add,
@@ -88,10 +88,20 @@ namespace Banshee.Paas.Gui
 
             Add (new ActionEntry [] {
                 new ActionEntry (
-                    "PaasImportOpmlAction", Stock.New,
+                    "PaasImportOpmlAction", null,
                      Catalog.GetString ("Import Channels from OPML"), null,
                      null, OnPaasImportOpmlHandler
-                ),            
+                ),
+                new ActionEntry (
+                    "PaasExportAllOpmlAction", null,
+                     Catalog.GetString ("Export Channels as OPML"), null,
+                     null, OnPaasExportAllOpmlHandler
+                ),
+                new ActionEntry (
+                    "PaasExportOpmlAction", null,
+                     Catalog.GetString ("Export Selected as OPML"), null,
+                     null, OnPaasExportOpmlHandler
+                ),                 
                 new ActionEntry (
                     "PaasItemDownloadAction", Stock.SaveAs,
                      Catalog.GetString ("Download"), null,
@@ -404,27 +414,47 @@ namespace Banshee.Paas.Gui
             deleteFiles = false;        
             string header = null;
             int plural = (channel | (selCount > 1)) ? 2 : 1;
-
+            int channel_count = 0;
+            
             if (channel) {
-                header = Catalog.GetPluralString ("Delete Channel", "Delete Channels", selCount);
+                channel_count = GetSelectedChannels ().Count ();
+                header = Catalog.GetPluralString ("Delete Channel?", "Delete Channels?", channel_count);
             } else {
                 header = Catalog.GetPluralString ("Delete Item?", "Delete Items?", selCount);
             }
-                
-            HigMessageDialog md = new HigMessageDialog (
-                ServiceManager.Get<GtkElementsService> ("GtkElementsService").PrimaryWindow,
-                DialogFlags.DestroyWithParent, 
-                MessageType.Question,
-                ButtonsType.None, header, 
-                Catalog.GetPluralString (
-                    "Would you like to delete the associated file?",
-                    "Would you like to delete the associated files?", plural                
-                )
-            );
+            
+            HigMessageDialog md = null;
+            
+            if (selCount > 0) {
+                md = new HigMessageDialog (
+                    ServiceManager.Get<GtkElementsService> ("GtkElementsService").PrimaryWindow,
+                    DialogFlags.DestroyWithParent, 
+                    MessageType.Question,
+                    ButtonsType.None, header, 
+                    Catalog.GetPluralString (
+                        "Would you like to delete the associated file?",
+                        "Would you like to delete the associated files?", plural                
+                    )
+                );
+    
+                md.AddButton (Stock.Cancel, ResponseType.Cancel, true);
+                md.AddButton (Catalog.GetPluralString ("Keep File", "Keep Files", plural), ResponseType.No, false);
+                md.AddButton (Stock.Delete, ResponseType.Yes, false);
+            } else {
+                md = new HigMessageDialog (
+                    ServiceManager.Get<GtkElementsService> ("GtkElementsService").PrimaryWindow,
+                    DialogFlags.DestroyWithParent, 
+                    MessageType.Question,
+                    ButtonsType.None, header, 
+                    Catalog.GetPluralString (
+                        "Would you like to delete the selected channel?",
+                        "Would you like to delete the selected channels?", channel_count               
+                    )
+                );
 
-            md.AddButton (Stock.Cancel, ResponseType.Cancel, true);
-            md.AddButton (Catalog.GetPluralString ("Keep File", "Keep Files", plural), ResponseType.No, false);
-            md.AddButton (Stock.Delete, ResponseType.Yes, false);
+                md.AddButton (Stock.Cancel, ResponseType.Cancel, true);
+                md.AddButton (Stock.Delete, ResponseType.Yes, false);
+            }
             
             try {
                 switch ((ResponseType)md.Run ()) {
@@ -442,11 +472,13 @@ namespace Banshee.Paas.Gui
 
         private ResponseType RunConfirmRemoveDeleteDialog (bool delete, int itemCount)
         {
-            return HigMessageDialog.RunHigMessageDialog (
-                null,
-                DialogFlags.Modal,
+            ResponseType response;
+            
+            HigMessageDialog md = new HigMessageDialog (
+                ServiceManager.Get<GtkElementsService> ("GtkElementsService").PrimaryWindow,
+                DialogFlags.DestroyWithParent, 
                 MessageType.Question,
-                ButtonsType.YesNo,
+                ButtonsType.None,
                 String.Format (
                     "{0} {1}", 
                     delete ? Catalog.GetString ("Delete") : Catalog.GetString ("Remove"), 
@@ -458,18 +490,90 @@ namespace Banshee.Paas.Gui
                     Catalog.GetPluralString ("item", "items", itemCount)
                 )
             );
+
+            md.AddButton (Stock.Cancel, ResponseType.Cancel, true);
+            md.AddButton ((delete ? Stock.Delete : Stock.Remove), ResponseType.Ok, false);
+
+            response = (ResponseType) md.Run ();
+            md.Destroy ();
+            
+            return response;
+/*
+            return HigMessageDialog.RunHigMessageDialog (
+                null,
+                DialogFlags.Modal,
+                MessageType.Question,
+                ButtonsType.OkCancel,
+                String.Format (
+                    "{0} {1}", 
+                    delete ? Catalog.GetString ("Delete") : Catalog.GetString ("Remove"), 
+                    Catalog.GetPluralString ("Item?", "Items?", itemCount)
+                ),
+                String.Format (
+                    Catalog.GetString ("Are you sure that you want to {0} the selected {1}?"),
+                    delete ? Catalog.GetString ("delete") : Catalog.GetString ("remove"),                     
+                    Catalog.GetPluralString ("item", "items", itemCount)
+                )
+            );
+*/            
         }
 
-        private void OnPaasSubscribeHandler (object sender, EventArgs e)
+        private void ExportToOpml (IEnumerable<PaasChannel> channels)
+        {        
+            if (channels.Count () == 0) {
+                HigMessageDialog.RunHigMessageDialog (
+                    null, DialogFlags.Modal, MessageType.Warning, ButtonsType.Ok,
+                    Catalog.GetString ("Error Exporting Channels!"), 
+                    Catalog.GetString ("No channels to export.")
+                );                            
+                
+                return;
+            }
+
+            FileChooserDialog chooser = new FileChooserDialog (
+                Catalog.GetString ("Save As..."), null, FileChooserAction.Save, 
+                new object[] { 
+                    Stock.Cancel, ResponseType.Cancel, 
+                    Stock.Save, ResponseType.Ok
+                }
+            );
+            
+            chooser.Response += (o, ea) => {
+                if (ea.ResponseId == Gtk.ResponseType.Ok) { 
+                    try {
+                        service.ExportChannelsToOpml (chooser.Filename, channels);
+                    } catch (Exception ex) {
+                       HigMessageDialog.RunHigMessageDialog (
+                            null, DialogFlags.Modal, MessageType.Warning, ButtonsType.Ok,
+                            Catalog.GetString ("Error Exporting Channels!"), ex.Message   
+                        );
+                    }
+                }
+                
+                (o as Dialog).Destroy ();
+            };
+            
+            chooser.Run ();        
+        }
+        
+        private void OnPaasExportOpmlHandler (object sender, EventArgs e)
         {
-            RunSubscribeDialog ();
+            ExportToOpml (GetSelectedChannels ());
+        }
+
+        private void OnPaasExportAllOpmlHandler (object sender, EventArgs e)
+        {
+            ExportToOpml (PaasChannel.Provider.FetchAll ());
         }
 
         private void OnPaasImportOpmlHandler (object sender, EventArgs e)
         {
             FileChooserDialog chooser = new FileChooserDialog (
                 Catalog.GetString ("Please Select a File to Import..."), null, FileChooserAction.Open, 
-                new object[] { Catalog.GetString ("Import"), ResponseType.Ok }
+                new object[] { 
+                    Stock.Cancel, ResponseType.Cancel, 
+                    Catalog.GetString ("Import"), ResponseType.Ok
+                }
             );
             
             FileFilter filter = new FileFilter () {
@@ -490,12 +594,14 @@ namespace Banshee.Paas.Gui
             chooser.Response += (o, ea) => {
                 if (ea.ResponseId == Gtk.ResponseType.Ok) { 
                     try {
-                        service.ImportOpmlFile (chooser.Filename);
+                        service.ImportOpml (chooser.Filename);
                     } catch (Exception ex) {
                        HigMessageDialog.RunHigMessageDialog (
                             null, DialogFlags.Modal, MessageType.Warning, ButtonsType.Ok,
                             Catalog.GetString ("Error Importing Channels!"), ex.Message   
                         );
+
+                        chooser.Run ();
                     }
                 }
                 
@@ -503,6 +609,11 @@ namespace Banshee.Paas.Gui
             };
 
             chooser.Run ();
+        }
+
+        private void OnPaasSubscribeHandler (object sender, EventArgs e)
+        {
+            RunSubscribeDialog ();
         }
 
         private void OnPaasUpdateHandler (object sender, EventArgs e)
@@ -518,7 +629,6 @@ namespace Banshee.Paas.Gui
         private void OnPaasItemCancelHandler (object sender, EventArgs e)
         {
             var items = GetSelectedItems ();
-                        
             service.DownloadManager.CancelDownload (
                 items.Select (t => t.Item).Where  (i => CheckStatus (i, TaskState.CanCancel))
             );
@@ -527,7 +637,6 @@ namespace Banshee.Paas.Gui
         private void OnPaasItemResumeHandler (object sender, EventArgs e)
         {
             var items = GetSelectedItems ();
-
             service.DownloadManager.ResumeDownload (
                 items.Select (t => t.Item).Where  (i => CheckStatus (i, TaskState.Paused))
             );
@@ -536,7 +645,6 @@ namespace Banshee.Paas.Gui
         private void OnPaasItemPauseHandler (object sender, EventArgs e)
         {
             var items = GetSelectedItems ();
-
             service.DownloadManager.PauseDownload (
                 items.Select (t => t.Item).Where  (i => CheckStatus (i, TaskState.CanPause))
             );
@@ -545,7 +653,6 @@ namespace Banshee.Paas.Gui
         private void OnPaasItemHomepageHandler (object sender, EventArgs e)
         {
             PaasItem item = PaasTrackInfo.From (ActiveDbSource.TrackModel.FocusedItem).Item;
-            
             if (item != null && !String.IsNullOrEmpty (item.Link)) {
                 Banshee.Web.Browser.Open (item.Link);
             }    
@@ -554,8 +661,7 @@ namespace Banshee.Paas.Gui
         private void OnPaasItemDeletedHandler (object sender, EventArgs e)
         {
             var items = GetSelectedItems ();
-
-            if (RunConfirmRemoveDeleteDialog (true, items.Count ()) == ResponseType.Yes) {
+            if (RunConfirmRemoveDeleteDialog (true, items.Count ()) == ResponseType.Ok) {
                 service.SyndicationClient.RemoveItems (items.Select (t => t.Item), true);
             }
         }
@@ -574,7 +680,7 @@ namespace Banshee.Paas.Gui
                     service.SyndicationClient.RemoveItems (items, delete_files);                
                 }              
             } else {
-                if (RunConfirmRemoveDeleteDialog (false, items.Count ()) == ResponseType.Yes) {
+                if (RunConfirmRemoveDeleteDialog (false, items.Count ()) == ResponseType.Ok) {
                     service.SyndicationClient.RemoveItems (items);
                 }
             }
@@ -629,6 +735,10 @@ namespace Banshee.Paas.Gui
                 }
             }
 
+            if (cnt == 0) {
+                RunConfirmDeleteDialog (true, 0, out delete, out delete_files);
+            }
+
             if (delete) {
                 service.SyndicationClient.DeleteChannels (channels, delete_files);                
             }
@@ -637,7 +747,6 @@ namespace Banshee.Paas.Gui
         private void OnPaasChannelHomepageHandler (object sender, EventArgs e)
         {
             PaasChannel channel = ActiveChannelModel.FocusedItem;
-            
             if (channel != null && !String.IsNullOrEmpty (channel.Link)) {
                 Banshee.Web.Browser.Open (channel.Link);
             }    
@@ -646,7 +755,6 @@ namespace Banshee.Paas.Gui
         private void OnPaasDownloadAllHandler (object sender, EventArgs e)
         {
             var channels = new List<PaasChannel> (PaasChannel.Provider.FetchAll ());
-
             foreach (var c in channels) {
                 service.DownloadManager.QueueDownload (c.Items.Where (i => i.Active && !i.IsDownloaded));
             }
@@ -655,7 +763,6 @@ namespace Banshee.Paas.Gui
         private void OnPaasChannelDownloadAllHandler (object sender, EventArgs e)
         {
             var channels = GetSelectedChannels ();
-
             foreach (var c in channels) {
                 service.DownloadManager.QueueDownload (c.Items.Where (i => i.Active && !i.IsDownloaded));
             }

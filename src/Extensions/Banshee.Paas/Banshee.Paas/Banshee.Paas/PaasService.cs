@@ -30,7 +30,10 @@
 
 using System;
 using System.IO;
+
 using System.Linq;
+using System.Xml.Linq;
+
 using System.Threading;
 using System.Collections.Generic;
 
@@ -46,6 +49,7 @@ using Banshee.Configuration;
 using Banshee.Collection.Database;
 
 using Banshee.Paas.Gui;
+using Banshee.Paas.Data;
 using Banshee.Paas.Utils;
 using Banshee.Paas.Aether;
 
@@ -56,8 +60,6 @@ using Migo2.Async;
 using Migo2.DownloadService;
 
 // remove
-
-using Banshee.Paas.Data;
 using Hyena.Json;
 using Hyena;
 //remove
@@ -257,7 +259,40 @@ namespace Banshee.Paas
             }
         }
 
-        public void ImportOpmlFile (string path)
+        public void ExportChannelsToOpml (string path, IEnumerable<PaasChannel> channels)
+        {
+            if (String.IsNullOrEmpty (path)) {
+                throw new ArgumentNullException ("path");
+            } else if (channels == null) {
+                throw new ArgumentNullException ("channels");
+            }
+
+            if (channels.Count () == 0) {
+                return;
+            }
+            
+            XDocument doc = new XDocument (
+                new XDeclaration ("1.0", "utf-8", "yes"),
+                new XElement ("opml",
+                    new XAttribute ("version", "2.0"),
+                    new XElement ("head", 
+                            new XElement ("title", Catalog.GetString ("Banshee Podcast Subscriptions")),
+                            new XElement ("dateCreated", DateTime.UtcNow.ToString ("ddd, dd MMM yyyy HH:mm:ss K"))
+                    ), new XElement ("body",
+                        from channel in channels select new XElement (
+                            "outline",
+                            new XAttribute ("type", "rss"),                                
+                            new XAttribute ("text", channel.Name),
+                            new XAttribute ("xmlUrl", channel.Url)
+                        )
+                    )
+                )
+            );
+
+            doc.Save (path);            
+        }
+
+        public void ImportOpml (string path)
         {
             if (String.IsNullOrEmpty (path)) {
                 throw new ArgumentNullException ("path");
@@ -655,8 +690,6 @@ namespace Banshee.Paas
 
         private void OnCommandLineArgument (string uri, object value, bool isFile)
         {
-            Console.WriteLine ("OPML!!!!!!!!!!!");
-            
             if (!isFile || String.IsNullOrEmpty (uri)) {
                 return;
             }
@@ -668,7 +701,6 @@ namespace Banshee.Paas
 
                 // Handle OPML files
                 if (uri.Contains ("opml") || uri.EndsWith (".miro") || uri.EndsWith (".democracy")) {
-                    Console.WriteLine ("OPML!!!!!!!!!!!");
                     try {
                         OpmlParser opml_parser = new OpmlParser (uri, true);
                         

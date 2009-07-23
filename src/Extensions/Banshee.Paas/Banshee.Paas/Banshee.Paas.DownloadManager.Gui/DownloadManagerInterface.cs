@@ -63,7 +63,7 @@ namespace Banshee.Paas.DownloadManager.Gui
             DownloadListView download_view = new DownloadListView (manager);
             
             downloadSource = new DownloadSource (download_model, download_view);
-            
+
             manager.Started += OnManagerStartedHandler;   
             manager.Stopped += OnManagerStoppedHandler;  
             manager.ProgressChanged += OnManagerProgressChangedHandler;

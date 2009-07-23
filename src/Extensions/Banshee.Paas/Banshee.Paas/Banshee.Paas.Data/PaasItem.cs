@@ -65,16 +65,6 @@ namespace Banshee.Paas.Data
             protected set { dbid = value; }
         }
 
-        private long track_id;
-        [DatabaseColumn (
-            "TrackID",
-            Index = "PaasItemsTrackIDIndex"
-        )]
-        public long TrackID {
-            get { return track_id; }
-            set { track_id = value; }
-        } 
-
         private long external_id;
         [DatabaseColumn ("ExternalID", Index = "PaasItemsExternalIDIndex")]
         public long ExternalID {

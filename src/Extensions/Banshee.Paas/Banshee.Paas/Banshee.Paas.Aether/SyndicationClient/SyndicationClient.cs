@@ -170,25 +170,6 @@ namespace Banshee.Paas.Aether
             OnChannelRemoved (channel);
         }
 
-//        private void DeleteItem (PaasItem item)
-//        {
-//            DeleteItem (item, false);
-//        }
-
-//        private void DeleteItem (PaasItem item, bool keepFile)
-//        {
-//            if (item == null) {
-//                throw new ArgumentNullException ("item");
-//            }
-//
-//            lock (sync) {
-//                if (!disposed) {
-//                    PaasItem.Provider.Delete (item);
-//                    OnItemRemoved (item);                
-//                }
-//            }
-//        }
-
         private void DeleteItems (IEnumerable<PaasItem> items, bool deleteFiles, bool notify)
         {
             if (items == null) {

@@ -1,7 +1,9 @@
 <ui>
   <popup name="PaasSourcePopup" action="PaasSourcePopupAction">
     <menuitem name="PaasSubscribe" action="PaasSubscribeAction" />
-    <menuitem name="PaasImportOpml" action="PaasImportOpmlAction" />    
+    <separator />      
+    <menuitem name="PaasExportAllOpml" action="PaasExportAllOpmlAction" />
+    <menuitem name="PaasImportOpml" action="PaasImportOpmlAction" />
     <separator />    
     <menuitem name="PaasUpdateAll" action="PaasUpdateAllAction"/>
     <menuitem name="PaasDownloadAll" action="PaasDownloadAllAction"/>        
@@ -10,9 +12,13 @@
   </popup>
 
   <popup name="PaasChannelPopup" action="PaasChannelPopupAction">
-    <menuitem name="PaasChannelUpdate" action="PaasChannelUpdateAction" />    
+    <menuitem name="PaasChannelUpdate" action="PaasChannelUpdateAction" />
+    <separator />        
     <menuitem name="PaasChannelHomepage" action="PaasChannelHomepageAction" />
-    <menuitem name="PaasChannelDownloadAll" action="PaasChannelDownloadAllAction"/>    
+    <separator />
+    <menuitem name="PaasExportOpml" action="PaasExportOpmlAction" />
+    <separator />    
+    <menuitem name="PaasChannelDownloadAll" action="PaasChannelDownloadAllAction"/>        
     <menuitem name="PaasChannelDelete" action="PaasChannelDeleteAction" />
     <separator />
     <menuitem name="PaasChannelProperties" action="PaasChannelPropertiesAction" />
@@ -20,7 +26,9 @@
 
   <popup name="PaasAllChannelsContextMenu" action="PaasAllChannelsContextMenuAction">
     <menuitem name="PaasSubscribe" action="PaasSubscribeAction" />
-    <menuitem name="PaasImportOpml" action="PaasImportOpmlAction" />
+    <separator />          
+    <menuitem name="PaasExportAllOpml" action="PaasExportAllOpmlAction" />
+    <menuitem name="PaasImportOpml" action="PaasImportOpmlAction" />    
     <separator />    
     <menuitem name="PaasUpdateAll" action="PaasUpdateAllAction" />
     <menuitem name="PaasDownloadAll" action="PaasDownloadAllAction"/>            

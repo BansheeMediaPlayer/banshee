@@ -44,11 +44,11 @@ using Migo2.DownloadService;
 
 namespace Banshee.Paas.DownloadManager.Gui
 {
-    public class DownloadSource : Source, IUnmapableSource
+    public class DownloadSource : Source
     {
         private ISourceContents contents;
         private DownloadListModel download_model;
-        
+
         public DownloadListModel DownloadListModel
         {
             get { return download_model; }
@@ -74,13 +74,6 @@ namespace Banshee.Paas.DownloadManager.Gui
             //Properties.SetString ("GtkActionPath", "");
         }
 
-        public bool Unmap ()
-        {
-            download_model.Clear ();
-            Parent.RemoveChildSource (this);
-            return true;
-        }
-        
         public override void Activate ()
         {
             download_model.Reload ();
@@ -91,14 +84,6 @@ namespace Banshee.Paas.DownloadManager.Gui
             ThreadAssist.ProxyToMain (delegate {
                 contents.Widget.QueueDraw ();
             });
-        }
-
-        public virtual bool CanUnmap {
-            get { return false; }
-        }
-
-        public bool ConfirmBeforeUnmap {
-            get { return false; }
         }
 
         public override int Count {
