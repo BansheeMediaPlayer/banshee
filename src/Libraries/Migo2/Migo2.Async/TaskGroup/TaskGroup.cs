@@ -303,6 +303,7 @@ namespace Migo2.Async
         {
             lock (SyncRoot) {
                 // It's ok for sub-classes to call this in their dispose methods too.
+                // Thank you past man, you saved me a lot of time.
                 if (!disposed) {
                     is_disposing = true;
                     return true;

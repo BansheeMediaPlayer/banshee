@@ -279,26 +279,32 @@ namespace Banshee.Paas
             if (channels.Count () == 0) {
                 return;
             }
-            
-            XDocument doc = new XDocument (
-                new XDeclaration ("1.0", "utf-8", "yes"),
-                new XElement ("opml",
-                    new XAttribute ("version", "2.0"),
-                    new XElement ("head", 
-                            new XElement ("title", Catalog.GetString ("Banshee Podcast Subscriptions")),
-                            new XElement ("dateCreated", DateTime.UtcNow.ToString ("ddd, dd MMM yyyy HH:mm:ss K"))
-                    ), new XElement ("body",
-                        from channel in channels select new XElement (
-                            "outline",
-                            new XAttribute ("type", "rss"),                                
-                            new XAttribute ("text", channel.Name),
-                            new XAttribute ("xmlUrl", channel.Url)
+
+            try {
+                // Move this to a helper class
+                XDocument doc = new XDocument (
+                    new XDeclaration ("1.0", "utf-8", "yes"),
+                    new XElement ("opml",
+                        new XAttribute ("version", "2.0"),
+                        new XElement ("head", 
+                                new XElement ("title", Catalog.GetString ("Banshee Podcast Subscriptions")),
+                                new XElement ("dateCreated", DateTime.UtcNow.ToString ("ddd, dd MMM yyyy HH:mm:ss K"))
+                        ), new XElement ("body",
+                            from channel in channels select new XElement (
+                                "outline",
+                                new XAttribute ("type", "rss"),                                
+                                new XAttribute ("text", channel.Name),
+                                new XAttribute ("xmlUrl", channel.Url)
+                            )
                         )
                     )
-                )
-            );
-
-            doc.Save (path);            
+                );
+    
+                doc.Save (path);
+            } catch (Exception e) {
+                Log.Exception (e);
+                throw;
+            }            
         }
 
         public void ImportOpml (string path)

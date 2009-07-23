@@ -79,15 +79,14 @@ namespace Banshee.Paas.Gui
 
             PaasTrackInfo info = PaasTrackInfo.From (track.SourceTrack);
 
-            // HACK to keep the save TrackInfo dialog from appearing when closing the TED.
-            // Investigate / talk to Gabe / Aaron about this later.
-            track.ReleaseDate = info.PubDate;
-            
             if (info == null) {
                 Hide ();
                 return;
             }
-
+            // HACK to keep the save TrackInfo dialog from appearing when closing the TED.
+            // Investigate / talk to Gabe / Aaron about this later.
+            track.ReleaseDate = info.PubDate;
+            
             podcast.Markup      = SetInfo (Catalog.GetString ("Podcast"), track.SourceTrack.AlbumTitle);
             author.Markup       = SetInfo (Catalog.GetString ("Author"), track.SourceTrack.ArtistName);
             published.Markup    = SetInfo (Catalog.GetString ("Published"), info.PubDate.ToLongDateString ());

@@ -25,6 +25,7 @@
 // THE SOFTWARE.
 
 using System;
+using System.Data;
 using System.Linq;
 using System.Collections.Generic;
 
@@ -64,7 +65,7 @@ namespace Banshee.Paas.DownloadManager
         {
             lock (SyncRoot) {
                 base.CancelAsync ();
-                RemoveQueuedDownloadRange (Tasks.Select (t => (int)(t.UserState as PaasItem).DbId));                
+                //RemoveQueuedDownloadRange (Tasks.Select (t => (int)(t.UserState as PaasItem).DbId));
             }
         }
 
@@ -139,7 +140,7 @@ namespace Banshee.Paas.DownloadManager
                 if (!IsDisposing) {           
                     if (downloads.ContainsKey (item.DbId)) {
                         downloads[item.DbId].CancelAsync ();
-                        RemoveQueuedDownload (item.DbId);
+                        //RemoveQueuedDownload (item.DbId);
                     }
                 }
             }
@@ -149,16 +150,16 @@ namespace Banshee.Paas.DownloadManager
         {
             lock (SyncRoot) {
                 if (!IsDisposing) {
-                    RangeCollection rc = new RangeCollection ();
+                    //RangeCollection rc = new RangeCollection ();
                     
                     foreach (PaasItem item in items) {
                         if (downloads.ContainsKey (item.DbId)) {
-                            rc.Add ((int)item.DbId);
+                            //rc.Add ((int)item.DbId);
                             downloads[item.DbId].CancelAsync ();
                         }
                     }
 
-                    RemoveQueuedDownloadRange (rc);
+                    //RemoveQueuedDownloadRange (rc);
                 }
             }
         }
@@ -217,28 +218,61 @@ namespace Banshee.Paas.DownloadManager
                 if (IsDisposing) {
                     return;
                 }
-                
-                RangeCollection rc = new RangeCollection ();
-                List<PaasItem> items = new List<PaasItem> ();
-                
-                var queued_ids = QueuedDownloadTask.Provider.FetchAllMatching (
-                    "PrimarySourceID = ?", primary_source_id).Select (t => (int)t.ExternalID
-                );
-                
-                foreach (int i in queued_ids) {
-                    rc.Add (i);
-                }
-                    
-                foreach (RangeCollection.Range range in rc.Ranges) {
-                    items.AddRange (PaasItem.Provider.FetchRange (range.Start-1, range.Count));
-                }
 
-                if (items.Count > 0) {
-                    QueueDownload (items);
-                }
+                QueueDownload (FetchQueued ());
             }
         }
 
+        private IEnumerable<PaasItem> FetchQueued ()
+        {
+            string restore_command = String.Format (
+                @"SELECT {0} FROM {1} 
+                    JOIN {2} ON {1}.ID = {2}.ExternalID 
+                  WHERE PrimarySourceID = ? AND {1}.LocalPath IS NULL
+                    ORDER BY {2}.Position ASC",
+                PaasItem.Provider.Select, 
+                PaasItem.Provider.From,
+                QueuedDownloadTask.Provider.From
+            );
+            
+            using (IDataReader reader = ServiceManager.DbConnection.Query (restore_command, primary_source_id)) {
+                while (reader.Read ()) {
+                    yield return PaasItem.Provider.Load (reader);
+                }
+            } 
+        }
+
+        private void SaveQueuedDownloads ()
+        {
+            lock (SyncRoot) {
+                ServiceManager.DbConnection.BeginTransaction ();
+                
+                try {
+                    ClearQueuedDownloads ();
+    
+                    int i = 0;
+                    foreach (var task in Tasks) {
+                        AddQueuedDownload ((task.UserState as PaasItem).DbId, i++);
+                    }
+                    
+                    ServiceManager.DbConnection.CommitTransaction ();
+                } catch {
+                    ServiceManager.DbConnection.RollbackTransaction ();
+                    throw;                
+                } 
+            }
+        }
+
+        private void ClearQueuedDownloads ()
+        {
+            ServiceManager.DbConnection.Execute (
+                String.Format (
+                    "DELETE FROM {0} WHERE PrimarySourceID = ?", 
+                    QueuedDownloadTask.Provider.From
+                ), primary_source_id
+            );
+        }
+        
         private void AddQueuedDownload (long item_id, long position)
         {
             QueuedDownloadTask.Provider.Save (new QueuedDownloadTask () {
@@ -247,90 +281,97 @@ namespace Banshee.Paas.DownloadManager
                 Position = position
             });   
         }
+        
+//        private void AddQueuedDownloads (IEnumerable<Pair<int, HttpFileDownloadTask>> pairs)
+//        {
+//            PaasItem item = null;
+//            ServiceManager.DbConnection.BeginTransaction ();
+//            
+//            try { 
+//                foreach (Pair<int,HttpFileDownloadTask> pair in pairs) {
+//                    item = pair.Second.UserState as PaasItem;
+//                    
+//                    if (item != null) {
+//                        AddQueuedDownload (item.DbId, (int)pair.First);
+//                    }                                    
+//                }
+//
+//                ServiceManager.DbConnection.CommitTransaction ();
+//            } catch {
+//                ServiceManager.DbConnection.RollbackTransaction ();
+//                throw;                
+//            } 
+//        }
 
-        private void AddQueuedDownloads (IEnumerable<Pair<int, HttpFileDownloadTask>> pairs)
+//        private void RemoveQueuedDownload (long item_id)
+//        {
+//            ServiceManager.DbConnection.Execute (
+//                String.Format (
+//                    "DELETE FROM {0} WHERE PrimarySourceID = ? AND ExternalID = ?", 
+//                    QueuedDownloadTask.Provider.From
+//                ), primary_source_id, item_id
+//            );  
+//        }
+//
+//        private void RemoveQueuedDownloadRange (IEnumerable<int> ids)
+//        {
+//            RangeCollection rc = new RangeCollection ();
+//            
+//            foreach (int i in ids) {
+//                rc.Add (i);
+//            }
+//
+//            RemoveQueuedDownloadRange (rc);
+//        }
+//
+//        private void RemoveQueuedDownloadRange (RangeCollection collection)
+//        {
+//            ServiceManager.DbConnection.BeginTransaction ();
+//            
+//            try {
+//                foreach (RangeCollection.Range range in collection.Ranges) {
+//                    ServiceManager.DbConnection.Execute (
+//                        String.Format (
+//                            "DELETE FROM {0} WHERE PrimarySourceID = ? AND ExternalID >= ? AND ExternalID <= ?", 
+//                            QueuedDownloadTask.Provider.From
+//                        ), primary_source_id, range.Start, range.End
+//                    );                
+//                }
+//                
+//                ServiceManager.DbConnection.CommitTransaction ();
+//            } catch {
+//                ServiceManager.DbConnection.RollbackTransaction ();
+//                throw;                
+//            }                 
+//        }
+        
+        public override void Dispose ()
         {
-            PaasItem item = null;
-            ServiceManager.DbConnection.BeginTransaction ();
-            
-            try { 
-                foreach (Pair<int,HttpFileDownloadTask> pair in pairs) {
-                    item = pair.Second.UserState as PaasItem;
-                    
-                    if (item != null) {
-                        AddQueuedDownload (item.DbId, (int)pair.First);
-                    }                                    
-                }
-
-                ServiceManager.DbConnection.CommitTransaction ();
-            } catch {
-                ServiceManager.DbConnection.RollbackTransaction ();
-                throw;                
-            } 
-        }
-
-        private void RemoveQueuedDownload (long item_id)
-        {
-            ServiceManager.DbConnection.Execute (
-                String.Format (
-                    "DELETE FROM {0} WHERE PrimarySourceID = ? AND ExternalID = ?", 
-                    QueuedDownloadTask.Provider.From
-                ), primary_source_id, item_id
-            );  
-        }
-
-        private void RemoveQueuedDownloadRange (IEnumerable<int> ids)
-        {
-            RangeCollection rc = new RangeCollection ();
-            
-            foreach (int i in ids) {
-                rc.Add (i);
+            if (SetDisposing ()) {
+                SaveQueuedDownloads ();
+                base.Dispose ();
             }
-
-            RemoveQueuedDownloadRange (rc);
         }
+        
+//        protected override void OnTaskAdded (int pos, HttpFileDownloadTask task)
+//        {
+//            AddQueuedDownload ((task.UserState as PaasItem).DbId, pos);
+//            base.OnTaskAdded (pos, task);
+//        }
+//
+//        protected override void OnTasksAdded (ICollection<Migo2.Collections.Pair<int, HttpFileDownloadTask>> pairs)
+//        {
+//            AddQueuedDownloads (pairs);
+//            base.OnTasksAdded (pairs);
+//        }
 
-        private void RemoveQueuedDownloadRange (RangeCollection collection)
-        {
-            ServiceManager.DbConnection.BeginTransaction ();
-            
-            try {
-                foreach (RangeCollection.Range range in collection.Ranges) {
-                    ServiceManager.DbConnection.Execute (
-                        String.Format (
-                            "DELETE FROM {0} WHERE PrimarySourceID = ? AND ExternalID >= ? AND ExternalID <= ?", 
-                            QueuedDownloadTask.Provider.From
-                        ), primary_source_id, range.Start, range.End
-                    );                
-                }
-                
-                ServiceManager.DbConnection.CommitTransaction ();
-            } catch {
-                ServiceManager.DbConnection.RollbackTransaction ();
-                throw;                
-            }                 
-        }
-
-        protected override void OnTaskAdded (int pos, HttpFileDownloadTask task)
-        {
-            AddQueuedDownload ((task.UserState as PaasItem).DbId, pos);
-            base.OnTaskAdded (pos, task);
-        }
-
-        protected override void OnTasksAdded (ICollection<Migo2.Collections.Pair<int, HttpFileDownloadTask>> pairs)
-        {
-            AddQueuedDownloads (pairs);
-            base.OnTasksAdded (pairs);
-        }
-
-        protected override void OnTaskCompleted (HttpFileDownloadTask task, TaskCompletedEventArgs e)
-        {
-            if (e.State == TaskState.Succeeded) {
-                RemoveQueuedDownload ((task.UserState as PaasItem).DbId);
-            }
-            
-            base.OnTaskCompleted (task, e);
-        }
-
+//        protected override void OnTaskCompleted (HttpFileDownloadTask task, TaskCompletedEventArgs e)
+//        {
+//            if (e.State == TaskState.Succeeded) {
+//                RemoveQueuedDownload ((task.UserState as PaasItem).DbId);
+//            }
+//            
+//            base.OnTaskCompleted (task, e);
+//        }
     }
 }

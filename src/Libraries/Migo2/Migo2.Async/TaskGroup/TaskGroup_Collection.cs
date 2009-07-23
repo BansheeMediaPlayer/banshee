@@ -47,7 +47,7 @@ namespace Migo2.Async
             }
         }
 
-        protected IEnumerable<T> Tasks
+        protected ICollection<T> Tasks
         {
             get { return list; }
         }
