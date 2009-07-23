@@ -137,7 +137,13 @@ namespace Banshee.Paas
                     source.QueueDraw ();
                 }
             };
-
+            
+            source = new PaasSource (this);
+            
+            if (source.DbId < 1) {
+                source.Save ();                 
+            }
+            
             client_handle = new AutoResetEvent (true);
 
 #if MIRO_GUIDE
@@ -190,8 +196,9 @@ namespace Banshee.Paas
             syndication_client.ItemsAdded += OnItemsAddedHandler;
             syndication_client.ItemsRemoved += OnItemsRemovedHandler;
             
-            download_manager = new PaasDownloadManager (2, tmp_download_path);
-            download_manager.TaskAdded += (sender, e) => { redraw (); };            
+            download_manager = new PaasDownloadManager (source.DbId, 2, tmp_download_path);
+            download_manager.TaskAdded += (sender, e) => { redraw (); };
+            
             download_manager.TaskCompleted += OnDownloadTaskCompletedHandler;
             download_manager.TaskStateChanged += (sender, e) => { redraw (); };
         }
@@ -215,7 +222,9 @@ namespace Banshee.Paas
         public void DelayedInitialize ()
         {
             InitializeInterface ();
-            ServiceManager.Get<DBusCommandService> ().ArgumentPushed += OnCommandLineArgument;            
+            ServiceManager.Get<DBusCommandService> ().ArgumentPushed += OnCommandLineArgument;
+
+            download_manager.RestoreQueuedDownloads ();
         }
 
         public void Dispose ()
@@ -323,9 +332,7 @@ namespace Banshee.Paas
 
         private void InitializeInterface ()
         {
-            source = new PaasSource (this);            
             ServiceManager.SourceManager.AddSource (source);
-
             download_manager_interface = new DownloadManagerInterface (source, download_manager);
         }
         

@@ -112,6 +112,7 @@
     <Compile Include="Banshee.Paas\Banshee.Paas.Aether\OpmlParser.cs" />
     <Compile Include="Banshee.Paas\Banshee.Paas.Aether\SyndicationClient\ItmsPodcast.cs" />
     <Compile Include="Banshee.Paas\Banshee.Paas.DownloadManager\DownloadListModel.cs" />
+    <Compile Include="Banshee.Paas\Banshee.Paas.DownloadManager.Data\QueuedDownloadTask.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Core\Banshee.Core\Banshee.Core.csproj">
@@ -147,5 +148,6 @@
   <ItemGroup>
     <Folder Include="Banshee.Paas\Banshee.Paas.DownloadManager\" />
     <Folder Include="Banshee.Paas\Banshee.Paas\" />
+    <Folder Include="Banshee.Paas\Banshee.Paas.DownloadManager.Data\" />
   </ItemGroup>
 </Project>

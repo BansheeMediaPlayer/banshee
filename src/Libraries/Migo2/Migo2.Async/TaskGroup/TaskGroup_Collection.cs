@@ -47,6 +47,11 @@ namespace Migo2.Async
             }
         }
 
+        protected IEnumerable<T> Tasks
+        {
+            get { return list; }
+        }
+
         private void InitTaskGroup_Collection ()
         {
             list = new List<T> ();

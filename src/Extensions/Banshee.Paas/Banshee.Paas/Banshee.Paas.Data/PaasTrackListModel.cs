@@ -77,7 +77,7 @@ namespace Banshee.Paas.Data
         {
             string ascDesc = asc ? "ASC" : "DESC";
             string sort_query = null;
-            Console.WriteLine ("Key:  {0}", key);
+
             switch (key) {
                 case "PubDate":
                     sort_query = String.Format ("PaasItems.PubDate {0}", ascDesc);
