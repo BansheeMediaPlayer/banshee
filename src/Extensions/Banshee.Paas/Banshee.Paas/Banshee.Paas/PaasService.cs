@@ -150,7 +150,6 @@ namespace Banshee.Paas
             mg_client = new MiroGuideClient () {
                 Timeout    = (60 * 1000), // one minute.
                 ServiceUri = "http://127.0.0.1:8000",
-                Username   = "rcs",
                 //ClientID   = ClientID.Get (),
                 //SessionID  = SessionID.Get (),
                 UserAgent  = Banshee.Web.Browser.UserAgent,

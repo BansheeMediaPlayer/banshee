@@ -498,24 +498,6 @@ namespace Banshee.Paas.Gui
             md.Destroy ();
             
             return response;
-/*
-            return HigMessageDialog.RunHigMessageDialog (
-                null,
-                DialogFlags.Modal,
-                MessageType.Question,
-                ButtonsType.OkCancel,
-                String.Format (
-                    "{0} {1}", 
-                    delete ? Catalog.GetString ("Delete") : Catalog.GetString ("Remove"), 
-                    Catalog.GetPluralString ("Item?", "Items?", itemCount)
-                ),
-                String.Format (
-                    Catalog.GetString ("Are you sure that you want to {0} the selected {1}?"),
-                    delete ? Catalog.GetString ("delete") : Catalog.GetString ("remove"),                     
-                    Catalog.GetPluralString ("item", "items", itemCount)
-                )
-            );
-*/            
         }
 
         private void ExportToOpml (IEnumerable<PaasChannel> channels)

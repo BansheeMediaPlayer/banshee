@@ -154,13 +154,13 @@ namespace Banshee.Paas.Aether
             AuthenticateAsync (null);
         }        
         
-        private void AuthenticateAsync (Method callingMethod, Action continuation)
+        private void AuthenticateAsync (object userState)
         {
             CryOutThroughTheAetherAsync (
                 "/aether/auth/", HttpMethod.POST, 
                 System.Web.HttpUtility.HtmlEncode (
                     String.Format ("username={0}&password_hash={1}", username, password_hash)
-                ), ServiceFlags.None, callingMethod, userState
+                ), ServiceFlags.None, Method.Authenticate, userState
             );
         }
         
@@ -265,28 +265,15 @@ namespace Banshee.Paas.Aether
                                                   Method acm,
                                                   object userState)
         {
-            asm.SetBusy ();
-            OnStateChanged (AetherClientState.Idle, AetherClientState.Busy);        
-            CryOutThroughTheAetherAsync (ppf, method, requestData, flags, acm, userState, null);           
-        }
-
-        private void CryOutThroughTheAetherAsync (string ppf,       // Path, parameters, fragment.
-                                                  HttpMethod method,
-                                                  string requestData,
-                                                  ServiceFlags flags,
-                                                  Method acm,
-                                                  object userState,
-                                                  Action<RequestState> c)
-        {
             RequestState state = new RequestState () {
-                Continuation = c,
                 UserState = new object[3] { acm, null, userState }
             };
-
+            
             try {
-                lock () {
-                    request = WebRequest.Create (aether_service_uri.AbsoluteUri+ppf) as HttpWebRequest;
-                }
+                asm.SetBusy ();
+                OnStateChanged (AetherClientState.Idle, AetherClientState.Busy);        
+                
+                request = WebRequest.Create (aether_service_uri.AbsoluteUri+ppf) as HttpWebRequest;
                 
                 request.Timeout = Timeout;
                 request.UserAgent = UserAgent;
@@ -356,7 +343,6 @@ namespace Banshee.Paas.Aether
         private void ThisIsCthulhuGoAheadCaller (IAsyncResult ar)
         {
             // Wow, ok, hi.  Uhh, first time caller, longtime dreamer of mad dreams.
-
             RequestState state = ar.AsyncState as RequestState;
 
             try {
