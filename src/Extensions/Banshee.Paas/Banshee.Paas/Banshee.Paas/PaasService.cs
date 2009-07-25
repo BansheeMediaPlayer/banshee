@@ -150,8 +150,9 @@ namespace Banshee.Paas
             mg_client = new MiroGuideClient () {
                 Timeout    = (60 * 1000), // one minute.
                 ServiceUri = "http://127.0.0.1:8000",
-                ClientID   = ClientID.Get (),
-                SessionID  = SessionID.Get (),
+                Username   = "rcs",
+                //ClientID   = ClientID.Get (),
+                //SessionID  = SessionID.Get (),
                 UserAgent  = Banshee.Web.Browser.UserAgent,
             };
 
@@ -162,6 +163,16 @@ namespace Banshee.Paas
                     client_handle.Reset ();
                 }
             };
+
+            mg_client.AuthenticationCompleted += (sender, e) => {
+                Deserializer d = new Deserializer ();
+                JsonObject o = d.SetInput (e.Data).Deserialize () as JsonObject;
+                Console.WriteLine (o["session"]);
+                mg_client.AuthenticationCompleted -= this;
+            };
+            
+            mg_client.AuthenticateAsync ();
+            
 
             mg_client.RequestDeltasCompleted += ClientUpdatedHandler;
 #endif
@@ -377,7 +388,7 @@ namespace Banshee.Paas
                     try {
                         pi.ChannelID = GetChannelIDFromExternalID (channel_cache, pi.ExternalChannelID);
                         pi.Save ();
-                        AddItem (pi);
+                        source.AddItem (pi);
                     } catch (Exception e) {
                         Hyena.Log.Exception (e);
                         continue;
@@ -762,6 +773,14 @@ namespace Banshee.Paas
         {
             return String.Format ("paas-{0}", Banshee.Base.CoverArtSpec.EscapePart (channel.Name));
         }
+
+        public static readonly SchemaEntry<string> MiroGuideUsername = new SchemaEntry<string> (
+            "plugins.paas", "mg_username", String.Empty, "Miro Guide Username", ""
+        );
+        
+        public static readonly SchemaEntry<string> MiroGuidePasswordHash = new SchemaEntry<string> (
+            "plugins.paas", "mg_password_hash", String.Empty, "Miro Guide Password Hash", ""
+        );  
 
         public static readonly SchemaEntry<string> ClientID = new SchemaEntry<string> (
             "plugins.paas", "mg_client_id", String.Empty, "Miro Guide Client ID", ""

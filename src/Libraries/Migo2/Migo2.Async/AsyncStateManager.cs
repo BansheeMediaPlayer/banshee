@@ -89,7 +89,7 @@ namespace Migo2.Async
         public bool SetCancelled ()
         {
             lock (sync) {
-                if (/*busy && */!cancelled && !completed && !timedout) {
+                if (!cancelled && !completed && !timedout) {
                     cancelled = true;
                     return true;
                 }

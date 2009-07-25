@@ -27,6 +27,7 @@
 using System;
 using System.IO;
 using System.Net;
+using System.Linq;
 using System.Text;
 using System.Threading;
 
@@ -40,6 +41,8 @@ namespace Banshee.Paas.Aether
 
         private AutoResetEvent timeout_handle;
         private RegisteredWaitHandle registered_timeout_handle;        
+
+        public Action<RequestState> Continuation { get; set; }
 
         public byte[] ReadBuffer  { get; set; }
         public byte[] WriteBuffer { get; set; }        
@@ -55,7 +58,7 @@ namespace Banshee.Paas.Aether
         public Stream ResponseStream  {get; set; }
 
         public object UserState { get; set; }
-                
+
         public RequestState ()
         {
             ReadBuffer = new byte[BufferSize];
@@ -119,7 +122,7 @@ namespace Banshee.Paas.Aether
         {
             RemoveTimeout (false);
         }
-        
+
         public void RemoveTimeout (bool flag)
         {
             if (flag) {

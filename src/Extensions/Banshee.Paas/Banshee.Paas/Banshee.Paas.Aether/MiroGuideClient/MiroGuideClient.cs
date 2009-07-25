@@ -40,7 +40,7 @@ namespace Banshee.Paas.Aether
     public sealed class MiroGuideClient : AetherClient
     {
         enum Method {
-            GetSession,
+            Authenticate,
             RegisterClient,
             RequestDeltas
         }
@@ -50,14 +50,17 @@ namespace Banshee.Paas.Aether
         private string session_id;
         private Uri aether_service_uri;
 
+        private string username;
+        private string password_hash;
+
         AsyncStateManager asm;
         
         private HttpWebRequest request;
         private Dictionary<Method, EventHandler<AetherAsyncCompletedEventArgs>> event_table;
 
-        public event EventHandler<AetherAsyncCompletedEventArgs> GetSessionCompleted {
-            add    { AddHandler    (Method.GetSession, value); }
-            remove { RemoveHandler (Method.GetSession, value); }
+        public event EventHandler<AetherAsyncCompletedEventArgs> AuthenticationCompleted {
+            add    { AddHandler    (Method.Authenticate, value); }
+            remove { RemoveHandler (Method.Authenticate, value); }
         }
         
         public event EventHandler<AetherAsyncCompletedEventArgs> RegisterClientCompleted {
@@ -83,7 +86,12 @@ namespace Banshee.Paas.Aether
         }
 
         public ICredentials Credentials { get; set; }
-        
+
+        public string PasswordHash {
+            get { return password_hash; }
+            set { password_hash = value; }
+        }
+
         public string ServiceUri {
             get { return aether_service_uri.AbsoluteUri; }
             
@@ -123,6 +131,11 @@ namespace Banshee.Paas.Aether
         
         public string UserAgent { get; set; }
 
+        public string Username {
+            get { return username; }
+            set { username = value; }
+        }
+
         public MiroGuideClient ()
         {
             asm = new AsyncStateManager ();
@@ -136,17 +149,19 @@ namespace Banshee.Paas.Aether
             }
         }
 
-        public void GetSessionAsync ()
+        public void AuthenticateAsync ()
         {
-            GetSessionAsync (null);
+            AuthenticateAsync (null);
         }        
         
-        public void GetSessionAsync (object userState)
+        private void AuthenticateAsync (Method callingMethod, Action continuation)
         {
             CryOutThroughTheAetherAsync (
-                "/api/get_session?datatype=json", HttpMethod.GET, 
-                null, ServiceFlags.None, Method.GetSession, userState
-            );            
+                "/aether/auth/", HttpMethod.POST, 
+                System.Web.HttpUtility.HtmlEncode (
+                    String.Format ("username={0}&password_hash={1}", username, password_hash)
+                ), ServiceFlags.None, callingMethod, userState
+            );
         }
         
         public void RegisterClientAsync ()
@@ -186,8 +201,6 @@ namespace Banshee.Paas.Aether
 
         private void Completed (RequestState state)
         {
-            asm.SetCompleted ();
-
             try {
                 asm.SetCompleted ();
                 
@@ -207,7 +220,7 @@ namespace Banshee.Paas.Aether
             string data = null;
             Exception err = null;         
             bool timedout = false;
-            bool cancelled = false;
+            bool cancelled = false; 
             
             object[] userState = state.UserState as object[];                            
 
@@ -244,7 +257,7 @@ namespace Banshee.Paas.Aether
             state.Error = e;
             Completed (state);            
         }
-        
+
         private void CryOutThroughTheAetherAsync (string ppf,       // Path, parameters, fragment.
                                                   HttpMethod method,
                                                   string requestData,
@@ -252,16 +265,29 @@ namespace Banshee.Paas.Aether
                                                   Method acm,
                                                   object userState)
         {
+            asm.SetBusy ();
+            OnStateChanged (AetherClientState.Idle, AetherClientState.Busy);        
+            CryOutThroughTheAetherAsync (ppf, method, requestData, flags, acm, userState, null);           
+        }
+
+        private void CryOutThroughTheAetherAsync (string ppf,       // Path, parameters, fragment.
+                                                  HttpMethod method,
+                                                  string requestData,
+                                                  ServiceFlags flags,
+                                                  Method acm,
+                                                  object userState,
+                                                  Action<RequestState> c)
+        {
             RequestState state = new RequestState () {
+                Continuation = c,
                 UserState = new object[3] { acm, null, userState }
             };
 
             try {
-                asm.SetBusy ();
-                OnStateChanged (AetherClientState.Idle, AetherClientState.Busy);
+                lock () {
+                    request = WebRequest.Create (aether_service_uri.AbsoluteUri+ppf) as HttpWebRequest;
+                }
                 
-                request = WebRequest.Create (aether_service_uri.AbsoluteUri+ppf) as HttpWebRequest;
-    
                 request.Timeout = Timeout;
                 request.UserAgent = UserAgent;
                 request.Credentials = Credentials;

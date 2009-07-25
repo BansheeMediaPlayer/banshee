@@ -64,7 +64,7 @@ namespace Banshee.Paas.DownloadManager
         {
             lock (SyncRoot) {
                 base.CancelAsync ();
-                //RemoveQueuedDownloadRange (Tasks.Select (t => (int)(t.UserState as PaasItem).DbId));
+                ClearQueuedDownloads ();
             }
         }
 
