@@ -26,7 +26,7 @@
 
 using System;
 
-namespace Banshee.Paas.Aether
+namespace Banshee.Paas.Aether.MiroGuide
 {
     [Flags]
     enum ServiceFlags

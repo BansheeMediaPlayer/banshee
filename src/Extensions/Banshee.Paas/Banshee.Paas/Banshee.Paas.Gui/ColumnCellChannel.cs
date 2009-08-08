@@ -41,6 +41,7 @@ using Banshee.ServiceStack;
 using Banshee.Collection.Gui;
 
 using Banshee.Paas.Data;
+using Banshee.Paas.Aether;
 
 namespace Banshee.Paas.Gui
 {

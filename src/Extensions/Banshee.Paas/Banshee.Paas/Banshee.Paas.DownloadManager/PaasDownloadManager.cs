@@ -100,7 +100,7 @@ namespace Banshee.Paas.DownloadManager
         {
             lock (SyncRoot) {
                 if (!IsDisposing) {
-                    if (!downloads.ContainsKey (item.DbId)) {
+                    if (item.Active && !downloads.ContainsKey (item.DbId)) {
                         HttpFileDownloadTask task = CreateDownloadTask (item.Url, item);
                         task.Name = String.Format ("{0} - {1}", item.Channel.Name, item.Name);                                                
                         
@@ -118,7 +118,7 @@ namespace Banshee.Paas.DownloadManager
                     HttpFileDownloadTask task = null;                
                     List<HttpFileDownloadTask> tasks = new List<HttpFileDownloadTask> ();
 
-                    foreach (PaasItem item in items.Where (i => !downloads.ContainsKey (i.DbId))) {
+                    foreach (PaasItem item in items.Where (i => i.Active && !i.IsDownloaded && !downloads.ContainsKey (i.DbId))) {
                         task = CreateDownloadTask (item.Url, item);
                         task.Name = String.Format ("{0} - {1}", item.Channel.Name, item.Name);
                         

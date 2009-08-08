@@ -8,19 +8,30 @@ SOURCES =  \
 	Banshee.Paas/Banshee.Paas.Aether/AetherClientID.cs \
 	Banshee.Paas/Banshee.Paas.Aether/AetherClientState.cs \
 	Banshee.Paas/Banshee.Paas.Aether/AetherClientStateChangedEventArgs.cs \
-	Banshee.Paas/Banshee.Paas.Aether/MiroGuideClient/AetherAsyncCompletedEventArgs.cs \
+	Banshee.Paas/Banshee.Paas.Aether/AetherRequest.cs \
+	Banshee.Paas/Banshee.Paas.Aether/AetherRequestCompletedEventArgs.cs \
+	Banshee.Paas/Banshee.Paas.Aether/ChannelEventArgs.cs \
+	Banshee.Paas/Banshee.Paas.Aether/ChannelUpdateStatus.cs \
+	Banshee.Paas/Banshee.Paas.Aether/ItemEventArgs.cs \
+	Banshee.Paas/Banshee.Paas.Aether/MiroGuideClient.Gui/MiroGuideAccountDialog.cs \
+	Banshee.Paas/Banshee.Paas.Aether/MiroGuideClient.Gui/MiroGuideLoginForm.cs \
 	Banshee.Paas/Banshee.Paas.Aether/MiroGuideClient/AetherDelta.cs \
-	Banshee.Paas/Banshee.Paas.Aether/MiroGuideClient/HttpMethod.cs \
+	Banshee.Paas/Banshee.Paas.Aether/MiroGuideClient/ClientIDChangedEventArgs.cs \
+	Banshee.Paas/Banshee.Paas.Aether/MiroGuideClient/DownloadRequestEventArgs.cs \
+	Banshee.Paas/Banshee.Paas.Aether/MiroGuideClient/MiroGuideAccountInfo.cs \
 	Banshee.Paas/Banshee.Paas.Aether/MiroGuideClient/MiroGuideClient.cs \
-	Banshee.Paas/Banshee.Paas.Aether/MiroGuideClient/RequestState.cs \
+	Banshee.Paas/Banshee.Paas.Aether/MiroGuideClient/MiroGuideClientError.cs \
+	Banshee.Paas/Banshee.Paas.Aether/MiroGuideClient/MiroGuideClientInfo.cs \
+	Banshee.Paas/Banshee.Paas.Aether/MiroGuideClient/MiroGuideClientMethod.cs \
+	Banshee.Paas/Banshee.Paas.Aether/MiroGuideClient/MiroGuideMethodCompletedEventArgs.cs \
+	Banshee.Paas/Banshee.Paas.Aether/MiroGuideClient/MiroGuideRequestState.cs \
+	Banshee.Paas/Banshee.Paas.Aether/MiroGuideClient/RequestCompletedEventArgs.cs \
 	Banshee.Paas/Banshee.Paas.Aether/MiroGuideClient/ServiceMethodFlags.cs \
 	Banshee.Paas/Banshee.Paas.Aether/OpmlParser.cs \
-	Banshee.Paas/Banshee.Paas.Aether/SyndicationClient/ChannelEventArgs.cs \
+	Banshee.Paas/Banshee.Paas.Aether/RequestState.cs \
 	Banshee.Paas/Banshee.Paas.Aether/SyndicationClient/ChannelUpdateCompletedEventArgs.cs \
 	Banshee.Paas/Banshee.Paas.Aether/SyndicationClient/ChannelUpdateManager.cs \
-	Banshee.Paas/Banshee.Paas.Aether/SyndicationClient/ChannelUpdateStatus.cs \
 	Banshee.Paas/Banshee.Paas.Aether/SyndicationClient/ChannelUpdateTask.cs \
-	Banshee.Paas/Banshee.Paas.Aether/SyndicationClient/ItemEventArgs.cs \
 	Banshee.Paas/Banshee.Paas.Aether/SyndicationClient/ItmsPodcast.cs \
 	Banshee.Paas/Banshee.Paas.Aether/SyndicationClient/RssParser.cs \
 	Banshee.Paas/Banshee.Paas.Aether/SyndicationClient/SyndicationClient.cs \
@@ -46,8 +57,8 @@ SOURCES =  \
 	Banshee.Paas/Banshee.Paas.Gui/ColumnCellPublished.cs \
 	Banshee.Paas/Banshee.Paas.Gui/ColumnCellUnheard.cs \
 	Banshee.Paas/Banshee.Paas.Gui/Dialogs/ChannelPropertiesDialog.cs \
-	Banshee.Paas/Banshee.Paas.Gui/Dialogs/DownloadPreferenceComboBox.cs \
 	Banshee.Paas/Banshee.Paas.Gui/Dialogs/SubscribeDialog.cs \
+	Banshee.Paas/Banshee.Paas.Gui/DownloadPreferenceComboBox.cs \
 	Banshee.Paas/Banshee.Paas.Gui/DownloadStatusFilterView.cs \
 	Banshee.Paas/Banshee.Paas.Gui/IColumnCellDataHelper.cs \
 	Banshee.Paas/Banshee.Paas.Gui/PaasActions.cs \

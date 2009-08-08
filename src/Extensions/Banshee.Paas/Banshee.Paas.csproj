@@ -60,16 +60,11 @@
     <Compile Include="Banshee.Paas\Banshee.Paas.Aether\AetherClientID.cs" />
     <Compile Include="Banshee.Paas\Banshee.Paas.Aether\AetherClientState.cs" />
     <Compile Include="Banshee.Paas\Banshee.Paas.Aether\AetherClientStateChangedEventArgs.cs" />
-    <Compile Include="Banshee.Paas\Banshee.Paas.Aether\MiroGuideClient\AetherAsyncCompletedEventArgs.cs" />
     <Compile Include="Banshee.Paas\Banshee.Paas.Aether\MiroGuideClient\AetherDelta.cs" />
-    <Compile Include="Banshee.Paas\Banshee.Paas.Aether\MiroGuideClient\HttpMethod.cs" />
     <Compile Include="Banshee.Paas\Banshee.Paas.Aether\MiroGuideClient\MiroGuideClient.cs" />
-    <Compile Include="Banshee.Paas\Banshee.Paas.Aether\MiroGuideClient\RequestState.cs" />
     <Compile Include="Banshee.Paas\Banshee.Paas.Aether\MiroGuideClient\ServiceMethodFlags.cs" />
-    <Compile Include="Banshee.Paas\Banshee.Paas.Aether\SyndicationClient\ChannelEventArgs.cs" />
     <Compile Include="Banshee.Paas\Banshee.Paas.Aether\SyndicationClient\ChannelUpdateManager.cs" />
     <Compile Include="Banshee.Paas\Banshee.Paas.Aether\SyndicationClient\ChannelUpdateTask.cs" />
-    <Compile Include="Banshee.Paas\Banshee.Paas.Aether\SyndicationClient\ItemEventArgs.cs" />
     <Compile Include="Banshee.Paas\Banshee.Paas.Aether\SyndicationClient\RssParser.cs" />
     <Compile Include="Banshee.Paas\Banshee.Paas.Aether\SyndicationClient\SyndicationClient.cs" />
     <Compile Include="Banshee.Paas\Banshee.Paas.Data\PaasChannel.cs" />
@@ -77,7 +72,6 @@
     <Compile Include="Banshee.Paas\Banshee.Paas.Data\PaasItem.cs" />
     <Compile Include="Banshee.Paas\Banshee.Paas.Data\PaasTrackInfo.cs" />
     <Compile Include="Banshee.Paas\Banshee.Paas.Data\PaasTrackListModel.cs" />
-    <Compile Include="Banshee.Paas\Banshee.Paas.Gui\Dialogs\DownloadPreferenceComboBox.cs" />
     <Compile Include="Banshee.Paas\Banshee.Paas.Gui\Dialogs\SubscribeDialog.cs" />
     <Compile Include="Banshee.Paas\Banshee.Paas.Gui\ColumnCellChannel.cs" />
     <Compile Include="Banshee.Paas\Banshee.Paas.Gui\ColumnCellPaasStatusIndicator.cs" />
@@ -99,7 +93,6 @@
     <Compile Include="Banshee.Paas\Banshee.Paas.DownloadManager.Gui\DownloadSourceContents.cs" />
     <Compile Include="Banshee.Paas\Banshee.Paas.DownloadManager.Gui\DownloadUserJob.cs" />
     <Compile Include="Banshee.Paas\Banshee.Paas.Gui\IColumnCellDataHelper.cs" />
-    <Compile Include="Banshee.Paas\Banshee.Paas.Aether\SyndicationClient\ChannelUpdateStatus.cs" />
     <Compile Include="Banshee.Paas\Banshee.Paas.Data\PaasUnheardFilterModel.cs" />
     <Compile Include="Banshee.Paas\Banshee.Paas.Gui\PaasUnheardFilterView.cs" />
     <Compile Include="Banshee.Paas\Banshee.Paas.Gui\ColumnCellUnheard.cs" />
@@ -113,6 +106,24 @@
     <Compile Include="Banshee.Paas\Banshee.Paas.Aether\SyndicationClient\ItmsPodcast.cs" />
     <Compile Include="Banshee.Paas\Banshee.Paas.DownloadManager\DownloadListModel.cs" />
     <Compile Include="Banshee.Paas\Banshee.Paas.DownloadManager.Data\QueuedDownloadTask.cs" />
+    <Compile Include="Banshee.Paas\Banshee.Paas.Aether\AetherRequest.cs" />
+    <Compile Include="Banshee.Paas\Banshee.Paas.Aether\AetherRequestCompletedEventArgs.cs" />
+    <Compile Include="Banshee.Paas\Banshee.Paas.Aether\RequestState.cs" />
+    <Compile Include="Banshee.Paas\Banshee.Paas.Aether\MiroGuideClient\MiroGuideMethodCompletedEventArgs.cs" />
+    <Compile Include="Banshee.Paas\Banshee.Paas.Aether\MiroGuideClient\MiroGuideRequestState.cs" />
+    <Compile Include="Banshee.Paas\Banshee.Paas.Aether\MiroGuideClient\MiroGuideClientMethod.cs" />
+    <Compile Include="Banshee.Paas\Banshee.Paas.Aether\ChannelEventArgs.cs" />
+    <Compile Include="Banshee.Paas\Banshee.Paas.Aether\MiroGuideClient\MiroGuideClientError.cs" />
+    <Compile Include="Banshee.Paas\Banshee.Paas.Aether\MiroGuideClient\MiroGuideClientInfo.cs" />
+    <Compile Include="Banshee.Paas\Banshee.Paas.Aether\MiroGuideClient\MiroGuideAccountInfo.cs" />
+    <Compile Include="Banshee.Paas\Banshee.Paas.Aether\MiroGuideClient\RequestCompletedEventArgs.cs" />
+    <Compile Include="Banshee.Paas\Banshee.Paas.Aether\ItemEventArgs.cs" />
+    <Compile Include="Banshee.Paas\Banshee.Paas.Aether\ChannelUpdateStatus.cs" />
+    <Compile Include="Banshee.Paas\Banshee.Paas.Aether\MiroGuideClient\DownloadRequestEventArgs.cs" />
+    <Compile Include="Banshee.Paas\Banshee.Paas.Aether\MiroGuideClient.Gui\MiroGuideAccountDialog.cs" />
+    <Compile Include="Banshee.Paas\Banshee.Paas.Gui\DownloadPreferenceComboBox.cs" />
+    <Compile Include="Banshee.Paas\Banshee.Paas.Aether\MiroGuideClient.Gui\MiroGuideLoginForm.cs" />
+    <Compile Include="Banshee.Paas\Banshee.Paas.Aether\MiroGuideClient\ClientIDChangedEventArgs.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Core\Banshee.Core\Banshee.Core.csproj">

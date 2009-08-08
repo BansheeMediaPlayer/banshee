@@ -31,7 +31,7 @@ using System.Text.RegularExpressions;
 
 using Banshee.Web;
 
-namespace Banshee.Paas.Aether
+namespace Banshee.Paas.Aether.Syndication
 {
     public class ItmsPodcast
     {  

@@ -45,10 +45,6 @@ using Banshee.Collection.Database;
 using Banshee.Paas.Gui;
 using Banshee.Paas.Data;
 
-// remove
-using Hyena.Data;
-// remove
-
 namespace Banshee.Paas
 { 
     public class PaasSource : Banshee.Library.LibrarySource
@@ -106,7 +102,6 @@ namespace Banshee.Paas
         }
 
 #region Constructors
-
         public PaasSource (PaasService service) : base (Catalog.GetString ("Podcasts"), "PaasLibrary", 200)
         {
             actions = new PaasActions (service);
@@ -154,13 +149,10 @@ namespace Banshee.Paas
         public void AddItem (PaasItem item)
         {
             if (item != null) {
-                item.IsNew = true;
-                
                 PaasTrackInfo pti = new PaasTrackInfo (new DatabaseTrackInfo (), item);
                 pti.Track.PrimarySource = this;
                 
-                pti.Track.Save (false);
-                item.Save ();                            
+                pti.Track.Save (false);                           
             } 
         }
 

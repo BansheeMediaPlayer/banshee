@@ -29,7 +29,7 @@ using System.Collections.Generic;
 
 using Banshee.Paas.Data;
 
-namespace Banshee.Paas.Aether
+namespace Banshee.Paas.Aether.Syndication
 {
     public class ChannelUpdateCompletedEventArgs : ChannelEventArgs
     {

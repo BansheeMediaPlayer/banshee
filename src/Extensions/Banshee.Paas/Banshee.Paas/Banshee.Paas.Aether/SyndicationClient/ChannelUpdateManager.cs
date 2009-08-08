@@ -30,7 +30,7 @@ using System.Collections.Generic;
 
 using Migo2.Async;
 
-namespace Banshee.Paas.Aether
+namespace Banshee.Paas.Aether.Syndication
 {
     public class ChannelUpdateManager : TaskGroup<ChannelUpdateTask>
     {

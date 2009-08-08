@@ -39,6 +39,8 @@ using System.Collections.Generic;
 
 using Mono.Unix;
 
+using Hyena;
+
 using Banshee.IO;
 using Banshee.Web;
 using Banshee.Base;
@@ -51,7 +53,10 @@ using Banshee.Collection.Database;
 using Banshee.Paas.Gui;
 using Banshee.Paas.Data;
 using Banshee.Paas.Utils;
+
 using Banshee.Paas.Aether;
+using Banshee.Paas.Aether.MiroGuide;
+using Banshee.Paas.Aether.Syndication;
 
 using Banshee.Paas.DownloadManager;
 using Banshee.Paas.DownloadManager.Gui;
@@ -59,17 +64,13 @@ using Banshee.Paas.DownloadManager.Gui;
 using Migo2.Async;
 using Migo2.DownloadService;
 
-// remove
-using Hyena.Json;
-using Hyena;
-//remove
-
 namespace Banshee.Paas
 {
     delegate void Updater ();
     
     public partial class PaasService : IExtensionService, IDisposable, IDelayedInitializeService
     {
+        private int update_count;
         private bool disposing, disposed;
                 
         private readonly string tmp_download_path = Paths.Combine (
@@ -77,8 +78,9 @@ namespace Banshee.Paas
         );
 
         private PaasSource source;
-#if MIRO_GUIDE        
+#if MIRO_GUIDE
         private MiroGuideClient mg_client;
+        public static MiroGuideAccountInfo MiroGuideAccount;        
 #endif        
         private SyndicationClient syndication_client;
         
@@ -116,6 +118,22 @@ namespace Banshee.Paas
             }
         }
 
+#if MIRO_GUIDE
+        static PaasService ()
+        {
+            MiroGuideAccount = new MiroGuideAccountInfo (
+                MiroGuideServiceUri.Get (), MiroGuideClientID.Get (), 
+                MiroGuideUsername.Get (), MiroGuidePasswordHash.Get ()
+            );
+
+            MiroGuideAccount.Updated += (sender, e) => {
+                MiroGuideUsername.Set (MiroGuideAccount.Username);
+                MiroGuidePasswordHash.Set (MiroGuideAccount.PasswordHash);
+                MiroGuideClientID.Set (MiroGuideAccount.ClientID);
+                MiroGuideServiceUri.Set (MiroGuideAccount.ServiceUri);
+            };
+        }
+#endif
         public PaasService ()
         {
             reload = delegate {
@@ -124,8 +142,12 @@ namespace Banshee.Paas
                         return;
                     }
                     
+                    // Performance will be crap on updates with large podcast collections 
+                    // if you hold sync while reloading.  Investigate and CHANGE it.
                     source.Reload ();
                 }
+                
+                //source.Reload ();
             };
 
             redraw = delegate {
@@ -139,7 +161,7 @@ namespace Banshee.Paas
             };
             
             source = new PaasSource (this);
-            
+
             if (source.DbId < 1) {
                 source.Save ();                 
             }
@@ -147,48 +169,74 @@ namespace Banshee.Paas
             client_handle = new AutoResetEvent (true);
 
 #if MIRO_GUIDE
-            mg_client = new MiroGuideClient () {
-                Timeout    = (60 * 1000), // one minute.
-                ServiceUri = "http://127.0.0.1:8000",
-                //ClientID   = ClientID.Get (),
-                //SessionID  = SessionID.Get (),
-                UserAgent  = Banshee.Web.Browser.UserAgent,
+            mg_client = new MiroGuideClient (MiroGuideAccount) {
+                UserAgent = Banshee.Web.Browser.UserAgent,
             };
 
             mg_client.StateChanged += (sender, e) => {
                 if (e.NewState == AetherClientState.Idle) {
+                    DecrementUpdateCount ();
                     client_handle.Set ();
                 } else {
+                    IncrementUpdateCount ();                
                     client_handle.Reset ();
                 }
             };
 
-            mg_client.AuthenticationCompleted += (sender, e) => {
-                Deserializer d = new Deserializer ();
-                JsonObject o = d.SetInput (e.Data).Deserialize () as JsonObject;
-                Console.WriteLine (o["session"]);
-                mg_client.AuthenticationCompleted -= this;
-            };
-            
-            mg_client.AuthenticateAsync ();
-            
+            mg_client.ClientIDChanged += (sender, e) => { MiroGuideAccount.ClientID = e.ClientID; };
 
-            mg_client.RequestDeltasCompleted += ClientUpdatedHandler;
-#endif
-            syndication_client = new SyndicationClient ();
-            syndication_client.StateChanged += (sender, e) => {
-                lock (sync) {
-                    if (!Disposed) {
-                        if (e.NewState == AetherClientState.Busy) { 
-                            source.SetStatus ("Updating...", false, true, null);                            
-                        } else {
-                            source.HideStatus ();
-                        }
+            mg_client.ChannelsAdded += (sender, e) => { reload (); };
+            mg_client.ChannelsRemoved += (sender, e) => { reload (); };
+            mg_client.ItemsAdded += OnItemsAddedHandler;
+            mg_client.ItemsRemoved += OnItemsRemovedHandler;
+            mg_client.Completed += (sender, e) => {  
+                if (e.Method == MiroGuideClientMethod.Unsubscribe) {
+                    if ((e.Cancelled & e.Timedout) == false && e.Error == null) {
+                        mg_client.UpdateAsync ();
                     }
                 }
             };
 
-            syndication_client.ChannelAdded += (sender, e) => {
+            mg_client.DownloadRequested += (sender, e) => {
+                lock (sync) {
+                    if (Disposed) {
+                        return;
+                    }            
+                    
+                    IEnumerable<PaasItem> items = PaasItem.Provider.FetchAllMatching (
+                        String.Format ("ClientID = {0} AND ExternalID IN ({1})", 
+                        (long)AetherClientID.MiroGuide, String.Join (",", e.IDs.Select (id => id.ToString ()).ToArray ()))
+                    );
+
+                    download_manager.QueueDownload (items);
+                }                
+            };
+
+            mg_client.DownloadCancelled += (sender, e) => {
+                lock (sync) {
+                    if (Disposed) {
+                        return;
+                    }            
+                    
+                    IEnumerable<PaasItem> items = PaasItem.Provider.FetchAllMatching (
+                        String.Format ("ClientID = {0} AND ExternalID IN ({1})", 
+                        (long)AetherClientID.MiroGuide, String.Join (",", e.IDs.Select (id => id.ToString ()).ToArray ()))
+                    );
+
+                    download_manager.CancelDownload (items);
+                }                
+            };
+#endif
+            syndication_client = new SyndicationClient ();
+            syndication_client.StateChanged += (sender, e) => {
+                if (e.NewState == AetherClientState.Idle) {
+                    DecrementUpdateCount ();
+                } else {
+                    IncrementUpdateCount ();                                    
+                }
+            };
+
+            syndication_client.ChannelsAdded += (sender, e) => {
                 lock (sync) {
                     if (Disposed) {
                         return;
@@ -199,7 +247,7 @@ namespace Banshee.Paas
                 }
             };
             
-            syndication_client.ChannelRemoved += (sender, e) => { reload (); };
+            syndication_client.ChannelsRemoved += (sender, e) => { reload (); };
             syndication_client.ChannelUpdating += (sender, e) => { redraw (); };
             syndication_client.ChannelUpdateCompleted += OnChannelUpdatedHandler;
 
@@ -217,8 +265,8 @@ namespace Banshee.Paas
         {
             lock (sync) {
                 if (!Disposed) {
-#if MIRO_GUIDE                            
-                    mg_client.RequestDeltasAsync ();
+#if MIRO_GUIDE
+                    mg_client.UpdateAsync ();
 #endif                    
                     syndication_client.UpdateAsync ();
                 }
@@ -254,7 +302,9 @@ namespace Banshee.Paas
             mg_client.CancelAsync ();
             client_handle.WaitOne ();
 
-            mg_client.RequestDeltasCompleted -= ClientUpdatedHandler;
+            mg_client.ItemsAdded -= OnItemsAddedHandler;
+            mg_client.ItemsRemoved -= OnItemsRemovedHandler;
+
             mg_client = null;
 #endif            
 
@@ -264,7 +314,7 @@ namespace Banshee.Paas
             syndication_client.Dispose ();
             syndication_client.ItemsAdded -= OnItemsAddedHandler;
             syndication_client.ItemsRemoved -= OnItemsRemovedHandler;
-            syndication_client.ChannelUpdateCompleted -= OnChannelUpdatedHandler;            
+            syndication_client.ChannelUpdateCompleted -= OnChannelUpdatedHandler;
             
             syndication_client = null;
 
@@ -275,6 +325,24 @@ namespace Banshee.Paas
             lock (sync) {
                 disposing = false;            
                 disposed  = true;
+            }
+        }
+
+        public void DeleteChannels (IEnumerable<PaasChannel> channels, bool deleteFiles)
+        {
+            lock (sync) {
+                if (Disposed) {
+                    return;
+                }
+            
+                syndication_client.DeleteChannels (
+                    channels.Where (c => c.ClientID == (int)AetherClientID.Syndication), deleteFiles
+                );
+#if MIRO_GUIDE                                    
+                mg_client.Unsubscribe (
+                    channels.Where (c => c.ClientID == (int)AetherClientID.MiroGuide)//, deleteFiles
+                );
+#endif                
             }
         }
 
@@ -357,125 +425,12 @@ namespace Banshee.Paas
             if (source != null) {
                 ServiceManager.SourceManager.RemoveSource (source);
                 source.Dispose ();
-                source = null;
             }
 
             if (download_manager_interface != null) {
                 download_manager_interface.Dispose ();
             }
         }
-        
-#if MIRO_GUIDE        
-        private void ApplyUpdate (AetherDelta delta)
-        {
-            Dictionary<long, PaasChannel> channel_cache = new Dictionary<long, PaasChannel> ();
-            
-            ServiceManager.DbConnection.BeginTransaction ();
-
-            try {
-                foreach (PaasChannel pc in delta.NewChannels) {
-                    try {
-                        PaasChannel.Provider.Save (pc);
-                        channel_cache.Add (pc.ExternalID, pc);
-                    } catch (Exception e) {
-                        Hyena.Log.Exception (e);
-                        continue;
-                    }
-                }
-                
-                foreach (PaasItem pi in delta.NewItems) {
-                    try {
-                        pi.ChannelID = GetChannelIDFromExternalID (channel_cache, pi.ExternalChannelID);
-                        pi.Save ();
-                        source.AddItem (pi);
-                    } catch (Exception e) {
-                        Hyena.Log.Exception (e);
-                        continue;
-                    }                
-                }
-
-                string[] cids = delta.RemovedChannels.Select (id => id.ToString ()).ToArray<string> ();
-                string[] iids = delta.RemovedItems.Select (id => id.ToString ()).ToArray<string> ();
-
-                // Talk to Scott about adding, or add, a '*.Provider.Delete (IEnumerable<int> ids)'
-
-                if (cids.Length > 0) {
-                    List<PaasChannel> removed_channels = new List<PaasChannel> (
-                        PaasChannel.Provider.FetchAllMatching (
-                            String.Format ("ClientID = {0} ExternalID IN ({1})", 
-                            (long)AetherClientID.MiroGuide, String.Join (",", cids))
-                        )
-                    );
-    
-                    PaasChannel.Provider.Delete (removed_channels);
-                }
-                
-                if (iids.Length > 0) {
-                    List<PaasItem> removed_items = new List<PaasItem> (
-                        PaasItem.Provider.FetchAllMatching (
-                            String.Format ("ClientID = {0} AND ExternalID IN ({1})", 
-                            (long)AetherClientID.MiroGuide, String.Join (",", iids))
-                        )
-                    );
-    
-                    PaasItem.Provider.Delete (removed_items);                    
-                }
-                
-                ServiceManager.DbConnection.CommitTransaction ();                
-            } catch {
-                ServiceManager.DbConnection.RollbackTransaction  ();
-                throw;
-            }            
-        }
-
-        private long GetChannelIDFromExternalID (Dictionary<long, PaasChannel> channel_cache, long external_id)
-        {
-            PaasChannel c;
-
-            if (channel_cache.ContainsKey (external_id)) {
-                c = channel_cache[external_id];
-            } else {
-                c = PaasChannel.Provider.FetchFirstMatching ("ExternalID = ?", external_id);
-                channel_cache.Add (external_id, c);
-            }
-
-            return c.DbId;
-        }
-   
-        private void ClientUpdatedHandler (object sender, AetherAsyncCompletedEventArgs e)
-        {        
-            if (Disposed) {
-                return;
-            }
-    
-            if (e.Timedout) {
-                Log.Error ("AetherClient:  Timeouted while updating.");
-
-                source.ErrorSource.AddMessage (
-                    Catalog.GetString ("Update Error"), 
-                    Catalog.GetString ("Request timed out while attempting to contact server.")
-                );
-                
-                return;
-            } else if (e.Error != null) {
-                Log.Exception ("PaasService:  ", e.Error);
-                source.ErrorSource.AddMessage ("Update Error", e.Error.Message);
-                return;
-            }
-
-            try {
-                ApplyUpdate (new AetherDelta (e.Data));
-                source.Reload (); 
-            } catch (Exception ex) {
-                Log.Exception (ex);                
-                source.ErrorSource.AddMessage (                    
-                    Catalog.GetString ("Update Error"),
-                    Catalog.GetString ("Parsing Error:  ") + ex.Message
-                );
-            }
-                source.ErrorSource.Reload ();            
-        }
-#endif
 
         private DatabaseTrackInfo GetTrackByItemId (long item_id)
         {
@@ -489,10 +444,6 @@ namespace Banshee.Paas
             lock (sync) {
                 if (Disposed) {
                     return;
-                }
-
-                if (e.Error != null) {
-                    Log.Exception (e.Error);
                 }
 
                 if (e.Succeeded) {                
@@ -525,6 +476,8 @@ namespace Banshee.Paas
                     RefreshArtworkFor (channel);
                     download_manager.QueueDownload (items.Where (i => i.Active && !i.IsDownloaded));
                 } else if (e.Error != null) {
+                    Log.Exception (e.Error);
+                    
                     source.ErrorSource.AddMessage (                    
                         String.Format (Catalog.GetString (@"Error while updating channel ""{0}"""), e.Channel.Name),
                         e.Error.Message
@@ -550,13 +503,14 @@ namespace Banshee.Paas
                     } else {
                         source.AddItems (e.Items);
                     }
+                    
+                    ServiceManager.DbConnection.CommitTransaction ();
                 } catch (Exception ex) {
                     ServiceManager.DbConnection.RollbackTransaction ();
                     Hyena.Log.Exception (ex);                           
                     throw;
                 }
                 
-                ServiceManager.DbConnection.CommitTransaction ();
                 source.Reload ();
             }
         }
@@ -576,7 +530,9 @@ namespace Banshee.Paas
                             download_manager.CancelDownload (e.Item);
                         }
                         
-                        source.RemoveItem (e.Item);
+                        ThreadAssist.ProxyToMain (delegate {
+                            source.RemoveItem (e.Item);
+                        });
                     } else {
                         foreach (PaasItem item in e.Items) {
                             if (download_manager.Contains (item)) {
@@ -584,15 +540,18 @@ namespace Banshee.Paas
                             }
                         }
                         
-                        source.RemoveItems (e.Items);
+                        ThreadAssist.ProxyToMain (delegate {                                                        
+                            source.RemoveItems (e.Items);
+                        });
                     }
+
+                    ServiceManager.DbConnection.CommitTransaction ();
                 } catch (Exception ex) {
                     ServiceManager.DbConnection.RollbackTransaction ();
                     Hyena.Log.Exception (ex);                           
                     throw;
                 }
                 
-                ServiceManager.DbConnection.CommitTransaction ();
                 source.Reload ();
             }
         }
@@ -646,6 +605,7 @@ namespace Banshee.Paas
                 tmp_local_path = local_enclosure_path+StringUtils.DecodeUrl (filename);            
     
                 try {
+                    // This is crap, non-i18n-iz-iz-ized strings will be displayed to the users.
                     if (!Banshee.IO.Directory.Exists (path)) {
                         throw new InvalidOperationException ("Directory specified by path does not exist");             
                     } else if (!Banshee.IO.File.Exists (new SafeUri (full_path))) {
@@ -681,21 +641,17 @@ namespace Banshee.Paas
                         Banshee.IO.Directory.Delete (path, true);
                     } catch {}
 
+                    item.IsNew = true;
                     item.LocalPath = tmp_local_path;
                     item.MimeType = e.Task.MimeType;
                     item.DownloadedAt = DateTime.Now;
                     
                     item.Save ();
 
-                    DatabaseTrackInfo track = GetTrackByItemId (item.DbId);
+                    DatabaseTrackInfo track = GetTrackByItemId (item.DbId);                   
 
                     if (track != null) {
-                        PaasTrackInfo pti = PaasTrackInfo.From (track);
-
-                        if (pti != null) {
-                            pti.SyncWithItem ();
-                            pti.Track.Save (true);
-                        }
+                        new PaasTrackInfo (track, item).Track.Save ();
                     }                    
                 } catch (Exception ex) {
                     source.ErrorSource.AddMessage (                    
@@ -722,7 +678,6 @@ namespace Banshee.Paas
                     return;
                 }
 
-                // Handle OPML files
                 if (uri.Contains ("opml") || uri.EndsWith (".miro") || uri.EndsWith (".democracy")) {
                     try {
                         OpmlParser opml_parser = new OpmlParser (uri, true);
@@ -760,7 +715,33 @@ namespace Banshee.Paas
                 }
             }            
         }
-        
+
+        private void IncrementUpdateCount ()
+        {
+            lock (sync) {
+                if (!Disposed) {
+                   if (update_count++ == 0) {
+                        ThreadAssist.ProxyToMain (delegate { 
+                            source.SetStatus ("Updating...", false, true, null); 
+                        });
+                    }
+                }
+            }
+        }
+
+        private void DecrementUpdateCount ()
+        {
+            lock (sync) {
+                if (!Disposed) {
+                    if (--update_count == 0) {
+                        ThreadAssist.ProxyToMain (delegate { 
+                            source.HideStatus (); 
+                        });
+                    }
+                }
+            }
+        }
+
         private void RefreshArtworkFor (PaasChannel channel)
         {
             if (channel.LastDownloadTime != DateTime.MinValue && !CoverArtSpec.CoverExists (ArtworkIdFor (channel))) {
@@ -779,14 +760,14 @@ namespace Banshee.Paas
         
         public static readonly SchemaEntry<string> MiroGuidePasswordHash = new SchemaEntry<string> (
             "plugins.paas", "mg_password_hash", String.Empty, "Miro Guide Password Hash", ""
-        );  
+        );
 
-        public static readonly SchemaEntry<string> ClientID = new SchemaEntry<string> (
+        public static readonly SchemaEntry<string> MiroGuideClientID = new SchemaEntry<string> (
             "plugins.paas", "mg_client_id", String.Empty, "Miro Guide Client ID", ""
         );
-        
-        public static readonly SchemaEntry<string> SessionID = new SchemaEntry<string> (
-            "plugins.paas", "mg_session_id", String.Empty, "Miro Guide Session ID", ""
-        );         
+
+        public static readonly SchemaEntry<string> MiroGuideServiceUri = new SchemaEntry<string> (
+            "plugins.paas", "mg_service_uri", "http://127.0.0.1:8000", "Miro Guide Service URI", ""
+        ); 
     }
 }

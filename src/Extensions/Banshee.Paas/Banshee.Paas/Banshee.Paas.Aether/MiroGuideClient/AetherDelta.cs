@@ -24,7 +24,7 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-// Use System.Xml.Linq at some point.  Need to learn it...
+// This makes no attempt to cache values.
 
 using System;
 using System.Linq;
@@ -36,7 +36,7 @@ using Migo2.Utils;
 
 using Banshee.Paas.Data;
 
-namespace Banshee.Paas.Aether
+namespace Banshee.Paas.Aether.MiroGuide
 {
     public class AetherDelta
     {
@@ -47,6 +47,10 @@ namespace Banshee.Paas.Aether
         }
         
         private XmlDocument doc;
+
+        public string Updated {
+            get { return XmlUtils.GetXmlNodeText (doc, "//@updated"); }
+        }
 
         public IEnumerable<PaasChannel> NewChannels {
             get { return GetChannels (AetherAction.Added); }
@@ -75,7 +79,15 @@ namespace Banshee.Paas.Aether
         public IEnumerable<PaasItem> ModifiedItems {
             get { return GetItems (AetherAction.Removed); }
         }        
-   
+
+        public IEnumerable<long> NewDownloads {
+            get { return GetDownloads (AetherAction.Added); }
+        }
+
+        public IEnumerable<long> CancelledDownloads {
+            get { return GetDownloads (AetherAction.Removed); }
+        }
+
         public AetherDelta (string xml)
         { 
             xml = xml.Trim ();
@@ -161,6 +173,22 @@ namespace Banshee.Paas.Aether
                 }
             }            
         }
+
+        private IEnumerable<long> GetDownloads (AetherAction action)
+        {
+            XmlNodeList nodes = null;
+            
+            try {
+                nodes = doc.SelectNodes (String.Format ("//downloads/download[@action='{0}']", ActionToString (action)));
+            } catch {}
+            
+            if (nodes != null) {
+                foreach (XmlNode node in nodes) {
+                    Console.WriteLine ("{0}:  {1}", ActionToString (action), XmlUtils.GetInt64 (node, "id"));
+                    yield return XmlUtils.GetInt64 (node, "id");
+                }
+            }             
+        }
         
         private string ActionToString (AetherAction action)
         {
@@ -206,8 +234,8 @@ namespace Banshee.Paas.Aether
             PaasItem item = new PaasItem ();            
             
             try {
+                item.ClientID    = (int) AetherClientID.MiroGuide;                                    
                 item.ExternalID  = XmlUtils.GetInt64 (node, "id");
-                item.ExternalChannelID   = XmlUtils.GetInt64 (node, "channel_id");
 
                 item.IsNew       = true;
                 item.Name        = XmlUtils.GetXmlNodeText (node, "name");
@@ -220,6 +248,7 @@ namespace Banshee.Paas.Aether
                 item.MimeType    = XmlUtils.GetXmlNodeText (node, "mime_type");
                 item.Size        = XmlUtils.GetInt64 (node, "size");
                 
+                item.ExternalChannelID = XmlUtils.GetInt64 (node, "channel_id");
                 return item;
              } catch (Exception e) {
                  Hyena.Log.Exception ("Caught error extracting item", e);

@@ -35,25 +35,15 @@ using Banshee.ServiceStack;
 
 using Banshee.Paas.Data;
 
-namespace Banshee.Paas.Aether
+namespace Banshee.Paas.Aether.Syndication
 {
-    public class SyndicationClient : AetherClient, IDisposable
+    public sealed class SyndicationClient : AetherClient
     {
         private bool disposed;
         private ChannelUpdateManager channel_manager;
         
         private Dictionary<long, DeletedChannelInfo> deleted;
         private Dictionary<long, ChannelUpdateTask> updating;        
-
-        private CommandQueue event_queue = new CommandQueue ();
-
-        private readonly object sync = new object ();
-
-        public event EventHandler<ItemEventArgs>    ItemsAdded;
-        public event EventHandler<ItemEventArgs>    ItemsRemoved;
-
-        public event EventHandler<ChannelEventArgs> ChannelAdded;
-        public event EventHandler<ChannelEventArgs> ChannelRemoved;
 
         public event EventHandler<ChannelEventArgs> ChannelUpdating;
         public event EventHandler<ChannelUpdateCompletedEventArgs> ChannelUpdateCompleted;
@@ -90,24 +80,23 @@ namespace Banshee.Paas.Aether
             updating = new Dictionary<long, ChannelUpdateTask> ();
         }
 
-        public void Dispose ()
+        public override void Dispose ()
         {
-            lock (sync) {
+            lock (SyncRoot) {
                 disposed = true;
             }
 
             channel_manager.Dispose ();
             channel_manager.TaskCompleted -= TaskCompletedHandler;
             
-            event_queue.Dispose ();
-            
-            event_queue = null;
             channel_manager = null;
+
+            base.Dispose ();
         }
 
         public ChannelUpdateStatus GetUpdateStatus (PaasChannel channel)
         {
-            lock (sync) {
+            lock (SyncRoot) {
                 ChannelUpdateTask task;            
 
                 if (updating.TryGetValue (channel.DbId, out task)) {
@@ -131,7 +120,7 @@ namespace Banshee.Paas.Aether
                 throw new ArgumentNullException ("channel");
             }
         
-            lock (sync) {
+            lock (SyncRoot) {
                 if (!disposed) {
                     if (updating.ContainsKey (channel.DbId)) {
                         deleted.Add (
@@ -176,7 +165,7 @@ namespace Banshee.Paas.Aether
                 throw new ArgumentNullException ("items");
             }
 
-            lock (sync) {
+            lock (SyncRoot) {
                 if (!disposed) {
                     PaasItem.Provider.Delete (items);
                     
@@ -206,7 +195,7 @@ namespace Banshee.Paas.Aether
                 throw new ArgumentNullException ("item");
             }
 
-            lock (sync) {
+            lock (SyncRoot) {
                 if (!disposed) {
                     item.Active = false;
                     item.Save ();
@@ -227,7 +216,7 @@ namespace Banshee.Paas.Aether
                 throw new ArgumentNullException ("items");
             }
 
-            lock (sync) {
+            lock (SyncRoot) {
                 if (!disposed) {
                     ServiceManager.DbConnection.BeginTransaction ();
 
@@ -259,7 +248,7 @@ namespace Banshee.Paas.Aether
                 throw new ArgumentException ("Invalid URL!", "url");            
             }
             
-            lock (sync) {
+            lock (SyncRoot) {
                 if (disposed) {
                     return;
                 }
@@ -281,7 +270,7 @@ namespace Banshee.Paas.Aether
 
         public void UpdateAsync ()
         {
-            lock (sync) {
+            lock (SyncRoot) {
                 if (disposed) {
                     return;
                 }
@@ -296,7 +285,7 @@ namespace Banshee.Paas.Aether
 
         public void QueueUpdate (PaasChannel channel)
         {
-            lock (sync) {
+            lock (SyncRoot) {
                 if (disposed) {
                     return;
                 }
@@ -311,7 +300,7 @@ namespace Banshee.Paas.Aether
 
         public void QueueUpdate (IEnumerable<PaasChannel> channels)
         {
-            lock (sync) {
+            lock (SyncRoot) {
                 if (disposed) {
                     return;
                 }
@@ -351,7 +340,7 @@ namespace Banshee.Paas.Aether
             List<PaasItem> new_items = null;
             List<PaasItem> removed_items = null;
 
-            lock (sync) {
+            lock (SyncRoot) {
                 if (disposed) {
                     return;
                 }
@@ -391,7 +380,9 @@ namespace Banshee.Paas.Aether
 
                             if (new_items.Count > 0) {
                                 foreach (PaasItem item in new_items) {
+                                    item.IsNew = true;
                                     item.ChannelID = channel.DbId;
+                                    item.ClientID = (int)AetherClientID.Syndication;                                    
                                     item.Save ();
                                 }
                             }
@@ -430,7 +421,7 @@ namespace Banshee.Paas.Aether
             var handler = ChannelUpdating;
 
             if (handler != null) {
-                event_queue.Register (
+                EventQueue.Register (
                     new EventWrapper<ChannelEventArgs> (handler, this, new ChannelEventArgs (channel))
                 );            
             }
@@ -446,7 +437,7 @@ namespace Banshee.Paas.Aether
             var handler = ChannelUpdateCompleted;
 
             if (handler != null) {
-                event_queue.Register (
+                EventQueue.Register (
                     new EventWrapper<ChannelUpdateCompletedEventArgs> (
                         handler, this, new ChannelUpdateCompletedEventArgs (channel, succeeded, e)
                     )
@@ -454,61 +445,6 @@ namespace Banshee.Paas.Aether
             }
         }
         
-        private void OnChannelAdded (PaasChannel channel)
-        {
-            var handler = ChannelAdded;
-
-            if (handler != null) {
-                event_queue.Register (
-                    new EventWrapper<ChannelEventArgs> (handler, this, new ChannelEventArgs (channel))
-                );
-            }
-        }
-
-        private void OnChannelRemoved (PaasChannel channel)
-        {
-            var handler = ChannelRemoved;
-
-            if (handler != null) {
-                event_queue.Register (
-                    new EventWrapper<ChannelEventArgs> (handler, this, new ChannelEventArgs (channel))
-                );
-            }
-        }
-
-        private void OnItemsAdded (IEnumerable<PaasItem> items)
-        {
-            var handler = ItemsAdded;
-
-            if (handler != null) {
-                event_queue.Register (
-                    new EventWrapper<ItemEventArgs> (handler, this, new ItemEventArgs (items))
-                );
-            }
-        }
-
-        private void OnItemRemoved (PaasItem item)
-        {
-            var handler = ItemsRemoved;
-
-            if (handler != null) {
-                event_queue.Register (
-                    new EventWrapper<ItemEventArgs> (handler, this, new ItemEventArgs (item))
-                );            
-            }
-        }
-
-        private void OnItemsRemoved (IEnumerable<PaasItem> items)
-        {
-            var handler = ItemsRemoved;
-            
-            if (handler != null) {
-                event_queue.Register (
-                    new EventWrapper<ItemEventArgs> (handler, this, new ItemEventArgs (items))
-                );
-            }
-        }
-
         private class DeletedChannelInfo
         {
             public bool DeleteFiles { get; set; }

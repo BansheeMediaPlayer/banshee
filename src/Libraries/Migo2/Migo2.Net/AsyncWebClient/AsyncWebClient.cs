@@ -261,7 +261,6 @@ namespace Migo2.Net
 
 
             SetBusy ();
-
             DownloadAsync (address, DownloadType.File, userState);
         }
 
@@ -550,9 +549,11 @@ namespace Migo2.Net
             } catch (WebException we) {
                 if (we.Status != WebExceptionStatus.RequestCanceled) {
                     err = we;
-                    
                     HttpWebResponse response = we.Response as HttpWebResponse;
-                    if (response != null && response.StatusCode == HttpStatusCode.BadRequest && response.ResponseUri != request.RequestUri) {
+                    
+                    if (response != null && 
+                        response.StatusCode == HttpStatusCode.BadRequest &&
+                        response.ResponseUri != request.RequestUri) {
                         redirect_workaround = true;
                         uri = response.ResponseUri;
                         ImplDownloadAsync ();
@@ -712,7 +713,11 @@ namespace Migo2.Net
                 break;
             case DownloadType.String:
                 string s;
-                try { s = Encoding.GetString (resultPtr); } catch { s = String.Empty; }
+                try { 
+                    s = Encoding.GetString (resultPtr); 
+                } catch { 
+                    s = String.Empty; 
+                }
                 
                 OnDownloadStringCompleted (s, errPtr, cancelledCpy, userStatePtr);
                 break;

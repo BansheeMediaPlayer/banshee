@@ -24,61 +24,57 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
+// This and AetherRequest are still a bit of an experiment.  This should be 
+// implemented as a more formal state machine.  This will not be used by users for sometime.
+
 using System;
 using System.IO;
 using System.Net;
+using System.Linq;
 using System.Text;
 
 using System.Collections;
 using System.Collections.Generic;
 
 using Hyena;
+using Hyena.Json;
+
 using Migo2.Async;
 
-namespace Banshee.Paas.Aether
-{
+using Banshee.ServiceStack;
+
+using Banshee.Paas.Data;
+using Banshee.Paas.Aether;
+
+namespace Banshee.Paas.Aether.MiroGuide
+{   
     public sealed class MiroGuideClient : AetherClient
     {
-        enum Method {
-            Authenticate,
-            RegisterClient,
-            RequestDeltas
-        }
+        private MiroGuideAccountInfo account;
 
-        private int timeout;
         private string client_id;
+        private MiroGuideClientInfo client_info;
+        
         private string session_id;
         private Uri aether_service_uri;
 
-        private string username;
-        private string password_hash;
+        private AsyncStateManager asm;        
+        
+        private AetherRequest request;
 
-        AsyncStateManager asm;
-        
-        private HttpWebRequest request;
-        private Dictionary<Method, EventHandler<AetherAsyncCompletedEventArgs>> event_table;
+        public EventHandler<RequestCompletedEventArgs> Completed;
 
-        public event EventHandler<AetherAsyncCompletedEventArgs> AuthenticationCompleted {
-            add    { AddHandler    (Method.Authenticate, value); }
-            remove { RemoveHandler (Method.Authenticate, value); }
-        }
+        public EventHandler<ClientIDChangedEventArgs> ClientIDChanged;
+
+        public EventHandler<DownloadRequestEventArgs> DownloadCancelled;
+        public EventHandler<DownloadRequestEventArgs> DownloadRequested;
         
-        public event EventHandler<AetherAsyncCompletedEventArgs> RegisterClientCompleted {
-            add    { AddHandler    (Method.RegisterClient, value); }
-            remove { RemoveHandler (Method.RegisterClient, value); }
-        }
-        
-        public event EventHandler<AetherAsyncCompletedEventArgs> RequestDeltasCompleted {
-            add    { AddHandler    (Method.RequestDeltas, value); }
-            remove { RemoveHandler (Method.RequestDeltas, value); }
+        public MiroGuideAccountInfo Account {
+            get { return Account; }
         }
 
         public string ClientID { 
             get {
-                if (String.IsNullOrEmpty (client_id)) {
-                    throw new InvalidOperationException ("ClientID is not set.");
-                }
-                
                 return client_id;
             }
             
@@ -86,11 +82,6 @@ namespace Banshee.Paas.Aether
         }
 
         public ICredentials Credentials { get; set; }
-
-        public string PasswordHash {
-            get { return password_hash; }
-            set { password_hash = value; }
-        }
 
         public string ServiceUri {
             get { return aether_service_uri.AbsoluteUri; }
@@ -107,341 +98,520 @@ namespace Banshee.Paas.Aether
         }
         
         public string SessionID { 
-            get {
-                if (String.IsNullOrEmpty (session_id)) {
-                    throw new InvalidOperationException ("SessionID is not set.");
-                }
-                    
+            get {        
                 return session_id;
             }
-            
-            set { session_id = value; }
         }
-    
-        public int Timeout {
-            get { return timeout; }
-            set {
-                if (value < 0) {
-                    throw new ArgumentOutOfRangeException ("Timeout", "Must be greater than 0.");
-                }
 
-                timeout = value;
-            }
-        }
-        
         public string UserAgent { get; set; }
 
-        public string Username {
-            get { return username; }
-            set { username = value; }
+        private MiroGuideClientInfo ClientInfo {
+            get {
+                if (client_info == null) {
+                    if (!String.IsNullOrEmpty (client_id)) {
+                        client_info = MiroGuideClientInfo.Provider.FetchFirstMatching ("ClientID = ?", client_id);
+                    } else {
+                        throw new InvalidOperationException ("Cannot access ClientInfo with null or empty client_id");
+                    }
+                }
+
+                return client_info;
+            }
+            
+            set {
+                if (value == null) {
+                    client_info = null;
+                } else {
+                    client_id = value.ClientID;
+                    client_info = value;                    
+                }
+            }
         }
 
-        public MiroGuideClient ()
+        public MiroGuideClient (MiroGuideAccountInfo account)
         {
+            if (account == null) {
+                throw new ArgumentNullException ("account");    
+            }
+            
             asm = new AsyncStateManager ();
-            event_table = new Dictionary<Method, EventHandler<AetherAsyncCompletedEventArgs>> ();
+            
+            this.account = account;
+            this.account.Updated += (sender, e) => {
+                lock (SyncRoot) {
+                    if (!String.IsNullOrEmpty (account.ServiceUri)) {
+                        ServiceUri = account.ServiceUri;                
+                    }
+                    
+                    client_id  = account.ClientID;
+                    session_id = null;
+                }
+            };
+            
+            if (!String.IsNullOrEmpty (account.ServiceUri)) {
+                ServiceUri = account.ServiceUri;                
+            }
+
+            client_id = account.ClientID;
+        }
+
+        public void UpdateAsync ()
+        {
+            lock (SyncRoot) {
+                if (asm.Busy) {
+                    return;
+                }
+                
+                BeginRequest (
+                    CreateRequestState (
+                        "/aether/api/deltas/", HttpMethod.GET, null,
+                        (ServiceFlags.RequireAuth | ServiceFlags.RequireClientID), 
+                        MiroGuideClientMethod.RequestDeltas, null
+                    ), true
+                );
+            }
+        }
+
+        public void Unsubscribe (IEnumerable<PaasChannel> channels)
+        {
+            JsonObject json_data;
+            JsonArray request_data = new JsonArray ();
+            
+            foreach (var channel in channels.Where (c => c.ClientID == (int)AetherClientID.MiroGuide)) {
+                request_data.Add ((int)channel.ExternalID);
+            }
+
+            json_data = new JsonObject ();
+            json_data["channels"] = request_data;
+
+            if (request_data.Count > 0) {
+                Console.WriteLine ("JSON:  {0}", SerializeJson (json_data));
+            
+                lock (SyncRoot) {
+                    BeginRequest (
+                        CreateRequestState (
+                            "/aether/api/unsubscribe/", HttpMethod.POST, 
+                            String.Format ("channels={0}", SerializeJson (json_data)),
+                            ServiceFlags.RequireAuth, MiroGuideClientMethod.Unsubscribe, null, null
+                        ), true
+                    );
+                }                            
+            }
         }
 
         public void CancelAsync ()
         {
-            if (asm.SetCancelled ()) {
-                Abort ();   
+            lock (SyncRoot) {
+                if (asm.SetCancelled ()) {
+                    if (request != null) {
+                        request.CancelAsync ();
+                    }
+                }
             }
         }
 
-        public void AuthenticateAsync ()
+        private void GetSessionAsync (MiroGuideRequestState callingMethodState)
         {
-            AuthenticateAsync (null);
-        }        
-        
-        private void AuthenticateAsync (object userState)
-        {
-            CryOutThroughTheAetherAsync (
-                "/aether/auth/", HttpMethod.POST, 
-                System.Web.HttpUtility.HtmlEncode (
-                    String.Format ("username={0}&password_hash={1}", username, password_hash)
-                ), ServiceFlags.None, Method.Authenticate, userState
-            );
-        }
-        
-        public void RegisterClientAsync ()
-        {
-            RegisterClientAsync (null);
-        }
-        
-        public void RegisterClientAsync (object userState)
-        {
-            CryOutThroughTheAetherAsync (
-                "/aether/register", HttpMethod.GET, null,
-                ServiceFlags.RequireAuth, Method.RegisterClient, userState
-            );            
-        }
-        
-        public void RequestDeltasAsync ()
-        {
-            RequestDeltasAsync (null);
-        }
-        
-        public void RequestDeltasAsync (object userState)
-        {
-            CryOutThroughTheAetherAsync (
-                String.Format ("/aether/deltas/{0}", ClientID), HttpMethod.GET,
-                null, ServiceFlags.RequireAuth, Method.RequestDeltas, userState
-            );                      
-        }
-
-        private void Abort ()
-        {
-            HttpWebRequest req = request;
-                
-            if (req != null) {
-                req.Abort ();
-            }
-        }                
-
-        private void Completed (RequestState state)
-        {
-            try {
-                asm.SetCompleted ();
-                
-                OnClientMethodCompleted (
-                    (Method)((object[])state.UserState)[0], CreateAetherArgs (state)
+            lock (SyncRoot) {
+                BeginRequest (
+                    CreateRequestState (
+                        "/aether/api/auth/", HttpMethod.POST, 
+                        String.Format ("username={0}&password_hash={1}", account.Username, account.PasswordHash),
+                        ServiceFlags.None, MiroGuideClientMethod.GetSession, null, callingMethodState
+                    ), false
                 );
-            } finally {
-                request = null;
-                state.Dispose ();
-                asm.Reset ();
-                OnStateChanged (AetherClientState.Busy, AetherClientState.Idle);
             }
         }
 
-        private AetherAsyncCompletedEventArgs CreateAetherArgs (RequestState state)
+        private void GetClientIDAsync (MiroGuideRequestState callingMethodState)
         {
-            string data = null;
-            Exception err = null;         
-            bool timedout = false;
-            bool cancelled = false; 
-            
-            object[] userState = state.UserState as object[];                            
+            lock (SyncRoot) {
+                BeginRequest (
+                    CreateRequestState (
+                        "/aether/api/register/", HttpMethod.GET, null,
+                        ServiceFlags.RequireAuth, MiroGuideClientMethod.RegisterClient, null, callingMethodState
+                    ), false
+                );
+            }
+        }
+
+        private AetherRequest CreateRequest ()
+        {
+            AetherRequest req = new AetherRequest () {
+                Timeout = (30 * 1000),
+                Credentials = Credentials,
+                UserAgent = UserAgent
+            };
+
+            req.Completed += OnRequestCompletedHandler;
+
+            return req;
+        }
+        
+        private void BeginRequest (MiroGuideRequestState state, bool changeState)
+        {
+            if (changeState) {
+                asm.SetBusy ();
+                OnStateChanged (AetherClientState.Idle, AetherClientState.Busy);
+            }
 
             if (asm.Cancelled) {
-                cancelled = true;
-            } else if (asm.Timedout) {
-                timedout = true;
-            } else {
-                if (state.Error != null) {
-                    if (state.Error is WebException) {
-                        WebException e = state.Error as WebException;
-                        if (e.Status == WebExceptionStatus.Timeout) {
-                            timedout = true;
+                Complete (state);
+                return;
+            }
+
+            try {
+                if (state.ServiceFlags != ServiceFlags.None) {
+                    if ((state.ServiceFlags & ServiceFlags.RequireAuth) != 0) {
+                        if (String.IsNullOrEmpty (SessionID)) {                        
+                            GetSessionAsync (state);
+                            return;
+                        } else {
+                            state.AddParameter ("session", SessionID);
                         }
                     }
-                }
-    
-                if (!timedout) {
-                    err  = state.Error;
-                    data = (string) userState[1];
-                }
-            }
-            
-            return new AetherAsyncCompletedEventArgs (data, err, cancelled, timedout, userState[2]);    
-        }
-        
-        private Cookie CreateCookie (string name, string val)
-        {
-            return new Cookie (name, val, "/", aether_service_uri.Host);
-        }
-
-        private void HandleException (RequestState state, Exception e)
-        {
-            state.Error = e;
-            Completed (state);            
-        }
-
-        private void CryOutThroughTheAetherAsync (string ppf,       // Path, parameters, fragment.
-                                                  HttpMethod method,
-                                                  string requestData,
-                                                  ServiceFlags flags,
-                                                  Method acm,
-                                                  object userState)
-        {
-            RequestState state = new RequestState () {
-                UserState = new object[3] { acm, null, userState }
-            };
-            
-            try {
-                asm.SetBusy ();
-                OnStateChanged (AetherClientState.Idle, AetherClientState.Busy);        
-                
-                request = WebRequest.Create (aether_service_uri.AbsoluteUri+ppf) as HttpWebRequest;
-                
-                request.Timeout = Timeout;
-                request.UserAgent = UserAgent;
-                request.Credentials = Credentials;
-                
-                request.AllowAutoRedirect = true;
-                
-                state.Request = request;
-
-                if (flags != ServiceFlags.None) {
-                    request.CookieContainer = new CookieContainer ();
                     
-                    if ((flags & ServiceFlags.RequireAuth) != 0) {
-                        request.CookieContainer.Add (CreateCookie ("sessionid", SessionID));
+                    if ((state.ServiceFlags & ServiceFlags.RequireClientID) != 0) {
+                        if (String.IsNullOrEmpty (ClientID)) {
+                            GetClientIDAsync (state);
+                            return;
+                        } else {
+                            state.AddParameter ("clientid", ClientID);
+                            state.AddParameter (
+                                "since", System.Web.HttpUtility.HtmlEncode (ClientInfo.LastUpdated)
+                            );
+                        }
                     }
-                    
-                    if ((flags & ServiceFlags.RequireClientID) != 0) {
-                        request.CookieContainer.Add (CreateCookie ("clientid", ClientID));
-                    }
-                }
+                }            
     
-                switch (method) {
+                request = CreateRequest ();
+    
+                switch (state.HttpMethod) {
                 case HttpMethod.GET:
-                    request.Method = "GET";
-                    GetResponse (state);
+                    request.BeginGetRequest (state.GetFullUri (), state);
                     break;
                 case HttpMethod.POST:
-                    request.Method = "POST";
-                    request.ContentType = "application/x-www-form-urlencoded";
-                    SendRequest (requestData, state);
+                    request.BeginPostRequest (
+                        state.GetFullUri (), Encoding.UTF8.GetBytes (state.RequestData), state
+                    );
                     break;
                 }
             } catch (Exception e) {
-                state.Error = e;
-                Completed (state);
+                Hyena.Log.Exception (e);
+                Complete (state);
             }
-        }
-
-        private void SendRequest (string data, RequestState state)
-        {
-            state.WriteBuffer = Encoding.UTF8.GetBytes (data);
-
-            state.AddTimeout (OnTimeout, timeout, true, state);
-            request.BeginGetRequestStream (FuckitIJustNeedAName, state);
-        }
-        
-        private void GetResponse (RequestState state)
-        {
-            state.AddTimeout (OnTimeout, timeout, true, state);       
-            request.BeginGetResponse (ThisIsCthulhuGoAheadCaller, state);
-        }
-
-        private void FuckitIJustNeedAName (IAsyncResult ar) {
-            RequestState state = ar.AsyncState as RequestState;
-
-            try {
-                state.RemoveTimeout (true);
-                state.RequestStream = state.Request.EndGetRequestStream (ar);
-
-                state.AddTimeout (OnTimeout, timeout, false, state);
-                state.RequestStream.BeginWrite (state.WriteBuffer, 0, state.WriteBuffer.Length, EndWrite, state);
-            } catch (Exception e) {
-                HandleException (state, e);
-            }
-        }
-        
-        private void ThisIsCthulhuGoAheadCaller (IAsyncResult ar)
-        {
-            // Wow, ok, hi.  Uhh, first time caller, longtime dreamer of mad dreams.
-            RequestState state = ar.AsyncState as RequestState;
-
-            try {
-                state.RemoveTimeout (true);
-                state.Response = state.Request.EndGetResponse (ar) as HttpWebResponse;
-                state.ResponseStream = state.Response.GetResponseStream ();
-
-                state.AddTimeout (OnTimeout, timeout, false, state);
-                state.ResponseStream.BeginRead (state.ReadBuffer, 0, RequestState.BufferSize, EndRead, state);
-            } catch (Exception e) {
-                HandleException (state, e);
-            }
-        }
-
-        private void EndRead (IAsyncResult ar)
-        {
-            int nread = -1;
-            RequestState state = ar.AsyncState as RequestState;
-
-            try {
-                state.SetTimeoutHandle ();
-                nread = state.ResponseStream.EndRead (ar);
             
-                if (nread != 0) {
-                    state.ReadData.Write (state.ReadBuffer, 0, nread);
-                    state.ResponseStream.BeginRead (state.ReadBuffer, 0, RequestState.BufferSize, EndRead, state);
-                } else {
-                    // Assuming utf-8 encoding.  Don't give me that look.
-                    ((object[])(state.UserState))[1] = Encoding.UTF8.GetString (state.ReadData.ToArray ());
-                    Completed (state);
-                }            
-            } catch (Exception e) {
-                HandleException (state, e);
-            }
         }
 
-        private void EndWrite (IAsyncResult ar)
-        {            
-            RequestState state = ar.AsyncState as RequestState;
+        private void ApplyUpdate (AetherDelta delta)
+        {
+            List<PaasItem> new_items = new List<PaasItem> ();
+            List<PaasItem> removed_items = new List<PaasItem> ();
+            List<PaasChannel> new_channels = new List<PaasChannel> ();
+            List<PaasChannel> removed_channels = new List<PaasChannel> ();
 
+            List<long> new_downloads = new List<long> ();
+            List<long> cancelled_downloads = new List<long> ();
+
+            Dictionary<long, PaasChannel> channel_cache = new Dictionary<long, PaasChannel> ();
+            
+            ServiceManager.DbConnection.BeginTransaction ();
+            
             try {
-                state.RemoveTimeout (true);
-                state.RequestStream.EndWrite (ar);
-                
-                if (state.RequestStream != null) {
-                    state.RequestStream.Close ();
-                    state.RequestStream = null;
+                foreach (PaasChannel pc in delta.NewChannels) {
+                    try {
+                        PaasChannel.Provider.Save (pc);
+                        channel_cache.Add (pc.ExternalID, pc);
+                        new_channels.Add (pc);
+                    } catch (Exception e) {
+                        Hyena.Log.Exception (e);
+                        continue;
+                    }
                 }
                 
-                GetResponse (state);
-            } catch (Exception e) {                
-                HandleException (state, e);
-            }
-        }
-
-        private void OnTimeout (object userState, bool timedOut) 
-        {
-            if (timedOut) {
-                if (asm.SetTimedout ()) {
-                    Abort ();
+                foreach (PaasItem pi in delta.NewItems) {
+                    try {
+                        pi.ChannelID = GetChannelIDFromExternalID (channel_cache, pi.ExternalChannelID);
+                        pi.Save ();
+                        new_items.Add (pi);
+                    } catch (Exception e) {
+                        Hyena.Log.Exception (e);
+                        continue;
+                    }                
                 }
-            }
-        }   
 
-        private void AddHandler (Method method, EventHandler<AetherAsyncCompletedEventArgs> handler) {
-            lock (((ICollection)event_table).SyncRoot) {
-                if (!event_table.ContainsKey (method)) {
-                    event_table.Add (method, handler);
-                } else {
-                    event_table[method] += handler;
+                string[] cids = delta.RemovedChannels.Select (id => id.ToString ()).ToArray<string> ();
+                string[] iids = delta.RemovedItems.Select (id => id.ToString ()).ToArray<string> ();
+
+                if (cids.Length > 0) {
+                    var channels = PaasChannel.Provider.FetchAllMatching (
+                        String.Format ("ClientID = {0} AND ExternalID IN ({1})", 
+                        (long)AetherClientID.MiroGuide, String.Join (",", cids))
+                    );
+                    
+                    removed_channels.AddRange (channels);
+
+                    foreach (var channel in channels) {
+                        removed_items.AddRange (channel.Items);
+                    }
+    
+                    PaasChannel.Provider.Delete (removed_channels);
                 }
-            }
-        }
-
-        private void RemoveHandler (Method method, EventHandler<AetherAsyncCompletedEventArgs> handler) {
-            lock (((ICollection)event_table).SyncRoot) {
-                EventHandler<AetherAsyncCompletedEventArgs> h;
-
-                if (event_table.TryGetValue (method, out h)) {
-                    h -= handler;                    
+                
+                if (iids.Length > 0) {            
+                    removed_items.AddRange (
+                        PaasItem.Provider.FetchAllMatching (
+                            String.Format ("ClientID = {0} AND ExternalID IN ({1})", 
+                            (long)AetherClientID.MiroGuide, String.Join (",", iids))
+                        )
+                    );                  
                 }
-            }
-        }        
 
-        private EventHandler<AetherAsyncCompletedEventArgs> GetHandler (Method method)
-        {
-            lock (((ICollection)event_table).SyncRoot) {
-                EventHandler<AetherAsyncCompletedEventArgs> handler;
-                event_table.TryGetValue (method, out handler);
-                return handler;
-            }
-        }
+                if (removed_items.Count > 0) {
+                    PaasItem.Provider.Delete (removed_items);                                        
+                }
 
-        private void OnClientMethodCompleted (Method method, AetherAsyncCompletedEventArgs e) {
-            var handler = GetHandler (method);
+                new_downloads.AddRange (delta.NewDownloads);
+                cancelled_downloads.AddRange (delta.CancelledDownloads);
+
+                ClientInfo.LastUpdated = delta.Updated;
+                ClientInfo.Save ();
+
+                ServiceManager.DbConnection.CommitTransaction ();                
+            } catch {
+                new_channels.Clear ();
+                new_items.Clear ();
+                removed_items.Clear ();
+                removed_channels.Clear ();
+                new_downloads.Clear ();
+                cancelled_downloads.Clear ();
+                
+                ServiceManager.DbConnection.RollbackTransaction  ();
+                throw;
+            } finally {
+                channel_cache.Clear ();
+            }
+
+            if (new_channels.Count > 0) {
+                OnChannelsAdded (new_channels);
+            }
+
+            if (new_items.Count > 0) {
+                OnItemsAdded (new_items);
+            }
             
+            if (removed_items.Count > 0) {
+                OnItemsRemoved (removed_items);
+            }
+            
+            if (removed_channels.Count > 0) {
+                OnChannelsRemoved (removed_channels);
+            }
+
+            if (new_downloads.Count > 0) {
+                OnDownloadQueued (new_downloads);
+            }
+
+            if (cancelled_downloads.Count > 0) {
+                OnDownloadCancelled (cancelled_downloads);
+            }
+        }
+
+        private long GetChannelIDFromExternalID (Dictionary<long, PaasChannel> channel_cache, long external_id)
+        {
+            PaasChannel c;
+
+            if (channel_cache.ContainsKey (external_id)) {
+                c = channel_cache[external_id];
+            } else {
+                c = PaasChannel.Provider.FetchFirstMatching ("ExternalID = ?", external_id);
+                channel_cache.Add (external_id, c);
+            }
+
+            return c.DbId;
+        }
+
+        private void Complete (MiroGuideRequestState state)
+        {
+            if (state.CallingState != null) {
+                BeginRequest (state.CallingState, false);
+                return; 
+            } else {
+                asm.Reset ();
+                OnStateChanged (AetherClientState.Busy, AetherClientState.Idle);
+                OnCompleted (state);
+            }
+        }
+
+        private MiroGuideRequestState CreateRequestState (string ppf,
+                                                          HttpMethod method, 
+                                                          string requestData,
+                                                          ServiceFlags flags,
+                                                          MiroGuideClientMethod acm,
+                                                          object userState)
+        {
+            return CreateRequestState (ppf, method, requestData, flags, acm, userState, null);
+        }
+        
+        private MiroGuideRequestState CreateRequestState (string ppf,        // Path, parameters, fragment.
+                                                          HttpMethod method, 
+                                                          string requestData,
+                                                          ServiceFlags flags,
+                                                          MiroGuideClientMethod acm,
+                                                          object userState,
+                                                          MiroGuideRequestState callingState)
+        {
+            return new MiroGuideRequestState () {
+                Method = acm,
+                RequestData = requestData,
+                HttpMethod = method,
+                ServiceFlags = flags,
+                UserState = userState,
+                CallingState = callingState,
+                BaseUri = ServiceUri+ppf                
+            };
+        }
+
+        private MiroGuideRequestState GetHead (MiroGuideRequestState state)
+        {
+            while (state.CallingState != null) {
+                state = state.CallingState;
+            }
+
+            return state;
+        }
+
+        private object DeserializeJson (string response)
+        {
+            Deserializer d = new Deserializer ();
+            d.SetInput (response);
+            return d.Deserialize ();            
+        }
+        
+        private string SerializeJson (object json)
+        {
+            return new Serializer (json).Serialize ();
+        }
+        
+        private void HandleGetSessionResponse (string response)
+        {
+            JsonObject resp = DeserializeJson (response) as JsonObject;
+
+            if (resp["status"] as string == "success") {
+                session_id = resp["session"] as string;
+            } else {
+                throw new Exception ();
+            }
+        }
+
+        private void HandleRegisterClientResponse (string response)
+        {
+            JsonObject resp = DeserializeJson (response) as JsonObject;
+
+            if (resp["status"] as string == "success") {
+                client_id = resp["clientid"] as string;
+                MiroGuideClientInfo mi = new MiroGuideClientInfo () {
+                    ClientID = client_id
+                };
+    
+                mi.Save ();
+
+                ClientInfo = mi;
+                OnClientIDChanged (mi.ClientID);
+            } else {
+                throw new Exception ();
+            }
+        }
+
+        private void HandleGetDeltasResponse (string response)
+        {
+            ApplyUpdate (new AetherDelta (response));
+        }
+
+        private void OnRequestCompletedHandler (object sender, AetherRequestCompletedEventArgs e)
+        {
+            lock (SyncRoot) {
+                request.Completed -= OnRequestCompletedHandler;
+                MiroGuideRequestState state = e.UserState as MiroGuideRequestState;
+                
+                try {
+                    if (e.Cancelled || asm.Cancelled) {
+                        state = GetHead (state);
+                        state.Cancelled = true;
+                    } else if (e.Timedout) {
+                        state = GetHead (state);                    
+                        state.Timedout = true;
+                    } else if (e.Error != null) {
+                        throw e.Error;
+                    } else {
+                        state.ResponseData = Encoding.UTF8.GetString (e.Data);
+                    
+                        switch (state.Method) {
+                        case MiroGuideClientMethod.GetSession:
+                            HandleGetSessionResponse (state.ResponseData);
+                            break;
+                        case MiroGuideClientMethod.RegisterClient:
+                            HandleRegisterClientResponse (state.ResponseData);
+                            break;
+                        case MiroGuideClientMethod.RequestDeltas:
+                            HandleGetDeltasResponse (state.ResponseData);
+                            break;
+                        }
+                    }
+                } catch (Exception ex) {
+                    Hyena.Log.Exception (ex);                
+                    state = GetHead (state);
+                    state.Error = ex;                
+                }
+                            
+                Complete (state);
+            }
+        }
+
+        private void OnCompleted (MiroGuideRequestState state)
+        {
+            var handler = Completed;
+
+            RequestCompletedEventArgs e = new RequestCompletedEventArgs (
+                state.Error, state.Cancelled, state.Method, state.Timedout, state.UserState
+            );
+
             if (handler != null) {
-                handler (this, e);
+                EventQueue.Register (new EventWrapper<RequestCompletedEventArgs> (handler, this, e));
             }
-        }       
+        }
+
+        private void OnClientIDChanged (string id)
+        {
+            var handler = ClientIDChanged;
+
+            if (handler != null) {
+                EventQueue.Register (
+                    new EventWrapper<ClientIDChangedEventArgs> (handler, this, new ClientIDChangedEventArgs (id))
+                );
+            }
+        }
+
+        private void OnDownloadQueued (IEnumerable<long> ids)
+        {
+            var handler = DownloadRequested;
+
+            if (handler != null) {
+                EventQueue.Register (
+                    new EventWrapper<DownloadRequestEventArgs> (handler, this, new DownloadRequestEventArgs (ids))
+                );
+            }
+        }
+
+        private void OnDownloadCancelled (IEnumerable<long> ids)
+        {
+            var handler = DownloadCancelled;
+
+            if (handler != null) {
+                EventQueue.Register (
+                    new EventWrapper<DownloadRequestEventArgs> (handler, this, new DownloadRequestEventArgs (ids))
+                );
+            }
+        }
     }
 }

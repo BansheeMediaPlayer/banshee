@@ -54,7 +54,7 @@ namespace Banshee.Paas.Data
                     CoreTracks.ExternalID = {1}.ID AND
                     {1}.Active = 1",
                 PaasChannel.Provider.TableName, PaasItem.Provider.TableName, paas_library_dbid
-            ));            
+            ));          
         }
 
         protected override void GenerateSortQueryPart ()
@@ -90,7 +90,9 @@ namespace Banshee.Paas.Data
                         PaasItems.LocalPath IS NOT NULL {0}, PaasItems.PubDate DESC", ascDesc);
                     break;
                 case "album":
-                    sort_query = String.Format ("PaasChannels.Name {0}, PaasItems.PubDate DESC", ascDesc);
+                    sort_query = String.Format (
+                        "HYENA_COLLATION_KEY(PaasChannels.Name) {0}, PaasItems.PubDate DESC", ascDesc
+                    );
                     break;              
             }
 

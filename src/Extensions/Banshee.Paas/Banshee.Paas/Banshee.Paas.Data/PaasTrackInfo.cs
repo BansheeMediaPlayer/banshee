@@ -36,15 +36,17 @@ namespace Banshee.Paas.Data
 {
     public class PaasTrackInfo
     {
+        private static readonly object sync = new object ();
+
         public static PaasTrackInfo From (TrackInfo track)
         {
             if (track != null) {
                 PaasTrackInfo pi = track.ExternalObject as PaasTrackInfo;
-                
+    
                 if (pi != null) {
                     track.ReleaseDate = pi.PubDate;
                 }
-                
+    
                 return pi;
             }
             
@@ -53,21 +55,21 @@ namespace Banshee.Paas.Data
 
         public static IEnumerable<PaasTrackInfo> From (IEnumerable<TrackInfo> tracks)
         {
-            foreach (TrackInfo track in tracks) {
-                PaasTrackInfo pi = From (track);
-                
-                if (pi != null) {
-                    yield return pi;
+            lock (sync) {
+                foreach (TrackInfo track in tracks) {
+                    PaasTrackInfo pi = From (track);
+                    
+                    if (pi != null) {
+                        yield return pi;
+                    }
                 }
             }
         }
-        
+
         private int position;
         private DatabaseTrackInfo track;
         
         private PaasItem item;        
-
-#region Properties
 
         public DatabaseTrackInfo Track {
             get { return track; }
@@ -80,9 +82,9 @@ namespace Banshee.Paas.Data
         public PaasItem Item {
             get {
                 if (item == null && track.ExternalId > 0) {
-                    item = PaasItem.Provider.FetchSingle (track.ExternalId);
-                }
-                
+                    item = PaasItem.Provider.FetchSingle (track.ExternalId);                 
+                } 
+      
                 return item;
             }
             
@@ -116,10 +118,6 @@ namespace Banshee.Paas.Data
         public DateTime ReleaseDate {
             get { return Item.PubDate; }
         }         
-
-#endregion
-
-#region Constructors
     
         public PaasTrackInfo (DatabaseTrackInfo track) : base ()
         {
@@ -131,8 +129,6 @@ namespace Banshee.Paas.Data
             Item = item;
             SyncWithItem ();
         }
-
-#endregion
 
         static PaasTrackInfo ()
         {
@@ -152,6 +148,13 @@ namespace Banshee.Paas.Data
         
         public void SyncWithItem ()
         {
+            if (track.ExternalId != Item.DbId) {
+                throw new Exception (String.Format (
+                    "PLEASE REPORT!  Track.TrackID:  {0} - Track.ExternalID:  {1} - Track.CacheEntryID:  {2} - Item.DbId = {3} - Item.CacheEntryID = {4}", 
+                    track.TrackId, track.ExternalId, track.CacheEntryId, Item.DbId, Item.CacheEntryId
+                ));
+            }
+
             track.ArtistName = Item.Channel.Publisher;
             track.AlbumTitle = Item.Channel.Name;
             track.TrackTitle = Item.Name;

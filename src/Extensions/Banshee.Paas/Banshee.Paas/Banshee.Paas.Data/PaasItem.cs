@@ -84,6 +84,13 @@ namespace Banshee.Paas.Data
             protected set { dbid = value; }
         }
 
+        private long client_id;
+        [DatabaseColumn ("ClientID", Index = "PaasItemsClientIDIndex")]
+        public long ClientID {
+            get { return client_id; }
+            set { client_id = value; }
+        } 
+
         private long external_id;
         [DatabaseColumn ("ExternalID", Index = "PaasItemsExternalIDIndex")]
         public long ExternalID {
@@ -287,9 +294,7 @@ namespace Banshee.Paas.Data
         
         public void Delete (bool delete_file)
         {
-            Hyena.Log.Information ("Handle File Deletions!!!!!!!!!!!!!!!");
             Provider.Delete (this);
-            //Manager.OnItemRemoved (this);
         }
     }
 

@@ -47,6 +47,9 @@ using Banshee.Collection.Database;
 using Banshee.Paas.Data;
 using Banshee.Paas.Aether;
 
+using Banshee.Paas.Aether.MiroGuide;
+using Banshee.Paas.Aether.MiroGuide.Gui;
+
 namespace Banshee.Paas.Gui
 {
     enum SelectionInfo {
@@ -178,7 +181,19 @@ namespace Banshee.Paas.Gui
                     "PaasChannelPropertiesAction", Stock.Preferences,
                      Catalog.GetString ("Properties"), null,
                      null, OnPaasChannelPropertiesHandler
-                )                   
+                )
+#if MIRO_GUIDE 
+                ,
+                new ActionEntry (
+                    "PaasEditMiroGuidePropertiesAction", Stock.Properties,
+                     Catalog.GetString ("Edit Miro Guide Settings"), "<control>M",
+                     null, (sender, e) => { 
+                        MiroGuideAccountDialog mgad = new MiroGuideAccountDialog (PaasService.MiroGuideAccount);
+                        mgad.Run ();
+                        mgad.Destroy ();
+                     }
+                )
+#endif
             });
             
             actions_id = Actions.UIManager.AddUiFromResource ("GlobalUI.xml");
@@ -390,6 +405,10 @@ namespace Banshee.Paas.Gui
             RangeCollection rc = new RangeCollection ();
             
             foreach (var i in items.Select (i => i.Item)) {
+                if (!i.IsDownloaded) {
+                    continue;
+                }
+                
                 if (_new && !i.IsNew) {
                     rc.Add ((int)i.DbId);
                 } else if (i.IsNew) {
@@ -722,7 +741,8 @@ namespace Banshee.Paas.Gui
             }
 
             if (delete) {
-                service.SyndicationClient.DeleteChannels (channels, delete_files);                
+                //service.SyndicationClient.DeleteChannels (channels, delete_files);
+                service.DeleteChannels (channels, delete_files);                
             }
         }
 
