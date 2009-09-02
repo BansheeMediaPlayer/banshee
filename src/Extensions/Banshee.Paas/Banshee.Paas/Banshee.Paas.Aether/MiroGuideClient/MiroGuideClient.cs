@@ -30,11 +30,14 @@
 using System;
 using System.IO;
 using System.Net;
+using System.Web;
+
 using System.Linq;
 using System.Text;
 
 using System.Collections;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 
 using Hyena;
 using Hyena.Json;
@@ -164,7 +167,7 @@ namespace Banshee.Paas.Aether.MiroGuide
                 
                 BeginRequest (
                     CreateRequestState (
-                        "/aether/api/deltas/", HttpMethod.GET, null,
+                        HttpMethod.GET, "/aether/api/deltas/", null, null,
                         (ServiceFlags.RequireAuth | ServiceFlags.RequireClientID), 
                         MiroGuideClientMethod.RequestDeltas, null
                     ), true
@@ -184,13 +187,11 @@ namespace Banshee.Paas.Aether.MiroGuide
             json_data = new JsonObject ();
             json_data["channels"] = request_data;
 
-            if (request_data.Count > 0) {
-                Console.WriteLine ("JSON:  {0}", SerializeJson (json_data));
-            
+            if (request_data.Count > 0) {            
                 lock (SyncRoot) {
                     BeginRequest (
                         CreateRequestState (
-                            "/aether/api/unsubscribe/", HttpMethod.POST, 
+                            HttpMethod.POST, "/aether/api/unsubscribe/", null,
                             String.Format ("channels={0}", SerializeJson (json_data)),
                             ServiceFlags.RequireAuth, MiroGuideClientMethod.Unsubscribe, null, null
                         ), true
@@ -210,12 +211,41 @@ namespace Banshee.Paas.Aether.MiroGuide
             }
         }
 
+        public void GetChannels (MiroGuideFilterType filterType, 
+                                 string filterValue, 
+                                 MiroGuideSortType sort, 
+                                 bool reverse, 
+                                 uint limit, uint offset)
+        {
+            if (String.IsNullOrEmpty (filterValue)) {
+                throw new ArgumentException ("Missing required parameter", "filterValue");
+            }
+            
+            NameValueCollection nvc = new NameValueCollection ();
+            
+            nvc.Add ("filter", ToQueryPart (filterType));
+            nvc.Add ("filter_value", filterValue);
+            nvc.Add ("sort", String.Format ("{0}{1}", ((reverse) ? "-" : String.Empty), ToQueryPart (sort)));
+            
+            nvc.Add ("limit", limit.ToString ());
+            nvc.Add ("offset", offset.ToString ());
+
+            lock (SyncRoot) {
+                BeginRequest (
+                    CreateRequestState (
+                        HttpMethod.GET, "/api/get_channels", nvc, null,
+                        ServiceFlags.None, MiroGuideClientMethod.GetChannels, null, null
+                    ), true
+                );
+            }            
+        }
+
         private void GetSessionAsync (MiroGuideRequestState callingMethodState)
         {
             lock (SyncRoot) {
                 BeginRequest (
                     CreateRequestState (
-                        "/aether/api/auth/", HttpMethod.POST, 
+                        HttpMethod.POST, "/aether/api/auth/", null,
                         String.Format ("username={0}&password_hash={1}", account.Username, account.PasswordHash),
                         ServiceFlags.None, MiroGuideClientMethod.GetSession, null, callingMethodState
                     ), false
@@ -228,7 +258,7 @@ namespace Banshee.Paas.Aether.MiroGuide
             lock (SyncRoot) {
                 BeginRequest (
                     CreateRequestState (
-                        "/aether/api/register/", HttpMethod.GET, null,
+                        HttpMethod.GET, "/aether/api/register/", null, null, 
                         ServiceFlags.RequireAuth, MiroGuideClientMethod.RegisterClient, null, callingMethodState
                     ), false
                 );
@@ -443,33 +473,43 @@ namespace Banshee.Paas.Aether.MiroGuide
             }
         }
 
-        private MiroGuideRequestState CreateRequestState (string ppf,
-                                                          HttpMethod method, 
+        private MiroGuideRequestState CreateRequestState (HttpMethod method, 
+                                                          string path,
+                                                          NameValueCollection parameters, 
                                                           string requestData,
                                                           ServiceFlags flags,
                                                           MiroGuideClientMethod acm,
                                                           object userState)
         {
-            return CreateRequestState (ppf, method, requestData, flags, acm, userState, null);
+            return CreateRequestState (method, path, parameters, requestData, flags, acm, userState, null);
         }
-        
-        private MiroGuideRequestState CreateRequestState (string ppf,        // Path, parameters, fragment.
-                                                          HttpMethod method, 
+
+
+
+        private MiroGuideRequestState CreateRequestState (HttpMethod method,
+                                                          string path,
+                                                          NameValueCollection parameters,                                                          
                                                           string requestData,
                                                           ServiceFlags flags,
                                                           MiroGuideClientMethod acm,
                                                           object userState,
                                                           MiroGuideRequestState callingState)
         {
-            return new MiroGuideRequestState () {
+            MiroGuideRequestState state = new MiroGuideRequestState () {
                 Method = acm,
                 RequestData = requestData,
                 HttpMethod = method,
                 ServiceFlags = flags,
                 UserState = userState,
                 CallingState = callingState,
-                BaseUri = ServiceUri+ppf                
+                BaseUri = ServiceUri+path                
             };
+
+            if (parameters != null) { 
+                state.AddParameters (parameters);
+            }
+
+            return state;
         }
 
         private MiroGuideRequestState GetHead (MiroGuideRequestState state)
@@ -528,6 +568,33 @@ namespace Banshee.Paas.Aether.MiroGuide
             ApplyUpdate (new AetherDelta (response));
         }
 
+        public static string ToQueryPart (MiroGuideFilterType type)
+        {
+            switch (type)
+            {
+            case MiroGuideFilterType.Category:  return "category";     
+            case MiroGuideFilterType.Language:  return "language";      
+            case MiroGuideFilterType.Name:      return "name";    
+            case MiroGuideFilterType.Tag:       return "tag"; 
+            default:
+                goto case MiroGuideFilterType.Name;
+            }
+        }
+
+        public static string ToQueryPart (MiroGuideSortType type)
+        {
+            switch (type)
+            {
+            case MiroGuideSortType.Age:     return "age";     
+            case MiroGuideSortType.ID:      return "id";      
+            case MiroGuideSortType.Name:    return "name";    
+            case MiroGuideSortType.Popular: return "popular"; 
+            case MiroGuideSortType.Rating:  return "rating";
+            default:
+                goto case MiroGuideSortType.Name;
+            }
+        }
+
         private void OnRequestCompletedHandler (object sender, AetherRequestCompletedEventArgs e)
         {
             lock (SyncRoot) {
@@ -555,6 +622,9 @@ namespace Banshee.Paas.Aether.MiroGuide
                             break;
                         case MiroGuideClientMethod.RequestDeltas:
                             HandleGetDeltasResponse (state.ResponseData);
+                            break;
+                        case MiroGuideClientMethod.GetChannels:
+                            Console.WriteLine (state.ResponseData);
                             break;
                         }
                     }

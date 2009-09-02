@@ -220,6 +220,9 @@ namespace Banshee.Paas.Aether.MiroGuide
                 channel.Link          = XmlUtils.GetXmlNodeText (node, "website_url");
                 channel.Publisher     = XmlUtils.GetXmlNodeText (node, "publisher");
                 channel.Url           = XmlUtils.GetXmlNodeText (node, "url");
+                channel.ImageUrl      = XmlUtils.GetXmlNodeText (node, "thumb_url");
+
+                channel.LastDownloadTime = DateTime.Now;
 
                 return channel;
              } catch (Exception e) {

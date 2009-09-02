@@ -28,6 +28,7 @@ using System;
 using System.Text;
 
 using System.Collections.Generic;
+using System.Collections.Specialized;
 
 namespace Banshee.Paas.Aether.MiroGuide
 {
@@ -67,6 +68,17 @@ namespace Banshee.Paas.Aether.MiroGuide
                 parameters[key] = val;
             } else {
                 parameters.Add (key, val);
+            }
+        }
+
+        public void AddParameters (NameValueCollection nvc)
+        {
+            if (nvc == null) {
+                throw new ArgumentNullException ("nvc");
+            }
+
+            foreach (string key in nvc) {
+                AddParameter (key, nvc[key]);
             }
         }
 

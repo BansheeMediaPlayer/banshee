@@ -30,11 +30,9 @@
 // be abstracted.
 
 using System;
-
 using Mono.Unix;
 
 using Gtk;
-
 using Banshee.Gui;
 
 namespace Banshee.Paas.Aether.MiroGuide.Gui

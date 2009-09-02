@@ -56,6 +56,8 @@ using Banshee.Paas.Utils;
 
 using Banshee.Paas.Aether;
 using Banshee.Paas.Aether.MiroGuide;
+using Banshee.Paas.Aether.MiroGuide.Gui;
+
 using Banshee.Paas.Aether.Syndication;
 
 using Banshee.Paas.DownloadManager;
@@ -169,10 +171,11 @@ namespace Banshee.Paas
             client_handle = new AutoResetEvent (true);
 
 #if MIRO_GUIDE
+            source.AddChildSource (new TestSource ());
             mg_client = new MiroGuideClient (MiroGuideAccount) {
                 UserAgent = Banshee.Web.Browser.UserAgent,
             };
-
+            
             mg_client.StateChanged += (sender, e) => {
                 if (e.NewState == AetherClientState.Idle) {
                     DecrementUpdateCount ();
@@ -194,6 +197,10 @@ namespace Banshee.Paas
                     if ((e.Cancelled & e.Timedout) == false && e.Error == null) {
                         mg_client.UpdateAsync ();
                     }
+                }
+
+                foreach (PaasChannel c in PaasChannel.Provider.FetchAll ()) {
+                    RefreshArtworkFor (c);
                 }
             };
 
@@ -496,14 +503,31 @@ namespace Banshee.Paas
                 }
     
                 ServiceManager.DbConnection.BeginTransaction ();
-                
+
                 try {
+#if MIRO_GUIDE
+                    PaasChannel channel;
+                    
+                    if (e.Item != null) {
+                        source.AddItem (e.Item);
+                        channel = e.Item.Channel;
+                    } else {
+                        source.AddItems (e.Items);
+                        var item = e.Items.First ();
+                        channel = (item == null) ? null : item.Channel;
+                    }
+
+                    if (channel != null) {
+                        channel.LastDownloadTime = DateTime.Now;
+                    }
+#else
                     if (e.Item != null) {
                         source.AddItem (e.Item);                        
                     } else {
                         source.AddItems (e.Items);
                     }
-                    
+#endif
+
                     ServiceManager.DbConnection.CommitTransaction ();
                 } catch (Exception ex) {
                     ServiceManager.DbConnection.RollbackTransaction ();

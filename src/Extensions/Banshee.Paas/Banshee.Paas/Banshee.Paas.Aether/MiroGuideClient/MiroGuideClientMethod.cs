@@ -27,6 +27,7 @@
 namespace Banshee.Paas.Aether.MiroGuide
 { 
     public enum MiroGuideClientMethod {
+        GetChannels,
         GetSession,
         RegisterClient,
         RequestDeltas,

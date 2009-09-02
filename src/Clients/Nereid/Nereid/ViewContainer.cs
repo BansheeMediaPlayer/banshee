@@ -45,6 +45,9 @@ namespace Nereid
     public class ViewContainer : VBox
     {
         private SearchEntry search_entry;
+        private SearchEntry current_search_entry;
+        
+        private VBox search_entry_box;
         private HBox header;
         private Label title_label;
         private Label search_label;
@@ -52,7 +55,7 @@ namespace Nereid
         private VBox footer;
         
         private ISourceContents content;
-        
+
         public ViewContainer ()
         {
             BuildHeader ();           
@@ -65,6 +68,7 @@ namespace Nereid
         {
             header = new HBox ();
             footer = new VBox ();
+            search_entry_box = new VBox ();
             
             EventBox title_box = new EventBox ();
             title_label = new Label ();
@@ -91,7 +95,7 @@ namespace Nereid
             
             header.PackStart (title_box, true, true, 0);
             header.PackStart (search_label, false, false, 5);
-            header.PackStart (search_entry, false, false, 0);
+            header.PackStart (search_entry_box, false, false, 0);
             
             InterfaceActionService uia = ServiceManager.Get<InterfaceActionService> ();
             if (uia != null) {
@@ -164,6 +168,7 @@ namespace Nereid
             search_entry.FilterChanged += OnSearchEntryFilterChanged;
             search_entry.ActivateFilter ((int)TrackFilterType.None);
 
+            SetDefaultSearchEntry ();
             OnSearchEntryFilterChanged (search_entry, EventArgs.Empty);
         }
 
@@ -185,7 +190,28 @@ namespace Nereid
                 editable.Position = search_entry.Query.Length;
             }
         }
-        
+
+        private void ClearSearchEntryBox ()
+        {
+            foreach (Widget w in search_entry_box) {
+                search_entry_box.Remove (w);
+            }
+        }
+
+        public void SetDefaultSearchEntry ()
+        {
+            SetSearchEntry (DefaultSearchEntry);
+        }
+
+        public void SetSearchEntry (SearchEntry searchEntry)
+        {
+            if (searchEntry != null) {
+                ClearSearchEntryBox ();
+                current_search_entry = searchEntry;
+                search_entry_box.PackStart (searchEntry, false, false, 0);
+            }
+        }
+
         public void SetFooter (Widget contents)
         {
             if (contents != null) {
@@ -206,9 +232,14 @@ namespace Nereid
         public HBox Header {
             get { return header; }
         }
+
+        public SearchEntry DefaultSearchEntry
+        {
+            get { return search_entry; }
+        }
         
         public SearchEntry SearchEntry {
-            get { return search_entry; }
+            get { return current_search_entry; }
         }
         
         public ISourceContents Content {
@@ -243,11 +274,11 @@ namespace Nereid
         }
         
         public bool SearchSensitive {
-            get { return search_entry.Sensitive; }
+            get { return SearchEntry.Sensitive; }
             set { 
-                search_entry.Sensitive = value;
+                SearchEntry.Sensitive = value;
                 search_label.Sensitive = value;
-                search_entry.Visible = value;
+                SearchEntry.Visible = value;
                 search_label.Visible = value;
             }
         }

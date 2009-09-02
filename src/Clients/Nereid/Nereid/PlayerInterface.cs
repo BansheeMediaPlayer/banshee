@@ -279,50 +279,58 @@ namespace Nereid
         
         private Source previous_source = null;
         private TrackListModel previous_track_model = null;
+        
         private void OnActiveSourceChanged (SourceEventArgs args)
         {
             Banshee.Base.ThreadAssist.ProxyToMain (delegate {
                 Source source = ServiceManager.SourceManager.ActiveSource;
-    
-                view_container.SearchSensitive = source != null && source.CanSearch;
                 
                 if (source == null) {
                     return;
                 }
-                
+
                 view_container.Title = source.Name;
+
+                if (source is IImplementsCustomSearch) {
+                    view_container.SetSearchEntry ((source as IImplementsCustomSearch).SearchEntry);
+                } else {
+                    view_container.SetDefaultSearchEntry ();
+                }
+
+                view_container.SearchSensitive = source.CanSearch || source is IImplementsCustomSearch;
+                
                 view_container.SearchEntry.Ready = false;
                 view_container.SearchEntry.CancelSearch ();
-    
+
                 if (source.FilterQuery != null) {
                     view_container.SearchEntry.Query = source.FilterQuery;
                     view_container.SearchEntry.ActivateFilter ((int)source.FilterType);
-                }
-    
+                }  
+
                 if (view_container.Content != null) {
                     view_container.Content.ResetSource ();
                 }
-    
+
                 if (previous_track_model != null) {
                     previous_track_model.Reloaded -= HandleTrackModelReloaded;
                     previous_track_model = null;
                 }
-    
+
                 if (source is ITrackModelSource) {
                     previous_track_model = (source as ITrackModelSource).TrackModel;
                     previous_track_model.Reloaded += HandleTrackModelReloaded;
                 }
-                
+            
                 if (previous_source != null) {
                     previous_source.Properties.PropertyChanged -= OnSourcePropertyChanged;
-                }
-                
+                }  
+              
                 previous_source = source;
                 previous_source.Properties.PropertyChanged += OnSourcePropertyChanged;
-                
+              
                 UpdateSourceContents (source);
-                
                 UpdateSourceInformation ();
+                
                 view_container.SearchEntry.Ready = true;
             });
         }

@@ -54,14 +54,10 @@
     <Reference Include="Mono.Addins">
       <Package>mono-addins-0.2</Package>
     </Reference>
-    <Reference Include="NDesk.DBus">
-      <Package>ndesk-dbus-1.0</Package>
-    </Reference>
+    <Reference Include="NDesk.DBus" />
     <Reference Include="System" />
     <Reference Include="System.Xml" />
-    <Reference Include="taglib-sharp">
-      <Package>taglib-sharp</Package>
-    </Reference>
+    <Reference Include="taglib-sharp" />
     <None Include="..\..\..\data\icon-theme-hicolor\media-player-banshee-16.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -81,9 +77,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <Reference Include="Mono.Posix" />
-    <Reference Include="taglib-sharp, Version=2.0.3.1, Culture=neutral, PublicKeyToken=db62eba44689b5b0">
-      <Package>taglib-sharp</Package>
-    </Reference>
+    <Reference Include="taglib-sharp, Version=2.0.3.1, Culture=neutral, PublicKeyToken=db62eba44689b5b0" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Banshee.Kernel\IInstanceCriticalJob.cs" />

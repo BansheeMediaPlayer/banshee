@@ -142,6 +142,7 @@ SOURCES =  \
 	Banshee.Sources.Gui/CellEditEntry.cs \
 	Banshee.Sources.Gui/CompositeTrackSourceContents.cs \
 	Banshee.Sources.Gui/FilteredListSourceContents.cs \
+	Banshee.Sources.Gui/IImplementsCustomSearch.cs \
 	Banshee.Sources.Gui/ISourceContents.cs \
 	Banshee.Sources.Gui/ITrackModelSourceContents.cs \
 	Banshee.Sources.Gui/ObjectListSourceContents.cs \

@@ -55,12 +55,8 @@
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="NDesk.DBus, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f6716e4f9b2ed099">
-      <Package>ndesk-dbus-1.0</Package>
-    </Reference>
-    <Reference Include="NDesk.DBus.GLib, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f6716e4f9b2ed099">
-      <Package>ndesk-dbus-glib-1.0</Package>
-    </Reference>
+    <Reference Include="NDesk.DBus, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f6716e4f9b2ed099" />
+    <Reference Include="NDesk.DBus.GLib, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f6716e4f9b2ed099" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Banshee.HalBackend\HardwareManager.cs" />

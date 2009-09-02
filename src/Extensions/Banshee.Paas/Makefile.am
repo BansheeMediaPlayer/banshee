@@ -15,6 +15,9 @@ SOURCES =  \
 	Banshee.Paas/Banshee.Paas.Aether/ItemEventArgs.cs \
 	Banshee.Paas/Banshee.Paas.Aether/MiroGuideClient.Gui/MiroGuideAccountDialog.cs \
 	Banshee.Paas/Banshee.Paas.Aether/MiroGuideClient.Gui/MiroGuideLoginForm.cs \
+	Banshee.Paas/Banshee.Paas.Aether/MiroGuideClient.Gui/MiroGuideSearchEntry.cs \
+	Banshee.Paas/Banshee.Paas.Aether/MiroGuideClient.Gui/TestSource.cs \
+	Banshee.Paas/Banshee.Paas.Aether/MiroGuideClient.Gui/TestSourceContents.cs \
 	Banshee.Paas/Banshee.Paas.Aether/MiroGuideClient/AetherDelta.cs \
 	Banshee.Paas/Banshee.Paas.Aether/MiroGuideClient/ClientIDChangedEventArgs.cs \
 	Banshee.Paas/Banshee.Paas.Aether/MiroGuideClient/DownloadRequestEventArgs.cs \
@@ -23,8 +26,10 @@ SOURCES =  \
 	Banshee.Paas/Banshee.Paas.Aether/MiroGuideClient/MiroGuideClientError.cs \
 	Banshee.Paas/Banshee.Paas.Aether/MiroGuideClient/MiroGuideClientInfo.cs \
 	Banshee.Paas/Banshee.Paas.Aether/MiroGuideClient/MiroGuideClientMethod.cs \
+	Banshee.Paas/Banshee.Paas.Aether/MiroGuideClient/MiroGuideFilterType.cs \
 	Banshee.Paas/Banshee.Paas.Aether/MiroGuideClient/MiroGuideMethodCompletedEventArgs.cs \
 	Banshee.Paas/Banshee.Paas.Aether/MiroGuideClient/MiroGuideRequestState.cs \
+	Banshee.Paas/Banshee.Paas.Aether/MiroGuideClient/MiroGuideSortType.cs \
 	Banshee.Paas/Banshee.Paas.Aether/MiroGuideClient/RequestCompletedEventArgs.cs \
 	Banshee.Paas/Banshee.Paas.Aether/MiroGuideClient/ServiceMethodFlags.cs \
 	Banshee.Paas/Banshee.Paas.Aether/OpmlParser.cs \

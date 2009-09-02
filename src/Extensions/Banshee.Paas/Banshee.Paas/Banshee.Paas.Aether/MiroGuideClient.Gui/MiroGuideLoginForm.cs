@@ -105,9 +105,13 @@ namespace Banshee.Paas.Aether.MiroGuide.Gui
         public void Save ()
         {
             string trimmed_user = username_entry.Text.Trim ();
-            string trimmed_password_hash = Hyena.CryptoUtil.Md5Encode (password_entry.Text.Trim ());
+            string trimmed_password_hash = password_entry.Text.Trim ();
 
-            if (account_info.Username !=  trimmed_user || account_info.PasswordHash != trimmed_password_hash) {
+            if (!Hyena.CryptoUtil.IsMd5Encoded (trimmed_password_hash)) {
+                trimmed_password_hash = Hyena.CryptoUtil.Md5Encode (trimmed_password_hash);
+            }
+
+            if (account_info.Username != trimmed_user || account_info.PasswordHash != trimmed_password_hash) {
                 account_info.Username = trimmed_user;
                 account_info.PasswordHash = trimmed_password_hash;
                 account_info.Notify ();

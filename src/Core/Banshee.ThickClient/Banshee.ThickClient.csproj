@@ -83,23 +83,15 @@
     </Reference>
     <Reference Include="Mono.Posix" />
     <Reference Include="Mono.Security" />
-    <Reference Include="NDesk.DBus">
-      <Package>ndesk-dbus-1.0</Package>
-    </Reference>
-    <Reference Include="NDesk.DBus.GLib">
-      <Package>ndesk-dbus-glib-1.0</Package>
-    </Reference>
-    <Reference Include="taglib-sharp">
-      <Package>taglib-sharp</Package>
-    </Reference>
+    <Reference Include="NDesk.DBus" />
+    <Reference Include="NDesk.DBus.GLib" />
+    <Reference Include="taglib-sharp" />
     <Reference Include="System" />
     <Reference Include="Mono.Posix" />
     <Reference Include="Mono.Cairo" />
     <Reference Include="pango-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
     <Reference Include="System.Xml" />
-    <Reference Include="taglib-sharp, Version=2.0.3.1, Culture=neutral, PublicKeyToken=db62eba44689b5b0">
-      <Package>taglib-sharp</Package>
-    </Reference>
+    <Reference Include="taglib-sharp, Version=2.0.3.1, Culture=neutral, PublicKeyToken=db62eba44689b5b0" />
     <Reference Include="MonoPosixHelper" />
   </ItemGroup>
   <ItemGroup>
@@ -274,6 +266,7 @@
     <Compile Include="Banshee.ContextPane\BaseContextPage.cs" />
     <Compile Include="Banshee.ContextPane\ContextPageManager.cs" />
     <Compile Include="Banshee.ContextPane\ContextPane.cs" />
+    <Compile Include="Banshee.Sources.Gui\IImplementsCustomSearch.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>

@@ -40,6 +40,7 @@ namespace Banshee.Paas.Aether.MiroGuide
             set { 
                 if (!String.IsNullOrEmpty (value) && value != client_id) {
                     client_id = value;
+                    Notify ();
                 }            
             }
         }
@@ -50,6 +51,7 @@ namespace Banshee.Paas.Aether.MiroGuide
             set {
                 if (!String.IsNullOrEmpty (value) && value != password_hash) {
                     password_hash = value;
+                    Notify ();
                 }
             }
         }
@@ -60,6 +62,7 @@ namespace Banshee.Paas.Aether.MiroGuide
             set {
                 if (!String.IsNullOrEmpty (value) && value != service_uri) {
                     service_uri = value;
+                    Notify ();
                 }
             }
         }
@@ -70,6 +73,7 @@ namespace Banshee.Paas.Aether.MiroGuide
             set { 
                 if (!String.IsNullOrEmpty (value) && value != username) {
                     username = value;
+                    Notify ();
                 }            
             }
         }
