@@ -851,7 +851,7 @@ namespace Banshee.Paas
         );
 
         public static readonly SchemaEntry<string> MiroGuideServiceUri = new SchemaEntry<string> (
-            "plugins.paas.miroguide", "miroguide.service_uri", "http://127.0.0.1:8000", "Miro Guide Service URI", ""
+            "plugins.paas.miroguide", "miroguide.service_uri", "http://miroguide.com", "Miro Guide Service URI", ""
         ); 
     }
 }

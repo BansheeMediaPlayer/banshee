@@ -68,7 +68,7 @@ namespace Banshee.Paas.Aether.MiroGuide.Gui
             };
             
             hp.Add1 (sw);
-            hp.Add2 (new Button ("Coming Soon."));
+            hp.Add2 (new Label ("Coming Soon."));
             hp.ShowAll ();
         }
 
