@@ -1,5 +1,5 @@
 // 
-// DownloadListModel.cs
+// ListModel.cs
 //  
 // Author:
 //       Mike Urbanski <michael.c.urbanski@gmail.com>
@@ -28,35 +28,30 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 
-using Mono.Unix;
-
 using Hyena.Data;
 using Hyena.Collections;
 
-using Migo2.Async;
-using Migo2.Collections;
-using Migo2.DownloadService;
-
 using Banshee.Paas.Utils;
 
-namespace Banshee.Paas.DownloadManager
+namespace Banshee.Paas.Data
 {
-    public class DownloadListModel : IListModel<HttpFileDownloadTask>
+    public class ListModel<T> : IListModel<T>
     {
         public event EventHandler Cleared;
         public event EventHandler Reloaded;
         
-        private List<HttpFileDownloadTask> tasks;
+        private List<T> items;
         private Selection selection = new Selection ();
+        
 
-        public bool CanReorder { 
-            get { return true; } 
+        public virtual bool CanReorder { 
+            get { return false; } 
         }
         
-        public int Count {
+        public virtual int Count {
             get { 
                 lock (SyncRoot) {
-                    return tasks.Count;
+                    return items.Count;
                 }
             }
         }
@@ -65,7 +60,7 @@ namespace Banshee.Paas.DownloadManager
             get { return selection; }
         }
 
-        public HttpFileDownloadTask this[int index] {
+        public T this[int index] {
             get {
                 lock (SyncRoot) {            
                     return GetIndex (index);
@@ -74,32 +69,32 @@ namespace Banshee.Paas.DownloadManager
         }
 
         private object SyncRoot {
-            get { return ((ICollection)tasks).SyncRoot; }
+            get { return ((ICollection)items).SyncRoot; }
         }
 
-        public DownloadListModel ()
+        public ListModel ()
         {
-            tasks = new List<HttpFileDownloadTask> ();
+            items = new List<T> ();
         }
 
-        public void AddTask (HttpFileDownloadTask task)
+        public void Add (T item)
         {
-            if (task != null) {
+            if (!item.Equals (default (T))) {
                 lock (SyncRoot) {
-                    tasks.Add (task);
+                    items.Add (item);
                 }                
             }
             
             OnReloaded ();            
         }
 
-        public void AddTasks (IEnumerable<HttpFileDownloadTask> tasks)
+        public void Add (IEnumerable<T> items)
         {
-            if (tasks != null) {
+            if (items != null) {
                 lock (SyncRoot) {
-                    foreach (HttpFileDownloadTask task in tasks) {
-                        if (task != null) {
-                            this.tasks.Add (task);                            
+                    foreach (T item in items) {
+                        if (item != null) {
+                            this.items.Add (item);                            
                         }
                     }
                 }                
@@ -108,43 +103,17 @@ namespace Banshee.Paas.DownloadManager
             OnReloaded ();            
         }
 
-        public void AddTaskPair (Pair<int,HttpFileDownloadTask> pair)
-        {
-            if (pair != null && pair.Second != null) {
-                lock (SyncRoot) {
-                    tasks.Insert (pair.First, pair.Second);
-                }                
-            }
-            
-            OnReloaded ();
-        }
-
-        public void AddTaskPairs (IEnumerable<Pair<int,HttpFileDownloadTask>> pairs)
-        {
-            if (pairs != null) {
-                lock (SyncRoot) {
-                    foreach (Pair<int,HttpFileDownloadTask> pair in pairs) {
-                        if (pair != null && pair.Second != null) {
-                            tasks.Insert (pair.First, pair.Second);
-                        }
-                    }
-                }
-            }
-            
-            OnReloaded ();
-        }
-
-        public IEnumerable<HttpFileDownloadTask> GetSelected ()
+        public IEnumerable<T> GetSelected ()
         {
             lock (SyncRoot) {
-                HttpFileDownloadTask task = null;
-                List<HttpFileDownloadTask> selected = new List<HttpFileDownloadTask> ();
+                T item = default (T);
+                List<T> selected = new List<T> ();
 
                 foreach (int i in selection) {
-                    task = GetIndex (i);
+                    item = GetIndex (i);
                     
-                    if (task != null) {
-                        selected.Add (task);
+                    if (item != null) {
+                        selected.Add (item);
                     }
                 }
 
@@ -152,24 +121,24 @@ namespace Banshee.Paas.DownloadManager
             }
         }
 
-        public void RemoveTask (HttpFileDownloadTask task)
+        public void Remove (T item)
         {
-            if (task != null) {
+            if (item != null) {
                 lock (SyncRoot) {
-                    tasks.Remove (task);
+                    items.Remove (item);
                 }                
             }
             
             OnReloaded ();            
         }
 
-        public void RemoveTasks (IEnumerable<HttpFileDownloadTask> tasks)
+        public void Remove (IEnumerable<T> items)
         {
-            if (tasks != null) {
+            if (items != null) {
                 lock (SyncRoot) {
-                    foreach (HttpFileDownloadTask task in tasks) {
-                        if (task != null) {
-                            this.tasks.Remove (task);                            
+                    foreach (T item in items) {
+                        if (item != null) {
+                            this.items.Remove (item);                            
                         }
                     }
                 }
@@ -181,7 +150,7 @@ namespace Banshee.Paas.DownloadManager
         public void Clear ()
         {
             lock (SyncRoot) {
-                tasks.Clear ();
+                items.Clear ();
             }
             
             OnCleared ();
@@ -197,7 +166,7 @@ namespace Banshee.Paas.DownloadManager
             lock (SyncRoot) {
                 int len = newWorldOrder.Length;
                 int[] order = new int[len];
-                Dictionary<HttpFileDownloadTask, int> positions = new Dictionary<HttpFileDownloadTask, int> (len);
+                Dictionary<T, int> positions = new Dictionary<T, int> (len);
 
                 int i = 0;
                 for (; i < order.Length; ++i) {
@@ -205,24 +174,24 @@ namespace Banshee.Paas.DownloadManager
                 }
 
                 i = 0;
-                foreach (var t in tasks) {
+                foreach (var t in items) {
                     positions.Add (t, order[i++]);
                 }
 
-                tasks.Sort (new OrderComparer<HttpFileDownloadTask> (positions));
+                items.Sort (new OrderComparer<T> (positions));
                 selection.Clear ();
             }
 
             OnReloaded ();
         }
 
-        private HttpFileDownloadTask GetIndex (int index)
+        private T GetIndex (int index)
         {         
-            if (index >= 0 && index < tasks.Count) {
-                return tasks[index];
+            if (index >= 0 && index < items.Count) {
+                return items[index];
             }
             
-            return null;
+            return default (T);
         }
 
         private void OnReloaded ()

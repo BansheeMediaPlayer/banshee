@@ -1,11 +1,11 @@
 // 
-// MiroGuideSearchEntry.cs
+// OrderComparer.cs
 //  
 // Author:
-//   Mike Urbanski <michael.c.urbanski@gmail.com>
+//       Mike Urbanski <michael.c.urbanski@gmail.com>
 // 
 // Copyright (c) 2009 Michael C. Urbanski
-//
+// 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
 // in the Software without restriction, including without limitation the rights
@@ -24,26 +24,30 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-using System;
+using System.Collections.Generic;
 
-using Mono.Unix;
-
-using Banshee.Widgets;
-
-using Banshee.Paas.Aether.MiroGuide;
-
-namespace Banshee.Paas.Aether.MiroGuide.Gui
+namespace Banshee.Paas.Utils
 {
-    public class MiroGuideSearchEntry : SearchEntry
+    public class OrderComparer<T> : IComparer<T> 
     {
-        public MiroGuideSearchEntry ()
+        Dictionary<T, int> pos_dict;
+        
+        public OrderComparer (Dictionary<T, int> posDict)
         {
-            AddFilterOption ((int)MiroGuideFilterType.Search, Catalog.GetString ("Search Miro Guide"));
-            AddFilterSeparator ();
-            AddFilterOption ((int)MiroGuideFilterType.Tag, Catalog.GetString ("Tag"));                        
-            AddFilterOption ((int)MiroGuideFilterType.Name, Catalog.GetString ("Name"));
-            AddFilterOption ((int)MiroGuideFilterType.Category, Catalog.GetString ("Category"));
-            AddFilterOption ((int)MiroGuideFilterType.Language, Catalog.GetString ("Language"));
+            pos_dict = posDict;    
+        }
+
+        public int Compare (T lhs, T rhs)
+        {
+            int lhs_pos = pos_dict[lhs], rhs_pos = pos_dict[rhs];
+            
+            if (lhs_pos < rhs_pos) {
+                return -1;
+            } else if (lhs_pos > rhs_pos) {
+                return 1;
+            }
+
+            return 0;
         }
     }
 }

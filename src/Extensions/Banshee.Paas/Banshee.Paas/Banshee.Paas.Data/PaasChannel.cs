@@ -105,9 +105,7 @@ namespace Banshee.Paas.Data
         [DatabaseColumn]
         public DownloadPreference DownloadPreference {
             get { return download_preference; }
-            set { 
-                download_preference = value;
-            }
+            set { download_preference = value; }
         }
 
         private string image_url;

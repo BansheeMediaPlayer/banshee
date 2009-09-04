@@ -182,7 +182,7 @@ namespace Banshee.Paas.Gui
                      Catalog.GetString ("Properties"), null,
                      null, OnPaasChannelPropertiesHandler
                 )
-#if MIRO_GUIDE 
+//#if MIRO_GUIDE 
                 ,
                 new ActionEntry (
                     "PaasEditMiroGuidePropertiesAction", Stock.Properties,
@@ -193,7 +193,7 @@ namespace Banshee.Paas.Gui
                         mgad.Destroy ();
                      }
                 )
-#endif
+//#endif
             });
             
             actions_id = Actions.UIManager.AddUiFromResource ("GlobalUI.xml");

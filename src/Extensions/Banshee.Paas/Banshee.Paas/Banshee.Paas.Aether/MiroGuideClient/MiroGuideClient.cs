@@ -71,6 +71,10 @@ namespace Banshee.Paas.Aether.MiroGuide
 
         public EventHandler<DownloadRequestEventArgs> DownloadCancelled;
         public EventHandler<DownloadRequestEventArgs> DownloadRequested;
+
+        public EventHandler<GetChannelsCompletedEventArgs> GetChannelsCompleted;
+
+        public EventHandler<SubscriptionRequestedEventArgs> SubscriptionRequested;
         
         public MiroGuideAccountInfo Account {
             get { return Account; }
@@ -217,12 +221,25 @@ namespace Banshee.Paas.Aether.MiroGuide
                                  bool reverse, 
                                  uint limit, uint offset)
         {
+            GetChannels (filterType, filterValue, sort, reverse, limit, offset, null);
+        }
+        
+        public void GetChannels (MiroGuideFilterType filterType,
+                                 string filterValue, 
+                                 MiroGuideSortType sort, 
+                                 bool reverse, 
+                                 uint limit, 
+                                 uint offset, 
+                                 object userState)
+        {
             if (String.IsNullOrEmpty (filterValue)) {
-                throw new ArgumentException ("Missing required parameter", "filterValue");
+                return;
             }
             
             NameValueCollection nvc = new NameValueCollection ();
-            
+
+            nvc.Add ("datatype", "json");
+
             nvc.Add ("filter", ToQueryPart (filterType));
             nvc.Add ("filter_value", filterValue);
             nvc.Add ("sort", String.Format ("{0}{1}", ((reverse) ? "-" : String.Empty), ToQueryPart (sort)));
@@ -234,10 +251,28 @@ namespace Banshee.Paas.Aether.MiroGuide
                 BeginRequest (
                     CreateRequestState (
                         HttpMethod.GET, "/api/get_channels", nvc, null,
-                        ServiceFlags.None, MiroGuideClientMethod.GetChannels, null, null
+                        ServiceFlags.None, MiroGuideClientMethod.GetChannels, userState, null
                     ), true
                 );
             }            
+        }
+
+        public void RequestSubsubscription (Uri uri)
+        {
+            if (uri == null) {
+                throw new ArgumentNullException ("uri");
+            }
+
+            OnSubscriptionRequested (uri);
+        }
+
+        public void RequestSubsubscription (IEnumerable<Uri> uris)
+        {
+            if (uris == null) {
+                throw new ArgumentNullException ("uris");
+            }
+
+            OnSubscriptionRequested (uris);
         }
 
         private void GetSessionAsync (MiroGuideRequestState callingMethodState)
@@ -307,9 +342,7 @@ namespace Banshee.Paas.Aether.MiroGuide
                             return;
                         } else {
                             state.AddParameter ("clientid", ClientID);
-                            state.AddParameter (
-                                "since", System.Web.HttpUtility.HtmlEncode (ClientInfo.LastUpdated)
-                            );
+                            state.AddParameter ("since", ClientInfo.LastUpdated);
                         }
                     }
                 }            
@@ -550,6 +583,7 @@ namespace Banshee.Paas.Aether.MiroGuide
 
             if (resp["status"] as string == "success") {
                 client_id = resp["clientid"] as string;
+                
                 MiroGuideClientInfo mi = new MiroGuideClientInfo () {
                     ClientID = client_id
                 };
@@ -563,25 +597,40 @@ namespace Banshee.Paas.Aether.MiroGuide
             }
         }
 
+        private void HandleGetChannelsResponse (MiroGuideRequestState state)
+        {
+            Console.WriteLine (state.ResponseData);
+            List<MiroGuideChannelInfo> channels = new List<MiroGuideChannelInfo> ();
+            
+            foreach (JsonObject o in DeserializeJson (state.ResponseData) as JsonArray) {
+                try {
+                    channels.Add (new MiroGuideChannelInfo (o));
+                } catch { continue; }
+            }
+
+            OnGetChannelsCompleted (0, 0, channels);
+        }
+
         private void HandleGetDeltasResponse (string response)
         {
             ApplyUpdate (new AetherDelta (response));
         }
 
-        public static string ToQueryPart (MiroGuideFilterType type)
+        private static string ToQueryPart (MiroGuideFilterType type)
         {
             switch (type)
             {
             case MiroGuideFilterType.Category:  return "category";     
             case MiroGuideFilterType.Language:  return "language";      
-            case MiroGuideFilterType.Name:      return "name";    
+            case MiroGuideFilterType.Name:      return "name";
+            case MiroGuideFilterType.Search:    return "search";                
             case MiroGuideFilterType.Tag:       return "tag"; 
             default:
-                goto case MiroGuideFilterType.Name;
+                goto case MiroGuideFilterType.Search;
             }
         }
 
-        public static string ToQueryPart (MiroGuideSortType type)
+        private static string ToQueryPart (MiroGuideSortType type)
         {
             switch (type)
             {
@@ -624,7 +673,7 @@ namespace Banshee.Paas.Aether.MiroGuide
                             HandleGetDeltasResponse (state.ResponseData);
                             break;
                         case MiroGuideClientMethod.GetChannels:
-                            Console.WriteLine (state.ResponseData);
+                            HandleGetChannelsResponse (state);
                             break;
                         }
                     }
@@ -682,6 +731,40 @@ namespace Banshee.Paas.Aether.MiroGuide
                     new EventWrapper<DownloadRequestEventArgs> (handler, this, new DownloadRequestEventArgs (ids))
                 );
             }
+        }
+
+        private void OnGetChannelsCompleted (int limit, int offset, IEnumerable<MiroGuideChannelInfo> channels)
+        {
+            var handler = GetChannelsCompleted;
+
+            if (handler != null) {
+                EventQueue.Register (
+                    new EventWrapper<GetChannelsCompletedEventArgs> (
+                        handler, this, new GetChannelsCompletedEventArgs (limit, offset, channels)
+                    )
+                );
+            }
+        }
+
+        private void OnSubscriptionRequested (Uri uri)
+        {
+            OnSubscriptionRequested (new SubscriptionRequestedEventArgs (uri));              
+        }
+
+        private void OnSubscriptionRequested (IEnumerable<Uri> uris)
+        {
+            OnSubscriptionRequested (new SubscriptionRequestedEventArgs (uris));     
+        }
+
+        private void OnSubscriptionRequested (SubscriptionRequestedEventArgs e)
+        {
+            var handler = SubscriptionRequested;
+
+            if (handler != null) {
+                EventQueue.Register (
+                    new EventWrapper<SubscriptionRequestedEventArgs> (handler, this, e)
+                );
+            }            
         }
     }
 }

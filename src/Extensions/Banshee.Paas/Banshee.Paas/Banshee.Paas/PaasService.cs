@@ -26,7 +26,7 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-#undef MIRO_GUIDE
+#define MIRO_GUIDE
 
 using System;
 using System.IO;
@@ -171,10 +171,11 @@ namespace Banshee.Paas
             client_handle = new AutoResetEvent (true);
 
 #if MIRO_GUIDE
-            source.AddChildSource (new TestSource ());
             mg_client = new MiroGuideClient (MiroGuideAccount) {
                 UserAgent = Banshee.Web.Browser.UserAgent,
             };
+
+            source.AddChildSource (new TestSource (mg_client));
             
             mg_client.StateChanged += (sender, e) => {
                 if (e.NewState == AetherClientState.Idle) {
@@ -232,6 +233,14 @@ namespace Banshee.Paas
 
                     download_manager.CancelDownload (items);
                 }                
+            };
+
+            mg_client.SubscriptionRequested += (sender, e) => {
+                if (e.Uri != null) {
+                    SubscribeToChannel (e.Uri);
+                } else if (e.Uris != null) {
+                    SubscribeToChannels (e.Uris);
+                }
             };
 #endif
             syndication_client = new SyndicationClient ();
@@ -417,6 +426,57 @@ namespace Banshee.Paas
                 } catch (Exception e) {
                     Log.Exception (e);
                     throw;
+                }
+            }
+        }
+
+        public void SubscribeToChannels (IEnumerable<Uri> uris)
+        {
+            if (uris == null) {
+                throw new ArgumentNullException ("uris");            
+            }
+            
+            lock (sync) {
+                if (Disposed) {
+                    return;
+                }
+
+                int sub_count = 0;
+                
+                foreach (Uri uri in uris) {
+                    try {
+                        if (uri != null) {
+                            syndication_client.SubscribeToChannel (uri.ToString (), DownloadPreference.One);
+                            sub_count++;
+                        }                    
+                    } catch (Exception e) {
+                        Log.Exception (e);
+                        continue;
+                    }
+                }
+
+                if (sub_count > 0) {
+                    source.NotifyUser ();                                                
+                }
+            }
+        }
+
+        public void SubscribeToChannel (Uri uri)
+        {
+            if (uri == null) {
+                throw new ArgumentNullException ("uri");
+            }
+            
+            lock (sync) {
+                if (Disposed) {
+                    return;
+                }
+
+                try {
+                    syndication_client.SubscribeToChannel (uri.ToString (), DownloadPreference.One);
+                    source.NotifyUser ();                            
+                } catch (Exception e) {
+                    Log.Exception (e);
                 }
             }
         }
@@ -779,19 +839,19 @@ namespace Banshee.Paas
         }
 
         public static readonly SchemaEntry<string> MiroGuideUsername = new SchemaEntry<string> (
-            "plugins.paas", "mg_username", String.Empty, "Miro Guide Username", ""
+            "plugins.paas.miroguide", "username", String.Empty, "Miro Guide Username", ""
         );
         
         public static readonly SchemaEntry<string> MiroGuidePasswordHash = new SchemaEntry<string> (
-            "plugins.paas", "mg_password_hash", String.Empty, "Miro Guide Password Hash", ""
+            "plugins.paas.miroguide", "miroguide.password_hash", String.Empty, "Miro Guide Password Hash", ""
         );
 
         public static readonly SchemaEntry<string> MiroGuideClientID = new SchemaEntry<string> (
-            "plugins.paas", "mg_client_id", String.Empty, "Miro Guide Client ID", ""
+            "plugins.paas.miroguide", "miroguide.client_id", String.Empty, "Miro Guide Client ID", ""
         );
 
         public static readonly SchemaEntry<string> MiroGuideServiceUri = new SchemaEntry<string> (
-            "plugins.paas", "mg_service_uri", "http://127.0.0.1:8000", "Miro Guide Service URI", ""
+            "plugins.paas.miroguide", "miroguide.service_uri", "http://127.0.0.1:8000", "Miro Guide Service URI", ""
         ); 
     }
 }

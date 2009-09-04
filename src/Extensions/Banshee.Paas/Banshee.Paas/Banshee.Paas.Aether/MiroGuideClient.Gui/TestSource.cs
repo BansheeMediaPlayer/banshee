@@ -36,74 +36,103 @@ using Hyena.Collections;
 
 using Banshee.Base;
 using Banshee.Widgets;
+
 using Banshee.Sources;
 using Banshee.Sources.Gui;
 
 namespace Banshee.Paas.Aether.MiroGuide.Gui
 {
-    public class TestSource : Source, IImplementsCustomSearch
+    public class TestSource : Source, IImplementsCustomSearch, IDisposable
     {
+        private MiroGuideActions actions;
         private ISourceContents contents;
+
+        private MiroGuideClient client;
         private MiroGuideSearchEntry search_entry;
+        private MiroGuideChannelListModel channel_model;
 
         public SearchEntry SearchEntry
         {
             get { return search_entry; }
         }
-
-//        private DownloadListModel download_model;
-//
-//        public DownloadListModel DownloadListModel
-//        {
-//            get { return download_model; }
-//        }
-
-        public override bool CanSearch {
-            get { return true; }
+        
+        public MiroGuideChannelListModel ChannelModel
+        {
+            get { return channel_model; }
         }
 
-        public TestSource (/*DownloadListModel model, DownloadListView view*/) : base ("Miro Guide", "Miro Guide", 0)
+        public TestSource (MiroGuideClient client) : base ("Miro Guide", "Miro Guide", 0)
         {
-//            if (model == null) {
-//                throw new ArgumentNullException ("model");
-//            }
+            if (client == null) {
+                throw new ArgumentNullException ("client");
+            }
+
+            actions = new MiroGuideActions (client);
+
+            BuildSearchEntry ();
+
+            this.client = client;
+            channel_model = new MiroGuideChannelListModel ();
+            
+            channel_model.Cleared  += (sender, e) => { OnUpdated (); };
+            channel_model.Reloaded += (sender, e) => { QueueDraw (); OnUpdated (); };
+            
+            client.StateChanged += (sender, e) => { 
+                ThreadAssist.ProxyToMain (delegate {
+                    search_entry.Ready = (e.NewState == AetherClientState.Idle);
+                    search_entry.InnerEntry.Sensitive = (e.NewState == AetherClientState.Idle);
+                });
+            };
+
+            client.GetChannelsCompleted += (sender, e) => {
+                ThreadAssist.ProxyToMain (delegate {
+                    channel_model.Selection.Clear ();
+                    channel_model.Clear ();
+                    channel_model.Add (e.Channels);
+                    channel_model.Reload ();
+                    Console.WriteLine (channel_model.Count);
+                });
+            };
 
             TypeUniqueId = "TestSource";
-//
-//            download_model = model;
-//            download_model.Cleared  += (sender, e) => { OnUpdated (); };
-//            download_model.Reloaded += (sender, e) => { QueueDraw (); OnUpdated (); };
-        
             Properties.SetStringList ("Icon.Name", "miroguide");
 
             contents = new TestSourceContents ();
             Properties.Set<ISourceContents> ("Nereid.SourceContents", contents);
             Properties.Set<bool> ("Nereid.SourceContentsPropagate", false);
+        }
 
-            BuildSearchEntry ();
+        public void Dispose ()
+        {
+            if (actions != null) {
+                actions.Dispose ();
+                actions = null;
+            }            
         }
 
         private void BuildSearchEntry ()
         {
             search_entry = new MiroGuideSearchEntry ();
             search_entry.SetSizeRequest (200, -1);
+            
+            search_entry.Activated += OnSearchEntryActivated;
+            
             search_entry.Show ();
         }
 
-//        public override void Activate ()
-//        {
-//            download_model.Reload ();
-//        }
-//
-//        public void QueueDraw ()
-//        {
-//            ThreadAssist.ProxyToMain (delegate {
-//                contents.Widget.QueueDraw ();
-//            });
-//        }
-//
-//        public override int Count {
-//            get { return download_model.Count; }
-//        }
+        private void OnSearchEntryActivated (object sender, EventArgs e)
+        {
+            client.GetChannels (
+                (MiroGuideFilterType)search_entry.ActiveFilterID, 
+                search_entry.InnerEntry.Text, MiroGuideSortType.Name, false, 100, 0
+            );
+        }
+
+        public void QueueDraw ()
+        {
+            ThreadAssist.ProxyToMain (delegate {
+                contents.Widget.QueueDraw ();
+            });
+        }
     }
 }

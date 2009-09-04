@@ -102,7 +102,6 @@
     <Compile Include="Banshee.Paas\Banshee.Paas\PaasImageFetchJob.cs" />
     <Compile Include="Banshee.Paas\Banshee.Paas\PaasService.cs" />
     <Compile Include="Banshee.Paas\Banshee.Paas\PaasSource.cs" />
-    <Compile Include="Banshee.Paas\Banshee.Paas.Aether\OpmlParser.cs" />
     <Compile Include="Banshee.Paas\Banshee.Paas.Aether\SyndicationClient\ItmsPodcast.cs" />
     <Compile Include="Banshee.Paas\Banshee.Paas.DownloadManager\DownloadListModel.cs" />
     <Compile Include="Banshee.Paas\Banshee.Paas.DownloadManager.Data\QueuedDownloadTask.cs" />
@@ -129,6 +128,15 @@
     <Compile Include="Banshee.Paas\Banshee.Paas.Aether\MiroGuideClient.Gui\MiroGuideSearchEntry.cs" />
     <Compile Include="Banshee.Paas\Banshee.Paas.Aether\MiroGuideClient\MiroGuideFilterType.cs" />
     <Compile Include="Banshee.Paas\Banshee.Paas.Aether\MiroGuideClient\MiroGuideSortType.cs" />
+    <Compile Include="Banshee.Paas\Banshee.Paas.Aether\MiroGuideClient.Gui\MiroGuideChannelListView.cs" />
+    <Compile Include="Banshee.Paas\Banshee.Paas.Utils\OrderComparer.cs" />
+    <Compile Include="Banshee.Paas\Banshee.Paas.Data\ListModel.cs" />
+    <Compile Include="Banshee.Paas\Banshee.Paas.Aether\MiroGuideClient.Gui\MiroGuideChannelListModel.cs" />
+    <Compile Include="Banshee.Paas\Banshee.Paas.Aether\MiroGuideClient\MiroGuideChannelInfo.cs" />
+    <Compile Include="Banshee.Paas\Banshee.Paas.Aether\MiroGuideClient\GetChannelsEventArgs.cs" />
+    <Compile Include="Banshee.Paas\Banshee.Paas.Utils\OpmlParser.cs" />
+    <Compile Include="Banshee.Paas\Banshee.Paas.Aether\MiroGuideClient.Gui\MiroGuideActions.cs" />
+    <Compile Include="Banshee.Paas\Banshee.Paas.Aether\MiroGuideClient\SubscriptionRequestedEventArgs.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Core\Banshee.Core\Banshee.Core.csproj">
@@ -160,6 +168,7 @@
     <None Include="Resources\ActiveSourceUI.xml" />
     <None Include="Resources\GlobalUI.xml" />
     <None Include="Banshee.Paas.addin.xml" />
+    <None Include="Resources\MiroGuideUI.xml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Banshee.Paas\Banshee.Paas.DownloadManager\" />

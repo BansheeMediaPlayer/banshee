@@ -14,6 +14,9 @@ SOURCES =  \
 	Banshee.Paas/Banshee.Paas.Aether/ChannelUpdateStatus.cs \
 	Banshee.Paas/Banshee.Paas.Aether/ItemEventArgs.cs \
 	Banshee.Paas/Banshee.Paas.Aether/MiroGuideClient.Gui/MiroGuideAccountDialog.cs \
+	Banshee.Paas/Banshee.Paas.Aether/MiroGuideClient.Gui/MiroGuideActions.cs \
+	Banshee.Paas/Banshee.Paas.Aether/MiroGuideClient.Gui/MiroGuideChannelListModel.cs \
+	Banshee.Paas/Banshee.Paas.Aether/MiroGuideClient.Gui/MiroGuideChannelListView.cs \
 	Banshee.Paas/Banshee.Paas.Aether/MiroGuideClient.Gui/MiroGuideLoginForm.cs \
 	Banshee.Paas/Banshee.Paas.Aether/MiroGuideClient.Gui/MiroGuideSearchEntry.cs \
 	Banshee.Paas/Banshee.Paas.Aether/MiroGuideClient.Gui/TestSource.cs \
@@ -21,7 +24,9 @@ SOURCES =  \
 	Banshee.Paas/Banshee.Paas.Aether/MiroGuideClient/AetherDelta.cs \
 	Banshee.Paas/Banshee.Paas.Aether/MiroGuideClient/ClientIDChangedEventArgs.cs \
 	Banshee.Paas/Banshee.Paas.Aether/MiroGuideClient/DownloadRequestEventArgs.cs \
+	Banshee.Paas/Banshee.Paas.Aether/MiroGuideClient/GetChannelsEventArgs.cs \
 	Banshee.Paas/Banshee.Paas.Aether/MiroGuideClient/MiroGuideAccountInfo.cs \
+	Banshee.Paas/Banshee.Paas.Aether/MiroGuideClient/MiroGuideChannelInfo.cs \
 	Banshee.Paas/Banshee.Paas.Aether/MiroGuideClient/MiroGuideClient.cs \
 	Banshee.Paas/Banshee.Paas.Aether/MiroGuideClient/MiroGuideClientError.cs \
 	Banshee.Paas/Banshee.Paas.Aether/MiroGuideClient/MiroGuideClientInfo.cs \
@@ -32,7 +37,7 @@ SOURCES =  \
 	Banshee.Paas/Banshee.Paas.Aether/MiroGuideClient/MiroGuideSortType.cs \
 	Banshee.Paas/Banshee.Paas.Aether/MiroGuideClient/RequestCompletedEventArgs.cs \
 	Banshee.Paas/Banshee.Paas.Aether/MiroGuideClient/ServiceMethodFlags.cs \
-	Banshee.Paas/Banshee.Paas.Aether/OpmlParser.cs \
+	Banshee.Paas/Banshee.Paas.Aether/MiroGuideClient/SubscriptionRequestedEventArgs.cs \
 	Banshee.Paas/Banshee.Paas.Aether/RequestState.cs \
 	Banshee.Paas/Banshee.Paas.Aether/SyndicationClient/ChannelUpdateCompletedEventArgs.cs \
 	Banshee.Paas/Banshee.Paas.Aether/SyndicationClient/ChannelUpdateManager.cs \
@@ -42,6 +47,7 @@ SOURCES =  \
 	Banshee.Paas/Banshee.Paas.Aether/SyndicationClient/SyndicationClient.cs \
 	Banshee.Paas/Banshee.Paas.Data/DownloadPreference.cs \
 	Banshee.Paas/Banshee.Paas.Data/DownloadStatusFilterModel.cs \
+	Banshee.Paas/Banshee.Paas.Data/ListModel.cs \
 	Banshee.Paas/Banshee.Paas.Data/PaasChannel.cs \
 	Banshee.Paas/Banshee.Paas.Data/PaasChannelModel.cs \
 	Banshee.Paas/Banshee.Paas.Data/PaasItem.cs \
@@ -73,6 +79,8 @@ SOURCES =  \
 	Banshee.Paas/Banshee.Paas.Gui/PaasItemView.cs \
 	Banshee.Paas/Banshee.Paas.Gui/PaasSourceContents.cs \
 	Banshee.Paas/Banshee.Paas.Gui/PaasUnheardFilterView.cs \
+	Banshee.Paas/Banshee.Paas.Utils/OpmlParser.cs \
+	Banshee.Paas/Banshee.Paas.Utils/OrderComparer.cs \
 	Banshee.Paas/Banshee.Paas.Utils/StringUtils.cs \
 	Banshee.Paas/Banshee.Paas/PaasImageFetchJob.cs \
 	Banshee.Paas/Banshee.Paas/PaasService.cs \
@@ -81,7 +89,8 @@ SOURCES =  \
 RESOURCES =  \
 	Banshee.Paas.addin.xml \
 	Resources/ActiveSourceUI.xml \
-	Resources/GlobalUI.xml
+	Resources/GlobalUI.xml \
+	Resources/MiroGuideUI.xml
 
 if ENABLE_PAAS
 include $(top_srcdir)/build/build.mk

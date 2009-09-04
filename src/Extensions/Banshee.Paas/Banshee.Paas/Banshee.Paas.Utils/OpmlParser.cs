@@ -32,7 +32,7 @@ using System;
 using System.Xml;
 using System.Collections.Generic;
 
-namespace Banshee.Paas.Aether
+namespace Banshee.Paas.Utils
 {
     public class OpmlParser
     {
@@ -74,7 +74,6 @@ namespace Banshee.Paas.Aether
                     feeds.Add (node.Attributes["url"].Value);
                 }
 
-                // Parse outline nodes recursively.
                 GetFeeds (node);
             }
         }

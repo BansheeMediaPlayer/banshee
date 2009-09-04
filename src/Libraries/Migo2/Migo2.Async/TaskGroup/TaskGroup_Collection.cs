@@ -533,27 +533,4 @@ namespace Migo2.Async
             return ret;
         }        
     }
-
-    public class OrderComparer<T> : IComparer<T> where T : Task
-    {
-        Dictionary<T, int> pos_dict;
-        
-        public OrderComparer (Dictionary<T, int> posDict)
-        {
-            pos_dict = posDict;    
-        }
-
-        public int Compare (T lhs, T rhs)
-        {
-            int lhs_pos = pos_dict[lhs], rhs_pos = pos_dict[rhs];
-            
-            if (lhs_pos < rhs_pos) {
-                return -1;
-            } else if (lhs_pos > rhs_pos) {
-                return 1;
-            }
-
-            return 0;
-        }
-    }
 }

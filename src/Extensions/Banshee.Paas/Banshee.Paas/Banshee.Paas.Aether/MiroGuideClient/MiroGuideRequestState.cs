@@ -48,7 +48,9 @@ namespace Banshee.Paas.Aether.MiroGuide
         public string ResponseData { get; set; }        
         
         public ServiceFlags ServiceFlags { get; set; }
+        
         public object UserState { get; set; }
+        public object InternalState { get; set; }
         
         public MiroGuideRequestState CallingState { get; set; }
 
@@ -73,12 +75,10 @@ namespace Banshee.Paas.Aether.MiroGuide
 
         public void AddParameters (NameValueCollection nvc)
         {
-            if (nvc == null) {
-                throw new ArgumentNullException ("nvc");
-            }
-
-            foreach (string key in nvc) {
-                AddParameter (key, nvc[key]);
+            if (nvc != null) {
+                foreach (string key in nvc) {
+                    AddParameter (key, nvc[key]);
+                }
             }
         }
 

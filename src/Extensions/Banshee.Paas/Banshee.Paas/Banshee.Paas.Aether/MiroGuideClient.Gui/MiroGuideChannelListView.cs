@@ -1,11 +1,11 @@
 // 
-// MiroGuideSearchEntry.cs
+// MiroGuideChannelListView.cs
 //  
-// Author:
+// Authors:
 //   Mike Urbanski <michael.c.urbanski@gmail.com>
-// 
-// Copyright (c) 2009 Michael C. Urbanski
 //
+// Copyright (C) 2009 Michael C. Urbanski
+// 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
 // in the Software without restriction, including without limitation the rights
@@ -26,24 +26,36 @@
 
 using System;
 
-using Mono.Unix;
+using Hyena.Data.Gui;
 
-using Banshee.Widgets;
-
-using Banshee.Paas.Aether.MiroGuide;
+using Banshee.Gui;
+using Banshee.ServiceStack;
+using Banshee.Collection.Gui;
 
 namespace Banshee.Paas.Aether.MiroGuide.Gui
 {
-    public class MiroGuideSearchEntry : SearchEntry
+    public class MiroGuideChannelListView : ListView<MiroGuideChannelInfo>
     {
-        public MiroGuideSearchEntry ()
+        //private ColumnCellChannel renderer;
+
+        public MiroGuideChannelListView ()            
         {
-            AddFilterOption ((int)MiroGuideFilterType.Search, Catalog.GetString ("Search Miro Guide"));
-            AddFilterSeparator ();
-            AddFilterOption ((int)MiroGuideFilterType.Tag, Catalog.GetString ("Tag"));                        
-            AddFilterOption ((int)MiroGuideFilterType.Name, Catalog.GetString ("Name"));
-            AddFilterOption ((int)MiroGuideFilterType.Category, Catalog.GetString ("Category"));
-            AddFilterOption ((int)MiroGuideFilterType.Language, Catalog.GetString ("Language"));
+            //renderer = new ColumnCellChannel ();
+            
+            ColumnController column_controller = new ColumnController ();
+            column_controller.Add (new Column ("Channels", new ColumnCellText ("Name", true), 1.0));
+            
+            ColumnController  = column_controller;
+            //RowHeightProvider = renderer.ComputeRowHeight;
+        }
+
+        protected override bool OnPopupMenu ()
+        {
+            ServiceManager.Get<InterfaceActionService> ().FindAction (
+                "MiroGuide.MiroGuideChannelPopupAction"
+            ).Activate ();
+
+            return true;
         }
     }
 }

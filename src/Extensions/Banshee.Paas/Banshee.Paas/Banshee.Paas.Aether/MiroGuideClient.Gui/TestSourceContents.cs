@@ -30,25 +30,46 @@ using Gtk;
 
 using Banshee.Sources;
 using Banshee.Sources.Gui;
+using Banshee.Configuration;
 
 namespace Banshee.Paas.Aether.MiroGuide.Gui
 {
     public class TestSourceContents : ISourceContents
-    { 
+    {
+        private HPaned hp;    
         private TestSource test_source;
-        private Button fu_button = new Button ("Fuck You!");
         
-        public ISource Source {
+        private MiroGuideChannelListView channel_view;
+
+        public ISource Source { 
             get { return test_source; } 
         }
         
         public Widget Widget { 
-            get { return fu_button; }
+            get { return hp as Widget; }
         }
 
         public TestSourceContents ()
         {
-            fu_button.Show ();
+            channel_view = new MiroGuideChannelListView ();
+            
+            ScrolledWindow sw = new ScrolledWindow () {
+                HscrollbarPolicy = PolicyType.Automatic,
+                VscrollbarPolicy = PolicyType.Automatic
+            };
+            
+            sw.Add (channel_view);
+            
+            hp = new HPaned ();
+            hp.Position = HPanedPosition.Get ();
+
+            hp.SizeAllocated += (sender, e) => {
+                HPanedPosition.Set (hp.Position);
+            };
+            
+            hp.Add1 (sw);
+            hp.Add2 (new Button ("Coming Soon."));
+            hp.ShowAll ();
         }
 
         public bool SetSource (ISource source)
@@ -58,13 +79,23 @@ namespace Banshee.Paas.Aether.MiroGuide.Gui
             if (test_source == null) {
                 return false;
             }
-
+            
+            channel_view.HeaderVisible = true;
+            channel_view.SetModel (test_source.ChannelModel);
+            
             return true;
         }
 
         public void ResetSource ()
-        {            
+        {
             test_source = null;
+            
+            channel_view.SetModel (null);
+            channel_view.HeaderVisible = false;
         }
+
+        public static readonly SchemaEntry<int> HPanedPosition = new SchemaEntry<int> (
+            "plugins.paas.miroguide.ui", "search_hpaned_pos", 100, "", ""
+        ); 
     }
 }

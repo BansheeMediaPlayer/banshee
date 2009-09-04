@@ -34,6 +34,7 @@ namespace Banshee.Paas.Aether.MiroGuide
         Category = 1,
         Language = 2,
         Name = 3,
-        Tag = 4     
+        Search = 4,
+        Tag = 5     
     }
 }

@@ -1,5 +1,5 @@
 // 
-// MiroGuideSearchEntry.cs
+// MiroGuideChannelListModel.cs
 //  
 // Author:
 //   Mike Urbanski <michael.c.urbanski@gmail.com>
@@ -25,25 +25,13 @@
 // THE SOFTWARE.
 
 using System;
+using System.Collections.Generic;
 
-using Mono.Unix;
-
-using Banshee.Widgets;
-
-using Banshee.Paas.Aether.MiroGuide;
+using Banshee.Paas.Data;
 
 namespace Banshee.Paas.Aether.MiroGuide.Gui
 {
-    public class MiroGuideSearchEntry : SearchEntry
+    public class MiroGuideChannelListModel : ListModel<MiroGuideChannelInfo>
     {
-        public MiroGuideSearchEntry ()
-        {
-            AddFilterOption ((int)MiroGuideFilterType.Search, Catalog.GetString ("Search Miro Guide"));
-            AddFilterSeparator ();
-            AddFilterOption ((int)MiroGuideFilterType.Tag, Catalog.GetString ("Tag"));                        
-            AddFilterOption ((int)MiroGuideFilterType.Name, Catalog.GetString ("Name"));
-            AddFilterOption ((int)MiroGuideFilterType.Category, Catalog.GetString ("Category"));
-            AddFilterOption ((int)MiroGuideFilterType.Language, Catalog.GetString ("Language"));
-        }
     }
 }
