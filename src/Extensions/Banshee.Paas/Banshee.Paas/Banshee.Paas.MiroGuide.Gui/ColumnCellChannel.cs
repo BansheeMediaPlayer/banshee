@@ -83,34 +83,49 @@ namespace Banshee.Paas.MiroGuide.Gui
             if (image == null) {
                 image = default_cover_image;
                 disable_border = true;
-            }
-            
-            int image_render_size = image_size;
+            }                        int image_render_size = image_size;
             int x = image_spacing;
             int y = ((int)cellHeight - image_render_size) / 2;
 
             ArtworkRenderer.RenderThumbnail (context.Context, image, false, x, y,
-                image_render_size, image_render_size, !disable_border, context.Theme.Context.Radius, /*!waiting*/ true
+                image_render_size, image_render_size, !disable_border, context.Theme.Context.Radius, true
             );
                 
-            int fl_width = 0, fl_height = 0, sl_height = 0;
+            int fl_width = 0, fl_height = 0, sl_width = 0, sl_height = 0;
             Cairo.Color text_color = context.Theme.Colors.GetWidgetColor (GtkColorClass.Text, state);
             text_color.A = 0.75;
             
             Pango.Layout layout = context.Layout;
             layout.Width = (int)((cellWidth - cellHeight - x - 10) * Pango.Scale.PangoScale);
             layout.Ellipsize = Pango.EllipsizeMode.End;
+            layout.FontDescription.Weight = Pango.Weight.Bold;
             
             // Compute the layout sizes for both lines for centering on the cell
             int old_size = layout.FontDescription.Size;
             
             layout.SetText (channel.Name ?? String.Empty);
             layout.GetPixelSize (out fl_width, out fl_height);
-
+            
+            layout.FontDescription.Weight = Pango.Weight.Normal;
+            layout.FontDescription.Size = (int)(old_size * Pango.Scale.Small);
+            layout.FontDescription.Style = Pango.Style.Italic;
+            
+            layout.SetText (channel.Publisher);
+            
+            layout.GetPixelSize (out sl_width, out sl_height);
+            
             // Calculate the layout positioning
             x = ((int)cellHeight - x) + 10;
             y = (int)((cellHeight - (fl_height + sl_height)) / 2);
             
+            // Render the second line first since we have that state already
+            context.Context.MoveTo (x, y + fl_height);
+            context.Context.Color = text_color;
+            PangoCairoHelper.ShowLayout (context.Context, layout);
+            
+            // Render the first line, resetting the state
+            //layout.SetText (channel.Name ?? String.Empty);
+            layout.FontDescription.Weight = Pango.Weight.Bold;
             layout.FontDescription.Size = old_size;
             layout.FontDescription.Style = Pango.Style.Normal;
             

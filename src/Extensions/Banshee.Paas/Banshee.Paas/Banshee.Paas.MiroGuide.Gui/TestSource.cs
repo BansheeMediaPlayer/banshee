@@ -140,7 +140,7 @@ namespace Banshee.Paas.MiroGuide.Gui
         {
             if (!CoverArtSpec.CoverExists (PaasService.ArtworkIdFor (channel.Name))) {
                 Banshee.Kernel.Scheduler.Schedule (
-                    new MiroGuideImageFetchJob (channel), Banshee.Kernel.JobPriority.BelowNormal
+                    new MiroGuideImageFetchJob (channel), Banshee.Kernel.JobPriority.AboveNormal
                 );
             }
         }
@@ -157,7 +157,7 @@ namespace Banshee.Paas.MiroGuide.Gui
         {
             client.GetChannels (
                 (MiroGuideFilterType)search_entry.ActiveFilterID, 
-                search_entry.InnerEntry.Text, MiroGuideSortType.Name, false, 100, 0
+                search_entry.InnerEntry.Text, MiroGuideSortType.Name, false, 15, 0
             );
         }
 
