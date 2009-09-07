@@ -15,7 +15,7 @@ AC_DEFUN([BANSHEE_CHECK_DAP_MTP],
 	fi
 
 	if test "x$enable_libmtp" = "xyes"; then
-		LIBMTP_SO_MAP=$(basename $(find $($PKG_CONFIG --variable=libdir libmtp) -maxdepth 1 -regex '.*libmtp\.so\.\w+$' | sort | tail -n 1))
+		LIBMTP_SO_MAP=$(basename $(find $($PKG_CONFIG --variable=libdir libmtp) -maxdepth 1 -regex '.*libmtp\.so\.[[0-9]][[0-9]]*$' | sort | tail -n 1))
 		AC_SUBST(LIBMTP_SO_MAP)
 	fi
 

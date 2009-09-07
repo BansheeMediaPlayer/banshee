@@ -41,7 +41,7 @@ namespace Banshee.Library.Gui
         public void Import()
         {
             Banshee.Gui.Dialogs.FileChooserDialog chooser = new Banshee.Gui.Dialogs.FileChooserDialog (
-                Catalog.GetString ("Import Folder to Library"),
+                Catalog.GetString ("Import Folders to Library"),
                 FileChooserAction.SelectFolder
             );
             
@@ -59,7 +59,7 @@ namespace Banshee.Library.Gui
         }
         
         public string Name {
-            get { return Catalog.GetString ("Local Folder"); }
+            get { return Catalog.GetString ("Local Folders"); }
         }
         
         public string [] IconNames {
@@ -72,6 +72,13 @@ namespace Banshee.Library.Gui
         
         public int SortOrder {
             get { return 0; }
+        }
+
+        // Reserve strings in preparation for the forthcoming string freeze.
+        public void ReservedStrings ()
+        {
+            Catalog.GetString ("_Folders to import:");
+            Catalog.GetString ("Select Folders");
         }
     }
 }

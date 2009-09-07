@@ -188,7 +188,8 @@ namespace Booter
                     new LayoutOption ("query-disc", Catalog.GetString ("Disc Number")),
                     new LayoutOption ("query-year", Catalog.GetString ("Year")),
                     new LayoutOption ("query-rating", Catalog.GetString ("Rating")),
-                    new LayoutOption ("query-score", Catalog.GetString ("Score"))
+                    new LayoutOption ("query-score", Catalog.GetString ("Score")),
+                    new LayoutOption ("query-bit-rate", Catalog.GetString ("Bit Rate"))
                 ),
                 
                 new LayoutGroup ("ui", Catalog.GetString ("User Interface Options"),

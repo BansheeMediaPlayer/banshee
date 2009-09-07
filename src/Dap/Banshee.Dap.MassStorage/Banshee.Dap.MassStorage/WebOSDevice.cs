@@ -1,5 +1,5 @@
 //
-// AndroidDevice.cs
+// WebOSDevice.cs
 //
 // Author:
 //   Aaron Bockover <abockover@novell.com>
@@ -39,60 +39,88 @@ using Banshee.Collection.Database;
 
 namespace Banshee.Dap.MassStorage
 {
-    public class AndroidDevice : CustomMassStorageDevice
+    public class WebOSDevice : CustomMassStorageDevice
     {
         private static string [] playback_mime_types = new string [] {
-            "audio/mpeg",
-            "audio/mp4",
-            "audio/aac",
-            "audio/x-ms-wma",
-            "application/ogg",
-            "audio/x-wav",
-            "audio/vnd.rn-realaudio",
+            // Video
+            "video/mp4-generic",
+            "video/quicktime",
+            "video/mp4",
+            "video/mpeg4",
+            "video/3gp",
+            "video/3gpp2",
+            "application/sdp",
+
+            // Audio
             "audio/3gpp",
-            "audio/x-midi"
+            "audio/3ga",
+            "audio/3gpp2",
+            "audio/amr",
+            "audio/x-amr",
+            "audio/mpa",
+            "audio/mp3",
+            "audio/x-mp3",
+            "audio/x-mpg",
+            "audio/mpeg",
+            "audio/mpeg3",
+            "audio/mpg3",
+            "audio/mpg",
+            "audio/mp4",
+            "audio/m4a",
+            "audio/aac",
+            "audio/x-aac",
+            "audio/mp4a-latm",
+            "audio/wav"
         };
-        
+
+        // The Pre theoretically supports these formats, but it does not
+        // recognize them within the media player.
+        private static string [] playlist_formats = new string [] {
+            // "audio/x-scpls",
+            // "audio/mpegurl",
+            // "audio/x-mpegurl"
+        };
+
         private static string [] audio_folders = new string [] {
             "Music/",
-            "amazonmp3/",
-            "Video/"
+            "Videos/",
+            "ringtones/",
+            "AmazonMP3/"
         };
 
         private static string [] video_folders = new string [] {
-            "Video/"
+            "Videos/"
         };
 
-        private static string [] playlist_formats = new string [] {
-            "audio/x-mpegurl"
-        };
-
-        private static string playlists_path = "Playlists/";
-        
         private static string [] icon_names = new string [] {
-            "phone-htc-g1-white", DapSource.FallbackIcon
+            DapSource.FallbackIcon
         };
-        
+
         private AmazonMp3GroupSource amazon_source;
         private string amazon_base_dir;
-        
+
+        private RingtonesGroupSource ringtones_source;
+
         public override void SourceInitialize ()
         {
-            amazon_base_dir = System.IO.Path.Combine (Source.Volume.MountPoint, audio_folders[1]);
-            
-            amazon_source = new AmazonMp3GroupSource (Source, "amazonmp3", amazon_base_dir);
+            amazon_base_dir = System.IO.Path.Combine (Source.Volume.MountPoint, audio_folders[3]);
+
+            amazon_source = new AmazonMp3GroupSource (Source, "AmazonMP3", amazon_base_dir);
             amazon_source.AutoHide = true;
+
+            ringtones_source = new RingtonesGroupSource (Source);
+            ringtones_source.AutoHide = true;
         }
-        
+
         public override bool LoadDeviceConfiguration ()
         {
             return true;
         }
-        
+
         public override string Name {
             get { return VendorProductInfo.ProductName; }
         }
-        
+
         public override string [] AudioFolders {
             get { return audio_folders; }
         }
@@ -101,74 +129,67 @@ namespace Banshee.Dap.MassStorage
             get { return video_folders; }
         }
 
-        public override string [] PlaylistFormats {
-            get { return playlist_formats; }
-        }
-        
-        public override string PlaylistPath {
-            get { return playlists_path; }
-        }
-
         public override string [] PlaybackMimeTypes {
             get { return playback_mime_types; }
         }
-        
-        // Cover art information gleaned from Android's Music application
-        // packages/apps/Music/src/com/android/music/MusicUtils.java
-        // <3 open source
-        
+
         public override int FolderDepth {
             get { return 2; }
         }
-        
-        public override string CoverArtFileName {
-            get { return "AlbumArt.jpg"; }
-        }
-        
+
         public override string CoverArtFileType {
             get { return "jpeg"; }
         }
-        
+
         public override int CoverArtSize {
             get { return 320; }
         }
-        
-        public override string [] GetIconNames () 
+
+        public override string [] PlaylistFormats {
+            get { return playlist_formats; }
+        }
+
+        public override string [] GetIconNames ()
         {
             return icon_names;
         }
-        
-        public override bool GetTrackPath (TrackInfo track, out string path)
-        {
-            path = FileNamePattern.CreateFromTrackInfo (
-                "%artist%%path_sep%%album%%path_sep%%track_number%. %title%",
-                track);
-            return true;
-        }
-        
+
 #region Amazon MP3 Store Purchased Tracks Management
 
         public override bool DeleteTrackHook (DatabaseTrackInfo track)
         {
             // Do not allow removing purchased tracks if not in the
             // Amazon Purchased Music source; this should prevent
-            // accidental deletion of purchased music that may not 
+            // accidental deletion of purchased music that may not
             // have been copied from the device yet.
             //
             // TODO: Provide some feedback when a purchased track is
             // skipped from deletion
             //
-            // FIXME: unfortunately this does not work due to 
+            // FIXME: unfortunately this does not work due to
             // the cache models being potentially different
             // even though they will always reference the same tracks
             // amazon_source.TrackModel.IndexOf (track) >= 0
-            
             if (!amazon_source.Active && amazon_source.Count > 0 && track.Uri.LocalPath.StartsWith (amazon_base_dir)) {
                 return false;
             }
-            
+
             return true;
         }
+
+#endregion
+
+#region Ringtones Support
+
+    private class RingtonesGroupSource : MediaGroupSource
+    {
+        // TODO: Support dropping files onto this playlist to copy into the ringtones directory
+        public RingtonesGroupSource (DapSource parent)
+            : base (parent, Catalog.GetString ("Ringtones"))
+        {
+            ConditionSql = "(CoreTracks.Uri LIKE \"%ringtones/%\")";
+        }
+    }
 
 #endregion
 

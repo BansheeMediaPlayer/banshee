@@ -42,7 +42,8 @@ namespace Banshee.Library
 {
     public class MusicLibrarySource : LibrarySource
     {
-        public MusicLibrarySource () : base (Catalog.GetString ("Music Library"), "Library", 40)
+        // Catalog.GetString ("Music Library")
+        public MusicLibrarySource () : base (Catalog.GetString ("Music"), "Library", 40)
         {
             MediaTypes = TrackMediaAttributes.Music | TrackMediaAttributes.AudioStream;
             NotMediaTypes = TrackMediaAttributes.Podcast | TrackMediaAttributes.VideoStream | TrackMediaAttributes.AudioBook;

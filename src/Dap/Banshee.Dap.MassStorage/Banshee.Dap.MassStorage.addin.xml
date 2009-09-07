@@ -3,11 +3,11 @@
     id="Banshee.Dap.MassStorage"
     version="1.0"
     compatVersion="1.0"
-    copyright="© 2008 Novell Inc. Licensed under the MIT X11 license."
+    copyright="Copyright 2008 Novell Inc., Copyright 2009 Jeff Wheeler. Licensed under the MIT X11 license."
     name="Mass Storage Media Player Support"
     category="Hardware"
     description="Provides support for media players that use USB Mass Storage without keeping an internal database."
-    author="Gabriel Burt, Aaron Bockover"
+    author="Gabriel Burt, Aaron Bockover, Jeff Wheeler"
     url="http://banshee-project.org/"
     defaultEnabled="true">
 
@@ -28,6 +28,12 @@
     <MassStorageDevice class="Banshee.Dap.MassStorage.AndroidDevice" 
         vendor-name="HTC" product-name="Android G1 Phone"
         vendor-id="0x0bb4" product-id="0x0c01,0x0c02"/>
+    <MassStorageDevice class="Banshee.Dap.MassStorage.AndroidDevice" 
+        vendor-name="Samsung" product-name="Samsung Galaxy"
+        vendor-id="0x04e8" product-id="0x6603,0x6601"/>
+    <MassStorageDevice class="Banshee.Dap.MassStorage.WebOSDevice"
+        vendor-name="Palm" product-name="Pre"
+        vendor-id="0x0830" product-id="0x8004"/>
   </Extension>
 
 </Addin>

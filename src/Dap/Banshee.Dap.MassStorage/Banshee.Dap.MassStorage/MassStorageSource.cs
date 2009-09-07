@@ -116,6 +116,13 @@ namespace Banshee.Dap.MassStorage
                 );
             }
 
+            if (VideoFolders.Length > 0 && !String.IsNullOrEmpty (VideoFolders[0])) {
+                AddDapProperty (String.Format (
+                    Catalog.GetPluralString ("Video Folder", "Video Folders", VideoFolders.Length), VideoFolders.Length),
+                    System.String.Join ("\n", VideoFolders)
+                );
+            }
+
             if (FolderDepth != -1) {
                 AddDapProperty (Catalog.GetString ("Required Folder Depth"), FolderDepth.ToString ());
             }
@@ -359,6 +366,25 @@ namespace Banshee.Dap.MassStorage
             set { write_path = value; }
         }
 
+        private string write_path_video = null;
+        public string WritePathVideo {
+            get {
+                if (write_path_video == null) {
+                    write_path_video = BaseDirectory;
+                    // Some Devices May Have a Separate Video Directory
+                    if (VideoFolders.Length > 0) {
+                        write_path_video = Banshee.Base.Paths.Combine (write_path_video, VideoFolders[0]);
+                    } else if (AudioFolders.Length > 0) {
+                        write_path_video = Banshee.Base.Paths.Combine (write_path_video, AudioFolders[0]);
+                        write_path_video = Banshee.Base.Paths.Combine (write_path_video, "Videos");
+                    }
+                }
+                return write_path_video;
+            }
+
+            set { write_path_video = value; }
+        }
+
         private string [] audio_folders;
         protected string [] AudioFolders {
             get {
@@ -368,6 +394,17 @@ namespace Banshee.Dap.MassStorage
                 return audio_folders;
             }
             set { audio_folders = value; }
+        }
+
+        private string [] video_folders;
+        protected string [] VideoFolders {
+            get {
+                if (video_folders == null) {
+                    video_folders = HasMediaCapabilities ? MediaCapabilities.VideoFolders : new string[0];
+                }
+                return video_folders;
+            }
+            set { video_folders = value; }
         }
 
         protected IEnumerable<string> BaseDirectories {
@@ -551,12 +588,16 @@ namespace Banshee.Dap.MassStorage
         private string GetTrackPath (TrackInfo track, string ext)
         {
             string file_path = null;
-            
+
             if (track.HasAttribute (TrackMediaAttributes.Podcast)) {
                 string album = FileNamePattern.Escape (track.DisplayAlbumTitle);
                 string title = FileNamePattern.Escape (track.DisplayTrackTitle);
                 file_path = System.IO.Path.Combine ("Podcasts", album);
                 file_path = System.IO.Path.Combine (file_path, title);
+            } else if (track.HasAttribute (TrackMediaAttributes.VideoStream)) {
+                string album = FileNamePattern.Escape (track.DisplayAlbumTitle);
+                string title = FileNamePattern.Escape (track.DisplayTrackTitle);
+                file_path = System.IO.Path.Combine (album, title);
             } else if (ms_device == null || !ms_device.GetTrackPath (track, out file_path)) {
                 // If the folder_depth property exists, we have to put the files in a hiearchy of
                 // the exact given depth (not including the mount point/audio_folder).
@@ -601,7 +642,11 @@ namespace Banshee.Dap.MassStorage
                 }
             }
             
-            file_path = System.IO.Path.Combine (WritePath, file_path);
+            if (track.HasAttribute (TrackMediaAttributes.VideoStream)) {
+              file_path = System.IO.Path.Combine (WritePathVideo, file_path);
+            } else {
+              file_path = System.IO.Path.Combine (WritePath, file_path);
+            }
             file_path += ext;
             
             return file_path;

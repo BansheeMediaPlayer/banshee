@@ -56,7 +56,7 @@ gdb:
 
 mdb:
 	@pushd bin; \
-	mdb -run -args Nereid.exe --debug --uninstalled"; \
+	mdb -run Nereid.exe --debug --uninstalled $(BANSHEE_DEV_OPTIONS); \
 	popd;
 
 csharp:

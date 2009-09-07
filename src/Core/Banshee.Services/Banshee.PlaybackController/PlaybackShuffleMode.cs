@@ -36,7 +36,8 @@ namespace Banshee.PlaybackController
         Song,
         Artist,
         Album,
-        Rating
+        Rating,
+        Score
     }
 
     public class ShuffleModeChangedEventArgs : EventArgs

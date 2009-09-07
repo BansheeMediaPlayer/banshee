@@ -27,6 +27,7 @@
 //
 
 using System;
+using System.Collections.Generic;
 using System.Data;
 using System.IO;
 
@@ -126,6 +127,16 @@ namespace Banshee.Collection.Database
             Save (NotifySaved);
         }
 
+        // Changing these fields shouldn't change DateUpdated (which triggers file save)
+        private static HashSet<QueryField> transient_fields = new HashSet<QueryField> {
+            BansheeQuery.ScoreField,
+            BansheeQuery.SkipCountField,
+            BansheeQuery.LastSkippedField,
+            BansheeQuery.PlayCountField,
+            BansheeQuery.LastPlayedField,
+            BansheeQuery.RatingField
+        };
+
         public void Save (bool notify, params QueryField [] fields_changed)
         {
             // If either the artist or album changed, 
@@ -139,10 +150,14 @@ namespace Banshee.Collection.Database
                 // TODO get rid of unused artists/albums
             }
             
-            DateUpdated = DateTime.Now;
+            if (fields_changed.Length == 0 || !transient_fields.IsSupersetOf (fields_changed)) {
+                DateUpdated = DateTime.Now;
+            }
 
             bool is_new = (TrackId == 0);
-            if (is_new) DateAdded = DateUpdated;
+            if (is_new) {
+                DateAdded = DateUpdated = DateTime.Now;
+            }
 
             ProviderSave ();
 

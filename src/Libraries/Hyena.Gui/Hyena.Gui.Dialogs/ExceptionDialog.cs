@@ -82,6 +82,7 @@ namespace Hyena.Gui.Dialogs
             label.UseUnderline = false;
             label.Justify = Gtk.Justification.Left;
             label.LineWrap = true;
+            label.Selectable = true;
             label.SetAlignment(0.0f, 0.5f);
             label_vbox.PackStart(label, false, false, 0);
 

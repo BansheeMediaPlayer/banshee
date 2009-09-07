@@ -1,14 +1,10 @@
 //
-// RandomByRating.cs
+// RandomByScore.cs
 //
-// Authors:
-//   Elena Grassi <grassi.e@gmail.com>
+// Author:
 //   Alexander Kojevnikov <alexander@kojevnikov.com>
-//   Gabriel Burt <gburt@novell.com>
 //
-// Copyright (C) 2008 Elena Grassi
 // Copyright (C) 2009 Alexander Kojevnikov
-// Copyright (C) 2009 Novell, Inc.
 //
 // Permission is hereby granted, free of charge, to any person obtaining
 // a copy of this software and associated documentation files (the
@@ -36,30 +32,34 @@ using Banshee.PlaybackController;
 
 namespace Banshee.Collection.Database
 {
-    public class RandomByRating : RandomBySlot
+    public class RandomByScore : RandomBySlot
     {
-        private static string track_condition = String.Format ("AND (CoreTracks.Rating = ? OR (? = 3 AND CoreTracks.Rating = 0)) {0} ORDER BY RANDOM()", RANDOM_CONDITION);
+        private static string track_condition = String.Format ("AND (CoreTracks.Score BETWEEN ? AND ? OR (? = 50 AND CoreTracks.Score = 0)) {0} ORDER BY RANDOM()", RANDOM_CONDITION);
 
-        public RandomByRating () : base (PlaybackShuffleMode.Rating)
+        public RandomByScore () : base (PlaybackShuffleMode.Score)
         {
         }
 
         public override TrackInfo GetTrack (DateTime after)
         {
-            var track = !IsReady ? null : Cache.GetSingle (track_condition, slot + 1, slot + 1, after, after);
+            int min = slot * 100 / Slots + 1;
+            int max = (slot + 1) * 100 / Slots;
+
+            var track = !IsReady ? null : Cache.GetSingle (track_condition, min, max, max, after, after);
             Reset ();
             return track;
         }
 
         protected override int Slots {
-            get { return 5; }
+            get { return 20; }
         }
 
         protected override string QuerySql {
             get {
+                // NOTE: SQLite wrongly assumes that (-1)/5 == 0, the CASE WHEN works around this.
                 return @"
                     SELECT
-                        (CoreTracks.Rating - 1) AS Slot, COUNT(*)
+                        CASE WHEN IFNULL(CoreTracks.Score, 0) = 0 THEN -1 ELSE (CoreTracks.Score - 1) * 20 / 100 END AS Slot, COUNT(*)
                     FROM
                         CoreTracks, CoreCache {0}
                     WHERE

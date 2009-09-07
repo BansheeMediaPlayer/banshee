@@ -165,5 +165,15 @@ namespace Banshee.Widgets
                 Sensitive = value;
             }
         }
+
+        public new bool Sensitive {
+            get { return base.Sensitive; }
+            set {
+                if (!value) {
+                    can_set_value = true;
+                }
+                base.Sensitive = value;
+            }
+        } 
     }
 }

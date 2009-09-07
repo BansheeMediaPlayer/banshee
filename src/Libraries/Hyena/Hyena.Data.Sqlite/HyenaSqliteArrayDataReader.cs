@@ -34,6 +34,7 @@ using System.Data;
 using System.Data.Common;
 using System.Text;
 using System.Collections;
+using System.Collections.Generic;
 using Mono.Data.Sqlite;
 
 namespace Hyena.Data.Sqlite
@@ -52,9 +53,9 @@ namespace Hyena.Data.Sqlite
     {
         #region Fields
 
-        private System.Collections.Generic.List<object[]> rows;
+        private List<object[]> rows;
         private string[] columns;
-        private Hashtable column_names_sens, column_names_insens;
+        private Dictionary<string, int> column_names;
         private int current_row;
         private bool closed;
         private int records_affected;
@@ -66,9 +67,8 @@ namespace Hyena.Data.Sqlite
 
         internal HyenaSqliteArrayDataReader (SqliteDataReader reader)
         {
-            rows = new System.Collections.Generic.List<object[]> ();
-            column_names_sens = new Hashtable ();
-            column_names_insens = new Hashtable (StringComparer.InvariantCultureIgnoreCase);
+            rows = new List<object[]> ();
+            column_names = new Dictionary<string, int> ();
             closed = false;
             current_row = -1;
             ReadAllRows (reader);
@@ -123,8 +123,8 @@ namespace Hyena.Data.Sqlite
             for (ii = 0; ii < field_count; ii++) {
                     string column_name = reader.GetName (ii);
                     columns[ii] = column_name;
-                    column_names_sens[column_name] = ii;
-                    column_names_insens[column_name] = ii;
+                    column_names[column_name] = ii;
+                    column_names[column_name.ToUpper ()] = ii;
             }
 
             /* Read all rows, store in this->rows */
@@ -349,12 +349,13 @@ namespace Hyena.Data.Sqlite
 
         public int GetOrdinal (string name)
         {
-            object v = column_names_sens[name];
-            if (v == null)
-                v = column_names_insens[name];
-            if (v == null)
-                throw new ArgumentException("Column does not exist.");
-            return (int) v;
+            int v = -1;
+            if (!column_names.TryGetValue (name, out v)) {
+                if (!column_names.TryGetValue (name.ToUpper (), out v)) {
+                    throw new ArgumentException("Column does not exist.");
+                }
+            }
+            return v;
         }
 
         public string GetString (int i)

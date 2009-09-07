@@ -323,8 +323,8 @@ namespace Banshee.Gui.TrackEditor
                 return;
             }
             
-            sync_all_button.WidthRequest = (children[1].Allocation.X + 
-                children[1].Allocation.Width) - children[0].Allocation.X - 1;
+            sync_all_button.WidthRequest = Math.Max (sync_all_button.Allocation.Width,
+                (children[1].Allocation.X + children[1].Allocation.Width) - children[0].Allocation.X - 1);
         }
         
 #endregion

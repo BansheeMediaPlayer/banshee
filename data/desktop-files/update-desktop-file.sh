@@ -13,7 +13,7 @@ echo "[Desktop Entry]"
 if [[ -f "$MIMETYPES_FILE" ]]; then
 	MIMETYPES=$(
 		grep -vE '^[[:space:]]*(#.*|)$' "$MIMETYPES_FILE" | \
-		sort | uniq | \
+		LC_ALL=C sort | uniq | \
 		awk '{printf $1 ";"}' | sed 's,;$,,'
 	)
 

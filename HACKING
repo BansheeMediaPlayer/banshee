@@ -2,13 +2,13 @@ This document defines many guidelines that should be adhered to when developing
 against Banshee. These guidelines will make the codebase more readable,
 extensible, and portable.
 
-ChangeLog Formatting Guidelines
-===============================
+Commit Message Guidelines
+=========================
 
-Every change to source code must have an entry in the ChangeLog file. The
-formatting details of this file are described here:
+Every change to source code must have a commit message associated to it. The
+formatting details of this message are described here:
 
-  http://banshee-project.org/ChangeLogForDevelopers
+  http://live.gnome.org/Git/CommitMessages
 
 Please review these guidelines separate to this document.
 
@@ -128,7 +128,7 @@ Implementation Guidelines
 
   3. When a platform-specific task needs to be performed, a top-level, 
      generic API must be designed first and then the platform implementation
-     of the API can be added. See Banshee.Cdrom for ideas.
+     of the API can be added. See Banshee.Configuration for ideas.
    
   4. Do not hard code path separators. Use Path.DirectorySeparatorChar instead
      as it is portable to other platforms. 
@@ -159,9 +159,9 @@ Organization Guidelines
       Banshee.Cdrom.Gui
       Banshee.Cdrom.Nautilus
 
-  3. Banshee's sources are layed out in the following way in the build [3]:
+  3. Banshee's sources are layed out in the following way in the build:
 
-     src/<assembly-name>/<namespace>/<class-or-interface>.cs
+     src/<high-level-group>/<assembly-name>/<namespace>/<class-or-interface>.cs
 
   4. Small member definitions (delegates, argument classes, enums) can go
      inside the same file containing the primary class, but classes should
@@ -171,8 +171,4 @@ Organization Guidelines
 [1] http://www.mono-project.com/Coding_Guidelines
 [2] Highly recommended reading: http://www.amazon.com/gp/product/0321246756/ or
     view at: http://msdn2.microsoft.com/en-us/library/ms229042.aspx
-[3] This layout pattern is to be followed for new code, but due to limitations
-    with GNOME CVS, the older/deprecated directory/file layout is still in
-    use too. When GNOME CVS is migrated to Subversion, the entire tree will
-    be restructured to reflect this naming/layout convention.
 

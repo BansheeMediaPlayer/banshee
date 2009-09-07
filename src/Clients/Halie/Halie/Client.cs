@@ -204,17 +204,26 @@ namespace Halie
                 case "can-seek":
                     DisplayTrackField ("can-seek", player.CanSeek);
                     break;
-                default:
+                case "URI":
+                case "artist":
+                case "album":
+                case "name":
+                case "length":
+                case "track-number":
+                case "track-count":
+                case "disc":
+                case "year":
+                case "rating":
+                case "score":
+                case "bit-rate":
                     if (track == null) {
                         Error ("not playing");
                         break;
                     }
-                    
-                    if (track.ContainsKey (query)) {
-                        DisplayTrackField (query, track[query]);
-                    } else {
-                        Error ("'{0}' field unknown", query);
-                    }
+                    DisplayTrackField (query, track.ContainsKey (query) ? track[query] : "");
+                    break;
+                default:
+                    Error ("'{0}' field unknown", query);
                     break;
             }
         }

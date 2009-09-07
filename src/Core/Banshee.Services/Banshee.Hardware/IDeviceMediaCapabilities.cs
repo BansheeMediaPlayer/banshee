@@ -36,6 +36,7 @@ namespace Banshee.Hardware
         int CoverArtSize { get; }
         int FolderDepth { get; }
         string [] AudioFolders { get; }
+        string [] VideoFolders { get; }
         string CoverArtFileType { get; }
         string CoverArtFileName { get; }
         string [] PlaylistFormats { get; }

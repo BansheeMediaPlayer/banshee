@@ -212,5 +212,11 @@ namespace Banshee.Playlist
 
         protected abstract void Create ();
         protected abstract void Update ();
+
+        // Reserve strings in preparation for the forthcoming string freeze.
+        public void ReservedStrings ()
+        {
+            Catalog.GetString ("The track's rating was set differently on the device and in Banshee");
+        }
     }
 }

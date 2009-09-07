@@ -85,5 +85,13 @@ namespace Banshee.Library.Gui
                 ServiceManager.SourceManager.VideoLibrary.BaseDirectory
             );
         }
+
+        // Reserve strings in preparation for the forthcoming string freeze.
+        public void ReservedStrings ()
+        {
+            Catalog.GetString ("_Files to import:");
+            Catalog.GetString ("Select Files");
+            Catalog.GetString ("(none selected)");
+        }
     }
 }

@@ -31,6 +31,7 @@ using System;
 using Gtk;
 
 using Hyena;
+using Hyena.Data;
 using Hyena.Widgets;
 
 using Banshee.Dap;
@@ -41,6 +42,7 @@ namespace Banshee.Dap.Gui
 {
     public class DapContent : DapPropertiesDisplay
     {
+        private Label title;
         private DapSource dap;
         
         // Ugh, this is to avoid the GLib.MissingIntPtrCtorException seen by some; BGO #552169
@@ -53,6 +55,7 @@ namespace Banshee.Dap.Gui
             dap = source;
             BuildWidgets ();
             BuildActions ();
+            dap.Properties.PropertyChanged += OnPropertyChanged;
         }
 
         private void BuildWidgets ()
@@ -62,8 +65,8 @@ namespace Banshee.Dap.Gui
             
             content_box.BorderWidth = 5;
             
-            Label title = new Label ();
-            title.Markup = String.Format ("<span size=\"x-large\" weight=\"bold\">{0}</span>", dap.Name);
+            title = new Label ();
+            SetTitleText (dap.Name);
             title.Xalign = 0.0f;
             
             Banshee.Preferences.Gui.NotebookPage properties = new Banshee.Preferences.Gui.NotebookPage (dap.Preferences);
@@ -87,6 +90,17 @@ namespace Banshee.Dap.Gui
             if (actions == null) {
                 actions = new DapActions ();
             }
+        }
+
+        private void SetTitleText (string name)
+        {
+            title.Markup = String.Format ("<span size=\"x-large\" weight=\"bold\">{0}</span>", name);
+        }
+
+        private void OnPropertyChanged (object o, PropertyChangeEventArgs args)
+        {
+            if (args.PropertyName == "UnmapSourceActionLabel")
+                SetTitleText (args.NewValue.ToString ());
         }
 
         private static Banshee.Gui.BansheeActionGroup actions;

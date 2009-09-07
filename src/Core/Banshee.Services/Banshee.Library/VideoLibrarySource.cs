@@ -39,7 +39,8 @@ namespace Banshee.Library
 {
     public class VideoLibrarySource : LibrarySource
     {
-        public VideoLibrarySource () : base (Catalog.GetString ("Video Library"), "VideoLibrary", 50)
+        // Catalog.GetString ("Video Library")
+        public VideoLibrarySource () : base (Catalog.GetString ("Videos"), "VideoLibrary", 50)
         {
             MediaTypes = TrackMediaAttributes.VideoStream;
             NotMediaTypes = TrackMediaAttributes.Podcast;

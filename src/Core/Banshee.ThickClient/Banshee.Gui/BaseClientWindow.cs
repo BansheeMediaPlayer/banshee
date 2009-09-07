@@ -41,6 +41,7 @@ namespace Banshee.Gui
     public abstract class BaseClientWindow : Window
     {
         private PersistentWindowController window_controller;
+        private string accel_map_file = Paths.Combine (Paths.ApplicationData, "gtk_accel_map");
 
         private GtkElementsService elements_service;
         protected GtkElementsService ElementsService {
@@ -51,7 +52,7 @@ namespace Banshee.Gui
         protected InterfaceActionService ActionService {
             get { return action_service; }
         }
-        
+
         public event EventHandler TitleChanged;
 
         protected BaseClientWindow (IntPtr ptr) : base (ptr)
@@ -73,6 +74,25 @@ namespace Banshee.Gui
             AddAccelGroup (action_service.UIManager.AccelGroup);
             
             InitializeWindow ();
+
+            try {
+                if (System.IO.File.Exists (accel_map_file)) {
+                    Gtk.AccelMap.Load (accel_map_file);
+                }
+            } catch (Exception e) {
+                Hyena.Log.Exception ("Failed to load custom AccelMap", e);
+            }
+        }
+
+        public override void Dispose ()
+        {
+            base.Dispose ();
+
+            try {
+                Gtk.AccelMap.Save (accel_map_file);
+            } catch (Exception e) {
+                Hyena.Log.Exception ("Failed to save custom AccelMap", e);
+            }
         }
 
 		protected void InitialShowPresent ()

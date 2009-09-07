@@ -26,6 +26,8 @@ SOURCES =  \
 	Banshee.Collection.Database/RandomByAlbum.cs \
 	Banshee.Collection.Database/RandomByArtist.cs \
 	Banshee.Collection.Database/RandomByRating.cs \
+	Banshee.Collection.Database/RandomByScore.cs \
+	Banshee.Collection.Database/RandomBySlot.cs \
 	Banshee.Collection.Database/RandomByTrack.cs \
 	Banshee.Collection.Database/Tests/DatabaseAlbumInfoTests.cs \
 	Banshee.Collection.Database/Tests/DatabaseArtistInfoTests.cs \

@@ -146,6 +146,11 @@ public static class DllMapVerifier
                             in_string = true;
                         }
                         break;
+                    case ']':
+                        in_attr = false;
+                        in_dll_attr = false;
+                        Read ();
+                        break;
                     default:
                         if (!in_dll_attr && in_attr && ReadDllAttribute ()) {
                             in_dll_attr = true;

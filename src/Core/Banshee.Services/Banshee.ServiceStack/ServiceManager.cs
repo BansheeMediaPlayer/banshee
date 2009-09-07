@@ -261,9 +261,15 @@ namespace Banshee.ServiceStack
         
         private static void DelayedInitialize (IService service)
         {
-            if (have_client && service is IDelayedInitializeService) {
-                Log.DebugFormat ("Delayed Initializating {0}", service);
-                ((IDelayedInitializeService)service).DelayedInitialize ();
+            try {
+                if (have_client && service is IDelayedInitializeService) {
+                    Log.DebugFormat ("Delayed Initializating {0}", service);
+                    ((IDelayedInitializeService)service).DelayedInitialize ();
+                }
+            } catch (Exception e) {
+                Log.Exception (e.InnerException ?? e);
+                Log.Warning (String.Format ("Service `{0}' not initialized: {1}", 
+                    service.GetType ().FullName, e.Message));
             }
         }
         

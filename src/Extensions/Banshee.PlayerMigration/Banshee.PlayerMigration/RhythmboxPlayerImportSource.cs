@@ -377,5 +377,24 @@ namespace Banshee.PlayerMigration
         public override int SortOrder {
             get { return 40; }
         }
+
+        // Reserve strings for the iTunes importer in preparation for the forthcoming string freeze.
+        public void ReservedStrings ()
+        {
+            Catalog.GetString ("iTunes Importer");
+            Catalog.GetString ("_Import");
+            Catalog.GetString ("Import _playlists");
+            Catalog.GetString (@"Locate your ""{0}"" file...");
+            Catalog.GetString (@"Locate ""{0}""");
+            Catalog.GetString ("Locate iTunes Music Directory");
+            Catalog.GetString(
+                "The iTunes library refers to your music directory as \"{0}\" but " +
+                "Banshee was not able to infer the location of this directory. Please locate it.");
+            Catalog.GetString ("iTunes Media Player");
+            Catalog.GetString (
+                "Banshee is not familiar with this version of the iTunes library format." +
+                " Importing may or may not work as expected, or at all. Would you like to attempt to import anyway?");
+            Catalog.GetString ("Unable to import song.");
+        }
     }
 }

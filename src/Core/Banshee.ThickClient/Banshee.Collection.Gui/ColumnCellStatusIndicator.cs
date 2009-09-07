@@ -131,7 +131,7 @@ namespace Banshee.Collection.Gui
                 icon_index = GetIconIndex (track);
             }
             
-            if (icon_index < 0) {
+            if (icon_index < 0 || pixbufs == null || pixbufs[icon_index] == null) {
                 return;
             }
             

@@ -269,8 +269,8 @@ href=http://lkjdflkjdflkjj>baz foo< /a> bar"));
         {
             AssertProduces (null,   "");
             AssertProduces ("",     "");
-            AssertProduces (" ",    " ");
-            AssertProduces ("   ",  "   ");
+            AssertProduces (" ",    "");
+            AssertProduces ("   ",  "");
         }
 
         [Test]

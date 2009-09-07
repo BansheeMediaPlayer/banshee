@@ -89,17 +89,19 @@ namespace Banshee.Hardware
         
         private static short ParseId (string value)
         {
-            short result = 0;
+            // Parse as an integer, then typecast, to avoid overflow issues
+            // with regards to the sign bit.
+            int result = 0;
             
             if (value.StartsWith ("0x")) {
-                Int16.TryParse (value.Substring (2), NumberStyles.HexNumber, 
+                Int32.TryParse (value.Substring (2), NumberStyles.HexNumber,
                     CultureInfo.InvariantCulture, out result);
             } else {
-                Int16.TryParse (value, NumberStyles.AllowLeadingWhite | NumberStyles.AllowTrailingWhite, 
+                Int32.TryParse (value, NumberStyles.AllowLeadingWhite | NumberStyles.AllowTrailingWhite,
                     CultureInfo.InvariantCulture, out result);
             }
             
-            return result;
+            return (short)result;
         }
     }
 }

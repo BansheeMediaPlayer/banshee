@@ -122,5 +122,14 @@ namespace Banshee.Metadata
         string IService.ServiceName {
             get { return "SaveMetadataService"; }
         }
+
+        // Reserve strings in preparation for the forthcoming string freeze.
+        public void ReservedStrings ()
+        {
+            Catalog.GetString ("Write _ratings and play counts to files");
+            Catalog.GetString ("Enable this option to save rating and play count metadata inside supported audio files whenever the rating is changed.");
+            Catalog.GetString ("Import _ratings");
+            Catalog.GetString ("Import play _counts");
+        }
     }
 }

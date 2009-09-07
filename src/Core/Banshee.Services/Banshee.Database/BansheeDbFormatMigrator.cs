@@ -56,7 +56,7 @@ namespace Banshee.Database
         // NOTE: Whenever there is a change in ANY of the database schema,
         //       this version MUST be incremented and a migration method
         //       MUST be supplied to match the new version number
-        protected const int CURRENT_VERSION = 33;
+        protected const int CURRENT_VERSION = 34;
         protected const int CURRENT_METADATA_VERSION = 6;
         
 #region Migration Driver
@@ -778,6 +778,17 @@ namespace Banshee.Database
 
 #endregion
 
+#region Version 34
+
+        [DatabaseVersion (34)]
+        private bool Migrate_34 ()
+        {
+            Execute ("CREATE INDEX IF NOT EXISTS CoreSmartPlaylistEntriesIndex ON CoreSmartPlaylistEntries(SmartPlaylistID, TrackID)");
+            return true;
+        }
+
+#endregion
+
 #pragma warning restore 0169
         
 #region Fresh database setup
@@ -965,6 +976,7 @@ namespace Banshee.Database
                     TrackID             INTEGER NOT NULL
                 )
             ");
+            Execute ("CREATE INDEX CoreSmartPlaylistEntriesIndex ON CoreSmartPlaylistEntries(SmartPlaylistID, TrackID)");
 
             Execute(@"
                 CREATE TABLE CoreRemovedTracks (

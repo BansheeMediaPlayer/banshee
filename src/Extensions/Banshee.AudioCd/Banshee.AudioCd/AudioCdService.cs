@@ -140,6 +140,7 @@ namespace Banshee.AudioCd
             lock (this) {
                 if (sources.ContainsKey (uuid)) {
                     AudioCdSource source = sources[uuid];
+                    source.StopPlayingDisc ();
                     ServiceManager.SourceManager.RemoveSource (source);
                     sources.Remove (uuid);
                     Log.DebugFormat ("Unmapping audio CD ({0})", uuid);

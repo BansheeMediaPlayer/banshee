@@ -331,10 +331,10 @@ namespace Banshee.NotificationArea
             // Give the user half a second to move the mouse cursor to the popup.
             if (!hide_delay_started) {
                 hide_delay_started = true;
+                cursor_over_trayicon = false;
                 GLib.Timeout.Add (500, delegate {
                     if (hide_delay_started) {
                         hide_delay_started = false;
-                        cursor_over_trayicon = false;
                         HidePopup ();
                     }
                     return false;

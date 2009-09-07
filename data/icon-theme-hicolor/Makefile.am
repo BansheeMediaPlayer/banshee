@@ -12,8 +12,8 @@ all:
 	(for icon_desc in $(theme_icons); do \
 		category=$$(echo $$icon_desc | cut -f1 -d,); \
 		src_file="$(srcdir)/$$(echo $$icon_desc | cut -f2 -d,)"; \
-		dest_file=$$(echo $$src_file | sed -r 's,\-[0-9]+,,'); \
-		size=$$(echo $$src_file | sed 's,[^0-9],,g'); \
+		dest_file=$$(echo $$src_file | ${SED} -r 's,\-[0-9]+,,'); \
+		size=$$(echo $$src_file | ${SED} 's,[^0-9],,g'); \
 		dest_dir="$(top_builddir)/bin/share/$(PACKAGE)/icons/hicolor/$${size}x$${size}/$${category}"; \
 		mkdir -p "$${dest_dir}" && cp -f "$${src_file}" "$${dest_dir}/$${dest_file}"; \
 	done;) &>/dev/null || true

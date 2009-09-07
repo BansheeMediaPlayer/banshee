@@ -104,8 +104,6 @@ namespace Muinshee
                 BuildPrimaryLayout ();
                 ConnectEvents ();
 
-                AddAccelGroup (ActionService.UIManager.AccelGroup);
-
                 track_view.SetModel (play_queue.TrackModel);
 
                 InitialShowPresent ();

@@ -101,6 +101,11 @@ namespace Banshee.Gui
                     Catalog.GetString ("Shuffle by _Rating"), null,
                     Catalog.GetString ("Play songs randomly, prefer higher rated songs"),
                     (int)PlaybackShuffleMode.Rating),
+
+                new RadioActionEntry ("ShuffleScoreAction", null,
+                    Catalog.GetString ("Shuffle by S_core"), null,
+                    Catalog.GetString ("Play songs randomly, prefer higher scored songs"),
+                    (int)PlaybackShuffleMode.Score)
             }, 0, OnActionChanged);
                 
             this["ShuffleOffAction"].IconName = "media-skip-forward";
@@ -108,6 +113,7 @@ namespace Banshee.Gui
             this["ShuffleArtistAction"].IconName = "media-playlist-shuffle";
             this["ShuffleAlbumAction"].IconName = "media-playlist-shuffle";
             this["ShuffleRatingAction"].IconName = "media-playlist-shuffle";
+            this["ShuffleScoreAction"].IconName = "media-playlist-shuffle";
 
             ServiceManager.PlaybackController.ShuffleModeChanged += OnShuffleModeChanged;
             ServiceManager.PlaybackController.SourceChanged += OnPlaybackSourceChanged;
@@ -205,6 +211,7 @@ namespace Banshee.Gui
             yield return (RadioAction)this["ShuffleArtistAction"];
             yield return (RadioAction)this["ShuffleAlbumAction"];
             yield return (RadioAction)this["ShuffleRatingAction"];
+            yield return (RadioAction)this["ShuffleScoreAction"];
         }
 
         IEnumerator IEnumerable.GetEnumerator ()
@@ -227,7 +234,7 @@ namespace Banshee.Gui
             "playback", "shuffle_mode",
             "off",
             "Shuffle playback",
-            "Shuffle mode (shuffle_off, shuffle_song, shuffle_artist, shuffle_album, shuffle_rating)"
+            "Shuffle mode (shuffle_off, shuffle_song, shuffle_artist, shuffle_album, shuffle_rating, shuffle_score)"
         );
     }
 }

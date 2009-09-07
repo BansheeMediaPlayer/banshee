@@ -72,6 +72,16 @@ namespace Banshee.HalBackend
             }
         }
 
+        private string [] video_folders;
+        public string [] VideoFolders {
+            get {
+                if (video_folders == null) {
+                    video_folders = SafelyGetStringList ("portable_audio_player.video_folders");
+                }
+                return video_folders;
+            }
+        }
+
         private string cover_art_file_name;
         public string CoverArtFileName {
             get {

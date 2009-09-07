@@ -341,7 +341,7 @@ namespace Banshee.Collection.Database
 #region Get random methods
 
         private static RandomBy [] randoms = new RandomBy [] {
-            new RandomByTrack (), new RandomByArtist (), new RandomByAlbum (), new RandomByRating ()
+            new RandomByTrack (), new RandomByArtist (), new RandomByAlbum (), new RandomByRating (), new RandomByScore()
         };
 
         private DateTime random_began_at = DateTime.MinValue;

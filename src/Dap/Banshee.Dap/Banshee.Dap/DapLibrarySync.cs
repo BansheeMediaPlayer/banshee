@@ -240,5 +240,12 @@ namespace Banshee.Dap
                 sync.OnUpdated ();
             }
         }
+
+        // Reserve strings in preparation for the forthcoming string freeze.
+        public void ReservedStrings ()
+        {
+            // Note to translators: {0}, {1} and {2} will be replaced with numbers.
+            Catalog.GetString ("{0} to add, {1} to remove, {2} to update");
+        }
     }
 }

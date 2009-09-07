@@ -318,5 +318,22 @@ namespace Banshee.PlayQueue
             "Clear on Quit",
             "Clear the play queue when quitting"
         );
+
+        // Reserve strings in preparation for the forthcoming string freeze.
+        public void Strings ()
+        {
+            Catalog.GetString ("manual");
+            Catalog.GetString ("by song");
+            Catalog.GetString ("by album");
+            Catalog.GetString ("by artist");
+            Catalog.GetString ("by rating");
+            Catalog.GetString ("by score");
+            Catalog.GetString ("_Fill");
+            Catalog.GetString ("f_rom");
+            Catalog.GetString ("Refresh");
+            Catalog.GetString ("Refresh random tracks in the play queue");
+            Catalog.GetString ("Number of _played songs to show");
+            Catalog.GetString ("Number of _upcoming songs to show");
+        }
     }
 }

@@ -99,11 +99,16 @@ namespace Banshee.Streaming
                 track.MediaAttributes |= TrackMediaAttributes.VideoStream;
             }
             
+            if (file.Tag.FirstGenre == "Podcast" || file.Tag.Album == "Podcast") {
+                track.MediaAttributes |= TrackMediaAttributes.Podcast;
+            }
+
             // TODO: Actually figure out, if possible at the tag/file level, if
             // the file is actual music, podcast, audiobook, movie, tv show, etc.
-            // For now just assume that if it's only audio, it's music, since that's
-            // what we've just historically assumed on any media type
-            if ((track.MediaAttributes & TrackMediaAttributes.VideoStream) == 0) {
+            // For now just assume that if it's only audio and not podcast, it's
+            // music, since that's what we've just historically assumed on any media type
+            if (!track.HasAttribute (TrackMediaAttributes.VideoStream) &&
+                !track.HasAttribute (TrackMediaAttributes.Podcast)) {
                 track.MediaAttributes |= TrackMediaAttributes.Music;
             }
         }

@@ -143,6 +143,12 @@ namespace Banshee.Dap
         {
         }
 
+        public override void Rename (string newName)
+        {
+            Name = newName;
+            base.Rename (newName);
+        }
+
         private bool supports_video = true;
         public bool SupportsVideo {
             get { return supports_video; }

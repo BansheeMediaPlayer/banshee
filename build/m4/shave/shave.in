@@ -57,7 +57,7 @@ while test "$#" -gt 0; do
         preserved_args="$preserved_args $opt"
         ;;
     -out:*|/out:*)
-        lt_output="${opt:5}"
+        lt_output="${opt#*:}"
         preserved_args="$preserved_args $opt"
         ;;
     *)
