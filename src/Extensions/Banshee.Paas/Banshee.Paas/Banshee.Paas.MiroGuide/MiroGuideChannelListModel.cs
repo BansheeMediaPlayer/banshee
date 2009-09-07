@@ -28,8 +28,9 @@ using System;
 using System.Collections.Generic;
 
 using Banshee.Paas.Data;
+using Banshee.Paas.Aether.MiroGuide;
 
-namespace Banshee.Paas.Aether.MiroGuide.Gui
+namespace Banshee.Paas.MiroGuide
 {
     public class MiroGuideChannelListModel : ListModel<MiroGuideChannelInfo>
     {

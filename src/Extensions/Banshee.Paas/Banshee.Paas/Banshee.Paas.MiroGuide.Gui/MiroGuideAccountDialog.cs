@@ -35,7 +35,9 @@ using Mono.Unix;
 using Gtk;
 using Banshee.Gui;
 
-namespace Banshee.Paas.Aether.MiroGuide.Gui
+using Banshee.Paas.Aether.MiroGuide;
+
+namespace Banshee.Paas.MiroGuide.Gui
 {
     public class MiroGuideAccountDialog : Gtk.Dialog
     {

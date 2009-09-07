@@ -1,11 +1,11 @@
 // 
-// MiroGuideChannelListView.cs
+// MiroGuideSourceManager.cs
 //  
-// Authors:
+// Author:
 //   Mike Urbanski <michael.c.urbanski@gmail.com>
-//
-// Copyright (C) 2009 Michael C. Urbanski
 // 
+// Copyright (c) 2009 Michael C. Urbanski
+//
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
 // in the Software without restriction, including without limitation the rights
@@ -26,36 +26,32 @@
 
 using System;
 
-using Hyena.Data.Gui;
-
-using Banshee.Gui;
 using Banshee.ServiceStack;
-using Banshee.Collection.Gui;
+using Banshee.Paas.Aether.MiroGuide;
 
-namespace Banshee.Paas.Aether.MiroGuide.Gui
+namespace Banshee.Paas.MiroGuide.Gui
 {
-    public class MiroGuideChannelListView : ListView<MiroGuideChannelInfo>
+    public class MiroGuideSourceManager : IDisposable
     {
-        //private ColumnCellChannel renderer;
-
-        public MiroGuideChannelListView ()            
+        private TestSource mg_source;
+        
+        public MiroGuideSourceManager ()
         {
-            //renderer = new ColumnCellChannel ();
-            
-            ColumnController column_controller = new ColumnController ();
-            column_controller.Add (new Column ("Channels", new ColumnCellText ("Name", true), 1.0));
-            
-            ColumnController  = column_controller;
-            //RowHeightProvider = renderer.ComputeRowHeight;
         }
 
-        protected override bool OnPopupMenu ()
+        public void Initialize (MiroGuideClient client)
         {
-            ServiceManager.Get<InterfaceActionService> ().FindAction (
-                "MiroGuide.MiroGuideChannelPopupAction"
-            ).Activate ();
+            mg_source = new TestSource (client);
+            ServiceManager.SourceManager.AddSource (mg_source);            
+        }
 
-            return true;
+        public void Dispose ()
+        {
+            if (mg_source != null) {
+                ServiceManager.SourceManager.RemoveSource (mg_source);            
+                mg_source.Dispose ();
+                mg_source = null;
+            }
         }
     }
 }

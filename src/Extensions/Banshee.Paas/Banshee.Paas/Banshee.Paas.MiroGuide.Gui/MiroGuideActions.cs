@@ -38,7 +38,7 @@ using Banshee.ServiceStack;
 
 using Banshee.Paas.Aether.MiroGuide;
 
-namespace Banshee.Paas.Aether.MiroGuide.Gui
+namespace Banshee.Paas.MiroGuide.Gui
 {
     public class MiroGuideActions : BansheeActionGroup
     {
@@ -68,6 +68,14 @@ namespace Banshee.Paas.Aether.MiroGuide.Gui
                      "MiroGuideChannelSubscribeAction", Stock.Add,
                      Catalog.GetString ("Subscribe"), null,
                      null, OnMiroGuideChannelSubscribeHandler
+                ), new ActionEntry (
+                    "PaasEditMiroGuidePropertiesAction", Stock.Properties,
+                     Catalog.GetString ("Edit Miro Guide Settings"), "<control>M",
+                     null, (sender, e) => { 
+                        MiroGuideAccountDialog mgad = new MiroGuideAccountDialog (PaasService.MiroGuideAccount);
+                        mgad.Run ();
+                        mgad.Destroy ();
+                     }
                 )
             });
             

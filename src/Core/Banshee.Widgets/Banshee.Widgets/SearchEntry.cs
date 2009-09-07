@@ -50,6 +50,8 @@ namespace Banshee.Widgets
         private event EventHandler filter_changed;
         private event EventHandler entry_changed;
 
+        public event EventHandler<EventArgs> Cleared;
+
         public event EventHandler Changed {
             add { entry_changed += value; }
             remove { entry_changed -= value; }
@@ -234,6 +236,12 @@ namespace Banshee.Widgets
         private void OnClearButtonClicked(object o, EventArgs args)
         {
             entry.Text = String.Empty;
+
+            EventHandler<EventArgs> handler = Cleared;
+
+            if (handler != null) {
+                handler (this, EventArgs.Empty);
+            }
         }
 
         protected override bool OnKeyPressEvent (Gdk.EventKey evnt)

@@ -108,35 +108,38 @@
     <Compile Include="Banshee.Paas\Banshee.Paas.Aether\AetherRequest.cs" />
     <Compile Include="Banshee.Paas\Banshee.Paas.Aether\AetherRequestCompletedEventArgs.cs" />
     <Compile Include="Banshee.Paas\Banshee.Paas.Aether\RequestState.cs" />
-    <Compile Include="Banshee.Paas\Banshee.Paas.Aether\MiroGuideClient\MiroGuideMethodCompletedEventArgs.cs" />
     <Compile Include="Banshee.Paas\Banshee.Paas.Aether\MiroGuideClient\MiroGuideRequestState.cs" />
     <Compile Include="Banshee.Paas\Banshee.Paas.Aether\MiroGuideClient\MiroGuideClientMethod.cs" />
     <Compile Include="Banshee.Paas\Banshee.Paas.Aether\ChannelEventArgs.cs" />
     <Compile Include="Banshee.Paas\Banshee.Paas.Aether\MiroGuideClient\MiroGuideClientError.cs" />
     <Compile Include="Banshee.Paas\Banshee.Paas.Aether\MiroGuideClient\MiroGuideClientInfo.cs" />
     <Compile Include="Banshee.Paas\Banshee.Paas.Aether\MiroGuideClient\MiroGuideAccountInfo.cs" />
-    <Compile Include="Banshee.Paas\Banshee.Paas.Aether\MiroGuideClient\RequestCompletedEventArgs.cs" />
     <Compile Include="Banshee.Paas\Banshee.Paas.Aether\ItemEventArgs.cs" />
     <Compile Include="Banshee.Paas\Banshee.Paas.Aether\ChannelUpdateStatus.cs" />
-    <Compile Include="Banshee.Paas\Banshee.Paas.Aether\MiroGuideClient\DownloadRequestEventArgs.cs" />
-    <Compile Include="Banshee.Paas\Banshee.Paas.Aether\MiroGuideClient.Gui\MiroGuideAccountDialog.cs" />
     <Compile Include="Banshee.Paas\Banshee.Paas.Gui\DownloadPreferenceComboBox.cs" />
-    <Compile Include="Banshee.Paas\Banshee.Paas.Aether\MiroGuideClient.Gui\MiroGuideLoginForm.cs" />
-    <Compile Include="Banshee.Paas\Banshee.Paas.Aether\MiroGuideClient\ClientIDChangedEventArgs.cs" />
-    <Compile Include="Banshee.Paas\Banshee.Paas.Aether\MiroGuideClient.Gui\TestSource.cs" />
-    <Compile Include="Banshee.Paas\Banshee.Paas.Aether\MiroGuideClient.Gui\TestSourceContents.cs" />
-    <Compile Include="Banshee.Paas\Banshee.Paas.Aether\MiroGuideClient.Gui\MiroGuideSearchEntry.cs" />
-    <Compile Include="Banshee.Paas\Banshee.Paas.Aether\MiroGuideClient\MiroGuideFilterType.cs" />
-    <Compile Include="Banshee.Paas\Banshee.Paas.Aether\MiroGuideClient\MiroGuideSortType.cs" />
-    <Compile Include="Banshee.Paas\Banshee.Paas.Aether\MiroGuideClient.Gui\MiroGuideChannelListView.cs" />
     <Compile Include="Banshee.Paas\Banshee.Paas.Utils\OrderComparer.cs" />
     <Compile Include="Banshee.Paas\Banshee.Paas.Data\ListModel.cs" />
-    <Compile Include="Banshee.Paas\Banshee.Paas.Aether\MiroGuideClient.Gui\MiroGuideChannelListModel.cs" />
     <Compile Include="Banshee.Paas\Banshee.Paas.Aether\MiroGuideClient\MiroGuideChannelInfo.cs" />
-    <Compile Include="Banshee.Paas\Banshee.Paas.Aether\MiroGuideClient\GetChannelsEventArgs.cs" />
     <Compile Include="Banshee.Paas\Banshee.Paas.Utils\OpmlParser.cs" />
-    <Compile Include="Banshee.Paas\Banshee.Paas.Aether\MiroGuideClient.Gui\MiroGuideActions.cs" />
+    <Compile Include="Banshee.Paas\Banshee.Paas.MiroGuide.Gui\ColumnCellChannel.cs" />
+    <Compile Include="Banshee.Paas\Banshee.Paas.MiroGuide.Gui\MiroGuideAccountDialog.cs" />
+    <Compile Include="Banshee.Paas\Banshee.Paas.MiroGuide.Gui\MiroGuideActions.cs" />
+    <Compile Include="Banshee.Paas\Banshee.Paas.MiroGuide.Gui\MiroGuideChannelListView.cs" />
+    <Compile Include="Banshee.Paas\Banshee.Paas.MiroGuide.Gui\MiroGuideLoginForm.cs" />
+    <Compile Include="Banshee.Paas\Banshee.Paas.MiroGuide.Gui\MiroGuideSearchEntry.cs" />
+    <Compile Include="Banshee.Paas\Banshee.Paas.MiroGuide.Gui\TestSource.cs" />
+    <Compile Include="Banshee.Paas\Banshee.Paas.MiroGuide.Gui\TestSourceContents.cs" />
+    <Compile Include="Banshee.Paas\Banshee.Paas.Aether\MiroGuideClient\MiroGuideFilterType.cs" />
+    <Compile Include="Banshee.Paas\Banshee.Paas.Aether\MiroGuideClient\MiroGuideSortType.cs" />
+    <Compile Include="Banshee.Paas\Banshee.Paas.Aether\MiroGuideClient\ClientIDChangedEventArgs.cs" />
+    <Compile Include="Banshee.Paas\Banshee.Paas.Aether\MiroGuideClient\DownloadRequestEventArgs.cs" />
+    <Compile Include="Banshee.Paas\Banshee.Paas.Aether\MiroGuideClient\GetChannelsEventArgs.cs" />
+    <Compile Include="Banshee.Paas\Banshee.Paas.Aether\MiroGuideClient\MiroGuideMethodCompletedEventArgs.cs" />
+    <Compile Include="Banshee.Paas\Banshee.Paas.Aether\MiroGuideClient\RequestCompletedEventArgs.cs" />
     <Compile Include="Banshee.Paas\Banshee.Paas.Aether\MiroGuideClient\SubscriptionRequestedEventArgs.cs" />
+    <Compile Include="Banshee.Paas\Banshee.Paas.MiroGuide\MiroGuideImageFetchJob.cs" />
+    <Compile Include="Banshee.Paas\Banshee.Paas.MiroGuide.Gui\MiroGuideSourceManager.cs" />
+    <Compile Include="Banshee.Paas\Banshee.Paas.MiroGuide\MiroGuideChannelListModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Core\Banshee.Core\Banshee.Core.csproj">
@@ -174,5 +177,7 @@
     <Folder Include="Banshee.Paas\Banshee.Paas.DownloadManager\" />
     <Folder Include="Banshee.Paas\Banshee.Paas\" />
     <Folder Include="Banshee.Paas\Banshee.Paas.DownloadManager.Data\" />
+    <Folder Include="Banshee.Paas\Banshee.Paas.MiroGuide\" />
+    <Folder Include="Banshee.Paas\Banshee.Paas.MiroGuide.Gui\" />
   </ItemGroup>
 </Project>

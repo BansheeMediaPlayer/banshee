@@ -54,9 +54,11 @@ using Banshee.Paas.Gui;
 using Banshee.Paas.Data;
 using Banshee.Paas.Utils;
 
+using Banshee.Paas.MiroGuide;
+using Banshee.Paas.MiroGuide.Gui;
+
 using Banshee.Paas.Aether;
 using Banshee.Paas.Aether.MiroGuide;
-using Banshee.Paas.Aether.MiroGuide.Gui;
 
 using Banshee.Paas.Aether.Syndication;
 
@@ -82,7 +84,8 @@ namespace Banshee.Paas
         private PaasSource source;
 #if MIRO_GUIDE
         private MiroGuideClient mg_client;
-        public static MiroGuideAccountInfo MiroGuideAccount;        
+        public static MiroGuideAccountInfo MiroGuideAccount;
+        private MiroGuideSourceManager mg_source_manager;
 #endif        
         private SyndicationClient syndication_client;
         
@@ -174,8 +177,6 @@ namespace Banshee.Paas
             mg_client = new MiroGuideClient (MiroGuideAccount) {
                 UserAgent = Banshee.Web.Browser.UserAgent,
             };
-
-            source.AddChildSource (new TestSource (mg_client));
             
             mg_client.StateChanged += (sender, e) => {
                 if (e.NewState == AetherClientState.Idle) {
@@ -189,7 +190,7 @@ namespace Banshee.Paas
 
             mg_client.ClientIDChanged += (sender, e) => { MiroGuideAccount.ClientID = e.ClientID; };
 
-            mg_client.ChannelsAdded += (sender, e) => { reload (); };
+            mg_client.ChannelsAdded += (sender, e) => { reload (); redraw (); };
             mg_client.ChannelsRemoved += (sender, e) => { reload (); };
             mg_client.ItemsAdded += OnItemsAddedHandler;
             mg_client.ItemsRemoved += OnItemsRemovedHandler;
@@ -456,7 +457,7 @@ namespace Banshee.Paas
                 }
 
                 if (sub_count > 0) {
-                    source.NotifyUser ();                                                
+                    source.NotifyUser ();
                 }
             }
         }
@@ -484,18 +485,30 @@ namespace Banshee.Paas
         private void InitializeInterface ()
         {
             ServiceManager.SourceManager.AddSource (source);
+
+#if MIRO_GUIDE
+            mg_source_manager = new MiroGuideSourceManager ();
+            mg_source_manager.Initialize (mg_client);
+#endif
             download_manager_interface = new DownloadManagerInterface (source, download_manager);
         }
         
         private void DisposeInterface ()
-        {
+        {        
             if (source != null) {
                 ServiceManager.SourceManager.RemoveSource (source);
                 source.Dispose ();
             }
 
+#if MIRO_GUIDE
+            if (mg_source_manager != null) {
+                mg_source_manager.Dispose ();
+                mg_source_manager = null;
+            }
+#endif
             if (download_manager_interface != null) {
                 download_manager_interface.Dispose ();
+                download_manager_interface = null;
             }
         }
 
@@ -835,7 +848,12 @@ namespace Banshee.Paas
         
         public static string ArtworkIdFor (PaasChannel channel)
         {
-            return String.Format ("paas-{0}", Banshee.Base.CoverArtSpec.EscapePart (channel.Name));
+            return ArtworkIdFor (channel.Name);
+        }
+
+        public static string ArtworkIdFor (string id)
+        {
+            return String.Format ("paas-{0}", Banshee.Base.CoverArtSpec.EscapePart (id));
         }
 
         public static readonly SchemaEntry<string> MiroGuideUsername = new SchemaEntry<string> (

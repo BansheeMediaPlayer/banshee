@@ -13,14 +13,6 @@ SOURCES =  \
 	Banshee.Paas/Banshee.Paas.Aether/ChannelEventArgs.cs \
 	Banshee.Paas/Banshee.Paas.Aether/ChannelUpdateStatus.cs \
 	Banshee.Paas/Banshee.Paas.Aether/ItemEventArgs.cs \
-	Banshee.Paas/Banshee.Paas.Aether/MiroGuideClient.Gui/MiroGuideAccountDialog.cs \
-	Banshee.Paas/Banshee.Paas.Aether/MiroGuideClient.Gui/MiroGuideActions.cs \
-	Banshee.Paas/Banshee.Paas.Aether/MiroGuideClient.Gui/MiroGuideChannelListModel.cs \
-	Banshee.Paas/Banshee.Paas.Aether/MiroGuideClient.Gui/MiroGuideChannelListView.cs \
-	Banshee.Paas/Banshee.Paas.Aether/MiroGuideClient.Gui/MiroGuideLoginForm.cs \
-	Banshee.Paas/Banshee.Paas.Aether/MiroGuideClient.Gui/MiroGuideSearchEntry.cs \
-	Banshee.Paas/Banshee.Paas.Aether/MiroGuideClient.Gui/TestSource.cs \
-	Banshee.Paas/Banshee.Paas.Aether/MiroGuideClient.Gui/TestSourceContents.cs \
 	Banshee.Paas/Banshee.Paas.Aether/MiroGuideClient/AetherDelta.cs \
 	Banshee.Paas/Banshee.Paas.Aether/MiroGuideClient/ClientIDChangedEventArgs.cs \
 	Banshee.Paas/Banshee.Paas.Aether/MiroGuideClient/DownloadRequestEventArgs.cs \
@@ -79,6 +71,17 @@ SOURCES =  \
 	Banshee.Paas/Banshee.Paas.Gui/PaasItemView.cs \
 	Banshee.Paas/Banshee.Paas.Gui/PaasSourceContents.cs \
 	Banshee.Paas/Banshee.Paas.Gui/PaasUnheardFilterView.cs \
+	Banshee.Paas/Banshee.Paas.MiroGuide.Gui/ColumnCellChannel.cs \
+	Banshee.Paas/Banshee.Paas.MiroGuide.Gui/MiroGuideAccountDialog.cs \
+	Banshee.Paas/Banshee.Paas.MiroGuide.Gui/MiroGuideActions.cs \
+	Banshee.Paas/Banshee.Paas.MiroGuide.Gui/MiroGuideChannelListView.cs \
+	Banshee.Paas/Banshee.Paas.MiroGuide.Gui/MiroGuideLoginForm.cs \
+	Banshee.Paas/Banshee.Paas.MiroGuide.Gui/MiroGuideSearchEntry.cs \
+	Banshee.Paas/Banshee.Paas.MiroGuide.Gui/MiroGuideSourceManager.cs \
+	Banshee.Paas/Banshee.Paas.MiroGuide.Gui/TestSource.cs \
+	Banshee.Paas/Banshee.Paas.MiroGuide.Gui/TestSourceContents.cs \
+	Banshee.Paas/Banshee.Paas.MiroGuide/MiroGuideChannelListModel.cs \
+	Banshee.Paas/Banshee.Paas.MiroGuide/MiroGuideImageFetchJob.cs \
 	Banshee.Paas/Banshee.Paas.Utils/OpmlParser.cs \
 	Banshee.Paas/Banshee.Paas.Utils/OrderComparer.cs \
 	Banshee.Paas/Banshee.Paas.Utils/StringUtils.cs \

@@ -40,7 +40,10 @@ using Banshee.Widgets;
 using Banshee.Sources;
 using Banshee.Sources.Gui;
 
-namespace Banshee.Paas.Aether.MiroGuide.Gui
+using Banshee.Paas.Aether;
+using Banshee.Paas.Aether.MiroGuide;
+
+namespace Banshee.Paas.MiroGuide.Gui
 {
     public class TestSource : Source, IImplementsCustomSearch, IDisposable
     {
@@ -61,7 +64,7 @@ namespace Banshee.Paas.Aether.MiroGuide.Gui
             get { return channel_model; }
         }
 
-        public TestSource (MiroGuideClient client) : base ("Miro Guide", "Miro Guide", 0)
+        public TestSource (MiroGuideClient client) : base ("Miro Guide", "Miro Guide", 201)
         {
             if (client == null) {
                 throw new ArgumentNullException ("client");
@@ -77,25 +80,24 @@ namespace Banshee.Paas.Aether.MiroGuide.Gui
             channel_model.Cleared  += (sender, e) => { OnUpdated (); };
             channel_model.Reloaded += (sender, e) => { QueueDraw (); OnUpdated (); };
             
-            client.StateChanged += (sender, e) => { 
-                ThreadAssist.ProxyToMain (delegate {
-                    search_entry.Ready = (e.NewState == AetherClientState.Idle);
-                    search_entry.InnerEntry.Sensitive = (e.NewState == AetherClientState.Idle);
-                });
-            };
+            client.StateChanged += OnMiroGuideClientStateChanged;
 
             client.GetChannelsCompleted += (sender, e) => {
                 ThreadAssist.ProxyToMain (delegate {
+                    foreach (MiroGuideChannelInfo channel in e.Channels) {
+                        RefreshArtworkFor (channel);
+                    }
+                    
                     channel_model.Selection.Clear ();
                     channel_model.Clear ();
                     channel_model.Add (e.Channels);
-                    channel_model.Reload ();
-                    Console.WriteLine (channel_model.Count);
                 });
             };
 
             TypeUniqueId = "TestSource";
             Properties.SetStringList ("Icon.Name", "miroguide");
+
+            Properties.SetString ("GtkActionPath", "/MiroGuideSourcePopup");
 
             contents = new TestSourceContents ();
             Properties.Set<ISourceContents> ("Nereid.SourceContents", contents);
@@ -110,17 +112,48 @@ namespace Banshee.Paas.Aether.MiroGuide.Gui
             }            
         }
 
+        public void QueueDraw ()
+        {
+            ThreadAssist.ProxyToMain (delegate {
+                contents.Widget.QueueDraw ();
+            });
+        }
+
         private void BuildSearchEntry ()
         {
             search_entry = new MiroGuideSearchEntry ();
             search_entry.SetSizeRequest (200, -1);
             
             search_entry.Activated += OnSearchEntryActivated;
-            
+            search_entry.Changed += OnSearchEntryChanged;
+            search_entry.Cleared += (sender, e) => {
+                ThreadAssist.ProxyToMain (delegate {
+                    channel_model.Selection.Clear ();
+                    channel_model.Clear ();
+                });                
+            };
+
             search_entry.Show ();
         }
 
-        private void OnSearchEntryActivated (object sender, EventArgs e)
+        protected void RefreshArtworkFor (MiroGuideChannelInfo channel)
+        {
+            if (!CoverArtSpec.CoverExists (PaasService.ArtworkIdFor (channel.Name))) {
+                Banshee.Kernel.Scheduler.Schedule (
+                    new MiroGuideImageFetchJob (channel), Banshee.Kernel.JobPriority.BelowNormal
+                );
+            }
+        }
+
+        protected virtual void OnMiroGuideClientStateChanged (object sender, AetherClientStateChangedEventArgs e)
+        {
+            ThreadAssist.ProxyToMain (delegate {
+                search_entry.Ready = (e.NewState == AetherClientState.Idle);
+                search_entry.InnerEntry.Sensitive = (e.NewState == AetherClientState.Idle);
+            });
+        }
+
+        protected virtual void OnSearchEntryActivated (object sender, EventArgs e)
         {
             client.GetChannels (
                 (MiroGuideFilterType)search_entry.ActiveFilterID, 
@@ -128,11 +161,9 @@ namespace Banshee.Paas.Aether.MiroGuide.Gui
             );
         }
 
-        public void QueueDraw ()
+        protected virtual void OnSearchEntryChanged (object sender, EventArgs e)
         {
-            ThreadAssist.ProxyToMain (delegate {
-                contents.Widget.QueueDraw ();
-            });
+            FilterQuery = search_entry.InnerEntry.Text;
         }
     }
 }

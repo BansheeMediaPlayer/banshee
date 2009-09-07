@@ -32,7 +32,7 @@ using Banshee.Sources;
 using Banshee.Sources.Gui;
 using Banshee.Configuration;
 
-namespace Banshee.Paas.Aether.MiroGuide.Gui
+namespace Banshee.Paas.MiroGuide.Gui
 {
     public class TestSourceContents : ISourceContents
     {

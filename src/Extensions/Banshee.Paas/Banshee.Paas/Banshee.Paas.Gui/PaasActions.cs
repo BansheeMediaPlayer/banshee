@@ -47,9 +47,6 @@ using Banshee.Collection.Database;
 using Banshee.Paas.Data;
 using Banshee.Paas.Aether;
 
-using Banshee.Paas.Aether.MiroGuide;
-using Banshee.Paas.Aether.MiroGuide.Gui;
-
 namespace Banshee.Paas.Gui
 {
     enum SelectionInfo {
@@ -182,18 +179,6 @@ namespace Banshee.Paas.Gui
                      Catalog.GetString ("Properties"), null,
                      null, OnPaasChannelPropertiesHandler
                 )
-//#if MIRO_GUIDE 
-                ,
-                new ActionEntry (
-                    "PaasEditMiroGuidePropertiesAction", Stock.Properties,
-                     Catalog.GetString ("Edit Miro Guide Settings"), "<control>M",
-                     null, (sender, e) => { 
-                        MiroGuideAccountDialog mgad = new MiroGuideAccountDialog (PaasService.MiroGuideAccount);
-                        mgad.Run ();
-                        mgad.Destroy ();
-                     }
-                )
-//#endif
             });
             
             actions_id = Actions.UIManager.AddUiFromResource ("GlobalUI.xml");

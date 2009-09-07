@@ -32,7 +32,9 @@ using Mono.Unix;
 
 using Gtk;
 
-namespace Banshee.Paas.Aether.MiroGuide.Gui
+using Banshee.Paas.Aether.MiroGuide;
+
+namespace Banshee.Paas.MiroGuide.Gui
 {
     public class MiroGuideLoginForm : Gtk.Table
     {
