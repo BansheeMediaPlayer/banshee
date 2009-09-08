@@ -33,6 +33,7 @@ using Hyena.Collections;
 
 using Banshee.Paas.Utils;
 
+// Should only be accessed from main;
 namespace Banshee.Paas.Data
 {
     public class ListModel<T> : IListModel<T>
@@ -43,17 +44,12 @@ namespace Banshee.Paas.Data
         private List<T> items;
         private Selection selection = new Selection ();
         
-
         public virtual bool CanReorder { 
             get { return false; } 
         }
         
         public virtual int Count {
-            get { 
-                lock (SyncRoot) {
-                    return items.Count;
-                }
-            }
+            get { return items.Count; }
         }
 
         public Selection Selection {
@@ -61,15 +57,7 @@ namespace Banshee.Paas.Data
         }
 
         public T this[int index] {
-            get {
-                lock (SyncRoot) {            
-                    return GetIndex (index);
-                }
-            }
-        }
-
-        private object SyncRoot {
-            get { return ((ICollection)items).SyncRoot; }
+            get { return GetIndex (index); }
         }
 
         public ListModel ()
@@ -80,79 +68,64 @@ namespace Banshee.Paas.Data
         public void Add (T item)
         {
             if (!item.Equals (default (T))) {
-                lock (SyncRoot) {
-                    items.Add (item);
-                }                
-            }
-            
-            OnReloaded ();            
+                items.Add (item);
+                OnReloaded ();            
+            }            
         }
 
         public void Add (IEnumerable<T> items)
         {
             if (items != null) {
-                lock (SyncRoot) {
-                    foreach (T item in items) {
-                        if (item != null) {
-                            this.items.Add (item);                            
-                        }
+                foreach (T item in items) {
+                    if (item != null) {
+                        this.items.Add (item);                            
                     }
-                }                
+                }
+                
+                OnReloaded ();                        
             }
-            
-            OnReloaded ();            
         }
 
         public IEnumerable<T> GetSelected ()
         {
-            lock (SyncRoot) {
-                T item = default (T);
-                List<T> selected = new List<T> ();
+            T item = default (T);
+            List<T> selected = new List<T> ();
 
-                foreach (int i in selection) {
-                    item = GetIndex (i);
-                    
-                    if (item != null) {
-                        selected.Add (item);
-                    }
+            foreach (int i in selection) {
+                item = GetIndex (i);
+                
+                if (item != null) {
+                    selected.Add (item);
                 }
-
-                return selected;
             }
+
+            return selected;
         }
 
         public void Remove (T item)
         {
             if (item != null) {
-                lock (SyncRoot) {
-                    items.Remove (item);
-                }                
-            }
-            
-            OnReloaded ();            
+                items.Remove (item);
+                OnReloaded ();
+            }            
         }
 
         public void Remove (IEnumerable<T> items)
         {
             if (items != null) {
-                lock (SyncRoot) {
-                    foreach (T item in items) {
-                        if (item != null) {
-                            this.items.Remove (item);                            
-                        }
+                foreach (T item in items) {
+                    if (item != null) {
+                        this.items.Remove (item);                            
                     }
                 }
-            }
-            
-            OnReloaded ();            
+                
+                OnReloaded ();            
+            }            
         }
 
         public void Clear ()
         {
-            lock (SyncRoot) {
-                items.Clear ();
-            }
-            
+            items.Clear ();           
             OnCleared ();
         }
         
@@ -163,24 +136,22 @@ namespace Banshee.Paas.Data
 
         public void Reorder (int[] newWorldOrder)
         {
-            lock (SyncRoot) {
-                int len = newWorldOrder.Length;
-                int[] order = new int[len];
-                Dictionary<T, int> positions = new Dictionary<T, int> (len);
+            int len = newWorldOrder.Length;
+            int[] order = new int[len];
+            Dictionary<T, int> positions = new Dictionary<T, int> (len);
 
-                int i = 0;
-                for (; i < order.Length; ++i) {
-                    order[newWorldOrder[i]] = i;
-                }
-
-                i = 0;
-                foreach (var t in items) {
-                    positions.Add (t, order[i++]);
-                }
-
-                items.Sort (new OrderComparer<T> (positions));
-                selection.Clear ();
+            int i = 0;
+            for (; i < order.Length; ++i) {
+                order[newWorldOrder[i]] = i;
             }
+
+            i = 0;
+            foreach (var t in items) {
+                positions.Add (t, order[i++]);
+            }
+
+            items.Sort (new OrderComparer<T> (positions));
+            selection.Clear ();
 
             OnReloaded ();
         }
@@ -196,22 +167,20 @@ namespace Banshee.Paas.Data
 
         private void OnReloaded ()
         {
-            Banshee.Base.ThreadAssist.ProxyToMain (delegate {
-                EventHandler handler = Reloaded;
-                if (handler != null) {
-                    handler (this, EventArgs.Empty);
-                }
-            });
+            EventHandler handler = Reloaded;
+            
+            if (handler != null) {
+                handler (this, EventArgs.Empty);
+            }
         }
         
         private void OnCleared ()
         {
-            Banshee.Base.ThreadAssist.ProxyToMain (delegate {
-                EventHandler handler = Cleared;
-                if (handler != null) {
-                    handler (this, EventArgs.Empty);
-                }
-            });
+            EventHandler handler = Cleared;
+            
+            if (handler != null) {
+                handler (this, EventArgs.Empty);
+            }
         }
     }
 }

@@ -102,6 +102,9 @@ namespace Banshee.Paas.MiroGuide
                         }
                         
                         channel_model.Add (e.Channels);
+                        
+                        contents.ScrolledWindow.VscrollbarPolicy = PolicyType.Always;
+                        CheckVScrollbarValue (contents.ScrolledWindow.VScrollbar as VScrollbar);
                     }
                 });
             };
@@ -113,13 +116,7 @@ namespace Banshee.Paas.MiroGuide
 
             contents = new TestSourceContents ();
             
-            contents.ChannelListExhausted += (sender, e) => {
-                ThreadAssist.ProxyToMain (delegate {
-                    if (search_context != null && search_context.ChannelsAvailable) {
-                        client.GetChannels (search_context);
-                    }   
-                });                
-            };
+            (contents.ScrolledWindow.VScrollbar as VScrollbar).ValueChanged += OnVScrollbarValueChangedHandler;
 
             Properties.Set<ISourceContents> ("Nereid.SourceContents", contents);
             Properties.Set<bool> ("Nereid.SourceContentsPropagate", false);
@@ -151,6 +148,8 @@ namespace Banshee.Paas.MiroGuide
             search_entry.Cleared += (sender, e) => {
                 ThreadAssist.ProxyToMain (delegate {
                     search_context = null;
+                    contents.ScrolledWindow.VscrollbarPolicy = PolicyType.Automatic;
+                    
                     channel_model.Selection.Clear ();
                     channel_model.Clear ();
                 });                
@@ -159,7 +158,17 @@ namespace Banshee.Paas.MiroGuide
             search_entry.Show ();
         }
 
-        protected void RefreshArtworkFor (MiroGuideChannelInfo channel)
+        protected virtual void CheckVScrollbarValue (VScrollbar vsb)
+        {
+            if (vsb.Value == vsb.Adjustment.Upper-vsb.Adjustment.PageSize ||
+                vsb.Adjustment.Upper-vsb.Adjustment.PageSize < 0) {
+                if (search_context != null && search_context.ChannelsAvailable) {
+                    client.GetChannels (search_context);
+                }   
+            }            
+        }
+
+        protected virtual void RefreshArtworkFor (MiroGuideChannelInfo channel)
         {
             if (!CoverArtSpec.CoverExists (PaasService.ArtworkIdFor (channel.Name))) {
                 Banshee.Kernel.Scheduler.Schedule (
@@ -180,13 +189,18 @@ namespace Banshee.Paas.MiroGuide
         {
             client.GetChannels (
                 (MiroGuideFilterType)search_entry.ActiveFilterID, 
-                search_entry.InnerEntry.Text, MiroGuideSortType.Name, false, 25, 0
+                search_entry.InnerEntry.Text, MiroGuideSortType.Name, false, 20, 0
             );
         }
 
         protected virtual void OnSearchEntryChanged (object sender, EventArgs e)
         {
             FilterQuery = search_entry.InnerEntry.Text;
+        }
+
+        protected virtual void OnVScrollbarValueChangedHandler (object sender, EventArgs e)
+        {
+            CheckVScrollbarValue (sender as VScrollbar);            
         }
     }
 }

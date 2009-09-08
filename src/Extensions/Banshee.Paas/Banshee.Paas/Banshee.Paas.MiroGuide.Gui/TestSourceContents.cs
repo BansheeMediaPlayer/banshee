@@ -38,12 +38,10 @@ namespace Banshee.Paas.MiroGuide.Gui
     public class TestSourceContents : ISourceContents
     {
         private HPaned hp;
-        private Scrollbar v_scrollbar;
+        private ScrolledWindow sw;
         private TestSource test_source;
         
         private MiroGuideChannelListView channel_view;
-
-        public EventHandler<EventArgs> ChannelListExhausted;
 
         public ISource Source { 
             get { return test_source; } 
@@ -53,17 +51,18 @@ namespace Banshee.Paas.MiroGuide.Gui
             get { return hp as Widget; }
         }
 
+        public ScrolledWindow ScrolledWindow {
+            get { return sw; }
+        }
+
         public TestSourceContents ()
         {
             channel_view = new MiroGuideChannelListView ();
             
-            ScrolledWindow sw = new ScrolledWindow () {
+            sw = new ScrolledWindow () {
                 HscrollbarPolicy = PolicyType.Automatic,
                 VscrollbarPolicy = PolicyType.Automatic
             };
-
-            v_scrollbar = sw.VScrollbar as Scrollbar;
-            v_scrollbar.ValueChanged += OnVScrollbarValueChangedHandler;
             
             sw.Add (channel_view);
             
@@ -99,22 +98,6 @@ namespace Banshee.Paas.MiroGuide.Gui
             
             channel_view.SetModel (null);
             channel_view.HeaderVisible = false;
-        }
-
-        protected virtual void OnVScrollbarValueChangedHandler (object sender, EventArgs e)
-        {            
-            if (v_scrollbar.Value == v_scrollbar.Adjustment.Upper-v_scrollbar.Adjustment.PageSize) {
-                OnChannelListExhausted ();            
-            }
-        }
-
-        protected virtual void OnChannelListExhausted ()
-        {
-            var handler = ChannelListExhausted;
-
-            if (handler != null) {
-                handler (this, EventArgs.Empty);
-            }
         }
 
         public static readonly SchemaEntry<int> HPanedPosition = new SchemaEntry<int> (
