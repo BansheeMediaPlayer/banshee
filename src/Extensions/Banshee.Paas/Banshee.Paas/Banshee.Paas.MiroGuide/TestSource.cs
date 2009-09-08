@@ -108,7 +108,8 @@ namespace Banshee.Paas.MiroGuide
                             contents.ScrolledWindow.VscrollbarPolicy = PolicyType.Always;
                             CheckVScrollbarValue (contents.ScrolledWindow.VScrollbar as VScrollbar);
                         } else {
-                            contents.ScrolledWindow.VscrollbarPolicy = PolicyType.Automatic;                        
+                            contents.ScrolledWindow.VscrollbarPolicy = PolicyType.Automatic;
+                            channel_model.Reload ();
                         }
                     }
                 });
