@@ -25,6 +25,7 @@
 // THE SOFTWARE.
 
 using System;
+using System.Linq;
 using System.Collections.Generic;
 
 using Mono.Unix;
@@ -92,7 +93,7 @@ namespace Banshee.Paas.MiroGuide
                     Console.WriteLine ("Count:  {0} - Page:  {1}", search_context.Count, search_context.Page);
                     
                     if (e.Channels != null) {
-                        foreach (MiroGuideChannelInfo channel in e.Channels) {
+                        foreach (MiroGuideChannelInfo channel in e.Channels.Reverse ()) {
                             RefreshArtworkFor (channel);
                         }
                                                     
@@ -102,9 +103,13 @@ namespace Banshee.Paas.MiroGuide
                         }
                         
                         channel_model.Add (e.Channels);
-                        
-                        contents.ScrolledWindow.VscrollbarPolicy = PolicyType.Always;
-                        CheckVScrollbarValue (contents.ScrolledWindow.VScrollbar as VScrollbar);
+
+                        if (search_context.Count > 0 && search_context.ChannelsAvailable) {
+                            contents.ScrolledWindow.VscrollbarPolicy = PolicyType.Always;
+                            CheckVScrollbarValue (contents.ScrolledWindow.VScrollbar as VScrollbar);
+                        } else {
+                            contents.ScrolledWindow.VscrollbarPolicy = PolicyType.Automatic;                        
+                        }
                     }
                 });
             };
