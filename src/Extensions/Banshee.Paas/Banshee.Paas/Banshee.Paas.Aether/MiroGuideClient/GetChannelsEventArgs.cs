@@ -29,28 +29,25 @@ using System.Collections.Generic;
 
 namespace Banshee.Paas.Aether.MiroGuide
 {
-    public class GetChannelsCompletedEventArgs : EventArgs
+    public class GetChannelsCompletedEventArgs : RequestCompletedEventArgs
     {
-        private readonly int limit;        
-        private readonly int offset;
+        private readonly SearchContext context;
         private readonly IEnumerable<MiroGuideChannelInfo> channels;
-        
-        public int Limit {
-            get { return limit; }
-        }
 
-        public int Offset {
-            get { return offset; }
+        public SearchContext Context {
+            get { return context; }
         }
 
         public IEnumerable<MiroGuideChannelInfo> Channels {
             get { return channels; }
         }
 
-        public GetChannelsCompletedEventArgs (int limit, int offset, IEnumerable<MiroGuideChannelInfo> channels)
+        public GetChannelsCompletedEventArgs (SearchContext context,
+                                              IEnumerable<MiroGuideChannelInfo> channels,
+                                              Exception error, bool cancelled, bool timedout, object userState
+                                              ) : base (error, cancelled, MiroGuideClientMethod.GetChannels, timedout, userState)
         {
-            this.limit = limit;
-            this.offset = offset;
+            this.context = context;
             this.channels = channels;
         }
     }

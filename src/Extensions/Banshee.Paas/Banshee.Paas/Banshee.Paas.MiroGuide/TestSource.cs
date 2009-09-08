@@ -43,16 +43,20 @@ using Banshee.Sources.Gui;
 using Banshee.Paas.Aether;
 using Banshee.Paas.Aether.MiroGuide;
 
-namespace Banshee.Paas.MiroGuide.Gui
+using Banshee.Paas.MiroGuide.Gui;
+
+namespace Banshee.Paas.MiroGuide
 {
     public class TestSource : Source, IImplementsCustomSearch, IDisposable
     {
         private MiroGuideActions actions;
-        private ISourceContents contents;
+        private TestSourceContents contents;
 
         private MiroGuideClient client;
         private MiroGuideSearchEntry search_entry;
         private MiroGuideChannelListModel channel_model;
+
+        private SearchContext search_context;
 
         public SearchEntry SearchEntry
         {
@@ -84,13 +88,21 @@ namespace Banshee.Paas.MiroGuide.Gui
 
             client.GetChannelsCompleted += (sender, e) => {
                 ThreadAssist.ProxyToMain (delegate {
-                    foreach (MiroGuideChannelInfo channel in e.Channels) {
-                        RefreshArtworkFor (channel);
-                    }
+                    search_context = e.Context;                    
+                    Console.WriteLine ("Count:  {0} - Page:  {1}", search_context.Count, search_context.Page);
                     
-                    channel_model.Selection.Clear ();
-                    channel_model.Clear ();
-                    channel_model.Add (e.Channels);
+                    if (e.Channels != null) {
+                        foreach (MiroGuideChannelInfo channel in e.Channels) {
+                            RefreshArtworkFor (channel);
+                        }
+                                                    
+                        if (search_context.Page == 0) {
+                            channel_model.Selection.Clear ();
+                            channel_model.Clear ();
+                        }
+                        
+                        channel_model.Add (e.Channels);
+                    }
                 });
             };
 
@@ -100,6 +112,15 @@ namespace Banshee.Paas.MiroGuide.Gui
             Properties.SetString ("GtkActionPath", "/MiroGuideSourcePopup");
 
             contents = new TestSourceContents ();
+            
+            contents.ChannelListExhausted += (sender, e) => {
+                ThreadAssist.ProxyToMain (delegate {
+                    if (search_context != null && search_context.ChannelsAvailable) {
+                        client.GetChannels (search_context);
+                    }   
+                });                
+            };
+
             Properties.Set<ISourceContents> ("Nereid.SourceContents", contents);
             Properties.Set<bool> ("Nereid.SourceContentsPropagate", false);
         }
@@ -126,8 +147,10 @@ namespace Banshee.Paas.MiroGuide.Gui
             
             search_entry.Activated += OnSearchEntryActivated;
             search_entry.Changed += OnSearchEntryChanged;
+            
             search_entry.Cleared += (sender, e) => {
                 ThreadAssist.ProxyToMain (delegate {
+                    search_context = null;
                     channel_model.Selection.Clear ();
                     channel_model.Clear ();
                 });                
@@ -157,7 +180,7 @@ namespace Banshee.Paas.MiroGuide.Gui
         {
             client.GetChannels (
                 (MiroGuideFilterType)search_entry.ActiveFilterID, 
-                search_entry.InnerEntry.Text, MiroGuideSortType.Name, false, 15, 0
+                search_entry.InnerEntry.Text, MiroGuideSortType.Name, false, 25, 0
             );
         }
 

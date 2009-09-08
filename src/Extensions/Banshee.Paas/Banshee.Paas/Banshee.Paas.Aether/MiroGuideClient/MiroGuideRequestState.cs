@@ -38,9 +38,11 @@ namespace Banshee.Paas.Aether.MiroGuide
 
         public bool Timedout { get; set; }
         public bool Cancelled { get; set; }        
+        public bool Completed { get; set; }
         
         public string BaseUri { get; set; }
         public Exception Error { get; set; }
+        
         public HttpMethod HttpMethod { get; set; }        
         public MiroGuideClientMethod Method { get; set; }
 
@@ -53,6 +55,10 @@ namespace Banshee.Paas.Aether.MiroGuide
         public object InternalState { get; set; }
         
         public MiroGuideRequestState CallingState { get; set; }
+
+        public bool Succeeded {
+            get { return Completed & !Timedout & !Cancelled & (Error == null); }
+        }
 
         public MiroGuideRequestState ()
         {

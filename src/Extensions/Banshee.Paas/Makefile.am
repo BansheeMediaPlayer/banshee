@@ -28,6 +28,7 @@ SOURCES =  \
 	Banshee.Paas/Banshee.Paas.Aether/MiroGuideClient/MiroGuideRequestState.cs \
 	Banshee.Paas/Banshee.Paas.Aether/MiroGuideClient/MiroGuideSortType.cs \
 	Banshee.Paas/Banshee.Paas.Aether/MiroGuideClient/RequestCompletedEventArgs.cs \
+	Banshee.Paas/Banshee.Paas.Aether/MiroGuideClient/SearchContext.cs \
 	Banshee.Paas/Banshee.Paas.Aether/MiroGuideClient/ServiceMethodFlags.cs \
 	Banshee.Paas/Banshee.Paas.Aether/MiroGuideClient/SubscriptionRequestedEventArgs.cs \
 	Banshee.Paas/Banshee.Paas.Aether/RequestState.cs \
@@ -78,10 +79,10 @@ SOURCES =  \
 	Banshee.Paas/Banshee.Paas.MiroGuide.Gui/MiroGuideLoginForm.cs \
 	Banshee.Paas/Banshee.Paas.MiroGuide.Gui/MiroGuideSearchEntry.cs \
 	Banshee.Paas/Banshee.Paas.MiroGuide.Gui/MiroGuideSourceManager.cs \
-	Banshee.Paas/Banshee.Paas.MiroGuide.Gui/TestSource.cs \
 	Banshee.Paas/Banshee.Paas.MiroGuide.Gui/TestSourceContents.cs \
 	Banshee.Paas/Banshee.Paas.MiroGuide/MiroGuideChannelListModel.cs \
 	Banshee.Paas/Banshee.Paas.MiroGuide/MiroGuideImageFetchJob.cs \
+	Banshee.Paas/Banshee.Paas.MiroGuide/TestSource.cs \
 	Banshee.Paas/Banshee.Paas.Utils/OpmlParser.cs \
 	Banshee.Paas/Banshee.Paas.Utils/OrderComparer.cs \
 	Banshee.Paas/Banshee.Paas.Utils/StringUtils.cs \

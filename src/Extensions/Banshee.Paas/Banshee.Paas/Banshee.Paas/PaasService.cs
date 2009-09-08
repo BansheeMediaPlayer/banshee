@@ -861,15 +861,15 @@ namespace Banshee.Paas
         );
         
         public static readonly SchemaEntry<string> MiroGuidePasswordHash = new SchemaEntry<string> (
-            "plugins.paas.miroguide", "miroguide.password_hash", String.Empty, "Miro Guide Password Hash", ""
+            "plugins.paas.miroguide", "password_hash", String.Empty, "Miro Guide Password Hash", ""
         );
 
         public static readonly SchemaEntry<string> MiroGuideClientID = new SchemaEntry<string> (
-            "plugins.paas.miroguide", "miroguide.client_id", String.Empty, "Miro Guide Client ID", ""
+            "plugins.paas.miroguide", "client_id", String.Empty, "Miro Guide Client ID", ""
         );
 
         public static readonly SchemaEntry<string> MiroGuideServiceUri = new SchemaEntry<string> (
-            "plugins.paas.miroguide", "miroguide.service_uri", "http://miroguide.com", "Miro Guide Service URI", ""
+            "plugins.paas.miroguide", "service_uri", "http://miroguide.com", "Miro Guide Service URI", ""
         ); 
     }
 }

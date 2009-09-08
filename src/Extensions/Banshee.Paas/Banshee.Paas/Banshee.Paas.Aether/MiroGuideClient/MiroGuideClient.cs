@@ -173,7 +173,7 @@ namespace Banshee.Paas.Aether.MiroGuide
                     CreateRequestState (
                         HttpMethod.GET, "/aether/api/deltas/", null, null,
                         (ServiceFlags.RequireAuth | ServiceFlags.RequireClientID), 
-                        MiroGuideClientMethod.RequestDeltas, null
+                        MiroGuideClientMethod.RequestDeltas, null, null
                     ), true
                 );
             }
@@ -217,16 +217,16 @@ namespace Banshee.Paas.Aether.MiroGuide
 
         public void GetChannels (MiroGuideFilterType filterType, 
                                  string filterValue, 
-                                 MiroGuideSortType sort, 
+                                 MiroGuideSortType sortType, 
                                  bool reverse, 
                                  uint limit, uint offset)
         {
-            GetChannels (filterType, filterValue, sort, reverse, limit, offset, null);
+            GetChannels (filterType, filterValue, sortType, reverse, limit, offset, null);
         }
         
         public void GetChannels (MiroGuideFilterType filterType,
                                  string filterValue, 
-                                 MiroGuideSortType sort, 
+                                 MiroGuideSortType sortType, 
                                  bool reverse, 
                                  uint limit, 
                                  uint offset, 
@@ -235,26 +235,44 @@ namespace Banshee.Paas.Aether.MiroGuide
             if (String.IsNullOrEmpty (filterValue)) {
                 return;
             }
+
+            GetChannels (new SearchContext (filterType, filterValue, sortType, reverse, limit, offset), userState);
+        }
+
+        public void GetChannels (SearchContext context)
+        {
+            GetChannels (context, null);
+        }
+        
+        public void GetChannels (SearchContext context, object userState)
+        {
+            if (context == null) {
+                throw new ArgumentNullException ("context");
+            }
             
             NameValueCollection nvc = new NameValueCollection ();
 
             nvc.Add ("datatype", "json");
 
-            nvc.Add ("filter", ToQueryPart (filterType));
-            nvc.Add ("filter_value", filterValue);
-            nvc.Add ("sort", String.Format ("{0}{1}", ((reverse) ? "-" : String.Empty), ToQueryPart (sort)));
+            nvc.Add ("filter", ToQueryPart (context.FilterType));
+            nvc.Add ("filter_value", context.FilterValue);
+            nvc.Add ("sort", String.Format ("{0}{1}", ((context.Reverse) ? "-" : String.Empty), ToQueryPart (context.SortType)));
             
-            nvc.Add ("limit", limit.ToString ());
-            nvc.Add ("offset", offset.ToString ());
+            nvc.Add ("limit", context.Limit.ToString ());
+            nvc.Add ("offset", (context.Offset+context.Count).ToString ());
 
             lock (SyncRoot) {
+                if (asm.Busy) { // Remove!!!  Allow requests to be queued in the future.
+                    return;
+                }
+
                 BeginRequest (
                     CreateRequestState (
                         HttpMethod.GET, "/api/get_channels", nvc, null,
-                        ServiceFlags.None, MiroGuideClientMethod.GetChannels, userState, null
+                        ServiceFlags.None, MiroGuideClientMethod.GetChannels, context, userState
                     ), true
                 );
-            }            
+            }         
         }
 
         public void RequestSubsubscription (Uri uri)
@@ -282,7 +300,7 @@ namespace Banshee.Paas.Aether.MiroGuide
                     CreateRequestState (
                         HttpMethod.POST, "/aether/api/auth/", null,
                         String.Format ("username={0}&password_hash={1}", account.Username, account.PasswordHash),
-                        ServiceFlags.None, MiroGuideClientMethod.GetSession, null, callingMethodState
+                        ServiceFlags.None, MiroGuideClientMethod.GetSession, null, null, callingMethodState
                     ), false
                 );
             }
@@ -294,7 +312,7 @@ namespace Banshee.Paas.Aether.MiroGuide
                 BeginRequest (
                     CreateRequestState (
                         HttpMethod.GET, "/aether/api/register/", null, null, 
-                        ServiceFlags.RequireAuth, MiroGuideClientMethod.RegisterClient, null, callingMethodState
+                        ServiceFlags.RequireAuth, MiroGuideClientMethod.RegisterClient, null, null, callingMethodState
                     ), false
                 );
             }
@@ -315,17 +333,21 @@ namespace Banshee.Paas.Aether.MiroGuide
         
         private void BeginRequest (MiroGuideRequestState state, bool changeState)
         {
+            Console.WriteLine ("Calling:  {0}", state.Method);
+            
             if (changeState) {
                 asm.SetBusy ();
                 OnStateChanged (AetherClientState.Idle, AetherClientState.Busy);
             }
-
+            
             if (asm.Cancelled) {
+                state = GetHead (state);
+                state.Cancelled = true;
                 Complete (state);
                 return;
             }
 
-            try {
+            try {                
                 if (state.ServiceFlags != ServiceFlags.None) {
                     if ((state.ServiceFlags & ServiceFlags.RequireAuth) != 0) {
                         if (String.IsNullOrEmpty (SessionID)) {                        
@@ -335,7 +357,7 @@ namespace Banshee.Paas.Aether.MiroGuide
                             state.AddParameter ("session", SessionID);
                         }
                     }
-                    
+
                     if ((state.ServiceFlags & ServiceFlags.RequireClientID) != 0) {
                         if (String.IsNullOrEmpty (ClientID)) {
                             GetClientIDAsync (state);
@@ -360,10 +382,11 @@ namespace Banshee.Paas.Aether.MiroGuide
                     break;
                 }
             } catch (Exception e) {
+                state = GetHead (state);
+                state.Error = e;            
                 Hyena.Log.Exception (e);
                 Complete (state);
             }
-            
         }
 
         private void ApplyUpdate (AetherDelta delta)
@@ -496,10 +519,39 @@ namespace Banshee.Paas.Aether.MiroGuide
 
         private void Complete (MiroGuideRequestState state)
         {
+            Console.WriteLine ("Complete:  {0}", state.Method);
+        
+            try {
+                switch (state.Method) {
+                case MiroGuideClientMethod.GetSession:
+                    HandleGetSessionResponse (state.ResponseData);
+                    break;
+                case MiroGuideClientMethod.RegisterClient:
+                    HandleRegisterClientResponse (state.ResponseData);
+                    break;
+                }
+            } catch (Exception e) {
+                state = GetHead (state);
+                state.Error = e;
+                Hyena.Log.Exception (e);                                    
+            }
+                    
             if (state.CallingState != null) {
+                Console.WriteLine ("Calling Parent:  {0}", state.Method);
                 BeginRequest (state.CallingState, false);
                 return; 
-            } else {
+            } else {              
+                switch (state.Method) {
+                case MiroGuideClientMethod.RequestDeltas:
+                    HandleGetDeltasResponse (state);
+                    break;
+                case MiroGuideClientMethod.GetChannels:
+                    HandleGetChannelsResponse (state);
+                    break;
+                }                
+
+                Console.WriteLine ("Complete - Cancelled:  {0}", state.Cancelled);
+
                 asm.Reset ();
                 OnStateChanged (AetherClientState.Busy, AetherClientState.Idle);
                 OnCompleted (state);
@@ -512,9 +564,13 @@ namespace Banshee.Paas.Aether.MiroGuide
                                                           string requestData,
                                                           ServiceFlags flags,
                                                           MiroGuideClientMethod acm,
+                                                          object internalState,
                                                           object userState)
         {
-            return CreateRequestState (method, path, parameters, requestData, flags, acm, userState, null);
+            return CreateRequestState (
+                method, path, parameters, requestData, 
+                flags, acm, userState, internalState, null
+            );
         }
 
 
@@ -526,6 +582,7 @@ namespace Banshee.Paas.Aether.MiroGuide
                                                           ServiceFlags flags,
                                                           MiroGuideClientMethod acm,
                                                           object userState,
+                                                          object internalState,
                                                           MiroGuideRequestState callingState)
         {
             MiroGuideRequestState state = new MiroGuideRequestState () {
@@ -534,6 +591,7 @@ namespace Banshee.Paas.Aether.MiroGuide
                 HttpMethod = method,
                 ServiceFlags = flags,
                 UserState = userState,
+                InternalState = internalState,
                 CallingState = callingState,
                 BaseUri = ServiceUri+path                
             };
@@ -573,7 +631,7 @@ namespace Banshee.Paas.Aether.MiroGuide
             if (resp["status"] as string == "success") {
                 session_id = resp["session"] as string;
             } else {
-                throw new Exception ();
+                throw new Exception ("Response did not contain session id");
             }
         }
 
@@ -593,96 +651,74 @@ namespace Banshee.Paas.Aether.MiroGuide
                 ClientInfo = mi;
                 OnClientIDChanged (mi.ClientID);
             } else {
-                throw new Exception ();
+                throw new Exception ("Response did not contain client id");
             }
         }
 
         private void HandleGetChannelsResponse (MiroGuideRequestState state)
         {
             Console.WriteLine (state.ResponseData);
-            List<MiroGuideChannelInfo> channels = new List<MiroGuideChannelInfo> ();
+            List<MiroGuideChannelInfo> channels = null;
             
-            foreach (JsonObject o in DeserializeJson (state.ResponseData) as JsonArray) {
-                try {
-                    channels.Add (new MiroGuideChannelInfo (o));
-                } catch { continue; }
-            }
-
-            OnGetChannelsCompleted (0, 0, channels);
+            try {
+                if (state.Succeeded) {
+                    channels = new List<MiroGuideChannelInfo> ();           
+                    
+                    foreach (JsonObject o in DeserializeJson (state.ResponseData) as JsonArray) {
+                        try {
+                            channels.Add (new MiroGuideChannelInfo (o));
+                        } catch { continue; }
+                    }
+        
+                    SearchContext context = state.InternalState as SearchContext;
+                    context.IncrementResultCount ((uint)channels.Count);    
+                }
+            } catch (Exception e) {
+                state.Error = e;
+            } finally {
+                OnGetChannelsCompleted (state, channels);            
+            }            
         }
 
-        private void HandleGetDeltasResponse (string response)
+        // Remove
+        private void HandleGetDeltasResponse (MiroGuideRequestState state)
         {
-            ApplyUpdate (new AetherDelta (response));
-        }
-
-        private static string ToQueryPart (MiroGuideFilterType type)
-        {
-            switch (type)
-            {
-            case MiroGuideFilterType.Category:  return "category";     
-            case MiroGuideFilterType.Language:  return "language";      
-            case MiroGuideFilterType.Name:      return "name";
-            case MiroGuideFilterType.Search:    return "search";                
-            case MiroGuideFilterType.Tag:       return "tag"; 
-            default:
-                goto case MiroGuideFilterType.Search;
-            }
-        }
-
-        private static string ToQueryPart (MiroGuideSortType type)
-        {
-            switch (type)
-            {
-            case MiroGuideSortType.Age:     return "age";     
-            case MiroGuideSortType.ID:      return "id";      
-            case MiroGuideSortType.Name:    return "name";    
-            case MiroGuideSortType.Popular: return "popular"; 
-            case MiroGuideSortType.Rating:  return "rating";
-            default:
-                goto case MiroGuideSortType.Name;
-            }
+            try {
+                if (state.Succeeded) {
+                    ApplyUpdate (new AetherDelta (state.ResponseData));
+                }
+            } catch (Exception e) {
+                state.Error = e;
+            } finally {
+                //OnGetChannelsCompleted (state, channels);            
+            }            
         }
 
         private void OnRequestCompletedHandler (object sender, AetherRequestCompletedEventArgs e)
         {
             lock (SyncRoot) {
+                Console.WriteLine ("Request Completed - 000");
                 request.Completed -= OnRequestCompletedHandler;
                 MiroGuideRequestState state = e.UserState as MiroGuideRequestState;
                 
-                try {
-                    if (e.Cancelled || asm.Cancelled) {
-                        state = GetHead (state);
-                        state.Cancelled = true;
-                    } else if (e.Timedout) {
-                        state = GetHead (state);                    
-                        state.Timedout = true;
-                    } else if (e.Error != null) {
-                        throw e.Error;
-                    } else {
-                        state.ResponseData = Encoding.UTF8.GetString (e.Data);
-                    
-                        switch (state.Method) {
-                        case MiroGuideClientMethod.GetSession:
-                            HandleGetSessionResponse (state.ResponseData);
-                            break;
-                        case MiroGuideClientMethod.RegisterClient:
-                            HandleRegisterClientResponse (state.ResponseData);
-                            break;
-                        case MiroGuideClientMethod.RequestDeltas:
-                            HandleGetDeltasResponse (state.ResponseData);
-                            break;
-                        case MiroGuideClientMethod.GetChannels:
-                            HandleGetChannelsResponse (state);
-                            break;
-                        }
-                    }
-                } catch (Exception ex) {
-                    Hyena.Log.Exception (ex);                
+                state.Completed = true;
+                Console.WriteLine ("Request Completed - 001");
+                
+                state.ResponseData = (e.Data != null) ? Encoding.UTF8.GetString (e.Data) : String.Empty;
+                
+                Console.WriteLine ("Request Completed - 002");                
+                if (e.Cancelled || asm.Cancelled) {
                     state = GetHead (state);
-                    state.Error = ex;                
+                    state.Cancelled = true;
+                } else if (e.Timedout) {
+                    state = GetHead (state);                    
+                    state.Timedout = true;
+                } else if (e.Error != null) {
+                    state = GetHead (state);
+                    state.Error = e.Error;
+                    Hyena.Log.Exception (e.Error);                                    
                 }
-                            
+                
                 Complete (state);
             }
         }
@@ -733,16 +769,17 @@ namespace Banshee.Paas.Aether.MiroGuide
             }
         }
 
-        private void OnGetChannelsCompleted (int limit, int offset, IEnumerable<MiroGuideChannelInfo> channels)
+        private void OnGetChannelsCompleted (MiroGuideRequestState state, IEnumerable<MiroGuideChannelInfo> channels)
         {
             var handler = GetChannelsCompleted;
+            
+            GetChannelsCompletedEventArgs e = new GetChannelsCompletedEventArgs (
+                state.InternalState as SearchContext, channels, 
+                state.Error, state.Cancelled, state.Timedout, state.UserState
+            );
 
             if (handler != null) {
-                EventQueue.Register (
-                    new EventWrapper<GetChannelsCompletedEventArgs> (
-                        handler, this, new GetChannelsCompletedEventArgs (limit, offset, channels)
-                    )
-                );
+                EventQueue.Register (new EventWrapper<GetChannelsCompletedEventArgs> (handler, this, e));
             }
         }
 
@@ -765,6 +802,34 @@ namespace Banshee.Paas.Aether.MiroGuide
                     new EventWrapper<SubscriptionRequestedEventArgs> (handler, this, e)
                 );
             }            
+        }
+
+        private string ToQueryPart (MiroGuideFilterType type)
+        {
+            switch (type)
+            {
+            case MiroGuideFilterType.Category:  return "category";     
+            case MiroGuideFilterType.Language:  return "language";      
+            case MiroGuideFilterType.Name:      return "name";
+            case MiroGuideFilterType.Search:    return "search";                
+            case MiroGuideFilterType.Tag:       return "tag"; 
+            default:
+                goto case MiroGuideFilterType.Search;
+            }
+        }
+
+        private string ToQueryPart (MiroGuideSortType type)
+        {
+            switch (type)
+            {
+            case MiroGuideSortType.Age:     return "age";     
+            case MiroGuideSortType.ID:      return "id";      
+            case MiroGuideSortType.Name:    return "name";    
+            case MiroGuideSortType.Popular: return "popular"; 
+            case MiroGuideSortType.Rating:  return "rating";
+            default:
+                goto case MiroGuideSortType.Name;
+            }
         }
     }
 }
