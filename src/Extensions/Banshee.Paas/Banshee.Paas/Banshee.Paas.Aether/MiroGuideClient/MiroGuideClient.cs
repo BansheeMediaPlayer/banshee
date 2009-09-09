@@ -215,36 +215,36 @@ namespace Banshee.Paas.Aether.MiroGuide
             }
         }
 
-        public void GetChannels (MiroGuideFilterType filterType, 
-                                 string filterValue, 
-                                 MiroGuideSortType sortType, 
-                                 bool reverse, 
-                                 uint limit, uint offset)
+        public void GetChannelsAsync (MiroGuideFilterType filterType, 
+                                      string filterValue, 
+                                      MiroGuideSortType sortType, 
+                                      bool reverse, 
+                                      uint limit, uint offset)
         {
-            GetChannels (filterType, filterValue, sortType, reverse, limit, offset, null);
+            GetChannelsAsync (filterType, filterValue, sortType, reverse, limit, offset, null);
         }
         
-        public void GetChannels (MiroGuideFilterType filterType,
-                                 string filterValue, 
-                                 MiroGuideSortType sortType, 
-                                 bool reverse, 
-                                 uint limit, 
-                                 uint offset, 
-                                 object userState)
+        public void GetChannelsAsync (MiroGuideFilterType filterType,
+                                      string filterValue, 
+                                      MiroGuideSortType sortType, 
+                                      bool reverse, 
+                                      uint limit, 
+                                      uint offset, 
+                                      object userState)
         {
             if (String.IsNullOrEmpty (filterValue)) {
                 return;
             }
 
-            GetChannels (new SearchContext (filterType, filterValue, sortType, reverse, limit, offset), userState);
+            GetChannelsAsync (new SearchContext (filterType, filterValue, sortType, reverse, limit, offset), userState);
         }
 
-        public void GetChannels (SearchContext context)
+        public void GetChannelsAsync (SearchContext context)
         {
-            GetChannels (context, null);
+            GetChannelsAsync (context, null);
         }
         
-        public void GetChannels (SearchContext context, object userState)
+        public void GetChannelsAsync (SearchContext context, object userState)
         {
             if (context == null) {
                 throw new ArgumentNullException ("context");
@@ -852,7 +852,7 @@ namespace Banshee.Paas.Aether.MiroGuide
             case MiroGuideFilterType.Language:  return "language";      
             case MiroGuideFilterType.Name:      return "name";
             case MiroGuideFilterType.Search:    return "search";                
-            case MiroGuideFilterType.Tag:       return "tag"; 
+            case MiroGuideFilterType.Tag:       return "tag";
             default:
                 goto case MiroGuideFilterType.Search;
             }

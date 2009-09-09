@@ -1,5 +1,5 @@
 // 
-// MiroGuideSearchEntry.cs
+// MiroGuideSource.cs
 //  
 // Author:
 //   Mike Urbanski <michael.c.urbanski@gmail.com>
@@ -26,26 +26,37 @@
 
 using System;
 
-using Mono.Unix;
+using Banshee.Sources;
+using Banshee.Sources.Gui;
 
-using Banshee.Widgets;
-
+using Banshee.Paas.MiroGuide.Gui;
 using Banshee.Paas.Aether.MiroGuide;
 
-namespace Banshee.Paas.MiroGuide.Gui
+namespace Banshee.Paas.MiroGuide
 {
-    public class MiroGuideSearchEntry : SearchEntry
+    public class MiroGuideSource : Source, IDisposable
     {
-        public MiroGuideSearchEntry ()
-        {
-            EmptyMessage = String.Format (Catalog.GetString ("Search Miro Guide"));
+        private MiroGuideActions actions;
 
-            AddFilterOption ((int)MiroGuideFilterType.Search, Catalog.GetString ("All"));
-            AddFilterSeparator ();
-            AddFilterOption ((int)MiroGuideFilterType.Tag, Catalog.GetString ("Tag"));                        
-            AddFilterOption ((int)MiroGuideFilterType.Name, Catalog.GetString ("Name"));
-            AddFilterOption ((int)MiroGuideFilterType.Category, Catalog.GetString ("Category"));
-            AddFilterOption ((int)MiroGuideFilterType.Language, Catalog.GetString ("Language"));
+        public MiroGuideSource (MiroGuideClient client) : base ("Miro Guide", "Miro Guide", 201)
+        {
+            actions = new MiroGuideActions (client);
+        
+            Properties.SetStringList ("Icon.Name", "miroguide");
+            Properties.SetString ("GtkActionPath", "/MiroGuideSourcePopup");
+
+            Properties.Set<ISourceContents> ("Nereid.SourceContents", new MiroGuideSourceContents ());
+            Properties.Set<bool> ("Nereid.SourceContentsPropagate", false);
+
+            Properties.Set<bool> ("Nereid.SourceContents.HeaderVisible", false);
+        }
+
+        public void Dispose ()
+        {
+            if (actions != null) {
+                actions.Dispose ();
+                actions = null;
+            }          
         }
     }
 }

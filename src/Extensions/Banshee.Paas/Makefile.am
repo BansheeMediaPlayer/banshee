@@ -78,11 +78,18 @@ SOURCES =  \
 	Banshee.Paas/Banshee.Paas.MiroGuide.Gui/MiroGuideChannelListView.cs \
 	Banshee.Paas/Banshee.Paas.MiroGuide.Gui/MiroGuideLoginForm.cs \
 	Banshee.Paas/Banshee.Paas.MiroGuide.Gui/MiroGuideSearchEntry.cs \
-	Banshee.Paas/Banshee.Paas.MiroGuide.Gui/MiroGuideSourceManager.cs \
-	Banshee.Paas/Banshee.Paas.MiroGuide.Gui/TestSourceContents.cs \
+	Banshee.Paas/Banshee.Paas.MiroGuide.Gui/SourceContents/ChannelSourceContents.cs \
+	Banshee.Paas/Banshee.Paas.MiroGuide.Gui/SourceContents/MiroGuideSourceContents.cs \
 	Banshee.Paas/Banshee.Paas.MiroGuide/MiroGuideChannelListModel.cs \
 	Banshee.Paas/Banshee.Paas.MiroGuide/MiroGuideImageFetchJob.cs \
-	Banshee.Paas/Banshee.Paas.MiroGuide/TestSource.cs \
+	Banshee.Paas/Banshee.Paas.MiroGuide/MiroGuideSourceManager.cs \
+	Banshee.Paas/Banshee.Paas.MiroGuide/Sources/ChannelSource.cs \
+	Banshee.Paas/Banshee.Paas.MiroGuide/Sources/FeaturedChannelsSource.cs \
+	Banshee.Paas/Banshee.Paas.MiroGuide/Sources/HDChannelsSource.cs \
+	Banshee.Paas/Banshee.Paas.MiroGuide/Sources/MiroGuideSource.cs \
+	Banshee.Paas/Banshee.Paas.MiroGuide/Sources/PopularChannelsSource.cs \
+	Banshee.Paas/Banshee.Paas.MiroGuide/Sources/SearchSource.cs \
+	Banshee.Paas/Banshee.Paas.MiroGuide/Sources/TopRatedChannelsSource.cs \
 	Banshee.Paas/Banshee.Paas.Utils/OpmlParser.cs \
 	Banshee.Paas/Banshee.Paas.Utils/OrderComparer.cs \
 	Banshee.Paas/Banshee.Paas.Utils/StringUtils.cs \

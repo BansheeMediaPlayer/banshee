@@ -29,11 +29,11 @@ using System;
 using Banshee.ServiceStack;
 using Banshee.Paas.Aether.MiroGuide;
 
-namespace Banshee.Paas.MiroGuide.Gui
+namespace Banshee.Paas.MiroGuide
 {
     public class MiroGuideSourceManager : IDisposable
     {
-        private TestSource mg_source;
+        private MiroGuideSource mg_source;
         
         public MiroGuideSourceManager ()
         {
@@ -41,7 +41,13 @@ namespace Banshee.Paas.MiroGuide.Gui
 
         public void Initialize (MiroGuideClient client)
         {
-            mg_source = new TestSource (client);
+            mg_source = new MiroGuideSource (client);
+            mg_source.AddChildSource (new SearchSource (client));
+            mg_source.AddChildSource (new HDChannelsSource (client));            
+            mg_source.AddChildSource (new FeaturedChannelsSource (client));
+            mg_source.AddChildSource (new PopularChannelsSource (client));            
+            mg_source.AddChildSource (new TopRatedChannelsSource (client));            
+            
             ServiceManager.SourceManager.AddSource (mg_source);            
         }
 

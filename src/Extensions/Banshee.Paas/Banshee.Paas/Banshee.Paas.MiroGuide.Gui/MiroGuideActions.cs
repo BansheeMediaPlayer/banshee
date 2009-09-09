@@ -47,13 +47,13 @@ namespace Banshee.Paas.MiroGuide.Gui
 
         private ISource source;
 
-        private TestSource TestSource {
-            get { return source as TestSource; }
+        private SearchSource SearchSource {
+            get { return source as SearchSource; }
         }
 
         public MiroGuideChannelListModel ActiveModel {
             get {
-                return (TestSource != null) ? TestSource.ChannelModel : null;
+                return (SearchSource != null) ? SearchSource.ChannelModel : null;
             }
         }
 
@@ -96,7 +96,7 @@ namespace Banshee.Paas.MiroGuide.Gui
 
         private IEnumerable<MiroGuideChannelInfo> GetSelectedChannels ()
         {
-            return new List<MiroGuideChannelInfo> (TestSource.ChannelModel.GetSelected ());
+            return new List<MiroGuideChannelInfo> (SearchSource.ChannelModel.GetSelected ());
         }
 
         private void OnMiroGuideChannelSubscribeHandler (object sender, EventArgs e)

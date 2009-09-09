@@ -1,5 +1,5 @@
 // 
-// MiroGuideSearchEntry.cs
+// PopularChannelsSource.cs
 //  
 // Author:
 //   Mike Urbanski <michael.c.urbanski@gmail.com>
@@ -28,24 +28,29 @@ using System;
 
 using Mono.Unix;
 
-using Banshee.Widgets;
+using Gtk;
 
+using Banshee.Base;
+
+using Banshee.Sources;
+using Banshee.Sources.Gui;
+
+using Banshee.Paas.Aether;
 using Banshee.Paas.Aether.MiroGuide;
 
-namespace Banshee.Paas.MiroGuide.Gui
-{
-    public class MiroGuideSearchEntry : SearchEntry
-    {
-        public MiroGuideSearchEntry ()
-        {
-            EmptyMessage = String.Format (Catalog.GetString ("Search Miro Guide"));
+using Banshee.Paas.MiroGuide.Gui;
 
-            AddFilterOption ((int)MiroGuideFilterType.Search, Catalog.GetString ("All"));
-            AddFilterSeparator ();
-            AddFilterOption ((int)MiroGuideFilterType.Tag, Catalog.GetString ("Tag"));                        
-            AddFilterOption ((int)MiroGuideFilterType.Name, Catalog.GetString ("Name"));
-            AddFilterOption ((int)MiroGuideFilterType.Category, Catalog.GetString ("Category"));
-            AddFilterOption ((int)MiroGuideFilterType.Language, Catalog.GetString ("Language"));
+namespace Banshee.Paas.MiroGuide
+{
+    public class PopularChannelsSource : ChannelSource
+    {
+        public PopularChannelsSource (MiroGuideClient client) : base (client, "MiroGuidePopularChannels", Catalog.GetString ("Most Popular"), 3)
+        {
+            Properties.SetStringList ("Icon.Name", "system-users");            
+        }
+
+        protected override void FetchAdditionalChannels (SearchContext context)
+        {
         }
     }
 }

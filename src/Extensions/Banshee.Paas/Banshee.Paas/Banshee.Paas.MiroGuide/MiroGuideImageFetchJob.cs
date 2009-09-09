@@ -75,8 +75,8 @@ namespace Banshee.Paas.MiroGuide
             if (SaveHttpStreamCover (new Uri (channel.ThumbUrl), cover_art_id, null)) {
                 Banshee.Sources.Source src = ServiceManager.SourceManager.ActiveSource;
                 
-                if (src != null && (src is TestSource || src.Parent is TestSource)) {
-                    (src as TestSource).QueueDraw ();
+                if (src != null && (src is SearchSource || src.Parent is SearchSource)) {
+                    (src as SearchSource).QueueDraw ();
                 }
                 
                 return;

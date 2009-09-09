@@ -1,5 +1,5 @@
 // 
-// DownloadSourceContents.cs
+// MiroGuideSourceContents.cs
 //  
 // Author:
 //       Mike Urbanski <michael.c.urbanski@gmail.com>
@@ -26,82 +26,46 @@
 
 using System;
 
+using Gdk;
 using Gtk;
-using GLib;
 
 using Banshee.Sources;
 using Banshee.Sources.Gui;
-using Banshee.Configuration;
 
 namespace Banshee.Paas.MiroGuide.Gui
 {
-    public class TestSourceContents : ISourceContents
+    public class MiroGuideSourceContents : ISourceContents
     {
-        private HPaned hp;
-        private ScrolledWindow sw;
-        private TestSource test_source;
+        private VBox widget;
+        private MiroGuideSource source;
         
-        private MiroGuideChannelListView channel_view;
-
         public ISource Source { 
-            get { return test_source; } 
+            get { return source; } 
         }
         
         public Widget Widget { 
-            get { return hp as Widget; }
+            get { return widget as Widget; }
         }
 
-        public ScrolledWindow ScrolledWindow {
-            get { return sw; }
-        }
-
-        public TestSourceContents ()
+        public MiroGuideSourceContents ()
         {
-            channel_view = new MiroGuideChannelListView ();
-            
-            sw = new ScrolledWindow () {
-                HscrollbarPolicy = PolicyType.Automatic,
-                VscrollbarPolicy = PolicyType.Automatic
-            };
-            
-            sw.Add (channel_view);
-            
-            hp = new HPaned ();
-            hp.Position = HPanedPosition.Get ();
-
-            hp.SizeAllocated += (sender, e) => {
-                HPanedPosition.Set (hp.Position);
-            };
-            
-            hp.Add1 (sw);
-            hp.Add2 (new Label ("Coming Soon."));
-            hp.ShowAll ();
+            widget = new VBox ();
         }
 
         public bool SetSource (ISource source)
         {
-            test_source = source as TestSource;
+            this.source = source as MiroGuideSource;
             
-            if (test_source == null) {
+            if (source == null) {
                 return false;
             }
-            
-            channel_view.HeaderVisible = true;
-            channel_view.SetModel (test_source.ChannelModel);
-            
+
             return true;
         }
 
         public void ResetSource ()
         {
-            test_source = null;
-            
-            channel_view.SetModel (null);
-            channel_view.HeaderVisible = false;
+            source = null;
         }
-
-        public static readonly SchemaEntry<int> HPanedPosition = new SchemaEntry<int> (
-            "plugins.paas.miroguide.ui", "search_hpaned_pos", 100, "", ""
-        ); 
     }
 }
