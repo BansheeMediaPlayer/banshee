@@ -117,8 +117,8 @@ namespace Banshee.Podcasting.Gui
 
                 int total = remaining + completed;
                 string fmt = Catalog.GetPluralString (
-                        "Transfering {0} file at {1} KB/s",
-                        "Transfering {0} of {2} files at {1} KB/s", total
+                        "Transferring {0} file at {1} KB/s",
+                        "Transferring {0} of {2} files at {1} KB/s", total
                 );
 
                 Status = String.Format (fmt, downloading, (bytesPerSecond / 1024), total);

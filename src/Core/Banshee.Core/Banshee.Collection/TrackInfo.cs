@@ -276,7 +276,6 @@ namespace Banshee.Collection
             get { return null; }
         }
         
-        [Exportable]
         public virtual DateTime ReleaseDate {
             get { return release_date; }
             set { release_date = value; }
