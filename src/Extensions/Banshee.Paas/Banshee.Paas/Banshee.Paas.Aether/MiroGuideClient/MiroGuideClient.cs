@@ -168,12 +168,11 @@ namespace Banshee.Paas.Aether.MiroGuide
                 if (asm.Busy) {
                     return;
                 }
-                
+
                 BeginRequest (
-                    CreateRequestState (
-                        HttpMethod.GET, "/aether/api/deltas/", null, null,
-                        (ServiceFlags.RequireAuth | ServiceFlags.RequireClientID), 
-                        MiroGuideClientMethod.RequestDeltas, null, null
+                    CreateGetRequestState (
+                        MiroGuideClientMethod.RequestDeltas, "/aether/api/deltas/", null, 
+                        (ServiceFlags.RequireAuth | ServiceFlags.RequireClientID), null, null
                     ), true
                 );
             }
@@ -194,10 +193,11 @@ namespace Banshee.Paas.Aether.MiroGuide
             if (request_data.Count > 0) {            
                 lock (SyncRoot) {
                     BeginRequest (
-                        CreateRequestState (
-                            HttpMethod.POST, "/aether/api/unsubscribe/", null,
+                        CreatePostRequestState (
+                            MiroGuideClientMethod.Unsubscribe, "/aether/api/unsubscribe/", 
+                            "application/x-www-form-urlencoded", null,
                             String.Format ("channels={0}", SerializeJson (json_data)),
-                            ServiceFlags.RequireAuth, MiroGuideClientMethod.Unsubscribe, null, null
+                            ServiceFlags.RequireAuth, null, null
                         ), true
                     );
                 }                            
@@ -265,11 +265,11 @@ namespace Banshee.Paas.Aether.MiroGuide
                 if (asm.Busy) { // Remove!!!  Allow requests to be queued in the future.
                     return;
                 }
-
+                
                 BeginRequest (
-                    CreateRequestState (
-                        HttpMethod.GET, "/api/get_channels", nvc, null,
-                        ServiceFlags.None, MiroGuideClientMethod.GetChannels, context, userState
+                    CreateGetRequestState (
+                        MiroGuideClientMethod.GetChannels, "/api/get_channels", nvc,
+                        ServiceFlags.None, context, userState
                     ), true
                 );
             }         
@@ -295,12 +295,16 @@ namespace Banshee.Paas.Aether.MiroGuide
 
         private void GetSessionAsync (MiroGuideRequestState callingMethodState)
         {
+            if (callingMethodState == null) {
+                throw new ArgumentNullException ("callingMethodState");
+            }
+            
             lock (SyncRoot) {
                 BeginRequest (
-                    CreateRequestState (
-                        HttpMethod.POST, "/aether/api/auth/", null,
-                        String.Format ("username={0}&password_hash={1}", account.Username, account.PasswordHash),
-                        ServiceFlags.None, MiroGuideClientMethod.GetSession, null, null, callingMethodState
+                    CreatePostRequestState (
+                        MiroGuideClientMethod.GetSession, "/aether/api/auth/", "application/x-www-form-urlencoded",
+                        null, String.Format ("username={0}&password_hash={1}", account.Username, account.PasswordHash),
+                        ServiceFlags.None, null, null, callingMethodState
                     ), false
                 );
             }
@@ -308,11 +312,15 @@ namespace Banshee.Paas.Aether.MiroGuide
 
         private void GetClientIDAsync (MiroGuideRequestState callingMethodState)
         {
+            if (callingMethodState == null) {
+                throw new ArgumentNullException ("callingMethodState");
+            }
+
             lock (SyncRoot) {
                 BeginRequest (
-                    CreateRequestState (
-                        HttpMethod.GET, "/aether/api/register/", null, null, 
-                        ServiceFlags.RequireAuth, MiroGuideClientMethod.RegisterClient, null, null, callingMethodState
+                    CreateGetRequestState (
+                        MiroGuideClientMethod.RegisterClient, "/aether/api/register/", null, 
+                        ServiceFlags.RequireAuth, null, null, callingMethodState
                     ), false
                 );
             }
@@ -332,9 +340,7 @@ namespace Banshee.Paas.Aether.MiroGuide
         }
         
         private void BeginRequest (MiroGuideRequestState state, bool changeState)
-        {
-            Console.WriteLine ("Calling:  {0}", state.Method);
-            
+        {            
             if (changeState) {
                 asm.SetBusy ();
                 OnStateChanged (AetherClientState.Idle, AetherClientState.Busy);
@@ -376,6 +382,7 @@ namespace Banshee.Paas.Aether.MiroGuide
                     request.BeginGetRequest (state.GetFullUri (), state);
                     break;
                 case HttpMethod.POST:
+                    request.ContentType = state.ContentType;
                     request.BeginPostRequest (
                         state.GetFullUri (), Encoding.UTF8.GetBytes (state.RequestData), state
                     );
@@ -519,8 +526,6 @@ namespace Banshee.Paas.Aether.MiroGuide
 
         private void Complete (MiroGuideRequestState state)
         {
-            Console.WriteLine ("Complete:  {0}", state.Method);
-        
             try {
                 switch (state.Method) {
                 case MiroGuideClientMethod.GetSession:
@@ -537,7 +542,6 @@ namespace Banshee.Paas.Aether.MiroGuide
             }
                     
             if (state.CallingState != null) {
-                Console.WriteLine ("Calling Parent:  {0}", state.Method);
                 BeginRequest (state.CallingState, false);
                 return; 
             } else {              
@@ -550,45 +554,85 @@ namespace Banshee.Paas.Aether.MiroGuide
                     break;
                 }                
 
-                Console.WriteLine ("Complete - Cancelled:  {0}", state.Cancelled);
-
                 asm.Reset ();
                 OnStateChanged (AetherClientState.Busy, AetherClientState.Idle);
                 OnCompleted (state);
             }
         }
 
-        private MiroGuideRequestState CreateRequestState (HttpMethod method, 
-                                                          string path,
-                                                          NameValueCollection parameters, 
-                                                          string requestData,
-                                                          ServiceFlags flags,
-                                                          MiroGuideClientMethod acm,
-                                                          object internalState,
-                                                          object userState)
+        private MiroGuideRequestState CreateGetRequestState (MiroGuideClientMethod acm,
+                                                             string path,
+                                                             NameValueCollection parameters, 
+                                                             ServiceFlags flags,
+                                                             object internalState,
+                                                             object userState)
         {
-            return CreateRequestState (
-                method, path, parameters, requestData, 
-                flags, acm, userState, internalState, null
+            return CreateGetRequestState (
+                acm, path, parameters, flags, internalState, userState, null
             );
         }
 
+        private MiroGuideRequestState CreateGetRequestState (MiroGuideClientMethod acm,
+                                                             string path,
+                                                             NameValueCollection parameters, 
+                                                             ServiceFlags flags,
+                                                             object internalState,
+                                                             object userState,
+                                                             MiroGuideRequestState callingState)
+        {
+            return CreateRequestState (
+                acm, path, HttpMethod.GET, null, parameters, null, 
+                flags, internalState, userState, callingState
+            );
+        }
 
+        private MiroGuideRequestState CreatePostRequestState (MiroGuideClientMethod acm,
+                                                              string path,
+                                                              string contentType,
+                                                              NameValueCollection parameters, 
+                                                              string requestData,
+                                                              ServiceFlags flags,
+                                                              object internalState,
+                                                              object userState)
+        {
+            return CreatePostRequestState (
+                acm, path, contentType, parameters, requestData, 
+                flags, internalState, userState, null
+            );
+        }
 
-        private MiroGuideRequestState CreateRequestState (HttpMethod method,
+        private MiroGuideRequestState CreatePostRequestState (MiroGuideClientMethod acm,
+                                                              string path,
+                                                              string contentType,
+                                                              NameValueCollection parameters, 
+                                                              string requestData,
+                                                              ServiceFlags flags,
+                                                              object internalState,
+                                                              object userState,
+                                                              MiroGuideRequestState callingState)
+        {
+            return CreateRequestState (
+                acm, path, HttpMethod.POST, contentType, parameters, requestData, 
+                flags, internalState, userState, callingState
+            );
+        }
+
+        private MiroGuideRequestState CreateRequestState (MiroGuideClientMethod acm,
                                                           string path,
-                                                          NameValueCollection parameters,                                                          
+                                                          HttpMethod method,                                                          
+                                                          string contentType,
+                                                          NameValueCollection parameters, 
                                                           string requestData,
                                                           ServiceFlags flags,
-                                                          MiroGuideClientMethod acm,
+                                                          object internalState,                                                          
                                                           object userState,
-                                                          object internalState,
                                                           MiroGuideRequestState callingState)
         {
             MiroGuideRequestState state = new MiroGuideRequestState () {
                 Method = acm,
                 RequestData = requestData,
                 HttpMethod = method,
+                ContentType = contentType,                
                 ServiceFlags = flags,
                 UserState = userState,
                 InternalState = internalState,
@@ -697,16 +741,12 @@ namespace Banshee.Paas.Aether.MiroGuide
         private void OnRequestCompletedHandler (object sender, AetherRequestCompletedEventArgs e)
         {
             lock (SyncRoot) {
-                Console.WriteLine ("Request Completed - 000");
                 request.Completed -= OnRequestCompletedHandler;
                 MiroGuideRequestState state = e.UserState as MiroGuideRequestState;
                 
                 state.Completed = true;
-                Console.WriteLine ("Request Completed - 001");
-                
                 state.ResponseData = (e.Data != null) ? Encoding.UTF8.GetString (e.Data) : String.Empty;
                 
-                Console.WriteLine ("Request Completed - 002");                
                 if (e.Cancelled || asm.Cancelled) {
                     state = GetHead (state);
                     state.Cancelled = true;

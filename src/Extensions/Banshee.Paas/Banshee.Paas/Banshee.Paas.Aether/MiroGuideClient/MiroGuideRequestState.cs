@@ -43,7 +43,9 @@ namespace Banshee.Paas.Aether.MiroGuide
         public string BaseUri { get; set; }
         public Exception Error { get; set; }
         
+        public string ContentType { get; set; }
         public HttpMethod HttpMethod { get; set; }        
+        
         public MiroGuideClientMethod Method { get; set; }
 
         public string RequestData { get; set; }

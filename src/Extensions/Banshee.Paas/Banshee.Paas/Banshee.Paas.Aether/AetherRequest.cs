@@ -58,6 +58,7 @@ namespace Banshee.Paas.Aether
             set { cookie_container = value; }
         }
 
+        public string ContentType { get; set; }
         public ICredentials Credentials { get; set; }
 
         public int Timeout {
@@ -162,8 +163,7 @@ namespace Banshee.Paas.Aether
                     break;
                 case HttpMethod.POST:
                     request.Method = "POST";
-                    // ContentType needs to be defined at a higher level.
-                    request.ContentType = "application/x-www-form-urlencoded";
+                    request.ContentType = ContentType;
                     SendRequest (postData, state);
                     break;
                 }
