@@ -32,6 +32,7 @@ using Gtk;
 using Migo2.Async;
 using Migo2.DownloadService;
 
+using Banshee.Base;
 using Banshee.ServiceStack;
 
 using Banshee.Paas.Gui;
@@ -81,18 +82,24 @@ namespace Banshee.Paas.DownloadManager.Gui
             };
         
             manager.TaskCompleted += (sender, e) => {
-                if (e.Task.State != TaskState.Paused) {
-                    lock (this) {
-                        if (cancelled) {
-                            return;
+                ThreadAssist.ProxyToMain (delegate {
+                    if (e.Task.State != TaskState.Paused) {
+                        lock (this) {
+                            if (cancelled) {
+                                return;
+                            }
                         }
+                        
+                        download_model.Remove (e.Task);                    
                     }
-                    
-                    download_model.RemoveTask (e.Task);                    
-                }
+                });
             };
 
-            manager.Reordered += (sender, e) => { download_model.Reorder (e.NewOrder); };
+            manager.Reordered += (sender, e) => { 
+                ThreadAssist.ProxyToMain (delegate {
+                    download_model.Reorder (e.NewOrder);
+                });
+            };
         }
         
         public void Dispose ()
@@ -108,7 +115,7 @@ namespace Banshee.Paas.DownloadManager.Gui
                 }
             }
 
-            ServiceStack.Application.Invoke (delegate {                                
+            ThreadAssist.ProxyToMain (delegate {
                 lock (sync) {
                     if (downloadJob != null) {
                         downloadJob.CancelRequested -= OnCancelRequested;
@@ -123,7 +130,7 @@ namespace Banshee.Paas.DownloadManager.Gui
 
         private void OnManagerStartedHandler (object sender, EventArgs e)
         {
-            ServiceStack.Application.Invoke (delegate {                                
+            ThreadAssist.ProxyToMain (delegate {
                 lock (sync) {
                     cancelled = false;
                     
@@ -140,7 +147,7 @@ namespace Banshee.Paas.DownloadManager.Gui
         
         private void OnManagerStoppedHandler (object sender, EventArgs e)
         {
-            ServiceStack.Application.Invoke (delegate {            
+            ThreadAssist.ProxyToMain (delegate {
                 lock (sync) {
                     download_model.Clear ();
 
@@ -156,7 +163,7 @@ namespace Banshee.Paas.DownloadManager.Gui
 
         private void OnManagerProgressChangedHandler (object sender, ProgressChangedEventArgs e)
         {
-            Gtk.Application.Invoke (delegate {
+            ThreadAssist.ProxyToMain (delegate {
                 lock (sync) {
                     if (downloadJob != null) {
                         downloadJob.UpdateProgress (e.ProgressPercentage);
@@ -169,7 +176,7 @@ namespace Banshee.Paas.DownloadManager.Gui
         {
             HttpDownloadGroupStatusChangedEventArgs args = e as HttpDownloadGroupStatusChangedEventArgs;
             
-            ServiceStack.Application.Invoke (delegate {            
+            ThreadAssist.ProxyToMain (delegate {
                 lock (sync) {
                     if (downloadJob != null) {
                         downloadJob.UpdateStatus (args.RunningTasks, args.RemainingTasks, args.CompletedTasks, args.BytesPerSecond);
@@ -180,11 +187,13 @@ namespace Banshee.Paas.DownloadManager.Gui
 
         private void OnManagerTaskAddedHandler (object sender, TaskAddedEventArgs<HttpFileDownloadTask> e)
         {
-            if (e.TaskPair != null) {
-                download_model.AddTaskPair (e.TaskPair);
-            } else if (e.TaskPairs != null) {
-                download_model.AddTaskPairs (e.TaskPairs);                
-            }
+            ThreadAssist.ProxyToMain (delegate {
+                if (e.TaskPair != null) {
+                    download_model.AddTaskPair (e.TaskPair);
+                } else if (e.TaskPairs != null) {
+                    download_model.AddTaskPairs (e.TaskPairs);                
+                }
+            });
         }
 
         private void OnCancelRequested (object sender, EventArgs e)

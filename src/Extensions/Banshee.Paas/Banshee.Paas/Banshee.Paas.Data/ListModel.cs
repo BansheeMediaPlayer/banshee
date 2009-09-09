@@ -31,9 +31,9 @@ using System.Collections.Generic;
 using Hyena.Data;
 using Hyena.Collections;
 
+using Banshee.Base;
 using Banshee.Paas.Utils;
 
-// Should only be accessed from main;
 namespace Banshee.Paas.Data
 {
     public class ListModel<T> : IListModel<T>
@@ -58,6 +58,10 @@ namespace Banshee.Paas.Data
 
         public T this[int index] {
             get { return GetIndex (index); }
+        }
+
+        protected List<T> Items {
+            get { return items; }
         }
 
         public ListModel ()
@@ -165,22 +169,26 @@ namespace Banshee.Paas.Data
             return default (T);
         }
 
-        private void OnReloaded ()
+        protected virtual void OnReloaded ()
         {
-            EventHandler handler = Reloaded;
-            
-            if (handler != null) {
-                handler (this, EventArgs.Empty);
-            }
+            ThreadAssist.ProxyToMain (delegate {
+                EventHandler handler = Reloaded;
+                
+                if (handler != null) {
+                    handler (this, EventArgs.Empty);
+                }
+            });            
         }
         
-        private void OnCleared ()
+        protected virtual void OnCleared ()
         {
-            EventHandler handler = Cleared;
-            
-            if (handler != null) {
-                handler (this, EventArgs.Empty);
-            }
+            ThreadAssist.ProxyToMain (delegate {
+                EventHandler handler = Cleared;
+                
+                if (handler != null) {
+                    handler (this, EventArgs.Empty);
+                }
+            });
         }
     }
 }

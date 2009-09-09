@@ -93,9 +93,8 @@ namespace Banshee.Paas.DownloadManager.Gui
 
         protected override bool OnDragDrop (Gdk.DragContext context, int x, int y, uint time_)
         {
-            manager.Contains (8);
             y = TranslateToListY (y);
-            
+
             if (Gtk.Drag.GetSourceWidget (context) == this) {
                 DownloadSource source = ServiceManager.SourceManager.ActiveSource as DownloadSource;
                 
