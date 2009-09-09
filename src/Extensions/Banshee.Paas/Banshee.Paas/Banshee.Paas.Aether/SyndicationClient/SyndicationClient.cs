@@ -151,11 +151,20 @@ namespace Banshee.Paas.Aether.Syndication
         {
             List<PaasItem> items = new List<PaasItem> (channel.Items);
 
-            if (items != null) {
-                DeleteItems (items, deleteFiles, true);
-            }                
+            ServiceManager.DbConnection.BeginTransaction ();
 
-            PaasChannel.Provider.Delete (channel);
+            try {
+                if (items != null) {
+                    DeleteItems (items, deleteFiles, true);
+                }                
+
+                PaasChannel.Provider.Delete (channel);
+                ServiceManager.DbConnection.CommitTransaction ();
+            } catch {
+                ServiceManager.DbConnection.RollbackTransaction ();
+                throw;
+            }
+            
             OnChannelRemoved (channel);
         }
 
@@ -178,6 +187,12 @@ namespace Banshee.Paas.Aether.Syndication
                     }
                     
                     if (notify) {
+                        // Tracks can be orphaned (and possibly appear as "phantom" items later) if the application 
+                        // is interrupted before 'PaasSource.RemoveTrackRange' has run.
+                        // Ghostbust phantom items at regular intervals?  
+                        // Move the track removal logic here?
+                        // This sucks?  Yes.
+
                         OnItemsRemoved (items);                                        
                     }
                 }

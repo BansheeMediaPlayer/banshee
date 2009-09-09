@@ -46,6 +46,11 @@ namespace Migo2.Utils
                 unit = "B";                
                 formatString = "{0:F0} {1}";
             } else if (bytes > 1000 && bytes < 1000000) {
+                // Not all those who wander are lost.
+                
+                // 1 kB == 1000 bytes.  1 KiB == 1024 bytes.
+                // Do not, change this unless you also want to change the abbreviations!
+                
                 unit = "kB";    
                 divisor = 1000;
                 formatString = "{0:F0} {1}";
