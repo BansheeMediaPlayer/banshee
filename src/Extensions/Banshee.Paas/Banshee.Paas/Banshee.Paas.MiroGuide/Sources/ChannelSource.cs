@@ -42,6 +42,7 @@ namespace Banshee.Paas.MiroGuide
     public abstract class ChannelSource : Source
     {
         private MiroGuideClient client;
+        //private ManualResetEvent client_wait;
         
         private ChannelSourceContents contents;
         private MiroGuideChannelListModel channel_model;
@@ -77,6 +78,14 @@ namespace Banshee.Paas.MiroGuide
 
             TypeUniqueId = String.Concat (genericName, "ChannelSource");
 
+            ServiceStack.ServiceManager.SourceManager.ActiveSourceChanged += (e) => {
+                ActiveSourceChangedEventArgs args = e as ActiveSourceChangedEventArgs;
+                
+                if (args.OldSource == this && args.Source is ChannelSource) {
+                    Client.CancelAsync ();
+                }
+            };
+
             contents = new ChannelSourceContents ();
             
             (contents.ScrolledWindow.VScrollbar as VScrollbar).ValueChanged += OnVScrollbarValueChangedHandler;
@@ -92,7 +101,33 @@ namespace Banshee.Paas.MiroGuide
             });
         }
 
-        protected abstract void FetchAdditionalChannels (SearchContext context);
+        protected virtual void SetRequestStatus (string message)
+        {
+            SetRequestStatus (message, null);        
+        }
+
+        protected virtual void SetRequestStatus (string message, string iconName)
+        {
+            ThreadAssist.ProxyToMain (delegate {
+                SourceMessage m = new SourceMessage (this) {
+                    Text = message,
+                    CanClose = true,
+                    IsSpinning = true
+                };
+
+                m.Updated += (sender, e) => {
+                    if (m.IsHidden) {
+                        client.CancelAsync ();
+                    }
+                };
+
+                PushMessage (m);
+            });        
+        }
+
+        protected virtual void FetchAdditionalChannels (SearchContext context)
+        {
+        }
         
         protected virtual void CheckVScrollbarValue (VScrollbar vsb)
         {
@@ -115,7 +150,13 @@ namespace Banshee.Paas.MiroGuide
 
         protected virtual void OnMiroGuideClientStateChanged (object sender, AetherClientStateChangedEventArgs e)
         {
-            Console.WriteLine ("OnMiroGuideClientStateChanged");
+            if (e.NewState == AetherClientState.Busy) {
+                ThreadAssist.ProxyToMain (delegate {
+                    SetRequestStatus ("Updating..."); 
+                });
+            } else {
+                ThreadAssist.ProxyToMain (delegate { PopMessage (); });
+            }
         }
 
         protected virtual void OnVScrollbarValueChangedHandler (object sender, EventArgs e)

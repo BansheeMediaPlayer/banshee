@@ -207,7 +207,7 @@ namespace Banshee.Paas.Aether.MiroGuide
         public void CancelAsync ()
         {
             lock (SyncRoot) {
-                if (asm.SetCancelled ()) {
+                if (asm.Busy && asm.SetCancelled ()) {
                     if (request != null) {
                         request.CancelAsync ();
                     }
@@ -553,7 +553,7 @@ namespace Banshee.Paas.Aether.MiroGuide
                     HandleGetChannelsResponse (state);
                     break;
                 }                
-
+                
                 asm.Reset ();
                 OnStateChanged (AetherClientState.Busy, AetherClientState.Idle);
                 OnCompleted (state);

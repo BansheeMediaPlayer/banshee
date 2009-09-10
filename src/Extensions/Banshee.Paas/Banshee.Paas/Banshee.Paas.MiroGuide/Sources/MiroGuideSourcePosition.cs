@@ -35,6 +35,7 @@ namespace Banshee.Paas.MiroGuide
         Featured,
         TopRated,
         Popular,
+        Recommended,                
         HD
     }
 }

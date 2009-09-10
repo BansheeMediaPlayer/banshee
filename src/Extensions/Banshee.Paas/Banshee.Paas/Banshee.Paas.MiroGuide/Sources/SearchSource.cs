@@ -26,6 +26,8 @@
 
 using System;
 using System.Linq;
+using System.Threading;
+
 using System.Collections.Generic;
 
 using Mono.Unix;
@@ -104,7 +106,7 @@ namespace Banshee.Paas.MiroGuide
         {
             Client.GetChannelsAsync (
                 (MiroGuideFilterType)search_entry.ActiveFilterID, 
-                search_entry.InnerEntry.Text, MiroGuideSortType.Name, false, 20, 0
+                search_entry.InnerEntry.Text, MiroGuideSortType.Name, false, 100, 0
             );
         }
 
@@ -116,7 +118,16 @@ namespace Banshee.Paas.MiroGuide
         private void OnGetChannelsCompletedHandler (object sender, GetChannelsCompletedEventArgs e)
         {
             ThreadAssist.ProxyToMain (delegate {
-                Context = e.Context;                    
+                if (e.Cancelled || e.Error != null) {
+                    Context = null;
+                    Contents.ScrolledWindow.VscrollbarPolicy = PolicyType.Automatic;
+                    
+                    ChannelModel.Selection.Clear ();
+                    ChannelModel.Clear ();                 
+                    return;
+                }
+                
+                Context = e.Context;
                 Console.WriteLine ("Count:  {0} - Page:  {1}", Context.Count, Context.Page);
                 
                 if (e.Channels != null) {

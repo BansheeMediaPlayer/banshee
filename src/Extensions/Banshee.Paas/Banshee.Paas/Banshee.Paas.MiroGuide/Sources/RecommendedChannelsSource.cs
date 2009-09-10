@@ -1,5 +1,5 @@
 // 
-// MiroGuideSourceManager.cs
+// RecommendedChannelsSource.cs
 //  
 // Author:
 //   Mike Urbanski <michael.c.urbanski@gmail.com>
@@ -26,40 +26,34 @@
 
 using System;
 
-using Banshee.ServiceStack;
+using Mono.Unix;
+
+using Gtk;
+
+using Banshee.Base;
+
+using Banshee.Sources;
+using Banshee.Sources.Gui;
+
+using Banshee.Paas.Aether;
 using Banshee.Paas.Aether.MiroGuide;
+
+using Banshee.Paas.MiroGuide.Gui;
 
 namespace Banshee.Paas.MiroGuide
 {
-    public class MiroGuideSourceManager : IDisposable
+    public class RecommendedChannelsSource : ChannelSource
     {
-        private MiroGuideSource mg_source;
-        
-        public MiroGuideSourceManager ()
+        public RecommendedChannelsSource (MiroGuideClient client) : base (client, 
+                                                                          "MiroGuideRecommendedChannels", 
+                                                                          Catalog.GetString ("Recommended"), 
+                                                                          (int)MiroGuideSourcePosition.Recommended)
         {
+            Properties.SetStringList ("Icon.Name", "recommended");            
         }
 
-        public void Initialize (MiroGuideClient client)
+        protected override void FetchAdditionalChannels (SearchContext context)
         {
-            mg_source = new MiroGuideSource (client);
-            mg_source.AddChildSource (new SearchSource (client));
-            mg_source.AddChildSource (new HDChannelsSource (client));            
-            mg_source.AddChildSource (new FeaturedChannelsSource (client));
-            mg_source.AddChildSource (new PopularChannelsSource (client));            
-            mg_source.AddChildSource (new TopRatedChannelsSource (client));
-            mg_source.AddChildSource (new BrowseChannelsSource (client));
-            //mg_source.AddChildSource (new RecommendedChannelsSource (client));                        
-            
-            ServiceManager.SourceManager.AddSource (mg_source);            
-        }
-
-        public void Dispose ()
-        {
-            if (mg_source != null) {
-                ServiceManager.SourceManager.RemoveSource (mg_source);            
-                mg_source.Dispose ();
-                mg_source = null;
-            }
         }
     }
 }

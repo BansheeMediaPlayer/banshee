@@ -90,6 +90,7 @@ SOURCES =  \
 	Banshee.Paas/Banshee.Paas.MiroGuide/Sources/MiroGuideSource.cs \
 	Banshee.Paas/Banshee.Paas.MiroGuide/Sources/MiroGuideSourcePosition.cs \
 	Banshee.Paas/Banshee.Paas.MiroGuide/Sources/PopularChannelsSource.cs \
+	Banshee.Paas/Banshee.Paas.MiroGuide/Sources/RecommendedChannelsSource.cs \
 	Banshee.Paas/Banshee.Paas.MiroGuide/Sources/SearchSource.cs \
 	Banshee.Paas/Banshee.Paas.MiroGuide/Sources/TopRatedChannelsSource.cs \
 	Banshee.Paas/Banshee.Paas.Utils/OpmlParser.cs \

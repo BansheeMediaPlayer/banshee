@@ -43,7 +43,12 @@ namespace Banshee.Sources
     {
         public Source Source;
     }
-    
+
+    public class ActiveSourceChangedEventArgs : SourceEventArgs
+    {
+        public Source OldSource;
+    }
+
     public class SourceAddedArgs : SourceEventArgs
     {
         public int Position;
@@ -333,6 +338,7 @@ namespace Banshee.Sources
                 active_source.Deactivate();
             }
             
+            Source old_source = active_source;
             active_source = source;
             
             if(!notify) {
@@ -342,8 +348,11 @@ namespace Banshee.Sources
             
             SourceEventHandler handler = ActiveSourceChanged;
             if(handler != null) {
-                SourceEventArgs args = new SourceEventArgs();
-                args.Source = active_source;
+                SourceEventArgs args = new ActiveSourceChangedEventArgs () {
+                    Source = active_source,
+                    OldSource = old_source                    
+                };
+                
                 handler(args);
             }
             
