@@ -37,6 +37,7 @@ using Banshee.ServiceStack;
 
 using Banshee.Collection;
 using Banshee.Collection.Gui;
+using Banshee.Collection.Database;
 
 using Banshee.Paas.Data;
 
@@ -72,7 +73,7 @@ namespace Banshee.Paas.Gui
                 return;
             }
 
-            TrackInfo track = boundItem as TrackInfo;
+            DatabaseTrackInfo track = boundItem as DatabaseTrackInfo;
             PaasTrackInfo pti = PaasTrackInfo.From (track);
             
             if (pti == null) {
@@ -80,9 +81,9 @@ namespace Banshee.Paas.Gui
             }
 
             if (track.IsPlaying || pti.IsDownloaded) {
-                text_cell.Opacity = 1.0;
+                text_cell.Sensitive = true;
             } else {
-                text_cell.Opacity = 0.5;                                    
+                text_cell.Sensitive = false;                                
             }
         }
     }

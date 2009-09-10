@@ -368,7 +368,7 @@ namespace Hyena.Data.Gui
             cairo_context.Save ();
             cairo_context.Translate (area.X, area.Y);
             cell_context.Area = area;
-            cell_context.Opaque = opaque;
+            cell_context.Opaque = (opaque & cell.Sensitive);
             cell.Render (cell_context, dragging ? StateType.Normal : state, area.Width, area.Height);
             cairo_context.Restore ();
         }

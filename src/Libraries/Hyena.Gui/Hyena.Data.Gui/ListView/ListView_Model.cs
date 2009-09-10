@@ -131,6 +131,8 @@ namespace Hyena.Data.Gui
             get { return model; }
         }
 
+        // This mixes model and view.  Why should data objects expose any UI hints?  
+        // Should probably be removed in favor of a 'bool Sensitive' or 'double Opacity"  property in the ColumnCell.
         private string row_opaque_property_name = "Sensitive";
         private PropertyInfo row_opaque_property_info;
         bool row_opaque_property_invalid = false;

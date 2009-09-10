@@ -117,8 +117,8 @@ namespace Banshee.Paas.Data
 
         public DateTime ReleaseDate {
             get { return Item.PubDate; }
-        }         
-    
+        }
+        
         public PaasTrackInfo (DatabaseTrackInfo track) : base ()
         {
             this.track = track;
