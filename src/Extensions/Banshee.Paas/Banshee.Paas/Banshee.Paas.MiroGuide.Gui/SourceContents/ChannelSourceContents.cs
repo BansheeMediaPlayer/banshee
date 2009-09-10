@@ -50,6 +50,10 @@ namespace Banshee.Paas.MiroGuide.Gui
             get { return hp as Widget; }
         }
 
+        public HPaned HPane {
+            get { return hp; }
+        }
+
         public ScrolledWindow ScrolledWindow {
             get { return sw; }
         }

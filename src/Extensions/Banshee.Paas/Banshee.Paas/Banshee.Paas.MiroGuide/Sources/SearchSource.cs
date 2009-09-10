@@ -57,7 +57,7 @@ namespace Banshee.Paas.MiroGuide
             get { return search_entry; }
         }
 
-        public SearchSource (MiroGuideClient client) : base (client, "MiroGuideSearch", Catalog.GetString ("Search"), 0)
+        public SearchSource (MiroGuideClient client) : base (client, "MiroGuideSearch", Catalog.GetString ("Search"), (int)MiroGuideSourcePosition.Search)
         {
             BuildSearchEntry ();
             Properties.SetStringList ("Icon.Name", "find");            

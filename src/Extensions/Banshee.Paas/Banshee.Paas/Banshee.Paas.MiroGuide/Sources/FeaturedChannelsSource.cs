@@ -44,7 +44,7 @@ namespace Banshee.Paas.MiroGuide
 {
     public class FeaturedChannelsSource : ChannelSource
     {
-        public FeaturedChannelsSource (MiroGuideClient client) : base (client, "MiroGuideFeaturedChannels", Catalog.GetString ("Featured"), 1)
+        public FeaturedChannelsSource (MiroGuideClient client) : base (client, "MiroGuideFeaturedChannels", Catalog.GetString ("Featured"), (int)MiroGuideSourcePosition.Featured)
         {
             Properties.SetStringList ("Icon.Name", "emblem-favorite");            
         }

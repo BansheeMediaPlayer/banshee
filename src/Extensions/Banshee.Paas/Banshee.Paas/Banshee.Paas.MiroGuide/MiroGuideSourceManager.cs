@@ -46,7 +46,8 @@ namespace Banshee.Paas.MiroGuide
             mg_source.AddChildSource (new HDChannelsSource (client));            
             mg_source.AddChildSource (new FeaturedChannelsSource (client));
             mg_source.AddChildSource (new PopularChannelsSource (client));            
-            mg_source.AddChildSource (new TopRatedChannelsSource (client));            
+            mg_source.AddChildSource (new TopRatedChannelsSource (client));
+            mg_source.AddChildSource (new BrowseChannelsSource (client));                        
             
             ServiceManager.SourceManager.AddSource (mg_source);            
         }

@@ -83,10 +83,12 @@ SOURCES =  \
 	Banshee.Paas/Banshee.Paas.MiroGuide/MiroGuideChannelListModel.cs \
 	Banshee.Paas/Banshee.Paas.MiroGuide/MiroGuideImageFetchJob.cs \
 	Banshee.Paas/Banshee.Paas.MiroGuide/MiroGuideSourceManager.cs \
+	Banshee.Paas/Banshee.Paas.MiroGuide/Sources/BrowseChannelsSource.cs \
 	Banshee.Paas/Banshee.Paas.MiroGuide/Sources/ChannelSource.cs \
 	Banshee.Paas/Banshee.Paas.MiroGuide/Sources/FeaturedChannelsSource.cs \
 	Banshee.Paas/Banshee.Paas.MiroGuide/Sources/HDChannelsSource.cs \
 	Banshee.Paas/Banshee.Paas.MiroGuide/Sources/MiroGuideSource.cs \
+	Banshee.Paas/Banshee.Paas.MiroGuide/Sources/MiroGuideSourcePosition.cs \
 	Banshee.Paas/Banshee.Paas.MiroGuide/Sources/PopularChannelsSource.cs \
 	Banshee.Paas/Banshee.Paas.MiroGuide/Sources/SearchSource.cs \
 	Banshee.Paas/Banshee.Paas.MiroGuide/Sources/TopRatedChannelsSource.cs \

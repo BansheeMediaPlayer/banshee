@@ -44,7 +44,7 @@ namespace Banshee.Paas.MiroGuide
 {
     public class TopRatedChannelsSource : ChannelSource
     {
-        public TopRatedChannelsSource (MiroGuideClient client) : base (client, "MiroGuideTopRatedChannels", Catalog.GetString ("Top Rated"), 2)
+        public TopRatedChannelsSource (MiroGuideClient client) : base (client, "MiroGuideTopRatedChannels", Catalog.GetString ("Top Rated"), (int)MiroGuideSourcePosition.TopRated)
         {
             Properties.SetStringList ("Icon.Name", "system-users");            
         }

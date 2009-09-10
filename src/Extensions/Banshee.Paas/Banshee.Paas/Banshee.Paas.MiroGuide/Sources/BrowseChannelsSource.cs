@@ -1,5 +1,5 @@
 // 
-// HDChannelsSource.cs
+// BrowseChannelsSource.cs
 //  
 // Author:
 //   Mike Urbanski <michael.c.urbanski@gmail.com>
@@ -42,11 +42,11 @@ using Banshee.Paas.MiroGuide.Gui;
 
 namespace Banshee.Paas.MiroGuide
 {
-    public class HDChannelsSource : ChannelSource
+    public class BrowseChannelsSource : ChannelSource
     {
-        public HDChannelsSource (MiroGuideClient client) : base (client, "MiroGuideHDChannels", Catalog.GetString ("HD Channels"), (int)MiroGuideSourcePosition.HD)
+        public BrowseChannelsSource (MiroGuideClient client) : base (client, "MiroGuideBrowseChannels", Catalog.GetString ("Browse"), (int)MiroGuideSourcePosition.Browse)
         {
-            Properties.SetStringList ("Icon.Name", "video-x-generic");            
+            Properties.SetStringList ("Icon.Name", "address-book-new");            
         }
 
         protected override void FetchAdditionalChannels (SearchContext context)

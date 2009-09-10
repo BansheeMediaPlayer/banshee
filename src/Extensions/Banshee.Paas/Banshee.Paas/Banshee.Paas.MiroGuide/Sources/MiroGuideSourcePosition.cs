@@ -1,5 +1,5 @@
 // 
-// HDChannelsSource.cs
+// MiroGuideSourcePosition.cs
 //  
 // Author:
 //   Mike Urbanski <michael.c.urbanski@gmail.com>
@@ -26,31 +26,15 @@
 
 using System;
 
-using Mono.Unix;
-
-using Gtk;
-
-using Banshee.Base;
-
-using Banshee.Sources;
-using Banshee.Sources.Gui;
-
-using Banshee.Paas.Aether;
-using Banshee.Paas.Aether.MiroGuide;
-
-using Banshee.Paas.MiroGuide.Gui;
-
 namespace Banshee.Paas.MiroGuide
 {
-    public class HDChannelsSource : ChannelSource
+    public enum MiroGuideSourcePosition : int
     {
-        public HDChannelsSource (MiroGuideClient client) : base (client, "MiroGuideHDChannels", Catalog.GetString ("HD Channels"), (int)MiroGuideSourcePosition.HD)
-        {
-            Properties.SetStringList ("Icon.Name", "video-x-generic");            
-        }
-
-        protected override void FetchAdditionalChannels (SearchContext context)
-        {
-        }
+        Search = 0,
+        Browse,
+        Featured,
+        TopRated,
+        Popular,
+        HD
     }
 }
