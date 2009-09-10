@@ -115,7 +115,7 @@ namespace Banshee.Paas.Gui
 //                }
             }
             
-            context.Sensitive = sensitive;            
+            context.Opaque = sensitive;            
             base.Render (context, state, cellWidth, cellHeight);
         }
     }
