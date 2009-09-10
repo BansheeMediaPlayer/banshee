@@ -56,7 +56,7 @@ namespace Banshee.Database
         // NOTE: Whenever there is a change in ANY of the database schema,
         //       this version MUST be incremented and a migration method
         //       MUST be supplied to match the new version number
-        protected const int CURRENT_VERSION = 34;
+        protected const int CURRENT_VERSION = 35;
         protected const int CURRENT_METADATA_VERSION = 6;
         
 #region Migration Driver
@@ -789,6 +789,19 @@ namespace Banshee.Database
 
 #endregion
 
+#region Version 35
+
+        [DatabaseVersion (35)]
+        private bool Migrate_35 ()
+        {
+            if (!connection.ColumnExists ("CorePlaylistEntries", "Generated")) {
+                Execute ("ALTER TABLE CorePlaylistEntries ADD COLUMN Generated INTEGER NOT NULL DEFAULT 0");
+            }
+            return true;
+        }
+
+#endregion
+
 #pragma warning restore 0169
         
 #region Fresh database setup
@@ -950,7 +963,8 @@ namespace Banshee.Database
                     EntryID             INTEGER PRIMARY KEY,
                     PlaylistID          INTEGER NOT NULL,
                     TrackID             INTEGER NOT NULL,
-                    ViewOrder           INTEGER NOT NULL DEFAULT 0
+                    ViewOrder           INTEGER NOT NULL DEFAULT 0,
+                    Generated           INTEGER NOT NULL DEFAULT 0
                 )
             ");
             Execute("CREATE INDEX CorePlaylistEntriesIndex ON CorePlaylistEntries(PlaylistID, TrackID)");

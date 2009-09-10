@@ -146,6 +146,18 @@ namespace Banshee.Sources.Gui
             bool hide_counts = source.Count <= 0;
             
             Pixbuf icon = SourceIconResolver.ResolveIcon (source);
+
+            if (state == StateType.Insensitive) {
+                // Code ported from gtk_cell_renderer_pixbuf_render()
+                var icon_source = new IconSource () {
+                    Pixbuf = icon,
+                    Size = IconSize.SmallToolbar,
+                    SizeWildcarded = false
+                };
+
+                icon = widget.Style.RenderIcon (icon_source, widget.Direction, state,
+                    (IconSize)(-1), widget, "SourceRowRenderer");
+            }
             
             FontDescription fd = widget.PangoContext.FontDescription.Copy ();
             fd.Weight = (ISource)ServiceManager.PlaybackController.NextSource == (ISource)source 

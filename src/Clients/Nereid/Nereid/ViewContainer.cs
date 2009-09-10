@@ -49,6 +49,7 @@ namespace Nereid
         
         private VBox search_entry_box;
         private HBox header;
+        private EventBox header_box;
         private Label title_label;
         private Label search_label;
         private Banshee.ContextPane.ContextPane context_pane;
@@ -87,6 +88,8 @@ namespace Nereid
                     ServiceManager.Get<InterfaceActionService> ().SourceActions ["SourceContextMenuAction"].Activate ();
                 }
             };
+
+            header_box = new EventBox ();
             
             BuildSearchEntry ();
             
@@ -94,6 +97,7 @@ namespace Nereid
             search_label.MnemonicWidget = search_entry.InnerEntry;
             
             header.PackStart (title_box, true, true, 0);
+            header.PackStart (header_box, false, false, 0);
             header.PackStart (search_label, false, false, 5);
             header.PackStart (search_entry_box, false, false, 0);
             
@@ -209,6 +213,23 @@ namespace Nereid
                 ClearSearchEntryBox ();
                 current_search_entry = searchEntry;
                 search_entry_box.PackStart (searchEntry, false, false, 0);
+            }
+        }
+        
+        public void SetHeaderWidget (Widget widget)
+        {
+            if (widget != null) {
+                header_box.Add (widget);
+                widget.Show ();
+                header_box.Show ();
+            }
+        }
+
+        public void ClearHeaderWidget ()
+        {
+            header_box.Hide ();
+            if (header_box.Child != null) {
+                header_box.Remove (header_box.Child);
             }
         }
 

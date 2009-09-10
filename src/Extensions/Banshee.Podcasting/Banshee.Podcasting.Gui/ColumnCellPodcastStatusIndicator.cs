@@ -84,7 +84,7 @@ namespace Banshee.Podcasting.Gui
             PodcastTrackInfo podcast = PodcastTrackInfo.From (BoundTrack);
             if (podcast != null) {
                 if (podcast.Activity == PodcastItemActivity.DownloadPending) {
-                    context.Sensitive = false;
+                    context.Opaque = false;
                 }
             }
             

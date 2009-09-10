@@ -4,9 +4,12 @@ LINK = $(REF_EXTENSION_PLAYQUEUE)
 INSTALL_DIR = $(EXTENSIONS_INSTALL_DIR)
 
 SOURCES =  \
+	Banshee.PlayQueue/HeaderWidget.cs \
 	Banshee.PlayQueue/IPlayQueue.cs \
 	Banshee.PlayQueue/PlayQueueActions.cs \
-	Banshee.PlayQueue/PlayQueueSource.cs 
+	Banshee.PlayQueue/PlayQueueSource.cs \
+	Banshee.PlayQueue/PlayQueueTrackListModel.cs \
+	Banshee.PlayQueue/QueueableSourceComboBox.cs
 
 RESOURCES =  \
 	Banshee.PlayQueue.addin.xml \

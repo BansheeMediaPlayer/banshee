@@ -81,7 +81,7 @@ namespace Banshee.Collection.Gui
             context.Context.MoveTo (4, ((int)cellHeight - text_height) / 2);
             Cairo.Color color = context.Theme.Colors.GetWidgetColor (
                 context.TextAsForeground ? GtkColorClass.Foreground : GtkColorClass.Text, state);
-            color.A = (!context.Sensitive) ? 0.3 : 1.0;
+            color.A = (!context.Opaque) ? 0.3 : 1.0;
             context.Context.Color = color;
             
             PangoCairoHelper.ShowLayout (context.Context, context.Layout);

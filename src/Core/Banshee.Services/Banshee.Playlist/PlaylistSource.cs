@@ -258,7 +258,7 @@ namespace Banshee.Playlist
             return false;
         }
         
-        public void ReorderSelectedTracks (int drop_row)
+        public virtual void ReorderSelectedTracks (int drop_row)
         {
             if (TrackModel.Selection.Count == 0 || TrackModel.Selection.AllSelected) {
                 return;

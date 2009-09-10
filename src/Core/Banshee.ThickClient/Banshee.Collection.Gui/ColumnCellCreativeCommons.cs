@@ -86,14 +86,14 @@ namespace Banshee.Collection.Gui
                     Cairo.Rectangle pixbuf_area = new Cairo.Rectangle (draw_x,
                         (cellHeight - render_pixbuf.Height) / 2, render_pixbuf.Width, render_pixbuf.Height);
                     
-                    if (!context.Sensitive) {
+                    if (!context.Opaque) {
                         context.Context.Save ();
                     }
                     
                     Gdk.CairoHelper.SetSourcePixbuf (context.Context, render_pixbuf, pixbuf_area.X, pixbuf_area.Y);
                     context.Context.Rectangle (pixbuf_area);
                     
-                    if (!context.Sensitive) {
+                    if (!context.Opaque) {
                         context.Context.Clip ();
                         context.Context.PaintWithAlpha (0.5);
                         context.Context.Restore ();

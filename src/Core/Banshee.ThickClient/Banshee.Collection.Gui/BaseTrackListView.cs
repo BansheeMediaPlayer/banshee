@@ -49,7 +49,7 @@ namespace Banshee.Collection.Gui
         public BaseTrackListView () : base ()
         {
             RulesHint = true;
-            RowSensitivePropertyName = "CanPlay";
+            RowOpaquePropertyName = "Enabled";
             RowBoldPropertyName = "IsPlaying";
             
             ServiceManager.PlayerEngine.ConnectEvent (

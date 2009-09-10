@@ -53,7 +53,7 @@ namespace Banshee.Podcasting.Gui
 {
     public class PodcastSourceContents : FilteredListSourceContents, ITrackModelSourceContents
     {
-        private PodcastItemView track_view;
+        private TrackListView track_view;
         private PodcastFeedView feed_view;
         private PodcastUnheardFilterView unheard_view;
         private DownloadStatusFilterView download_view;
@@ -64,7 +64,7 @@ namespace Banshee.Podcasting.Gui
 
         protected override void InitializeViews ()
         {
-            SetupMainView (track_view = new PodcastItemView ());
+            SetupMainView (track_view = new TrackListView ());
             SetupFilterView (unheard_view = new PodcastUnheardFilterView ());
             SetupFilterView (download_view = new DownloadStatusFilterView ());
             SetupFilterView (feed_view = new PodcastFeedView ());

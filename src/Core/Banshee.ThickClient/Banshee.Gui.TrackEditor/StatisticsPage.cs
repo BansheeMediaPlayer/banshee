@@ -73,7 +73,14 @@ namespace Banshee.Gui.TrackEditor
             
             CellRendererText value_renderer = new CellRendererText ();
             value_renderer.Ellipsize = Pango.EllipsizeMode.End;
+            value_renderer.Editable = true;
             value_renderer.Scale = Pango.Scale.Small;
+            value_renderer.EditingStarted += delegate(object o, EditingStartedArgs args) {
+                var entry = args.Editable as Entry;
+                if (entry != null) {
+                    entry.IsEditable = false;
+                }
+            };
             
             view.AppendColumn (Catalog.GetString ("Name"), name_renderer, "text", 0);
             view.AppendColumn (Catalog.GetString ("Value"), value_renderer, "text", 1);

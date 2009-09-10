@@ -187,7 +187,7 @@ namespace Banshee.Collection.Database
         }
 
         private string unfiltered_query;
-        public string UnfilteredQuery {
+        public virtual string UnfilteredQuery {
             get {
                 return unfiltered_query ?? (unfiltered_query = String.Format (
                     "FROM {0} WHERE {1} {2}",

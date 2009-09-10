@@ -58,12 +58,22 @@ namespace Banshee.Preferences
         public override T Value {
             get { return schema.Get (); }
             set { 
-                schema.Set (value); 
+                if (!schema.Set (value)) {
+                    return;
+                }
                 if (handler != null) {
                     handler ();
                 }
                 OnValueChanged ();
             }
+        }
+
+        public T MinValue {
+            get { return schema.MinValue; }
+        }
+
+        public T MaxValue {
+            get { return schema.MaxValue; }
         }
     }
 }

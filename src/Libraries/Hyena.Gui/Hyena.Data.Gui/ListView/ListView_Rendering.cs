@@ -131,7 +131,7 @@ namespace Hyena.Data.Gui
             cell_area.Height = header_rendering_alloc.Height;
             
             cell_context.Clip = clip;
-            cell_context.Sensitive = true;
+            cell_context.Opaque = true;
             cell_context.TextAsForeground = true;
 
             bool have_drawn_separator = false;
@@ -320,7 +320,7 @@ namespace Hyena.Data.Gui
             }
             
             object item = model[row_index];
-            bool sensitive = IsRowSensitive (item);
+            bool opaque = IsRowOpaque (item);
             bool bold = IsRowBold (item);
             
             Rectangle cell_area = new Rectangle ();
@@ -334,18 +334,18 @@ namespace Hyena.Data.Gui
                 
                 cell_area.Width = column_cache[ci].Width;
                 cell_area.X = column_cache[ci].X1 + area.X;
-                PaintCell (item, ci, row_index, cell_area, sensitive, bold, state, false);
+                PaintCell (item, ci, row_index, cell_area, opaque, bold, state, false);
             }
             
             if (pressed_column_is_dragging && pressed_column_index >= 0) {
                 cell_area.Width = column_cache[pressed_column_index].Width;
                 cell_area.X = pressed_column_x_drag + list_rendering_alloc.X -
                     list_interaction_alloc.X - HadjustmentValue;
-                PaintCell (item, pressed_column_index, row_index, cell_area, sensitive, bold, state, true);
+                PaintCell (item, pressed_column_index, row_index, cell_area, opaque, bold, state, true);
             }
         }
         
-        private void PaintCell (object item, int column_index, int row_index, Rectangle area, bool sensitive, bool bold,
+        private void PaintCell (object item, int column_index, int row_index, Rectangle area, bool opaque, bool bold,
             StateType state, bool dragging)
         {
             ColumnCell cell = column_cache[column_index].Column.GetCell (0);
@@ -368,7 +368,7 @@ namespace Hyena.Data.Gui
             cairo_context.Save ();
             cairo_context.Translate (area.X, area.Y);
             cell_context.Area = area;
-            cell_context.Sensitive = sensitive;
+            cell_context.Opaque = opaque;
             cell.Render (cell_context, dragging ? StateType.Normal : state, area.Width, area.Height);
             cairo_context.Restore ();
         }

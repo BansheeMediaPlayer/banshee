@@ -142,6 +142,19 @@ namespace Hyena.Collections
             OnChanged ();
         }
 
+        public void UnselectRange (int a, int b)
+        {
+            int start = Math.Min (a, b);
+            int end = Math.Max (a, b);
+
+            int i;
+            for (i = start; i <= end; i++) {
+                ranges.Remove (i);
+            }
+
+            OnChanged ();
+        }
+
         public virtual void SelectAll ()
         {
             SelectRange (0, max_index);

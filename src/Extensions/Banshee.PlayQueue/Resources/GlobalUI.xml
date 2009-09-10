@@ -1,7 +1,9 @@
 <ui>
     <popup name="PlayQueueContextMenu">
+        <menuitem action="RefreshPlayQueueAction"></menuitem>
         <menuitem action="ClearPlayQueueAction"></menuitem>
         <menuitem action="ClearPlayQueueOnQuitAction"></menuitem>
+        <menuitem name="SourcePreferences" action="SourcePreferencesAction"/>
     </popup>
     <popup name="TrackContextMenu" action="TrackContextMenuAction">
         <placeholder name="AboveAddToPlaylist">

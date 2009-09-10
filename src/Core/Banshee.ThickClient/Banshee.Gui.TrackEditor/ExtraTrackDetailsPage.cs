@@ -46,14 +46,14 @@ namespace Banshee.Gui.TrackEditor
         
         protected override void AddFields ()
         {
-            AddField (this, new TextEntry (), 
+            AddField (this, new TextEntry ("CoreTracks", "Composer"),
                 Catalog.GetString ("Set all composers to this value"),
                 delegate { return Catalog.GetString ("C_omposer:"); },
                 delegate (EditorTrackInfo track, Widget widget) { ((TextEntry)widget).Text = track.Composer; },
                 delegate (EditorTrackInfo track, Widget widget) {  track.Composer = ((TextEntry)widget).Text; }
             );
             
-            AddField (this, new TextEntry (), 
+            AddField (this, new TextEntry ("CoreTracks", "Conductor"),
                 Catalog.GetString ("Set all conductors to this value"),
                 delegate { return Catalog.GetString ("Con_ductor:"); },
                 delegate (EditorTrackInfo track, Widget widget) { ((TextEntry)widget).Text = track.Conductor; },
@@ -65,7 +65,7 @@ namespace Banshee.Gui.TrackEditor
             box.Show ();
             PackStart (box, false, false, 0);
             
-            AddField (box, new TextEntry (), 
+            AddField (box, new TextEntry ("CoreTracks", "Grouping"),
                 Catalog.GetString ("Set all groupings to this value"),
                 delegate { return Catalog.GetString ("_Grouping:"); },
                 delegate (EditorTrackInfo track, Widget widget) { ((TextEntry)widget).Text = track.Grouping; },
@@ -89,7 +89,7 @@ namespace Banshee.Gui.TrackEditor
             copyright_box.Show ();
             PackStart (copyright_box, true, true, 0);
             
-            AddField (copyright_box, new TextEntry (),
+            AddField (copyright_box, new TextEntry ("CoreTracks", "Copyright"),
                 Catalog.GetString ("Set all copyrights to this value"),
                 delegate { return Catalog.GetString ("Copyrig_ht:"); },
                 delegate (EditorTrackInfo track, Widget widget) { ((TextEntry)widget).Text = track.Copyright; },

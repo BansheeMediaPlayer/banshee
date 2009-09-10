@@ -477,6 +477,12 @@ namespace Banshee.Collection
             get { return can_play; }
             set { can_play = value; }
         }
+
+        private bool enabled = true;
+        public bool Enabled {
+            get { return enabled && can_play; }
+            set { enabled = value; }
+        }
         
         public virtual string MetadataHash {
             get {

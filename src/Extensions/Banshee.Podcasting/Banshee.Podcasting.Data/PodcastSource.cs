@@ -98,6 +98,7 @@ namespace Banshee.Podcasting.Gui
             MediaTypes = TrackMediaAttributes.Podcast;
             NotMediaTypes = TrackMediaAttributes.AudioBook;
             SyncCondition = "(substr(CoreTracks.Uri, 0, 4) != 'http' AND CoreTracks.PlayCount = 0)";
+            TrackModel.Reloaded += OnReloaded;
 
             Properties.SetString ("Icon.Name", "podcast");
             
@@ -197,7 +198,14 @@ namespace Banshee.Podcasting.Gui
                 AfterInitialized ();
             }
         }
-        
+
+        void OnReloaded(object sender, EventArgs e)
+        {
+            for (int i=0; i < TrackModel.Count; i++) {
+                PodcastTrackInfo.From (TrackModel[i]);
+            }
+        }
+
         // Probably don't want this -- do we want to allow actually removing the item?  It will be
         // repopulated the next time we update the podcast feed...
         /*protected override void DeleteTrack (DatabaseTrackInfo track)
