@@ -106,7 +106,7 @@ namespace Banshee.Paas.MiroGuide
         {
             Client.GetChannelsAsync (
                 (MiroGuideFilterType)search_entry.ActiveFilterID, 
-                search_entry.InnerEntry.Text, MiroGuideSortType.Name, false, 100, 0
+                search_entry.InnerEntry.Text, MiroGuideSortType.Name, false, 20, 0
             );
         }
 
