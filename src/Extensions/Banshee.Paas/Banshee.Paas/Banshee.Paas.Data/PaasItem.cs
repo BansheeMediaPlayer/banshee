@@ -302,7 +302,7 @@ namespace Banshee.Paas.Data
     {
         public bool Equals (PaasItem lhs, PaasItem rhs)
         {
-            return lhs.Url == rhs.Url && lhs.Name == rhs.Name;
+            return (lhs.Url == rhs.Url || lhs.Name == rhs.Name) && lhs.PubDate == rhs.PubDate;
         }
 
         public int GetHashCode (PaasItem obj)

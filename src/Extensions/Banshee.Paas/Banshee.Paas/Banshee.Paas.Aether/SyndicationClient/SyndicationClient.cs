@@ -382,11 +382,11 @@ namespace Banshee.Paas.Aether.Syndication
                         try {
                             parser.UpdateChannel (channel);
                             channel.Save ();
-    
-                            IEnumerable<PaasItem> local_items = channel.Items;
-                            IEnumerable<PaasItem> remote_items = parser.GetItems ();
 
                             var cmp = new PaasItemEqualityComparer ();
+
+                            IEnumerable<PaasItem> local_items = channel.Items;
+                            IEnumerable<PaasItem> remote_items = parser.GetItems ().Distinct (cmp);
 
                             new_items = new List<PaasItem> (remote_items.Except (local_items, cmp));
                             removed_items = new List<PaasItem> (
