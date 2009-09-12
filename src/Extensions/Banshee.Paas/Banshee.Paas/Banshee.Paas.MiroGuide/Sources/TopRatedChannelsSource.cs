@@ -44,13 +44,13 @@ namespace Banshee.Paas.MiroGuide
 {
     public class TopRatedChannelsSource : ChannelSource
     {
-        public TopRatedChannelsSource (MiroGuideClient client) : base (client, "MiroGuideTopRatedChannels", Catalog.GetString ("Top Rated"), (int)MiroGuideSourcePosition.TopRated)
+        public TopRatedChannelsSource (MiroGuideClient client) : base (client, 
+                                                                       MiroGuideFilterType.Featured,
+                                                                       "MiroGuideTopRatedChannels",
+                                                                       Catalog.GetString ("Top Rated"), 
+                                                                       (int)MiroGuideSourcePosition.TopRated)
         {
             Properties.SetStringList ("Icon.Name", "system-users");            
-        }
-
-        protected override void FetchAdditionalChannels (SearchContext context)
-        {
         }
     }
 }

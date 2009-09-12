@@ -44,16 +44,14 @@ namespace Banshee.Paas.MiroGuide
 {
     public class RecommendedChannelsSource : ChannelSource
     {
-        public RecommendedChannelsSource (MiroGuideClient client) : base (client, 
+        public RecommendedChannelsSource (MiroGuideClient client) : base (client,
+                                                                          MiroGuideFilterType.Featured,
                                                                           "MiroGuideRecommendedChannels", 
                                                                           Catalog.GetString ("Recommended"), 
                                                                           (int)MiroGuideSourcePosition.Recommended)
         {
-            Properties.SetStringList ("Icon.Name", "recommended");            
-        }
-
-        protected override void FetchAdditionalChannels (SearchContext context)
-        {
+            Properties.SetStringList ("Icon.Name", "recommended");
+            Properties.Set<bool> ("MiroGuide.Gui.Source.ShowSortPreference", true);            
         }
     }
 }

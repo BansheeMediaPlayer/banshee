@@ -35,6 +35,7 @@ using Gtk;
 using Banshee.Gui;
 using Banshee.Sources;
 using Banshee.ServiceStack;
+using Banshee.Configuration;
 
 using Banshee.Paas.Aether.MiroGuide;
 
@@ -46,39 +47,64 @@ namespace Banshee.Paas.MiroGuide.Gui
         private MiroGuideClient client;
 
         private ISource source;
+        
+        private RadioAction active_action;
+        public RadioAction ActiveSortAction {
+            get { return active_action; }
+        }
+        
+        public EventHandler<SortPreferenceChangedEventArgs> SortPreferenceChanged;
 
-        private SearchSource SearchSource {
-            get { return source as SearchSource; }
+        private ChannelSource ChannelSource {
+            get { return source as ChannelSource; }
         }
 
         public MiroGuideChannelListModel ActiveModel {
-            get {
-                return (SearchSource != null) ? SearchSource.ChannelModel : null;
-            }
+            get { return (ChannelSource != null) ? ChannelSource.ChannelModel : null; }
         }
-
+        
         public MiroGuideActions (MiroGuideClient client) : base (ServiceManager.Get<InterfaceActionService> (), "MiroGuide")
         {
             this.client = client;
 
             Add (new ActionEntry [] {
                 new ActionEntry (
-                    "MiroGuideChannelPopupAction", null, null, null, null, OnChannelPopup
+                   "MiroGuideChannelPopupAction", null, null, null, null, OnChannelPopup
                 ), new ActionEntry (
-                     "MiroGuideChannelSubscribeAction", Stock.Add,
-                     Catalog.GetString ("Subscribe"), null,
-                     null, OnMiroGuideChannelSubscribeHandler
+                    "MiroGuideChannelSubscribeAction", Stock.Add,
+                    Catalog.GetString ("Subscribe"), null,
+                    null, OnMiroGuideChannelSubscribeHandler
                 ), new ActionEntry (
                     "PaasEditMiroGuidePropertiesAction", Stock.Properties,
-                     Catalog.GetString ("Edit Miro Guide Settings"), "<control>M",
-                     null, (sender, e) => { 
+                    Catalog.GetString ("Edit Miro Guide Settings"), "<control>M",
+                    null, (sender, e) => { 
                         MiroGuideAccountDialog mgad = new MiroGuideAccountDialog (PaasService.MiroGuideAccount);
                         mgad.Run ();
                         mgad.Destroy ();
-                     }
+                    }
                 )
             });
-            
+
+            Add (new RadioActionEntry [] {
+                new RadioActionEntry ("MiroGuideSortByNameAction", null, 
+                    Catalog.GetString ("Sort Channels by Name"), null,
+                    Catalog.GetString ("Order results by name."),
+                    (int)MiroGuideSortType.Name),
+                    
+                new RadioActionEntry ("MiroGuideSortByRatingAction", null, 
+                    Catalog.GetString ("Sort Channels by Rating"), null,
+                    Catalog.GetString ("Order results by rating."),
+                    (int)MiroGuideSortType.Rating),
+                    
+                new RadioActionEntry ("MiroGuideSortByPopularityAction", null, 
+                    Catalog.GetString ("Sort Channels by Popularity"), null,
+                    Catalog.GetString ("Order results by popularity."),
+                    (int)MiroGuideSortType.Popular)
+            }, 0, OnActionChangedHandler);
+
+            active_action = GetSortPreferenceAction ((MiroGuideSortType)ActiveSort.Get ());
+            active_action.Active = true;
+                
             actions_id = Actions.UIManager.AddUiFromResource ("MiroGuideUI.xml");
             Actions.AddActionGroup (this);
 
@@ -96,19 +122,64 @@ namespace Banshee.Paas.MiroGuide.Gui
 
         private IEnumerable<MiroGuideChannelInfo> GetSelectedChannels ()
         {
-            return new List<MiroGuideChannelInfo> (SearchSource.ChannelModel.GetSelected ());
+            return new List<MiroGuideChannelInfo> (ChannelSource.ChannelModel.GetSelected ());
         }
 
         private void OnMiroGuideChannelSubscribeHandler (object sender, EventArgs e)
         {
-            
             client.RequestSubsubscription (GetSelectedChannels ().Select (c => new Uri (c.Url)));
         }
         
         private void OnChannelPopup (object sender, EventArgs e)
         {
-            Console.WriteLine ("/MiroGuideChannelPopup");
             ShowContextMenu ("/MiroGuideChannelPopup");
+        }
+
+        private RadioAction GetSortPreferenceAction (MiroGuideSortType sort)
+        {
+            switch (sort) {
+            case MiroGuideSortType.Name: return GetAction ("MiroGuideSortByNameAction") as RadioAction;
+            case MiroGuideSortType.Rating: return GetAction ("MiroGuideSortByRatingAction") as RadioAction;
+            case MiroGuideSortType.Popular: return GetAction ("MiroGuideSortByPopularityAction") as RadioAction;            
+            default:
+                goto case MiroGuideSortType.Name;
+            }
+        }
+
+        private void OnSortPreferenceChanged (MiroGuideSortType sort)
+        {
+            var handler = SortPreferenceChanged;
+            
+            if (handler != null) {
+                handler (null, new SortPreferenceChangedEventArgs (sort));
+            }
+        }
+        
+        private void OnActionChangedHandler (object o, ChangedArgs args)
+        {
+            if (active_action != args.Current) { 
+                active_action = args.Current;
+                ActiveSort.Set (active_action.Value);
+                OnSortPreferenceChanged ((MiroGuideSortType)active_action.Value);
+            }
+        }
+        
+        public static readonly SchemaEntry<int> ActiveSort = new SchemaEntry<int> (
+            "plugins.paas.miroguide.ui", "active_sort", (int)MiroGuideSortType.Name, "", ""
+        );
+    }
+
+    public class SortPreferenceChangedEventArgs : EventArgs
+    {
+        private readonly MiroGuideSortType sort;
+        
+        public MiroGuideSortType Sort {
+            get { return sort; }
+        }
+
+        public SortPreferenceChangedEventArgs (MiroGuideSortType sort)
+        {
+            this.sort = sort;
         }
     }
 }

@@ -294,7 +294,7 @@ namespace Nereid
                 if (source is IImplementsCustomSearch) {
                     view_container.SetSearchEntry ((source as IImplementsCustomSearch).SearchEntry);
                 } else {
-                    view_container.SetDefaultSearchEntry ();
+                    view_container.RestoreDefaultSearchEntry ();
                 }
 
                 view_container.SearchSensitive = source.CanSearch || source is IImplementsCustomSearch;

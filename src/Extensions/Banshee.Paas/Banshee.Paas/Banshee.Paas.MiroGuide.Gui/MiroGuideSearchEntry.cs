@@ -39,13 +39,6 @@ namespace Banshee.Paas.MiroGuide.Gui
         public MiroGuideSearchEntry ()
         {
             EmptyMessage = String.Format (Catalog.GetString ("Search Miro Guide"));
-
-            AddFilterOption ((int)MiroGuideFilterType.Search, Catalog.GetString ("All"));
-            AddFilterSeparator ();
-            AddFilterOption ((int)MiroGuideFilterType.Tag, Catalog.GetString ("Tag"));                        
-            AddFilterOption ((int)MiroGuideFilterType.Name, Catalog.GetString ("Name"));
-            AddFilterOption ((int)MiroGuideFilterType.Category, Catalog.GetString ("Category"));
-            AddFilterOption ((int)MiroGuideFilterType.Language, Catalog.GetString ("Language"));
         }
     }
 }

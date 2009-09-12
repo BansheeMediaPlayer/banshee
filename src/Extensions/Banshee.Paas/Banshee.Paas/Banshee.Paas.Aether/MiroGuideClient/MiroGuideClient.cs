@@ -853,6 +853,8 @@ namespace Banshee.Paas.Aether.MiroGuide
             case MiroGuideFilterType.Name:      return "name";
             case MiroGuideFilterType.Search:    return "search";                
             case MiroGuideFilterType.Tag:       return "tag";
+            case MiroGuideFilterType.HD:        return "hd";
+            case MiroGuideFilterType.Featured:  return "featured";
             default:
                 goto case MiroGuideFilterType.Search;
             }

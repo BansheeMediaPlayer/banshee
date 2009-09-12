@@ -1,5 +1,5 @@
 // 
-// MiroGuideSourceManager.cs
+// MiroGuideInterfaceManager.cs
 //  
 // Author:
 //   Mike Urbanski <michael.c.urbanski@gmail.com>
@@ -29,25 +29,30 @@ using System;
 using Banshee.ServiceStack;
 using Banshee.Paas.Aether.MiroGuide;
 
+using Banshee.Paas.MiroGuide.Gui;
+
 namespace Banshee.Paas.MiroGuide
 {
-    public class MiroGuideSourceManager : IDisposable
+    public class MiroGuideInterfaceManager : IDisposable
     {
+        private MiroGuideActions actions;
         private MiroGuideSource mg_source;
         
-        public MiroGuideSourceManager ()
-        {
+        public MiroGuideInterfaceManager ()
+        {    
         }
 
         public void Initialize (MiroGuideClient client)
         {
+            actions = new MiroGuideActions (client);        
+
             mg_source = new MiroGuideSource (client);
-            mg_source.AddChildSource (new SearchSource (client));
-            mg_source.AddChildSource (new HDChannelsSource (client));            
+            mg_source.AddChildSource (new SearchSource           (client));
+            mg_source.AddChildSource (new HDChannelsSource       (client));            
             mg_source.AddChildSource (new FeaturedChannelsSource (client));
-            mg_source.AddChildSource (new PopularChannelsSource (client));            
+            mg_source.AddChildSource (new PopularChannelsSource  (client));            
             mg_source.AddChildSource (new TopRatedChannelsSource (client));
-            mg_source.AddChildSource (new BrowseChannelsSource (client));
+            mg_source.AddChildSource (new BrowseChannelsSource   (client));
             //mg_source.AddChildSource (new RecommendedChannelsSource (client));                        
             
             ServiceManager.SourceManager.AddSource (mg_source);            
@@ -57,8 +62,12 @@ namespace Banshee.Paas.MiroGuide
         {
             if (mg_source != null) {
                 ServiceManager.SourceManager.RemoveSource (mg_source);            
-                mg_source.Dispose ();
                 mg_source = null;
+            }
+
+            if (actions != null) {
+                actions.Dispose ();
+                actions = null;
             }
         }
     }

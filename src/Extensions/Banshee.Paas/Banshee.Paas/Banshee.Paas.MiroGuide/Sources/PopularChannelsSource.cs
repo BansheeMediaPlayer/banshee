@@ -44,13 +44,13 @@ namespace Banshee.Paas.MiroGuide
 {
     public class PopularChannelsSource : ChannelSource
     {
-        public PopularChannelsSource (MiroGuideClient client) : base (client, "MiroGuidePopularChannels", Catalog.GetString ("Most Popular"), (int)MiroGuideSourcePosition.Popular)
+        public PopularChannelsSource (MiroGuideClient client) : base (client, 
+                                                                      MiroGuideFilterType.Featured,
+                                                                      "MiroGuidePopularChannels",
+                                                                      Catalog.GetString ("Most Popular"), 
+                                                                      (int)MiroGuideSourcePosition.Popular)
         {
             Properties.SetStringList ("Icon.Name", "system-users");            
-        }
-
-        protected override void FetchAdditionalChannels (SearchContext context)
-        {
         }
     }
 }

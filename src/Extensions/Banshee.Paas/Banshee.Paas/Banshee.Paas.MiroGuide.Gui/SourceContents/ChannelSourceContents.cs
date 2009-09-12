@@ -28,8 +28,11 @@ using System;
 
 using Gtk;
 
+using Banshee.Gui;
+using Banshee.Base;
 using Banshee.Sources;
 using Banshee.Sources.Gui;
+using Banshee.ServiceStack;
 using Banshee.Configuration;
 
 namespace Banshee.Paas.MiroGuide.Gui
@@ -58,6 +61,20 @@ namespace Banshee.Paas.MiroGuide.Gui
             get { return sw; }
         }
 
+        private static SortPreferenceActionButton sb;
+
+        static ChannelSourceContents () 
+        {
+            sb = new SortPreferenceActionButton ();
+            sb.Hide ();
+            
+            ServiceManager.Get<InterfaceActionService> ().PopulateToolbarPlaceholder (
+                (Toolbar)ServiceManager.Get<InterfaceActionService> ().UIManager.GetWidget ("/FooterToolbar"),
+                "/FooterToolbar/Extensions/MiroGuideChannelSortButton",
+                sb
+            );
+        }
+        
         public ChannelSourceContents ()
         {
             channel_view = new MiroGuideChannelListView ();
@@ -84,13 +101,17 @@ namespace Banshee.Paas.MiroGuide.Gui
         {
             this.source = source as ChannelSource;
             
-            if (source == null) {
+            if (this.source == null) {
                 return false;
             }
             
             channel_view.HeaderVisible = true;
             hp.Position = HPanedPosition.Get ();                                    
             channel_view.SetModel (this.source.ChannelModel);
+
+            if (this.source.Properties.Get<bool> ("MiroGuide.Gui.Source.ShowSortPreference")) {
+                sb.Show ();
+            }
             
             return true;
         }
@@ -101,6 +122,8 @@ namespace Banshee.Paas.MiroGuide.Gui
             
             channel_view.SetModel (null);
             channel_view.HeaderVisible = false;
+
+            sb.Hide ();
         }
 
         public static readonly SchemaEntry<int> HPanedPosition = new SchemaEntry<int> (

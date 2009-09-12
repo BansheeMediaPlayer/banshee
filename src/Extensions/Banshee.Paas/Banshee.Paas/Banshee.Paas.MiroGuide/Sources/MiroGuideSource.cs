@@ -34,14 +34,10 @@ using Banshee.Paas.Aether.MiroGuide;
 
 namespace Banshee.Paas.MiroGuide
 {
-    public class MiroGuideSource : Source, IDisposable
+    public class MiroGuideSource : Source
     {
-        private MiroGuideActions actions;
-
         public MiroGuideSource (MiroGuideClient client) : base ("Miro Guide", "Miro Guide", 201)
         {
-            actions = new MiroGuideActions (client);
-        
             Properties.SetStringList ("Icon.Name", "miroguide");
             Properties.SetString ("GtkActionPath", "/MiroGuideSourcePopup");
 
@@ -49,14 +45,6 @@ namespace Banshee.Paas.MiroGuide
             Properties.Set<bool> ("Nereid.SourceContentsPropagate", false);
 
             Properties.Set<bool> ("Nereid.SourceContents.HeaderVisible", false);
-        }
-
-        public void Dispose ()
-        {
-            if (actions != null) {
-                actions.Dispose ();
-                actions = null;
-            }          
         }
     }
 }

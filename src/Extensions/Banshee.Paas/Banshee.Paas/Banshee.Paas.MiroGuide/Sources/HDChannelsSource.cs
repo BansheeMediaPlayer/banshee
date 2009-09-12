@@ -44,13 +44,28 @@ namespace Banshee.Paas.MiroGuide
 {
     public class HDChannelsSource : ChannelSource
     {
-        public HDChannelsSource (MiroGuideClient client) : base (client, "MiroGuideHDChannels", Catalog.GetString ("HD Channels"), (int)MiroGuideSourcePosition.HD)
+        public HDChannelsSource (MiroGuideClient client) : base (client,
+                                                                 MiroGuideFilterType.HD, 
+                                                                 "MiroGuideHDChannels", 
+                                                                 Catalog.GetString ("HD Channels"), 
+                                                                 (int)MiroGuideSourcePosition.HD)
         {
-            Properties.SetStringList ("Icon.Name", "video-x-generic");            
+            Properties.SetStringList ("Icon.Name", "video-x-generic");
+            Properties.Set<bool> ("MiroGuide.Gui.Source.ShowSortPreference", true);
+        }
+        
+        public override void Activate ()
+        {
+            base.Activate ();
+            
+            if (Context == null) {
+                GetChannelsAsync ("1");
+            }
         }
 
-        protected override void FetchAdditionalChannels (SearchContext context)
+        public override void Deactivate ()
         {
+            base.Activate ();
         }
     }
 }

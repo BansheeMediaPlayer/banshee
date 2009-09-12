@@ -34,16 +34,16 @@ namespace Banshee.Paas.Aether.MiroGuide
         private uint limit;
         
         private int page;
+        private uint offset;        
         private bool channels_available;
+        
+        private MiroGuideSortType sort_type;
 
-        private readonly uint offset;
-        private readonly bool reverse;        
+        private readonly bool reverse;
         
         private readonly string filter_value;
         private readonly MiroGuideFilterType filter_type;        
-        
-        private readonly MiroGuideSortType sort_type;
-                
+                        
         public uint Count {
             get { return count; }
         }
@@ -79,6 +79,7 @@ namespace Banshee.Paas.Aether.MiroGuide
 
         public MiroGuideSortType SortType {
             get { return sort_type; }
+            set { sort_type = value; }            
         }
 
         public SearchContext (MiroGuideFilterType filterType, 
@@ -113,6 +114,15 @@ namespace Banshee.Paas.Aether.MiroGuide
             if (results < limit) {
                 channels_available = false;
             }
+        }
+
+        public void ResetCount ()
+        {
+            page = -1;
+            count = 0;
+            offset = 0;
+
+            channels_available = true;
         }
     }
 }

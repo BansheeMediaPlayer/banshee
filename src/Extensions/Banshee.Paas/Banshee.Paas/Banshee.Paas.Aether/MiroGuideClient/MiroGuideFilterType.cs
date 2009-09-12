@@ -35,6 +35,8 @@ namespace Banshee.Paas.Aether.MiroGuide
         Language = 2,
         Name = 3,
         Search = 4,
-        Tag = 5
+        Tag = 5,
+        HD = 6,
+        Featured = 7
     }
 }

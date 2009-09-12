@@ -48,6 +48,8 @@ using Banshee.Sources;
 using Banshee.MediaEngine;
 using Banshee.ServiceStack;
 using Banshee.Configuration;
+
+using Banshee.Collection;
 using Banshee.Collection.Database;
 
 using Banshee.Paas.Gui;
@@ -85,7 +87,7 @@ namespace Banshee.Paas
 #if MIRO_GUIDE
         private MiroGuideClient mg_client;
         public static MiroGuideAccountInfo MiroGuideAccount;
-        private MiroGuideSourceManager mg_source_manager;
+        private MiroGuideInterfaceManager mg_interface_manager;
 #endif        
         private SyndicationClient syndication_client;
         
@@ -311,7 +313,7 @@ namespace Banshee.Paas
                 
                 disposing = true;               
             }
-
+                        
             DisposeInterface ();
             ServiceManager.Get<DBusCommandService> ().ArgumentPushed -= OnCommandLineArgument;            
             
@@ -487,8 +489,8 @@ namespace Banshee.Paas
             ServiceManager.SourceManager.AddSource (source);
 
 #if MIRO_GUIDE
-            mg_source_manager = new MiroGuideSourceManager ();
-            mg_source_manager.Initialize (mg_client);
+            mg_interface_manager = new MiroGuideInterfaceManager ();
+            mg_interface_manager.Initialize (mg_client);
 #endif
             download_manager_interface = new DownloadManagerInterface (source, download_manager);
         }
@@ -501,9 +503,9 @@ namespace Banshee.Paas
             }
 
 #if MIRO_GUIDE
-            if (mg_source_manager != null) {
-                mg_source_manager.Dispose ();
-                mg_source_manager = null;
+            if (mg_interface_manager != null) {
+                mg_interface_manager.Dispose ();
+                mg_interface_manager = null;
             }
 #endif
             if (download_manager_interface != null) {

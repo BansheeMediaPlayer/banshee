@@ -1,9 +1,22 @@
 <ui>
+  <toolbar name="FooterToolbar">
+    <placeholder name="Extensions">
+        <placeholder name="MiroGuideChannelSortButton" />
+    </placeholder>
+  </toolbar>
+
   <popup name="MiroGuideSourcePopup" action="MiroGuideSourcePopupAction">
     <menuitem name="PaasEditMiroGuideProperties" action="PaasEditMiroGuidePropertiesAction" />    
   </popup>
 
   <popup name="MiroGuideChannelPopup" action="MiroGuideChannelPopupAction">
     <menuitem name="MiroGuideChannelSubscribe" action="MiroGuideChannelSubscribeAction" />
+  </popup>
+
+  <popup name="MiroGuideSortPreferencePopup" action="MiroGuideSortPreferencePopupAction">
+    <menuitem name="MiroGuideSortByName" action="MiroGuideSortByNameAction" />
+    <separator />        
+    <menuitem name="MiroGuideSortByRating" action="MiroGuideSortByRatingAction" />
+    <menuitem name="MiroGuideSortByPopularity" action="MiroGuideSortByPopularityAction" />    
   </popup>
 </ui>

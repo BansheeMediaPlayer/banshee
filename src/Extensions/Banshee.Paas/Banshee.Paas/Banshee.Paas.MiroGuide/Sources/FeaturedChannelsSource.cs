@@ -44,13 +44,23 @@ namespace Banshee.Paas.MiroGuide
 {
     public class FeaturedChannelsSource : ChannelSource
     {
-        public FeaturedChannelsSource (MiroGuideClient client) : base (client, "MiroGuideFeaturedChannels", Catalog.GetString ("Featured"), (int)MiroGuideSourcePosition.Featured)
+        public FeaturedChannelsSource (MiroGuideClient client) : base (client,
+                                                                       MiroGuideFilterType.Featured, 
+                                                                       "MiroGuideFeaturedChannels", 
+                                                                       Catalog.GetString ("Featured"), 
+                                                                       (int)MiroGuideSourcePosition.Featured)
         {
-            Properties.SetStringList ("Icon.Name", "emblem-favorite");            
+            Properties.SetStringList ("Icon.Name", "emblem-favorite");
+            Properties.Set<bool> ("MiroGuide.Gui.Source.ShowSortPreference", true);            
         }
 
-        protected override void FetchAdditionalChannels (SearchContext context)
+        public override void Activate ()
         {
+            base.Activate ();
+            
+            if (Context == null) {
+                GetChannelsAsync ("1");
+            }
         }
     }
 }

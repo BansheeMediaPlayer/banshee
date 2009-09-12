@@ -47,7 +47,7 @@ namespace Nereid
         private SearchEntry search_entry;
         private SearchEntry current_search_entry;
         
-        private VBox search_entry_box;
+        private EventBox search_entry_box;
         private HBox header;
         private EventBox header_box;
         private Label title_label;
@@ -69,7 +69,7 @@ namespace Nereid
         {
             header = new HBox ();
             footer = new VBox ();
-            search_entry_box = new VBox ();
+            search_entry_box = new EventBox ();
             
             EventBox title_box = new EventBox ();
             title_label = new Label ();
@@ -172,7 +172,7 @@ namespace Nereid
             search_entry.FilterChanged += OnSearchEntryFilterChanged;
             search_entry.ActivateFilter ((int)TrackFilterType.None);
 
-            SetDefaultSearchEntry ();
+            RestoreDefaultSearchEntry ();
             OnSearchEntryFilterChanged (search_entry, EventArgs.Empty);
         }
 
@@ -197,22 +197,26 @@ namespace Nereid
 
         private void ClearSearchEntryBox ()
         {
-            foreach (Widget w in search_entry_box) {
-                search_entry_box.Remove (w);
+            if (search_entry_box.Child != null) {
+                search_entry_box.Remove (search_entry_box.Child);
             }
         }
 
-        public void SetDefaultSearchEntry ()
+        public void RestoreDefaultSearchEntry ()
         {
             SetSearchEntry (DefaultSearchEntry);
         }
 
         public void SetSearchEntry (SearchEntry searchEntry)
         {
-            if (searchEntry != null) {
+            if (searchEntry != null && current_search_entry != searchEntry) {
                 ClearSearchEntryBox ();
+                
                 current_search_entry = searchEntry;
-                search_entry_box.PackStart (searchEntry, false, false, 0);
+                search_entry_box.Add (current_search_entry);
+
+                current_search_entry.Show ();                
+                search_entry_box.Show ();
             }
         }
         

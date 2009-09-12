@@ -44,9 +44,14 @@ namespace Banshee.Paas.MiroGuide
 {
     public class BrowseChannelsSource : ChannelSource
     {
-        public BrowseChannelsSource (MiroGuideClient client) : base (client, "MiroGuideBrowseChannels", Catalog.GetString ("Browse"), (int)MiroGuideSourcePosition.Browse)
+        public BrowseChannelsSource (MiroGuideClient client) : base (client, 
+                                                                     MiroGuideFilterType.Category,
+                                                                     "MiroGuideBrowseChannels",
+                                                                     Catalog.GetString ("Browse"), 
+                                                                     (int)MiroGuideSourcePosition.Browse)
         {
-            Properties.SetStringList ("Icon.Name", "address-book-new");            
+            Properties.SetStringList ("Icon.Name", "address-book-new");
+            Properties.Set<bool> ("MiroGuide.Gui.Source.ShowSortPreference", true);            
         }
 
         protected override void FetchAdditionalChannels (SearchContext context)

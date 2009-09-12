@@ -25,10 +25,6 @@
 // THE SOFTWARE.
 
 using System;
-using System.Linq;
-using System.Threading;
-
-using System.Collections.Generic;
 
 using Mono.Unix;
 
@@ -59,11 +55,17 @@ namespace Banshee.Paas.MiroGuide
             get { return search_entry; }
         }
 
-        public SearchSource (MiroGuideClient client) : base (client, "MiroGuideSearch", Catalog.GetString ("Search"), (int)MiroGuideSourcePosition.Search)
+        public SearchSource (MiroGuideClient client) : base (client, 
+                                                             MiroGuideFilterType.Search, 
+                                                             "MiroGuideSearch",
+                                                             Catalog.GetString ("Search"), 
+                                                             (int)MiroGuideSourcePosition.Search)
         {
             BuildSearchEntry ();
+            
+            BusyStatusMessage = "Searching Miro Guide";
             Properties.SetStringList ("Icon.Name", "find");            
-            Client.GetChannelsCompleted += OnGetChannelsCompletedHandler;
+            Properties.Set<bool> ("MiroGuide.Gui.Source.ShowSortPreference", true);
         }
 
         private void BuildSearchEntry ()
@@ -87,11 +89,6 @@ namespace Banshee.Paas.MiroGuide
             search_entry.Show ();
         }
 
-        protected override void FetchAdditionalChannels (SearchContext context)
-        {
-            Client.GetChannelsAsync (context);
-        }
-
         protected override void OnMiroGuideClientStateChanged (object sender, AetherClientStateChangedEventArgs e)
         {
             ThreadAssist.ProxyToMain (delegate {
@@ -104,53 +101,12 @@ namespace Banshee.Paas.MiroGuide
 
         private void OnSearchEntryActivated (object sender, EventArgs e)
         {
-            Client.GetChannelsAsync (
-                (MiroGuideFilterType)search_entry.ActiveFilterID, 
-                search_entry.InnerEntry.Text, MiroGuideSortType.Name, false, 20, 0
-            );
+            GetChannelsAsync (search_entry.InnerEntry.Text);
         }
 
         private void OnSearchEntryChanged (object sender, EventArgs e)
         {
             FilterQuery = search_entry.InnerEntry.Text;
-        }
-
-        private void OnGetChannelsCompletedHandler (object sender, GetChannelsCompletedEventArgs e)
-        {
-            ThreadAssist.ProxyToMain (delegate {
-                if (e.Cancelled || e.Error != null) {
-                    Context = null;
-                    Contents.ScrolledWindow.VscrollbarPolicy = PolicyType.Automatic;
-                    
-                    ChannelModel.Selection.Clear ();
-                    ChannelModel.Clear ();                 
-                    return;
-                }
-                
-                Context = e.Context;
-                Console.WriteLine ("Count:  {0} - Page:  {1}", Context.Count, Context.Page);
-                
-                if (e.Channels != null) {
-                    foreach (MiroGuideChannelInfo channel in e.Channels.Reverse ()) {
-                        RefreshArtworkFor (channel);
-                    }
-                                                
-                    if (Context.Page == 0) {
-                        ChannelModel.Selection.Clear ();
-                        ChannelModel.Clear ();
-                    }
-                    
-                    ChannelModel.Add (e.Channels);
-    
-                    if (Context.Count > 0 && Context.ChannelsAvailable) {
-                        Contents.ScrolledWindow.VscrollbarPolicy = PolicyType.Always;
-                        CheckVScrollbarValue (Contents.ScrolledWindow.VScrollbar as VScrollbar);
-                    } else {
-                        Contents.ScrolledWindow.VscrollbarPolicy = PolicyType.Automatic;
-                        ChannelModel.Reload ();
-                    }
-                }
-            });            
         }
     }
 }
