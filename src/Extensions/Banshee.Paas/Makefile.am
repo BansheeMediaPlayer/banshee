@@ -105,6 +105,7 @@ SOURCES =  \
 RESOURCES =  \
 	Banshee.Paas.addin.xml \
 	Resources/ActiveSourceUI.xml \
+	Resources/MiroGuideActiveSourceUI.xml \
 	Resources/GlobalUI.xml \
 	Resources/MiroGuideUI.xml
 

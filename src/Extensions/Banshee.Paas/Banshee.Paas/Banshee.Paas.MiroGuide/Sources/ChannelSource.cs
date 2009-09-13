@@ -58,6 +58,10 @@ namespace Banshee.Paas.MiroGuide
         private MiroGuideSortType active_sort_type;
         private readonly MiroGuideFilterType filter_type;
 
+        protected MiroGuideActions Actions {
+            get { return actions; }
+        }
+
         protected MiroGuideClient Client { 
             get { return client; }
         }
@@ -105,6 +109,12 @@ namespace Banshee.Paas.MiroGuide
             TypeUniqueId = String.Concat (genericName, "ChannelSource");
 
             Client.GetChannelsCompleted += OnGetChannelsCompletedHandler;
+            
+            Properties.SetString ("ActiveSourceUIResource", "MiroGuideActiveSourceUI.xml");
+            Properties.Set<bool> ("ActiveSourceUIResourcePropagate", false);
+            Properties.Set<System.Reflection.Assembly> ("ActiveSourceUIResource.Assembly", typeof(ChannelSource).Assembly);
+
+            Properties.SetString ("GtkActionPath", "/MiroGuideChannelSourcePopup");
 
             contents = new ChannelSourceContents ();
             
@@ -112,14 +122,10 @@ namespace Banshee.Paas.MiroGuide
 
             Properties.Set<ISourceContents> ("Nereid.SourceContents", contents);
             Properties.Set<bool> ("Nereid.SourceContentsPropagate", false);
-            
-            Properties.SetString ("ActiveSourceUIResource", "MiroGuideUI.xml");
-            Properties.Set<bool> ("ActiveSourceUIResourcePropagate", false);            
         }
 
         public override void Activate ()
         {
-            Console.WriteLine ("Activate - {0}", TypeUniqueId);        
             ClientHandle.WaitOne ();
             
             if (active_sort_type != MiroGuideSortType.None) {
@@ -131,7 +137,6 @@ namespace Banshee.Paas.MiroGuide
 
         public override void Deactivate ()
         {
-            Console.WriteLine ("Deactivate - {0}", TypeUniqueId);
             actions.SortPreferenceChanged -= OnSortPreferenceChangedHandler;                                
             Client.CancelAsync ();
         }
@@ -139,6 +144,7 @@ namespace Banshee.Paas.MiroGuide
         public void Dispose ()
         {
             Client.GetChannelsCompleted -= OnGetChannelsCompletedHandler;
+            actions = null;
         }
 
         public virtual void QueueDraw ()
@@ -152,8 +158,11 @@ namespace Banshee.Paas.MiroGuide
         {
             ThreadAssist.ProxyToMain (delegate {
                if (Context != null) {
+                    Context.Reset ();
                     GetChannelsAsync (Context);
                     Context = null;
+               } else {
+                    GetChannelsAsync ();
                }
             });            
         }
@@ -233,13 +242,17 @@ namespace Banshee.Paas.MiroGuide
             if (e.NewState == AetherClientState.Busy) {
                 ClientHandle.Reset ();
                 ThreadAssist.ProxyToMain (delegate {
-                    ChannelSourceContents.SortPreferenceButtonSenzitive = false;
+                    actions["MiroGuideRefreshChannelsAction"].Sensitive = false;
+                    ChannelSourceContents.SortPreferenceButtonSensitive = false;
                     SetRequestStatus (String.Format ("{0}...", BusyStatusMessage)); 
                 });
             } else {
                 ClientHandle.Set ();
-                ChannelSourceContents.SortPreferenceButtonSenzitive = true;                
-                ThreadAssist.ProxyToMain (delegate { PopMessage (); });
+                ThreadAssist.ProxyToMain (delegate {
+                    actions["MiroGuideRefreshChannelsAction"].Sensitive = true;                    
+                    ChannelSourceContents.SortPreferenceButtonSensitive = true;                                
+                    PopMessage ();
+                });
             }
         }
 

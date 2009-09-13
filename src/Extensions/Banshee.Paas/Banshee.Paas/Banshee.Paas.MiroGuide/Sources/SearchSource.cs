@@ -64,8 +64,29 @@ namespace Banshee.Paas.MiroGuide
             BuildSearchEntry ();
             
             BusyStatusMessage = "Searching Miro Guide";
-            Properties.SetStringList ("Icon.Name", "find");            
+            Properties.SetStringList ("Icon.Name", "find");
             Properties.Set<bool> ("MiroGuide.Gui.Source.ShowSortPreference", true);
+        }
+
+        public override void Activate ()
+        {
+            base.Activate ();
+            Actions["MiroGuideRefreshChannelsAction"].Visible = false;
+        }
+
+        public override void Deactivate ()
+        {
+            base.Deactivate ();
+            Actions["MiroGuideRefreshChannelsAction"].Visible = true;            
+        }
+
+        protected override void GetChannelsAsync ()
+        {
+            string search = GetSearchString ();
+            
+            if (!String.IsNullOrEmpty (search)) {
+                GetChannelsAsync (search);
+            }
         }
 
         private void BuildSearchEntry ()
@@ -89,6 +110,12 @@ namespace Banshee.Paas.MiroGuide
             search_entry.Show ();
         }
 
+        private string GetSearchString ()
+        {
+            string ret = search_entry.InnerEntry.Text;
+            return ret.Trim ();
+        }
+
         protected override void OnMiroGuideClientStateChanged (object sender, AetherClientStateChangedEventArgs e)
         {
             ThreadAssist.ProxyToMain (delegate {
@@ -101,7 +128,7 @@ namespace Banshee.Paas.MiroGuide
 
         private void OnSearchEntryActivated (object sender, EventArgs e)
         {
-            GetChannelsAsync (search_entry.InnerEntry.Text);
+            GetChannelsAsync ();
         }
 
         private void OnSearchEntryChanged (object sender, EventArgs e)

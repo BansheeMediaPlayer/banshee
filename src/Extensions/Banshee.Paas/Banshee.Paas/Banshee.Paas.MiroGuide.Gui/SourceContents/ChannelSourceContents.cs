@@ -136,7 +136,7 @@ namespace Banshee.Paas.MiroGuide.Gui
             sb.Hide ();
         }
 
-        public static bool SortPreferenceButtonSenzitive {
+        public static bool SortPreferenceButtonSensitive {
             get { return sb.Sensitive; }
             set { sb.Sensitive = value;  }
         }

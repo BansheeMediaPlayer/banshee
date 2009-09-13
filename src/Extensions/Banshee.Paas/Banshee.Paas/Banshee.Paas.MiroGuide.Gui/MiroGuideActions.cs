@@ -67,7 +67,15 @@ namespace Banshee.Paas.MiroGuide.Gui
         public MiroGuideActions (MiroGuideClient client) : base (ServiceManager.Get<InterfaceActionService> (), "MiroGuide")
         {
             this.client = client;
-            
+
+            AddImportant (
+                new ActionEntry (
+                    "MiroGuideRefreshChannelsAction", Stock.Refresh,
+                     Catalog.GetString ("Refresh"), null, null, 
+                     (sender, e) => { ChannelSource.Refresh (); }
+                )
+            );
+
             Add (new ActionEntry [] {
                 new ActionEntry (
                    "MiroGuideChannelPopupAction", null, null, null, null, OnChannelPopup
