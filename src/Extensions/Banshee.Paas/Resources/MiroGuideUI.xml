@@ -1,4 +1,10 @@
 <ui>
+  <toolbar name="HeaderToolbar">
+    <placeholder name="SourceActions">
+      <toolitem name="MiroGuideRefreshChannels" action="MiroGuideRefreshChannels" />
+    </placeholder>
+  </toolbar>
+
   <toolbar name="FooterToolbar">
     <placeholder name="Extensions">
         <placeholder name="MiroGuideChannelSortButton" />
@@ -7,6 +13,10 @@
 
   <popup name="MiroGuideSourcePopup" action="MiroGuideSourcePopupAction">
     <menuitem name="PaasEditMiroGuideProperties" action="PaasEditMiroGuidePropertiesAction" />    
+  </popup>
+
+  <popup name="MiroGuideChannelSourcePopup" action="MiroGuideChannelSourcePopupAction">
+    <menuitem name="MiroGuideRefreshChannels" action="MiroGuideRefreshChannelsAction" />
   </popup>
 
   <popup name="MiroGuideChannelPopup" action="MiroGuideChannelPopupAction">

@@ -116,7 +116,7 @@ namespace Banshee.Paas.Aether.MiroGuide
             }
         }
 
-        public void ResetCount ()
+        public void Reset ()
         {
             page = -1;
             count = 0;

@@ -51,7 +51,8 @@ namespace Banshee.Paas.MiroGuide
                                                                        (int)MiroGuideSourcePosition.Featured)
         {
             Properties.SetStringList ("Icon.Name", "emblem-favorite");
-            Properties.Set<bool> ("MiroGuide.Gui.Source.ShowSortPreference", true);            
+            Properties.Set<bool> ("MiroGuide.Gui.Source.ShowSortPreference", true);
+            BusyStatusMessage = Catalog.GetString ("Recieving Featured Channels from Miro Guide");            
         }
 
         public override void Activate ()
@@ -59,8 +60,14 @@ namespace Banshee.Paas.MiroGuide
             base.Activate ();
             
             if (Context == null) {
-                GetChannelsAsync ("1");
+                GetChannelsAsync ();
             }
+        }
+
+        protected override void GetChannelsAsync ()
+        {
+            Console.WriteLine ("FeaturedChannelsSource:GetChannelsAsync");
+            GetChannelsAsync ("1");
         }
     }
 }

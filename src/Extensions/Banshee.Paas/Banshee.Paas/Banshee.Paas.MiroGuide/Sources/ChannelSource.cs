@@ -50,10 +50,12 @@ namespace Banshee.Paas.MiroGuide
     public abstract class ChannelSource : Source, IDisposable
     {
         private MiroGuideClient client;
-        
+        private MiroGuideActions actions;
+                
         private ChannelSourceContents contents;
         private MiroGuideChannelListModel channel_model;
-
+        
+        private MiroGuideSortType active_sort_type;
         private readonly MiroGuideFilterType filter_type;
 
         protected MiroGuideClient Client { 
@@ -88,8 +90,8 @@ namespace Banshee.Paas.MiroGuide
             this.client = client;
             this.filter_type = filterType;
             
-            MiroGuideActions actions = ServiceManager.Get <InterfaceActionService> ().FindActionGroup ("MiroGuide") as MiroGuideActions;
-            actions.SortPreferenceChanged += OnSortPreferenceChangedHandler;
+            active_sort_type = MiroGuideSortType.Name;
+            actions = ServiceManager.Get <InterfaceActionService> ().FindActionGroup ("MiroGuide") as MiroGuideActions;
             
             BusyStatusMessage = Catalog.GetString ("Updating");
 
@@ -104,41 +106,39 @@ namespace Banshee.Paas.MiroGuide
 
             Client.GetChannelsCompleted += OnGetChannelsCompletedHandler;
 
-//            ServiceStack.ServiceManager.SourceManager.ActiveSourceChanged += (e) => {
-//                ActiveSourceChangedEventArgs args = e as ActiveSourceChangedEventArgs;
-//                
-//                if (args.OldSource == this && args.Source is ChannelSource) {
-//                }
-//
-//                if (args.Source == this) {
-//                    ClientHandle.WaitOne ();
-//                    Activate
-//                }
-//            };
-
             contents = new ChannelSourceContents ();
             
             (contents.ScrolledWindow.VScrollbar as VScrollbar).ValueChanged += OnVScrollbarValueChangedHandler;
 
             Properties.Set<ISourceContents> ("Nereid.SourceContents", contents);
             Properties.Set<bool> ("Nereid.SourceContentsPropagate", false);
+            
+            Properties.SetString ("ActiveSourceUIResource", "MiroGuideUI.xml");
+            Properties.Set<bool> ("ActiveSourceUIResourcePropagate", false);            
         }
 
         public override void Activate ()
         {
             Console.WriteLine ("Activate - {0}", TypeUniqueId);        
             ClientHandle.WaitOne ();
+            
+            if (active_sort_type != MiroGuideSortType.None) {
+                actions.SetActiveSortPreference (active_sort_type);
+            }
+
+            actions.SortPreferenceChanged += OnSortPreferenceChangedHandler;
         }
 
         public override void Deactivate ()
         {
             Console.WriteLine ("Deactivate - {0}", TypeUniqueId);
+            actions.SortPreferenceChanged -= OnSortPreferenceChangedHandler;                                
             Client.CancelAsync ();
         }
 
         public void Dispose ()
         {
-            Client.GetChannelsCompleted -= OnGetChannelsCompletedHandler;            
+            Client.GetChannelsCompleted -= OnGetChannelsCompletedHandler;
         }
 
         public virtual void QueueDraw ()
@@ -148,17 +148,34 @@ namespace Banshee.Paas.MiroGuide
             });
         }
 
+        public virtual void Refresh ()
+        {
+            ThreadAssist.ProxyToMain (delegate {
+               if (Context != null) {
+                    GetChannelsAsync (Context);
+                    Context = null;
+               }
+            });            
+        }
+
+        protected virtual void GetChannelsAsync ()
+        {
+        }
+
         protected virtual void GetChannelsAsync (string filterValue) 
         {
             Client.GetChannelsAsync (
-                filter_type, filterValue, (MiroGuideSortType)MiroGuideActions.ActiveSort.Get (), false, 20, 0, this
+                filter_type, filterValue, active_sort_type, false, 20, 0, this
             );
+            
+            Context = null;
         }
 
-        protected virtual void GetChannelsAsync () 
+        protected virtual void GetChannelsAsync (SearchContext context) 
         {
-            if (Context != null) {
-                Client.GetChannelsAsync (Context, this);
+            if (context != null) {
+                Client.GetChannelsAsync (context, this);
+                Context = null;
             }
         }
         
@@ -167,14 +184,15 @@ namespace Banshee.Paas.MiroGuide
             if (vsb.Value == vsb.Adjustment.Upper-vsb.Adjustment.PageSize ||
                 vsb.Adjustment.Upper-vsb.Adjustment.PageSize < 0) {
                 if (Context != null && Context.ChannelsAvailable) {
-                    FetchAdditionalChannels (Context);
+                    GetChannelsAsync (Context);
                 }   
             }            
         }
-        
-        protected virtual void FetchAdditionalChannels (SearchContext context)
+
+        protected virtual void ClearModel ()
         {
-            GetChannelsAsync ();
+            ChannelModel.Selection.Clear ();
+            ChannelModel.Clear ();
         }
         
         protected virtual void RefreshArtworkFor (MiroGuideChannelInfo channel)
@@ -215,10 +233,12 @@ namespace Banshee.Paas.MiroGuide
             if (e.NewState == AetherClientState.Busy) {
                 ClientHandle.Reset ();
                 ThreadAssist.ProxyToMain (delegate {
+                    ChannelSourceContents.SortPreferenceButtonSenzitive = false;
                     SetRequestStatus (String.Format ("{0}...", BusyStatusMessage)); 
                 });
             } else {
                 ClientHandle.Set ();
+                ChannelSourceContents.SortPreferenceButtonSenzitive = true;                
                 ThreadAssist.ProxyToMain (delegate { PopMessage (); });
             }
         }
@@ -248,30 +268,37 @@ namespace Banshee.Paas.MiroGuide
                     }
                                                 
                     if (Context.Page == 0) {
-                        ChannelModel.Selection.Clear ();
-                        ChannelModel.Clear ();
+                        ClearModel ();
                     }
                     
                     ChannelModel.Add (e.Channels);
-    
+
                     if (Context.Count > 0 && Context.ChannelsAvailable) {
                         Contents.ScrolledWindow.VscrollbarPolicy = PolicyType.Always;
                         CheckVScrollbarValue (Contents.ScrolledWindow.VScrollbar as VScrollbar);
                     } else {
                         Contents.ScrolledWindow.VscrollbarPolicy = PolicyType.Automatic;
                         ChannelModel.Reload ();
-                    }
+                    }                    
                 }
             });            
         }
 
         protected virtual void OnSortPreferenceChangedHandler (object sender, SortPreferenceChangedEventArgs e)
         {
+            if (e.ActiveSource != this) {
+                return;
+            }
+            
             ThreadAssist.ProxyToMain (delegate {
-                if (Context != null) {
+                if (Context != null && Context.SortType != e.Sort) {
+                    Context.Reset ();                   
                     Context.SortType = e.Sort;
-                    Context.ResetCount ();
-
+                    active_sort_type = e.Sort;
+                    
+                    ClearModel ();
+                    GetChannelsAsync (Context);
+                } else {
                     GetChannelsAsync ();
                 }
             });                    

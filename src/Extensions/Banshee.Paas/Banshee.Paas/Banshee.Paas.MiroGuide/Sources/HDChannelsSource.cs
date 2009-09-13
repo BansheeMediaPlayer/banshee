@@ -52,6 +52,7 @@ namespace Banshee.Paas.MiroGuide
         {
             Properties.SetStringList ("Icon.Name", "video-x-generic");
             Properties.Set<bool> ("MiroGuide.Gui.Source.ShowSortPreference", true);
+            BusyStatusMessage = Catalog.GetString ("Recieving HD Channels from Miro Guide");
         }
         
         public override void Activate ()
@@ -59,13 +60,13 @@ namespace Banshee.Paas.MiroGuide
             base.Activate ();
             
             if (Context == null) {
-                GetChannelsAsync ("1");
+                GetChannelsAsync ();
             }
         }
 
-        public override void Deactivate ()
+        protected override void GetChannelsAsync ()
         {
-            base.Activate ();
+            GetChannelsAsync ("1");
         }
     }
 }

@@ -60,7 +60,7 @@ namespace Banshee.Paas.MiroGuide.Gui
         public ScrolledWindow ScrolledWindow {
             get { return sw; }
         }
-
+        
         private static SortPreferenceActionButton sb;
 
         static ChannelSourceContents () 
@@ -110,7 +110,7 @@ namespace Banshee.Paas.MiroGuide.Gui
             channel_view.SetModel (this.source.ChannelModel);
 
             if (this.source.Properties.Get<bool> ("MiroGuide.Gui.Source.ShowSortPreference")) {
-                sb.Show ();
+                ShowSortPreferenceButton ();
             }
             
             return true;
@@ -123,9 +123,24 @@ namespace Banshee.Paas.MiroGuide.Gui
             channel_view.SetModel (null);
             channel_view.HeaderVisible = false;
 
+            HideSortPreferenceButton ();
+        }
+
+        public static void ShowSortPreferenceButton ()
+        {
+            sb.Show ();        
+        }
+
+        public static void HideSortPreferenceButton ()
+        {
             sb.Hide ();
         }
 
+        public static bool SortPreferenceButtonSenzitive {
+            get { return sb.Sensitive; }
+            set { sb.Sensitive = value;  }
+        }
+        
         public static readonly SchemaEntry<int> HPanedPosition = new SchemaEntry<int> (
             "plugins.paas.miroguide.ui", "channel_source_hpaned_pos", 255, "", ""
         ); 

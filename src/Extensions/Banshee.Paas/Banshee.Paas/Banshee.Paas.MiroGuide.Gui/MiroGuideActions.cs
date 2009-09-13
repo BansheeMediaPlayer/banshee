@@ -33,6 +33,7 @@ using Mono.Unix;
 using Gtk;
 
 using Banshee.Gui;
+using Banshee.Base;
 using Banshee.Sources;
 using Banshee.ServiceStack;
 using Banshee.Configuration;
@@ -66,7 +67,7 @@ namespace Banshee.Paas.MiroGuide.Gui
         public MiroGuideActions (MiroGuideClient client) : base (ServiceManager.Get<InterfaceActionService> (), "MiroGuide")
         {
             this.client = client;
-
+            
             Add (new ActionEntry [] {
                 new ActionEntry (
                    "MiroGuideChannelPopupAction", null, null, null, null, OnChannelPopup
@@ -102,9 +103,8 @@ namespace Banshee.Paas.MiroGuide.Gui
                     (int)MiroGuideSortType.Popular)
             }, 0, OnActionChangedHandler);
 
-            active_action = GetSortPreferenceAction ((MiroGuideSortType)ActiveSort.Get ());
-            active_action.Active = true;
-                
+            SetActiveSortPreference (MiroGuideSortType.Name);
+            
             actions_id = Actions.UIManager.AddUiFromResource ("MiroGuideUI.xml");
             Actions.AddActionGroup (this);
 
@@ -118,6 +118,15 @@ namespace Banshee.Paas.MiroGuide.Gui
             Actions.UIManager.RemoveUi (actions_id);
             Actions.RemoveActionGroup (this);
             base.Dispose ();
+        }
+        
+        public void SetActiveSortPreference (MiroGuideSortType sort)
+        {
+            if (active_action == null || (int)sort != active_action.Value) {
+                active_action = GetSortPreferenceAction (sort);
+                active_action.Active = true;
+                OnSortPreferenceChanged (sort);
+            }
         }
 
         private IEnumerable<MiroGuideChannelInfo> GetSelectedChannels ()
@@ -151,7 +160,7 @@ namespace Banshee.Paas.MiroGuide.Gui
             var handler = SortPreferenceChanged;
             
             if (handler != null) {
-                handler (null, new SortPreferenceChangedEventArgs (sort));
+                handler (null, new SortPreferenceChangedEventArgs (ChannelSource, sort));
             }
         }
         
@@ -159,27 +168,8 @@ namespace Banshee.Paas.MiroGuide.Gui
         {
             if (active_action != args.Current) { 
                 active_action = args.Current;
-                ActiveSort.Set (active_action.Value);
                 OnSortPreferenceChanged ((MiroGuideSortType)active_action.Value);
             }
-        }
-        
-        public static readonly SchemaEntry<int> ActiveSort = new SchemaEntry<int> (
-            "plugins.paas.miroguide.ui", "active_sort", (int)MiroGuideSortType.Name, "", ""
-        );
-    }
-
-    public class SortPreferenceChangedEventArgs : EventArgs
-    {
-        private readonly MiroGuideSortType sort;
-        
-        public MiroGuideSortType Sort {
-            get { return sort; }
-        }
-
-        public SortPreferenceChangedEventArgs (MiroGuideSortType sort)
-        {
-            this.sort = sort;
         }
     }
 }

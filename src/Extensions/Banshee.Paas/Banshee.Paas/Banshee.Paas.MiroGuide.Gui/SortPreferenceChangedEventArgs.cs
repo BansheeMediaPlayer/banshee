@@ -1,9 +1,9 @@
 // 
-// BrowseChannelsSource.cs
+// SortPreferenceChangedEventArgs.cs
 //  
 // Author:
-//   Mike Urbanski <michael.c.urbanski@gmail.com>
-// 
+//    Mike Urbanski <michael.c.urbanski@gmail.com>
+//
 // Copyright (c) 2009 Michael C. Urbanski
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -25,33 +25,27 @@
 // THE SOFTWARE.
 
 using System;
-
-using Mono.Unix;
-
-using Gtk;
-
-using Banshee.Base;
-
 using Banshee.Sources;
-using Banshee.Sources.Gui;
 
-using Banshee.Paas.Aether;
-using Banshee.Paas.Aether.MiroGuide;
-
-using Banshee.Paas.MiroGuide.Gui;
-
-namespace Banshee.Paas.MiroGuide
+namespace Banshee.Paas.MiroGuide.Gui
 {
-    public class BrowseChannelsSource : ChannelSource
+    public class SortPreferenceChangedEventArgs : EventArgs
     {
-        public BrowseChannelsSource (MiroGuideClient client) : base (client, 
-                                                                     MiroGuideFilterType.Category,
-                                                                     "MiroGuideBrowseChannels",
-                                                                     Catalog.GetString ("Browse"), 
-                                                                     (int)MiroGuideSourcePosition.Browse)
+        private readonly MiroGuideSortType sort;
+        private readonly ChannelSource active_source;
+
+        public ChannelSource ActiveSource {
+            get { return active_source; }
+        }
+        
+        public MiroGuideSortType Sort {
+            get { return sort; }
+        }
+
+        public SortPreferenceChangedEventArgs (ChannelSource source, MiroGuideSortType sort)
         {
-            Properties.SetStringList ("Icon.Name", "address-book-new");
-            Properties.Set<bool> ("MiroGuide.Gui.Source.ShowSortPreference", true);            
+            active_source = source;
+            this.sort = sort;
         }
     }
 }
