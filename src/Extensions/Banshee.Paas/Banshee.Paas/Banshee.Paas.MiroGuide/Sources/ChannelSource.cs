@@ -49,6 +49,7 @@ namespace Banshee.Paas.MiroGuide
 {
     public abstract class ChannelSource : Source, IDisposable
     {
+        private bool ignore_scroll;
         private MiroGuideClient client;
         private MiroGuideActions actions;
                 
@@ -160,7 +161,6 @@ namespace Banshee.Paas.MiroGuide
                if (Context != null) {
                     Context.Reset ();
                     GetChannelsAsync (Context);
-                    Context = null;
                } else {
                     GetChannelsAsync ();
                }
@@ -176,22 +176,20 @@ namespace Banshee.Paas.MiroGuide
             Client.GetChannelsAsync (
                 filter_type, filterValue, active_sort_type, false, 20, 0, this
             );
-            
-            Context = null;
         }
 
         protected virtual void GetChannelsAsync (SearchContext context) 
         {
             if (context != null) {
                 Client.GetChannelsAsync (context, this);
-                Context = null;
             }
         }
-        
+
+        // HACK:  This sucks, come up with a better was to progressively load elements...
         protected virtual void CheckVScrollbarValue (VScrollbar vsb)
         {
-            if (vsb.Value == vsb.Adjustment.Upper-vsb.Adjustment.PageSize ||
-                vsb.Adjustment.Upper-vsb.Adjustment.PageSize < 0) {
+            if (!ignore_scroll && (vsb.Value == vsb.Adjustment.Upper-vsb.Adjustment.PageSize ||
+                vsb.Adjustment.Upper-vsb.Adjustment.PageSize < 0)) {
                 if (Context != null && Context.ChannelsAvailable) {
                     GetChannelsAsync (Context);
                 }   
@@ -260,7 +258,7 @@ namespace Banshee.Paas.MiroGuide
         {
             CheckVScrollbarValue (sender as VScrollbar);            
         }
-
+        
         protected virtual void OnGetChannelsCompletedHandler (object sender, GetChannelsCompletedEventArgs e)
         {
             if (e.UserState != this) {
@@ -272,6 +270,7 @@ namespace Banshee.Paas.MiroGuide
                     return;
                 }
                 
+                ignore_scroll = true;
                 Context = e.Context;
                 Console.WriteLine ("Count:  {0} - Page:  {1}", Context.Count, Context.Page);
                 
@@ -294,6 +293,8 @@ namespace Banshee.Paas.MiroGuide
                         ChannelModel.Reload ();
                     }                    
                 }
+
+                ignore_scroll = false;
             });            
         }
 
