@@ -154,7 +154,7 @@ namespace Banshee.Paas.Data
         }  
         
         private DateTime downloaded_at;
-        [DatabaseColumn]
+        [DatabaseColumn (Index = "PaasItemDownloadedAtIndex")]
         public DateTime DownloadedAt {
             get { return downloaded_at; }
             internal set { downloaded_at = value; }
