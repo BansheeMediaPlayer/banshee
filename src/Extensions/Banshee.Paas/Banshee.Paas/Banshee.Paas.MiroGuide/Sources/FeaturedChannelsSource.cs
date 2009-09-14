@@ -66,7 +66,6 @@ namespace Banshee.Paas.MiroGuide
 
         protected override void GetChannelsAsync ()
         {
-            Console.WriteLine ("FeaturedChannelsSource:GetChannelsAsync");
             GetChannelsAsync ("1");
         }
     }

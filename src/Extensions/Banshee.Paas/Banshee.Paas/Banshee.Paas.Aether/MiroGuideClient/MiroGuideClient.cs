@@ -380,8 +380,6 @@ namespace Banshee.Paas.Aether.MiroGuide
     
                 request = CreateRequest ();
 
-                Console.WriteLine (state.GetFullUri ());
-
                 switch (state.HttpMethod) {
                 case HttpMethod.GET:
                     request.BeginGetRequest (state.GetFullUri (), state);
@@ -706,7 +704,6 @@ namespace Banshee.Paas.Aether.MiroGuide
 
         private void HandleGetChannelsResponse (MiroGuideRequestState state)
         {
-            //Console.WriteLine (state.ResponseData);
             List<MiroGuideChannelInfo> channels = null;
             
             try {

@@ -178,8 +178,6 @@ namespace Banshee.Paas.MiroGuide
 
         protected virtual void GetChannelsAsync (string filterValue) 
         {
-            Console.WriteLine ("FilterValue - Reverse:  {0}", !(active_sort_type == MiroGuideSortType.Name));
-
             Client.GetChannelsAsync (
                 filter_type, filterValue, active_sort_type, 
                 !(active_sort_type == MiroGuideSortType.Name), 20, 0, this
@@ -189,7 +187,6 @@ namespace Banshee.Paas.MiroGuide
         protected virtual void GetChannelsAsync (SearchContext context) 
         {
             if (context != null) {
-                Console.WriteLine ("Reverse:  {0}", context.Reverse);
                 Client.GetChannelsAsync (context, this);
             }
         }
@@ -278,10 +275,9 @@ namespace Banshee.Paas.MiroGuide
                 if (e.Cancelled || e.Error != null) {
                     return;
                 }
-                
-                ignore_scroll = true;
+
                 Context = e.Context;
-                Console.WriteLine ("Count:  {0} - Page:  {1}", Context.Count, Context.Page);
+                ignore_scroll = true;
                 
                 if (e.Channels != null) {
                     foreach (MiroGuideChannelInfo channel in e.Channels.Reverse ()) {

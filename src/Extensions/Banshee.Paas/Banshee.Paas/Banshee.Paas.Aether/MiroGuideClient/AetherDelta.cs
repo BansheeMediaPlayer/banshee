@@ -184,7 +184,6 @@ namespace Banshee.Paas.Aether.MiroGuide
             
             if (nodes != null) {
                 foreach (XmlNode node in nodes) {
-                    Console.WriteLine ("{0}:  {1}", ActionToString (action), XmlUtils.GetInt64 (node, "id"));
                     yield return XmlUtils.GetInt64 (node, "id");
                 }
             }             
