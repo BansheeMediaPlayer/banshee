@@ -59,6 +59,11 @@ namespace Banshee.Paas.MiroGuide
         private MiroGuideSortType active_sort_type;
         private readonly MiroGuideFilterType filter_type;
 
+        protected MiroGuideSortType ActiveSortType {
+            get { return active_sort_type; }
+            set { active_sort_type = value; }
+        }
+
         protected MiroGuideActions Actions {
             get { return actions; }
         }
@@ -173,14 +178,18 @@ namespace Banshee.Paas.MiroGuide
 
         protected virtual void GetChannelsAsync (string filterValue) 
         {
+            Console.WriteLine ("FilterValue - Reverse:  {0}", !(active_sort_type == MiroGuideSortType.Name));
+
             Client.GetChannelsAsync (
-                filter_type, filterValue, active_sort_type, false, 20, 0, this
+                filter_type, filterValue, active_sort_type, 
+                !(active_sort_type == MiroGuideSortType.Name), 20, 0, this
             );
         }
 
         protected virtual void GetChannelsAsync (SearchContext context) 
         {
             if (context != null) {
+                Console.WriteLine ("Reverse:  {0}", context.Reverse);
                 Client.GetChannelsAsync (context, this);
             }
         }
@@ -309,6 +318,8 @@ namespace Banshee.Paas.MiroGuide
                     Context.Reset ();                   
                     Context.SortType = e.Sort;
                     active_sort_type = e.Sort;
+
+                    Context.Reverse = !(active_sort_type == MiroGuideSortType.Name);
                     
                     ClearModel ();
                     GetChannelsAsync (Context);

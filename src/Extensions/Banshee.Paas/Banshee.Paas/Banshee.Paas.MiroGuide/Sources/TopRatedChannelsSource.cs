@@ -45,12 +45,28 @@ namespace Banshee.Paas.MiroGuide
     public class TopRatedChannelsSource : ChannelSource
     {
         public TopRatedChannelsSource (MiroGuideClient client) : base (client, 
-                                                                       MiroGuideFilterType.Featured,
+                                                                       MiroGuideFilterType.TopRated,
                                                                        "MiroGuideTopRatedChannels",
                                                                        Catalog.GetString ("Top Rated"), 
                                                                        (int)MiroGuideSourcePosition.TopRated)
         {
-            Properties.SetStringList ("Icon.Name", "system-users");            
+            ActiveSortType = MiroGuideSortType.Rating;
+            Properties.SetStringList ("Icon.Name", "system-users");
+            BusyStatusMessage = Catalog.GetString ("Recieving Top Rated Channels from Miro Guide");            
+        }
+
+        public override void Activate ()
+        {
+            base.Activate ();
+            
+            if (Context == null) {
+                GetChannelsAsync ();
+            }
+        }
+
+        protected override void GetChannelsAsync ()
+        {
+            GetChannelsAsync ("1");
         }
     }
 }

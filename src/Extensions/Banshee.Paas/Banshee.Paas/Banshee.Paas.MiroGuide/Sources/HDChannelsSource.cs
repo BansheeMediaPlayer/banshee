@@ -50,6 +50,7 @@ namespace Banshee.Paas.MiroGuide
                                                                  Catalog.GetString ("HD Channels"), 
                                                                  (int)MiroGuideSourcePosition.HD)
         {
+            ActiveSortType = MiroGuideSortType.Rating;
             Properties.SetStringList ("Icon.Name", "video-x-generic");
             Properties.Set<bool> ("MiroGuide.Gui.Source.ShowSortPreference", true);
             BusyStatusMessage = Catalog.GetString ("Recieving HD Channels from Miro Guide");

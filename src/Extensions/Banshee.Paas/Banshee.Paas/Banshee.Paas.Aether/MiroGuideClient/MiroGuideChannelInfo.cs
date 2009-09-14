@@ -96,7 +96,7 @@ namespace Banshee.Paas.Aether.MiroGuide
             }        
         }
 
-        public string ThumbUrl {
+        public string ThumbUrl {                                           // HACK UNTIL FIX'd BY MG GUYS!!!
             get { return channel_info["thumbnail_url"].ToString ().Replace ("/370x247/", "/original/"); }
         }
 

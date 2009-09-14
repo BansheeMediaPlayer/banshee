@@ -256,7 +256,10 @@ namespace Banshee.Paas.Aether.MiroGuide
 
             nvc.Add ("filter", ToQueryPart (context.FilterType));
             nvc.Add ("filter_value", context.FilterValue);
-            nvc.Add ("sort", String.Format ("{0}{1}", ((context.Reverse) ? "-" : String.Empty), ToQueryPart (context.SortType)));
+            nvc.Add (
+                "sort", String.Format ("{0}{1}", ((context.Reverse) ? "-" : String.Empty), 
+                ToQueryPart (context.SortType))
+            );
             
             nvc.Add ("limit", context.Limit.ToString ());
             nvc.Add ("offset", (context.Offset+context.Count).ToString ());
@@ -857,6 +860,8 @@ namespace Banshee.Paas.Aether.MiroGuide
             case MiroGuideFilterType.Tag:       return "tag";
             case MiroGuideFilterType.HD:        return "hd";
             case MiroGuideFilterType.Featured:  return "featured";
+            case MiroGuideFilterType.TopRated:  return "feed";            
+            case MiroGuideFilterType.Popular:   goto case MiroGuideFilterType.TopRated;
             default:
                 goto case MiroGuideFilterType.Search;
             }

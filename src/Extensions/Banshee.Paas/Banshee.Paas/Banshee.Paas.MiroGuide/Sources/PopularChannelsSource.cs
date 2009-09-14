@@ -45,12 +45,28 @@ namespace Banshee.Paas.MiroGuide
     public class PopularChannelsSource : ChannelSource
     {
         public PopularChannelsSource (MiroGuideClient client) : base (client, 
-                                                                      MiroGuideFilterType.Featured,
+                                                                      MiroGuideFilterType.Popular,
                                                                       "MiroGuidePopularChannels",
                                                                       Catalog.GetString ("Most Popular"), 
                                                                       (int)MiroGuideSourcePosition.Popular)
         {
+            ActiveSortType = MiroGuideSortType.Popular;
             Properties.SetStringList ("Icon.Name", "system-users");            
+            BusyStatusMessage = Catalog.GetString ("Recieving Popular Channels from Miro Guide");        
+        }
+
+        public override void Activate ()
+        {
+            base.Activate ();
+            
+            if (Context == null) {
+                GetChannelsAsync ();
+            }
+        }
+
+        protected override void GetChannelsAsync ()
+        {
+            GetChannelsAsync ("1");
         }
     }
 }

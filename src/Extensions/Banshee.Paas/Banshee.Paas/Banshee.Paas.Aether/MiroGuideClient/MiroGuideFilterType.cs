@@ -30,13 +30,15 @@ namespace Banshee.Paas.Aether.MiroGuide
 {
     public enum MiroGuideFilterType : int
     {
-        None = 0,
+        None     = 0,
         Category = 1,
         Language = 2,
-        Name = 3,
-        Search = 4,
-        Tag = 5,
-        HD = 6,
-        Featured = 7
+        Name     = 3,
+        Search   = 4,
+        Tag      = 5,
+        HD       = 6,
+        Featured = 7,
+        TopRated = 8,
+        Popular  = 9
     }
 }

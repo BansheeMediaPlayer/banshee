@@ -30,17 +30,14 @@ namespace Banshee.Paas.Aether.MiroGuide
 {
     public class SearchContext
     {
+        private int page;        
         private uint count;
         private uint limit;
-        
-        private int page;
-        private uint offset;        
-        private bool channels_available;
+        private uint offset;
+        private bool reverse;        
+        private bool channels_available;        
         
         private MiroGuideSortType sort_type;
-
-        private readonly bool reverse;
-        
         private readonly string filter_value;
         private readonly MiroGuideFilterType filter_type;        
                         
@@ -63,6 +60,7 @@ namespace Banshee.Paas.Aether.MiroGuide
 
         public bool Reverse {
             get { return reverse; }
+            set { reverse = value; }
         }
 
         public bool ChannelsAvailable {
