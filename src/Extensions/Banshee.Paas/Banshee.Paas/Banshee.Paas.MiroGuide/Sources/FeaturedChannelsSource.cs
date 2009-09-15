@@ -25,20 +25,9 @@
 // THE SOFTWARE.
 
 using System;
-
 using Mono.Unix;
-
-using Gtk;
-
-using Banshee.Base;
-
-using Banshee.Sources;
-using Banshee.Sources.Gui;
-
-using Banshee.Paas.Aether;
-using Banshee.Paas.Aether.MiroGuide;
-
 using Banshee.Paas.MiroGuide.Gui;
+using Banshee.Paas.Aether.MiroGuide;
 
 namespace Banshee.Paas.MiroGuide
 {

@@ -30,13 +30,9 @@ using Mono.Unix;
 
 using Gtk;
 
-using Hyena.Data;
-using Hyena.Collections;
-
 using Banshee.Base;
 using Banshee.Widgets;
 
-using Banshee.Sources;
 using Banshee.Sources.Gui;
 
 using Banshee.Paas.Aether;
