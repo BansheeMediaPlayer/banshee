@@ -41,7 +41,7 @@ namespace Banshee.Paas.MiroGuide
         {
             Properties.SetStringList ("Icon.Name", "emblem-favorite");
             Properties.Set<bool> ("MiroGuide.Gui.Source.ShowSortPreference", true);
-            BusyStatusMessage = Catalog.GetString ("Recieving Featured Channels from Miro Guide");            
+            BusyStatusMessage = Catalog.GetString ("Receiving Featured Channels from Miro Guide");            
         }
 
         public override void Activate ()

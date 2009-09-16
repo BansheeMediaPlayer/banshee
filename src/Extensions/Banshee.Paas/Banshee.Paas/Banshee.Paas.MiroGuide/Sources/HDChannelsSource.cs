@@ -42,7 +42,7 @@ namespace Banshee.Paas.MiroGuide
             ActiveSortType = MiroGuideSortType.Rating;
             Properties.SetStringList ("Icon.Name", "video-x-generic");
             Properties.Set<bool> ("MiroGuide.Gui.Source.ShowSortPreference", true);
-            BusyStatusMessage = Catalog.GetString ("Recieving HD Channels from Miro Guide");
+            BusyStatusMessage = Catalog.GetString ("Receiving HD Channels from Miro Guide");
         }
         
         public override void Activate ()

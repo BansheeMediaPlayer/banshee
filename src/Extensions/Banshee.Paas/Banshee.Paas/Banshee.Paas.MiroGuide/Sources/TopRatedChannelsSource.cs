@@ -41,7 +41,7 @@ namespace Banshee.Paas.MiroGuide
         {
             ActiveSortType = MiroGuideSortType.Rating;
             Properties.SetStringList ("Icon.Name", "system-users");
-            BusyStatusMessage = Catalog.GetString ("Recieving Top Rated Channels from Miro Guide");            
+            BusyStatusMessage = Catalog.GetString ("Receiving Top Rated Channels from Miro Guide");            
         }
 
         public override void Activate ()
