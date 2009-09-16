@@ -40,6 +40,7 @@ namespace Banshee.Paas.MiroGuide.Gui
     public class ChannelSourceContents : ISourceContents
     {
         private HPaned hp;
+        private VBox filter_box;        
         private ScrolledWindow sw;
         private ChannelSource source;
         
@@ -53,8 +54,8 @@ namespace Banshee.Paas.MiroGuide.Gui
             get { return hp as Widget; }
         }
 
-        public HPaned HPane {
-            get { return hp; }
+        public VBox FilterBox {
+            get { return filter_box; }
         }
 
         public ScrolledWindow ScrolledWindow {
@@ -91,13 +92,22 @@ namespace Banshee.Paas.MiroGuide.Gui
             hp.SizeAllocated += (sender, e) => {
                 HPanedPosition.Set (hp.Position);
             };
-            
-            hp.Add1 (sw);
+
+            filter_box = new VBox ();
+
+            hp.Add1 (filter_box);
             hp.Add2 (new Label ("Coming Soon."));
-            hp.ShowAll ();
+
+            Initialize ();
         }
 
-        public bool SetSource (ISource source)
+        public virtual void Initialize ()
+        {
+            filter_box.Add (sw);
+            Widget.ShowAll ();            
+        }
+
+        public virtual bool SetSource (ISource source)
         {
             this.source = source as ChannelSource;
             
@@ -116,7 +126,7 @@ namespace Banshee.Paas.MiroGuide.Gui
             return true;
         }
 
-        public void ResetSource ()
+        public virtual void ResetSource ()
         {
             source = null;
             

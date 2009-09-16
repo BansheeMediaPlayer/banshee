@@ -84,11 +84,11 @@ namespace Banshee.Paas
         );
 
         private PaasSource source;
-#if MIRO_GUIDE
+        
         private MiroGuideClient mg_client;
-        public static MiroGuideAccountInfo MiroGuideAccount;
         private MiroGuideInterfaceManager mg_interface_manager;
-#endif        
+        public static MiroGuideAccountInfo MiroGuideAccount;
+        
         private SyndicationClient syndication_client;
         
         private AutoResetEvent client_handle;
@@ -175,7 +175,6 @@ namespace Banshee.Paas
             
             client_handle = new AutoResetEvent (true);
 
-#if MIRO_GUIDE
             mg_client = new MiroGuideClient (MiroGuideAccount) {
                 UserAgent = Banshee.Web.Browser.UserAgent,
             };
@@ -245,7 +244,7 @@ namespace Banshee.Paas
                     SubscribeToChannels (e.Uris);
                 }
             };
-#endif
+            
             syndication_client = new SyndicationClient ();
             syndication_client.StateChanged += (sender, e) => {
                 if (e.NewState == AetherClientState.Idle) {
@@ -317,7 +316,6 @@ namespace Banshee.Paas
             DisposeInterface ();
             ServiceManager.Get<DBusCommandService> ().ArgumentPushed -= OnCommandLineArgument;            
             
-#if MIRO_GUIDE                    
             mg_client.CancelAsync ();
             client_handle.WaitOne ();
 
@@ -325,7 +323,6 @@ namespace Banshee.Paas
             mg_client.ItemsRemoved -= OnItemsRemovedHandler;
 
             mg_client = null;
-#endif            
 
             client_handle.Close ();
             client_handle = null;
@@ -488,10 +485,9 @@ namespace Banshee.Paas
         {
             ServiceManager.SourceManager.AddSource (source);
 
-#if MIRO_GUIDE
             mg_interface_manager = new MiroGuideInterfaceManager ();
             mg_interface_manager.Initialize (mg_client);
-#endif
+            
             download_manager_interface = new DownloadManagerInterface (source, download_manager);
         }
         
@@ -502,12 +498,11 @@ namespace Banshee.Paas
                 source.Dispose ();
             }
 
-#if MIRO_GUIDE
             if (mg_interface_manager != null) {
                 mg_interface_manager.Dispose ();
                 mg_interface_manager = null;
             }
-#endif
+            
             if (download_manager_interface != null) {
                 download_manager_interface.Dispose ();
                 download_manager_interface = null;

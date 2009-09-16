@@ -1,5 +1,5 @@
 // 
-// MiroGuideClientMethod.cs
+// MiroGuideCategoryInfo.cs
 //  
 // Author:
 //       Mike Urbanski <michael.c.urbanski@gmail.com>
@@ -24,14 +24,28 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
+using System;
+using System.Collections.Generic;
+
+using Hyena.Json;
+
 namespace Banshee.Paas.Aether.MiroGuide
-{ 
-    public enum MiroGuideClientMethod {
-        GetChannels,
-        GetSession,
-        RegisterClient,
-        RequestDeltas,
-        Unsubscribe,
-        GetCategories
+{
+    public class MiroGuideCategoryInfo
+    {
+        private JsonObject category_info;
+        
+        public MiroGuideCategoryInfo (JsonObject categoryInfo)
+        {
+            category_info = categoryInfo;
+        }
+
+        public string Name {
+            get { return category_info["name"].ToString (); }
+        }
+        
+        public string Url {
+            get { return category_info["url"].ToString (); }
+        }
     }
 }

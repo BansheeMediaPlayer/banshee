@@ -1,5 +1,5 @@
 // 
-// MiroGuideClientMethod.cs
+// GetCategoriesCompletedEventArgs.cs
 //  
 // Author:
 //       Mike Urbanski <michael.c.urbanski@gmail.com>
@@ -24,14 +24,24 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
+using System;
+using System.Collections.Generic;
+
 namespace Banshee.Paas.Aether.MiroGuide
-{ 
-    public enum MiroGuideClientMethod {
-        GetChannels,
-        GetSession,
-        RegisterClient,
-        RequestDeltas,
-        Unsubscribe,
-        GetCategories
+{
+    public class GetCategoriesCompletedEventArgs : RequestCompletedEventArgs
+    {
+        private readonly IEnumerable<MiroGuideCategoryInfo> categories;
+
+        public IEnumerable<MiroGuideCategoryInfo> Categories {
+            get { return categories; }
+        }
+
+        public GetCategoriesCompletedEventArgs (IEnumerable<MiroGuideCategoryInfo> categories,
+                                                Exception error, bool cancelled, bool timedout, object userState
+                                                ) : base (error, cancelled, MiroGuideClientMethod.GetChannels, timedout, userState)
+        {
+            this.categories = categories;
+        }
     }
 }

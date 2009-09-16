@@ -113,8 +113,6 @@ namespace Banshee.Paas.MiroGuide
             this.client.StateChanged += OnMiroGuideClientStateChanged;
 
             TypeUniqueId = String.Concat (genericName, "ChannelSource");
-
-            Client.GetChannelsCompleted += OnGetChannelsCompletedHandler;
             
             Properties.SetString ("ActiveSourceUIResource", "MiroGuideActiveSourceUI.xml");
             Properties.Set<bool> ("ActiveSourceUIResourcePropagate", false);
@@ -122,7 +120,8 @@ namespace Banshee.Paas.MiroGuide
 
             Properties.SetString ("GtkActionPath", "/MiroGuideChannelSourcePopup");
 
-            contents = new ChannelSourceContents ();
+            contents = CreateChannelSourceContents ();
+            contents.Initialize ();
             
             (contents.ScrolledWindow.VScrollbar as VScrollbar).ValueChanged += OnVScrollbarValueChangedHandler;
 
@@ -138,19 +137,19 @@ namespace Banshee.Paas.MiroGuide
                 actions.SetActiveSortPreference (active_sort_type);
             }
 
+            client.GetChannelsCompleted += OnGetChannelsCompletedHandler;       
             actions.SortPreferenceChanged += OnSortPreferenceChangedHandler;
         }
 
         public override void Deactivate ()
         {
+            client.GetChannelsCompleted -= OnGetChannelsCompletedHandler;       
             actions.SortPreferenceChanged -= OnSortPreferenceChangedHandler;                                
-            Client.CancelAsync ();
+            client.CancelAsync ();
         }
 
-        public void Dispose ()
+        public virtual void Dispose ()
         {
-            Client.GetChannelsCompleted -= OnGetChannelsCompletedHandler;
-            actions = null;
         }
 
         public virtual void QueueDraw ()
@@ -207,7 +206,12 @@ namespace Banshee.Paas.MiroGuide
             ChannelModel.Selection.Clear ();
             ChannelModel.Clear ();
         }
-        
+
+        protected virtual ChannelSourceContents CreateChannelSourceContents ()
+        {
+            return new ChannelSourceContents ();;
+        }
+
         protected virtual void RefreshArtworkFor (MiroGuideChannelInfo channel)
         {
             if (!CoverArtSpec.CoverExists (PaasService.ArtworkIdFor (channel.Name))) {
@@ -277,7 +281,9 @@ namespace Banshee.Paas.MiroGuide
                 }
 
                 Context = e.Context;
+                
                 ignore_scroll = true;
+                bool check_sb_pos = false;
                 
                 if (e.Channels != null) {
                     foreach (MiroGuideChannelInfo channel in e.Channels.Reverse ()) {
@@ -292,7 +298,7 @@ namespace Banshee.Paas.MiroGuide
 
                     if (Context.Count > 0 && Context.ChannelsAvailable) {
                         Contents.ScrolledWindow.VscrollbarPolicy = PolicyType.Always;
-                        CheckVScrollbarValue (Contents.ScrolledWindow.VScrollbar as VScrollbar);
+                        check_sb_pos = true;
                     } else {
                         Contents.ScrolledWindow.VscrollbarPolicy = PolicyType.Automatic;
                         ChannelModel.Reload ();
@@ -300,6 +306,10 @@ namespace Banshee.Paas.MiroGuide
                 }
 
                 ignore_scroll = false;
+                
+                if (check_sb_pos) {
+                    CheckVScrollbarValue (Contents.ScrolledWindow.VScrollbar as VScrollbar);
+                }
             });            
         }
 

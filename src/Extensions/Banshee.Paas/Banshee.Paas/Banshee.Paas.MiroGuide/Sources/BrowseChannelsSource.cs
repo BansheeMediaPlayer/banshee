@@ -26,6 +26,11 @@
 
 using System;
 using Mono.Unix;
+
+using Gtk;
+
+using Banshee.Base;
+
 using Banshee.Paas.MiroGuide.Gui;
 using Banshee.Paas.Aether.MiroGuide;
 
@@ -33,14 +38,69 @@ namespace Banshee.Paas.MiroGuide
 {
     public class BrowseChannelsSource : ChannelSource
     {
+        private bool categories_received;
+        private MiroGuideCategoryListModel category_model;
+        
+        public MiroGuideCategoryListModel CategoryModel { 
+            get { return category_model; }
+        }
+
         public BrowseChannelsSource (MiroGuideClient client) : base (client, 
                                                                      MiroGuideFilterType.Category,
                                                                      "MiroGuideBrowseChannels",
                                                                      Catalog.GetString ("Browse"), 
                                                                      (int)MiroGuideSourcePosition.Browse)
         {
+            ActiveSortType = MiroGuideSortType.Rating;
+            category_model = new MiroGuideCategoryListModel ();
+
+            (Contents as BrowserSourceContents).CategoryListView.RowActivated += (sender, e) => {
+                Client.CancelAsync ();
+                ClientHandle.WaitOne ();
+                GetChannelsAsync (e.RowValue.Name);
+            };
+
             Properties.SetStringList ("Icon.Name", "address-book-new");
-            Properties.Set<bool> ("MiroGuide.Gui.Source.ShowSortPreference", true);            
+            Properties.Set<bool> ("MiroGuide.Gui.Source.ShowSortPreference", true);
+        }
+
+        public override void Activate ()
+        {
+            base.Activate ();
+            Client.GetCategoriesCompleted += OnGetCategoriesCompletedHandler;
+
+            if (!categories_received) {
+                Client.GetCategoriesAsync (this);
+            }
+        }
+
+        public override void Deactivate ()
+        {
+            Client.GetCategoriesCompleted -= OnGetCategoriesCompletedHandler;
+            base.Deactivate ();
+        }
+
+        protected override ChannelSourceContents CreateChannelSourceContents ()
+        {
+            return new BrowserSourceContents ();
+        }
+
+        protected virtual void OnGetCategoriesCompletedHandler (object sender, GetCategoriesCompletedEventArgs e)
+        {
+            if (e.UserState != this) {
+                return;
+            }
+            
+            ThreadAssist.ProxyToMain (delegate {
+                if (e.Cancelled || e.Error != null) {
+                    return;
+                }
+
+                if (e.Categories != null) {
+                    CategoryModel.Add (e.Categories);
+                    categories_received = true;
+                }
+            });            
         }
     }
 }

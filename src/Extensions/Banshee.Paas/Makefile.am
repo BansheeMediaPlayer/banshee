@@ -16,8 +16,10 @@ SOURCES =  \
 	Banshee.Paas/Banshee.Paas.Aether/MiroGuideClient/AetherDelta.cs \
 	Banshee.Paas/Banshee.Paas.Aether/MiroGuideClient/ClientIDChangedEventArgs.cs \
 	Banshee.Paas/Banshee.Paas.Aether/MiroGuideClient/DownloadRequestEventArgs.cs \
+	Banshee.Paas/Banshee.Paas.Aether/MiroGuideClient/GetCategoriesCompletedEventArgs.cs \
 	Banshee.Paas/Banshee.Paas.Aether/MiroGuideClient/GetChannelsEventArgs.cs \
 	Banshee.Paas/Banshee.Paas.Aether/MiroGuideClient/MiroGuideAccountInfo.cs \
+	Banshee.Paas/Banshee.Paas.Aether/MiroGuideClient/MiroGuideCategoryInfo.cs \
 	Banshee.Paas/Banshee.Paas.Aether/MiroGuideClient/MiroGuideChannelInfo.cs \
 	Banshee.Paas/Banshee.Paas.Aether/MiroGuideClient/MiroGuideClient.cs \
 	Banshee.Paas/Banshee.Paas.Aether/MiroGuideClient/MiroGuideClientError.cs \
@@ -75,13 +77,16 @@ SOURCES =  \
 	Banshee.Paas/Banshee.Paas.MiroGuide.Gui/ColumnCellChannel.cs \
 	Banshee.Paas/Banshee.Paas.MiroGuide.Gui/MiroGuideAccountDialog.cs \
 	Banshee.Paas/Banshee.Paas.MiroGuide.Gui/MiroGuideActions.cs \
+	Banshee.Paas/Banshee.Paas.MiroGuide.Gui/MiroGuideCategoryListView.cs \
 	Banshee.Paas/Banshee.Paas.MiroGuide.Gui/MiroGuideChannelListView.cs \
 	Banshee.Paas/Banshee.Paas.MiroGuide.Gui/MiroGuideLoginForm.cs \
 	Banshee.Paas/Banshee.Paas.MiroGuide.Gui/MiroGuideSearchEntry.cs \
 	Banshee.Paas/Banshee.Paas.MiroGuide.Gui/SortPreferenceActionButton.cs \
 	Banshee.Paas/Banshee.Paas.MiroGuide.Gui/SortPreferenceChangedEventArgs.cs \
+	Banshee.Paas/Banshee.Paas.MiroGuide.Gui/SourceContents/BrowserSourceContents.cs \
 	Banshee.Paas/Banshee.Paas.MiroGuide.Gui/SourceContents/ChannelSourceContents.cs \
 	Banshee.Paas/Banshee.Paas.MiroGuide.Gui/SourceContents/MiroGuideSourceContents.cs \
+	Banshee.Paas/Banshee.Paas.MiroGuide/MiroGuideCategoryListModel.cs \
 	Banshee.Paas/Banshee.Paas.MiroGuide/MiroGuideChannelListModel.cs \
 	Banshee.Paas/Banshee.Paas.MiroGuide/MiroGuideImageFetchJob.cs \
 	Banshee.Paas/Banshee.Paas.MiroGuide/MiroGuideInterfaceManager.cs \

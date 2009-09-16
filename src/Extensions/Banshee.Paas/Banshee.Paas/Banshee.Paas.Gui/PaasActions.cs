@@ -726,7 +726,6 @@ namespace Banshee.Paas.Gui
             }
 
             if (delete) {
-                //service.SyndicationClient.DeleteChannels (channels, delete_files);
                 service.DeleteChannels (channels, delete_files);                
             }
         }

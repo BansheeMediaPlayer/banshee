@@ -1,10 +1,10 @@
 // 
-// MiroGuideClientMethod.cs
+// MiroGuideCategoryListView.cs
 //  
-// Author:
-//       Mike Urbanski <michael.c.urbanski@gmail.com>
-// 
-// Copyright (c) 2009 Michael C. Urbanski
+// Authors:
+//   Mike Urbanski <michael.c.urbanski@gmail.com>
+//
+// Copyright (C) 2009 Michael C. Urbanski
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -24,14 +24,28 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-namespace Banshee.Paas.Aether.MiroGuide
-{ 
-    public enum MiroGuideClientMethod {
-        GetChannels,
-        GetSession,
-        RegisterClient,
-        RequestDeltas,
-        Unsubscribe,
-        GetCategories
+using System;
+
+using Mono.Unix;
+
+using Hyena.Data.Gui;
+
+using Banshee.Gui;
+using Banshee.ServiceStack;
+using Banshee.Collection.Gui;
+
+using Banshee.Paas.Aether.MiroGuide;
+
+namespace Banshee.Paas.MiroGuide.Gui
+{
+    public class MiroGuideCategoryListView : ListView<MiroGuideCategoryInfo>
+    {
+        public MiroGuideCategoryListView ()            
+        {
+            ColumnCellText name_renderer = new ColumnCellText ("Name", true);
+
+            ColumnController = new ColumnController ();
+            ColumnController.Add (new Column (Catalog.GetString ("Categories"), name_renderer, 1.0));
+        }
     }
 }

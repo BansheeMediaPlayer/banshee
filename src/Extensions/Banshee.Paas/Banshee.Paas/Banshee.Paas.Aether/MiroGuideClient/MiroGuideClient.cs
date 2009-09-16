@@ -73,6 +73,7 @@ namespace Banshee.Paas.Aether.MiroGuide
         public EventHandler<DownloadRequestEventArgs> DownloadRequested;
 
         public EventHandler<GetChannelsCompletedEventArgs> GetChannelsCompleted;
+        public EventHandler<GetCategoriesCompletedEventArgs> GetCategoriesCompleted;
 
         public EventHandler<SubscriptionRequestedEventArgs> SubscriptionRequested;
         
@@ -213,6 +214,30 @@ namespace Banshee.Paas.Aether.MiroGuide
                     }
                 }
             }
+        }
+
+        public void GetCategoriesAsync ()
+        {
+            GetCategoriesAsync (null);
+        }
+        
+        public void GetCategoriesAsync (object userState)
+        {
+            lock (SyncRoot) {
+                if (asm.Busy) { // Remove!!!  Allow requests to be queued in the future.
+                    return;
+                }
+
+                NameValueCollection nvc = new NameValueCollection ();
+                nvc.Add ("datatype", "json");
+
+                BeginRequest (
+                    CreateGetRequestState (
+                        MiroGuideClientMethod.GetCategories, "/api/list_categories", nvc,
+                        ServiceFlags.None, null, userState
+                    ), true
+                );
+            }               
         }
 
         public void GetChannelsAsync (MiroGuideFilterType filterType, 
@@ -555,6 +580,9 @@ namespace Banshee.Paas.Aether.MiroGuide
                 case MiroGuideClientMethod.GetChannels:
                     HandleGetChannelsResponse (state);
                     break;
+                case MiroGuideClientMethod.GetCategories:
+                    HandleGetCategoriesResponse (state);
+                    break;
                 }                
                 
                 asm.Reset ();
@@ -702,6 +730,27 @@ namespace Banshee.Paas.Aether.MiroGuide
             }
         }
 
+        private void HandleGetCategoriesResponse (MiroGuideRequestState state)
+        {
+            List<MiroGuideCategoryInfo> categories = null;
+            
+            try {
+                if (state.Succeeded) {
+                    categories = new List<MiroGuideCategoryInfo> ();           
+                    
+                    foreach (JsonObject o in DeserializeJson (state.ResponseData) as JsonArray) {
+                        try {
+                            categories.Add (new MiroGuideCategoryInfo (o));
+                        } catch { continue; }
+                    }    
+                }
+            } catch (Exception e) {
+                state.Error = e;
+            } finally {
+                OnGetCategoriesCompleted (state, categories);            
+            }            
+        }
+
         private void HandleGetChannelsResponse (MiroGuideRequestState state)
         {
             List<MiroGuideChannelInfo> channels = null;
@@ -808,6 +857,19 @@ namespace Banshee.Paas.Aether.MiroGuide
                 EventQueue.Register (
                     new EventWrapper<DownloadRequestEventArgs> (handler, this, new DownloadRequestEventArgs (ids))
                 );
+            }
+        }
+
+        private void OnGetCategoriesCompleted (MiroGuideRequestState state, IEnumerable<MiroGuideCategoryInfo> categories)
+        {
+            var handler = GetCategoriesCompleted;
+            
+            GetCategoriesCompletedEventArgs e = new GetCategoriesCompletedEventArgs (
+                categories, state.Error, state.Cancelled, state.Timedout, state.UserState
+            );
+
+            if (handler != null) {
+                EventQueue.Register (new EventWrapper<GetCategoriesCompletedEventArgs> (handler, this, e));
             }
         }
 
