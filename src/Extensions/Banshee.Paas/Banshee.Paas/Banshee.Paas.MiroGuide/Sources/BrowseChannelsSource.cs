@@ -85,6 +85,18 @@ namespace Banshee.Paas.MiroGuide
             return new BrowserSourceContents ();
         }
 
+
+        public override void Refresh ()
+        {
+            ThreadAssist.ProxyToMain (delegate {
+                if (!categories_received) {
+                    Client.GetCategoriesAsync (this);
+                }
+
+                base.Refresh ();
+            });            
+        }
+
         protected virtual void OnGetCategoriesCompletedHandler (object sender, GetCategoriesCompletedEventArgs e)
         {
             if (e.UserState != this) {
