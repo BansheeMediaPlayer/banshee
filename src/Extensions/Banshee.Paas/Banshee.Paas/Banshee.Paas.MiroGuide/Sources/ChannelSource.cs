@@ -52,7 +52,8 @@ namespace Banshee.Paas.MiroGuide
         private bool ignore_scroll;
         private MiroGuideClient client;
         private MiroGuideActions actions;
-                
+        private SourceMessage error_status_message;
+        
         private ChannelSourceContents contents;
         private MiroGuideChannelListModel channel_model;
         
@@ -221,6 +222,30 @@ namespace Banshee.Paas.MiroGuide
             }
         }
 
+        protected void SetErrorStatus ()
+        {
+            SetErrorStatus (Catalog.GetString ("An error occurred while communicating with Miro Guide."));
+        }
+
+        protected void SetErrorStatus (string message_str)
+        {
+             SourceMessage message = new SourceMessage (this) {
+                Text = message_str
+            };
+
+            message.SetIconName (Stock.DialogError);            
+            message.AddAction (new MessageAction (Catalog.GetString ("Retry"), false, delegate { Refresh (); }));
+
+            SetErrorStatus (message);
+        }
+
+        protected void SetErrorStatus (SourceMessage message)
+        {
+            ThreadAssist.ProxyToMain (delegate {
+                error_status_message = message;
+            });
+        }
+
         protected virtual void SetRequestStatus (string message)
         {
             SetRequestStatus (message, null);        
@@ -247,9 +272,13 @@ namespace Banshee.Paas.MiroGuide
         
         protected virtual void OnMiroGuideClientStateChanged (object sender, AetherClientStateChangedEventArgs e)
         {
+            
+
             if (e.NewState == AetherClientState.Busy) {
                 ClientHandle.Reset ();
                 ThreadAssist.ProxyToMain (delegate {
+                    ClearMessages ();
+                    error_status_message = null;
                     actions["MiroGuideRefreshChannelsAction"].Sensitive = false;
                     ChannelSourceContents.SortPreferenceButtonSensitive = false;
                     SetRequestStatus (String.Format ("{0}...", BusyStatusMessage)); 
@@ -260,6 +289,10 @@ namespace Banshee.Paas.MiroGuide
                     actions["MiroGuideRefreshChannelsAction"].Sensitive = true;                    
                     ChannelSourceContents.SortPreferenceButtonSensitive = true;                                
                     PopMessage ();
+
+                    if (error_status_message != null) {
+                        PushMessage (error_status_message);
+                    }
                 });
             }
         }
@@ -276,7 +309,10 @@ namespace Banshee.Paas.MiroGuide
             }
             
             ThreadAssist.ProxyToMain (delegate {
-                if (e.Cancelled || e.Error != null) {
+                if (e.Cancelled) {
+                    return;
+                } else if (e.Error != null) {
+                    SetErrorStatus ();
                     return;
                 }
 

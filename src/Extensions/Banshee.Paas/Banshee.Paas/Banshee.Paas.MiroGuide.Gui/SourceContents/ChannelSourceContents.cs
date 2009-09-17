@@ -46,6 +46,10 @@ namespace Banshee.Paas.MiroGuide.Gui
         
         private MiroGuideChannelListView channel_view;
 
+        public MiroGuideChannelListView ChannelView {
+            get { return channel_view; }
+        }
+
         public ISource Source { 
             get { return source; } 
         }

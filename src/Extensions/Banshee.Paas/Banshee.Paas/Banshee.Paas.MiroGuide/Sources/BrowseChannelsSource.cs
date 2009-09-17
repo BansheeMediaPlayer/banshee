@@ -104,7 +104,10 @@ namespace Banshee.Paas.MiroGuide
             }
             
             ThreadAssist.ProxyToMain (delegate {
-                if (e.Cancelled || e.Error != null) {
+                if (e.Cancelled) {
+                    return;
+                } else if (e.Error != null) {
+                    SetErrorStatus ();
                     return;
                 }
 
