@@ -38,12 +38,13 @@ using Banshee.Configuration;
 namespace Banshee.Paas.MiroGuide.Gui
 {
     public class ChannelSourceContents : ISourceContents
-    {
+    {        
         private HPaned hp;
         private VBox filter_box;        
         private ScrolledWindow sw;
         private ChannelSource source;
-        
+        private double channel_view_vadjustment;        
+
         private MiroGuideChannelListView channel_view;
 
         public MiroGuideChannelListView ChannelView {
@@ -121,7 +122,7 @@ namespace Banshee.Paas.MiroGuide.Gui
             
             channel_view.HeaderVisible = true;
             hp.Position = HPanedPosition.Get ();                                    
-            channel_view.SetModel (this.source.ChannelModel);
+            channel_view.SetModel (this.source.ChannelModel, channel_view_vadjustment);
 
             if (this.source.Properties.Get<bool> ("MiroGuide.Gui.Source.ShowSortPreference")) {
                 ShowSortPreferenceButton ();
@@ -133,6 +134,7 @@ namespace Banshee.Paas.MiroGuide.Gui
         public virtual void ResetSource ()
         {
             source = null;
+            channel_view_vadjustment = channel_view.Vadjustment.Value;
             
             channel_view.SetModel (null);
             channel_view.HeaderVisible = false;

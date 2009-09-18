@@ -38,7 +38,18 @@ namespace Banshee.Paas.MiroGuide.Gui
     {
         public MiroGuideSearchEntry ()
         {
-            EmptyMessage = String.Format (Catalog.GetString ("Search Miro Guide"));
+            string default_str = Catalog.GetString ("Search Miro Guide");
+            EmptyMessage = default_str;
+            
+// MG doesn't support search filtering by any type other than hd
+/*            
+            AddFilterOption ((int)MiroGuideSearchFilter.Default, default_str);
+
+            AddFilterSeparator ();
+            AddFilterOption ((int)MiroGuideSearchFilter.HD, Catalog.GetString ("HD Channels"));
+            AddFilterOption ((int)MiroGuideSearchFilter.Video, Catalog.GetString ("Video Channels"));                        
+            AddFilterOption ((int)MiroGuideSearchFilter.Audio, Catalog.GetString ("Audio Channels"));
+*/            
         }
     }
 }

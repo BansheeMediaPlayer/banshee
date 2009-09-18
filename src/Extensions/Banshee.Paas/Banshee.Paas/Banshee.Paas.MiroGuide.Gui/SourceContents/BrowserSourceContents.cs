@@ -36,6 +36,7 @@ namespace Banshee.Paas.MiroGuide.Gui
     public class BrowserSourceContents : ChannelSourceContents
     {
         private VPaned browser_pane;
+        private double category_view_vadjustment;                
         private MiroGuideCategoryListView category_view;
 
         public MiroGuideCategoryListView CategoryListView {
@@ -75,7 +76,7 @@ namespace Banshee.Paas.MiroGuide.Gui
             BrowseChannelsSource s = source as BrowseChannelsSource;
             
             if (base.SetSource (source) && s != null) {
-                category_view.SetModel (s.CategoryModel);
+                category_view.SetModel (s.CategoryModel, category_view_vadjustment);
                 browser_pane.Position = BrowserSourceVPanedPosition.Get ();
                 return true;
             }
@@ -85,12 +86,13 @@ namespace Banshee.Paas.MiroGuide.Gui
 
         public override void ResetSource ()
         {
+            category_view_vadjustment = category_view.Vadjustment.Value;
             category_view.SetModel (null);
             base.ResetSource ();
         }
 
         public static readonly SchemaEntry<int> BrowserSourceVPanedPosition = new SchemaEntry<int> (
-            "plugins.paas.miroguide.ui", "browser_source_vpaned_pos", 150, "", ""
+            "plugins.paas.miroguide.ui", "browser_source_vpaned_pos", 250, "", ""
         ); 
     }
 }

@@ -90,6 +90,7 @@ SOURCES =  \
 	Banshee.Paas/Banshee.Paas.MiroGuide/MiroGuideChannelListModel.cs \
 	Banshee.Paas/Banshee.Paas.MiroGuide/MiroGuideImageFetchJob.cs \
 	Banshee.Paas/Banshee.Paas.MiroGuide/MiroGuideInterfaceManager.cs \
+	Banshee.Paas/Banshee.Paas.MiroGuide/MiroGuideSearchFilter.cs \
 	Banshee.Paas/Banshee.Paas.MiroGuide/Sources/BrowseChannelsSource.cs \
 	Banshee.Paas/Banshee.Paas.MiroGuide/Sources/ChannelSource.cs \
 	Banshee.Paas/Banshee.Paas.MiroGuide/Sources/FeaturedChannelsSource.cs \

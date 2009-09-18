@@ -84,7 +84,6 @@ namespace Banshee.Paas.MiroGuide
             get { return channel_model; }
         }
 
-        // Remove when MG client can queue tasks.
         private static ManualResetEvent client_handle = new ManualResetEvent (true);
         protected static ManualResetEvent ClientHandle {
             get { return client_handle; }

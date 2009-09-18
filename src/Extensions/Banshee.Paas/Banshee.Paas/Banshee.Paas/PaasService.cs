@@ -148,13 +148,9 @@ namespace Banshee.Paas
                     if (Disposed) {
                         return;
                     }
-                    
-                    // Performance will be crap on updates with large podcast collections 
-                    // if you hold sync while reloading.  Investigate and CHANGE it.
+
                     source.Reload ();
                 }
-                
-                //source.Reload ();
             };
 
             redraw = delegate {
@@ -735,17 +731,16 @@ namespace Banshee.Paas
                         Banshee.IO.Directory.Delete (path, true);
                     } catch {}
 
-                    item.IsNew = true;
                     item.LocalPath = tmp_local_path;
                     item.MimeType = e.Task.MimeType;
                     item.DownloadedAt = DateTime.Now;
                     
-                    item.Save ();
-
                     DatabaseTrackInfo track = GetTrackByItemId (item.DbId);                   
 
                     if (track != null) {
                         new PaasTrackInfo (track, item).Track.Save ();
+                        item.IsNew = (track.PlayCount < 1);
+                        item.Save ();
                     }                    
                 } catch (Exception ex) {
                     source.ErrorSource.AddMessage (                    
