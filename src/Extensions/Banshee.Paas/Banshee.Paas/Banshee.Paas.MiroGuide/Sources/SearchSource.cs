@@ -108,8 +108,15 @@ namespace Banshee.Paas.MiroGuide
 
         private string GetSearchString ()
         {
-            string ret = search_entry.InnerEntry.Text;
-            return ret.Trim ();
+            string ret = search_entry.InnerEntry.Text.Trim ();
+
+            switch ((MiroGuideSearchFilter)search_entry.ActiveFilterID) {
+            case MiroGuideSearchFilter.HD:    ret += " hd";    break;               
+            case MiroGuideSearchFilter.Audio: ret += " audio"; break;
+            case MiroGuideSearchFilter.Video: ret += " video"; break;
+            }
+
+            return ret;
         }
 
         protected override void OnMiroGuideClientStateChanged (object sender, AetherClientStateChangedEventArgs e)
