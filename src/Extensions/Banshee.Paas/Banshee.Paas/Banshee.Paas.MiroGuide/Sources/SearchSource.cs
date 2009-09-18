@@ -93,15 +93,8 @@ namespace Banshee.Paas.MiroGuide
             search_entry.Activated += OnSearchEntryActivated;
             search_entry.Changed += OnSearchEntryChanged;
             
-            search_entry.Cleared += (sender, e) => {
-                ThreadAssist.ProxyToMain (delegate {
-                    Context = null;
-                    Contents.ScrolledWindow.VscrollbarPolicy = PolicyType.Automatic;
-                    
-                    ChannelModel.Selection.Clear ();
-                    ChannelModel.Clear ();
-                });                
-            };
+            search_entry.Cleared += (sender, e) => { Reset (false); }; 
+            search_entry.FilterChanged += (sender, e) => { Reset (true); };
 
             search_entry.Show ();
         }
@@ -117,6 +110,21 @@ namespace Banshee.Paas.MiroGuide
             }
 
             return ret;
+        }
+
+        private void Reset (bool refresh)
+        {
+            ThreadAssist.ProxyToMain (delegate {
+                Context = null;
+                Contents.ScrolledWindow.VscrollbarPolicy = PolicyType.Automatic;
+                
+                ChannelModel.Selection.Clear ();
+                ChannelModel.Clear ();
+                
+                if (refresh) {
+                    Refresh ();
+                }
+            });        
         }
 
         protected override void OnMiroGuideClientStateChanged (object sender, AetherClientStateChangedEventArgs e)
