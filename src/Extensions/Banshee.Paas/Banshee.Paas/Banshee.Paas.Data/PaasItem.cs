@@ -167,9 +167,16 @@ namespace Banshee.Paas.Data
             set { duration = value; }
         }
 
+        private bool error;
+        [DatabaseColumn]
+        public bool Error {
+            get { return error; }
+            set { error = value; }
+        }
+        
         public bool IsDownloaded {
             get { 
-                return (DownloadedAt != DateTime.MinValue) || !String.IsNullOrEmpty (LocalPath); 
+                return /*(DownloadedAt != DateTime.MinValue) || */!String.IsNullOrEmpty (LocalPath); 
             }
         } 
 

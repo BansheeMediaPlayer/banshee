@@ -46,7 +46,7 @@ namespace Banshee.Paas.Gui
             New         = 0,
             Downloading = 1,
             Video       = 2,
-            Count       = 3
+            Count       = 3,
         }
 
         private int  icon_index = -1;
@@ -72,7 +72,7 @@ namespace Banshee.Paas.Gui
             
             Pixbufs[base.PixbufCount + (int)Offset.New]         = IconThemeUtils.LoadIcon (PixbufSize, "podcast-new");
             Pixbufs[base.PixbufCount + (int)Offset.Downloading] = IconThemeUtils.LoadIcon (PixbufSize, "document-save");
-            Pixbufs[base.PixbufCount + (int)Offset.Video]       = IconThemeUtils.LoadIcon (PixbufSize, "video-x-generic");                        
+            Pixbufs[base.PixbufCount + (int)Offset.Video]       = IconThemeUtils.LoadIcon (PixbufSize, "video-x-generic");
         }
         
         protected override int GetIconIndex (TrackInfo track)
@@ -104,15 +104,14 @@ namespace Banshee.Paas.Gui
                         icon_index = (int)Icon.Error;
                         break;                        
                     default:
-                        icon_index = pti.IsNew ? base.PixbufCount + (int) Offset.New : -1;
+                        if (pti.Item.Error) {
+                            icon_index = (int)Icon.Error;
+                        } else {
+                            icon_index = pti.IsNew ? base.PixbufCount + (int) Offset.New : -1;
+                        }
+                        
                         break;
                 }
-
-//                if (icon_index < 0) {
-//                    if (pti.Track.MimeType.Contains ("video")) {
-//                        icon_index = base.PixbufCount + (int) Offset.Video;
-//                    }
-//                }
             }
             
             context.Opaque = sensitive;            

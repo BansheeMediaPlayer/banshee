@@ -190,7 +190,6 @@ namespace Banshee.Paas.MiroGuide
             }
         }
 
-        // HACK:  This sucks, come up with a better was to progressively load elements...
         protected virtual void CheckVScrollbarValue (VScrollbar vsb)
         {
             if (!ignore_scroll && (vsb.Value == vsb.Adjustment.Upper-vsb.Adjustment.PageSize ||
@@ -271,8 +270,6 @@ namespace Banshee.Paas.MiroGuide
         
         protected virtual void OnMiroGuideClientStateChanged (object sender, AetherClientStateChangedEventArgs e)
         {
-            
-
             if (e.NewState == AetherClientState.Busy) {
                 ClientHandle.Reset ();
                 ThreadAssist.ProxyToMain (delegate {

@@ -214,7 +214,7 @@ namespace Banshee.Paas
                         (long)AetherClientID.MiroGuide, String.Join (",", e.IDs.Select (id => id.ToString ()).ToArray ()))
                     );
 
-                    download_manager.QueueDownload (items);
+                    QueueDownload (items);
                 }                
             };
 
@@ -477,6 +477,43 @@ namespace Banshee.Paas
             }
         }
 
+        public void QueueDownload (PaasItem item)
+        {
+            if (item.Error) {
+                item.Error = false;
+                item.Save ();
+                reload ();
+            }
+
+            download_manager.QueueDownload (item);            
+        }
+
+        public void QueueDownload (IEnumerable<PaasItem> items)
+        {
+            ServiceManager.DbConnection.BeginTransaction ();
+
+            try {
+                bool reload_requested = false;
+                
+                foreach (var item in items.Where (i => i.Error)) {
+                    item.Error = false;
+                    item.Save ();
+                    reload_requested = true;
+                }
+                
+                ServiceManager.DbConnection.CommitTransaction ();
+
+                if (reload_requested) {
+                    reload ();
+                }                
+            } catch {
+                ServiceManager.DbConnection.RollbackTransaction ();
+                throw;
+            }
+
+            download_manager.QueueDownload (items);
+        }
+
         private void InitializeInterface ()
         {
             ServiceManager.SourceManager.AddSource (source);
@@ -547,7 +584,7 @@ namespace Banshee.Paas
                     }
                     
                     RefreshArtworkFor (channel);
-                    download_manager.QueueDownload (items.Where (i => i.Active && !i.IsDownloaded));
+                    QueueDownload (items.Where (i => i.Active && !i.IsDownloaded));
                 } else if (e.Error != null) {
                     Log.Exception (e.Error);
                     
@@ -659,14 +696,18 @@ namespace Banshee.Paas
                     return;
                 } else if (e.State != TaskState.Succeeded) {
                     if (e.Error != null) {
+                        item.Error = true;
+                        item.Save ();
+                        
                         source.ErrorSource.AddMessage (                                                
                             String.Format (
                                 Catalog.GetString ("Error Downloading:  {0}"), (e.Task as HttpFileDownloadTask).Name
                             ), e.Error.Message
                         );
+
+                        reload ();
                     }
-                
-                    source.QueueDraw ();
+
                     return;
                 }   
 

@@ -609,7 +609,7 @@ namespace Banshee.Paas.Gui
         private void OnPaasItemDownloadHandler (object sender, EventArgs e)
         {
             var items = GetSelectedItems ();
-            service.DownloadManager.QueueDownload (items.Select (ti => ti.Item).Where (i => !i.IsDownloaded));
+            service.QueueDownload (items.Select (ti => ti.Item).Where (i => !i.IsDownloaded));
         }
 
         private void OnPaasItemCancelHandler (object sender, EventArgs e)
@@ -742,7 +742,7 @@ namespace Banshee.Paas.Gui
         {
             var channels = new List<PaasChannel> (PaasChannel.Provider.FetchAll ().OrderBy (c => c.Name));
             foreach (var c in channels) {
-                service.DownloadManager.QueueDownload (c.Items.Where (i => i.Active && !i.IsDownloaded));
+                service.QueueDownload (c.Items.Where (i => i.Active && !i.IsDownloaded));
             }
         }
 
@@ -750,7 +750,7 @@ namespace Banshee.Paas.Gui
         {
             var channels = GetSelectedChannels ();
             foreach (var c in channels) {
-                service.DownloadManager.QueueDownload (c.Items.Where (i => i.Active && !i.IsDownloaded));
+                service.QueueDownload (c.Items.Where (i => i.Active && !i.IsDownloaded));
             }
         }
         
