@@ -99,6 +99,11 @@ namespace Banshee.Paas.MiroGuide.Gui
                     Catalog.GetString ("Sort Channels by Name"), null,
                     Catalog.GetString ("Order results by name."),
                     (int)MiroGuideSortType.Name),
+                
+                new RadioActionEntry ("MiroGuideSortByRelevanceAction", null,
+                    Catalog.GetString ("Sort Channels by Relevance"), null,
+                    Catalog.GetString ("Order results by relevance."),
+                    (int)MiroGuideSortType.Relevance),                    
                     
                 new RadioActionEntry ("MiroGuideSortByRatingAction", null, 
                     Catalog.GetString ("Sort Channels by Rating"), null,
@@ -127,13 +132,21 @@ namespace Banshee.Paas.MiroGuide.Gui
             Actions.RemoveActionGroup (this);
             base.Dispose ();
         }
-        
+
         public void SetActiveSortPreference (MiroGuideSortType sort)
+        {
+            SetActiveSortPreference (sort, true);
+        }
+
+        public void SetActiveSortPreference (MiroGuideSortType sort, bool raise)
         {
             if (active_action == null || (int)sort != active_action.Value) {
                 active_action = GetSortPreferenceAction (sort);
                 active_action.Active = true;
-                OnSortPreferenceChanged (sort);
+
+                if (raise) {
+                    OnSortPreferenceChanged (sort);
+                }
             }
         }
 
@@ -157,7 +170,8 @@ namespace Banshee.Paas.MiroGuide.Gui
             switch (sort) {
             case MiroGuideSortType.Name: return GetAction ("MiroGuideSortByNameAction") as RadioAction;
             case MiroGuideSortType.Rating: return GetAction ("MiroGuideSortByRatingAction") as RadioAction;
-            case MiroGuideSortType.Popular: return GetAction ("MiroGuideSortByPopularityAction") as RadioAction;            
+            case MiroGuideSortType.Popular: return GetAction ("MiroGuideSortByPopularityAction") as RadioAction;
+            case MiroGuideSortType.Relevance: return GetAction ("MiroGuideSortByRelevanceAction") as RadioAction;            
             default:
                 goto case MiroGuideSortType.Name;
             }

@@ -59,7 +59,9 @@ namespace Banshee.Paas.MiroGuide
         {
             BuildSearchEntry ();
             
-            BusyStatusMessage = "Searching Miro Guide";
+            ActiveSortType = MiroGuideSortType.Relevance;
+            
+            BusyStatusMessage = "Searching Miro Guide";            
             Properties.SetStringList ("Icon.Name", "find");
             Properties.Set<bool> ("MiroGuide.Gui.Source.ShowSortPreference", true);
         }
@@ -68,12 +70,14 @@ namespace Banshee.Paas.MiroGuide
         {
             base.Activate ();
             Actions["MiroGuideRefreshChannelsAction"].Visible = false;
+            Actions["MiroGuideSortByRelevanceAction"].Visible = true;
         }
 
         public override void Deactivate ()
         {
             base.Deactivate ();
-            Actions["MiroGuideRefreshChannelsAction"].Visible = true;            
+            Actions["MiroGuideRefreshChannelsAction"].Visible = true;
+            Actions["MiroGuideSortByRelevanceAction"].Visible = false;
         }
 
         protected override void GetChannelsAsync ()

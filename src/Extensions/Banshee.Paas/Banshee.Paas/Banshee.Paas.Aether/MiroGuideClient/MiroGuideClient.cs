@@ -281,10 +281,13 @@ namespace Banshee.Paas.Aether.MiroGuide
 
             nvc.Add ("filter", ToQueryPart (context.FilterType));
             nvc.Add ("filter_value", context.FilterValue);
-            nvc.Add (
-                "sort", String.Format ("{0}{1}", ((context.Reverse) ? "-" : String.Empty), 
-                ToQueryPart (context.SortType))
-            );
+            
+            if (context.SortType != MiroGuideSortType.Relevance) {
+                nvc.Add (
+                    "sort", String.Format ("{0}{1}", ((context.Reverse) ? "-" : String.Empty), 
+                    ToQueryPart (context.SortType))
+                );
+            }
             
             nvc.Add ("limit", context.Limit.ToString ());
             nvc.Add ("offset", (context.Offset+context.Count).ToString ());
@@ -930,11 +933,12 @@ namespace Banshee.Paas.Aether.MiroGuide
         {
             switch (type)
             {
-            case MiroGuideSortType.Age:     return "age";     
-            case MiroGuideSortType.ID:      return "id";      
-            case MiroGuideSortType.Name:    return "name";    
-            case MiroGuideSortType.Popular: return "popular"; 
-            case MiroGuideSortType.Rating:  return "rating";
+            case MiroGuideSortType.Age:       return "age";     
+            case MiroGuideSortType.ID:        return "id";      
+            case MiroGuideSortType.Name:      return "name";    
+            case MiroGuideSortType.Popular:   return "popular"; 
+            case MiroGuideSortType.Rating:    return "rating";
+            case MiroGuideSortType.Relevance: return String.Empty;
             default:
                 goto case MiroGuideSortType.Name;
             }
