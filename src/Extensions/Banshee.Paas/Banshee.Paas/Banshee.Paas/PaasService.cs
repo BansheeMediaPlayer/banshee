@@ -79,6 +79,8 @@ namespace Banshee.Paas
     {
         private int update_count;
         private bool disposing, disposed;
+        
+        private uint refresh_timeout_id = 0;
                 
         private readonly string tmp_download_path = Paths.Combine (
             Paths.ExtensionCacheRoot, "paas", "partial-downloads"
@@ -297,7 +299,9 @@ namespace Banshee.Paas
             InitializeInterface ();
             ServiceManager.Get<DBusCommandService> ().ArgumentPushed += OnCommandLineArgument;
 
-            download_manager.RestoreQueuedDownloads ();
+            //download_manager.RestoreQueuedDownloads ();
+            RefreshFeeds ();
+            refresh_timeout_id = Application.RunTimeout (1000 * 60 * 10, RefreshFeeds);  // 10 minutes
         }
 
         public void Dispose ()
@@ -309,7 +313,10 @@ namespace Banshee.Paas
                 
                 disposing = true;               
             }
-                        
+
+            Application.IdleTimeoutRemove (refresh_timeout_id);
+            refresh_timeout_id = 0;
+
             DisposeInterface ();
             ServiceManager.Get<DBusCommandService> ().ArgumentPushed -= OnCommandLineArgument;            
             
@@ -548,6 +555,20 @@ namespace Banshee.Paas
            return DatabaseTrackInfo.Provider.FetchFirstMatching (
                 "PrimarySourceID = ? AND ExternalID = ?", source.DbId, item_id
             );
+        }
+
+        private bool RefreshFeeds ()
+        {
+            Hyena.Log.Debug ("Refreshing any podcasts that haven't been updated in over an hour");
+            
+            Banshee.Kernel.Scheduler.Schedule (new Banshee.Kernel.DelegateJob (delegate {
+                DateTime now = DateTime.Now;
+                syndication_client.QueueUpdate (
+                    PaasChannel.Provider.FetchAll ().Where (c => (now - c.LastDownloadTime).TotalHours > 1)
+                );
+            }));
+            
+            return true;
         }
 
         private void OnChannelUpdatedHandler (object sender, ChannelUpdateCompletedEventArgs e)
