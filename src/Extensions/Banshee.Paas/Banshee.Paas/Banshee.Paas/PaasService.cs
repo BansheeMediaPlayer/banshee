@@ -45,6 +45,7 @@ using Banshee.IO;
 using Banshee.Web;
 using Banshee.Base;
 using Banshee.Sources;
+using Banshee.Networking;
 using Banshee.MediaEngine;
 using Banshee.ServiceStack;
 using Banshee.Configuration;
@@ -695,17 +696,18 @@ namespace Banshee.Paas
                 if (Disposed) {
                     return;
                 } else if (e.State != TaskState.Succeeded) {
-                    if (e.Error != null) {
-                        item.Error = true;
-                        item.Save ();
-                        
+                    if (e.Error != null) {                        
                         source.ErrorSource.AddMessage (                                                
                             String.Format (
                                 Catalog.GetString ("Error Downloading:  {0}"), (e.Task as HttpFileDownloadTask).Name
                             ), e.Error.Message
                         );
 
-                        reload ();
+                        if (ServiceManager.Get<Network> ().Connected) {
+                            item.Error = true;
+                            item.Save ();
+                            reload ();
+                        }
                     }
 
                     return;
@@ -782,18 +784,22 @@ namespace Banshee.Paas
                         new PaasTrackInfo (track, item).Track.Save ();
                         item.IsNew = (track.PlayCount < 1);
                         item.Save ();
-                    }                    
+                    }
+
+                    source.NotifyUser ();
                 } catch (Exception ex) {
                     source.ErrorSource.AddMessage (                    
                         String.Format (Catalog.GetString ("Error Saving File:  {0}"), tmp_local_path), ex.Message
                     );
+
+                    item.Error = true;
+                    item.Save ();
 
                     Hyena.Log.Exception (ex);
                     Hyena.Log.Error (ex.StackTrace);
                 }
 
                 source.Reload ();
-                source.NotifyUser ();
             }            
         }
 
