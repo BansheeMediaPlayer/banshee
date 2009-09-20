@@ -179,7 +179,7 @@ namespace Banshee.Paas.MiroGuide
         {
             Client.GetChannelsAsync (
                 filter_type, filterValue, active_sort_type, 
-                !(active_sort_type == MiroGuideSortType.Name), 20, 0, this
+                !(active_sort_type == MiroGuideSortType.Name), 50, 0, this
             );
         }
 
