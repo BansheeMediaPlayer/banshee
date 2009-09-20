@@ -300,7 +300,7 @@ namespace Banshee.Paas
             ServiceManager.Get<DBusCommandService> ().ArgumentPushed += OnCommandLineArgument;
 
             //download_manager.RestoreQueuedDownloads ();
-            RefreshFeeds ();
+            RefreshFeeds (true);
             refresh_timeout_id = Application.RunTimeout (1000 * 60 * 10, RefreshFeeds);  // 10 minutes
         }
 
@@ -559,12 +559,19 @@ namespace Banshee.Paas
 
         private bool RefreshFeeds ()
         {
+            return RefreshFeeds (false);        
+        }
+
+        private bool RefreshFeeds (bool forceRefresh)
+        {
             Hyena.Log.Debug ("Refreshing any podcasts that haven't been updated in over an hour");
             
             Banshee.Kernel.Scheduler.Schedule (new Banshee.Kernel.DelegateJob (delegate {
                 DateTime now = DateTime.Now;
                 syndication_client.QueueUpdate (
-                    PaasChannel.Provider.FetchAll ().Where (c => (now - c.LastDownloadTime).TotalHours > 1)
+                    PaasChannel.Provider.FetchAll ().Where (
+                        c => (now - c.LastDownloadTime).TotalHours > 1 || forceRefresh
+                    )
                 );
             }));
             
