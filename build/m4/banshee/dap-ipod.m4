@@ -19,7 +19,7 @@ AC_DEFUN([BANSHEE_CHECK_DAP_IPOD],
 		asms="`$PKG_CONFIG --variable=Libraries ipod-sharp` `$PKG_CONFIG --variable=Libraries ipod-sharp-ui`"
 		for asm in $asms; do
 			IPODSHARP_ASSEMBLIES="$IPODSHARP_ASSEMBLIES $asm"
-			[ -r "$asm.mdb" ] && IPODSHARP_ASSEMBLIES="$IPODSHARP_ASSEMBLIES $asm.mdb"
+			[[ -r "$asm.mdb" ]] && IPODSHARP_ASSEMBLIES="$IPODSHARP_ASSEMBLIES $asm.mdb"
 		done
 		AC_SUBST(IPODSHARP_ASSEMBLIES)
 		AC_SUBST(IPODSHARP_LIBS)
