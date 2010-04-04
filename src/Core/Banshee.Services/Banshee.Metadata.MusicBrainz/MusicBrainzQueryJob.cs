@@ -32,6 +32,7 @@ using System.Net;
 using System.Xml;
 using System.Text;
 using System.Collections.Generic;
+using System.Web;
 
 using Hyena;
 using Banshee.Base;
@@ -108,8 +109,10 @@ namespace Banshee.Metadata.MusicBrainz
 
         private string FindAsin ()
         {
+            string album_artist = HttpUtility.UrlEncode (Track.AlbumArtist);
+            string album_title = HttpUtility.UrlEncode (Track.AlbumTitle);
             Uri uri = new Uri (String.Format ("http://musicbrainz.org/ws/1/release/?type=xml&artist={0}&title={1}",
-                Track.AlbumArtist, Track.AlbumTitle));
+                album_artist, album_title));
 
             HttpWebResponse response = GetHttpStream (uri);
             if (response == null) {
