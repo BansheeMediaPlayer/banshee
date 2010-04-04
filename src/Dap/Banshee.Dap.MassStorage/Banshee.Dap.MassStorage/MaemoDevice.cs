@@ -78,13 +78,11 @@ namespace Banshee.Dap.MassStorage
         };
 
         private static string [] audio_folders = new string [] {
-            "Music/",
-            ".videos/"
+            "Music/"
         };
 
         private static string [] video_folders = new string [] {
-            "Video/",
-            ".videos/"
+            "Video/"
         };
 
         private static string [] icon_names = new string [] {
