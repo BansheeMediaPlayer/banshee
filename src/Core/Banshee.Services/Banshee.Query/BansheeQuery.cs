@@ -275,7 +275,7 @@ namespace Banshee.Query
 
         public static QueryField MimeTypeField = new QueryField (
             "mimetype", "MimeType",
-            Catalog.GetString ("Mime Type"), "CoreTracks.MimeType {0} OR CoreTracks.Uri {0}", typeof(ExactStringQueryValue),
+            Catalog.GetString ("Mime Type"), "CoreTracks.MimeType", typeof(ExactStringQueryValue),
             // Translators: These are unique search fields. You can use CSV for synonyms. Please, no spaces. Blank ok.
             Catalog.GetString ("type"), Catalog.GetString ("mimetype"), Catalog.GetString ("format"), Catalog.GetString ("ext"),
             "type", "mimetype", "format", "ext", "mime"
