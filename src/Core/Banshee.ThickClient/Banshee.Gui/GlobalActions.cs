@@ -249,22 +249,22 @@ namespace Banshee.Gui
 
         void IGlobalUIActions.ShowImportDialog ()
         {
-            OnImport (null, null);
+            Gtk.Application.Invoke (OnImport);
         }
 
         void IGlobalUIActions.ShowAboutDialog ()
         {
-            OnAbout (null, null);
+            Gtk.Application.Invoke (OnAbout);
         }
 
         void IGlobalUIActions.ShowOpenLocationDialog ()
         {
-            OnOpenLocation (null, null);
+            Gtk.Application.Invoke (OnOpenLocation);
         }
 
         void IGlobalUIActions.ShowPreferencesDialog ()
         {
-            OnPreferences (null, null);
+            Gtk.Application.Invoke (OnPreferences);
         }
 
         IDBusExportable IDBusExportable.Parent {

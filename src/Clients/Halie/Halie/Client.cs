@@ -82,8 +82,10 @@ namespace Halie
             command = DBusServiceManager.FindInstance<DBusCommandService> ("/DBusCommandService");
             hide_field = ApplicationContext.CommandLine.Contains ("hide-field");
 
-            bool present = HandlePlayerCommands () && !ApplicationContext.CommandLine.Contains ("indexer");
-            HandleGlobalUIActions ();
+            bool present =
+                HandlePlayerCommands () &&
+                HandleGlobalUIActions () &&
+                !ApplicationContext.CommandLine.Contains ("indexer");
             HandleWindowCommands (present);
             HandleFiles ();
         }
@@ -123,26 +125,32 @@ namespace Halie
             }
         }
 
-        private static void HandleGlobalUIActions ()
+        private static bool HandleGlobalUIActions ()
         {
             var global_ui_actions = DBusServiceManager.FindInstance<IGlobalUIActions> ("/GlobalUIActions");
+            var handled = false;
 
             if (ApplicationContext.CommandLine.Contains ("show-import-media")) {
                 global_ui_actions.ShowImportDialog ();
+                handled |= true;
             }
 
             if (ApplicationContext.CommandLine.Contains ("show-about")) {
                 global_ui_actions.ShowAboutDialog ();
+                handled |= true;
             }
 
             if (ApplicationContext.CommandLine.Contains ("show-preferences")) {
                 global_ui_actions.ShowPreferencesDialog ();
+                handled |= true;
             }
 
             if (ApplicationContext.CommandLine.Contains ("show-open-location")) {
                 global_ui_actions.ShowOpenLocationDialog ();
+                handled |= true;
             }
 
+            return !handled;
         }
 
         private static bool HandlePlayerCommands ()
