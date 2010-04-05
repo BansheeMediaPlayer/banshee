@@ -65,7 +65,9 @@ namespace Banshee.Gui.Dialogs
                 TransientFor = parent;
             }
 
-            WindowPosition = WindowPosition.CenterOnParent;
+            WindowPosition = TransientFor == null || !TransientFor.Visible
+                ? WindowPosition.Center
+                : WindowPosition.CenterOnParent;
             DestroyWithParent = true;
 
             accel_group = new AccelGroup ();
