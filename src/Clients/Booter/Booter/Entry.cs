@@ -197,7 +197,11 @@ namespace Booter
                 new LayoutGroup ("ui", Catalog.GetString ("User Interface Options"),
                     new LayoutOption ("show|--present", Catalog.GetString ("Present the user interface on the active workspace")),
                     new LayoutOption ("hide", Catalog.GetString ("Hide the user interface")),
-                    new LayoutOption ("no-present", Catalog.GetString ("Do not present the user interface, regardless of any other options"))
+                    new LayoutOption ("no-present", Catalog.GetString ("Do not present the user interface, regardless of any other options")),
+                    new LayoutOption ("show-import-media", Catalog.GetString ("Present the import media dialog box")),
+                    new LayoutOption ("show-about", Catalog.GetString ("Present the about dialog")),
+                    new LayoutOption ("show-open-location", Catalog.GetString ("Present the open location dialog")),
+                    new LayoutOption ("show-preferences", Catalog.GetString ("Present the preferences dialog"))
                 ),
 
                 new LayoutGroup ("debugging", Catalog.GetString ("Debugging and Development Options"),

@@ -43,7 +43,7 @@ namespace Halie
 {
     public static class Client
     {
-        // NOTE: Interface is copied from Banshee.ThickClient/Banshee.Gui
+        // NOTE: Interfaces are copied from Banshee.ThickClient/Banshee.Gui
         // since we don't want to link against any GUI assemblies for this
         // client. It's a simple interface
         [Interface ("org.bansheeproject.Banshee.ClientWindow")]
@@ -51,6 +51,15 @@ namespace Halie
         {
             void Present ();
             void Hide ();
+        }
+
+        [Interface ("org.bansheeproject.Banshee.GlobalUIActions")]
+        public interface IGlobalUIActions
+        {
+            void ShowImportDialog ();
+            void ShowAboutDialog ();
+            void ShowOpenLocationDialog ();
+            void ShowPreferencesDialog ();
         }
 
         private static bool hide_field;
@@ -74,6 +83,7 @@ namespace Halie
             hide_field = ApplicationContext.CommandLine.Contains ("hide-field");
 
             bool present = HandlePlayerCommands () && !ApplicationContext.CommandLine.Contains ("indexer");
+            HandleGlobalUIActions ();
             HandleWindowCommands (present);
             HandleFiles ();
         }
@@ -111,6 +121,28 @@ namespace Halie
                     command.PushFile (Path.GetFullPath (file));
                 }
             }
+        }
+
+        private static void HandleGlobalUIActions ()
+        {
+            var global_ui_actions = DBusServiceManager.FindInstance<IGlobalUIActions> ("/GlobalUIActions");
+
+            if (ApplicationContext.CommandLine.Contains ("show-import-media")) {
+                global_ui_actions.ShowImportDialog ();
+            }
+
+            if (ApplicationContext.CommandLine.Contains ("show-about")) {
+                global_ui_actions.ShowAboutDialog ();
+            }
+
+            if (ApplicationContext.CommandLine.Contains ("show-preferences")) {
+                global_ui_actions.ShowPreferencesDialog ();
+            }
+
+            if (ApplicationContext.CommandLine.Contains ("show-open-location")) {
+                global_ui_actions.ShowOpenLocationDialog ();
+            }
+
         }
 
         private static bool HandlePlayerCommands ()

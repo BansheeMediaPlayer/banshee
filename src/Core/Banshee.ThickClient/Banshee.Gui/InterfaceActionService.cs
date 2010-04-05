@@ -71,6 +71,8 @@ namespace Banshee.Gui
             UIManager.AddUiFromResource ("core-ui-actions-layout.xml");
 
             AddinManager.AddExtensionNodeHandler ("/Banshee/ThickClient/ActionGroup", OnExtensionChanged);
+
+            ServiceManager.DBusServiceManager.RegisterObject (global_actions);
         }
 
         private void OnActiveSourceChanged (SourceEventArgs args)

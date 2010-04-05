@@ -40,7 +40,7 @@ using Banshee.Playlist;
 
 namespace Banshee.Gui
 {
-    public class GlobalActions : BansheeActionGroup
+    public class GlobalActions : BansheeActionGroup, IGlobalUIActions
     {
         public GlobalActions () : base ("Global")
         {
@@ -126,6 +126,26 @@ namespace Banshee.Gui
             });
 
             this["ExtensionsAction"].Visible = false;
+
+            GLib.Timeout.Add (500, delegate {
+                if (ApplicationContext.CommandLine.Contains ("show-import-media")) {
+                    OnImport (null, null);
+                }
+
+                if (ApplicationContext.CommandLine.Contains ("show-about")) {
+                    OnAbout (null, null);
+                }
+
+                if (ApplicationContext.CommandLine.Contains ("show-open-location")) {
+                    OnOpenLocation (null, null);
+                }
+
+                if (ApplicationContext.CommandLine.Contains ("show-preferences")) {
+                    OnPreferences (null, null);
+                }
+
+                return false;
+            });
         }
 
 #region Media Menu Actions
@@ -221,6 +241,38 @@ namespace Banshee.Gui
         {
             Banshee.Gui.Dialogs.AboutDialog dialog = new Banshee.Gui.Dialogs.AboutDialog ();
             dialog.Show ();
+        }
+
+#endregion
+
+#region IGlobalUIActions
+
+        void IGlobalUIActions.ShowImportDialog ()
+        {
+            OnImport (null, null);
+        }
+
+        void IGlobalUIActions.ShowAboutDialog ()
+        {
+            OnAbout (null, null);
+        }
+
+        void IGlobalUIActions.ShowOpenLocationDialog ()
+        {
+            OnOpenLocation (null, null);
+        }
+
+        void IGlobalUIActions.ShowPreferencesDialog ()
+        {
+            OnPreferences (null, null);
+        }
+
+        IDBusExportable IDBusExportable.Parent {
+            get { return null; }
+        }
+
+        string IService.ServiceName {
+            get { return "GlobalUIActions"; }
         }
 
 #endregion
