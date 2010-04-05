@@ -55,6 +55,14 @@ namespace Banshee.MeeGo
             BorderWidth = 12;
             Spacing = 12;
 
+            var header_label = new Label {
+                Markup = String.Format ("<span font_desc=\"Droid Bold\" size=\"22000\" foreground=\"#606eff\">{0}</span>",
+                    GLib.Markup.EscapeText (Catalog.GetString ("Media"))),
+                Xalign = 0.0f
+            };
+
+            PackStart (header_label, false, false, 0);
+
             header_box = new HBox () {
                 Spacing = 5,
                 BorderWidth = 5
