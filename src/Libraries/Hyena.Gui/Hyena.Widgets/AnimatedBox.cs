@@ -67,6 +67,10 @@ namespace Hyena.Widgets
             border_stage.Iteration += OnBorderIteration;
         }
 
+        protected AnimatedBox (IntPtr raw) : base (raw)
+        {
+        }
+
 #region Private
 
         private double Percent {

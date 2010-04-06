@@ -37,5 +37,9 @@ namespace Hyena.Widgets
         public AnimatedHBox () : base (true)
         {
         }
+
+        protected AnimatedHBox (IntPtr raw) : base (raw)
+        {
+        }
     }
 }

@@ -37,5 +37,9 @@ namespace Hyena.Widgets
         public AnimatedVBox () : base (false)
         {
         }
+
+        protected AnimatedVBox (IntPtr raw) : base (raw)
+        {
+        }
     }
 }
