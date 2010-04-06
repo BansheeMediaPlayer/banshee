@@ -33,6 +33,14 @@ namespace Hyena.Data.Gui
 {
     public class ListViewBase : Widget
     {
+        protected ListViewBase (IntPtr ptr) : base (ptr)
+        {
+        }
+
+        public ListViewBase ()
+        {
+        }
+
         public void QueueDirtyRegion (Gdk.Rectangle region)
         {
             region.Intersect (Allocation);

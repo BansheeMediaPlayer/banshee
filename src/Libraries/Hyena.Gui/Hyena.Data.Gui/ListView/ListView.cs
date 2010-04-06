@@ -32,6 +32,10 @@ namespace Hyena.Data.Gui
 {
     public partial class ListView<T> : ListViewBase, IListView<T>
     {
+        protected ListView (IntPtr ptr) : base (ptr)
+        {
+        }
+
         public ListView ()
         {
             column_layout = new Pango.Layout (PangoContext);
