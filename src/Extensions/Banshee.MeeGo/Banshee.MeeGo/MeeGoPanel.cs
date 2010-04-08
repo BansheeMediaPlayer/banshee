@@ -51,13 +51,6 @@ namespace Banshee.MeeGo
             }
 
             Instance = this;
-
-            if (!ApplicationContext.CommandLine.Contains ("mutter-panel")) {
-                Log.Debug ("MeeGo extension enabled, but --mutter-panel not " +
-                    "passed to command line; disabling panel integration.");
-                return;
-            }
-
             Enabled = true;
 
             var timer = Log.DebugTimerStart ();
