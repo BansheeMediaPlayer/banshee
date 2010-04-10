@@ -109,9 +109,6 @@ namespace Banshee.MeeGo
                 elements_service.PrimaryWindow.Maximize ();
             }
 
-            // Set the internal engine volume to 100%
-            ServiceManager.PlayerEngine.Volume = 100;
-
             if (panel == null) {
                 Log.Warning ("MeeGo extension initialized without a panel");
                 return;
