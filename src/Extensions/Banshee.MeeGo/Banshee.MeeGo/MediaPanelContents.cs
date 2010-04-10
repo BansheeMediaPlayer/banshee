@@ -111,7 +111,7 @@ namespace Banshee.MeeGo
                 },
                 0, 2, 0, 1,
                 AttachOptions.Fill | AttachOptions.Expand,
-                AttachOptions.Shrink, 10, 0);
+                AttachOptions.Shrink, 12, 0);
         }
 
         private void BuildLibrary ()
@@ -141,7 +141,7 @@ namespace Banshee.MeeGo
             box.PackStartHighlighted (header, false, false, 0, MeeGoHeaderBox.HighlightFlags.Background);
 
             // Build the Library Views
-            var views = new HBox () { Spacing = 10 };
+            var views = new HBox () { Spacing = 5 };
             views.PackStart (SetupView (artist_view = new ArtistListView () {
                     Name = "meego-panel-artists",
                     WidthRequest = 150,

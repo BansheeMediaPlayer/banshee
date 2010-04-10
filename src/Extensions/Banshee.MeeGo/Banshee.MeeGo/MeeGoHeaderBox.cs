@@ -58,6 +58,8 @@ namespace Banshee.MeeGo
         {
             BorderWidth = 5;
             Spacing = 5;
+            RedrawOnAllocate = true;
+            AppPaintable = true;
 
             header = new Alignment (0.0f, 0.5f, 1.0f, 1.0f) {
                 LeftPadding = 10,
