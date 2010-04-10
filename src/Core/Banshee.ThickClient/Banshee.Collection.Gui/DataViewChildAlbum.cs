@@ -154,7 +154,8 @@ namespace Banshee.Collection.Gui
                 grad.AddColorStop (0, new Color (0, 0, 0, 0.65 * a));
                 grad.AddColorStop (1, new Color (0, 0, 0, 0.15 * a));
                 cr.Pattern = grad;
-                cr.Rectangle ((Cairo.Rectangle)image_allocation);
+                CairoExtensions.RoundedRectangle (cr, image_allocation.X, image_allocation.Y,
+                    image_allocation.Width, image_allocation.Height, context.Theme.Context.Radius);
                 cr.Fill ();
                 grad.Destroy ();
 
