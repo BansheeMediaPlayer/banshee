@@ -37,6 +37,10 @@ namespace Banshee.MeeGo
 {
     public class SearchEntry : Banshee.Widgets.SearchEntry
     {
+        protected SearchEntry (IntPtr raw) : base (raw)
+        {
+        }
+
         public SearchEntry ()
         {
             BuildSearchEntry ();

@@ -34,19 +34,25 @@ using Banshee.ServiceStack;
 
 namespace Banshee.MeeGo
 {
-    public class PlaybackBox : HBox
+    public class PlaybackBox : Alignment
     {
-        public PlaybackBox ()
+        protected PlaybackBox (IntPtr raw) : base (raw)
         {
+        }
+
+        public PlaybackBox () : base (0.5f, 0.5f, 0.0f, 0.0f)
+        {
+            var box = new HBox ();
             var action_service = ServiceManager.Get<InterfaceActionService> ();
 
-            PackStart (action_service.PlaybackActions["PreviousAction"].CreateToolItem (), false, false, 0);
-            PackStart (action_service.PlaybackActions["PlayPauseAction"].CreateToolItem (), false, false, 0);
-            PackStart (new NextButton (action_service, true), false, false, 0);
+            TopPadding = 6;
 
-            var seek_slider = new ConnectedSeekSlider ();
-            seek_slider.Show ();
-            PackStart (seek_slider, false, false, 0);
+            box.PackStart (action_service.PlaybackActions["PreviousAction"].CreateToolItem (), false, false, 0);
+            box.PackStart (action_service.PlaybackActions["PlayPauseAction"].CreateToolItem (), false, false, 0);
+            box.PackStart (new NextButton (action_service), false, false, 0);
+            box.PackStart (new RepeatActionButton (true), false, false, 0);
+
+            Add (box);
         }
     }
 }

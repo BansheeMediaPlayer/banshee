@@ -37,6 +37,10 @@ namespace Banshee.MeeGo
     {
         private Regex line_three_split;
 
+        protected MeeGoTrackInfoDisplay (IntPtr raw) : base (raw)
+        {
+        }
+
         public MeeGoTrackInfoDisplay () : base ()
         {
         }

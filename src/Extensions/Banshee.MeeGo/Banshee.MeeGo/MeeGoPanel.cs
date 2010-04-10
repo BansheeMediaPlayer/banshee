@@ -31,6 +31,7 @@ using MeeGo.Panel;
 
 using Hyena;
 using Banshee.Base;
+using Banshee.ServiceStack;
 
 namespace Banshee.MeeGo
 {
@@ -53,13 +54,17 @@ namespace Banshee.MeeGo
             Instance = this;
             Enabled = true;
 
+            Hyena.Gui.Theming.ThemeEngine.SetCurrentTheme<MeeGoTheme> ();
+
             var timer = Log.DebugTimerStart ();
 
             try {
                 Log.Debug ("Attempting to create MeeGo toolbar panel");
                 embedded_panel = new PanelGtk ("banshee", "media", null, "media-button", true);
-                while (Application.EventsPending ()) {
-                    Application.RunIteration ();
+                embedded_panel.ShowBeginEvent += (o, e) =>
+                    ServiceManager.SourceManager.SetActiveSource (ServiceManager.SourceManager.MusicLibrary);
+                while (Gtk.Application.EventsPending ()) {
+                    Gtk.Application.RunIteration ();
                 }
             } catch (Exception e) {
                 if (!(e is DllNotFoundException)) {
