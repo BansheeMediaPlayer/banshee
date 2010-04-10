@@ -52,12 +52,15 @@ namespace Hyena.Gui.Theming
             get { return colors; }
         }
 
+        public Widget Widget { get; private set; }
+
         public Theme (Widget widget) : this (widget, new GtkColors ())
         {
         }
 
         public Theme (Widget widget, GtkColors colors)
         {
+            this.Widget = widget;
             this.colors = colors;
             this.colors.Refreshed += delegate { OnColorsRefreshed (); };
             this.colors.Widget = widget;
@@ -212,26 +215,26 @@ namespace Hyena.Gui.Theming
 
 #region Contexts
 
-        public void PushContext ()
+        public virtual void PushContext ()
         {
             PushContext (new ThemeContext ());
         }
 
-        public void PushContext (ThemeContext context)
+        public virtual void PushContext (ThemeContext context)
         {
             lock (this) {
                 contexts.Push (context);
             }
         }
 
-        public ThemeContext PopContext ()
+        public virtual ThemeContext PopContext ()
         {
             lock (this) {
                 return contexts.Pop ();
             }
         }
 
-        public ThemeContext Context {
+        public virtual ThemeContext Context {
             get { lock (this) { return contexts.Peek (); } }
         }
 
