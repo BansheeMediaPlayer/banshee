@@ -78,19 +78,20 @@ namespace Banshee.Dap.MassStorage
         };
 
         private static string [] audio_folders = new string [] {
-            ".sounds/",
-            ".videos/",
-            "Music/"
+            "Music/",
+            ".videos/"
         };
 
         private static string [] video_folders = new string [] {
-            ".videos/",
-            "Video/"
+            "Video/",
+            ".videos/"
         };
 
         private static string [] icon_names = new string [] {
             "phone-nokia-n900", DapSource.FallbackIcon
         };
+
+        private static string playlists_path = "Playlists/";
 
 
         public override void SourceInitialize ()
@@ -137,6 +138,10 @@ namespace Banshee.Dap.MassStorage
 
         protected override string [] DefaultPlaylistFormats {
             get { return playlist_formats; }
+        }
+
+        protected override string DefaultPlaylistPath {
+            get { return playlists_path; }
         }
 
         public override string [] GetIconNames ()
