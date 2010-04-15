@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: HEAD\n"
 "Report-Msgid-Bugs-To: "
 "http://bugzilla.gnome.org/enter_bug.cgi?product=banshee&component=general\n"
-"POT-Creation-Date: 2010-03-23 02:32+0000\n"
-"PO-Revision-Date: 2010-03-30 19:25+0300\n"
+"POT-Creation-Date: 2010-04-14 02:29+0000\n"
+"PO-Revision-Date: 2010-04-15 13:05+0300\n"
 "Last-Translator: Žygimantas Beručka <zygis@gnome.org>\n"
 "Language-Team: Lithuanian <gnome-lt@lists.akl.lt>\n"
 "Language: lt\n"
@@ -283,12 +283,10 @@ msgstr "Automatiškai atnaujina fonoteką ir videoteką"
 
 #. ../src/Extensions/Banshee.MeeGo/Banshee.MeeGo.addin.xml
 #: ../data/addin-xml-strings.cs:127
-#| msgid "Device Support"
 msgid "MeeGo Support"
 msgstr "MeeGo palaikymas"
 
 #: ../data/addin-xml-strings.cs:128
-#| msgid "Provides Moblin integration, including a custom media panel."
 msgid "Provides MeeGo integration, including a custom media panel."
 msgstr "Integruoja MeeGo, įskaitant pasirinktinį medijos skydelį."
 
@@ -325,6 +323,7 @@ msgstr "Pranešimų srityje rodyti piktogramą Banshee valdymui."
 
 #. ../src/Extensions/Banshee.NowPlaying/Banshee.NowPlaying.addin.xml
 #: ../data/addin-xml-strings.cs:146
+#: ../src/Extensions/Banshee.MeeGo/Banshee.MeeGo/MediaPanelContents.cs:164
 #: ../src/Extensions/Banshee.NowPlaying/Banshee.NowPlaying/NowPlayingSource.cs:50
 msgid "Now Playing"
 msgstr "Dabar leidžiama"
@@ -458,7 +457,6 @@ msgid "Bitrate"
 msgstr "Bitų dažnis"
 
 #: ../data/audio-profiles/aac-novell.xml.in.h:4
-#| msgid "Continue"
 msgid "Container"
 msgstr "Konteineris"
 
@@ -487,12 +485,10 @@ msgid "MPEG-4 QuickTime"
 msgstr "MPEG-4 QuickTime"
 
 #: ../data/audio-profiles/aac-novell.xml.in.h:10
-#| msgid "Format"
 msgid "Output Format"
 msgstr "Išvesties formatas"
 
 #: ../data/audio-profiles/aac-novell.xml.in.h:11
-#| msgid "file"
 msgid "Profile"
 msgstr "Profilis"
 
@@ -814,7 +810,7 @@ msgid "Could not create BPM detection driver."
 msgstr "Nepavyko sukurti BPM aptikimo tvarkyklės."
 
 #: ../src/Backends/Banshee.GStreamer/Banshee.GStreamer/PlayerEngine.cs:71
-#: ../src/Backends/Banshee.GStreamer/Banshee.GStreamer/PlayerEngine.cs:707
+#: ../src/Backends/Banshee.GStreamer/Banshee.GStreamer/PlayerEngine.cs:710
 msgid "Enable _gapless playback"
 msgstr "Įjungti _betarpę perklausą"
 
@@ -831,15 +827,15 @@ msgstr ""
 msgid "Could not initialize GStreamer library"
 msgstr "Nepavyko inicijuoti GStreamer bibliotekos"
 
-#: ../src/Backends/Banshee.GStreamer/Banshee.GStreamer/PlayerEngine.cs:388
+#: ../src/Backends/Banshee.GStreamer/Banshee.GStreamer/PlayerEngine.cs:391
 msgid "Unknown Error"
 msgstr "Nežinoma klaida"
 
-#: ../src/Backends/Banshee.GStreamer/Banshee.GStreamer/PlayerEngine.cs:701
+#: ../src/Backends/Banshee.GStreamer/Banshee.GStreamer/PlayerEngine.cs:704
 msgid "_Enable ReplayGain correction"
 msgstr "Į_jungti ReplayGain korekciją"
 
-#: ../src/Backends/Banshee.GStreamer/Banshee.GStreamer/PlayerEngine.cs:702
+#: ../src/Backends/Banshee.GStreamer/Banshee.GStreamer/PlayerEngine.cs:705
 msgid ""
 "For tracks that have ReplayGain data, automatically scale (normalize) "
 "playback volume"
@@ -847,10 +843,7 @@ msgstr ""
 "Automatiškai normalizuoti takelių, kuriuose yra ReplayGain duomenų, "
 "perklausos garsumą."
 
-#: ../src/Backends/Banshee.GStreamer/Banshee.GStreamer/PlayerEngine.cs:708
-#| msgid ""
-#| "Eliminate the small playback gap on track change.  Useful for concept "
-#| "albums and classical music"
+#: ../src/Backends/Banshee.GStreamer/Banshee.GStreamer/PlayerEngine.cs:711
 msgid ""
 "Eliminate the small playback gap on track change.  Useful for concept albums "
 "and classical music."
@@ -960,7 +953,6 @@ msgstr ""
 "būti „true“ arba „false“)"
 
 #: ../src/Clients/Booter/Booter/Entry.cs:168
-#| msgid "Set the playback volume (0-100)"
 msgid "Set the playback volume (0-100), prefix with +/- for relative values"
 msgstr ""
 "Nustatyti grojimo garsumą (0-100), norėdami nurodyti santykines reikšmes, "
@@ -1012,19 +1004,19 @@ msgstr "URI"
 
 #: ../src/Clients/Booter/Booter/Entry.cs:184
 #: ../src/Clients/Nereid/Nereid/ViewContainer.cs:148
-#: ../src/Extensions/Banshee.MeeGo/Banshee.MeeGo/SearchEntry.cs:85
+#: ../src/Extensions/Banshee.MeeGo/Banshee.MeeGo/SearchEntry.cs:89
 msgid "Artist Name"
 msgstr "Atlikėjas"
 
 #: ../src/Clients/Booter/Booter/Entry.cs:185
 #: ../src/Clients/Nereid/Nereid/ViewContainer.cs:149
-#: ../src/Extensions/Banshee.MeeGo/Banshee.MeeGo/SearchEntry.cs:86
+#: ../src/Extensions/Banshee.MeeGo/Banshee.MeeGo/SearchEntry.cs:90
 msgid "Album Title"
 msgstr "Albumo pavadinimas"
 
 #: ../src/Clients/Booter/Booter/Entry.cs:186
 #: ../src/Clients/Nereid/Nereid/ViewContainer.cs:147
-#: ../src/Extensions/Banshee.MeeGo/Banshee.MeeGo/SearchEntry.cs:84
+#: ../src/Extensions/Banshee.MeeGo/Banshee.MeeGo/SearchEntry.cs:88
 msgid "Track Title"
 msgstr "Takelio pavadinimas"
 
@@ -1057,7 +1049,7 @@ msgstr "Disko numeris"
 #: ../src/Extensions/Banshee.Audiobook/Banshee.Audiobook/AudiobookFileNamePattern.cs:77
 #: ../src/Extensions/Banshee.InternetArchive/Banshee.InternetArchive/SearchView.cs:132
 #: ../src/Extensions/Banshee.InternetArchive/InternetArchive/Field.cs:77
-#: ../src/Extensions/Banshee.MeeGo/Banshee.MeeGo/SearchEntry.cs:88
+#: ../src/Extensions/Banshee.MeeGo/Banshee.MeeGo/SearchEntry.cs:92
 msgid "Year"
 msgstr "Metai"
 
@@ -1096,31 +1088,47 @@ msgstr "Paslėpti naudotojo sąsają"
 msgid "Do not present the user interface, regardless of any other options"
 msgstr "Nerodyti naudotojo sąsajos, nepaisant bet kokių kitų parinkčių"
 
+#: ../src/Clients/Booter/Booter/Entry.cs:201
+msgid "Present the import media dialog box"
+msgstr "Rodyti medijos importavimo dialogą"
+
+#: ../src/Clients/Booter/Booter/Entry.cs:202
+msgid "Present the about dialog"
+msgstr "Rodyti „Apie“ dialogą"
+
 #: ../src/Clients/Booter/Booter/Entry.cs:203
+msgid "Present the open location dialog"
+msgstr "Rodyti vietos atvėrimo dialogą"
+
+#: ../src/Clients/Booter/Booter/Entry.cs:204
+msgid "Present the preferences dialog"
+msgstr "Rodyti nustatymų dialogą"
+
+#: ../src/Clients/Booter/Booter/Entry.cs:207
 msgid "Debugging and Development Options"
 msgstr "Derinimo ir programavimo parinktys"
 
-#: ../src/Clients/Booter/Booter/Entry.cs:204
+#: ../src/Clients/Booter/Booter/Entry.cs:208
 msgid "Enable general debugging features"
 msgstr "Įjungti bendrąsias derinimo funkcijas"
 
-#: ../src/Clients/Booter/Booter/Entry.cs:205
+#: ../src/Clients/Booter/Booter/Entry.cs:209
 msgid "Enable debugging output of SQL queries"
 msgstr "Įjungti SQL užklausų derinimo išvestį"
 
-#: ../src/Clients/Booter/Booter/Entry.cs:206
+#: ../src/Clients/Booter/Booter/Entry.cs:210
 msgid "Enable debugging output of Mono.Addins"
 msgstr "Įjungti Mono.Addins derinimo išvestį"
 
-#: ../src/Clients/Booter/Booter/Entry.cs:207
+#: ../src/Clients/Booter/Booter/Entry.cs:211
 msgid "Specify an alternate database to use"
 msgstr "Nurodytkite alternatyvią naudotiną duomenų bazę"
 
-#: ../src/Clients/Booter/Booter/Entry.cs:208
+#: ../src/Clients/Booter/Booter/Entry.cs:212
 msgid "Specify an alternate key, default is /apps/banshee-1/"
 msgstr "Nurodytkite alternatyvų raktą, numatytasis – /apps/banshee-1/"
 
-#: ../src/Clients/Booter/Booter/Entry.cs:209
+#: ../src/Clients/Booter/Booter/Entry.cs:213
 msgid ""
 "Optimize instance for running uninstalled; most notably, this will create an "
 "alternate Mono.Addins database in the working directory"
@@ -1128,16 +1136,16 @@ msgstr ""
 "Optimizuoti naudojimui neįdiegus. Pastebimiausias skirtumas yra tai, kad "
 "darbiniame aplanke bus sukurta alternatyvi Mono.Addins duomenų bazė"
 
-#: ../src/Clients/Booter/Booter/Entry.cs:211
+#: ../src/Clients/Booter/Booter/Entry.cs:215
 msgid "Disable DBus support completely"
 msgstr "Visiškai išjungti DBus palaikymą"
 
-#: ../src/Clients/Booter/Booter/Entry.cs:213
+#: ../src/Clients/Booter/Booter/Entry.cs:217
 #, csharp-format
 msgid "Skip loading a custom gtkrc file ({0}) if it exists"
 msgstr "Neįkelti pasirinktinio gtkrc failo ({0}), jei šis egzistuoja"
 
-#: ../src/Clients/Booter/Booter/Entry.cs:244
+#: ../src/Clients/Booter/Booter/Entry.cs:248
 #, csharp-format
 msgid "The following help arguments are invalid: {0}"
 msgstr "Šie žinyno parametrai yra netinkami: {0}"
@@ -1182,7 +1190,7 @@ msgid "Play Song"
 msgstr "Leisti dainą"
 
 #: ../src/Clients/Nereid/Nereid/ViewContainer.cs:146
-#: ../src/Extensions/Banshee.MeeGo/Banshee.MeeGo/SearchEntry.cs:83
+#: ../src/Extensions/Banshee.MeeGo/Banshee.MeeGo/SearchEntry.cs:87
 msgid "Artist, Album, or Title"
 msgstr "Atlikėjas, albumas ar pavadinimas"
 
@@ -1190,7 +1198,7 @@ msgstr "Atlikėjas, albumas ar pavadinimas"
 #: ../src/Core/Banshee.Services/Banshee.Library/MusicFileNamePattern.cs:98
 #: ../src/Core/Banshee.Services/Banshee.Query/BansheeQuery.cs:185
 #: ../src/Core/Banshee.Services/Banshee.Query/BansheeQuery.cs:364
-#: ../src/Extensions/Banshee.MeeGo/Banshee.MeeGo/SearchEntry.cs:87
+#: ../src/Extensions/Banshee.MeeGo/Banshee.MeeGo/SearchEntry.cs:91
 msgid "Genre"
 msgstr "Žanras"
 
@@ -1423,71 +1431,71 @@ msgstr ""
 msgid "Refreshing Metadata"
 msgstr "Atnaujinami metaduomenys"
 
-#: ../src/Core/Banshee.Services/Banshee.Equalizer/EqualizerManager.cs:257
+#: ../src/Core/Banshee.Services/Banshee.Equalizer/EqualizerManager.cs:252
 msgid "Classical"
 msgstr "Klasika"
 
-#: ../src/Core/Banshee.Services/Banshee.Equalizer/EqualizerManager.cs:260
+#: ../src/Core/Banshee.Services/Banshee.Equalizer/EqualizerManager.cs:255
 msgid "Club"
 msgstr "Klubinė"
 
-#: ../src/Core/Banshee.Services/Banshee.Equalizer/EqualizerManager.cs:263
+#: ../src/Core/Banshee.Services/Banshee.Equalizer/EqualizerManager.cs:258
 msgid "Dance"
 msgstr "Šokių"
 
-#: ../src/Core/Banshee.Services/Banshee.Equalizer/EqualizerManager.cs:266
+#: ../src/Core/Banshee.Services/Banshee.Equalizer/EqualizerManager.cs:261
 msgid "Full Bass"
 msgstr "Visi žemi tonai"
 
-#: ../src/Core/Banshee.Services/Banshee.Equalizer/EqualizerManager.cs:269
+#: ../src/Core/Banshee.Services/Banshee.Equalizer/EqualizerManager.cs:264
 msgid "Full Bass and Treble"
 msgstr "Visi žemi ir aukšti tonai"
 
-#: ../src/Core/Banshee.Services/Banshee.Equalizer/EqualizerManager.cs:272
+#: ../src/Core/Banshee.Services/Banshee.Equalizer/EqualizerManager.cs:267
 msgid "Full Treble"
 msgstr "Visi aukšti tonai"
 
-#: ../src/Core/Banshee.Services/Banshee.Equalizer/EqualizerManager.cs:275
+#: ../src/Core/Banshee.Services/Banshee.Equalizer/EqualizerManager.cs:270
 msgid "Laptop Speakers and Headphones"
 msgstr "Nešiojamojo kompiuterio kolonėlės ir ausinės"
 
-#: ../src/Core/Banshee.Services/Banshee.Equalizer/EqualizerManager.cs:278
+#: ../src/Core/Banshee.Services/Banshee.Equalizer/EqualizerManager.cs:273
 msgid "Large Hall"
 msgstr "Didelė salė"
 
-#: ../src/Core/Banshee.Services/Banshee.Equalizer/EqualizerManager.cs:281
+#: ../src/Core/Banshee.Services/Banshee.Equalizer/EqualizerManager.cs:276
 msgid "Live"
 msgstr "Gyvai"
 
-#: ../src/Core/Banshee.Services/Banshee.Equalizer/EqualizerManager.cs:284
+#: ../src/Core/Banshee.Services/Banshee.Equalizer/EqualizerManager.cs:279
 msgid "Party"
 msgstr "Vakarėlis"
 
-#: ../src/Core/Banshee.Services/Banshee.Equalizer/EqualizerManager.cs:287
+#: ../src/Core/Banshee.Services/Banshee.Equalizer/EqualizerManager.cs:282
 msgid "Pop"
 msgstr "Pop"
 
-#: ../src/Core/Banshee.Services/Banshee.Equalizer/EqualizerManager.cs:290
+#: ../src/Core/Banshee.Services/Banshee.Equalizer/EqualizerManager.cs:285
 msgid "Reggae"
 msgstr "Regis"
 
-#: ../src/Core/Banshee.Services/Banshee.Equalizer/EqualizerManager.cs:293
+#: ../src/Core/Banshee.Services/Banshee.Equalizer/EqualizerManager.cs:288
 msgid "Rock"
 msgstr "Rokas"
 
-#: ../src/Core/Banshee.Services/Banshee.Equalizer/EqualizerManager.cs:296
+#: ../src/Core/Banshee.Services/Banshee.Equalizer/EqualizerManager.cs:291
 msgid "Ska"
 msgstr "Ska"
 
-#: ../src/Core/Banshee.Services/Banshee.Equalizer/EqualizerManager.cs:299
+#: ../src/Core/Banshee.Services/Banshee.Equalizer/EqualizerManager.cs:294
 msgid "Soft"
 msgstr "Rami"
 
-#: ../src/Core/Banshee.Services/Banshee.Equalizer/EqualizerManager.cs:302
+#: ../src/Core/Banshee.Services/Banshee.Equalizer/EqualizerManager.cs:297
 msgid "Soft Rock"
 msgstr "Ramus rokas"
 
-#: ../src/Core/Banshee.Services/Banshee.Equalizer/EqualizerManager.cs:305
+#: ../src/Core/Banshee.Services/Banshee.Equalizer/EqualizerManager.cs:300
 msgid "Techno"
 msgstr "Techno"
 
@@ -2013,13 +2021,11 @@ msgstr "kps"
 
 #. Translators: noun
 #: ../src/Core/Banshee.Services/Banshee.Query/BansheeQuery.cs:152
-#| msgid "Audio Sample Rate:"
 msgid "Sample Rate"
 msgstr "Garso elemento dažnis"
 
 #. Translators: These are unique search fields. You can use CSV for synonyms. Please, no spaces. Blank ok.
 #: ../src/Core/Banshee.Services/Banshee.Query/BansheeQuery.cs:154
-#| msgid "Sample"
 msgid "samplerate"
 msgstr "garsoelementodažnis"
 
@@ -2034,7 +2040,6 @@ msgstr "Bitų garso elemente"
 
 #. Translators: These are unique search fields. You can use CSV for synonyms. Please, no spaces. Blank ok.
 #: ../src/Core/Banshee.Services/Banshee.Query/BansheeQuery.cs:163
-#| msgid "bitrate"
 msgid "bitspersample"
 msgstr "bitųgarsoelemente"
 
@@ -2043,7 +2048,6 @@ msgid "bitdepth"
 msgstr "bitųgylis"
 
 #: ../src/Core/Banshee.Services/Banshee.Query/BansheeQuery.cs:163
-#| msgid "Station"
 msgid "quantization"
 msgstr "kvantizacija"
 
@@ -2433,7 +2437,7 @@ msgstr "drm"
 #. Translators: These are unique strings for playback errors. Please, no spaces. Blank ok.
 #: ../src/Core/Banshee.Services/Banshee.Query/PlaybackErrorQueryValue.cs:64
 #: ../src/Core/Banshee.Services/Banshee.Query/PlaybackErrorQueryValue.cs:66
-#: ../src/Core/Banshee.Services/Banshee.ServiceStack/Application.cs:311
+#: ../src/Core/Banshee.Services/Banshee.ServiceStack/Application.cs:327
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui.TrackEditor/StatisticsPage.cs:208
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui.TrackEditor/StatisticsPage.cs:210
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui.TrackEditor/StatisticsPage.cs:212
@@ -2690,15 +2694,11 @@ msgstr "{0} kbps"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Collection.Gui/DefaultColumnController.cs:138
 #, csharp-format
-#| msgid "{0} day"
-#| msgid_plural "{0} days"
 msgid "{0} Hz"
 msgstr "{0} Hz"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Collection.Gui/DefaultColumnController.cs:141
 #, csharp-format
-#| msgid "{0} item"
-#| msgid_plural "{0} items"
 msgid "{0} bits"
 msgstr "{0} bitai (-ų)"
 
@@ -2773,12 +2773,10 @@ msgstr ""
 "užduotys. Jų negalima automatiškai pratęsti kitą kartą paleidus Banshee."
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui.Dialogs/ConfirmShutdownDialog.cs:60
-#| msgid "Quit anyway"
 msgid "Quit Anyway"
 msgstr "Vistiek išeiti"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui.Dialogs/ConfirmShutdownDialog.cs:61
-#| msgid "Continue running"
 msgid "Continue Running"
 msgstr "Naudotis toliau"
 
@@ -2960,11 +2958,11 @@ msgid "View detailed version and configuration information"
 msgstr "Žiūrėti išsamią versijos ir konfigūracijos informaciją"
 
 #. Prompt user for location of the playlist.
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui/GlobalActions.cs:160
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/GlobalActions.cs:180
 msgid "Import Playlist"
 msgstr "Importuoti grojaraštį"
 
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui/GlobalActions.cs:161
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/GlobalActions.cs:181
 #: ../src/Extensions/Banshee.PlayerMigration/Banshee.PlayerMigration/ItunesPlayerImportSource.cs:559
 msgid "Playlists"
 msgstr "Grojaraščiai"
@@ -3227,7 +3225,7 @@ msgstr "Negrįžtamai ištrinti pasirinktą (-us) elementą (-us) iš laikmenos"
 #. Translators: this is a verb (command), not a noun (things)
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:114
 #: ../src/Extensions/Banshee.InternetArchive/Banshee.InternetArchive/HeaderFilters.cs:169
-#: ../src/Extensions/Banshee.MeeGo/Banshee.MeeGo/SearchEntry.cs:108
+#: ../src/Extensions/Banshee.MeeGo/Banshee.MeeGo/SearchEntry.cs:112
 #, csharp-format
 msgid "_Search"
 msgstr "_Ieškoti"
@@ -3258,7 +3256,6 @@ msgid "_Delete From \"{0}\""
 msgstr "_Ištrinti iš „{0}“"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:437
-#| msgid "The preferences service could not be found."
 msgid "The folder could not be found."
 msgstr "Nepavyko rasti aplanko."
 
@@ -3295,7 +3292,6 @@ msgstr[1] "Ar tikrai norite iš {1} pašalinti {0} pasirinktus elementus?"
 msgstr[2] "Ar tikrai norite iš {1} pašalinti {0} pasirinktų elementų?"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:543
-#| msgid "_Edit Track Information"
 msgid "View Track Information"
 msgstr "Peržiūrėti takelio informaciją"
 
@@ -4068,12 +4064,10 @@ msgstr[1] "Sinchronizuojant bus pašalinti {0} takeliai iš jūsų įrenginio."
 msgstr[2] "Sinchronizuojant bus pašalinta {0} takelių iš jūsų įrenginio."
 
 #: ../src/Dap/Banshee.Dap/Banshee.Dap/DapSync.cs:368
-#| msgid "Are you sure you want to delete this {0}?"
 msgid "Are you sure you want to continue?"
 msgstr "Ar tikrai norite tęsti?"
 
 #: ../src/Dap/Banshee.Dap/Banshee.Dap/DapSync.cs:376
-#| msgid "Love Track"
 msgid "Remove tracks"
 msgstr "Pašalinti takelius"
 
@@ -4357,7 +4351,7 @@ msgstr "Reikalingas aplankų gylis"
 msgid "Supports Playlists"
 msgstr "Palaiko grojaraščius"
 
-#: ../src/Dap/Banshee.Dap.MassStorage/Banshee.Dap.MassStorage/WebOSDevice.cs:188
+#: ../src/Dap/Banshee.Dap.MassStorage/Banshee.Dap.MassStorage/WebOSDevice.cs:189
 msgid "Ringtones"
 msgstr "Skambėjimo tonai"
 
@@ -5819,8 +5813,17 @@ msgstr "{0}% panašumas"
 msgid "Unknown Similarity"
 msgstr "Nežinomas panašumas"
 
-#: ../src/Extensions/Banshee.MeeGo/Banshee.MeeGo/MediaPanelContents.cs:72
-#| msgid "Banshee Media Player"
+#: ../src/Extensions/Banshee.MeeGo/Banshee.MeeGo/MediaPanelContents.cs:109
+#| msgid "_Media"
+msgid "Media"
+msgstr "Medija"
+
+#: ../src/Extensions/Banshee.MeeGo/Banshee.MeeGo/MediaPanelContents.cs:119
+#| msgid "Music Library"
+msgid "Library"
+msgstr "Fonoteka"
+
+#: ../src/Extensions/Banshee.MeeGo/Banshee.MeeGo/MediaPanelContents.cs:131
 msgid "Launch the Banshee Media Player"
 msgstr "Paleisti medijos leistuvą Banshee"
 
@@ -5829,7 +5832,6 @@ msgid "Quick access panel for your media"
 msgstr "Greitos prieigos prie jūsų medijos skydelis"
 
 #: ../src/Extensions/Banshee.MeeGo/meego-panel-banshee.desktop.in.in.h:2
-#| msgid "Media"
 msgid "media"
 msgstr "medija"
 
@@ -6157,11 +6159,11 @@ msgstr "Aplankyti tinklalapį"
 msgid "Subscribe to Podcast"
 msgstr "Užsisakyti Podcast kanalą"
 
-#: ../src/Extensions/Banshee.Podcasting/Banshee.Podcasting.Gui/PodcastActions.cs:322
+#: ../src/Extensions/Banshee.Podcasting/Banshee.Podcasting.Gui/PodcastActions.cs:325
 msgid "Invalid URL"
 msgstr "Netinkamas URL"
 
-#: ../src/Extensions/Banshee.Podcasting/Banshee.Podcasting.Gui/PodcastActions.cs:323
+#: ../src/Extensions/Banshee.Podcasting/Banshee.Podcasting.Gui/PodcastActions.cs:326
 msgid "Podcast URL is invalid."
 msgstr "Netinkamas Podcast URL."
 
@@ -6243,13 +6245,11 @@ msgid "Stop SQL Monitoring"
 msgstr "Sustabdyti SQL stebėjimą"
 
 #: ../src/Extensions/Banshee.YouTube/Banshee.YouTube.Gui/VideoStreamTile.cs:136
-#| msgid "Recorded by:"
 msgid "Uploaded by"
 msgstr "Įkėlė"
 
 #: ../src/Extensions/Banshee.YouTube/Banshee.YouTube.Gui/VideoStreamTile.cs:233
 #: ../src/Extensions/Banshee.YouTube/Banshee.YouTube.Gui/VideoStreamTile.cs:234
-#| msgid "Quit Banshee"
 msgid "Play in Banshee..."
 msgstr "Leisti programoje Banshee.."
 
@@ -6259,7 +6259,6 @@ msgid "Play in Web Browser..."
 msgstr "Leisti žiniatinklio naršyklėje..."
 
 #: ../src/Extensions/Banshee.YouTube/Banshee.YouTube/YouTubePane.cs:61
-#| msgid "File not found"
 msgid "No videos found"
 msgstr "Nerasta vaizdo įrašų"
 
@@ -6555,9 +6554,6 @@ msgstr "Nežinomas Podcast kanalas"
 
 #~ msgid "Current source:"
 #~ msgstr "Dabartinis šaltinis:"
-
-#~ msgid "Music Library"
-#~ msgstr "Muzikos fonoteka"
 
 #~ msgid "Home Directory"
 #~ msgstr "Namų aplankas"
