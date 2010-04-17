@@ -159,6 +159,7 @@ namespace Banshee.Collection.Database
 
         public override void UpdateLastPlayed ()
         {
+            Refresh ();
             base.UpdateLastPlayed ();
             Save (NotifySaved, BansheeQuery.LastPlayedField);
         }
