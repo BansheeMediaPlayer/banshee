@@ -256,7 +256,10 @@ namespace Banshee.Gui.Widgets
                 return;
             }
 
-            icon_pixbuf = new Gdk.Pixbuf (icon_names[0]);
+            try {
+                icon_pixbuf = new Gdk.Pixbuf (icon_names[0]);
+            } catch (GLib.GException) {}
+
             if (icon_pixbuf != null) {
                 Gdk.Pixbuf scaled = icon_pixbuf.ScaleSimple (22, 22, Gdk.InterpType.Bilinear);
                 icon_pixbuf.Dispose ();
