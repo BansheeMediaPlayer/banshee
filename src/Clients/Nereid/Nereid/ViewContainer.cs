@@ -146,6 +146,7 @@ namespace Nereid
             AddSearchFilter (TrackFilterType.None, String.Empty, Catalog.GetString ("Artist, Album, or Title"));
             AddSearchFilter (TrackFilterType.SongName, "title", Catalog.GetString ("Track Title"));
             AddSearchFilter (TrackFilterType.ArtistName, "artist", Catalog.GetString ("Artist Name"));
+            AddSearchFilter (TrackFilterType.AlbumArtist, "albumartist", Catalog.GetString ("Album Artist"));
             AddSearchFilter (TrackFilterType.AlbumTitle, "album", Catalog.GetString ("Album Title"));
             AddSearchFilter (TrackFilterType.Genre, "genre", Catalog.GetString ("Genre"));
             AddSearchFilter (TrackFilterType.Year, "year", Catalog.GetString ("Year"));
