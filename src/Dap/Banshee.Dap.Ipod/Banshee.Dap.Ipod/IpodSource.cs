@@ -602,7 +602,11 @@ namespace Banshee.Dap.Ipod
 
             if (SupportsPlaylists) {
                 // Add playlists from Banshee to the device
-                foreach (Source child in Children) {
+                List<Source> children = null;
+                lock (Children) {
+                    children = new List<Source> (Children);
+                }
+                foreach (Source child in children) {
                     PlaylistSource from = child as PlaylistSource;
                     if (from != null && from.Count > 0) {
                         IPod.Playlist playlist = ipod_device.TrackDatabase.CreatePlaylist (from.Name);
