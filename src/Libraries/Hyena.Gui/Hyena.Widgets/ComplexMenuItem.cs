@@ -40,6 +40,10 @@ namespace Hyena.Widgets
         {
         }
 
+        protected ComplexMenuItem (IntPtr raw) : base (raw)
+        {
+        }
+
         // Override OnAdded and OnRemoved so we can work with Gtk.Action/Gtk.UIManager
         // which otherwise would try to replace our child with a Label.
         private bool first_add = true;

@@ -60,6 +60,10 @@ namespace Hyena.Widgets
             Add (box);
         }
 
+        protected RatingMenuItem (IntPtr raw) : base (raw)
+        {
+        }
+
         private int TransformX (double inx)
         {
             int x = (int)inx - entry.Allocation.X;
