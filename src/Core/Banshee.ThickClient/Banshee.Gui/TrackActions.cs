@@ -329,6 +329,11 @@ namespace Banshee.Gui
         {
             Source active_source = ServiceManager.SourceManager.ActiveSource;
 
+            List<Source> children;
+            lock (ActivePrimarySource.Children) {
+                children = new List<Source> (ActivePrimarySource.Children);
+            }
+
             // TODO find just the menu that was activated instead of modifying all proxies
             foreach (Widget proxy_widget in (o as Gtk.Action).Proxies) {
                 MenuItem menu = proxy_widget as MenuItem;
@@ -341,7 +346,7 @@ namespace Banshee.Gui
                 submenu.Append (this ["AddToNewPlaylistAction"].CreateMenuItem ());
                 bool separator_added = false;
 
-                foreach (Source child in ActivePrimarySource.Children) {
+                foreach (Source child in children) {
                     PlaylistSource playlist = child as PlaylistSource;
                     if (playlist != null) {
                         if (!separator_added) {
