@@ -54,10 +54,10 @@ namespace Hyena.Data.Gui.Accessibility
             cell_cache = new Dictionary<int, ColumnCellAccessible> ();
 
             list_view.ModelChanged += (o, a) => OnModelChanged ();
-            list_view.Model.Reloaded += (o, a) => OnModelChanged ();
+            list_view.ModelReloaded += (o, a) => OnModelChanged ();
             OnModelChanged ();
 
-            list_view.Selection.FocusChanged += OnSelectionFocusChanged;
+            list_view.SelectionProxy.FocusChanged += OnSelectionFocusChanged;
             list_view.ActiveColumnChanged += OnSelectionFocusChanged;
 
             ListViewAccessible_Selection ();

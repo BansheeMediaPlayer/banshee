@@ -36,6 +36,7 @@ namespace Hyena.Collections
 
         public event EventHandler Changed;
         public event EventHandler SelectionChanged;
+        public event EventHandler FocusChanged;
 
         public Selection Selection {
             get { return selection; }
@@ -43,13 +44,17 @@ namespace Hyena.Collections
                 if (selection == value)
                     return;
 
-                if (selection != null)
+                if (selection != null) {
                     selection.Changed -= HandleSelectionChanged;
+                    selection.FocusChanged -= HandleSelectionFocusChanged;
+                }
 
                 selection = value;
 
-                if (selection != null)
+                if (selection != null) {
                     selection.Changed += HandleSelectionChanged;
+                    selection.FocusChanged += HandleSelectionFocusChanged;
+                }
 
                 OnSelectionChanged ();
             }
@@ -58,6 +63,14 @@ namespace Hyena.Collections
         protected virtual void OnChanged ()
         {
             EventHandler handler = Changed;
+            if (handler != null) {
+                handler (selection, EventArgs.Empty);
+            }
+        }
+
+        protected virtual void OnFocusChanged ()
+        {
+            EventHandler handler = FocusChanged;
             if (handler != null) {
                 handler (selection, EventArgs.Empty);
             }
@@ -74,6 +87,11 @@ namespace Hyena.Collections
         private void HandleSelectionChanged (object o, EventArgs args)
         {
             OnChanged ();
+        }
+
+        private void HandleSelectionFocusChanged (object o, EventArgs args)
+        {
+            OnFocusChanged ();
         }
     }
 }

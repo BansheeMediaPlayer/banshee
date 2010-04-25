@@ -82,7 +82,7 @@ namespace Hyena.Data.Gui
         }
 
         public Selection Selection {
-            get { return model.Selection; }
+            get { return model == null ? null : model.Selection; }
         }
 
         private int HadjustmentValue {
