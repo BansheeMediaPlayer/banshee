@@ -1,0 +1,32 @@
+#!/usr/bin/env python
+
+import os
+import sys
+import subprocess
+
+prefix = '/usr/lib/banshee-1'
+exclude_files = []
+sync_files = {}
+
+for path in subprocess.Popen (['meego-ssh', 'find', prefix],
+    stdout = subprocess.PIPE).communicate ()[0].split ('\n'):
+
+    basename = os.path.basename (path)
+    bin_path = os.path.join ('bin', basename)
+    
+    if not os.path.isfile (bin_path) or basename in exclude_files:
+        continue
+
+    relpath = os.path.relpath (path, prefix)
+    dirname = os.path.dirname (relpath)
+    if dirname not in sync_files:
+        sync_files[dirname] = []
+    sync_files[dirname].append (bin_path)
+
+for dirname, files in sync_files.iteritems ():
+    scp = ['meego-scp', '-u', 'root']
+    scp.extend (files)
+    scp.append (os.path.abspath (os.path.join (prefix, dirname)))
+    os.waitpid (subprocess.Popen (scp).pid, 0)
+
+subprocess.call (['meego-ssh', 'killall', '-9', 'mutter', 'banshee-1'])

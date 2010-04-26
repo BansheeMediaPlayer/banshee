@@ -82,8 +82,8 @@ query-trace:
 	MONO_PID=$$(ps aux | grep mono | grep '\--uninstalled' | grep -v 'cd bin' | awk '{print$$2}'); \
 	kill -USR2 $$MONO_PID
 
-push-moblin:
-	@extras/push-moblin
+push-meego:
+	@extras/push-meego
 
 gdb:
 	@pushd bin; \
