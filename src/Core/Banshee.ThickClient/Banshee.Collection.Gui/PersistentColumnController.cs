@@ -86,25 +86,20 @@ namespace Banshee.Collection.Gui
 
                 loaded = false;
 
+                int i = 0;
                 foreach (Column column in this) {
                     if (column.Id != null) {
                         string @namespace = MakeNamespace (column.Id);
                         column.Visible = ConfigurationClient.Get<bool> (@namespace, "visible", column.Visible);
                         column.Width = ConfigurationClient.Get<double> (@namespace, "width", column.Width);
+                        column.OrderHint = ConfigurationClient.Get<int> (@namespace, "order", i);
+                    } else {
+                        column.OrderHint = -1;
                     }
+                    i++;
                 }
 
-                // Create a copy so we can read the original index
-                List<Column> columns = new List<Column> (Columns);
-
-                Columns.Sort (delegate (Column a, Column b) {
-                    int a_order = a.Id == null ? -1 : ConfigurationClient.Get<int> (
-                        MakeNamespace (a.Id), "order", columns.IndexOf (a));
-                    int b_order = b.Id == null ? -1 : ConfigurationClient.Get<int> (
-                        MakeNamespace (b.Id), "order", columns.IndexOf (b));
-
-                    return a_order.CompareTo (b_order);
-                });
+                Columns.Sort ((a, b) => a.OrderHint.CompareTo (b.OrderHint));
 
                 string sort_ns = String.Format ("{0}.{1}.{2}", root_namespace, unique_source_id, "sort");
                 string sort_column_id = ConfigurationClient.Get<string> (sort_ns, "column", null);

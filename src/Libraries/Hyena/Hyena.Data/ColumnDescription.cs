@@ -99,6 +99,8 @@ namespace Hyena.Data
             }
         }
 
+        public int OrderHint { get; set; }
+
         public string Property {
             get { return property; }
             set { property = value; }
