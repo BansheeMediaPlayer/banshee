@@ -38,6 +38,7 @@ namespace Banshee.Gui.Widgets
     {
         PlaybackShuffleActions shuffle_actions;
         Widget button;
+        bool with_repeat_actions;
 
         public NextButton (InterfaceActionService actionService) : this (actionService, false)
         {
@@ -45,10 +46,11 @@ namespace Banshee.Gui.Widgets
 
         public NextButton (InterfaceActionService actionService, bool withRepeatActions)
         {
+            with_repeat_actions = withRepeatActions;
             shuffle_actions = actionService.PlaybackActions.ShuffleActions;
 
             button = actionService.PlaybackActions["NextAction"].CreateToolItem ();
-            var menu = shuffle_actions.CreateMenu (withRepeatActions);
+            var menu = shuffle_actions.CreateMenu (with_repeat_actions);
             Construct (button, menu, true);
 
             TooltipText = actionService.PlaybackActions["NextAction"].Tooltip;
@@ -62,7 +64,7 @@ namespace Banshee.Gui.Widgets
                 Menu.Deactivate ();
             }
 
-            Menu = shuffle_actions.CreateMenu ();
+            Menu = shuffle_actions.CreateMenu (with_repeat_actions);
 
             ToggleButton.Sensitive = shuffle_actions.Sensitive;
             if (Arrow != null) {
