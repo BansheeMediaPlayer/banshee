@@ -66,6 +66,14 @@ namespace Banshee.LibraryWatcher
             */
             AddLibrary (ServiceManager.SourceManager.MusicLibrary);
             AddLibrary (ServiceManager.SourceManager.VideoLibrary);
+
+            if (ServiceManager.SourceManager.MusicLibrary.Count == 0) {
+                new Banshee.Collection.RescanPipeline (ServiceManager.SourceManager.MusicLibrary);
+            }
+
+            if (ServiceManager.SourceManager.VideoLibrary.Count == 0) {
+                new Banshee.Collection.RescanPipeline (ServiceManager.SourceManager.VideoLibrary);
+            }
         }
 
         public void Dispose ()
