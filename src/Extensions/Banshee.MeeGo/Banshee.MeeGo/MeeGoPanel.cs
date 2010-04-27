@@ -43,7 +43,6 @@ namespace Banshee.MeeGo
         private Window window_panel;
 
         public MediaPanelContents Contents { get; private set; }
-        public bool Enabled { get; private set; }
 
         public MeeGoPanel ()
         {
@@ -52,7 +51,6 @@ namespace Banshee.MeeGo
             }
 
             Instance = this;
-            Enabled = true;
 
             Hyena.Gui.Theming.ThemeEngine.SetCurrentTheme<MeeGoTheme> ();
 
@@ -82,10 +80,6 @@ namespace Banshee.MeeGo
 
         public void BuildContents ()
         {
-            if (!Enabled) {
-                return;
-            }
-
             var timer = Log.DebugTimerStart ();
             Contents = new MediaPanelContents ();
             Contents.ShowAll ();

@@ -53,13 +53,6 @@ namespace Banshee.MeeGo
 
         void IExtensionService.Initialize ()
         {
-            // We need to create the MeeGo panel connection as soon as possible
-            // to keep mutter-moblin's toolbar from thinking we crashed (timing out).
-            // The contents of the panel will be constructed later on.
-            if (MeeGoPanel.Instance.Enabled) {
-                panel = MeeGoPanel.Instance;
-            }
-
             elements_service = ServiceManager.Get<GtkElementsService> ();
             interface_action_service = ServiceManager.Get<InterfaceActionService> ();
             source_manager = ServiceManager.SourceManager;
@@ -101,6 +94,13 @@ namespace Banshee.MeeGo
 
         private void Initialize ()
         {
+            // If Banshee is running from the MeeGo client entry assembly,
+            // the MeeGoPanel will have already been created. If not, we
+            // assume we're probably not really running in a MeeGo environment,
+            // so we just create the panel here (which is likely to just be
+            // a separate top-level window for testing).
+            panel = MeeGoPanel.Instance ?? new MeeGoPanel ();
+
             // regular metacity does not seem to like this at all, crashing
             // and complaining "Window manager warning: Buggy client sent a
             // _NET_ACTIVE_WINDOW message with a timestamp of 0 for 0x2e00020"

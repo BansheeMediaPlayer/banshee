@@ -3,7 +3,8 @@ SUBDIRS = \
 	Booter \
 	Halie \
 	Muinshee \
-	Nereid
+	Nereid \
+	MeeGo
 
 MAINTAINERCLEANFILES = Makefile.in
 

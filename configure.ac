@@ -260,6 +260,7 @@ src/Clients/Booter/banshee-1.darwin
 src/Clients/Halie/Makefile
 src/Clients/Muinshee/Makefile
 src/Clients/Nereid/Makefile
+src/Clients/MeeGo/Makefile
 
 src/Core/Makefile
 src/Core/Banshee.CollectionIndexer/Makefile
