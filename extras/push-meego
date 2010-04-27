@@ -7,21 +7,42 @@ import subprocess
 prefix = '/usr/lib/banshee-1'
 exclude_files = []
 sync_files = {}
+last_sync_files = {}
+
+try:
+    with open ('bin/.last-meego-push') as fp:
+        for entry in fp:
+            path, mtime = entry.split ('\t')
+            last_sync_files[path] = float (mtime)
+except:
+    pass
 
 for path in subprocess.Popen (['meego-ssh', 'find', prefix],
     stdout = subprocess.PIPE).communicate ()[0].split ('\n'):
 
     basename = os.path.basename (path)
     bin_path = os.path.join ('bin', basename)
-    
-    if not os.path.isfile (bin_path) or basename in exclude_files:
+
+    if not os.path.isfile (bin_path) or basename in exclude_files \
+        or (bin_path in last_sync_files and \
+            last_sync_files[bin_path] >= os.stat (bin_path).st_mtime):
         continue
 
     relpath = os.path.relpath (path, prefix)
     dirname = os.path.dirname (relpath)
+
     if dirname not in sync_files:
         sync_files[dirname] = []
     sync_files[dirname].append (bin_path)
+    last_sync_files[bin_path] = os.stat (bin_path).st_mtime
+
+if len (sync_files) == 0:
+    print 'Nothing to sync.'
+    sys.exit (0)
+
+with open ('bin/.last-meego-push', 'w') as fp:
+    for bin_path, mtime in last_sync_files.iteritems ():
+        fp.write ('%s\t%f\n' % (bin_path, mtime))
 
 for dirname, files in sync_files.iteritems ():
     scp = ['meego-scp', '-u', 'root']
@@ -29,4 +50,4 @@ for dirname, files in sync_files.iteritems ():
     scp.append (os.path.abspath (os.path.join (prefix, dirname)))
     os.waitpid (subprocess.Popen (scp).pid, 0)
 
-subprocess.call (['meego-ssh', 'killall', '-9', 'mutter', 'banshee-1'])
+subprocess.call (['meego-ssh', 'killall', '-9', 'Xorg', 'mutter', 'banshee-1'])
