@@ -70,6 +70,13 @@ namespace Banshee.GnomeBackend
             }
         }
 
+        public GConfConfigurationClient ()
+        {
+            if (Hyena.PlatformDetection.IsMeeGo) {
+                throw new InvalidOperationException ("GConf is not supported on MeeGo");
+            }
+        }
+
         private string CreateKey (string @namespace, string part)
         {
             string hash_key = String.Concat (@namespace, part);
