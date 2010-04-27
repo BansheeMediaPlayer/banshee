@@ -213,9 +213,6 @@ namespace Nereid
                 close_button.Clicked += (o, e) => Hide ();
                 close_button.Show ();
                 ActionService.PopulateToolbarPlaceholder (header_toolbar, "/HeaderToolbar/ClosePlaceholder", close_button);
-
-                ServiceManager.PlayerEngine.Volume = 100;
-
             } else {
                 var volume_button = new ConnectedVolumeButton ();
                 volume_button.Show ();
