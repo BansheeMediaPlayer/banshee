@@ -249,7 +249,7 @@ namespace Hyena
             TimeSpan duration = finish - timers[id];
             string d_message;
             if (duration.TotalSeconds < 60) {
-                d_message = String.Format ("{0}s", duration.TotalSeconds);
+                d_message = duration.TotalSeconds.ToString ();
             } else {
                 d_message = duration.ToString ();
             }
