@@ -91,6 +91,10 @@ namespace Banshee.Gui
             }
         }
 
+        protected virtual void PreInitializeGtk ()
+        {
+        }
+
         protected virtual void InitializeGtk ()
         {
             Log.Debug ("Initializing GTK");
@@ -99,7 +103,11 @@ namespace Banshee.Gui
                 GLib.Thread.Init ();
             }
             Gtk.Application.Init ();
+        }
 
+        protected virtual void PostInitializeGtk ()
+        {
+            Log.Debug ("Post-Initializing GTK");
             foreach (TypeExtensionNode node in AddinManager.GetExtensionNodes
                 ("/Banshee/ThickClient/GtkBaseClient/PostInitializeGtk")) {
                 try {
@@ -115,9 +123,10 @@ namespace Banshee.Gui
             // Set the process name so system process listings and commands are pretty
             ApplicationContext.TrySetProcessName (Application.InternalName);
 
-            Application.Initialize ();
-
+            PreInitializeGtk ();
             InitializeGtk ();
+            Application.Initialize ();
+            PostInitializeGtk ();
 
             Gtk.Window.DefaultIconName = default_icon_name;
 
