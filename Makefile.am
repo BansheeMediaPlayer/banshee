@@ -123,6 +123,18 @@ merge-docs:
 	make -C docs/Hyena merge; \
 	make -C docs/Banshee merge;
 
+package-patch:
+	@if [ -z '$(SINCE)' ]; then echo 'Specify a SINCE (e.g. make package-patch SINCE=1.6.0)'; exit 1; fi;
+	@if [ -f 'since-$(SINCE).patch' ]; then echo 'since-$(SINCE).patch already exists'; exit 1; fi;
+	@git diff-tree -p "$(SINCE).." | filterdiff \
+		-x 'a/Makefile.am' \
+		-x 'a/profile-configure' \
+		-x 'a/po/*' \
+		-x \*.csproj \
+		-x \*.sln \
+		-x \*extras/\* &> 'since-$(SINCE).patch'
+	@echo 'since-$(SINCE).patch is ready'
+
 EXTRA_DIST = \
 	intltool-extract.in \
 	intltool-merge.in \
