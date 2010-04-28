@@ -2,11 +2,7 @@
 
 prefix=@prefix@
 libdir=@expanded_libdir@
-if test -f /etc/meego-release; then
-	exec_asm="MeeGo.exe"
-else
-	exec_asm="Banshee.exe"
-fi
+exec_asm="Banshee.exe"
 MONO_EXE="@expanded_libdir@/@PACKAGE@/$exec_asm"
 BANSHEE_EXEC_NAME=$(basename $0)
 BANSHEE_CONFIG_DIR="${XDG_CONFIG_HOME:-$HOME/.config}/banshee-1"
