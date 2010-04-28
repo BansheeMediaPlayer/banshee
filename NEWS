@@ -1,5 +1,5 @@
 ===============================================================================
-WELCOME TO BANSHEE 1.6.0 - Released March 31, 2010
+WELCOME TO BANSHEE 1.6.1 - Released April 28, 2010
 ===============================================================================
 
   * Banshee is a multimedia management and playback application for GNOME.
@@ -10,181 +10,39 @@ WELCOME TO BANSHEE 1.6.0 - Released March 31, 2010
     experience automatic cover art fetching as you listen; and easily browse,
     search, and control your media collection."
 
-  * Learn More: http://banshee-project.org/download/archives/1.6.0
+  * Learn More: http://banshee-project.org/download/archives/1.6.1
 
 
 ===============================================================================
 NEW AWESOME FEATURES AND ENHANCEMENTS
 ===============================================================================
 
-    Banshee 1.6 is a stable release, the culmination of a year's work.  There
-    are so many new features, bug fixes, and polish in this release, we won't
-    be able to do it all justice in these notes, but we'll try.  These notes
-    aggregate the highlights from the 1.5 series releases.
-
-    New Features Since 1.4:
-
-      * Play Queue Auto DJ keeps the tunes coming
-
-          Keep your Play Queue filled with endless music, selected randomly
-          by artist, album, song, rating, or score mode.
-
-      * Sync device from playlist option
-
-          Either manually manage what files are added/removed to your device,
-          or choose a playlist to sync from.  You can make a size-limited smart
-          playlist to sync just the right amount to your device.
-
-      * Grid View
-
-          We are debuting a new grid mode for our custom list widget, visible
-          in the modified Album browser.  It will be used for Videos,
-          Audiobooks, and more in future releases.
-
-      * Banshee Community Extensions
-
-          A new sub-project named Banshee Community Extensions has been
-          created.  Its code is hosted on Gitorious, and its bugs tracked
-          in bugzilla.gnome.org.  It already contains 15 extensions, including
-          Lyrics, Telepathy and Mirage, and has 19 maintainers.  Its releases
-          track Banshee's; for more information, see
-
-            http://banshee-project.org/download/extensions/
-
-      * Type-ahead find in track, artist, and album lists
-
-          An alternative to filtering, type-ahead find jumps you to the first
-          track to match your query.  Activate with shift+/, cancel with Esc,
-          and jump to next match with F3.  In track list it matches against
-          artist, album, or title.
-
-      * Automatic Scoring
-
-          Songs now have scores, updated as you play and skip.  The score
-          can be used in searches and smart playlists, and serve as a basis
-          for ratings.
-
-      * New Shuffle Modes
-
-          Shuffle by artist or album let you listen to everything by an artist
-          or on an album before jumping to a new random artist or album.
-
-          Shuffle by rating or score lets you shuffle through your songs, with
-          higher rated or scored tracks being more likely to play.
-
-      * Audiobooks library extension
-
-          Rough first version, main benefits are separating your books from
-          your music and defining a different file system organization.  In
-          future versions we plan to add intuitive bookmarking and a better
-          browsing experience.  Enable in Extensions tab of Preferences.
-
-      * Library-folder watcher extension
-
-          Watches your libraries' folders for added, renamed, or deleted
-          files, and updates your libraries appropriately.  Requires
-          Mono >= 2.4.3.  Enable in Extensions tab of Preferences.
-
-      * eMusic importer/downloader extension
-
-          If you have purchased music from eMusic and have a .emx file, Banshee
-          will download and import the music files for you.  Select
-          'eMusic Files' from the normal Media > Import Media dialog. Enable
-          in Extensions tab of Preferences.
-
-      * GIO file backend, supports non-local files
-
-          This backend uses the GIO library to support importing local files
-          and network-share files alike.  Requires glib >= 2.22 and Gio#.
-
-      * Internet Archive extension
-
-          Search and stream content from the Internet Archive's vast store of
-          media, including 70,000 concerts and 200,000 videos.  Enable it in
-          the Extensions tab of the Preferences dialog.
-
-      * YouTube Extension
-
-          This extension shows YouTube videos in the Context Pane related to
-          what you're playing, and lets you watch them within Banshee.  You
-          can enable it in the Extensions tab of the Preferences dialog.
-
-      * Improved Metadata Handling
-      
-          Banshee is now able to read and write rating and playcount
-          information contained in your media files. Enable this option
-          in Preferences.
-
-          Searching and smart playlists use unicode-aware case-insensitive
-          search; i.e. n matches Ñ and vice-versa, and similarly smart sorting.
-
-          Artist/album/track sort fields are now supported, the License URI
-          field is now exposed and Creative Commons aware, and the BPM field
-          is exposed with an option to calculate it for all songs.
-
-      * Gapless Playback
-      * Optional cover art in lower-left corner
-      * Cover art editable via drag-and-drop and right-click
-      * Playing song kept visible in the track list
-      * Separate library locations for Music, Video, and Podcast
-      * iTunes and Rhythmbox library/metadata importers
+    Banshee 1.6.1 is a stable bug-fix release, adding polish to 1.6.0.
 
     Enhancements:
 
       * More devices supported:
-        - Android: Nexus One, Desire, Galaxy, Droid, Pulse
-        - Other: Palm Pre, Nokia N900
+        - Android: Galaxy Portal, DEXT/CLIQ
+      * Automatically scan Music and Video libraries on first start
       * Improve search responsiveness on large libraries
-      * Play Queue item count, size, duration now ignores old tracks
-      * Muinshee fixes: disable Auto-DJ, allow reordering, hide previous song
-      * Wikipedia context pane extension enabled by default
-      * Add tooltip to playback error column
-      * Enable 'Delete From Drive' action in File System Queue
-      * Cover art for unicode artist/albums now supported
-      * Dropped glade-sharp dep; GNOME 3.0 ready
-      * Add columns showing track sample rate and bits per sample
-      * Option to sort an artist's albums by year, not title
-      * Allow seeking in DAAP streams
-      * Additional tokens for file system organization (bgo#489861)
-      * Cleaner track change notification popup (bgo#565453)
-      * Move Last.fm settings to the preferences dialog
-      * Keyboard shortcut (ESC) to clear the search box (BGO #558938)
-      * Expose LAME's "preset" option (BGO #563303)
-      * Better support for devices running Rockbox
-      * Set video sync folder for Android and WebOS devices
-      * Auto-completion for composer, conductor, grouping and copyright (BGO #592129)
-      * Added the 'comment' search filter (BGO #380524)
-      * Selectable song properties (BGO #586106)
-      * Show a tooltip in track editor when the property is truncated (BGO #589782)
-      * Support importing/exporting XSPF playlists
-      * Support loading ASF playlists (BGO #545646)
-      * Whitelist .spx, 669, it, med, mod, mol, mtm, nst, s3m, stm, ult, wow, xm, and xnm (BGO #580014)
-      * Source-specific preferences, accessible via Preferences dialog and via sources' context menu
-      * Much improved child source sorting - live, persistent, with group-by-type option
-      * Podcast espisode details tabs in track information/editor
-      * Can rename podcasts
-      * Can unsubscribe/download/refresh multiple podcasts at a time
-      * New 'Creative Commons' default Last.fm station
-      * New Refresh button for Last.fm stations
-      * More accurate seeking with click/DnD, can use mouse scrollwheel
-      * Make it easier to edit and reset ratings
-      * Add mnemonics to track editor fields and import dialog
-      * Make previous button go back if less than 4 seconds into a song
+      * Add AlbumArtist to the search menu (bgo#615692)
+      * Many enhancements to MeeGo support
 
-    Notable Bugs Fixed (since 1.5.6):
+    Notable Bugs Fixed (since 1.6.0):
 
-      * Fix device support on upcoming distros with DeviceKit rename
-      * Restore equalizer preset correctly (bgo#614313)
-      * Handle broken symlinks correctly (bgo#614065)
-      * Allow overriding Android, Maemo, WebOS default settings (bgo#611991)
-      * Fix crash deleting playlist on mass storage device (bgo#613734)
-      * Fix issue with iTunes importer dialog sizing (bgo#613607)
-      * Fix play count calculation with gapless enabled (bgo#613418)
-      * Handle exceptions thrown by old plugins (Mirage, etc)
-      * Use panel-specific (eg monochrome) icon in notification area
-      * OS X build/bundle improvements
-      * Fix Windows compilation issues
-      * Fix gettext locale selection on Windows
+      * Fix ListView a11y crash
+      * Fix Podcasts ListView right-click crash
+      * [TrackActions] Fix collection-modified crash
+      * [ColumnCellAlbum] Fix invalid cast crash
+      * Fix several custom-widget related crashes
+      * [Dap.Ipod] Fix a race condition
+      * [gapless] Fix rating resets (bgo#614863)
+      * [UserJobTile] Don't crash if icons are missing (bgo#615778)
+      * [BansheeQuery] Fix mime-type queries (bgo#601920)
+      * [MaemoDevice] Ignore the .videos directory (bgo#614825)
+      * [MaemoDevice] Set 'Music' and 'Video' as the default folders
+      * [MusicBrainzQueryJob] Escape album/artist (bgo#614569)
+      * 40 bugs fixed since 1.6.0
 
 ===============================================================================
 SOURCES / PACKAGES
@@ -193,9 +51,9 @@ SOURCES / PACKAGES
 Sources
 -------
 
-    * Banshee 1.6.0 Tarballs:
-      http://download.banshee-project.org/banshee/stable/1.6.0/banshee-1-1.6.0.tar.bz2
-      http://download.banshee-project.org/banshee/stable/1.6.0/banshee-1-1.6.0.tar.gz
+    * Banshee 1.6.1 Tarballs:
+      http://download.banshee-project.org/banshee/stable/1.6.1/banshee-1-1.6.1.tar.bz2
+      http://download.banshee-project.org/banshee/stable/1.6.1/banshee-1-1.6.1.tar.gz
 
 Packages
 --------
@@ -212,13 +70,13 @@ Packages
 
     Binaries for Mac OS X 10.5 and 10.6:
 
-    * http://download.banshee-project.org/banshee/banshee-1-1.6.0.macosx.intel.dmg
+    * http://download.banshee-project.org/banshee/banshee-1-1.6.1.macosx.intel.dmg
 
 ChangeLogs & Checksums
 ----------------------
 
-    * http://download.banshee-project.org/banshee/stable/1.6.0/banshee-1-1.6.0.changes
-    * http://download.banshee-project.org/banshee/stable/1.6.0/banshee-1-1.6.0.sha256sum
+    * http://download.banshee-project.org/banshee/stable/1.6.1/banshee-1-1.6.1.changes
+    * http://download.banshee-project.org/banshee/stable/1.6.1/banshee-1-1.6.1.sha256sum
 
 
 ===============================================================================
@@ -287,7 +145,7 @@ REPORT BUGS - HELP THE PROJECT - GROW THE COMMUNITY
     hesitate to file bugs!
 
     * http://banshee-project.org/contribute/file-bugs
-    * http://bugzilla.gnome.org/enter_bug.cgi?product=banshee&version=1.6.0
+    * http://bugzilla.gnome.org/enter_bug.cgi?product=banshee&version=1.6.1
 
 
 ===============================================================================
@@ -300,18 +158,14 @@ Contributors For This Release
     The following people directly contributed to the release of this version
     of Banshee. Without their help, there would be no release!
 
-      Aaron Bockover, Alexander Kojevnikov, Bertrand Lorentz, Chow Loong Jin,
-      Gabriel Burt, Iain Lane, Jeroen Budts, Jordi Mas, Julien Moutte,
-      Ján Sokoly, Ruben Vermeersch
+      Aaron Bockover, Alexander Kojevnikov, Andrés G. Aragoneses,
+      Benjamín Valero Espinosa, Chow Loong Jin, Gabriel Burt, Jeroen Budts,
+      Robin Stocker, Ruben Vermeersch
 
     The following people contributed updated translations to this release.
     Without them, our project's reach would be much more limited.
 
-      A S Alam, Andrej Žnidaršič, Aron Xu, Bruno Brouard, Christian Kirbach,
-      Daniel Nylander, Gabor Kelemen, Gianvito Cavasoli,
-      Inaki Larranaga Murgoitio, Joe Hansen, Jordi Mas, Leonid Kanter,
-      Marek Černocký, Mario Blättermann, Miloš Popović, Pablo Garrido,
-      Piotr Drąg, Wouter Bolsterlee, Žygimantas Beručka
+      Žygimantas Beručka
 
 Contributors In Past Releases
 -----------------------------
