@@ -47,8 +47,6 @@ namespace Banshee.MeeGo
         private InterfaceActionService interface_action_service;
         private SourceManager source_manager;
         private PlayerEngineService player;
-        private Source now_playing;
-
         private MeeGoPanel panel;
 
         void IExtensionService.Initialize ()
@@ -118,43 +116,6 @@ namespace Banshee.MeeGo
                 elements_service.PrimaryWindow.Hide ();
                 return false;
             };
-
-            FindNowPlaying ();
-            ServiceManager.PlayerEngine.ConnectEvent (OnPlayerStateChanged,
-                PlayerEvent.StateChange | PlayerEvent.StartOfStream);
-        }
-
-        private void OnPlayerStateChanged (PlayerEventArgs args)
-        {
-            var player = ServiceManager.PlayerEngine;
-            if (player.CurrentState == PlayerState.Playing &&
-                player.CurrentTrack.HasAttribute (TrackMediaAttributes.VideoStream)) {
-                if (now_playing != null) {
-                    ServiceManager.SourceManager.SetActiveSource (now_playing);
-                }
-
-                PresentPrimaryInterface ();
-            }
-        }
-
-        private void FindNowPlaying ()
-        {
-            foreach (var src in ServiceManager.SourceManager.Sources) {
-                if (src.UniqueId.Contains ("now-playing")) {
-                    now_playing = src;
-                    break;
-                }
-            }
-
-            if (now_playing != null) {
-                return;
-            }
-
-            Banshee.ServiceStack.ServiceManager.SourceManager.SourceAdded += (args) => {
-                if (now_playing == null && args.Source.UniqueId.Contains ("now-playing")) {
-                    now_playing = args.Source;
-                }
-            };
         }
 
         public void PresentPrimaryInterface ()
@@ -170,6 +131,7 @@ namespace Banshee.MeeGo
         {
             if (panel != null) {
                 panel.Dispose ();
+                panel = null;
             }
 
             interface_action_service = null;
