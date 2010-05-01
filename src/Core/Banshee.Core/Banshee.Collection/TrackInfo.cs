@@ -44,6 +44,7 @@ namespace Banshee.Collection
     public class TrackInfo : CacheableItem, ITrackInfo
     {
         public const string ExportVersion = "1.0";
+        public static readonly double PlaybackSkippedThreshold = 0.5;
 
         public static readonly string UnknownTitle = Catalog.GetString ("Unknown Title");
 
@@ -86,7 +87,7 @@ namespace Banshee.Collection
                 Score = (int) Math.Round ((((double)Score * total_plays) + (percentCompleted * 100)) / (total_plays + 1));
             }
 
-            if (percentCompleted <= 0.5) {
+            if (percentCompleted <= PlaybackSkippedThreshold) {
                 LastSkipped = DateTime.Now;
                 SkipCount++;
             } else {
