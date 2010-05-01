@@ -85,6 +85,9 @@ query-trace:
 push-meego:
 	@extras/push-meego
 
+monitor-meego:
+	@extras/monitor-meego
+
 gdb:
 	@pushd bin; \
 	gdb mono --eval-command="handle SIGXCPU SIG35 SIGPWR nostop noprint" --eval-command="b g_return_if_fail_warning" --eval-command="r --debug Nereid.exe --debug --uninstalled"; \

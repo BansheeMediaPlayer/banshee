@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+meego-ssh "
+	cd ~/.config/banshee-1;
+	rm -f log;
+	touch log;
+	tail -f log;
+"
