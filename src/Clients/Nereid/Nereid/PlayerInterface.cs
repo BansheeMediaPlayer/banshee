@@ -115,6 +115,11 @@ namespace Nereid
             interface_constructed = true;
             uint timer = Log.DebugTimerStart ();
 
+            if (PlatformDetection.IsMeeGo) {
+                Decorated = false;
+                Maximize ();
+            }
+
             BuildPrimaryLayout ();
             ConnectEvents ();
 

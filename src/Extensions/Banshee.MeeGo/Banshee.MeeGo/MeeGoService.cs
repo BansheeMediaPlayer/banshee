@@ -101,14 +101,6 @@ namespace Banshee.MeeGo
             // a separate top-level window for testing).
             panel = MeeGoPanel.Instance ?? new MeeGoPanel ();
 
-            // regular metacity does not seem to like this at all, crashing
-            // and complaining "Window manager warning: Buggy client sent a
-            // _NET_ACTIVE_WINDOW message with a timestamp of 0 for 0x2e00020"
-            if (panel != null) {
-                elements_service.PrimaryWindow.Decorated = false;
-                elements_service.PrimaryWindow.Maximize ();
-            }
-
             if (panel == null) {
                 Log.Warning ("MeeGo extension initialized without a panel");
                 return;
