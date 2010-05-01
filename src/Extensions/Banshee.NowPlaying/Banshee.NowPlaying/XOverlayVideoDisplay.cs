@@ -44,31 +44,36 @@ namespace Banshee.NowPlaying
         public XOverlayVideoDisplay () : base ()
         {
             WidgetFlags = WidgetFlags.NoWindow;
+            CreateVideoWindow ();
         }
 
         protected override void OnRealized ()
         {
             WidgetFlags |= WidgetFlags.Realized;
-
+            CreateVideoWindow ();
             GdkWindow = Parent.GdkWindow;
+            video_window.Reparent (GdkWindow, 0, 0);
+            video_window.MoveResize (Allocation.X, Allocation.Y, Allocation.Width, Allocation.Height);
+            video_window.ShowUnraised ();
+        }
 
+        private void CreateVideoWindow ()
+        {
             if (video_window != null) {
-                video_window.Reparent (GdkWindow, 0, 0);
-                video_window.MoveResize (Allocation.X, Allocation.Y, Allocation.Width, Allocation.Height);
-                video_window.ShowUnraised ();
                 return;
             }
 
-            Gdk.WindowAttr attributes = new Gdk.WindowAttr ();
-            attributes.WindowType = Gdk.WindowType.Child;
-            attributes.X = 0;
-            attributes.Y = 0;
-            attributes.Width = Allocation.Width;
-            attributes.Height = Allocation.Height;
-            attributes.Visual = Visual;
-            attributes.Wclass = Gdk.WindowClass.InputOutput;
-            attributes.Colormap = Colormap;
-            attributes.EventMask = (int)(Gdk.EventMask.ExposureMask | Gdk.EventMask.VisibilityNotifyMask);
+            var attributes = new Gdk.WindowAttr () {
+                WindowType = Gdk.WindowType.Child,
+                X = 0,
+                Y = 0,
+                Width = 0,
+                Height = 0,
+                Visual = Visual,
+                Wclass = Gdk.WindowClass.InputOutput,
+                Colormap = Colormap,
+                EventMask = (int)(Gdk.EventMask.ExposureMask | Gdk.EventMask.VisibilityNotifyMask)
+            };
 
             Gdk.WindowAttributesType attributes_mask =
                 Gdk.WindowAttributesType.X |
@@ -76,7 +81,7 @@ namespace Banshee.NowPlaying
                 Gdk.WindowAttributesType.Visual |
                 Gdk.WindowAttributesType.Colormap;
 
-            video_window = new Gdk.Window (GdkWindow, attributes, attributes_mask);
+            video_window = new Gdk.Window (null, attributes, attributes_mask);
             video_window.UserData = Handle;
 
             video_window.SetBackPixmap (null, false);

@@ -35,8 +35,16 @@ namespace Banshee.NowPlaying
 {
     public class NowPlayingContents : EventBox, IDisposable
     {
+        private static Widget video_display;
+
+        public static void CreateVideoDisplay ()
+        {
+            if (video_display == null) {
+                video_display = new XOverlayVideoDisplay ();
+            }
+        }
+
         private Table table;
-        private Widget video_display;
         private Widget substitute_audio_display;
         private bool video_display_initial_shown = false;
 
@@ -49,7 +57,7 @@ namespace Banshee.NowPlaying
 
             table.NoShowAll = true;
 
-            video_display = new XOverlayVideoDisplay ();
+            CreateVideoDisplay ();
 
             IVideoDisplay ivideo_display = video_display as IVideoDisplay;
             if (ivideo_display != null) {

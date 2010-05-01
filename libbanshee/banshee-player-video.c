@@ -178,12 +178,22 @@ _bp_video_pipeline_setup (BansheePlayer *player, GstBus *bus)
     #endif
     
     #endif
+
+    if (player->video_prepare_window_cb != NULL) {
+        player->video_prepare_window_cb (player);
+    }
 }
 
 P_INVOKE void
 bp_set_video_pipeline_setup_callback (BansheePlayer *player, BansheePlayerVideoPipelineSetupCallback cb)
 {
     SET_CALLBACK (video_pipeline_setup_cb);
+}
+
+P_INVOKE void
+bp_set_video_prepare_window_callback (BansheePlayer *player, BansheePlayerVideoPrepareWindowCallback cb)
+{
+    SET_CALLBACK (video_prepare_window_cb);
 }
 
 // ---------------------------------------------------------------------------

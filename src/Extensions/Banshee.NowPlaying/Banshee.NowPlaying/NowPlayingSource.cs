@@ -58,6 +58,13 @@ namespace Banshee.NowPlaying
             ServiceManager.PlaybackController.Transition += OnPlaybackControllerTransition;
             ServiceManager.PlaybackController.TrackStarted += OnPlaybackControllerTrackStarted;
             ServiceManager.PlayerEngine.ConnectEvent (OnTrackInfoUpdated, PlayerEvent.TrackInfoUpdated);
+            ServiceManager.PlayerEngine.ConnectEvent (OnCreateVideoWindow, PlayerEvent.PrepareVideoWindow);
+        }
+
+        private void OnCreateVideoWindow (PlayerEventArgs args)
+        {
+            ServiceManager.PlayerEngine.DisconnectEvent (OnCreateVideoWindow);
+            NowPlayingContents.CreateVideoDisplay ();
         }
 
         public void Dispose ()

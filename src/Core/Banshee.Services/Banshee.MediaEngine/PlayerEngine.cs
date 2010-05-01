@@ -220,6 +220,7 @@ namespace Banshee.MediaEngine
                 pending_track = null;
                 pending_uri = null;
             }
+
             if (ThreadAssist.InMainThread) {
                 RaiseEventChanged (args);
             } else {

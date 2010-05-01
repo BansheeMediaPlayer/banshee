@@ -86,6 +86,7 @@ typedef void (* BansheePlayerVisDataCallback)      (BansheePlayer *player, gint 
 typedef void (* BansheePlayerNextTrackStartingCallback)     (BansheePlayer *player);
 typedef void (* BansheePlayerAboutToFinishCallback)         (BansheePlayer *player);
 typedef GstElement * (* BansheePlayerVideoPipelineSetupCallback) (BansheePlayer *player, GstBus *bus);
+typedef void (* BansheePlayerVideoPrepareWindowCallback) (BansheePlayer *player);
 typedef void (* BansheePlayerVolumeChangedCallback) (BansheePlayer *player, gdouble new_volume);
 
 typedef enum {
@@ -106,6 +107,7 @@ struct BansheePlayer {
     BansheePlayerNextTrackStartingCallback next_track_starting_cb;
     BansheePlayerAboutToFinishCallback about_to_finish_cb;
     BansheePlayerVideoPipelineSetupCallback video_pipeline_setup_cb;
+    BansheePlayerVideoPrepareWindowCallback video_prepare_window_cb;
     BansheePlayerVolumeChangedCallback volume_changed_cb;
 
     // Pipeline Elements
