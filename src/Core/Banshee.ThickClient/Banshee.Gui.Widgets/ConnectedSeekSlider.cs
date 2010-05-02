@@ -44,12 +44,13 @@ namespace Banshee.Gui.Widgets
     {
         private SeekSlider seek_slider;
         private StreamPositionLabel stream_position_label;
+        private Box box;
 
         public ConnectedSeekSlider () : this (SeekSliderLayout.Vertical)
         {
         }
 
-        public ConnectedSeekSlider (SeekSliderLayout layout) : base (0.0f, 0.0f, 1.0f, 1.0f)
+        public ConnectedSeekSlider (SeekSliderLayout layout) : base (0.5f, 0.5f, 1.0f, 0.0f)
         {
             RightPadding = 10;
             LeftPadding = 10;
@@ -89,12 +90,15 @@ namespace Banshee.Gui.Widgets
             get { return seek_slider; }
         }
 
+        public int Spacing {
+            get { return box.Spacing; }
+            set { box.Spacing = value; }
+        }
+
         private void BuildSeekSlider (SeekSliderLayout layout)
         {
             seek_slider = new SeekSlider ();
             stream_position_label = new StreamPositionLabel (seek_slider);
-
-            Box box;
 
             if (layout == SeekSliderLayout.Horizontal) {
                 box = new HBox ();
