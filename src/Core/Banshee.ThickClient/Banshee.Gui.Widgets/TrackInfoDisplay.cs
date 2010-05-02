@@ -320,7 +320,8 @@ namespace Banshee.Gui.Widgets
 
         protected virtual void RenderCoverArt (Cairo.Context cr, ImageSurface image)
         {
-            ArtworkRenderer.RenderThumbnail (cr, image, false, Allocation.X, Allocation.Y,
+            ArtworkRenderer.RenderThumbnail (cr, image, false,
+                Allocation.X, Allocation.Y + ArtworkOffset,
                 ArtworkSizeRequest, ArtworkSizeRequest,
                 !IsMissingImage (image), 0.0,
                 IsMissingImage (image), BackgroundColor);
@@ -328,8 +329,10 @@ namespace Banshee.Gui.Widgets
 
         protected virtual bool IsWithinCoverart (int x, int y)
         {
-            return x >= Allocation.X && y >= Allocation.Y &&
-                x <= (Allocation.X + ArtworkSizeRequest) && y <= (Allocation.Y + ArtworkSizeRequest);
+            return x >= Allocation.X &&
+                y >= Allocation.Y + ArtworkOffset &&
+                x <= (Allocation.X + ArtworkSizeRequest) &&
+                y <= (Allocation.Y + ArtworkOffset + ArtworkSizeRequest);
         }
 
         protected bool IsMissingImage (ImageSurface pb)
@@ -342,6 +345,10 @@ namespace Banshee.Gui.Widgets
         }
 
         protected abstract void RenderTrackInfo (Cairo.Context cr, TrackInfo track, bool renderTrack, bool renderArtistAlbum);
+
+        private int ArtworkOffset {
+            get { return (Allocation.Height - ArtworkSizeRequest) / 2; }
+        }
 
         protected virtual int ArtworkSizeRequest {
             get { return Allocation.Height; }

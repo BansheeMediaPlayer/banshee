@@ -50,6 +50,7 @@ namespace Banshee.Gui.Widgets
 
         public ClassicTrackInfoDisplay () : base ()
         {
+            ArtworkSpacing = 10;
         }
 
         protected ClassicTrackInfoDisplay (IntPtr native) : base (native)
@@ -61,6 +62,18 @@ namespace Banshee.Gui.Widgets
             base.Dispose ();
             HidePopup ();
         }
+
+        protected override int ArtworkSizeRequest {
+            get { return artwork_size ?? base.ArtworkSizeRequest; }
+        }
+
+        private int? artwork_size;
+        public int ArtworkSize {
+            get { return ArtworkSizeRequest; }
+            set { artwork_size = value; }
+        }
+
+        public int ArtworkSpacing { get; set; }
 
 #region Widget Window Management
 
@@ -160,7 +173,7 @@ namespace Banshee.Gui.Widgets
                 return;
             }
 
-            double offset = Allocation.Height + 10, y = 0;
+            double offset = ArtworkSizeRequest + ArtworkSpacing, y = 0;
             double x = Allocation.X + offset;
             double width = Allocation.Width - offset;
             int fl_width, fl_height, sl_width, sl_height;
