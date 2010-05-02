@@ -141,11 +141,47 @@ namespace Hyena.Gui.Theming
 
         public override void DrawFrameBorder (Cairo.Context cr, Gdk.Rectangle alloc)
         {
+            var corners = CairoCorners.All;
+            double top_extend = 0;
+            double bottom_extend = 0;
+            double left_extend = 0;
+            double right_extend = 0;
+
+            if (Context.ToplevelBorderCollapse) {
+                if (Widget.Allocation.Top <= Widget.Toplevel.Allocation.Top) {
+                    corners &= ~(CairoCorners.TopLeft | CairoCorners.TopRight);
+                    top_extend = cr.LineWidth;
+                }
+
+                if (Widget.Allocation.Bottom >= Widget.Toplevel.Allocation.Bottom) {
+                    corners &= ~(CairoCorners.BottomLeft | CairoCorners.BottomRight);
+                    bottom_extend = cr.LineWidth;
+                }
+
+                if (Widget.Allocation.Left <= Widget.Toplevel.Allocation.Left) {
+                    corners &= ~(CairoCorners.BottomLeft | CairoCorners.TopLeft);
+                    left_extend = cr.LineWidth;
+                }
+
+                if (Widget.Allocation.Right >= Widget.Toplevel.Allocation.Right) {
+                    corners &= ~(CairoCorners.BottomRight | CairoCorners.TopRight);
+                    right_extend = cr.LineWidth;
+                }
+            }
+
             cr.LineWidth = BorderWidth;
             cr.Color = border_color;
+
             double offset = (double)cr.LineWidth / 2.0;
-            CairoExtensions.RoundedRectangle (cr, alloc.X + offset, alloc.Y + offset,
-                alloc.Width - cr.LineWidth, alloc.Height - cr.LineWidth, Context.Radius, CairoCorners.All);
+
+            CairoExtensions.RoundedRectangle (cr,
+                alloc.X + offset - left_extend,
+                alloc.Y + offset - top_extend,
+                alloc.Width - cr.LineWidth + left_extend + right_extend,
+                alloc.Height - cr.LineWidth - top_extend + bottom_extend,
+                Context.Radius,
+                corners);
+
             cr.Stroke ();
         }
 
@@ -153,10 +189,7 @@ namespace Hyena.Gui.Theming
         {
             cr.LineWidth = BorderWidth * 1.5;
             cr.Color = CairoExtensions.ColorShade (border_color, 0.8);
-            double offset = (double)cr.LineWidth / 2.0;
-            CairoExtensions.RoundedRectangle (cr, alloc.X + offset, alloc.Y + offset,
-                alloc.Width - cr.LineWidth, alloc.Height - cr.LineWidth, Context.Radius, CairoCorners.All);
-            cr.Stroke ();
+            DrawFrameBorder (cr, alloc);
         }
 
         public override void DrawColumnHighlight (Cairo.Context cr, Gdk.Rectangle alloc, Cairo.Color color)
