@@ -18,5 +18,9 @@
   <Extension path="/Banshee/ServiceManager/Service">
     <Service class="Banshee.MeeGo.MeeGoService"/>
   </Extension>
+
+  <Extension path="/Banshee/ThickClient/GtkBaseClient/PostInitializeGtk">
+    <PostInitializeGtk class="Banshee.MeeGo.MeeGoThemeLoader"/>
+  </Extension>
    
 </Addin>

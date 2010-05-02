@@ -52,8 +52,6 @@ namespace Banshee.MeeGo
 
             Instance = this;
 
-            Hyena.Gui.Theming.ThemeEngine.SetCurrentTheme<MeeGoTheme> ();
-
             var timer = Log.DebugTimerStart ();
 
             try {
