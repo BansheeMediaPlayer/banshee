@@ -203,13 +203,14 @@ namespace Nereid
             seek_slider.Show ();
             ActionService.PopulateToolbarPlaceholder (header_toolbar, "/HeaderToolbar/SeekSlider", seek_slider);
 
-            var track_info_display = new ClassicTrackInfoDisplay () { ArtworkSize = 48 };
+            var track_info_display = new ClassicTrackInfoDisplay ();
             track_info_display.Show ();
             var editable = TrackInfoDisplay.GetEditable (track_info_display);
             editable.Show ();
             ActionService.PopulateToolbarPlaceholder (header_toolbar, "/HeaderToolbar/TrackInfoDisplay", editable, true);
 
             if (PlatformDetection.IsMeeGo) {
+                track_info_display.ArtworkSize = 48;
                 track_info_display.ArtworkSpacing = 5;
                 seek_slider.LeftPadding = 20;
                 seek_slider.RightPadding = 20;
