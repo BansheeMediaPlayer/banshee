@@ -46,6 +46,7 @@ namespace Nereid
     {
         private SearchEntry search_entry;
         private HBox header;
+        private Alignment header_align;
         private EventBox header_box;
         private Label title_label;
         private Banshee.ContextPane.ContextPane context_pane;
@@ -63,6 +64,12 @@ namespace Nereid
 
         private void BuildHeader ()
         {
+            header_align = new Alignment (0.0f, 0.5f, 1.0f, 1.0f);
+            if (Hyena.PlatformDetection.IsMeeGo) {
+                header_align.RightPadding = 5;
+                header_align.TopPadding = 5;
+            }
+
             header = new HBox ();
             footer = new VBox ();
 
@@ -107,10 +114,11 @@ namespace Nereid
                 }
             }
 
-            header.ShowAll ();
+            header_align.Add (header);
+            header_align.ShowAll ();
             search_entry.Show ();
 
-            PackStart (header, false, false, 0);
+            PackStart (header_align, false, false, 0);
             PackEnd (footer, false, false, 0);
 
             context_pane = new Banshee.ContextPane.ContextPane ();
@@ -221,8 +229,8 @@ namespace Nereid
             }
         }
 
-        public HBox Header {
-            get { return header; }
+        public Alignment Header {
+            get { return header_align; }
         }
 
         public SearchEntry SearchEntry {

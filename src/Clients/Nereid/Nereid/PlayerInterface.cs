@@ -176,7 +176,7 @@ namespace Nereid
 
             Alignment toolbar_alignment = new Alignment (0.0f, 0.0f, 1.0f, 1.0f);
             toolbar_alignment.TopPadding = PlatformDetection.IsMeeGo ? 0u : 3u;
-            toolbar_alignment.BottomPadding = 3;
+            toolbar_alignment.BottomPadding = PlatformDetection.IsMeeGo ? 0u : 3u;
 
             header_toolbar = (Toolbar)ActionService.UIManager.GetWidget ("/HeaderToolbar");
             header_toolbar.ShowArrow = false;
@@ -184,6 +184,7 @@ namespace Nereid
             header_toolbar.Show ();
 
             if (PlatformDetection.IsMeeGo) {
+                header_toolbar.IconSize = IconSize.LargeToolbar;
                 header_toolbar.Name = "moblin-toolbar";
             }
 
@@ -194,7 +195,7 @@ namespace Nereid
                 AttachOptions.Expand | AttachOptions.Fill,
                 AttachOptions.Shrink, 0, 0);
 
-            Widget next_button = new NextButton (ActionService, PlatformDetection.IsMeeGo);
+            var next_button = new NextButton (ActionService, PlatformDetection.IsMeeGo);
             next_button.Show ();
             ActionService.PopulateToolbarPlaceholder (header_toolbar, "/HeaderToolbar/NextArrowButton", next_button);
 
@@ -202,22 +203,48 @@ namespace Nereid
             seek_slider.Show ();
             ActionService.PopulateToolbarPlaceholder (header_toolbar, "/HeaderToolbar/SeekSlider", seek_slider);
 
-            TrackInfoDisplay track_info_display = new ClassicTrackInfoDisplay ();
+            var track_info_display = new ClassicTrackInfoDisplay () { ArtworkSize = 48 };
             track_info_display.Show ();
             var editable = TrackInfoDisplay.GetEditable (track_info_display);
             editable.Show ();
             ActionService.PopulateToolbarPlaceholder (header_toolbar, "/HeaderToolbar/TrackInfoDisplay", editable, true);
 
             if (PlatformDetection.IsMeeGo) {
+                track_info_display.ArtworkSpacing = 5;
+                seek_slider.LeftPadding = 20;
+                seek_slider.RightPadding = 20;
+                seek_slider.Spacing = 4;
+
                 var menu = (Menu)(ActionService.UIManager.GetWidget ("/ToolbarMenu"));
                 var menu_button = new Hyena.Widgets.MenuButton (new Image (Stock.Preferences, IconSize.LargeToolbar), menu, true);
                 menu_button.Show ();
                 ActionService.PopulateToolbarPlaceholder (header_toolbar, "/HeaderToolbar/ToolbarMenuPlaceholder", menu_button);
 
-                var close_button = new ToolButton (Stock.Close);
+                var close_button = new Button (Image.NewFromIconName ("window-close-hover", IconSize.Dialog)) {
+                    TooltipText = Catalog.GetString ("Close"),
+                    Name = "moblin-close-button"
+                };
                 close_button.Clicked += (o, e) => Hide ();
-                close_button.Show ();
+                close_button.ShowAll ();
                 ActionService.PopulateToolbarPlaceholder (header_toolbar, "/HeaderToolbar/ClosePlaceholder", close_button);
+
+                StyleSet += delegate {
+                    // Manually apply the right style to the inner toggle
+                    // buttons on the special Hyena MenuButton widgets
+                    var style = Gtk.Rc.GetStyleByPaths (
+                        Settings.Default,
+                        "moblin-toolbar.GtkButton",
+                        "moblin-toolbar.GtkButton",
+                        (GLib.GType)typeof (ToolButton));
+                    menu_button.ToggleButton.Style = style;
+                    next_button.ToggleButton.Style = style;
+
+                    seek_slider.SeekSlider.Style = Gtk.Rc.GetStyleByPaths (
+                        Settings.Default,
+                        "moblin-toolbar.BansheeSeekSlider",
+                        "moblin-toolbar.BansheeSeekSlider",
+                        (GLib.GType)typeof (HScale));
+                };
             } else {
                 var volume_button = new ConnectedVolumeButton ();
                 volume_button.Show ();
@@ -236,8 +263,23 @@ namespace Nereid
             source_view = new SourceView ();
             composite_view = new CompositeTrackSourceContents ();
 
-            Hyena.Widgets.ScrolledWindow source_scroll = new Hyena.Widgets.ScrolledWindow ();
-            source_scroll.AddWithFrame (source_view);
+            Container source_scroll;
+            if (PlatformDetection.IsMeeGo) {
+                source_scroll = new Gtk.ScrolledWindow () {
+                    HscrollbarPolicy = PolicyType.Never,
+                    VscrollbarPolicy = PolicyType.Automatic,
+                    ShadowType = ShadowType.None
+                };
+                source_scroll.Add (source_view);
+
+                var color = new Gdk.Color ((byte)0xe3, (byte)0xf3, (byte)0xf8);
+                Gdk.Colormap.System.AllocColor (ref color, true, true);
+                source_view.ModifyBase (StateType.Normal, color);
+            } else {
+                var hyena_source_scroll = new Hyena.Widgets.ScrolledWindow ();
+                hyena_source_scroll.AddWithFrame (source_view);
+                source_scroll = hyena_source_scroll;
+            }
 
             composite_view.TrackView.HeaderVisible = false;
             view_container.Content = composite_view;
