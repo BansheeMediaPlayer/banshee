@@ -48,6 +48,8 @@ namespace Hyena.Gui.Theming
         private Cairo.Color view_fill;
         private Cairo.Color view_fill_transparent;
 
+        private Cairo.Color text_mid;
+
         public GtkColors Colors {
             get { return colors; }
         }
@@ -76,6 +78,11 @@ namespace Hyena.Gui.Theming
             view_fill = colors.GetWidgetColor (GtkColorClass.Base, StateType.Normal);
             view_fill_transparent = view_fill;
             view_fill_transparent.A = 0;
+
+            text_mid = CairoExtensions.AlphaBlend (
+                colors.GetWidgetColor (GtkColorClass.Base, StateType.Normal),
+                colors.GetWidgetColor (GtkColorClass.Text, StateType.Normal),
+                0.5);
         }
 
 #region Drawing
@@ -197,6 +204,11 @@ namespace Hyena.Gui.Theming
 
         public Cairo.Color SelectionStroke {
             get { return selection_stroke; }
+        }
+
+        public Cairo.Color TextMidColor {
+            get { return text_mid; }
+            protected set { text_mid = value; }
         }
 
         public virtual int BorderWidth {
