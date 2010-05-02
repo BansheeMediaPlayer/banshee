@@ -169,8 +169,13 @@ namespace Hyena.Gui.Theming
                 }
             }
 
-            cr.LineWidth = BorderWidth;
-            cr.Color = border_color;
+            if (Widget.HasFocus) {
+                cr.LineWidth = BorderWidth * 1.5;
+                cr.Color = CairoExtensions.ColorShade (border_color, 0.8);
+            } else {
+                cr.LineWidth = BorderWidth;
+                cr.Color = border_color;
+            }
 
             double offset = (double)cr.LineWidth / 2.0;
 
@@ -183,13 +188,6 @@ namespace Hyena.Gui.Theming
                 corners);
 
             cr.Stroke ();
-        }
-
-        public override void DrawFrameBorderFocused (Cairo.Context cr, Gdk.Rectangle alloc)
-        {
-            cr.LineWidth = BorderWidth * 1.5;
-            cr.Color = CairoExtensions.ColorShade (border_color, 0.8);
-            DrawFrameBorder (cr, alloc);
         }
 
         public override void DrawColumnHighlight (Cairo.Context cr, Gdk.Rectangle alloc, Cairo.Color color)

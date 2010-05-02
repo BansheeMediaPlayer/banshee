@@ -140,13 +140,7 @@ namespace Hyena.Data.Gui
                 }
             }
 
-            // Focused frame border is bolder than BorderWidth,
-            // draw it after the rows to avoid visual artifacts.
-            if (HasFocus) {
-                Theme.DrawFrameBorderFocused (cairo_context, Allocation);
-            } else {
-                Theme.DrawFrameBorder (cairo_context, Allocation);
-            }
+            Theme.DrawFrameBorder (cairo_context, Allocation);
 
             PaintDraggingColumn (damage);
 
