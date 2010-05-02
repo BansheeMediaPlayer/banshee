@@ -32,6 +32,7 @@ using Gtk;
 using Gdk;
 using Pango;
 
+using Hyena.Gui;
 using Hyena.Gui.Theming;
 using Hyena.Gui.Theatrics;
 
@@ -225,21 +226,16 @@ namespace Banshee.Sources.Gui
                 return;
             }
 
-            Gdk.GC mod_gc = widget.Style.TextGC (state);
-            if (state == StateType.Normal || (view != null && state == StateType.Prelight)) {
-                Gdk.Color fgcolor = widget.Style.Base (state);
-                Gdk.Color bgcolor = widget.Style.Text (state);
+            if (view != null && view.Cr != null) {
+                view.Cr.Color = state == StateType.Normal || (view != null && state == StateType.Prelight)
+                    ? view.Theme.TextMidColor
+                    : view.Theme.Colors.GetWidgetColor (GtkColorClass.Text, state);
 
-                mod_gc = new Gdk.GC (drawable);
-                mod_gc.Copy (widget.Style.TextGC (state));
-                mod_gc.RgbFgColor = Hyena.Gui.GtkUtilities.ColorBlend (fgcolor, bgcolor);
-                mod_gc.RgbBgColor = fgcolor;
+                view.Cr.MoveTo (
+                    cell_area.X + cell_area.Width - count_layout_width - 2,
+                    cell_area.Y + 0.5 + (double)(cell_area.Height - count_layout_height) / 2.0);
+                PangoCairoHelper.ShowLayout (view.Cr, count_layout);
             }
-
-            drawable.DrawLayout (mod_gc,
-                cell_area.X + cell_area.Width - count_layout_width - 2,
-                Middle (cell_area, count_layout_height),
-                count_layout);
 
             count_layout.Dispose ();
             fd.Dispose ();
