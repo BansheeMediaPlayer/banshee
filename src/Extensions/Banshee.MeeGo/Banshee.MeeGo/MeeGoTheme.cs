@@ -99,13 +99,6 @@ namespace Banshee.MeeGo
             cr.Antialias = Cairo.Antialias.Default;
         }
 
-        public override void DrawFrameBorderFocused (Cairo.Context cr, Gdk.Rectangle alloc)
-        {
-            if (!IsPanelWidget) {
-                base.DrawFrameBorderFocused (cr, alloc);
-            }
-        }
-
         public override void DrawRowSelection (Cairo.Context cr, int x, int y, int width, int height,
             bool filled, bool stroked, Cairo.Color color, CairoCorners corners)
         {
