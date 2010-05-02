@@ -104,11 +104,11 @@ namespace Hyena.Widgets
             toggle_button.Active = false;
         }
 
-        protected ToggleButton ToggleButton {
+        public ToggleButton ToggleButton {
             get { return toggle_button; }
         }
 
-        protected Arrow Arrow {
+        public Arrow Arrow {
             get { return arrow; }
         }
 
