@@ -146,12 +146,10 @@ namespace Banshee.Sources.Gui
 
 #region Gtk.Widget Overrides
 
-        protected override void OnRealized ()
+        protected override void OnStyleSet (Style old_style)
         {
-            base.OnRealized ();
-
-            theme = new GtkTheme (this);
-            // theme.RefreshColors ();
+            base.OnStyleSet (old_style);
+            theme = Hyena.Gui.Theming.ThemeEngine.CreateTheme (this);
         }
 
         protected override bool OnButtonPressEvent (Gdk.EventButton press)
@@ -251,7 +249,10 @@ namespace Banshee.Sources.Gui
 
             try {
                 cr = Gdk.CairoHelper.Create (evnt.Window);
-                return base.OnExposeEvent (evnt);
+                base.OnExposeEvent (evnt);
+                theme.DrawFrameBorder (cr, new Gdk.Rectangle (0, 0,
+                    Allocation.Width, Allocation.Height));
+                return true;
             } finally {
                 CairoExtensions.DisposeContext (cr);
                 cr = null;
