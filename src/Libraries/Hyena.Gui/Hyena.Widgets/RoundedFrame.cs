@@ -49,6 +49,7 @@ namespace Hyena.Widgets
         private Cairo.Color fill_color;
         private bool draw_border = true;
         private Pattern fill_pattern;
+        private int frame_width;
 
         // Ugh, this is to avoid the GLib.MissingIntPtrCtorException seen by some; BGO #552169
         protected RoundedFrame (IntPtr ptr) : base (ptr)
@@ -87,10 +88,11 @@ namespace Hyena.Widgets
 
 #region Gtk.Widget Overrides
 
-        protected override void OnRealized ()
+        protected override void OnStyleSet (Style previous_style)
         {
-            base.OnRealized ();
+            base.OnStyleSet (previous_style);
             theme = Hyena.Gui.Theming.ThemeEngine.CreateTheme (this);
+            frame_width = (int)theme.Context.Radius + 1;
         }
 
         protected override void OnSizeRequested (ref Requisition requisition)
@@ -106,8 +108,8 @@ namespace Hyena.Widgets
             }
 
             // Add the frame border
-            requisition.Width += ((int)BorderWidth + (int)theme.Context.Radius) * 2;
-            requisition.Height += ((int)BorderWidth + (int)theme.Context.Radius) * 2;
+            requisition.Width += ((int)BorderWidth + frame_width) * 2;
+            requisition.Height += ((int)BorderWidth + frame_width) * 2;
         }
 
         protected override void OnSizeAllocated (Gdk.Rectangle allocation)
@@ -120,11 +122,11 @@ namespace Hyena.Widgets
                 return;
             }
 
-            child_allocation.X = (int)BorderWidth + (int)theme.Context.Radius;
-            child_allocation.Y = (int)BorderWidth + (int)theme.Context.Radius;
+            child_allocation.X = (int)BorderWidth + frame_width;
+            child_allocation.Y = (int)BorderWidth + frame_width;
             child_allocation.Width = (int)Math.Max (1, Allocation.Width - child_allocation.X * 2);
             child_allocation.Height = (int)Math.Max (1, Allocation.Height - child_allocation.Y -
-                (int)BorderWidth - (int)theme.Context.Radius);
+                (int)BorderWidth - frame_width);
 
             child_allocation.X += Allocation.X;
             child_allocation.Y += Allocation.Y;
@@ -160,10 +162,10 @@ namespace Hyena.Widgets
 
         private void DrawFrame (Cairo.Context cr, Gdk.Rectangle clip)
         {
-            int x = child_allocation.X - (int)theme.Context.Radius;
-            int y = child_allocation.Y - (int)theme.Context.Radius;
-            int width = child_allocation.Width + 2 * (int)theme.Context.Radius;
-            int height = child_allocation.Height + 2 * (int)theme.Context.Radius;
+            int x = child_allocation.X - frame_width;
+            int y = child_allocation.Y - frame_width;
+            int width = child_allocation.Width + 2 * frame_width;
+            int height = child_allocation.Height + 2 * frame_width;
 
             Gdk.Rectangle rect = new Gdk.Rectangle (x, y, width, height);
 
