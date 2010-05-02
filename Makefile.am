@@ -133,6 +133,7 @@ package-patch:
 		-x 'a/Makefile.am' \
 		-x 'a/profile-configure' \
 		-x 'a/po/*' \
+		-x 'a/banshee.doap' \
 		-x \*.csproj \
 		-x \*.sln \
 		-x \*extras/\* &> 'since-$(SINCE).patch'
