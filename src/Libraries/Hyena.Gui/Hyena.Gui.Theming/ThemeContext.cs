@@ -33,6 +33,8 @@ namespace Hyena.Gui.Theming
 {
     public class ThemeContext
     {
+        public bool ToplevelBorderCollapse { get; set; }
+
         private double radius = 0.0;
         public double Radius {
             get { return radius; }
