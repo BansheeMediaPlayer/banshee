@@ -79,8 +79,18 @@ dnl Check for mono >= 2.4.3 for LibraryWatcher extension, with fix for bnc#32233
 PKG_CHECK_MODULES(MONO_2_4_3, mono >= 2.4.3, HAVE_MONO_2_4_3=yes, HAVE_MONO_2_4_3=no)
 AM_CONDITIONAL(ENABLE_LIBRARY_WATCHER, test "x$HAVE_MONO_2_4_3" = "xyes")
 
-dnl Check for GNOME >= 2.28 to see if we should remove 'Media Player' from the app Name, bgo#596242
-PKG_CHECK_MODULES(GNOME_LT_2_28, gnome-desktop-2.0 < 2.28, BANSHEE_DESKTOP_NAME="_Name=Banshee Media Player", BANSHEE_DESKTOP_NAME="_Name=Banshee")
+dnl Check for GNOME >= 2.28 to see if we should remove
+dnl 'Media Player' from the app Name, bgo#596242, except
+dnl in MeeGo where GNOME >= 2.28, but we want the full name
+PKG_CHECK_MODULES(GNOME_2_28, gnome-desktop-2.0 >= 2.28,
+	HAVE_GNOME_2_28=yes, HAVE_GNOME_2_28=no)
+PKG_CHECK_MODULES(MEEGO_PANEL, moblin-panel,
+	HAVE_MEEGO_PANEL=yes, HAVE_MEEGO_PANEL=no)
+if test "x$HAVE_GNOME_2_28" = "xno" -o "x$HAVE_MEEGO_PANEL" = "xyes"; then
+	BANSHEE_DESKTOP_NAME="_Name=Banshee Media Player"
+else
+	BANSHEE_DESKTOP_NAME="_Name=Banshee"
+fi
 AC_SUBST(BANSHEE_DESKTOP_NAME)
 
 dnl NDesk DBus libraries
