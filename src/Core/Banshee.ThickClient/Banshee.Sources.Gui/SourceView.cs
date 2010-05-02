@@ -250,8 +250,10 @@ namespace Banshee.Sources.Gui
             try {
                 cr = Gdk.CairoHelper.Create (evnt.Window);
                 base.OnExposeEvent (evnt);
-                theme.DrawFrameBorder (cr, new Gdk.Rectangle (0, 0,
-                    Allocation.Width, Allocation.Height));
+                if (Hyena.PlatformDetection.IsMeeGo) {
+                    theme.DrawFrameBorder (cr, new Gdk.Rectangle (0, 0,
+                        Allocation.Width, Allocation.Height));
+                }
                 return true;
             } finally {
                 CairoExtensions.DisposeContext (cr);
