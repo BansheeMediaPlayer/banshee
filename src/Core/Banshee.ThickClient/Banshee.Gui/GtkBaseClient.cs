@@ -103,6 +103,17 @@ namespace Banshee.Gui
                 GLib.Thread.Init ();
             }
             Gtk.Application.Init ();
+
+            if (ApplicationContext.CommandLine.Contains ("debug-gtkrc")) {
+                Log.Information ("Note: gtkrc files will be checked for reload every 5 seconds!");
+                GLib.Timeout.Add (5000, delegate {
+                    if (Gtk.Rc.ReparseAll ()) {
+                        Gtk.Rc.ResetStyles (Gtk.Settings.Default);
+                        Log.Information ("gtkrc has been reloaded");
+                    }
+                    return true;
+                });
+            }
         }
 
         protected virtual void PostInitializeGtk ()
