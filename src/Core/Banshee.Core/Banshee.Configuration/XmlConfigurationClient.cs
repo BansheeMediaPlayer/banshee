@@ -42,6 +42,7 @@ namespace Banshee.Configuration
         private const string namespace_tag_name = "namespace";
         private const string value_tag_name = "value";
         private const string tag_identifier_attribute_name = "name";
+        private const string skel_path = "/etc/skel/.config/banshee-1/config.xml";
 
         private static string file_path {
             get {
@@ -62,9 +63,18 @@ namespace Banshee.Configuration
 
             xml_document = new XmlDocument();
             bool make_new_xml = true;
-            if(File.Exists(file_path)) {
+
+            string load_path = null;
+            if (File.Exists (file_path)) {
+                load_path = file_path;
+            } else if (File.Exists (skel_path)) {
+                Hyena.Log.InformationFormat ("Restoring config.xml from {0}", skel_path);
+                load_path = skel_path;
+            }
+
+            if (load_path != null && File.Exists (load_path)) {
                 try {
-                    xml_document.Load(file_path);
+                    xml_document.Load (load_path);
                     make_new_xml = false;
                 } catch { // TODO try recovery?
                 }
