@@ -293,6 +293,11 @@ namespace Banshee.MeeGo
             });
         }
 
+        internal void SyncSearchEntry ()
+        {
+            OnActiveSourceChanged (null);
+        }
+
 #endregion
 
 #region View<->Model binding

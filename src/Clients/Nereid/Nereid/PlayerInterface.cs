@@ -480,10 +480,21 @@ namespace Nereid
 
         private void OnSourcePropertyChanged (object o, PropertyChangeEventArgs args)
         {
-            if (args.PropertyName == "Nereid.SourceContents") {
-                ThreadAssist.ProxyToMain (delegate {
-                    UpdateSourceContents (previous_source);
-                });
+            switch (args.PropertyName) {
+                case "Nereid.SourceContents":
+                    ThreadAssist.ProxyToMain (delegate {
+                        UpdateSourceContents (previous_source);
+                    });
+                    break;
+
+                case "FilterQuery":
+                    var source = ServiceManager.SourceManager.ActiveSource;
+                    ThreadAssist.ProxyToMain (delegate {
+                        view_container.SearchEntry.Ready = false;
+                        view_container.SearchEntry.Query = source.FilterQuery;
+                        view_container.SearchEntry.Ready = true;
+                    });
+                    break;
             }
         }
 
