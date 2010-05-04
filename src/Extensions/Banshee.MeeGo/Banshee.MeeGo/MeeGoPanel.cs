@@ -56,7 +56,8 @@ namespace Banshee.MeeGo
 
             try {
                 Log.Debug ("Attempting to create MeeGo toolbar panel");
-                embedded_panel = new PanelGtk ("banshee", "media", null, "media-button", true);
+                embedded_panel = new PanelGtk ("banshee", Catalog.GetString ("Banshee Media Player"),
+                    null, "media-button", true);
                 embedded_panel.ShowBeginEvent += (o, e) =>
                     ServiceManager.SourceManager.SetActiveSource (ServiceManager.SourceManager.MusicLibrary);
                 while (Gtk.Application.EventsPending ()) {
