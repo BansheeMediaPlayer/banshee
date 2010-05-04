@@ -96,6 +96,12 @@ namespace Banshee.MeeGo
             cr.LineTo (alloc.Right - 1, alloc.Bottom);
             cr.Stroke ();
 
+            if (Widget.Allocation.Bottom < Widget.Toplevel.Allocation.Height) {
+                cr.MoveTo (alloc.Left, alloc.Bottom - 1);
+                cr.LineTo (alloc.Right, alloc.Bottom - 1);
+                cr.Stroke ();
+            }
+
             cr.Antialias = Cairo.Antialias.Default;
         }
 
