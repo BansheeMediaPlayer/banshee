@@ -25,6 +25,7 @@
 // THE SOFTWARE.
 
 using System;
+using Mono.Unix;
 
 using Gtk;
 using MeeGo.Panel;
