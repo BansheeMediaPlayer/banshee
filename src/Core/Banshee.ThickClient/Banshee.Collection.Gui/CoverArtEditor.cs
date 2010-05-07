@@ -71,6 +71,7 @@ namespace Banshee.Collection.Gui
             public EditorBox (Widget child)
             {
                 Child = child;
+                VisibleWindow = false;
 
                 ButtonPressEvent += (o, a) => {
                     if (a.Event.Button == 3 && IsSensitive ((int)a.Event.X, (int)a.Event.Y)) {
