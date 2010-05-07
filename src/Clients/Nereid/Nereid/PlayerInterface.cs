@@ -210,42 +210,22 @@ namespace Nereid
             ActionService.PopulateToolbarPlaceholder (header_toolbar, "/HeaderToolbar/TrackInfoDisplay", editable, true);
 
             if (PlatformDetection.IsMeeGo) {
-                track_info_display.ArtworkSize = 48;
                 track_info_display.ArtworkSpacing = 5;
                 seek_slider.LeftPadding = 20;
                 seek_slider.RightPadding = 20;
-                seek_slider.Spacing = 4;
 
                 var menu = (Menu)(ActionService.UIManager.GetWidget ("/ToolbarMenu"));
                 var menu_button = new Hyena.Widgets.MenuButton (new Image (Stock.Preferences, IconSize.LargeToolbar), menu, true);
                 menu_button.Show ();
                 ActionService.PopulateToolbarPlaceholder (header_toolbar, "/HeaderToolbar/ToolbarMenuPlaceholder", menu_button);
 
-                var close_button = new Button (Image.NewFromIconName ("window-close-hover", IconSize.Dialog)) {
-                    TooltipText = Catalog.GetString ("Close"),
-                    Name = "moblin-close-button"
+                var close_button = new Button (Image.NewFromIconName ("window-close", IconSize.LargeToolbar)) {
+                    TooltipText = Catalog.GetString ("Close")
                 };
+
                 close_button.Clicked += (o, e) => Hide ();
                 close_button.ShowAll ();
                 ActionService.PopulateToolbarPlaceholder (header_toolbar, "/HeaderToolbar/ClosePlaceholder", close_button);
-
-                StyleSet += delegate {
-                    // Manually apply the right style to the inner toggle
-                    // buttons on the special Hyena MenuButton widgets
-                    var style = Gtk.Rc.GetStyleByPaths (
-                        Settings.Default,
-                        "moblin-toolbar.GtkButton",
-                        "moblin-toolbar.GtkButton",
-                        (GLib.GType)typeof (ToolButton));
-                    menu_button.ToggleButton.Style = style;
-                    next_button.ToggleButton.Style = style;
-
-                    seek_slider.SeekSlider.Style = Gtk.Rc.GetStyleByPaths (
-                        Settings.Default,
-                        "moblin-toolbar.BansheeSeekSlider",
-                        "moblin-toolbar.BansheeSeekSlider",
-                        (GLib.GType)typeof (HScale));
-                };
             } else {
                 var volume_button = new ConnectedVolumeButton ();
                 volume_button.Show ();
@@ -273,7 +253,7 @@ namespace Nereid
                 };
                 source_scroll.Add (source_view);
 
-                var color = new Gdk.Color ((byte)0xe3, (byte)0xf3, (byte)0xf8);
+                var color = new Gdk.Color ((byte)0xdd, (byte)0xdd, (byte)0xdd);
                 Gdk.Colormap.System.AllocColor (ref color, true, true);
                 source_view.ModifyBase (StateType.Normal, color);
             } else {
