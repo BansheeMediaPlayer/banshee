@@ -67,8 +67,6 @@ namespace Banshee.MeeGo
         protected override void OnColorsRefreshed ()
         {
             base.OnColorsRefreshed ();
-            TextMidColor = CairoExtensions.ColorShade (Colors.GetWidgetColor (
-                GtkColorClass.Background, StateType.Selected), 0.85);
         }
 
         public override void DrawFrameBackground (Cairo.Context cr, Gdk.Rectangle alloc,
@@ -105,12 +103,32 @@ namespace Banshee.MeeGo
             cr.Antialias = Cairo.Antialias.Default;
         }
 
+        public override void DrawHeaderBackground (Cairo.Context cr, Gdk.Rectangle alloc)
+        {
+            CairoCorners corners = CairoCorners.TopLeft | CairoCorners.TopRight;
+
+            LinearGradient grad = new LinearGradient (alloc.X, alloc.Y, alloc.X, alloc.Bottom);
+            grad.AddColorStop (0, CairoExtensions.RgbToColor (0xf6f3f3));
+            grad.AddColorStop (0.33, CairoExtensions.RgbToColor (0xeeecec));
+            grad.AddColorStop (0.66, CairoExtensions.RgbToColor (0xeeecec));
+            grad.AddColorStop (1, CairoExtensions.RgbToColor (0xe1dfdf));
+
+            cr.Pattern = grad;
+            CairoExtensions.RoundedRectangle (cr, alloc.X, alloc.Y, alloc.Width, alloc.Height, Context.Radius, corners);
+            cr.Fill ();
+
+            cr.Color = CairoExtensions.RgbToColor (0x919191);
+            cr.Rectangle (alloc.X, alloc.Bottom, alloc.Width, BorderWidth);
+            cr.Fill ();
+            grad.Destroy ();
+        }
+
         public override void DrawRowSelection (Cairo.Context cr, int x, int y, int width, int height,
             bool filled, bool stroked, Cairo.Color color, CairoCorners corners)
         {
             if (!IsSourceViewWidget) {
                 base.DrawRowSelection (cr, x, y, width, height, filled,
-                    stroked, color, corners);
+                    stroked, color, corners, true);
                 return;
             }
 
@@ -119,11 +137,13 @@ namespace Banshee.MeeGo
             width += 1;
             height += 1;
 
+            color = TextMidColor;
+
             base.DrawRowSelection (cr, x, y, width, height,
-                filled, false, color, corners);
+                filled, false, color, corners, true);
 
             if (stroked) {
-                cr.Color = CairoExtensions.ColorShade (color, 0.85);
+                cr.Color = color;
                 cr.LineWidth = 1.0;
                 cr.Antialias = Cairo.Antialias.None;
 
