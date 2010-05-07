@@ -309,28 +309,43 @@ namespace Hyena.Gui.Theming
         public override void DrawRowSelection (Cairo.Context cr, int x, int y, int width, int height,
             bool filled, bool stroked, Cairo.Color color, CairoCorners corners)
         {
+            DrawRowSelection (cr, x, y, width, height, filled, stroked, color, corners, false);
+        }
+
+        public void DrawRowSelection (Cairo.Context cr, int x, int y, int width, int height,
+            bool filled, bool stroked, Cairo.Color color, CairoCorners corners, bool flat_fill)
+        {
             Cairo.Color selection_color = color;
             Cairo.Color selection_highlight = CairoExtensions.ColorShade (selection_color, 1.24);
             Cairo.Color selection_stroke = CairoExtensions.ColorShade (selection_color, 0.85);
             selection_highlight.A = 0.5;
             selection_stroke.A = color.A;
+            LinearGradient grad = null;
 
             if (filled) {
-                Cairo.Color selection_fill_light = CairoExtensions.ColorShade (selection_color, 1.12);
-                Cairo.Color selection_fill_dark = selection_color;
+                if (flat_fill) {
+                    cr.Color = selection_color;
+                } else {
+                    Cairo.Color selection_fill_light = CairoExtensions.ColorShade (selection_color, 1.12);
+                    Cairo.Color selection_fill_dark = selection_color;
 
-                selection_fill_light.A = color.A;
-                selection_fill_dark.A = color.A;
+                    selection_fill_light.A = color.A;
+                    selection_fill_dark.A = color.A;
 
-                LinearGradient grad = new LinearGradient (x, y, x, y + height);
-                grad.AddColorStop (0, selection_fill_light);
-                grad.AddColorStop (0.4, selection_fill_dark);
-                grad.AddColorStop (1, selection_fill_light);
+                    grad = new LinearGradient (x, y, x, y + height);
+                    grad.AddColorStop (0, selection_fill_light);
+                    grad.AddColorStop (0.4, selection_fill_dark);
+                    grad.AddColorStop (1, selection_fill_light);
 
-                cr.Pattern = grad;
+                    cr.Pattern = grad;
+                }
+
                 CairoExtensions.RoundedRectangle (cr, x, y, width, height, Context.Radius, corners, true);
                 cr.Fill ();
-                grad.Destroy ();
+
+                if (grad != null) {
+                    grad.Destroy ();
+                }
             }
 
             if (filled && stroked) {
