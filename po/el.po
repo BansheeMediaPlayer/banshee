@@ -6,10 +6,11 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Banshee\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-08-24 00:05+0300\n"
-"PO-Revision-Date: 2010-08-23 23:50+0200\n"
-"Last-Translator: Εμμανουήλ Καπερνάρος <manolis@kapcom.gr>\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
+"product=banshee&component=general\n"
+"POT-Creation-Date: 2010-09-28 06:36+0000\n"
+"PO-Revision-Date: 2010-10-01 11:04+0300\n"
+"Last-Translator: Χάρης Κουζινόπουλος <ckouz@uom.gr>\n"
 "Language-Team: Greek Team <gnome@gnome.gr>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -80,11 +81,11 @@ msgstr ""
 #. ../src/Dap/Banshee.Dap.AppleDevice/Banshee.Dap.AppleDevice.addin.xml
 #: ../data/addin-xml-strings.cs:41
 msgid "Apple device Support"
-msgstr "Υποστήριξη Apple Συσκευής"
+msgstr "Υποστήριξη Συσκευής Apple"
 
 #: ../data/addin-xml-strings.cs:42
 msgid "Support for most iPod/iPhone/iPad devices."
-msgstr ""
+msgstr "Υποστήριξη για τις περισσότερες συσκευές iPod/iPhone/iPad."
 
 #: ../data/addin-xml-strings.cs:43 ../data/addin-xml-strings.cs:48
 #: ../data/addin-xml-strings.cs:53 ../data/addin-xml-strings.cs:58
@@ -180,7 +181,7 @@ msgstr "Οργανώστε ακουστικά βιβλία, διαλέξεις, 
 
 #: ../data/addin-xml-strings.cs:82 ../data/addin-xml-strings.cs:87
 #: ../data/addin-xml-strings.cs:117 ../data/addin-xml-strings.cs:132
-#: ../data/addin-xml-strings.cs:185 ../data/addin-xml-strings.cs:190
+#: ../data/addin-xml-strings.cs:190 ../data/addin-xml-strings.cs:195
 msgid "Core"
 msgstr "Πυρήνας"
 
@@ -207,8 +208,8 @@ msgstr ""
 #: ../data/addin-xml-strings.cs:102 ../data/addin-xml-strings.cs:107
 #: ../data/addin-xml-strings.cs:122 ../data/addin-xml-strings.cs:147
 #: ../data/addin-xml-strings.cs:156 ../data/addin-xml-strings.cs:166
-#: ../data/addin-xml-strings.cs:171 ../data/addin-xml-strings.cs:180
-#: ../data/addin-xml-strings.cs:209
+#: ../data/addin-xml-strings.cs:171 ../data/addin-xml-strings.cs:176
+#: ../data/addin-xml-strings.cs:185 ../data/addin-xml-strings.cs:214
 msgid "Utilities"
 msgstr "Εφαρμογές"
 
@@ -311,11 +312,11 @@ msgstr ""
 #. ../src/Extensions/Banshee.LibraryWatcher/Banshee.LibraryWatcher.addin.xml
 #: ../data/addin-xml-strings.cs:145
 msgid "Library Watcher"
-msgstr ""
+msgstr "Παρακολούθηση Βιβλιοθήκης"
 
 #: ../data/addin-xml-strings.cs:146
 msgid "Automatically update music and video libraries"
-msgstr "Αυτόματη ενημέρωση βιβλιοθήκης μουσικής και βίντεο"
+msgstr "Αυτόματη ενημέρωση των βιβλιοθηκών μουσικής και βίντεο"
 
 #. ../src/Extensions/Banshee.MeeGo/Banshee.MeeGo.addin.xml
 #: ../data/addin-xml-strings.cs:150
@@ -347,141 +348,149 @@ msgstr ""
 msgid "Browse and subscribe to thousands of audio and video podcasts."
 msgstr ""
 
-#. ../src/Extensions/Banshee.MultimediaKeys/Banshee.MultimediaKeys.addin.xml
+#. ../src/Extensions/Banshee.Mpris/Banshee.Mpris.addin.xml
 #: ../data/addin-xml-strings.cs:164
+msgid "MPRIS D-Bus interface"
+msgstr ""
+
+#: ../data/addin-xml-strings.cs:165
+msgid "Control Banshee using the MPRIS D-Bus interface."
+msgstr ""
+
+#. ../src/Extensions/Banshee.MultimediaKeys/Banshee.MultimediaKeys.addin.xml
+#: ../data/addin-xml-strings.cs:169
 msgid "Multimedia Keys"
 msgstr "Πλήκτρα Πολυμέσων"
 
-#: ../data/addin-xml-strings.cs:165
+#: ../data/addin-xml-strings.cs:170
 msgid "Control playback via the multimedia keys on your keyboard."
 msgstr "Έλεγχος αναπαραγωγής με τα πλήκτρα πολυμέσων του πληκτρολογίου."
 
 #. ../src/Extensions/Banshee.NotificationArea/Banshee.NotificationArea.addin.xml
-#: ../data/addin-xml-strings.cs:169
+#: ../data/addin-xml-strings.cs:174
 msgid "Notification Area Icon"
 msgstr "Εικονίδιο Περιοχής Ειδοποιήσεων"
 
-#: ../data/addin-xml-strings.cs:170
+#: ../data/addin-xml-strings.cs:175
 msgid "Display an icon in the notification area for controlling Banshee."
 msgstr ""
 "Εμφάνιση ενός εικονιδίου στην περιοχή ειδοποιήσεων για τον έλεγχο του "
 "Banshee."
 
 #. ../src/Extensions/Banshee.NowPlaying/Banshee.NowPlaying.addin.xml
-#: ../data/addin-xml-strings.cs:174
+#: ../data/addin-xml-strings.cs:179
 #: ../src/Extensions/Banshee.MeeGo/Banshee.MeeGo/MediaPanelContents.cs:164
 #: ../src/Extensions/Banshee.NowPlaying/Banshee.NowPlaying/NowPlayingSource.cs:50
 msgid "Now Playing"
-msgstr "Τώρα Αναπαράγεται"
+msgstr "Αναπαράγεται Τώρα"
 
-#: ../data/addin-xml-strings.cs:175
+#: ../data/addin-xml-strings.cs:180
 msgid ""
 "Provides a source that displays embedded video and provides fullscreen video "
 "playback and controls."
 msgstr ""
 
 #. ../src/Extensions/Banshee.PlayerMigration/Banshee.PlayerMigration.addin.xml
-#: ../data/addin-xml-strings.cs:178
+#: ../data/addin-xml-strings.cs:183
 msgid "Importers for Amarok, Rhythmbox and iTunes"
 msgstr "Εισαγωγείς για Amarok, Rhythmbox και iTunes"
 
-#: ../data/addin-xml-strings.cs:179
+#: ../data/addin-xml-strings.cs:184
 msgid "Import your library from Amarok, Rhythmbox or iTunes."
 msgstr "Εισαγωγή της βιβλιοθήκης σας από Amarok, Rhythmbox ή iTunes."
 
 #. ../src/Extensions/Banshee.PlayQueue/Banshee.PlayQueue.addin.xml
-#: ../data/addin-xml-strings.cs:183
+#: ../data/addin-xml-strings.cs:188
 #: ../src/Extensions/Banshee.PlayQueue/Banshee.PlayQueue/PlayQueueSource.cs:58
 #: ../src/Extensions/Banshee.PlayQueue/Banshee.PlayQueue/PlayQueueSource.cs:79
 msgid "Play Queue"
 msgstr "Αναπαραγωγή ουράς"
 
-#: ../data/addin-xml-strings.cs:184
+#: ../data/addin-xml-strings.cs:189
 msgid "Queue tracks in an ad-hoc playlist, or let the Auto DJ take over."
 msgstr ""
 
 #. ../src/Extensions/Banshee.Podcasting/Banshee.Podcasting.addin.xml
-#: ../data/addin-xml-strings.cs:188
+#: ../data/addin-xml-strings.cs:193
+#: ../src/Dap/Banshee.Dap.AppleDevice/Banshee.Dap.AppleDevice/AppleDeviceSource.cs:188
 #: ../src/Dap/Banshee.Dap/Banshee.Dap/PodcastGroupSource.cs:38
 #: ../src/Extensions/Banshee.InternetArchive/InternetArchive/MediaType.cs:107
 #: ../src/Extensions/Banshee.Podcasting/Banshee.Podcasting.Data/PodcastSource.cs:203
 msgid "Podcasts"
 msgstr "Podcasts"
 
-#: ../data/addin-xml-strings.cs:189
+#: ../data/addin-xml-strings.cs:194
 msgid "Subscribe to podcasts and stream or download episodes."
 msgstr ""
 
 #. ../src/Extensions/Banshee.RemoteAudio/Banshee.RemoteAudio.addin.xml
-#: ../data/addin-xml-strings.cs:193
+#: ../data/addin-xml-strings.cs:198
 #, fuzzy
 msgid "Remote Audio"
 msgstr "Εισαγωγή ηχητικού ψηφιακού δίσκου"
 
-#: ../data/addin-xml-strings.cs:194
+#: ../data/addin-xml-strings.cs:199
 msgid "Provides support for remote speakers like the Airport Express"
 msgstr ""
 
 #. ../src/Extensions/Banshee.Sample/Banshee.Sample.addin.xml
-#: ../data/addin-xml-strings.cs:197
+#: ../data/addin-xml-strings.cs:202
 #: ../src/Extensions/Banshee.Sample/Banshee.Sample/SampleSource.cs:40
 msgid "Sample"
 msgstr "Δείγμα"
 
-#: ../data/addin-xml-strings.cs:198
+#: ../data/addin-xml-strings.cs:203
 msgid "A sample source useful to developers."
 msgstr ""
 
-#: ../data/addin-xml-strings.cs:199
-#, fuzzy
+#: ../data/addin-xml-strings.cs:204
 msgid "Sources"
-msgstr "Βαθμολογία"
+msgstr "Πηγές"
 
 #. ../src/Extensions/Banshee.SqlDebugConsole/Banshee.SqlDebugConsole.addin.xml
-#: ../data/addin-xml-strings.cs:202
-#, fuzzy
+#: ../data/addin-xml-strings.cs:207
 msgid "SQL Debug Console"
-msgstr "Εμφάνιση πλαισίου SQL"
+msgstr "Κονσόλα Αποσφαλμάτωσης SQL"
 
-#: ../data/addin-xml-strings.cs:203
+#: ../data/addin-xml-strings.cs:208
 msgid "Provides a UI for monitoring Banshee's SQL usage, and running queries."
 msgstr ""
 
-#: ../data/addin-xml-strings.cs:204
+#: ../data/addin-xml-strings.cs:209
 msgid "Debug"
 msgstr "Αποσφαλμάτωση"
 
 #. ../src/Extensions/Banshee.Torrent/Banshee.Torrent.addin.xml
-#: ../data/addin-xml-strings.cs:207
+#: ../data/addin-xml-strings.cs:212
 msgid "Torrent Downloader"
 msgstr ""
 
-#: ../data/addin-xml-strings.cs:208
+#: ../data/addin-xml-strings.cs:213
 msgid "Support downloading BitTorrent files from podcasts."
 msgstr ""
 
 #. ../src/Extensions/Banshee.Wikipedia/Banshee.Wikipedia.addin.xml
-#: ../data/addin-xml-strings.cs:212
+#: ../data/addin-xml-strings.cs:217
 #: ../src/Extensions/Banshee.Wikipedia/Banshee.Wikipedia/ContextPage.cs:44
 msgid "Wikipedia"
 msgstr "Wikipedia"
 
-#: ../data/addin-xml-strings.cs:213
+#: ../data/addin-xml-strings.cs:218
 msgid "View artist information from Wikipedia in the context pane."
 msgstr ""
 
-#: ../data/addin-xml-strings.cs:214 ../data/addin-xml-strings.cs:219
+#: ../data/addin-xml-strings.cs:219 ../data/addin-xml-strings.cs:224
 #, fuzzy
 msgid "Context Pane"
 msgstr "_Διατομή πλαισίου"
 
 #. ../src/Extensions/Banshee.YouTube/Banshee.YouTube.addin.xml
-#: ../data/addin-xml-strings.cs:217
+#: ../data/addin-xml-strings.cs:222
 #: ../src/Extensions/Banshee.YouTube/Banshee.YouTube/ContextPage.cs:44
 msgid "YouTube"
 msgstr "YouTube"
 
-#: ../data/addin-xml-strings.cs:218
+#: ../data/addin-xml-strings.cs:223
 msgid "Show related YouTube videos in the context pane"
 msgstr ""
 
@@ -755,7 +764,9 @@ msgid "Could not create filesrc element"
 msgstr "Δεν μπορεί να δημιουργηθεί στοιχείο filesrc"
 
 #: ../libbanshee/banshee-bpmdetector.c:214
-msgid "Could not create decodebin plugin"
+#, fuzzy
+#| msgid "Could not create decodebin plugin"
+msgid "Could not create decodebin2 plugin"
 msgstr "Δεν μπορεί να δημιουργηθεί ένθεμα decodebin"
 
 #: ../libbanshee/banshee-bpmdetector.c:220
@@ -797,7 +808,9 @@ msgid "Could not create source element"
 msgstr "Δεν μπορεί να δημιουργηθεί στοιχείο filesrc"
 
 #: ../libbanshee/banshee-transcoder.c:246
-msgid "Could not create 'decodebin' plugin"
+#, fuzzy
+#| msgid "Could not create 'decodebin' plugin"
+msgid "Could not create 'decodebin2' plugin"
 msgstr "Δεν είναι δυνατή η δημιουργία του ενθέματος 'decodebin'"
 
 #: ../libbanshee/banshee-transcoder.c:252
@@ -843,7 +856,7 @@ msgstr "Το Brasero δεν μπορεί να ξεκινήσει"
 
 #: ../src/Backends/Banshee.Gnome/Banshee.GnomeBackend/GnomeScreensaverManager.cs:79
 msgid "Fullscreen video playback active"
-msgstr "Ενεργοποίηση πλήρης οθόνης για αναπαραγωγή μαγνητοσκόπησης"
+msgstr "Ενεργοποίηση πλήρης οθόνης για αναπαραγωγή βίντεο"
 
 #: ../src/Backends/Banshee.GStreamer/Banshee.GStreamer/AudioCdRipper.cs:89
 msgid "Could not find an encoder for ripping."
@@ -1066,7 +1079,7 @@ msgstr "Όνομα καλλιτέχνη"
 #: ../src/Clients/Nereid/Nereid/ViewContainer.cs:163
 #: ../src/Extensions/Banshee.MeeGo/Banshee.MeeGo/SearchEntry.cs:90
 msgid "Album Title"
-msgstr "Ονομασία λευκώματος"
+msgstr "Τίτλος Άλμπουμ"
 
 #: ../src/Clients/Booter/Booter/Entry.cs:188
 #: ../src/Clients/Nereid/Nereid/ViewContainer.cs:160
@@ -1092,7 +1105,7 @@ msgstr "Μέτρηση κομματιών"
 
 #: ../src/Clients/Booter/Booter/Entry.cs:192
 #: ../src/Core/Banshee.Services/Banshee.Library/MusicFileNamePattern.cs:149
-#: ../src/Extensions/Banshee.Audiobook/Banshee.Audiobook/AudiobookFileNamePattern.cs:113
+#: ../src/Extensions/Banshee.Audiobook/Banshee.Audiobook/AudiobookFileNamePattern.cs:114
 msgid "Disc Number"
 msgstr "Αριθμός δίσκου"
 
@@ -1100,7 +1113,7 @@ msgstr "Αριθμός δίσκου"
 #: ../src/Clients/Nereid/Nereid/ViewContainer.cs:165
 #: ../src/Core/Banshee.Services/Banshee.Library/MusicFileNamePattern.cs:113
 #: ../src/Core/Banshee.Services/Banshee.Query/BansheeQuery.cs:177
-#: ../src/Extensions/Banshee.Audiobook/Banshee.Audiobook/AudiobookFileNamePattern.cs:77
+#: ../src/Extensions/Banshee.Audiobook/Banshee.Audiobook/AudiobookFileNamePattern.cs:78
 #: ../src/Extensions/Banshee.InternetArchive/Banshee.InternetArchive/SearchView.cs:132
 #: ../src/Extensions/Banshee.InternetArchive/InternetArchive/Field.cs:77
 #: ../src/Extensions/Banshee.MeeGo/Banshee.MeeGo/SearchEntry.cs:92
@@ -1113,7 +1126,7 @@ msgstr "Έτος"
 #: ../src/Extensions/Banshee.InternetArchive/InternetArchive/Field.cs:60
 #: ../src/Extensions/Banshee.InternetArchive/InternetArchive/Sort.cs:96
 msgid "Rating"
-msgstr "Αξιολόγηση"
+msgstr "Βαθμολογία"
 
 #: ../src/Clients/Booter/Booter/Entry.cs:195
 #: ../src/Core/Banshee.Services/Banshee.Query/BansheeQuery.cs:322
@@ -1214,7 +1227,7 @@ msgstr "Τα παρακάτω ορίσματα βοήθειας δεν είνα�
 
 #: ../src/Clients/Muinshee/Muinshee/AlbumDialog.cs:77
 msgid "Play Album"
-msgstr "Αναπαραγωγή λευκώματος"
+msgstr "Αναπαραγωγή Άλμπουμ"
 
 #: ../src/Clients/Muinshee/Muinshee/BaseDialog.cs:83
 msgid "En_queue"
@@ -1237,11 +1250,11 @@ msgstr "Προσθήκη ενός τραγουδιού στο κατάλογο �
 
 #: ../src/Clients/Muinshee/Muinshee/MuinsheeActions.cs:52
 msgid "Play _Album"
-msgstr "Αναπαραγωγή _λευκώματος"
+msgstr "Αναπαραγωγή _Άλμπουμ"
 
 #: ../src/Clients/Muinshee/Muinshee/MuinsheeActions.cs:53
 msgid "Add an album to the playlist"
-msgstr "Προσθήκη λευκώματος στο κατάλογο αναπαραγωγής"
+msgstr "Προσθήκη άλμπουμ στη λίστα αναπαραγωγής"
 
 #: ../src/Clients/Muinshee/Muinshee/PlayerInterface.cs:267
 #, csharp-format
@@ -1260,7 +1273,7 @@ msgstr "Αναζήτηση"
 #: ../src/Clients/Nereid/Nereid/ViewContainer.cs:159
 #: ../src/Extensions/Banshee.MeeGo/Banshee.MeeGo/SearchEntry.cs:87
 msgid "Artist, Album, or Title"
-msgstr "Καλλιτέχνης, Λεύκωμα, ή Ονομασία"
+msgstr "Καλλιτέχνης, Άλμπουμ, ή Τίτλος"
 
 #. Alias for %album_artist%
 #: ../src/Clients/Nereid/Nereid/ViewContainer.cs:162
@@ -1268,7 +1281,7 @@ msgstr "Καλλιτέχνης, Λεύκωμα, ή Ονομασία"
 #: ../src/Core/Banshee.Services/Banshee.Library/MusicFileNamePattern.cs:78
 #: ../src/Core/Banshee.Services/Banshee.Query/BansheeQuery.cs:82
 msgid "Album Artist"
-msgstr "Λεύκωμα καλλιτέχνη"
+msgstr "Καλλιτέχνης Άλμπουμ"
 
 #: ../src/Clients/Nereid/Nereid/ViewContainer.cs:164
 #: ../src/Core/Banshee.Services/Banshee.Library/MusicFileNamePattern.cs:98
@@ -1297,7 +1310,7 @@ msgstr "Άγνωστος καλλιτέχνης"
 #: ../src/Extensions/Banshee.AudioCd/Banshee.AudioCd/AudioCdDiscModel.cs:101
 #: ../src/Extensions/Banshee.CoverArt/Banshee.CoverArt/CoverArtJob.cs:136
 msgid "Unknown Album"
-msgstr "Άγνωστο λεύκωμα"
+msgstr "Άγνωστο Άλμπουμ"
 
 #: ../src/Core/Banshee.Core/Banshee.Collection/TrackInfo.cs:49
 msgid "Unknown Title"
@@ -1342,7 +1355,7 @@ msgstr "_Επανεκκίνηση Ακουστικού Βιβλίου"
 
 #: ../src/Core/Banshee.Core/Banshee.Collection/TrackInfo.cs:419
 msgid "_Restart Video"
-msgstr "_Επανεκκίνηση μαγνητοσκόπησης"
+msgstr "_Επανεκκίνηση Βίντεο"
 
 #: ../src/Core/Banshee.Core/Banshee.Collection/TrackInfo.cs:420
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui/PlaybackActions.cs:86
@@ -1363,7 +1376,7 @@ msgstr "_Μεταπήδηση στο Αναπαραγόμενο Ακουστικ
 
 #: ../src/Core/Banshee.Core/Banshee.Collection/TrackInfo.cs:439
 msgid "_Jump to Playing Video"
-msgstr "_Μεταπήδηση στην αναπαραγόμενη μαγνητοσκόπηση"
+msgstr "_Μεταπήδηση στο Αναπαραγόμενο Βίντεο"
 
 #: ../src/Core/Banshee.Core/Banshee.Collection/TrackInfo.cs:440
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui/PlaybackActions.cs:82
@@ -1384,12 +1397,12 @@ msgstr "{0} ({1}:{2:00})"
 #: ../src/Core/Banshee.Services/Banshee.Collection.Database/DatabaseAlbumListModel.cs:70
 #, csharp-format
 msgid "All Albums ({0})"
-msgstr "Όλα τα λευκώματα ({0})"
+msgstr "Όλα τα Άλμπουμ ({0})"
 
 #: ../src/Core/Banshee.Services/Banshee.Collection.Database/DatabaseArtistListModel.cs:69
 #, csharp-format
 msgid "All Artists ({0})"
-msgstr "Όλη οι καλλιτέχνες ({0})"
+msgstr "Όλοι οι καλλιτέχνες ({0})"
 
 #: ../src/Core/Banshee.Services/Banshee.Collection.Database/DatabaseQueryFilterModel.cs:48
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui.TrackEditor/StatisticsPage.cs:90
@@ -1398,17 +1411,17 @@ msgstr "Τιμή"
 
 #: ../src/Core/Banshee.Services/Banshee.Collection.Database/RandomByAlbum.cs:50
 msgid "Shuffle by A_lbum"
-msgstr "Ανακάτεμα κατά _λεύκωμα"
+msgstr "Τυχαίο Ανακάτεμα κατά _Άλμπουμ"
 
 #: ../src/Core/Banshee.Services/Banshee.Collection.Database/RandomByAlbum.cs:51
 msgid "by album"
-msgstr "κατά άλμουμ"
+msgstr "κατά άλμπουμ"
 
 #: ../src/Core/Banshee.Services/Banshee.Collection.Database/RandomByAlbum.cs:52
 msgid "Play all songs from an album, then randomly choose another album"
 msgstr ""
-"Αναπαραγάγετε όλα τα τραγούδια από ένα λεύκωμα, έπειτα τυχαία επιλέξτε άλλο "
-"λεύκωμα"
+"Αναπαραγωγή όλων των τραγουδιών από ένα άλμπουμ, και στη συνέχεια τυχαία "
+"επιλογή άλλου άλμπουμ"
 
 #: ../src/Core/Banshee.Services/Banshee.Collection.Database/RandomByArtist.cs:49
 msgid "Shuffle by A_rtist"
@@ -1482,7 +1495,7 @@ msgid "Scanning for media"
 msgstr "Σάρωση για μέσο"
 
 #: ../src/Core/Banshee.Services/Banshee.Collection/ImportManager.cs:182
-#: ../src/Core/Banshee.Services/Banshee.Database/BansheeDbFormatMigrator.cs:1375
+#: ../src/Core/Banshee.Services/Banshee.Database/BansheeDbFormatMigrator.cs:1382
 msgid "Scanning..."
 msgstr "Σάρωση..."
 
@@ -1525,7 +1538,7 @@ msgstr ""
 "Παρακαλώ περιμένετε όσο η παλιά σας βάση δεδομένων του Banshee  "
 "μετεγκαθίσταται σε νέα μορφή."
 
-#: ../src/Core/Banshee.Services/Banshee.Database/BansheeDbFormatMigrator.cs:1372
+#: ../src/Core/Banshee.Services/Banshee.Database/BansheeDbFormatMigrator.cs:1379
 msgid "Refreshing Metadata"
 msgstr "Ανανέωση μεταδεδομένων σε εξέλιξη"
 
@@ -1617,7 +1630,7 @@ msgstr "Κομμάτι καλλιτέχνη"
 
 #: ../src/Core/Banshee.Services/Banshee.Library/MusicFileNamePattern.cs:83
 msgid "Album Artist Initial"
-msgstr "Αρχικό λευκώματος καλλιτέχνη:"
+msgstr "Αρχικό Καλλιτέχνη Άλμπουμ"
 
 #: ../src/Core/Banshee.Services/Banshee.Library/MusicFileNamePattern.cs:88
 #: ../src/Core/Banshee.Services/Banshee.Query/BansheeQuery.cs:199
@@ -1633,10 +1646,10 @@ msgstr "Συνθέτης"
 #: ../src/Core/Banshee.Services/Banshee.Query/BansheeQuery.cs:92
 #: ../src/Core/Banshee.Services/Banshee.Query/BansheeQuery.cs:360
 msgid "Album"
-msgstr "Λεύκωμα"
+msgstr "Άλμπουμ"
 
 #: ../src/Core/Banshee.Services/Banshee.Library/MusicFileNamePattern.cs:108
-#: ../src/Extensions/Banshee.Audiobook/Banshee.Audiobook/AudiobookFileNamePattern.cs:72
+#: ../src/Extensions/Banshee.Audiobook/Banshee.Audiobook/AudiobookFileNamePattern.cs:73
 #: ../src/Extensions/Banshee.InternetArchive/Banshee.InternetArchive/SearchView.cs:127
 #: ../src/Extensions/Banshee.InternetArchive/InternetArchive/Field.cs:76
 #: ../src/Extensions/Banshee.InternetArchive/InternetArchive/Sort.cs:97
@@ -1644,40 +1657,40 @@ msgid "Title"
 msgstr "Ονομασία"
 
 #: ../src/Core/Banshee.Services/Banshee.Library/MusicFileNamePattern.cs:119
-#: ../src/Extensions/Banshee.Audiobook/Banshee.Audiobook/AudiobookFileNamePattern.cs:83
+#: ../src/Extensions/Banshee.Audiobook/Banshee.Audiobook/AudiobookFileNamePattern.cs:84
 msgid "Count"
 msgstr "Μέτρηση"
 
 #: ../src/Core/Banshee.Services/Banshee.Library/MusicFileNamePattern.cs:125
-#: ../src/Extensions/Banshee.Audiobook/Banshee.Audiobook/AudiobookFileNamePattern.cs:89
+#: ../src/Extensions/Banshee.Audiobook/Banshee.Audiobook/AudiobookFileNamePattern.cs:90
 msgid "Number"
 msgstr "Αριθμός"
 
 #: ../src/Core/Banshee.Services/Banshee.Library/MusicFileNamePattern.cs:131
-#: ../src/Extensions/Banshee.Audiobook/Banshee.Audiobook/AudiobookFileNamePattern.cs:95
+#: ../src/Extensions/Banshee.Audiobook/Banshee.Audiobook/AudiobookFileNamePattern.cs:96
 msgid "Count (unsorted)"
 msgstr "Μέτρηση (χωρίς ταξινόμηση)"
 
 #: ../src/Core/Banshee.Services/Banshee.Library/MusicFileNamePattern.cs:137
-#: ../src/Extensions/Banshee.Audiobook/Banshee.Audiobook/AudiobookFileNamePattern.cs:101
+#: ../src/Extensions/Banshee.Audiobook/Banshee.Audiobook/AudiobookFileNamePattern.cs:102
 msgid "Number (unsorted)"
 msgstr "Αριθμός (χωρίς ταξινόμηση)"
 
 #: ../src/Core/Banshee.Services/Banshee.Library/MusicFileNamePattern.cs:143
 #: ../src/Core/Banshee.Services/Banshee.Query/BansheeQuery.cs:108
-#: ../src/Extensions/Banshee.Audiobook/Banshee.Audiobook/AudiobookFileNamePattern.cs:107
+#: ../src/Extensions/Banshee.Audiobook/Banshee.Audiobook/AudiobookFileNamePattern.cs:108
 msgid "Disc Count"
 msgstr "Αρίθμηση δίσκου"
 
 #: ../src/Core/Banshee.Services/Banshee.Library/MusicFileNamePattern.cs:155
 #: ../src/Core/Banshee.Services/Banshee.Query/BansheeQuery.cs:206
-#: ../src/Extensions/Banshee.Audiobook/Banshee.Audiobook/AudiobookFileNamePattern.cs:119
+#: ../src/Extensions/Banshee.Audiobook/Banshee.Audiobook/AudiobookFileNamePattern.cs:120
 msgid "Grouping"
 msgstr "Ομαδοποίηση"
 
 #. Catalog.GetString ("Music Library")
 #: ../src/Core/Banshee.Services/Banshee.Library/MusicLibrarySource.cs:59
-#: ../src/Dap/Banshee.Dap/Banshee.Dap/MusicGroupSource.cs:38
+#: ../src/Dap/Banshee.Dap/Banshee.Dap/MusicGroupSource.cs:39
 msgid "Music"
 msgstr "Μουσική"
 
@@ -1693,7 +1706,7 @@ msgstr "Διάφορα"
 
 #: ../src/Core/Banshee.Services/Banshee.Library/MusicLibrarySource.cs:82
 msgid "_Sort an artist's albums by year, not title"
-msgstr ""
+msgstr "_Ταξινόμηση των άλμπουμ ενός καλλιτέχνη κατά έτος και όχι κατά τίτλο"
 
 #: ../src/Core/Banshee.Services/Banshee.Library/MusicLibrarySource.cs:92
 #, csharp-format
@@ -1736,45 +1749,45 @@ msgstr "Ανήκουστο"
 msgid "Songs that have not been played or skipped"
 msgstr "Τραγούδια που έχουν αναπαραχθεί ή παραλειφθεί"
 
-#: ../src/Core/Banshee.Services/Banshee.Library/MusicLibrarySource.cs:136
+#: ../src/Core/Banshee.Services/Banshee.Library/MusicLibrarySource.cs:137
 msgid "Neglected Favorites"
 msgstr "Παραμελημένα αγαπημένα"
 
-#: ../src/Core/Banshee.Services/Banshee.Library/MusicLibrarySource.cs:137
+#: ../src/Core/Banshee.Services/Banshee.Library/MusicLibrarySource.cs:138
 msgid "Favorites not played in over two months"
 msgstr "Αγαπημένα που δεν έχουν αναπαραχθεί πάνω από δύο μήνες"
 
-#: ../src/Core/Banshee.Services/Banshee.Library/MusicLibrarySource.cs:141
+#: ../src/Core/Banshee.Services/Banshee.Library/MusicLibrarySource.cs:142
 msgid "Least Favorite"
 msgstr "Λιγότερο αγαπητό"
 
-#: ../src/Core/Banshee.Services/Banshee.Library/MusicLibrarySource.cs:142
+#: ../src/Core/Banshee.Services/Banshee.Library/MusicLibrarySource.cs:143
 msgid "Songs rated one or two stars or that you have frequently skipped"
 msgstr ""
 "Τραγούδια που έχουν αξιολογηθεί με ένα ή δύο αστέρια ή που έχουν "
 "παραλείπονται συχνά"
 
-#: ../src/Core/Banshee.Services/Banshee.Library/MusicLibrarySource.cs:146
+#: ../src/Core/Banshee.Services/Banshee.Library/MusicLibrarySource.cs:147
 msgid "700 MB of Favorites"
 msgstr "700 MB από αγαπημένα"
 
-#: ../src/Core/Banshee.Services/Banshee.Library/MusicLibrarySource.cs:147
+#: ../src/Core/Banshee.Services/Banshee.Library/MusicLibrarySource.cs:148
 msgid "A data CD worth of favorite songs"
 msgstr "Ένας ψηφιακός δίσκος δεδομένων για αγαπημένα τραγούδια"
 
-#: ../src/Core/Banshee.Services/Banshee.Library/MusicLibrarySource.cs:152
+#: ../src/Core/Banshee.Services/Banshee.Library/MusicLibrarySource.cs:153
 msgid "80 Minutes of Favorites"
 msgstr "80 λεπτά από αγαπημένα"
 
-#: ../src/Core/Banshee.Services/Banshee.Library/MusicLibrarySource.cs:153
+#: ../src/Core/Banshee.Services/Banshee.Library/MusicLibrarySource.cs:154
 msgid "An audio CD worth of favorite songs"
 msgstr "Ένας ψηφιακός δίσκος ήχου για αγαπημένα τραγούδια"
 
-#: ../src/Core/Banshee.Services/Banshee.Library/MusicLibrarySource.cs:158
+#: ../src/Core/Banshee.Services/Banshee.Library/MusicLibrarySource.cs:159
 msgid "Unrated"
 msgstr "Αναξιολόγητο"
 
-#: ../src/Core/Banshee.Services/Banshee.Library/MusicLibrarySource.cs:159
+#: ../src/Core/Banshee.Services/Banshee.Library/MusicLibrarySource.cs:160
 msgid "Songs that haven't been rated"
 msgstr "Τραγούδια που δεν έχουν αξιολογηθεί"
 
@@ -1791,11 +1804,11 @@ msgstr "Εισάχθηκε από {0}"
 #: ../src/Core/Banshee.Services/Banshee.Library/VideoLibrarySource.cs:43
 #: ../src/Dap/Banshee.Dap/Banshee.Dap/VideoGroupSource.cs:38
 msgid "Videos"
-msgstr "Μαγνητοσκοπήσεις"
+msgstr "Βίντεο"
 
 #: ../src/Core/Banshee.Services/Banshee.Library/VideoLibrarySource.cs:48
 msgid "Search your videos"
-msgstr "Αναζητήστε τα βίντεο σας"
+msgstr "Αναζήτηση των βίντεο σας"
 
 #: ../src/Core/Banshee.Services/Banshee.Library/VideoLibrarySource.cs:65
 msgid "Produced By"
@@ -1810,15 +1823,15 @@ msgstr[1] "{0} βίντεο"
 
 #: ../src/Core/Banshee.Services/Banshee.Library/VideoLibrarySource.cs:92
 msgid "Videos rated four and five stars"
-msgstr "Αξιολόγηση μαγνητοσκοπήσεων με τέσσερα και πέντε αστέρια"
+msgstr "Βίντεο αξιολογημένα με τέσσερα και πέντε αστέρια"
 
 #: ../src/Core/Banshee.Services/Banshee.Library/VideoLibrarySource.cs:96
 msgid "Unwatched"
-msgstr "Δεν παρακολουθήθηκε"
+msgstr "Δεν προβλήθηκε"
 
 #: ../src/Core/Banshee.Services/Banshee.Library/VideoLibrarySource.cs:97
 msgid "Videos that haven't been played yet"
-msgstr "Μαγνητοσκοπήσεις που δεν έχουν αναπαραχθεί ακόμη"
+msgstr "Βίντεο που δεν έχουν αναπαραχθεί ακόμη"
 
 #: ../src/Core/Banshee.Services/Banshee.MediaEngine/PlayerEngineService.cs:98
 msgid "Default player engine"
@@ -1829,12 +1842,12 @@ msgid ""
 "No player engines were found. Please ensure Banshee has been cleanly "
 "installed."
 msgstr ""
-"Δεν βρέθηκαν μηχανές αναπαραγωγέα. Παρακαλώ σιγουρευτείτε ότι το Banshee "
+"Δεν βρέθηκαν μηχανές αναπαραγωγής. Παρακαλούμε σιγουρευτείτε ότι το Banshee "
 "έχει εγκατασταθεί σωστά."
 
 #: ../src/Core/Banshee.Services/Banshee.MediaEngine/PlayerEngineService.cs:347
 msgid "Problem with Player Engine"
-msgstr "Πρόβλημα με την μηχανή αναπαραγωγής"
+msgstr "Πρόβλημα με την Μηχανή Αναπαραγωγής"
 
 #: ../src/Core/Banshee.Services/Banshee.MediaEngine/TranscoderService.cs:135
 #, csharp-format
@@ -1855,7 +1868,7 @@ msgstr ""
 
 #: ../src/Core/Banshee.Services/Banshee.Metadata/SaveTrackMetadataJob.cs:52
 msgid "Saving Metadata to File"
-msgstr "Αποθήκευση μεταδεδομένων σε αρχείο"
+msgstr "Αποθήκευση Μεταδεδομένων σε Αρχείο"
 
 #: ../src/Core/Banshee.Services/Banshee.Metadata/SaveTrackMetadataService.cs:49
 msgid "Write _metadata to files"
@@ -1913,7 +1926,7 @@ msgstr "Εισαγωγή ενός καταλόγου αναπαραγωγής"
 #. disabled by default
 #: ../src/Core/Banshee.Services/Banshee.Metrics/BansheeMetrics.cs:302
 msgid "Improve Banshee by sending anonymous usage data"
-msgstr ""
+msgstr "Βελτιώστε το Banshee στέλνοντας ανώνυμες πληροφορίες χρήσης"
 
 #: ../src/Core/Banshee.Services/Banshee.Networking/Network.cs:52
 msgid "There is no available network connection"
@@ -1928,11 +1941,11 @@ msgstr "Δεν είναι δυνατή η σύνδεση στο διαχειρι
 msgid "An available, working network connection will be assumed"
 msgstr "Μια διαθέσιμη, σύνδεση δικτύου εργασίας θα υποτεθεί"
 
-#: ../src/Core/Banshee.Services/Banshee.Networking/Network.cs:157
+#: ../src/Core/Banshee.Services/Banshee.Networking/Network.cs:159
 msgid "_Disable features requiring Internet access"
 msgstr "_Απενεργοποίηση χαρακτηριστικών που χρειάζονται πρόσβαση στο διαδίκτυο"
 
-#: ../src/Core/Banshee.Services/Banshee.Networking/Network.cs:158
+#: ../src/Core/Banshee.Services/Banshee.Networking/Network.cs:160
 msgid ""
 "Some features require a broadband Internet connection such as Last.fm or "
 "cover art fetching"
@@ -1951,15 +1964,15 @@ msgstr ""
 #: ../src/Core/Banshee.Services/Banshee.Playlist/PlaylistSource.cs:59
 #: ../src/Core/Banshee.Services/Banshee.Query/BansheeQuery.cs:309
 msgid "Playlist"
-msgstr "Κατάλογος αναπαραγωγής"
+msgstr "Λίστα Αναπαραγωγής"
 
 #: ../src/Core/Banshee.Services/Banshee.Playlist/PlaylistSource.cs:134
 msgid "Remove From Playlist"
-msgstr "Αφαίρεση από τον κατάλογο αναπαραγωγής"
+msgstr "Αφαίρεση από τη Λίστα Αναπαραγωγής"
 
 #: ../src/Core/Banshee.Services/Banshee.Playlist/PlaylistSource.cs:135
 msgid "Delete Playlist"
-msgstr "Διαγραφή καταλόγου αναπαραγωγής"
+msgstr "Διαγραφή Λίστας Αναπαραγωγής"
 
 #. TODO generate name based on the track selection, or begin editing it
 #: ../src/Core/Banshee.Services/Banshee.Playlist/PlaylistSource.cs:386
@@ -1967,10 +1980,10 @@ msgstr "Διαγραφή καταλόγου αναπαραγωγής"
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui/SourceActions.cs:176
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:95
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:394
-#: ../src/Core/Banshee.ThickClient/Banshee.Sources.Gui/SourceView.cs:496
+#: ../src/Core/Banshee.ThickClient/Banshee.Sources.Gui/SourceView.cs:500
 #: ../src/Core/Banshee.ThickClient/Banshee.Sources.Gui/SourceView_DragAndDrop.cs:213
 msgid "New Playlist"
-msgstr "Νέος κατάλογος αναπαραγωγής"
+msgstr "Νέα Λίστα Αναπαραγωγής"
 
 #: ../src/Core/Banshee.Services/Banshee.Playlists.Formats/AsfReferencePlaylistFormat.cs:43
 msgid "Windows Media ASX"
@@ -2019,18 +2032,22 @@ msgid "items"
 msgstr "στοιχεία"
 
 #: ../src/Core/Banshee.Services/Banshee.Query/BansheeQuery.cs:64
+#: ../src/Hyena/Hyena.Gui/Hyena.Query.Gui/TimeSpanQueryValueEntry.cs:60
 msgid "minutes"
 msgstr "λεπτά"
 
 #: ../src/Core/Banshee.Services/Banshee.Query/BansheeQuery.cs:65
+#: ../src/Hyena/Hyena.Gui/Hyena.Query.Gui/TimeSpanQueryValueEntry.cs:61
 msgid "hours"
 msgstr "ώρες"
 
 #: ../src/Core/Banshee.Services/Banshee.Query/BansheeQuery.cs:66
+#: ../src/Hyena/Hyena.Gui/Hyena.Query.Gui/FileSizeQueryValueEntry.cs:63
 msgid "MB"
 msgstr "MB"
 
 #: ../src/Core/Banshee.Services/Banshee.Query/BansheeQuery.cs:67
+#: ../src/Hyena/Hyena.Gui/Hyena.Query.Gui/FileSizeQueryValueEntry.cs:64
 msgid "GB"
 msgstr "GB"
 
@@ -2055,7 +2072,7 @@ msgstr "καλλιτέχνες"
 #. Translators: These are unique search aliases for "album artist". You can use CSV for synonyms. Please, no spaces. Blank ok.
 #: ../src/Core/Banshee.Services/Banshee.Query/BansheeQuery.cs:84
 msgid "albumartist"
-msgstr "καλλιτέχνης λευκώματος"
+msgstr "καλλιτέχνης άλμπουμ"
 
 #: ../src/Core/Banshee.Services/Banshee.Query/BansheeQuery.cs:84
 msgid "compilationartist"
@@ -2064,7 +2081,7 @@ msgstr "καλλιτέχνης συλλογής"
 #. Translators: These are unique search aliases for "album". You can use CSV for synonyms. Please, no spaces. Blank ok.
 #: ../src/Core/Banshee.Services/Banshee.Query/BansheeQuery.cs:94
 msgid "album"
-msgstr "λεύκωμα"
+msgstr "άλμπουμ"
 
 #: ../src/Core/Banshee.Services/Banshee.Query/BansheeQuery.cs:94
 msgid "on"
@@ -2124,7 +2141,7 @@ msgstr "αρίθμηση κομματιού"
 
 #: ../src/Core/Banshee.Services/Banshee.Query/BansheeQuery.cs:134
 msgid "Beats per Minute"
-msgstr "Ψηφιολέξεις να λεπτό"
+msgstr "Ρυθμός ανά Λεπτό"
 
 #. Translators: These are unique search fields. You can use CSV for synonyms. Please, no spaces. Blank ok.
 #: ../src/Core/Banshee.Services/Banshee.Query/BansheeQuery.cs:136
@@ -2182,7 +2199,7 @@ msgstr "Σταθμός"
 #. Translators: noun
 #: ../src/Core/Banshee.Services/Banshee.Query/BansheeQuery.cs:169
 #: ../src/Core/Banshee.Services/Banshee.Query/BansheeQuery.cs:363
-#: ../src/Core/Banshee.Services/Banshee.Sources/Source.cs:673
+#: ../src/Core/Banshee.Services/Banshee.Sources/Source.cs:666
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui.TrackEditor/StatisticsPage.cs:89
 msgid "Name"
 msgstr "Όνομα"
@@ -2267,7 +2284,7 @@ msgstr "υπό"
 #. Translators: These are unique search fields. You can use CSV for synonyms. Please, no spaces. Blank ok.
 #: ../src/Core/Banshee.Services/Banshee.Query/BansheeQuery.cs:232
 msgid "rating"
-msgstr "Αξιολόγηση"
+msgstr "βαθμολογία"
 
 #: ../src/Core/Banshee.Services/Banshee.Query/BansheeQuery.cs:232
 msgid "stars"
@@ -2473,11 +2490,11 @@ msgstr "Τυχαία"
 
 #: ../src/Core/Banshee.Services/Banshee.Query/BansheeQuery.cs:366
 msgid "Highest Rating"
-msgstr "Υψηλότερη αξιολόγηση"
+msgstr "Υψηλότερη Βαθμολογία"
 
 #: ../src/Core/Banshee.Services/Banshee.Query/BansheeQuery.cs:367
 msgid "Lowest Rating"
-msgstr "Χαμηλότερη αξιολόγηση"
+msgstr "Χαμηλότερη Βαθμολογία"
 
 #: ../src/Core/Banshee.Services/Banshee.Query/BansheeQuery.cs:369
 msgid "Highest Score"
@@ -2594,7 +2611,7 @@ msgstr "Παρακαλώ αρχικοποιήστε ένα πρόβλημα με
 msgid "Edit Smart Playlist"
 msgstr "Επεξεργασία έξυπνου καταλόγου αναπαραγωγής"
 
-#: ../src/Core/Banshee.Services/Banshee.SmartPlaylist/SmartPlaylistSource.cs:233
+#: ../src/Core/Banshee.Services/Banshee.SmartPlaylist/SmartPlaylistSource.cs:242
 msgid "Delete Smart Playlist"
 msgstr "Διαγραφή έξυπνου καταλόγου αναπαραγωγής"
 
@@ -2680,25 +2697,25 @@ msgstr "Ιε_ραρχία φακέλου"
 msgid "File _name"
 msgstr "_Όνομα αρχείου"
 
-#: ../src/Core/Banshee.Services/Banshee.Sources/PrimarySource.cs:689
+#: ../src/Core/Banshee.Services/Banshee.Sources/PrimarySource.cs:693
 #, csharp-format
 msgid "Adding {0} of {1} to {2}"
 msgstr "Προσθήκη {0} από {1} σε {2}"
 
-#: ../src/Core/Banshee.Services/Banshee.Sources/PrimarySource.cs:708
+#: ../src/Core/Banshee.Services/Banshee.Sources/PrimarySource.cs:712
 #, csharp-format
 msgid "Deleting {0} of {1} From {2}"
 msgstr "Διαγραφεί {0} από {1} από {2}"
 
-#: ../src/Core/Banshee.Services/Banshee.Sources/Source.cs:678
+#: ../src/Core/Banshee.Services/Banshee.Sources/Source.cs:671
 msgid "Size Ascending"
 msgstr "Αύξουσα κατά μέγεθος"
 
-#: ../src/Core/Banshee.Services/Banshee.Sources/Source.cs:683
+#: ../src/Core/Banshee.Services/Banshee.Sources/Source.cs:676
 msgid "Size Descending"
 msgstr "Φθίνουσα κατά μέγεθος"
 
-#: ../src/Core/Banshee.Services/Banshee.Sources/Source.cs:796
+#: ../src/Core/Banshee.Services/Banshee.Sources/Source.cs:789
 #, csharp-format
 msgid "{0} item"
 msgid_plural "{0} items"
@@ -2845,7 +2862,7 @@ msgstr "{0} bit"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.ContextPane/ContextPane.cs:119
 msgid "Make the context pane larger or smaller"
-msgstr "Κάντετη διατομή πλαισίου μεγαλύτερη ή μικρότερη"
+msgstr "Κάντε τη διατομή πλαισίου μεγαλύτερη ή μικρότερη"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.ContextPane/ContextPane.cs:123
 msgid "Hide context pane"
@@ -2987,7 +3004,7 @@ msgstr "Ε_ισαγωγή"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui.Dialogs/ImageFileChooserDialog.cs:39
 msgid "Select album cover image"
-msgstr "Επιλογή συνοδευτικής εικόνας για το λεύκωμα"
+msgstr "Επιλογή εικόνας εξωφύλλου για το άλμπουμ"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui.Dialogs/ImageFileChooserDialog.cs:47
 msgid "All image files"
@@ -3153,7 +3170,7 @@ msgstr "Κατάλογοι αναπαραγωγής"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui/PlaybackActions.cs:67
 msgid "Play or pause the current item"
-msgstr "Αναπαράγεται ή διακόψτε το τρέχων στοιχείο"
+msgstr "Αναπαραγωγή ή διακοπή του τρέχοντος αντικειμένου"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui/PlaybackActions.cs:70
 msgid "_Next"
@@ -3215,24 +3232,24 @@ msgstr "Επανάληψη"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui/PlaybackRepeatActions.cs:78
 msgid "Repeat _Off"
-msgstr "Απενεργοποίηση _επανάληψης"
+msgstr "Απενεργοποίηση _Επανάληψης"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui/PlaybackRepeatActions.cs:79
 msgid "Do not repeat playlist"
-msgstr "Να μην γίνει επανάληψη του καταλόγου αναπαραγωγής"
+msgstr "Να μην γίνει επανάληψη της λίστας αναπαραγωγής"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui/PlaybackRepeatActions.cs:83
 msgid "Repeat _All"
-msgstr "Επανάληψη όλων"
+msgstr "Επανάληψη Όλων"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui/PlaybackRepeatActions.cs:84
 msgid "Play all songs before repeating playlist"
 msgstr ""
-"Αναπαραγωγή όλων των τραγουδιών πριν την επανάληψη του καταλόγου αναπαραγωγής"
+"Αναπαραγωγή όλων των τραγουδιών πριν την επανάληψη της λίστας αναπαραγωγής"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui/PlaybackRepeatActions.cs:88
 msgid "Repeat Singl_e"
-msgstr "Επανάληψη _μονού"
+msgstr "_Μονή Επανάληψη"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui/PlaybackRepeatActions.cs:89
 msgid "Repeat the current playing song"
@@ -3274,15 +3291,15 @@ msgstr "Μετονομασία"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui/SourceActions.cs:97
 msgid "Export Playlist..."
-msgstr "Εξαγωγή καταλόγου αναπαραγωγής..."
+msgstr "Εξαγωγή Λίστας Αναπαραγωγής..."
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui/SourceActions.cs:98
 msgid "Export a playlist"
-msgstr "Εξαγωγή ενός καταλόγου αναπαραγωγής"
+msgstr "Εξαγωγή μιας λίστας αναπαραγωγής"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui/SourceActions.cs:101
 msgid "Unmap"
-msgstr "Αποχαρτογράφηση"
+msgstr ""
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui/SourceActions.cs:104
 msgid "Source Properties"
@@ -3337,11 +3354,11 @@ msgstr "Είστε σίγουρος ότι θέλετε να διαγράψετ�
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui/SourceActions.cs:469
 msgid "Separate by Type"
-msgstr "Διαχωρισμός κατά τύπο"
+msgstr "Διαχωρισμός κατά Τύπο"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:70
 msgid "Select _All"
-msgstr "Επιλογή _όλων"
+msgstr "Επιλογή _Όλων"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:71
 msgid "Select all tracks"
@@ -3349,7 +3366,7 @@ msgstr "Ρύθμιση όλων των κομματιών"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:74
 msgid "Select _None"
-msgstr "Επιλογή _κανενός"
+msgstr "Επιλογή _Κανενός"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:75
 msgid "Unselect all tracks"
@@ -3358,11 +3375,11 @@ msgstr "Απεπιλογή όλων των κομματιών"
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:78
 #: ../src/Extensions/Banshee.Audiobook/Banshee.Audiobook/Actions.cs:59
 msgid "_Edit Track Information"
-msgstr "_Επεξεργασία πληροφορίας κομματιού"
+msgstr "_Επεξεργασία Πληροφοριών Κομματιού"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:79
 msgid "Edit information on selected tracks"
-msgstr "Επεξεργαστείτε την πληροφορία στα επιλεγμένα κομμάτια"
+msgstr "Επεξεργαστείτε τις πληροφορίες των επιλεγμένων κομματιών"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:82
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui.TrackEditor/StatisticsPage.cs:252
@@ -3373,7 +3390,7 @@ msgstr "Ιδιότητες"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:83
 msgid "View information on selected tracks"
-msgstr "Προβολή πληροφορίας στα επιλεγμένα κομμάτια"
+msgstr "Προβολή πληροφοριών των επιλεγμένων κομματιών"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:87
 msgid "Play the selected item"
@@ -3381,7 +3398,7 @@ msgstr "Αναπαραγωγή του επιλεγμένου αντικειμέ�
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:90
 msgid "Add _to Playlist"
-msgstr "Προσθήκη στο κατάλογο αναπαραγωγής"
+msgstr "Προσθήκη στη _Λίστα Αναπαραγωγής"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:91
 msgid "Append selected items to playlist or create new playlist from selection"
@@ -3403,7 +3420,7 @@ msgstr "Αφαιρέστε το(α) επιλεγμένο(α) κομμάτι(α) 
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:104
 msgid "Remove From _Library"
-msgstr "Διαγραφή από τη _βιβλιοθήκη"
+msgstr "Διαγραφή από τη _Βιβλιοθήκη"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:105
 msgid "Remove selected track(s) from library"
@@ -3411,7 +3428,7 @@ msgstr "Αφαιρέστε επιλεγμένο(α) κομμάτι(α) από τ
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:108
 msgid "_Open Containing Folder"
-msgstr ""
+msgstr "Ά_νοιγμα Φακέλου"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:109
 msgid "Open the folder that contains the selected item"
@@ -3419,7 +3436,7 @@ msgstr "Άνοιγμα του φακέλου που περιέχει τα επι
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:112
 msgid "_Delete From Drive"
-msgstr "_Διαγραφή από τον οδηγό"
+msgstr "_Διαγραφή από το Δίσκο"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:113
 msgid "Permanently delete selected item(s) from medium"
@@ -3435,19 +3452,19 @@ msgstr "_Αναζήτηση"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:120
 msgid "Search for items matching certain criteria"
-msgstr "Αναζητήστε για στοιχεία που ταιριάζουν σε συγκεκριμένο κριτήριο"
+msgstr "Αναζήτηση για στοιχεία που ταιριάζουν σε συγκεκριμένο κριτήριο"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:123
 msgid "By Matching _Album"
-msgstr "Ταιριάζοντας το _λεύκωμα"
+msgstr "Με το Ίδιο _Άλμπουμ"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:124
 msgid "Search all songs of this album"
-msgstr "Αναζήτηση όλων των τραγουδιών αυτού του λευκώματος"
+msgstr "Αναζήτηση όλων των τραγουδιών αυτού του άλμπουμ"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:127
 msgid "By Matching A_rtist"
-msgstr "Ταιριάζοντας τον κα_λλιτέχνη"
+msgstr "Με τον Ίδιο Κα_λλιτέχνη"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:128
 msgid "Search all songs of this artist"
@@ -3499,13 +3516,13 @@ msgstr[1] ""
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui.TrackEditor/AlbumArtistEntry.cs:53
 msgid "Com_pilation Album Artist:"
-msgstr "Σύν_ταξη καλλιτέχνη λευκώματος:"
+msgstr "Κα_λλιτέχνης Συλλογής Άλμπουμ:"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui.TrackEditor/AlbumArtistEntry.cs:57
 msgid ""
 "Check this if this track is part of an album with tracks by various artists"
 msgstr ""
-"Ελέγξτε αν αυτό το κομμάτι είναι μέρος ενός λευκώματος με κομμάτια από "
+"Επιλέξτε εάν αυτό το κομμάτι αποτελεί μέρος ενός άλμπουμ με κομμάτια από "
 "διάφορους καλλιτέχνες"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui.TrackEditor/AlbumArtistEntry.cs:59
@@ -3513,9 +3530,9 @@ msgid ""
 "This value will affect how this album is sorted; if you enter 'Various "
 "Artists' then the album will located with other albums that start with 'V'."
 msgstr ""
-"Η τιμή θα επηρεάσει το πως αυτό το λεύκωμα έχει ταξινομηθεί• αν εισαγάγετε "
-"\"Διάφορους καλλιτέχνες\" τότε το λεύκωμα θα τοποθετηθεί με τα άλλα "
-"λευκώματα που ξεκινάνε με \"Δ\"."
+"Η επιλογή αυτή θα επηρεάσει τον τρόπο με τον οποίο θα ταξινομηθεί αυτό το "
+"άλμπουμ• αν εισάγετε \"Διάφορους Καλλιτέχνες\" τότε το άλμπουμ θα "
+"τοποθετηθεί με τα υπόλοιπα άλμπουμ που ξεκινάνε με \"Δ\"."
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui.TrackEditor/BasicTrackDetailsPage.cs:44
 msgid "Basic Details"
@@ -3535,11 +3552,11 @@ msgstr "_Καλλιτέχνης κομματιού:"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui.TrackEditor/BasicTrackDetailsPage.cs:86
 msgid "Set all compilation album artists to these values"
-msgstr "Βάλτε σε όλους τους καλλιτέχνες του λευκώματος αυτές τις τιμές"
+msgstr "Καθορισμός όλων των καλλιτεχνών συλλογών άλμπουμ σε αυτές τις τιμές"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui.TrackEditor/BasicTrackDetailsPage.cs:106
 msgid "Set all album titles to this value"
-msgstr "Ρυθμίστε όλες τις ονομασίες του λευκώματος σε αυτή τη τιμή"
+msgstr "Καθορισμός όλων των τίτλων άλμπουμ σε αυτή τη τιμή"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui.TrackEditor/BasicTrackDetailsPage.cs:107
 msgid "Albu_m Title:"
@@ -3623,7 +3640,7 @@ msgstr "_Ομαδοποίηση:"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui.TrackEditor/ExtraTrackDetailsPage.cs:80
 msgid "Set all beats per minute to this value"
-msgstr "Ρυθμίστε όλες τις ψηφιολέξεις ανά λεπτό σε αυτή τη τιμή"
+msgstr "Καθορισμός όλων των ρυθμών ανά λεπτό σε αυτή τη τιμή"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui.TrackEditor/ExtraTrackDetailsPage.cs:81
 msgid "Bea_ts Per Minute:"
@@ -3689,7 +3706,8 @@ msgstr "Ταξινόμηση Καλλιτέχνη Κομματιού:"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui.TrackEditor/SortingPage.cs:67
 msgid "Set all sort album artists to this value"
-msgstr "Ρυθμίστε όλες τις ταξινομημένα λευκώματα καλλιτεχνών σε αυτή τη τιμή"
+msgstr ""
+"Καθορισμός όλων των ταξινομημένων καλλιτεχνών άλμπουμ σε αυτήν την τιμή"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui.TrackEditor/SortingPage.cs:68
 msgid "Sort Album Artist:"
@@ -3697,8 +3715,7 @@ msgstr "Ταξινόμηση Καλλιτέχνη Άλμπουμ:"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui.TrackEditor/SortingPage.cs:74
 msgid "Set all sort album titles to this value"
-msgstr ""
-"Ρυθμίστε όλες τις ταξινομημένες ονομασίες του λευκώματος σε αυτή τη τιμή"
+msgstr "Καθορισμός όλων των ταξινομημένων τίτλων άλμπουμ σε αυτήν την τιμή"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui.TrackEditor/SortingPage.cs:75
 msgid "Sort Album Title:"
@@ -3742,21 +3759,21 @@ msgstr "Bit Ανά Δείγμα:"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui.TrackEditor/StatisticsPage.cs:190
 msgid "Video Dimensions:"
-msgstr "Διαστάσεις αναπαραγωγής μαγνητοσκόπησης:"
+msgstr "Διαστάσεις Βίντεο:"
 
 #. Translators: {0} is the description of the codec
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui.TrackEditor/StatisticsPage.cs:197
 #, csharp-format
 msgid "{0} Codec:"
-msgstr "{0} Codec:"
+msgstr ""
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui.TrackEditor/StatisticsPage.cs:202
 msgid "Container Formats:"
-msgstr "Μορφοποιήσεις κιβωτίου:"
+msgstr ""
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui.TrackEditor/StatisticsPage.cs:207
 msgid "Imported On:"
-msgstr "Εισήχθηκε στο:"
+msgstr "Εισήχθηκε Στις:"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui.TrackEditor/StatisticsPage.cs:209
 msgid "Last Played:"
@@ -3780,11 +3797,12 @@ msgstr "Βαθμολογία:"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui.TrackEditor/StatisticsPage.cs:221
 msgid "File Size:"
-msgstr "Μέγεθος αρχείου:"
+msgstr "Μέγεθος Αρχείου:"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui.TrackEditor/StatisticsPage.cs:222
+#: ../src/Hyena/Hyena.Gui/Hyena.Query.Gui/FileSizeQueryValueEntry.cs:61
 msgid "bytes"
-msgstr "ψηφιολέξεις"
+msgstr ""
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui.TrackEditor/TrackEditorDialog.cs:95
 msgid "Track Editor"
@@ -3812,7 +3830,7 @@ msgstr "Καλλιτέχνης:"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui.TrackEditor/TrackEditorDialog.cs:185
 msgid "Album:"
-msgstr "Λεύκωμα:"
+msgstr "Άλμπουμ:"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui.TrackEditor/TrackEditorDialog.cs:309
 msgid "Sync all field _values"
@@ -3883,7 +3901,7 @@ msgstr "Εμφάνιση _Εξώφυλλου"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui/ViewActions.cs:87
 msgid "Toggle display of album cover art"
-msgstr "Εναλλαγή εμφάνισης εξωφύλλου των άλμπουμ"
+msgstr "Εναλλαγή εμφάνισης του εξωφύλλου των άλμπουμ"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui.Widgets/TaskStatusIcon.cs:92
 msgid "Active Task Running"
@@ -3902,7 +3920,7 @@ msgstr "{0} από {1} {2} {0} δημοσιεύτηκαν {1} {3}"
 #. simply: "Chicago Public Radio" or whatever the artist name is
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui.Widgets/TrackInfoDisplay.cs:538
 msgid "Unknown Stream"
-msgstr "Άγνωστη ροή"
+msgstr "Άγνωστη Ροή"
 
 #. Translators: {0} and {1} are markup so ignore them, {2} is the name of the radio station
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui.Widgets/TrackInfoDisplay.cs:541
@@ -4044,7 +4062,7 @@ msgid ""
 "library now, or choose to do so later."
 msgstr ""
 "Η βιβλιοθήκη των πολυμέσων σας είναι άδεια. Μπορείτε να εισαγάγετε μουσική "
-"και μαγνητοσκοπήσεις στη βιβλιοθήκη σας τώρα, ή επιλέξτε να γίνει αργότερα."
+"και βίντεο στη βιβλιοθήκη σας τώρα, ή επιλέξτε να γίνει αργότερα."
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Library.Gui/ImportDialog.cs:89
 msgid "Import _from:"
@@ -4125,6 +4143,10 @@ msgstr "Νέος έξυπνος κατάλογος αναπαραγωγής"
 msgid "Playlist _Name:"
 msgstr "_Όνομα λίστας αναπαραγωγής:"
 
+#: ../src/Core/Banshee.ThickClient/Banshee.SmartPlaylist.Gui/Editor.cs:108
+msgid "Predefined Smart Playlists"
+msgstr "Προκαθορισμένοι έξυπνοι κατάλογοι αναπαραγωγής"
+
 #: ../src/Core/Banshee.ThickClient/Banshee.SmartPlaylist.Gui/Editor.cs:119
 msgid "Open in editor"
 msgstr "Άνοιγμα σε επεξεργαστή"
@@ -4140,8 +4162,8 @@ msgstr "Φυλλομετρητής στα αριστερά"
 #: ../src/Core/Banshee.ThickClient/Banshee.Sources.Gui/FilteredListSourceContents.cs:111
 msgid "Show the artist/album browser to the left of the track list"
 msgstr ""
-"Εμφάνιση του φυλλομετρητή καλλιτέχνη/λεύκωμα στην αριστερά του καταλόγου του "
-"κομματιού"
+"Εμφάνιση του φυλλομετρητή καλλιτέχνη/άλμπουμ στα αριστερά του καταλόγου "
+"κομματιών"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Sources.Gui/FilteredListSourceContents.cs:114
 msgid "Browser on Top"
@@ -4150,7 +4172,7 @@ msgstr "Φυλλομετρητής στη κορυφή"
 #: ../src/Core/Banshee.ThickClient/Banshee.Sources.Gui/FilteredListSourceContents.cs:115
 msgid "Show the artist/album browser above the track list"
 msgstr ""
-"Εμφανίστε το φυλλομετρητή καλλιτέχνης/λεύκωμα πάνω από τον κατάλογο κομματιού"
+"Εμφανίστε το φυλλομετρητή καλλιτεχνών/άλμπουμ πάνω από τον κατάλογο κομματιών"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Sources.Gui/FilteredListSourceContents.cs:120
 msgid "Show Browser"
@@ -4158,9 +4180,9 @@ msgstr "Εμφάνιση φυλλομετρητή"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Sources.Gui/FilteredListSourceContents.cs:121
 msgid "Show or hide the artist/album browser"
-msgstr "Εμφανίστε ή αποκρύψτε το φυλλομετρητή καλλιτέχνης/λεύκωμα"
+msgstr "Εμφάνιση ή απόκρυψη του φυλλομετρητή καλλιτεχνών/άλμπουμ"
 
-#: ../src/Core/Banshee.WebBrowser/Banshee.WebSource/WebBrowserShell.cs:119
+#: ../src/Core/Banshee.WebBrowser/Banshee.WebSource/WebBrowserShell.cs:121
 #, csharp-format
 msgid "Loading {0}..."
 msgstr "Φόρτωση {0}..."
@@ -4171,7 +4193,7 @@ msgid ""
 "Disc"
 msgstr ""
 "Εισαγωγή\n"
-"δίσκου"
+"Δίσκου"
 
 #: ../src/Core/Banshee.Widgets/Banshee.Widgets/SearchEntry.cs:95
 msgid "Clear search"
@@ -4187,9 +4209,9 @@ msgid "Idle"
 msgstr "Αδρανή"
 
 #: ../src/Core/Banshee.Widgets/Banshee.Widgets/StreamPositionLabel.cs:149
-#: ../src/Extensions/Banshee.AmazonMp3/Banshee.AmazonMp3/UserJobDownloadManager.cs:68
+#: ../src/Extensions/Banshee.AmazonMp3/Banshee.AmazonMp3/AmazonDownloadManager.cs:58
 msgid "Contacting..."
-msgstr "Σε επαφή..."
+msgstr "Επικοινωνία..."
 
 #: ../src/Core/Banshee.Widgets/Banshee.Widgets/StreamPositionLabel.cs:159
 msgid "Buffering"
@@ -4207,30 +4229,30 @@ msgstr "Σίγαση"
 msgid "Full Volume"
 msgstr "Μέγιστη ένταση"
 
-#: ../src/Dap/Banshee.Dap.AppleDevice/Banshee.Dap.AppleDevice/AppleDeviceSource.cs:89
-#: ../src/Dap/Banshee.Dap.Ipod/Banshee.Dap.Ipod/IpodSource.cs:101
+#: ../src/Dap/Banshee.Dap.AppleDevice/Banshee.Dap.AppleDevice/AppleDeviceSource.cs:96
+#: ../src/Dap/Banshee.Dap.Ipod/Banshee.Dap.Ipod/IpodSource.cs:102
 msgid "Device"
 msgstr "Συσκευή"
 
-#: ../src/Dap/Banshee.Dap.AppleDevice/Banshee.Dap.AppleDevice/AppleDeviceSource.cs:90
-#: ../src/Dap/Banshee.Dap.Ipod/Banshee.Dap.Ipod/IpodSource.cs:103
+#: ../src/Dap/Banshee.Dap.AppleDevice/Banshee.Dap.AppleDevice/AppleDeviceSource.cs:97
+#: ../src/Dap/Banshee.Dap.Ipod/Banshee.Dap.Ipod/IpodSource.cs:104
 msgid "Generation"
 msgstr "Παραγωγή"
 
 #. FIXME
 #. AddDapProperty (Catalog.GetString ("Color"), "black");
-#: ../src/Dap/Banshee.Dap.AppleDevice/Banshee.Dap.AppleDevice/AppleDeviceSource.cs:95
-#: ../src/Dap/Banshee.Dap.Ipod/Banshee.Dap.Ipod/IpodSource.cs:104
+#: ../src/Dap/Banshee.Dap.AppleDevice/Banshee.Dap.AppleDevice/AppleDeviceSource.cs:102
+#: ../src/Dap/Banshee.Dap.Ipod/Banshee.Dap.Ipod/IpodSource.cs:105
 msgid "Capacity"
 msgstr "Χωρητικότητα"
 
-#: ../src/Dap/Banshee.Dap.AppleDevice/Banshee.Dap.AppleDevice/AppleDeviceSource.cs:96
+#: ../src/Dap/Banshee.Dap.AppleDevice/Banshee.Dap.AppleDevice/AppleDeviceSource.cs:103
 msgid "Available"
 msgstr "Διαθέσιμα"
 
-#: ../src/Dap/Banshee.Dap.AppleDevice/Banshee.Dap.AppleDevice/AppleDeviceSource.cs:97
-#: ../src/Dap/Banshee.Dap.Ipod/Banshee.Dap.Ipod/IpodSource.cs:105
-#: ../src/Dap/Banshee.Dap.Mtp/Banshee.Dap.Mtp/MtpSource.cs:135
+#: ../src/Dap/Banshee.Dap.AppleDevice/Banshee.Dap.AppleDevice/AppleDeviceSource.cs:104
+#: ../src/Dap/Banshee.Dap.Ipod/Banshee.Dap.Ipod/IpodSource.cs:106
+#: ../src/Dap/Banshee.Dap.Mtp/Banshee.Dap.Mtp/MtpSource.cs:141
 msgid "Serial number"
 msgstr "Σειριακός αριθμός"
 
@@ -4239,35 +4261,48 @@ msgstr "Σειριακός αριθμός"
 #. string [] capabilities = new string [ipod_device.ModelInfo.Capabilities.Count];
 #. ipod_device.ModelInfo.Capabilities.CopyTo (capabilities, 0);
 #. AddDapProperty (Catalog.GetString ("Capabilities"), String.Join (", ", capabilities));
-#: ../src/Dap/Banshee.Dap.AppleDevice/Banshee.Dap.AppleDevice/AppleDeviceSource.cs:104
-#: ../src/Dap/Banshee.Dap.Ipod/Banshee.Dap.Ipod/IpodSource.cs:112
+#: ../src/Dap/Banshee.Dap.AppleDevice/Banshee.Dap.AppleDevice/AppleDeviceSource.cs:111
+#: ../src/Dap/Banshee.Dap.Ipod/Banshee.Dap.Ipod/IpodSource.cs:113
 msgid "Supports cover art"
 msgstr "Υποστήριξη έντεχνου εξωφύλλου"
 
-#: ../src/Dap/Banshee.Dap.AppleDevice/Banshee.Dap.AppleDevice/AppleDeviceSource.cs:105
-#: ../src/Dap/Banshee.Dap.Ipod/Banshee.Dap.Ipod/IpodSource.cs:113
+#: ../src/Dap/Banshee.Dap.AppleDevice/Banshee.Dap.AppleDevice/AppleDeviceSource.cs:112
+#: ../src/Dap/Banshee.Dap.Ipod/Banshee.Dap.Ipod/IpodSource.cs:114
 msgid "Supports photos"
 msgstr "Υποστηρίζει φωτογραφίες"
 
-#: ../src/Dap/Banshee.Dap.AppleDevice/Banshee.Dap.AppleDevice/AppleDeviceSource.cs:379
-#: ../src/Dap/Banshee.Dap.Ipod/Banshee.Dap.Ipod/IpodSource.cs:468
+#: ../src/Dap/Banshee.Dap.AppleDevice/Banshee.Dap.AppleDevice/AppleDeviceSource.cs:407
+#: ../src/Dap/Banshee.Dap.Ipod/Banshee.Dap.Ipod/IpodSource.cs:491
 msgid "Track duration is zero"
 msgstr "Η διάρκεια του κομματιού είναι μηδέν"
 
-#: ../src/Dap/Banshee.Dap.AppleDevice/Banshee.Dap.AppleDevice/AppleDeviceSource.cs:566
-#: ../src/Dap/Banshee.Dap.Ipod/Banshee.Dap.Ipod/IpodSource.cs:650
+#: ../src/Dap/Banshee.Dap.AppleDevice/Banshee.Dap.AppleDevice/AppleDeviceSource.cs:510
+#: ../src/Dap/Banshee.Dap.Ipod/Banshee.Dap.Ipod/IpodSource.cs:694
 msgid "Syncing iPod"
-msgstr "Συγχρονισμός του  iPod"
+msgstr "Συγχρονισμός του iPod"
 
-#: ../src/Dap/Banshee.Dap.AppleDevice/Banshee.Dap.AppleDevice/AppleDeviceSource.cs:567
-#: ../src/Dap/Banshee.Dap.Ipod/Banshee.Dap.Ipod/IpodSource.cs:651
+#: ../src/Dap/Banshee.Dap.AppleDevice/Banshee.Dap.AppleDevice/AppleDeviceSource.cs:511
+#: ../src/Dap/Banshee.Dap.Ipod/Banshee.Dap.Ipod/IpodSource.cs:695
 msgid "Preparing to synchronize..."
 msgstr "Προετοιμασία για συγχρονισμό..."
 
-#: ../src/Dap/Banshee.Dap.AppleDevice/Banshee.Dap.AppleDevice/AppleDeviceSource.cs:589
-#: ../src/Dap/Banshee.Dap.Ipod/Banshee.Dap.Ipod/IpodSource.cs:676
-msgid "Flushing to disk..."
-msgstr "Καθαρισμός στο δίσκο."
+#: ../src/Dap/Banshee.Dap.AppleDevice/Banshee.Dap.AppleDevice/AppleDeviceSource.cs:514
+#, csharp-format
+#| msgid "Adding {0} of {1} to {2}"
+msgid "Adding track {0} of {1}"
+msgstr "Προσθήκη κομματιού {0} από {1}"
+
+#: ../src/Dap/Banshee.Dap.AppleDevice/Banshee.Dap.AppleDevice/AppleDeviceSource.cs:550
+#, csharp-format
+#| msgid "Importing {0} of {1}"
+msgid "Removing track {0} of {1}"
+msgstr "Απομάκρυνση κομματιού {0} από {1}"
+
+#: ../src/Dap/Banshee.Dap.AppleDevice/Banshee.Dap.AppleDevice/AppleDeviceSource.cs:614
+#, fuzzy
+#| msgid "Saving new database..."
+msgid "Writing media database"
+msgstr "Αποθήκευση νέας βάσης δεδομένων..."
 
 #: ../src/Dap/Banshee.Dap/Banshee.Dap/DapLibrarySync.cs:131
 #, csharp-format
@@ -4275,7 +4310,7 @@ msgid "Sync {0}"
 msgstr "Συγχρονισμός {0}"
 
 #. Note to translators: {0}, {1} and {2} will be replaced with numbers.
-#: ../src/Dap/Banshee.Dap/Banshee.Dap/DapLibrarySync.cs:256
+#: ../src/Dap/Banshee.Dap/Banshee.Dap/DapLibrarySync.cs:260
 #, csharp-format
 msgid "{0} to add, {1} to remove, {2} to update"
 msgstr "{0} για προσθήκη, {1} για διαγραφή, {2} για ενημέρωση"
@@ -4290,7 +4325,7 @@ msgstr "Προϊόν"
 
 #: ../src/Dap/Banshee.Dap/Banshee.Dap/DapSource.cs:201
 msgid "Vendor"
-msgstr "Μικροπωλητής"
+msgstr "Κατασκευαστής"
 
 #: ../src/Dap/Banshee.Dap/Banshee.Dap/DapSource.cs:280
 #: ../src/Extensions/Banshee.Podcasting/Banshee.Podcasting.Data/PodcastSource.cs:133
@@ -4353,7 +4388,7 @@ msgstr[1] ""
 
 #: ../src/Dap/Banshee.Dap/Banshee.Dap/DapSync.cs:369
 msgid "Are you sure you want to continue?"
-msgstr "Σίγουρος θέλετε να συνεχίσετε;"
+msgstr "Είστε σίγουρος ότι θέλετε να συνεχίσετε;"
 
 #: ../src/Dap/Banshee.Dap/Banshee.Dap/DapSync.cs:377
 msgid "Remove tracks"
@@ -4378,7 +4413,7 @@ msgstr "Άλλο"
 
 #: ../src/Dap/Banshee.Dap/Banshee.Dap.Gui/DapInfoBar.cs:71
 msgid "Free Space"
-msgstr "Ελεύθερος χώρος"
+msgstr "Ελεύθερος Χώρος"
 
 #. Translators: {0} is the name assigned to a Digital Audio Player by its owner
 #: ../src/Dap/Banshee.Dap/Banshee.Dap.Gui/DapPropertiesDialog.cs:55
@@ -4468,33 +4503,37 @@ msgstr "Αποθήκευση νέας βάσης δεδομένων..."
 msgid "Error rebuilding iPod database"
 msgstr "Σφάλμα κατά την επανακατασκευή της βάσης δεδομένων iPod"
 
-#: ../src/Dap/Banshee.Dap.Ipod/Banshee.Dap.Ipod/IpodSource.cs:102
+#: ../src/Dap/Banshee.Dap.Ipod/Banshee.Dap.Ipod/IpodSource.cs:103
 msgid "Color"
 msgstr "Χρώμα"
 
-#: ../src/Dap/Banshee.Dap.Ipod/Banshee.Dap.Ipod/IpodSource.cs:106
+#: ../src/Dap/Banshee.Dap.Ipod/Banshee.Dap.Ipod/IpodSource.cs:107
 msgid "Produced on"
 msgstr "Δημιουργήθηκε στο"
 
-#: ../src/Dap/Banshee.Dap.Ipod/Banshee.Dap.Ipod/IpodSource.cs:107
+#: ../src/Dap/Banshee.Dap.Ipod/Banshee.Dap.Ipod/IpodSource.cs:108
 msgid "Firmware"
 msgstr "Υλικολογισμικό"
 
-#: ../src/Dap/Banshee.Dap.Ipod/Banshee.Dap.Ipod/IpodSource.cs:111
+#: ../src/Dap/Banshee.Dap.Ipod/Banshee.Dap.Ipod/IpodSource.cs:112
 msgid "Capabilities"
 msgstr "Δυνατότητες"
 
-#: ../src/Dap/Banshee.Dap.Ipod/Banshee.Dap.Ipod/IpodSource.cs:634
+#: ../src/Dap/Banshee.Dap.Ipod/Banshee.Dap.Ipod/IpodSource.cs:680
 msgid "Out of space on device"
 msgstr "Δεν υπάρχει χώρος στη συσκευή"
 
-#: ../src/Dap/Banshee.Dap.Ipod/Banshee.Dap.Ipod/IpodSource.cs:634
+#: ../src/Dap/Banshee.Dap.Ipod/Banshee.Dap.Ipod/IpodSource.cs:680
 msgid "Please manually remove some songs"
 msgstr "Παρακαλώ manually αφαιρέστε μερικά τραγούδια"
 
-#: ../src/Dap/Banshee.Dap.Ipod/Banshee.Dap.Ipod/IpodSource.cs:672
+#: ../src/Dap/Banshee.Dap.Ipod/Banshee.Dap.Ipod/IpodSource.cs:724
 msgid "Updating..."
 msgstr "Ενημέρωση..."
+
+#: ../src/Dap/Banshee.Dap.Ipod/Banshee.Dap.Ipod/IpodSource.cs:728
+msgid "Flushing to disk..."
+msgstr "Καθαρισμός στο δίσκο."
 
 #: ../src/Dap/Banshee.Dap.Ipod/Banshee.Dap.Ipod/UnsupportedDatabaseView.cs:61
 msgid "Unable to read your iPod"
@@ -4619,21 +4658,37 @@ msgstr ""
 "για περισσότερες πληροφορίες στο http://www.banshee-project.org/Guide/DAPs/"
 "MTP."
 
-#: ../src/Dap/Banshee.Dap.Mtp/Banshee.Dap.Mtp/MtpSource.cs:136
+#: ../src/Dap/Banshee.Dap.Mtp/Banshee.Dap.Mtp/MtpSource.cs:142
+#: ../src/Hyena/Hyena.Gui/Hyena.Gui.Dialogs/VersionInformationDialog.cs:66
 msgid "Version"
 msgstr "Έκδοση"
 
-#: ../src/Dap/Banshee.Dap.Mtp/Banshee.Dap.Mtp/MtpSource.cs:138
+#: ../src/Dap/Banshee.Dap.Mtp/Banshee.Dap.Mtp/MtpSource.cs:144
 msgid "Battery level"
 msgstr "Επίπεδο γεμίσματος"
 
 #. user_event.Progress = (double)current / total;
 #. Translators: {0} is the name of the MTP audio device (eg Gabe's Zen Player), {1} is the
 #. track currently being loaded, and {2} is the total # of tracks that will be loaded.
-#: ../src/Dap/Banshee.Dap.Mtp/Banshee.Dap.Mtp/MtpSource.cs:154
+#: ../src/Dap/Banshee.Dap.Mtp/Banshee.Dap.Mtp/MtpSource.cs:160
 #, csharp-format
 msgid "Loading {0} - {1} of {2}"
 msgstr "Γίνεται φόρτωση {0} - {1} από {2}"
+
+#: ../src/Extensions/Banshee.AmazonMp3/Banshee.AmazonMp3/AmazonDownloadManager.cs:57
+msgid "Amazon MP3 Purchases"
+msgstr "Αγορές Amazon MP3"
+
+#: ../src/Extensions/Banshee.AmazonMp3/Banshee.AmazonMp3/AmazonMp3DownloaderService.cs:53
+#, fuzzy
+#| msgid "Amazon MP3 Files"
+msgid "Amazon MP3s"
+msgstr "Αρχεία Amazon MP3"
+
+#: ../src/Extensions/Banshee.AmazonMp3/Banshee.AmazonMp3/AmazonMp3DownloaderService.cs:54
+#| msgid "Search the Amazon MP3 Store"
+msgid "Songs purchased from the Amazon MP3 Store"
+msgstr "Τραγούδια αγορασμένα από το κατάστημα Amazon MP3"
 
 #: ../src/Extensions/Banshee.AmazonMp3/Banshee.AmazonMp3/ImportSource.cs:40
 msgid "Download Amazon MP3 Purchase"
@@ -4647,30 +4702,8 @@ msgstr "Αρχεία Amazon MP3"
 msgid "Amazon MP3 Purchase"
 msgstr "Αγορά Amazon MP3"
 
-#: ../src/Extensions/Banshee.AmazonMp3/Banshee.AmazonMp3/UserJobDownloadManager.cs:67
-msgid "Amazon MP3 Purchases"
-msgstr "Αγορές Amazon MP3"
-
-#: ../src/Extensions/Banshee.AmazonMp3/Banshee.AmazonMp3/UserJobDownloadManager.cs:176
-#, csharp-format
-msgid "{0} download at {1}/s"
-msgid_plural "{0} downloads at {1}/s"
-msgstr[0] "{0} μεταφόρτωση με {1}/s"
-msgstr[1] "{0} μεταφορτώσεις με {1}/s"
-
-#: ../src/Extensions/Banshee.AmazonMp3/Banshee.AmazonMp3/UserJobDownloadManager.cs:184
-#, csharp-format
-msgid "{0} download at {1}/s ({2} pending)"
-msgid_plural "{0} downloads at {1}/s ({2} pending)"
-msgstr[0] "{0} μεταφόρτωση με {1}/s ({2} σε αναμονή)"
-msgstr[1] "{0} μεταφορτώσεις με {1}/s ({2} σε αναμονή)"
-
-#: ../src/Extensions/Banshee.AmazonMp3.Store/Banshee.AmazonMp3.Store/SignOutButton.cs:38
-msgid "Sign out of Amazon"
-msgstr "Αποσύνδεση από Amazon"
-
 #: ../src/Extensions/Banshee.AmazonMp3.Store/Banshee.AmazonMp3.Store/StoreSource.cs:42
-#: ../src/Extensions/Banshee.AmazonMp3.Store/Banshee.AmazonMp3.Store/StoreWebBrowserShell.cs:38
+#: ../src/Extensions/Banshee.AmazonMp3.Store/Banshee.AmazonMp3.Store/StoreWebBrowserShell.cs:39
 msgid "Amazon MP3 Store"
 msgstr "Κατάστημα Amazon MP3"
 
@@ -4706,10 +4739,14 @@ msgstr "Ηνωμένο Βασίλειο (amazon.co.uk)"
 msgid "United States (amazon.com)"
 msgstr "Ηνωμένες Πολιτείες (amazon.com)"
 
-#: ../src/Extensions/Banshee.AmazonMp3.Store/Banshee.AmazonMp3.Store/StoreWebBrowserShell.cs:47
+#: ../src/Extensions/Banshee.AmazonMp3.Store/Banshee.AmazonMp3.Store/StoreWebBrowserShell.cs:43
 #, csharp-format
 msgid "Search the Amazon MP3 Store"
 msgstr "Αναζήτση στο κατάστημα Amazon MP3"
+
+#: ../src/Extensions/Banshee.AmazonMp3.Store/Banshee.AmazonMp3.Store/StoreWebBrowserShell.cs:45
+msgid "How Your Purchases Support GNOME"
+msgstr ""
 
 #: ../src/Extensions/Banshee.Audiobook/Banshee.Audiobook/Actions.cs:55
 msgid "Open Book"
@@ -4760,23 +4797,24 @@ msgstr "Τίτλος Βιβλίου:"
 msgid "Author"
 msgstr "Συγγραφέας"
 
-#: ../src/Extensions/Banshee.Audiobook/Banshee.Audiobook/AudiobookFileNamePattern.cs:62
+#. Translators: This means the first letter of the author's name
+#: ../src/Extensions/Banshee.Audiobook/Banshee.Audiobook/AudiobookFileNamePattern.cs:63
 msgid "Author Initial"
 msgstr "Αρχικός Συγγραφέας:"
 
-#: ../src/Extensions/Banshee.Audiobook/Banshee.Audiobook/AudiobookFileNamePattern.cs:67
+#: ../src/Extensions/Banshee.Audiobook/Banshee.Audiobook/AudiobookFileNamePattern.cs:68
 msgid "Book Title"
 msgstr "Τίτλος Βιβλίου"
 
 #: ../src/Extensions/Banshee.Audiobook/Banshee.Audiobook/AudiobookLibrarySource.cs:68
 msgid "Audiobooks, etc"
-msgstr "Ακουστικά βιβλία, κτλ"
+msgstr "Ακουστικά βιβλία, κλπ"
 
 #: ../src/Extensions/Banshee.Audiobook/Banshee.Audiobook/AudiobookLibrarySource.cs:75
 msgid "Search your audiobooks"
 msgstr "Αναζήτηση των ακουστικών βιβλίων σας"
 
-#: ../src/Extensions/Banshee.Audiobook/Banshee.Audiobook/AudiobookLibrarySource.cs:144
+#: ../src/Extensions/Banshee.Audiobook/Banshee.Audiobook/AudiobookLibrarySource.cs:145
 #, csharp-format
 msgid "{0} book"
 msgid_plural "{0} books"
@@ -4895,8 +4933,8 @@ msgstr "Δεν μπόρεσε να εξαγάγει μεταδεδομένα γ�
 #: ../src/Extensions/Banshee.AudioCd/Banshee.AudioCd/AudioCdSource.cs:191
 msgid "Automatic import off since this album is already in the Music Library."
 msgstr ""
-"Αυτόματο σταμάτημα εισαγωγής από την στιγμή που αυτό το λεύκωμα είναι ήδη "
-"στην βιβλιοθήκη μουσικής."
+"Αυτόματη παύση εισαγωγής από τη στιγμή που αυτό το άλμπουμ υπάρχει ήδη στη "
+"Βιβλιοθήκη Μουσικής."
 
 #: ../src/Extensions/Banshee.AudioCd/Banshee.AudioCd/AudioCdSource.cs:214
 msgid "Could not import CD"
@@ -4952,8 +4990,8 @@ msgstr "Αναπαραγωγή αυτού του τραγουδιού"
 #: ../src/Extensions/Banshee.Bpm/Banshee.Bpm/BpmEntry.cs:116
 msgid "Tap this button to the beat to set the BPM for this song manually"
 msgstr ""
-"Κτυπήστε ελαφριά αυτό το κουμπί στο βαθμό που να ρυθμιστεί χειρονακτικά το "
-"BPM για αυτό το τραγούδι"
+"Πατήστε αυτό το κουμπί στο ρυθμό ώστε να καθορίσετε χειροκίνητα το ρυθμό ανά "
+"λεπτό αυτού του τραγουδιού"
 
 #: ../src/Extensions/Banshee.Bpm/Banshee.Bpm/BpmService.cs:148
 msgid "_Automatically detect BPM for all songs"
@@ -4975,22 +5013,6 @@ msgstr "Καταφόρτωση έντεχνου εξώφυλλου"
 #, csharp-format
 msgid "{0} - {1}"
 msgstr "{0} - {1}"
-
-#: ../src/Extensions/Banshee.CoverArt/Banshee.CoverArt/CoverArtService.cs:107
-msgid "_Cover Art"
-msgstr "_΄Εντεχνο εξώφυλλο"
-
-#: ../src/Extensions/Banshee.CoverArt/Banshee.CoverArt/CoverArtService.cs:108
-msgid "Manage cover art"
-msgstr "Διαχείριση έντεχνου εξώφυλλου"
-
-#: ../src/Extensions/Banshee.CoverArt/Banshee.CoverArt/CoverArtService.cs:110
-msgid "_Download Cover Art"
-msgstr "_Καταφόρτωση έντεχνου εξώφυλλου"
-
-#: ../src/Extensions/Banshee.CoverArt/Banshee.CoverArt/CoverArtService.cs:111
-msgid "Download cover art for all tracks"
-msgstr "Καταφόρτωση έντεχνων εξώφυλλων για όλα τα κομμάτια"
 
 #: ../src/Extensions/Banshee.Daap/Banshee.Daap/DaapContainerSource.cs:42
 msgid "Shared Music"
@@ -5082,7 +5104,7 @@ msgstr "Σύνδεση στο {0}"
 
 #: ../src/Extensions/Banshee.Daap/Banshee.Daap/DaapService.cs:178
 msgid "Add Remote DAAP Server"
-msgstr "Προσθήκη Απομακρυσμένου DAAP Εξυπηρετητή"
+msgstr "Προσθήκη Απομακρυσμένου Εξυπηρετητή DAAP"
 
 #: ../src/Extensions/Banshee.Daap/Banshee.Daap/DaapService.cs:179
 msgid "Add a new remote DAAP server"
@@ -5163,14 +5185,12 @@ msgid "Import eMusic Downloads to Library"
 msgstr "Εισαγωγή αρχείων στη βιβλιοθήκη"
 
 #: ../src/Extensions/Banshee.Emusic/Banshee.Emusic/EmusicImport.cs:62
-#, fuzzy
 msgid "eMusic Files"
-msgstr "Αρχεία πολυμέσων"
+msgstr "Αρχεία eMusic"
 
 #: ../src/Extensions/Banshee.Emusic/Banshee.Emusic/EmusicImport.cs:78
-#, fuzzy
 msgid "eMusic Tracks"
-msgstr "Βιβλιοθήκη μουσικής"
+msgstr "Κομμάτια eMusic"
 
 #: ../src/Extensions/Banshee.FileSystemQueue/Banshee.FileSystemQueue/FileSystemQueueSource.cs:57
 #: ../src/Extensions/Banshee.FileSystemQueue/Banshee.FileSystemQueue/FileSystemQueueSource.cs:58
@@ -5197,16 +5217,16 @@ msgstr "Καθαρίστε την ουρά του συστήματος αρχε�
 
 #: ../src/Extensions/Banshee.Fixup/Banshee.Fixup/AlbumDuplicateSolver.cs:46
 msgid "Duplicate Albums"
-msgstr "Διπλοτυπία Άλμπουμ"
+msgstr "Δημιουργία Αντιγράφου Άλμπουμ"
 
 #: ../src/Extensions/Banshee.Fixup/Banshee.Fixup/AlbumDuplicateSolver.cs:47
 msgid ""
 "Displayed are albums that should likely be merged.  For each row, click the "
 "desired title to make it bold, or uncheck it to take no action."
 msgstr ""
-"Τα προβαλλόμενα είναι άλμπουμ που πιθανότατα πρέπει να συγχωνευθούν. Για τη "
-"κάθε σειρά, κάντε κλικ στον επιθυμητό τίτλο για να τον κάνετε έντονο, ή ξε-"
-"τσεκάρετέ τον για να μην γίνει καμία ενέργεια."
+"Τα προβαλλόμενα είναι άλμπουμ που πιθανότατα πρέπει να συγχωνευθούν. Για "
+"κάθε σειρά, πατήστε στον επιθυμητό τίτλο για να τον κάνετε έντονο, ή απο-"
+"επιλέξτε τον για να μην γίνει καμία ενέργεια."
 
 #: ../src/Extensions/Banshee.Fixup/Banshee.Fixup/ArtistDuplicateSolver.cs:46
 msgid "Duplicate Artists"
@@ -5662,9 +5682,8 @@ msgid "News & Public Affairs"
 msgstr ""
 
 #: ../src/Extensions/Banshee.InternetArchive/InternetArchive/MediaType.cs:80
-#, fuzzy
 msgid "Open Source Movies"
-msgstr "Ιδιότητες πηγής"
+msgstr ""
 
 #: ../src/Extensions/Banshee.InternetArchive/InternetArchive/MediaType.cs:81
 msgid "Prelinger Archives"
@@ -5725,7 +5744,7 @@ msgstr ""
 
 #: ../src/Extensions/Banshee.InternetArchive/InternetArchive/MediaType.cs:95
 msgid "Additional Collections"
-msgstr ""
+msgstr "Επιπλέον Συλλογές"
 
 #: ../src/Extensions/Banshee.InternetArchive/InternetArchive/MediaType.cs:98
 msgid "Audio Books & Poetry"
@@ -5759,7 +5778,7 @@ msgstr "Άνοιγμα τοποθεσίας"
 
 #: ../src/Extensions/Banshee.InternetArchive/InternetArchive/MediaType.cs:108
 msgid "Radio Programs"
-msgstr ""
+msgstr "Προγράμματα Ραδιοφώνου"
 
 #: ../src/Extensions/Banshee.InternetArchive/InternetArchive/MediaType.cs:111
 msgid "Education"
@@ -5873,8 +5892,9 @@ msgid "Description:"
 msgstr "Περιγραφή:"
 
 #: ../src/Extensions/Banshee.InternetRadio/Banshee.InternetRadio/StationEditor.cs:128
+#: ../src/Hyena/Hyena.Gui/Hyena.Widgets/RatingMenuItem.cs:50
 msgid "Rating:"
-msgstr "Βαθμολόγηση:"
+msgstr "Βαθμολογία:"
 
 #: ../src/Extensions/Banshee.Lastfm/Banshee.Lastfm.Audioscrobbler/AudioscrobblerService.cs:125
 msgid "_Last.fm"
@@ -5926,11 +5946,11 @@ msgstr "Βρείτε τον καλλιτέχνη στο Wikipedia"
 
 #: ../src/Extensions/Banshee.Lastfm/Banshee.Lastfm/LastfmActions.cs:86
 msgid "View Artist's Videos"
-msgstr "Προβολή των μαγνητοσκοπήσεων του καλλιτέχνη"
+msgstr "Προβολή των Βίντεο του Καλλιτέχνη"
 
 #: ../src/Extensions/Banshee.Lastfm/Banshee.Lastfm/LastfmActions.cs:87
 msgid "Find videos by this artist"
-msgstr "Εύρεση μαγνητοσκοπήσεων μέσω αυτού του καλλιτέχνη"
+msgstr "Αναζήτηση βίντεο αυτού του καλλιτέχνη"
 
 #: ../src/Extensions/Banshee.Lastfm/Banshee.Lastfm/LastfmActions.cs:90
 #: ../src/Extensions/Banshee.Lastfm/Banshee.Lastfm/LastfmActions.cs:106
@@ -5944,11 +5964,11 @@ msgstr "Προτείνετε αυτό το καλλιτέχνη σε κάποι�
 
 #: ../src/Extensions/Banshee.Lastfm/Banshee.Lastfm/LastfmActions.cs:99
 msgid "View this album's Last.fm page"
-msgstr "Προβολή της σελίδας του λευκώματος Last.fm"
+msgstr "Προβολή της σελίδας Last.fm του άλμπουμ"
 
 #: ../src/Extensions/Banshee.Lastfm/Banshee.Lastfm/LastfmActions.cs:107
 msgid "Recommend this album to someone"
-msgstr "Προτείνετε αυτό το λεύκωμα σε κάποιον"
+msgstr "Προτείνετε αυτό το άλμπουμ σε κάποιον"
 
 #: ../src/Extensions/Banshee.Lastfm/Banshee.Lastfm/LastfmActions.cs:114
 msgid "View this track's Last.fm page"
@@ -6064,7 +6084,7 @@ msgstr "Προτιμήσεις του Last.fm"
 #: ../src/Extensions/Banshee.Lastfm/Banshee.Lastfm.Recommendations/RecommendationPane.cs:80
 #, csharp-format
 msgid "Top Albums by {0}"
-msgstr "Κορυφαία λευκώματα από {0}"
+msgstr "Κορυφαία Άλμπουμ από {0}"
 
 #: ../src/Extensions/Banshee.Lastfm/Banshee.Lastfm.Recommendations/RecommendationPane.cs:81
 #, csharp-format
@@ -6325,7 +6345,7 @@ msgstr "Αλλαγή κατάστασης λειτουργίας επανάλη�
 
 #: ../src/Extensions/Banshee.MiroGuide/Banshee.MiroGuide/MiroGuideSource.cs:50
 msgid "Miro Guide"
-msgstr ""
+msgstr "Οδηγός Miro"
 
 #: ../src/Extensions/Banshee.MiroGuide/Banshee.MiroGuide/MiroGuideSource.cs:97
 msgid "Discover interesting podcasts in the Miro Guide podcast directory!"
@@ -6333,14 +6353,18 @@ msgstr ""
 
 #: ../src/Extensions/Banshee.MiroGuide/Banshee.MiroGuide/MiroGuideSource.cs:100
 msgid "Open Miro Guide"
-msgstr ""
+msgstr "Άνοιγμα Οδηγού Miro"
 
 #: ../src/Extensions/Banshee.MiroGuide/Banshee.MiroGuide/View.cs:56
-msgid "Search for Podcasts"
+#, fuzzy
+#| msgid "Search for Podcasts"
+msgid "Search for podcasts"
 msgstr "Ανανέωση όλων των Podcasts"
 
 #: ../src/Extensions/Banshee.MiroGuide/Banshee.MiroGuide/View.cs:57
-msgid "Search for Video Podcasts"
+#, fuzzy
+#| msgid "Search for Video Podcasts"
+msgid "Search for video podcasts"
 msgstr "Αναζήτηση για Βίντεο Podcasts"
 
 #: ../src/Extensions/Banshee.NotificationArea/Banshee.NotificationArea/NotificationAreaService.cs:139
@@ -6551,7 +6575,7 @@ msgstr "Αφαίρεση Podcast"
 
 #: ../src/Extensions/Banshee.Podcasting/Banshee.Podcasting.Data/PodcastSource.cs:127
 msgid "Disable Auto Updates"
-msgstr ""
+msgstr "Απενεργοποίηση Αυτόματων Ενημερώσεων"
 
 #: ../src/Extensions/Banshee.Podcasting/Banshee.Podcasting.Data/PodcastSource.cs:145
 #, csharp-format
@@ -6805,6 +6829,197 @@ msgstr "Αναπαραγωγή στον Περιηγητή Ιστού"
 msgid "No videos found"
 msgstr "Δεν βρέθηκαν βίντεο"
 
+#: ../src/Hyena/Hyena.Gui/Hyena.Data.Gui/Accessibility/ColumnHeaderCellTextAccessible.cs:36
+#, fuzzy
+#| msgid "Hide context pane"
+msgid "open context menu"
+msgstr "Απόκρυψη διατομής πλαισίου"
+
+#: ../src/Hyena/Hyena.Gui/Hyena.Data.Gui/Accessibility/ColumnHeaderCellTextAccessible.cs:37
+msgid "click"
+msgstr ""
+
+#: ../src/Hyena/Hyena.Gui/Hyena.Data.Gui/Accessibility/ColumnHeaderCellTextAccessible.cs:37
+#| msgid "Venue:"
+msgid "menu"
+msgstr ""
+
+#: ../src/Hyena/Hyena.Gui/Hyena.Data.Gui/ListView/ListView_Header.cs:612
+#, csharp-format
+msgid "Hide <i>{0}</i>"
+msgstr "Απόκρυψη <i>{0}</i>"
+
+#. Translators: {0} is substituted with the application name
+#: ../src/Hyena/Hyena.Gui/Hyena.Gui.Dialogs/ExceptionDialog.cs:53
+#, fuzzy, csharp-format
+#| msgid "Banshee Encountered a Fatal Error"
+msgid "{0} Encountered a Fatal Error"
+msgstr "To Banshee αντιμετώπισε ένα αναπόφευκτο σφάλμα"
+
+#: ../src/Hyena/Hyena.Gui/Hyena.Gui.Dialogs/ExceptionDialog.cs:92
+msgid "Error Details"
+msgstr "Λεπτομέρειες σφάλματος"
+
+#: ../src/Hyena/Hyena.Gui/Hyena.Gui.Dialogs/ExceptionDialog.cs:136
+msgid "An unhandled exception was thrown: "
+msgstr "Μία μη αντιμετωπίσιμη εξαίρεση απορρίφθηκε:"
+
+#: ../src/Hyena/Hyena.Gui/Hyena.Gui.Dialogs/VersionInformationDialog.cs:58
+msgid "Assembly Version Information"
+msgstr "Πληροφορία για την έκδοση συναρμολόγησης"
+
+#: ../src/Hyena/Hyena.Gui/Hyena.Gui.Dialogs/VersionInformationDialog.cs:64
+msgid "Assembly Name"
+msgstr "Όνομα συναρμολόγησης"
+
+#: ../src/Hyena/Hyena.Gui/Hyena.Query.Gui/FileSizeQueryValueEntry.cs:62
+msgid "KB"
+msgstr "KB"
+
+#: ../src/Hyena/Hyena.Gui/Hyena.Query.Gui/QueryBox.cs:86
+#, fuzzy
+#| msgid "Con_ductor:"
+msgid "Condition:"
+msgstr "Διευ_θύνων:"
+
+#: ../src/Hyena/Hyena.Gui/Hyena.Query.Gui/QueryBox.cs:104
+msgid "_Match"
+msgstr "_Ταίριασμα"
+
+#: ../src/Hyena/Hyena.Gui/Hyena.Query.Gui/QueryBox.cs:111
+#| msgid "All"
+msgid "all"
+msgstr "όλα"
+
+#: ../src/Hyena/Hyena.Gui/Hyena.Query.Gui/QueryBox.cs:112
+msgid "any"
+msgstr "κάθε"
+
+#: ../src/Hyena/Hyena.Gui/Hyena.Query.Gui/QueryBox.cs:117
+msgid "of the following:"
+msgstr "από το παρακάτω:"
+
+#: ../src/Hyena/Hyena.Gui/Hyena.Query.Gui/QueryLimitBox.cs:58
+msgid "_Limit to"
+msgstr "_Οριοθέτηση στο"
+
+#: ../src/Hyena/Hyena.Gui/Hyena.Query.Gui/QueryLimitBox.cs:85
+#, fuzzy
+#| msgid "(none selected)"
+msgid "selected by"
+msgstr "(κανένα επιλεγμένο)"
+
+#: ../src/Hyena/Hyena.Gui/Hyena.Query.Gui/RelativeTimeSpanQueryValueEntry.cs:42
+msgid "ago"
+msgstr "πριν"
+
+#: ../src/Hyena/Hyena.Gui/Hyena.Query.Gui/TimeSpanQueryValueEntry.cs:59
+msgid "seconds"
+msgstr "deyter;olepta"
+
+#: ../src/Hyena/Hyena.Gui/Hyena.Query.Gui/TimeSpanQueryValueEntry.cs:62
+msgid "days"
+msgstr "μέρες"
+
+#: ../src/Hyena/Hyena.Gui/Hyena.Query.Gui/TimeSpanQueryValueEntry.cs:63
+msgid "weeks"
+msgstr "εβδομάδες"
+
+#: ../src/Hyena/Hyena.Gui/Hyena.Query.Gui/TimeSpanQueryValueEntry.cs:64
+msgid "months"
+msgstr "μήνες"
+
+#: ../src/Hyena/Hyena.Gui/Hyena.Query.Gui/TimeSpanQueryValueEntry.cs:65
+msgid "years"
+msgstr "έτη"
+
+#: ../src/Hyena/Hyena/Hyena.Downloader/DownloadManagerJob.cs:71
+#, csharp-format
+msgid "{0} download at {1}/s"
+msgid_plural "{0} downloads at {1}/s"
+msgstr[0] "{0} μεταφόρτωση με {1}/s"
+msgstr[1] "{0} μεταφορτώσεις με {1}/s"
+
+#: ../src/Hyena/Hyena/Hyena.Downloader/DownloadManagerJob.cs:79
+#, csharp-format
+msgid "{0} download at {1}/s ({2} pending)"
+msgid_plural "{0} downloads at {1}/s ({2} pending)"
+msgstr[0] "{0} μεταφόρτωση με {1}/s ({2} σε αναμονή)"
+msgstr[1] "{0} μεταφορτώσεις με {1}/s ({2} σε αναμονή)"
+
+#. public static readonly Operator Equal              = new Operator ("equals", "= {0}", "==", "=", ":");
+#. public static readonly Operator NotEqual           = new Operator ("notEqual", "!= {0}", true, "!=", "!:");
+#. public static readonly Operator LessThanEqual      = new Operator ("lessThanEquals", "<= {0}", "<=");
+#. public static readonly Operator GreaterThanEqual   = new Operator ("greaterThanEquals", ">= {0}", ">=");
+#: ../src/Hyena/Hyena/Hyena.Query/DateQueryValue.cs:47
+msgid "before"
+msgstr "πριν"
+
+#: ../src/Hyena/Hyena/Hyena.Query/DateQueryValue.cs:48
+msgid "after"
+msgstr "μετά"
+
+#: ../src/Hyena/Hyena/Hyena.Query/EnumQueryValue.cs:43
+#: ../src/Hyena/Hyena/Hyena.Query/IntegerQueryValue.cs:41
+#: ../src/Hyena/Hyena/Hyena.Query/StringQueryValue.cs:45
+msgid "is"
+msgstr "είναι"
+
+#: ../src/Hyena/Hyena/Hyena.Query/EnumQueryValue.cs:44
+#: ../src/Hyena/Hyena/Hyena.Query/IntegerQueryValue.cs:42
+#: ../src/Hyena/Hyena/Hyena.Query/StringQueryValue.cs:46
+msgid "is not"
+msgstr "δεν είναι"
+
+#: ../src/Hyena/Hyena/Hyena.Query/IntegerQueryValue.cs:43
+#: ../src/Hyena/Hyena/Hyena.Query/RelativeTimeSpanQueryValue.cs:47
+msgid "at most"
+msgstr "το πολύ"
+
+#: ../src/Hyena/Hyena/Hyena.Query/IntegerQueryValue.cs:44
+#: ../src/Hyena/Hyena/Hyena.Query/RelativeTimeSpanQueryValue.cs:46
+msgid "at least"
+msgstr "τουλάχιστον"
+
+#: ../src/Hyena/Hyena/Hyena.Query/IntegerQueryValue.cs:45
+#: ../src/Hyena/Hyena/Hyena.Query/RelativeTimeSpanQueryValue.cs:45
+msgid "less than"
+msgstr "μικρότερο από"
+
+#. The SQL operators in these Operators are reversed from normal on purpose
+#: ../src/Hyena/Hyena/Hyena.Query/IntegerQueryValue.cs:46
+#: ../src/Hyena/Hyena/Hyena.Query/RelativeTimeSpanQueryValue.cs:44
+msgid "more than"
+msgstr "περισσότερο από"
+
+#: ../src/Hyena/Hyena/Hyena.Query/NullQueryValue.cs:41
+msgid "empty"
+msgstr "άδειο"
+
+#: ../src/Hyena/Hyena/Hyena.Query/RelativeTimeSpanQueryValue.cs:90
+#, fuzzy, csharp-format
+#| msgid "{0} day"
+#| msgid_plural "{0} days"
+msgid "{0} ago"
+msgstr "{0} ημέρα"
+
+#: ../src/Hyena/Hyena/Hyena.Query/StringQueryValue.cs:43
+#, fuzzy
+msgid "contains"
+msgstr "Συνέχεια"
+
+#: ../src/Hyena/Hyena/Hyena.Query/StringQueryValue.cs:44
+msgid "doesn't contain"
+msgstr "δεν περιέχει"
+
+#: ../src/Hyena/Hyena/Hyena.Query/StringQueryValue.cs:47
+msgid "starts with"
+msgstr "ξεκινάει με"
+
+#: ../src/Hyena/Hyena/Hyena.Query/StringQueryValue.cs:48
+msgid "ends with"
+msgstr "τελειώνει με"
+
 #: ../src/Libraries/Lastfm.Gui/Lastfm.Gui/AccountLoginDialog.cs:76
 msgid "Last.fm Account Login"
 msgstr "Σύνδεση στο λογαριασμό Last.fm"
@@ -6924,6 +7139,21 @@ msgstr "συνδέθηκε στο Last.fm."
 msgid "Unknown Podcast"
 msgstr "Άγνωστο Podcast"
 
+#~ msgid "Sign out of Amazon"
+#~ msgstr "Αποσύνδεση από Amazon"
+
+#~ msgid "_Cover Art"
+#~ msgstr "_΄Εντεχνο εξώφυλλο"
+
+#~ msgid "Manage cover art"
+#~ msgstr "Διαχείριση έντεχνου εξώφυλλου"
+
+#~ msgid "_Download Cover Art"
+#~ msgstr "_Καταφόρτωση έντεχνου εξώφυλλου"
+
+#~ msgid "Download cover art for all tracks"
+#~ msgstr "Καταφόρτωση έντεχνων εξώφυλλων για όλα τα κομμάτια"
+
 #~ msgid "Could not create 'filesrc' plugin"
 #~ msgstr "Δεν είναι δυνατή η δημιουργία της προσθήκης  'filesrc'"
 
@@ -6962,9 +7192,6 @@ msgstr "Άγνωστο Podcast"
 
 #~ msgid "Import Media to Library"
 #~ msgstr "Εισαγωγή πολυμέσων στη βιβλιοθήκη"
-
-#~ msgid "Predefined Smart Playlists"
-#~ msgstr "Προκαθορισμένοι έξυπνοι κατάλογοι αναπαραγωγής"
 
 #~ msgid "Manually manage this device"
 #~ msgstr "Χειρονακτικά διαχειριστείτε αυτή τη συσκευή"
@@ -7021,90 +7248,6 @@ msgstr "Άγνωστο Podcast"
 
 #~ msgid "Subscribe to Podcast..."
 #~ msgstr "Εγγρραφή στη θαλαμοεκπομπή..."
-
-#~ msgid "Hide <i>{0}</i>"
-#~ msgstr "Απόκρυψη <i>{0}</i>"
-
-#~ msgid "Banshee Encountered a Fatal Error"
-#~ msgstr "To Banshee αντιμετώπισε ένα αναπόφευκτο σφάλμα"
-
-#~ msgid "Error Details"
-#~ msgstr "Λεπτομέρειες σφάλματος"
-
-#~ msgid "An unhandled exception was thrown: "
-#~ msgstr "Μία μη αντιμετωπίσιμη εξαίρεση απορρίφθηκε:"
-
-#~ msgid "Assembly Version Information"
-#~ msgstr "Πληροφορία για την έκδοση συναρμολόγησης"
-
-#~ msgid "Assembly Name"
-#~ msgstr "Όνομα συναρμολόγησης"
-
-#~ msgid "KB"
-#~ msgstr "KB"
-
-#~ msgid "_Match"
-#~ msgstr "_Ταίριασμα"
-
-#~ msgid "any"
-#~ msgstr "κάθε"
-
-#~ msgid "of the following:"
-#~ msgstr "από το παρακάτω:"
-
-#~ msgid "_Limit to"
-#~ msgstr "_Οριοθέτηση στο"
-
-#~ msgid "ago"
-#~ msgstr "πριν"
-
-#~ msgid "seconds"
-#~ msgstr "deyter;olepta"
-
-#~ msgid "days"
-#~ msgstr "μέρες"
-
-#~ msgid "months"
-#~ msgstr "μήνες"
-
-#~ msgid "years"
-#~ msgstr "έτη"
-
-#~ msgid "before"
-#~ msgstr "πριν"
-
-#~ msgid "after"
-#~ msgstr "μετά"
-
-#~ msgid "is"
-#~ msgstr "είναι"
-
-#~ msgid "is not"
-#~ msgstr "δεν είναι"
-
-#~ msgid "at most"
-#~ msgstr "το πολύ"
-
-#~ msgid "at least"
-#~ msgstr "τουλάχιστον"
-
-#~ msgid "less than"
-#~ msgstr "μικρότερο από"
-
-#~ msgid "more than"
-#~ msgstr "περισσότερο από"
-
-#~ msgid "empty"
-#~ msgstr "άδειο"
-
-#~ msgid "doesn't contain"
-#~ msgstr "δεν περιέχει"
-
-#~ msgid "starts with"
-#~ msgstr "ξεκινάει με"
-
-#~ msgid "ends with"
-#~ msgstr "τελειώνει με"
 
 #~ msgid "Failed to Login to Last.fm"
 #~ msgstr "Αποτυχία σύνδεσης στο  Last.fm"
