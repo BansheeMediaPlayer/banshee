@@ -170,7 +170,9 @@ namespace Banshee.Collection.Database
 
         public override void Update ()
         {
-            PrimarySource.UpdateMetadata (this);
+            if (PrimarySource != null) {
+                PrimarySource.UpdateMetadata (this);
+            }
             base.Update ();
         }
 
