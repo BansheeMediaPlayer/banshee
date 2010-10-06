@@ -623,6 +623,7 @@ namespace Banshee.Dap.AppleDevice
             } catch (Exception e) {
                 Log.Exception ("Failed to save iPod database", e);
             }
+            MediaDatabase.StopSync ();
             progressUpdater.Finish ();
 
             Hyena.Log.Debug ("Ending AppleDevice sync thread cycle");
