@@ -29,7 +29,7 @@ DOC_PAGES = \
 	sync.page \
 	ui.page
 
-DOC_LINGUAS = de gl
+DOC_LINGUAS = de es gl
 dist-hook: doc-dist-hook
 
 endif
