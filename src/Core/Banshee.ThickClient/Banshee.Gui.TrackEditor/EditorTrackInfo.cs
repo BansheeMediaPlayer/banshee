@@ -92,17 +92,18 @@ namespace Banshee.Gui.TrackEditor
 
         public TagLib.File GetTaglibFile ()
         {
-            TagLib.File file = null;
+            if (Uri.Scheme == "http" || Uri.Scheme == "https")
+                return null;
 
             try {
-                file = StreamTagger.ProcessUri (Uri);
+                return StreamTagger.ProcessUri (Uri);
             } catch (Exception e) {
                 if (Uri.Scheme == "file") {
                     Hyena.Log.Exception ("Cannot load TagLib file", e);
                 }
             }
 
-            return file;
+            return null;
         }
     }
 }
