@@ -489,7 +489,7 @@ namespace Banshee.Dap.MassStorage
             if (track.PrimarySourceId == DbId)
                 return;
 
-            SafeUri new_uri = new SafeUri (GetTrackPath (track, System.IO.Path.GetExtension (fromUri.LocalPath)));
+            SafeUri new_uri = new SafeUri (GetTrackPath (track, System.IO.Path.GetExtension (fromUri)));
             // If it already is on the device but it's out of date, remove it
             //if (File.Exists(new_uri) && File.GetLastWriteTime(track.Uri.LocalPath) > File.GetLastWriteTime(new_uri))
                 //RemoveTrack(new MassStorageTrackInfo(new SafeUri(new_uri)));
