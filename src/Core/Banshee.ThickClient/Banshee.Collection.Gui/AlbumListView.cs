@@ -81,6 +81,8 @@ namespace Banshee.Collection.Gui
             Banshee.Metadata.MetadataService.Instance.ArtworkUpdated += OnArtworkUpdated;
         }
 
+        protected AlbumListView (IntPtr ptr) : base () {}
+
         public override void Dispose ()
         {
             ServiceManager.PlayerEngine.DisconnectEvent (OnPlayerEvent);
