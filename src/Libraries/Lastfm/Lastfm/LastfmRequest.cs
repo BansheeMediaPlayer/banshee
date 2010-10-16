@@ -239,7 +239,7 @@ namespace Lastfm
                 Log.DebugException (e);
                 response = (HttpWebResponse)e.Response;
             }
-            return response.GetResponseStream ();
+            return response != null ? response.GetResponseStream () : null;
         }
 
         private Stream Post (string uri, string data)
@@ -259,7 +259,7 @@ namespace Lastfm
                 Log.DebugException (e);
                 response = (HttpWebResponse)e.Response;
             }
-            return response.GetResponseStream ();
+            return response != null ? response.GetResponseStream () : null;
         }
 
 #endregion
