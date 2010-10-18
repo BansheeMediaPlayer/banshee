@@ -88,7 +88,6 @@ namespace Migo.Net
 
         public event EventHandler<EventArgs> ResponseReceived;
         public event EventHandler<DownloadProgressChangedEventArgs> DownloadProgressChanged;
-        public event EventHandler<TransferRateUpdatedEventArgs> TransferRateUpdated;
 
         public event EventHandler<AsyncCompletedEventArgs> DownloadFileCompleted;
         public event EventHandler<DownloadDataCompletedEventArgs> DownloadDataCompleted;

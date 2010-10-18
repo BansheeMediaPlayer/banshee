@@ -77,10 +77,6 @@ namespace Migo.Syndication
         private DateTime pubDate;
         private string title;
 
-        public event Action<FeedItem> ItemAdded;
-        public event Action<FeedItem> ItemChanged;
-        public event Action<FeedItem> ItemRemoved;
-
 #region Database-backed Properties
 
         [DatabaseColumn ("ItemID", Constraints = DatabaseColumnConstraints.PrimaryKey)]

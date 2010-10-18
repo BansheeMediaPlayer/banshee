@@ -117,7 +117,7 @@ namespace Banshee.Gui.Dialogs
             return AddStockButton (stock, response, false);
         }
 
-        public new Button AddButton (string message, ResponseType response, bool isDefault)
+        public Button AddButton (string message, ResponseType response, bool isDefault)
         {
             return AddButton (message, response, isDefault, false);
         }
@@ -127,7 +127,7 @@ namespace Banshee.Gui.Dialogs
             return AddButton (stock, response, isDefault, true);
         }
 
-        public new Button AddButton (string message, ResponseType response, bool isDefault, bool isStock)
+        public Button AddButton (string message, ResponseType response, bool isDefault, bool isStock)
         {
             Button button = new Button (message);
             button.CanDefault = true;

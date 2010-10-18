@@ -51,8 +51,6 @@ namespace Migo.Syndication
         private readonly object sync = new object ();
         private ManualResetEvent download_handle;
 
-        public event EventHandler<TaskEventArgs<HttpFileDownloadTask>> EnclosureDownloadCompleted;
-
         public EnclosureManager (DownloadManager downloadManager)
         {
             download_manager = downloadManager;
@@ -334,23 +332,6 @@ namespace Migo.Syndication
                     }
                 }
             }
-
-            OnEnclosureDownloadCompleted (task);
-        }
-
-        private void OnEnclosureDownloadCompleted (HttpFileDownloadTask task)
-        {
-            /*EventHandler<TaskEventArgs<HttpFileDownloadTask>> handler = EnclosureDownloadCompleted;
-
-            if (handler != null) {
-                AsyncCommandQueue<ICommand> cmdQCpy = command_queue;
-
-                if (cmdQCpy != null) {
-                    cmdQCpy.Register (new EventWrapper<TaskEventArgs<HttpFileDownloadTask>> (
-                	    handler, this, new TaskEventArgs<HttpFileDownloadTask> (task))
-                	);
-                }
-            }   */
         }
 
         private void DownloadTaskRemoved (FeedEnclosure enc, HttpFileDownloadTask task, bool decQueuedCount)
