@@ -175,11 +175,11 @@ namespace Banshee.Collection.Database
             ServiceManager.DbConnection.BeginTransaction ();
             try {
                 track = new DatabaseTrackInfo ();
-                track.Uri = uri;
                 using (var file = StreamTagger.ProcessUri (uri)) {
                     StreamTagger.TrackInfoMerge (track, file, false, true);
                 }
 
+                track.Uri = uri;
                 track.PrimarySource = trackPrimarySourceChooser (track);
 
                 bool save_track = true;
