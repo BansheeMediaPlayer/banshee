@@ -42,17 +42,19 @@ bp_video_find_xoverlay (BansheePlayer *player)
     GstElement *video_sink = NULL;
     GstElement *xoverlay;
     GstXOverlay *previous_xoverlay;
+    gboolean    found_xoverlay;
 
-    previous_xoverlay = player->xoverlay;
-    
     g_object_get (player->playbin, "video-sink", &video_sink, NULL);
-    
+
+    g_mutex_lock (player->video_mutex);
+    previous_xoverlay = player->xoverlay;
+
     if (video_sink == NULL) {
         player->xoverlay = NULL;
         if (previous_xoverlay != NULL) {
             gst_object_unref (previous_xoverlay);
         }
-
+        g_mutex_unlock (player->video_mutex);
         return FALSE;
     }
     
@@ -79,8 +81,10 @@ bp_video_find_xoverlay (BansheePlayer *player)
     }
 
     gst_object_unref (video_sink);
+    found_xoverlay = (player->xoverlay != NULL) ? TRUE : FALSE;
 
-    return player->xoverlay != NULL;
+    g_mutex_unlock (player->video_mutex);
+    return found_xoverlay;
 }
 
 #endif /* GDK_WINDOWING_X11 || GDK_WINDOWING_WIN32 */
@@ -91,9 +95,7 @@ bp_video_sink_element_added (GstBin *videosink, GstElement *element, BansheePlay
     g_return_if_fail (IS_BANSHEE_PLAYER (player));
 
     #if defined(GDK_WINDOWING_X11) || defined(GDK_WINDOWING_WIN32)
-    g_mutex_lock (player->video_mutex);
     bp_video_find_xoverlay (player);
-    g_mutex_unlock (player->video_mutex);
     #endif
 }
 
@@ -110,9 +112,7 @@ bp_video_bus_element_sync_message (GstBus *bus, GstMessage *message, BansheePlay
         return;
     }
 
-    g_mutex_lock (player->video_mutex);
     found_xoverlay = bp_video_find_xoverlay (player);
-    g_mutex_unlock (player->video_mutex);
 
     if (found_xoverlay) {
         gst_x_overlay_set_xwindow_id (player->xoverlay, player->video_window_xid);
@@ -318,16 +318,12 @@ bp_video_window_expose (BansheePlayer *player, GdkWindow *window, gboolean direc
         gst_x_overlay_expose (player->xoverlay);
         return;
     }
-   
-    g_mutex_lock (player->video_mutex);
-   
+
     if (player->xoverlay == NULL && !bp_video_find_xoverlay (player)) {
-        g_mutex_unlock (player->video_mutex);
         return;
     }
     
     gst_object_ref (player->xoverlay);
-    g_mutex_unlock (player->video_mutex);
 
     gst_x_overlay_set_xwindow_id (player->xoverlay, player->video_window_xid);
     gst_x_overlay_expose (player->xoverlay);
