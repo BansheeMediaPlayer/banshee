@@ -165,6 +165,7 @@ SOURCES =  \
 
 RESOURCES =  \
 	Banshee.ThickClient.addin.xml \
+	Resources/BookmarksMenu.xml \
 	Resources/banshee-logo.png \
 	Resources/browser-album-cover.png \
 	Resources/context-pane-close.png \

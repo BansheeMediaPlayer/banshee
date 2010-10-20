@@ -59,15 +59,15 @@ namespace Banshee.Gui
         private Dictionary<MenuItem, Bookmark> bookmark_map = new Dictionary<MenuItem, Bookmark> ();
 
         private InterfaceActionService action_service;
-        private ActionGroup actions;
-        private uint ui_manager_id;
+        private BansheeActionGroup actions;
         private bool loaded;
 
         private static BookmarkUI instance = null;
         public static BookmarkUI Instance {
             get {
-                if (instance == null)
+                if (instance == null) {
                     instance = new BookmarkUI ();
+                }
                 return instance;
             }
         }
@@ -80,7 +80,7 @@ namespace Banshee.Gui
         {
             action_service = ServiceManager.Get<InterfaceActionService> ();
 
-            actions = new ActionGroup ("Bookmarks");
+            actions = new BansheeActionGroup ("Bookmarks");
 
             actions.Add (new ActionEntry [] {
                 new ActionEntry ("BookmarksAction", null,
@@ -92,8 +92,9 @@ namespace Banshee.Gui
                                   HandleNewBookmark)
             });
 
-            action_service.UIManager.InsertActionGroup (actions, 0);
-            ui_manager_id = action_service.UIManager.AddUiFromResource ("BookmarksMenu.xml");
+            actions.AddUiFromFile ("BookmarksMenu.xml");
+            actions.Register ();
+
             bookmark_item = action_service.UIManager.GetWidget ("/MainMenu/ToolsMenu/Bookmarks") as ImageMenuItem;
             new_item = action_service.UIManager.GetWidget ("/MainMenu/ToolsMenu/Bookmarks/Add") as ImageMenuItem;
 
@@ -140,7 +141,12 @@ namespace Banshee.Gui
             separator = new SeparatorMenuItem ();
 
             foreach (var bookmark in Bookmark.Provider.FetchAllMatching ("Type IS NULL")) {
-                AddBookmark (bookmark);
+                if (bookmark.Track != null) {
+                    AddBookmark (bookmark);
+                } else {
+                    Hyena.Log.DebugFormat ("Removing bookmark that points to missing track ({0})", bookmark.Position);
+                    bookmark.Remove ();
+                }
             }
 
             bookmark_item.ShowAll ();
@@ -161,7 +167,6 @@ namespace Banshee.Gui
             ImageMenuItem select_item = new ImageMenuItem (bookmark.Name.Replace ("_", "__"));
             select_item.Image = new Image (Stock.JumpTo, IconSize.Menu);
             select_item.Activated += delegate {
-                Console.WriteLine ("item delegate, main thread? {0}", ThreadAssist.InMainThread);
                 bookmark.JumpTo ();
             };
             bookmark_menu.Append (select_item);
@@ -201,10 +206,8 @@ namespace Banshee.Gui
 
         public void Dispose ()
         {
-            action_service.UIManager.RemoveUi (ui_manager_id);
-            action_service.UIManager.RemoveActionGroup (actions);
+            actions.Dispose ();
             actions = null;
-
             instance = null;
         }
     }

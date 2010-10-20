@@ -43,7 +43,7 @@ using Banshee.ServiceStack;
 
 namespace Banshee.Gui
 {
-    public class BookmarksService : IExtensionService, IDisposable
+    public class BookmarksService : IInitializeService, IDisposable
     {
         private BookmarkUI ui;
 
@@ -51,7 +51,7 @@ namespace Banshee.Gui
         {
         }
 
-        void IExtensionService.Initialize ()
+        void IInitializeService.Initialize ()
         {
             ui = BookmarkUI.Instance;
         }
