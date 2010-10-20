@@ -7,8 +7,8 @@ MONO_EXE="@expanded_libdir@/@PACKAGE@/$exec_asm"
 BANSHEE_EXEC_NAME=$(basename $0)
 BANSHEE_CONFIG_DIR="${XDG_CONFIG_HOME:-$HOME/.config}/banshee-1"
 
-export LD_LIBRARY_PATH=@expanded_libdir@/@PACKAGE@:@expanded_libdir@/@PACKAGE@/Extensions:@expanded_libdir@/@PACKAGE@/Backends:@expanded_libdir@${LD_LIBRARY_PATH+:$LD_LIBRARY_PATH}
-export GST_PLUGIN_PATH=@expanded_libdir@/@PACKAGE@/gstreamer-0.10${GST_PLUGIN_PATH+:$GST_PLUGIN_PATH}
+export LD_LIBRARY_PATH=@expanded_libdir@/@PACKAGE@:@expanded_libdir@/@PACKAGE@/Extensions:@expanded_libdir@/@PACKAGE@/Backends:@expanded_libdir@${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}
+export GST_PLUGIN_PATH=@expanded_libdir@/@PACKAGE@/gstreamer-0.10${GST_PLUGIN_PATH:+:$GST_PLUGIN_PATH}
 if [ $BANSHEE_EXEC_NAME = "muinshee" ]; then
     BANSHEE_CLIENT="Muinshee"
     export MONO_PATH=@expanded_libdir@/@PACKAGE@/Extensions
