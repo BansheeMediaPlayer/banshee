@@ -87,17 +87,16 @@ namespace Banshee.Base
 
         public static string CreateArtistAlbumId (string artist, string album)
         {
-            if (album == unknown_album || album == unknown_album_tr) {
+            if (album == null || album == unknown_album || album == unknown_album_tr) {
                 // do not attempt to group unknown album tracks together
                 return null;
             }
 
-            if (artist == unknown_artist || artist == unknown_artist_tr) {
-                artist = null;
+            if (artist == null || artist == unknown_artist || artist == unknown_artist_tr) {
+                return null;
             }
 
-            string digestible = String.Format ("{0}\t{1}", artist ?? "", album ?? "");
-
+            string digestible = String.Format ("{0}\t{1}", artist, album);
             return String.Format ("album-{0}", Digest (digestible));
         }
 

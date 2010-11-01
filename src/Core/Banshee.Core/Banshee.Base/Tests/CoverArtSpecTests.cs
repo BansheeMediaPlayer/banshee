@@ -47,6 +47,10 @@ namespace Banshee.Base.Tests
             AssertDigested (null, null);
             AssertDigested ("", null);
             AssertDigested (" ", "7215ee9c7d9dc229d2921a40e899ec5f");
+
+            // Test that bgo#620010 is fixed
+            Assert.AreEqual (null, CoverArtSpec.CreateArtistAlbumId (null, null));
+            Assert.AreEqual (null, CoverArtSpec.CreateArtistAlbumId (null, "All Albums (6)"));
         }
 
         [Test]
