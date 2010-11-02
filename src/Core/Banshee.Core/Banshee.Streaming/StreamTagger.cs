@@ -40,7 +40,7 @@ namespace Banshee.Streaming
         // This is a short list of video types that TagLib# might not support but that
         // we want to make sure are recognized as videos
         private static readonly ExtensionSet VideoExtensions = new ExtensionSet (
-            "avi", "divx", "dv", "f4p", "f4v", "flv", "m4v", "mkv", "mov", "ogv", "qt", "ts");
+            "avi", "divx", "dv", "f4p", "f4v", "flv", "m4v", "mkv", "mov", "ogv", "qt", "ts", "webm");
 
         public static TagLib.File ProcessUri (SafeUri uri)
         {
