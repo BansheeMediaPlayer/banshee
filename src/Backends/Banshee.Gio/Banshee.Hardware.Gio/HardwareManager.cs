@@ -98,12 +98,12 @@ namespace Banshee.Hardware.Gio
         }
 #endregion
 
-        private IEnumerable<T> GetAllBlockDevices<T> () where T : IBlockDevice
+        private IEnumerable<T> GetAllBlockDevices<T> () where T : class, IBlockDevice
         {
             foreach (var lowDevice in manager.GetAllDevices ()) {
-                IBlockDevice device = lowDevice as IBlockDevice;
+                T device = lowDevice as T;
                 if (device != null) {
-                    yield return (T) device;
+                    yield return device;
                 }
             }
         }
