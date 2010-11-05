@@ -142,6 +142,13 @@ namespace Banshee.GStreamer
 
             using (TagList tags = new TagList (track)) {
                 output_path = String.Format ("{0}.{1}", outputUri.LocalPath, output_extension);
+
+                // Avoid overwriting an existing file
+                int i = 1;
+                while (Banshee.IO.File.Exists (new SafeUri (output_path))) {
+                    output_path = String.Format ("{0} ({1}).{2}", outputUri.LocalPath, i++, output_extension);
+                }
+
                 Log.DebugFormat ("GStreamer ripping track {0} to {1}", trackIndex, output_path);
 
                 br_rip_track (handle, trackIndex + 1, output_path, tags.Handle, out taggingSupported);
