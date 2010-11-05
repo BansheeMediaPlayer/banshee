@@ -71,6 +71,7 @@ namespace Nereid
         private CoverArtDisplay cover_art_display;
         private Widget cover_art_container;
         private ConnectedSeekSlider seek_slider;
+        private TaskStatusIcon task_status;
 
         // Major Interaction Components
         private SourceView source_view;
@@ -330,7 +331,7 @@ namespace Nereid
 
             footer_toolbar = new HBox () { BorderWidth = 2 };
 
-            Widget task_status = new Banshee.Gui.Widgets.TaskStatusIcon ();
+            task_status = new Banshee.Gui.Widgets.TaskStatusIcon ();
 
             EventBox status_event_box = new EventBox ();
             status_event_box.ButtonPressEvent += OnStatusBoxButtonPress;
