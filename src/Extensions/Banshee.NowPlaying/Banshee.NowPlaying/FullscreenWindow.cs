@@ -124,8 +124,8 @@ namespace Banshee.NowPlaying
             Gdk.Screen screen = Screen;
             int monitor = screen.GetMonitorAtWindow (parent.GdkWindow);
             Gdk.Rectangle bounds = screen.GetMonitorGeometry (monitor);
-            Move (bounds.X, 0);
-            SetDefaultSize (bounds.Width, bounds.Height);
+            Move (bounds.X, bounds.Y);
+            Resize (bounds.Width, bounds.Height);
         }
 
         protected override void OnRealized ()
