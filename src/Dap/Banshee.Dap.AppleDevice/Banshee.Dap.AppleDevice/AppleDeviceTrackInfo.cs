@@ -99,6 +99,11 @@ namespace Banshee.Dap.AppleDevice
             Year = track.Year;
             MediaAttributes = track.MediaAttributes;
 
+            ArtistNameSort = track.ArtistNameSort;
+            AlbumTitleSort = track.AlbumTitleSort;
+            AlbumArtistSort = track.AlbumArtistSort;
+            TrackTitleSort = track.TrackTitleSort;
+
             var podcast_info = track.ExternalObject as IPodcastInfo;
             if (podcast_info != null) {
                 description = podcast_info.Description;
@@ -144,6 +149,10 @@ namespace Banshee.Dap.AppleDevice
             Year = track.Year;
             description = track.Description;
             ReleaseDate = track.TimeReleased;
+            ArtistNameSort = track.SortArtist;
+            AlbumTitleSort = track.SortAlbum;
+            AlbumArtistSort = track.SortAlbumArtist;
+            TrackTitleSort = track.SortTitle;
 
             rating = track.Rating > 5 ? 0 : (int) track.Rating;
 
@@ -220,6 +229,11 @@ namespace Banshee.Dap.AppleDevice
             track.Artist = ArtistName;
             track.Title = TrackTitle;
             track.Genre = Genre;
+
+            track.SortArtist = ArtistNameSort;
+            track.SortAlbum = AlbumTitleSort;
+            track.SortAlbumArtist = AlbumArtistSort;
+            track.SortTitle = TrackTitleSort;
 
             track.Rating = ((Rating >= 1) && (Rating <= 5)) ? (uint)Rating : 0;
 
