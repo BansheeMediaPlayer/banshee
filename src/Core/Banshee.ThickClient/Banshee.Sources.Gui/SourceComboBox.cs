@@ -38,6 +38,7 @@ namespace Banshee.Sources.Gui
 {
     public class SourceComboBox : ComboBox
     {
+        SourceRowRenderer renderer;
         private SourceModel store;
         public new SourceModel Model {
             get { return store; }
@@ -46,7 +47,7 @@ namespace Banshee.Sources.Gui
 
         public SourceComboBox ()
         {
-            SourceRowRenderer renderer = new SourceRowRenderer ();
+            renderer = new SourceRowRenderer ();
             renderer.ParentWidget = this;
             PackStart (renderer, true);
             SetCellDataFunc (renderer, new CellLayoutDataFunc (SourceRowRenderer.CellDataHandler));
