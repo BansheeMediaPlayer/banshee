@@ -341,5 +341,9 @@ namespace Banshee.InternetRadio
         public override bool HasViewableTrackProperties {
             get { return false; }
         }
+
+        public override bool HasEditableTrackProperties {
+            get { return true; }
+        }
     }
 }
