@@ -263,6 +263,7 @@ namespace Banshee.Dap.AppleDevice
             } else {
                 if (HasAttribute (TrackMediaAttributes.Podcast)) {
                     track.MediaType = GPod.MediaType.Podcast;
+                    track.Flag4 = (byte)1;
                 } else if (HasAttribute (TrackMediaAttributes.AudioBook)) {
                     track.MediaType = GPod.MediaType.Audiobook;
                 } else if (HasAttribute (TrackMediaAttributes.Music)) {
