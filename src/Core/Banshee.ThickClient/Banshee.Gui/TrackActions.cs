@@ -431,6 +431,13 @@ namespace Banshee.Gui
                         return;
                     }
 
+                    foreach (var track in source.TrackModel.SelectedItems) {
+                        if (track.IsPlaying) {
+                            ServiceManager.PlayerEngine.Close ();
+                            break;
+                        }
+                    }
+
                     ThreadAssist.SpawnFromMain (delegate {
                         library.RemoveSelectedTracks (source.TrackModel as DatabaseTrackListModel);
                     });
@@ -481,6 +488,12 @@ namespace Banshee.Gui
                 return;
 
             if (source != null && source.CanDeleteTracks) {
+                foreach (var track in source.TrackModel.SelectedItems) {
+                    if (track.IsPlaying) {
+                        ServiceManager.PlayerEngine.Close ();
+                        break;
+                    }
+                }
                 source.DeleteSelectedTracks ();
             }
         }
