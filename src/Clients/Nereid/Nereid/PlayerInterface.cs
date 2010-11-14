@@ -97,10 +97,10 @@ namespace Nereid
         private int? original_seek_width;
         private void SetSimple (bool simple)
         {
-            main_menu.Visible =
-            source_box.Visible =
-            footer_toolbar.Visible =
-            track_info_container.Visible = !simple;
+            var widgets = new Widget [] { main_menu, source_box, footer_toolbar, track_info_container };
+            foreach (var w in widgets.Where (w => w != null)) {
+                w.Visible = !simple;
+            }
 
             original_seek_width = original_seek_width ?? seek_slider.SeekSlider.WidthRequest;
             seek_slider.SeekSlider.WidthRequest = original_seek_width.Value + (simple ? 100 : 0);
