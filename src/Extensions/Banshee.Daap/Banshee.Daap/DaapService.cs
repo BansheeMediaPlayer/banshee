@@ -53,6 +53,8 @@ namespace Banshee.Daap
         private DaapContainerSource container;
         private Dictionary<string, DaapSource> source_map;
 
+        private uint actions_id;
+
         internal static DaapProxyWebServer ProxyServer {
             get { return proxy_server; }
         }
@@ -73,6 +75,12 @@ namespace Banshee.Daap
             if (proxy_server != null) {
                 proxy_server.Stop ();
                 proxy_server = null;
+            }
+
+            var uia_service = ServiceManager.Get<InterfaceActionService> ();
+            if (uia_service != null) {
+                uia_service.UIManager.RemoveUi (actions_id);
+                uia_service.GlobalActions.Remove ("AddRemoteDaapServerAction");
             }
 
             // Dispose any remaining child sources
@@ -173,13 +181,15 @@ namespace Banshee.Daap
             }
 
             var uia_service = ServiceManager.Get<InterfaceActionService> ();
-            uia_service.GlobalActions.Add (
-                new ActionEntry ("AddRemoteDaapServerAction", Stock.Add,
-                    Catalog.GetString ("Add Remote DAAP Server"), null,
-                    Catalog.GetString ("Add a new remote DAAP server"),
-                    OnAddRemoteServer)
-            );
-            uia_service.UIManager.AddUiFromResource ("GlobalUI.xml");
+            if (uia_service != null) {
+                uia_service.GlobalActions.Add (
+                    new ActionEntry ("AddRemoteDaapServerAction", Stock.Add,
+                        Catalog.GetString ("Add Remote DAAP Server"), null,
+                        Catalog.GetString ("Add a new remote DAAP server"),
+                        OnAddRemoteServer)
+                );
+                actions_id = uia_service.UIManager.AddUiFromResource ("GlobalUI.xml");
+            }
         }
 
         private void OnAddRemoteServer (object o, EventArgs args)
