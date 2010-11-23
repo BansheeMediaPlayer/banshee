@@ -150,7 +150,7 @@ namespace Banshee.Streaming
                 PlayCore ();
             } else {
                 // Stop playing until we load this radio station and play it
-                ServiceManager.PlayerEngine.Close ();
+                ServiceManager.PlayerEngine.Close (true);
 
                 ServiceManager.PlayerEngine.TrackIntercept += OnTrackIntercept;
 
