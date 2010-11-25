@@ -12,7 +12,12 @@ AC_DEFUN([BANSHEE_CHECK_DAP_KARMA],
 		enable_karmasharp="$enable_karmasharp", enable_karmasharp=no)
 
 	if test "x$enable_karmasharp" = "xyes"; then
-		KARMASHARP_ASSEMBLIES="`$PKG_CONFIG --variable=Libraries karma-sharp`"
+		asms="`$PKG_CONFIG --variable=Libraries karma-sharp`"
+		for asm in $asms; do
+			KARMASHARP_ASSEMBLIES="$KARMASHARP_ASSEMBLIES $asm"
+			[[ -r "$asm.config" ]] && KARMASHARP_ASSEMBLIES="$KARMASHARP_ASSEMBLIES $asm.config"
+			[[ -r "$asm.mdb" ]] && KARMASHARP_ASSEMBLIES="$KARMASHARP_ASSEMBLIES $asm.mdb"
+		done
 		AC_SUBST(KARMASHARP_ASSEMBLIES)
 		AC_SUBST(KARMASHARP_LIBS)
 	fi
