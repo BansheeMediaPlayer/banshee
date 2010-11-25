@@ -299,7 +299,7 @@ namespace Banshee.Metrics
 
         public static SchemaEntry<bool> EnableCollection = new SchemaEntry<bool> (
             "core", "send_anonymous_usage_data", false, // disabled by default
-            Catalog.GetString ("Improve Banshee by sending anonymous usage data"), null
+            "Improve Banshee by sending anonymous usage data", null
         );
     }
 }

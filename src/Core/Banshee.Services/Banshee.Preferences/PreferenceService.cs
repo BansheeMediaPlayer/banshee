@@ -65,7 +65,9 @@ namespace Banshee.Preferences
             var misc = new Section ("misc", Catalog.GetString ("Miscellaneous"), 20);
             general.Add (misc);
 
-            var anon_data = misc.Add (Banshee.Metrics.BansheeMetrics.EnableCollection);
+            var anon_data = misc.Add (new SchemaPreference<bool> (Banshee.Metrics.BansheeMetrics.EnableCollection,
+                Catalog.GetString ("Improve Banshee by sending anonymous usage data"))
+            );
             anon_data.ValueChanged += (o) => {
                 if (Banshee.Metrics.BansheeMetrics.EnableCollection.Get ()) {
                     Banshee.Metrics.BansheeMetrics.Start ();
