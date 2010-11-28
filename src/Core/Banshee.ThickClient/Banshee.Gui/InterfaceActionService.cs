@@ -130,9 +130,10 @@ namespace Banshee.Gui
                     }
                 } else if (args.Change == ExtensionChange.Remove) {
                     if (extension_actions.ContainsKey (node.Id)) {
+                        string name = extension_actions[node.Id].Name;
                         extension_actions[node.Id].Dispose ();
-                        Log.DebugFormat ("Extension actions unloaded: {0}", extension_actions[node.Id].Name);
                         extension_actions.Remove (node.Id);
+                        Log.DebugFormat ("Extension actions unloaded: {0}", name);
                     }
                 }
             } catch (Exception e) {
