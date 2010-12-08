@@ -240,6 +240,8 @@ namespace Banshee.Dap.AppleDevice
             if (HasAttribute (TrackMediaAttributes.Podcast)) {
                 track.Description = description;
                 track.RememberPlaybackPosition = true;
+                track.SkipWhenShuffling = true;
+                track.Flag4 = (byte)1;
                 track.MarkUnplayed = (track.PlayCount == 0);
             }
 
@@ -263,7 +265,6 @@ namespace Banshee.Dap.AppleDevice
             } else {
                 if (HasAttribute (TrackMediaAttributes.Podcast)) {
                     track.MediaType = GPod.MediaType.Podcast;
-                    track.Flag4 = (byte)1;
                 } else if (HasAttribute (TrackMediaAttributes.AudioBook)) {
                     track.MediaType = GPod.MediaType.Audiobook;
                 } else if (HasAttribute (TrackMediaAttributes.Music)) {
