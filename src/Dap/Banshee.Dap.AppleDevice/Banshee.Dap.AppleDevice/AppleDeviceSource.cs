@@ -92,7 +92,7 @@ namespace Banshee.Dap.AppleDevice
             SupportsVideo = Device.SupportsVideo;
 
             Initialize ();
-            GPod.ITDB.InitIpod (Volume.MountPoint, Device.IpodInfo.ModelNumber, Name);
+            GPod.ITDB.InitIpod (Volume.MountPoint, Device.IpodInfo == null ? null : Device.IpodInfo.ModelNumber, Name);
 
             // FIXME: Properly parse the device, color and generation and don't use the fallback strings
 
