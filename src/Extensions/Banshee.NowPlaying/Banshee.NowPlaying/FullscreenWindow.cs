@@ -182,7 +182,6 @@ namespace Banshee.NowPlaying
             if (parent.IsActive) {
                 parent.GdkWindow.SkipPagerHint = false;
                 parent.GdkWindow.SkipTaskbarHint = false;
-                Hide ();
                 parent.RemoveNotification ("is-active", ParentActiveNotification);
             } else {
                 parent.GdkWindow.SkipPagerHint = true;
