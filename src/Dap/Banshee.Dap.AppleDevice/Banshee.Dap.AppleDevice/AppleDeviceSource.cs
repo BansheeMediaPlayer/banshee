@@ -196,7 +196,14 @@ namespace Banshee.Dap.AppleDevice
                 });
             }
 
+            var invalid_tracks = new List<GPod.Track> ();
             foreach (var ipod_track in MediaDatabase.Tracks) {
+
+                if (String.IsNullOrEmpty (ipod_track.IpodPath)) {
+                    invalid_tracks.Add (ipod_track);
+                    continue;
+                }
+
                 try {
                     var track = new AppleDeviceTrackInfo (ipod_track);
                     if (!tracks_map.ContainsKey (track.TrackId)) {
@@ -208,6 +215,13 @@ namespace Banshee.Dap.AppleDevice
                     Log.Exception (e);
                 }
             }
+            if (invalid_tracks.Count > 0) {
+                Log.Warning (String.Format ("Found {0} invalid tracks on the device", invalid_tracks.Count));
+                foreach (var track in invalid_tracks) {
+                    DeleteTrack (track, false);
+                }
+            }
+
 
             Hyena.Data.Sqlite.HyenaSqliteCommand insert_cmd = new Hyena.Data.Sqlite.HyenaSqliteCommand (
                 @"INSERT INTO CorePlaylistEntries (PlaylistID, TrackID)
@@ -402,6 +416,25 @@ namespace Banshee.Dap.AppleDevice
             }
         }
 
+
+        private void DeleteTrack (GPod.Track track, bool removeFile)
+        {
+            foreach (var playlist in MediaDatabase.Playlists) {
+                playlist.Tracks.Remove (track);
+            }
+
+            if (SupportsPodcasts && track.MediaType == GPod.MediaType.Podcast) {
+                MediaDatabase.PodcastsPlaylist.Tracks.Remove (track);
+            }
+
+            MediaDatabase.MasterPlaylist.Tracks.Remove (track);
+            MediaDatabase.Tracks.Remove (track);
+
+            if (removeFile) {
+                Banshee.IO.File.Delete (new SafeUri (GPod.ITDB.GetLocalPath (Device, track)));
+            }
+        }
+
         protected override void AddTrackToDevice (DatabaseTrackInfo track, SafeUri fromUri)
         {
             lock (sync_mutex) {
@@ -569,18 +602,7 @@ namespace Banshee.Dap.AppleDevice
                     if (track.IpodTrack != null) {
                         UpdateProgress (progressUpdater, message, total - tracks_to_remove.Count, total);
 
-                        foreach (var playlist in MediaDatabase.Playlists) {
-                            playlist.Tracks.Remove (track.IpodTrack);
-                        }
-
-                        if (SupportsPodcasts && track.IpodTrack.MediaType == GPod.MediaType.Podcast) {
-                            MediaDatabase.PodcastsPlaylist.Tracks.Remove (track.IpodTrack);
-                        }
-
-                        MediaDatabase.MasterPlaylist.Tracks.Remove (track.IpodTrack);
-                        MediaDatabase.Tracks.Remove (track.IpodTrack);
-
-                        Banshee.IO.File.Delete (new SafeUri (GPod.ITDB.GetLocalPath (Device, track.IpodTrack)));
+                        DeleteTrack (track.IpodTrack, true);
                     } else {
                         Log.Error ("The ipod track was null");
                     }
