@@ -171,7 +171,7 @@ namespace Banshee.Dap.AppleDevice
                 try {
                     MediaDatabase = new GPod.ITDB (Device.Mountpoint);
                 } catch (GLib.GException e) {
-                    Log.Exception ("iPod database could be loaded, creating a new one", e);
+                    Log.Exception ("iPod database could not be loaded, creating a new one", e);
                     if (GPod.ITDB.InitIpod (Volume.MountPoint, null, Volume.Name)) {
                         // this may throw again. In the future we need to implement some kind of alert
                         // mechanism to let the user know that something more serious is wrong with their
