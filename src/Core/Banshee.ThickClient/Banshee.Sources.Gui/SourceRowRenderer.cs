@@ -278,7 +278,7 @@ namespace Banshee.Sources.Gui
 
         private int Middle (Gdk.Rectangle area, int height)
         {
-            return area.Y + (int)Math.Round ((double)(area.Height - height) / 2.0) + 1;
+            return area.Y + (int)Math.Round ((double)(area.Height - height) / 2.0, MidpointRounding.AwayFromZero);
         }
 
         public override CellEditable StartEditing (Gdk.Event evnt, Widget widget, string path,
