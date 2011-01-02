@@ -421,9 +421,22 @@ public class X11NotificationArea : Plug
             visual = GLib.Object.GetObject (raw_ret) as Gdk.Visual;
         }
 
-        // TODO the proper check is (visual->red_prec + visual->blue_prec + visual->green_prec < visual->depth)
-        // but this seems to work
+#if HAVE_GDK_2_22
+        IntPtr r_mask, r_shift, r_precision;
+        IntPtr g_mask, g_shift, g_precision;
+        IntPtr b_mask, b_shift, b_precision;
+
+        if (visual == null) {
+            visual_is_rgba = false;
+        } else {
+            gdk_visual_get_red_pixel_details(visual.Handle, out r_mask, out r_shift, out  r_precision);
+            gdk_visual_get_green_pixel_details(visual.Handle, out g_mask, out g_shift, out  g_precision);
+            gdk_visual_get_blue_pixel_details(visual.Handle, out b_mask, out b_shift, out  b_precision);
+            visual_is_rgba = ((int)r_precision + (int)g_precision + (int)b_precision) < gdk_visual_get_depth(visual.Handle);
+        }
+#else
         visual_is_rgba = visual != null && visual == Screen.RgbaVisual;
+#endif
 
         // we can't be double-buffered when we aren't using a real RGBA visual
         DoubleBuffered = visual_is_rgba;
@@ -432,6 +445,20 @@ public class X11NotificationArea : Plug
             XFree (prop_return);
         }
     }
+
+#if HAVE_GDK_2_22
+    [DllImport ("libgdk-x11-2.0.so.0")]
+    private static extern int gdk_visual_get_depth(IntPtr visual);
+
+    [DllImport ("libgdk-x11-2.0.so.0")]
+    private static extern void gdk_visual_get_red_pixel_details(IntPtr visual, out IntPtr mask, out IntPtr shift, out IntPtr precision);
+
+    [DllImport ("libgdk-x11-2.0.so.0")]
+    private static extern void gdk_visual_get_green_pixel_details(IntPtr visual, out IntPtr mask, out IntPtr shift, out IntPtr precision);
+
+    [DllImport ("libgdk-x11-2.0.so.0")]
+    private static extern void gdk_visual_get_blue_pixel_details(IntPtr visual, out IntPtr mask, out IntPtr shift, out IntPtr precision);
+#endif
 
     [DllImport ("libgdk-x11-2.0.so.0")]
     private static extern IntPtr gdk_x11_screen_lookup_visual (IntPtr screen, int visual_id);

@@ -99,6 +99,10 @@ else
 fi
 AC_SUBST(BANSHEE_DESKTOP_NAME)
 
+dnl Check for gdk-x11 >= 2.22 for NotificationArea extension, bgo#638477
+PKG_CHECK_MODULES(GDK_2_22, gdk-x11-2.0 >= 2.22, have_gdk_2_22=yes, have_gdk_2_22=no)
+AM_CONDITIONAL(HAVE_GDK_2_22, test "x$have_gdk_2_22" = "xyes")
+
 dnl NDesk DBus libraries
 BANSHEE_CHECK_NDESK_DBUS
 
