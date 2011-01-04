@@ -68,7 +68,7 @@ namespace Banshee.Metadata
             CountCommand = new HyenaSqliteCommand (
                 "SELECT COUNT(*) FROM CoreTracks WHERE " + condition);
 
-            SelectCommand = DatabaseTrackInfo.Provider.CreateFetchCommand (condition);
+            SelectCommand = DatabaseTrackInfo.Provider.CreateFetchCommand (condition + " LIMIT 1");
         }
 
         public bool WriteMetadataEnabled { get; set; }
