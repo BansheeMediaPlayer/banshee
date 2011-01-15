@@ -243,7 +243,8 @@ namespace Banshee.MediaEngine
 
         protected void OnTagFound (StreamTag tag)
         {
-            if (tag.Equals (StreamTag.Zero) || current_track == null || current_track.Uri.IsFile) {
+            if (tag.Equals (StreamTag.Zero) || current_track == null
+                || (current_track.Uri != null && current_track.Uri.IsFile)) {
                 return;
             }
 
