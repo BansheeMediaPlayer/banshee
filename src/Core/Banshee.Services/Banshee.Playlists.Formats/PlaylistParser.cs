@@ -50,11 +50,17 @@ namespace Banshee.Playlists.Formats
         };
 
         private List<Dictionary<string, object>> elements;
-        private Uri base_uri = new Uri (Environment.CurrentDirectory);
+        private Uri base_uri = null;
         private string title = null;
 
         public PlaylistParser ()
         {
+            if (Environment.CurrentDirectory.Equals ("/")) {
+                // System.Uri doesn't like / as a value
+                base_uri = new Uri ("file:///");
+            } else {
+                base_uri = new Uri (Environment.CurrentDirectory);
+            }
         }
 
         public bool Parse (SafeUri uri)

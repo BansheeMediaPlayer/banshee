@@ -41,13 +41,21 @@ namespace Banshee.Playlists.Formats
     {
         private Dictionary<string, object> attributes = new Dictionary<string, object>();
         private List<Dictionary<string, object>> elements = new List<Dictionary<string, object>>();
-        private Uri base_uri = new Uri(Environment.CurrentDirectory);
+        private Uri base_uri = null;
         private string title = null;
 
         public PlaylistFormatBase()
         {
             attributes = new Dictionary<string, object>();
             elements = new List<Dictionary<string, object>>();
+
+            if (Environment.CurrentDirectory.Equals ("/")) {
+                // System.Uri doesn't like / as a value
+                base_uri = new Uri ("file:///");
+            } else {
+                base_uri = new Uri (Environment.CurrentDirectory);
+            }
+
         }
 
         public virtual void Load(Stream stream, bool validateHeader)
