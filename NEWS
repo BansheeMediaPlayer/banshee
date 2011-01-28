@@ -1,5 +1,5 @@
 ===============================================================================
-WELCOME TO BANSHEE 1.8.0 - Released September 29, 2010
+WELCOME TO BANSHEE 1.8.1 - Released January 28, 2011
 ===============================================================================
 
   * Banshee is a multimedia management and playback application for GNOME.
@@ -8,150 +8,55 @@ WELCOME TO BANSHEE 1.8.0 - Released September 29, 2010
     and video podcasts.  Sync your Android, iPod, and other devices. We think
     you'll love the new Banshee!"
 
-  * Learn More: http://banshee.fm/download/archives/1.8.0
+  * Learn More: http://banshee.fm/download/archives/1.8.1
 
 
 ===============================================================================
 NEW AWESOME FEATURES AND ENHANCEMENTS
 ===============================================================================
 
-    Banshee 1.8 is a stable release, the culmination of six month's work by 67
-    programmers, artists, documentation writers, and translators.  These
-    notes aggregate the highlights from the 1.7 development releases.
+    Banshee 1.8.1 is a stable release, a bug-fixes-only update to 1.8.0.
 
-    New Features Since 1.6:
+    Notable Bugs Fixed:
 
-      * Integrated AmazonMP3 Store
-
-            Browse, search, preview, buy, and download music straight into
-            your Banshee library from the US, UK, FR, DE, and JP AmazonMP3
-            stores.  See http://abock.org/2010/07/13/amazon-mp3-store-in-banshee
-
-      * Miro Guide Podcast Directory
-
-            Browse and subscribe to thousands of audio and video podcasts
-            listed on the non-profit run MiroGuide.com.
-
-      * Improved Apple Device Support
-
-            iPhone, iTouch, iPad, and iPod devices are now supported via the
-            awesome libgpod library.
-
-      * Revamped Hardware Backend
-
-            Uses the latest Linux hardware stack, a combination of GIO, udev, and
-            media-player-info files, to provide support for CDs and
-            digital audio players.
-
-      * Keybinding for Switching Sources
-
-          Typing 'g' activates the source switcher, where you can type the name
-          of a source to switch to it.  You can type its acronym or a substring
-          as well. As soon as only one source matches, it will be activated.
-          For example, you can type 'g' and then 'np' to switch to Now Playing.
-
-      * Improved Audiobook Support
-
-          The Audiobooks library is now enabled by default, and audiobook
-          tracks are now better organized into books.  The last position in
-          each book is automatically saved, so you can resume playing a book
-          right from where you stopped.
-
-      * User Manual
-
-            Available via Help » Contents menu and F1.  Uses the latest
-            GNOME documentation technology, Mallard.
-
-      * Bulk Metadata Fixer
-
-            New extension for bulk metadata fixing to merge artists, albums,
-            and genres that vary only by case, '&' vs 'and', etc.
-
-      * MPRIS v2 support (Ubuntu Sound Menu, etc)
-
-    Enhancements:
-
-      * Now Playing simplify mode that declutters the UI
-      * Play Queue shuffle action
-      * Improve the downloading and visual refreshing of new cover art
-      * Many MeeGo specific improvements and fixes
-      * New preference to have the classic album layout instead of the grid view
-      * Support for reading and writing MusicBrainz IDs
-      * Show the TrackEditor fields as read-only mode when they are not editable
-      * Add metadata-saving support for File System Queue (bgo#609411)
-      * Decrease the latency in changing playback volume
-      * Overhaul GNOME proxy support (bmc#1920)
-      * Refresh podcast feeds when network is reconnected
-      * Miro Guide teaser in Podcasts
-      * Podcast errors shown to user
-      * Improved Last.fm authentication experience
-      * Last.fm streaming can be disabled separately from the other Last.fm
-        features.
-      * Play menu item in track context menu
-      * Wrap long strings in the Now Playing view
-      * Add visual separators in the source view between categories of sources
-      * Culturally format the status bar item count (e.g. in en_US 1,000
-        instead of the old 1000)
-      * Tweak the grid view album artwork hover effect
-      * Default smart playlists hidden when empty, for new users
-      * Begin editing the name of newly added playlists
-      * "Amazon MP3s" Music smart playlist
-      * Improved device support:
-          * Droid X, Galaxy Portal, Xperia X10, and DEXT/CLIQ device support
-          * Improved Maemo device support
-          * Better MTP device detection
-          * Put all videos in the video folder on MTP devices
-
-    API Changes:
-
-      * DBus API additions for showing various dialogs
-      * New Banshee.WebBrowser API for creating embedded WebKit web browsers
-        and sources: used by the new Amazon MP3 store, Miro Guide, and the
-        Wikipedia context pane
-      * New Hyena.Downloader API for performing downloads and easy
-        HTTP operations: HttpFileDownloader, HttpStringDownloader
-
-    Notable Bugs Fixed (230 fixed since 1.6.0):
-
-      * Fix for fullscreen video under Mutter
-      * Fix videos playing back in a new window
-      * Fix crashes related to Gtk.Widget subclassing
-      * Fix crashes related to a11y
-      * NotificationArea fixes
-      * Cover art aspect ratio/scaling fixes
-      * Fix Youtube playback
-      * Fix deletion of Podcast metadata during modification
-      * Fix a crash related to the notification deamon
-      * Fix fetching cover for albums with several discs
-      * Several fixes for the N800 device
-      * Fix various volume-related issues
-      * bgo#621480: Fix Play Queue when using it with different locales
-      * bgo#621687: Fix the Internet Archive playback
-      * bgo#613333: Correct Play Queue track reordering
-      * bgo#624667: Fix cover art refreshing
-      * bgo#622826: Fix a slow running query to speed things up
-      * bgo#602840: Fix importing of compilation albums
-      * bgo#622028: Fix loading of libbnpx11.so on some distros
-      * bgo#621955: Wrap instead of elipsize Last.fm titles
-      * bgo#608382: Escape %20 in filenames for items without embedded metadata
-      * bgo#624531: Escape Uri value in SQL query
-      * bgo#588255: Fix notification icon transparency
-      * bgo#619036: Fix glitchy search entry
-      * bgo#624569: Fix scrolling Extensions list with keyboard
-      * bgo#553433: Fix issue that could block song scrobbling
-      * bgo#600340: Fix subscribing to certain podcasts (eg podbean.com)
-      * bgo#620826: Fix URIs of tracks synced to iPods
-      * bmc#1115:   Fix a pipeline deadlock evident on MeeGo
-      * bgo#626786: Prevent crash in search-for-artist when blank
-      * bgo#628388: Fix overflow bug with MTP playlists
-      * bgo#625683: Fixup checkboxes now clickable
-      * bgo#626928: Fetch podcast artwork asap
-      * bgo#626791: Catch crashes caused by missing extensions
-      * bgo#528383: Re-enable writing video metadata to file
-      * bgo#626803: Fix Ogg rating parsing in non-English locales
-      * bgo#628832: [MTP] Fix MTP-device memory issues breaking Playlists, Albums
-      * bgo#629095: [MTP] Fix MTP devices being named '???'
-      * bgo#629373: [MTP] Workaround MTP sigsegv bug
+      * Sync dialog would sometimes be displayed forever
+      * Nereid: Always grab search entry focus on ctrl+f
+      * Lastfm: Fix NRE in LastfmRequest when the request times out
+      * bgo#486543: Playlists: Fix parsing when started from root directory
+      * bgo#540394: AudioCdRipper: Don't overwrite existing files when ripping
+      * bgo#540525: TrackActions: Stop when the playing track is deleted
+      * bgo#587936: AppleDevice: Sync the Sort* fields
+      * bgo#609463: Equalizer: Fix distortion by using floating math
+      * bgo#620010: Fix displaying random image for "All Albums"
+      * bgo#623441: DatabaseImportManager: Fix duplicates on import
+      * bgo#624734: InternetRadio: Allow editing stations again
+      * bgo#629005: FullscreenWindow: Fix full-screen on multi-head displays
+      * bgo#630209: AppleDevice: Fix podcast flag for video podcasts
+      * bgo#631172: AppleDevice: Fix podcast support
+      * bgo#631961: Gio: Fix InvalidCastException
+      * bgo#632114: Fix hang when replaying video
+      * bgo#632196: AlbumListView: Fix MissingIntPtrCtorException
+      * bgo#632246: ThickClient: Fix IntPtr ctor issue in SourceComboBox
+      * bgo#632420: Booter: Use the MeeGo client if appropriate
+      * bgo#632715: Bookmarks: Fix UI not getting loaded
+      * bgo#633764: Dap: Fix not transcoding some files when we should
+      * bgo#633841: StreamTagger: Recognize webm as video
+      * bgo#634652: AppleDevice: Remove invalid tracks before syncing
+      * bgo#634686: Streaming: Fix streaming broken after first play
+      * bgo#635453: Importing: Fix regression with importing mkv
+      * bgo#635776: build: Ensure karma-sharp's DLLmap is copied in the build
+      * bgo#635791: Metrics: Fix translation of the preference label
+      * bgo#637303: FileChooserDialog: Fix error message on first launch
+      * bgo#637627: FullscreenWindow: Keep fullscreen when showing volume osd
+      * bgo#637991: SourceRowRenderer: Fix vertical alignment calculation
+      * bgo#638477: X11NotificationArea: Enhance check for RGBA visual
+      * bgo#638755: Dap.MassStorage: Add support for Xperia X10 mini pro
+      * bgo#638989: Dap.MassStorage: Add support for Nexus S
+      * bgo#635088: Dap.MassStorage: Add support for the LG Ally phone
+      * bgo#633551: Dap.MassStorage: Add support for Huawei Ideos Android phones
+      * bgo#631687: Dap.MassStorage: Fix extensionless files
+      * bgo#639603: PlayerEngine: Fix NRE when current track doesn't have a Uri
+      * bnc#642505: Fix insecure LD_LIBRARY_PATH
 
 ===============================================================================
 SOURCES / PACKAGES
@@ -160,9 +65,9 @@ SOURCES / PACKAGES
 Sources
 -------
 
-    * Banshee 1.8.0 Tarballs:
-      http://download.banshee.fm/banshee/stable/1.8.0/banshee-1-1.8.0.tar.bz2
-      http://download.banshee.fm/banshee/stable/1.8.0/banshee-1-1.8.0.tar.gz
+    * Banshee 1.8.1 Tarballs:
+      http://download.banshee.fm/banshee/stable/1.8.1/banshee-1-1.8.1.tar.bz2
+      http://download.banshee.fm/banshee/stable/1.8.1/banshee-1-1.8.1.tar.gz
 
 Packages
 --------
@@ -184,8 +89,8 @@ Packages
 ChangeLogs & Checksums
 ----------------------
 
-    * http://download.banshee.fm/banshee/stable/1.8.0/banshee-1-1.8.0.changes
-    * http://download.banshee.fm/banshee/stable/1.8.0/banshee-1-1.8.0.sha256sum
+    * http://download.banshee.fm/banshee/stable/1.8.1/banshee-1-1.8.1.changes
+    * http://download.banshee.fm/banshee/stable/1.8.1/banshee-1-1.8.1.sha256sum
 
 
 ===============================================================================
@@ -256,7 +161,7 @@ REPORT BUGS - HELP THE PROJECT - GROW THE COMMUNITY
     hesitate to file bugs!
 
     * http://banshee.fm/contribute/file-bugs
-    * http://bugzilla.gnome.org/enter_bug.cgi?product=banshee&version=1.8.0
+    * http://bugzilla.gnome.org/enter_bug.cgi?product=banshee&version=1.8.1
 
 
 ===============================================================================
@@ -270,63 +175,51 @@ Contributors For This Release
     of Banshee. Without their help, there would be no release!
 
       Aaron Bockover, Alan McGovern, Alexander Kojevnikov, Alex Launi,
-      Alex Mauer, Andreas Nilsson, Andrés G. Aragoneses, Aurélien Mino,
-      Benjamín Valero Espinosa, Bertrand Lorentz, Chow Loong Jin,
-      Christian Krause, Claude Paroz, David Nielsen, Félix Velasco,
-      Gabriel Burt, Iain Lane, Ján Sokoly, Jensen Somers, Jeroen Budts,
-      Jordi Mas, Julien Moutte, Kevin Duffus, Michał Sawicz, Mike Gemünde,
-      Nicolo' Chieffo, Paul Cutler, Pete Johanson, Robin Stocker,
-      Ruben Vermeersch, Zhou Ting
+      Andrés G. Aragoneses, Aran Cox, Bertrand Lorentz, Christian Krause,
+      Dougal Stanton, Gabriel Burt, kentaro KAZUHAMA, Michał Sawicz,
+      Olivier Dufour, Sjoerd Simons, Tim Fisken, Zhou Ting
 
     The following people contributed updated translations to this release.
     Without them, our project's reach would be much more limited.
 
-      Alexandre Prokoudine, Andrej Žnidaršič, Andre Klapper, António Lima,
-      Aron Xu, A S Alam, Baris Cicek, Benjamin Valero Espinosa, Bruce Cowan,
-      Bruno Brouard, Cheng-Chia Tseng, Christian.Kirbach, Claude Paroz,
-      Daniel Nylander, Daniel S. Koda, Emmanouel Kapernaros, Félix Velasco,
-      Fran Diéguez, Gabor Kelemen, Gianvito Cavasoli, Hendrik Richter,
-      Joe Hansen, Jordi Mas, Kentaro KAZUHAMA, Kristjan Schmidt,
-      Marek Černocký, Mario Blättermann, Maxim V. Dziumanenko,
-      Michel Recondo, Og B. Maciel, Petr Kovar, Ville-Pekka Vainio,
-      Wouter Bolsterlee, Xandru Armesto, Žygimantas Beručka,
-      Βασίλης Κοντογιάννης
+      Andrej Žnidaršič, Daniel Nylander, Maxim V. Dziumanenko,
+      Χάρης Κουζινόπουλος
 
 Contributors In Past Releases
 -----------------------------
 
-    Aaron Bockover, Alan McGovern, Alex Bennee, Alex Kloss, Alex Launi,
-    Alex Mauer, Alexander Hixon, Alexander Kojevnikov, Alexandros Frantzis,
-    Alp Toker, Anders Petersson, Andrea Cimitan, Andreas Neustifter,
-    Andreas Nilsson, Andrew Conkling, Andrés G. Aragoneses, Andy Midgette,
-    Arthur Carli, Arun Raghavan, Aurélien Mino, Aydemir Ulaş Şahin,
-    Ben Maurer, Benjamín Valero Espinosa, Bertrand Lorentz, Bill Dawson,
-    Bob Copeland, Bojan Rajkovic, Brad Taylor, Brandon Perry, Brian Lucas,
-    Brian Nickel, Brian Teague, Chow Loong Jin, Chris Howie, Chris Jones,
-    Chris Lahey, Chris Toshok, Chris Turchin, Christian Hergert,
-    Christian Krause, Christoph Burgdorf, Christopher James Halse Rogers,
-    Claude Paroz, Cody Russell, Cosmin Banu, Dan Wilson, Dan Winship,
-    Daniel Munkton, Daniel Siegel, David Nielsen, David Spreen, David Stone,
-    Diego E. Pettenò, Eitan Isaacson, Elena Grassi, Eoin Hennessy,
-    Eric Butler, Erik Schmidt, Fabian Jost, Felipe Almeida Lessa,
-    Fernando Casanova, Florent Thoumie, Fredrik Hedberg, Félix Velasco,
-    Gabriel Burt, Garrett LeSage, Götz Waschk, Haitao Feng,
-    Hans Petter Jansson, Harold Schreckengost, Iain Lane,
-    Igor Guerrero Fonseca, Ilya Konstantinov, Ivan N. Zlatev, Jack Deslippe,
-    Jakub Steiner, James Willcox, Jan Arne Petersen, Jason Conti, Jason Taylor,
-    Jeff Tickle, Jeff Wheeler, Jensen Somers, Jeroen Budts, Jo Shields,
-    Johannes Kuhn, John Millikin, Jordi Mas, Jorge Castro, Julien Moutte,
-    Juri Pakaste, Ján Sokoly, Jérémie Laval, K. Vishnoo Charan Reddy,
-    Ken Vandine, Kevin Duffus, Konstantin Oshiyko, Larry Ewing,
-    Lauri Kotilainen, Lukas Lipka, Marijn Ros, Matt Enright, Michael Kaiser,
-    Michael Martin-Smucker, Michael Monreal, Michael Monreal, Michał Sawicz,
-    Miguel de Icaza, Mike Gemünde, Mike Urbanski, Moritz Schallaböck,
-    Nathan Palmer, Neil Loknath, Nicholas Doyle, Nicholas Parker,
-    Nicolò Chieffo, Nils Naumann, Oben Sonne, Olivier Duff, Oscar Forero,
-    Pacho Ramos, Patrick van Staveren, Paul Cutler, Paul Lange, Pavel Antonov,
-    Pepijn van de Geer, Pete Johanson, Peter de Kraker, Pratik Patel,
-    Przemysław Grzegorczyk, Robin Stocker, Roderich Schupp, Romain Tartière,
-    Ruben Vermeersch, Ryan Collier, Sandy Armstrong, Scott Peterson,
-    Sebastian Dröge, Shaun McCance, Tim Yamin, Tobias Mueller, Todd Berman,
-    Travis Glenn Hansen, Travis Reitter, Trey Ethridge, Valentin Sawadski,
-    Will Farrington, William Pettersson, Wouter Bolsterlee, Zhou Ting
+    Aaron Bockover, Alan McGovern, Alex Bennee, Alex Kloss, Alex Launi, 
+    Alex Mauer, Alexander Hixon, Alexander Kojevnikov, Alexandros Frantzis, 
+    Alp Toker, Anders Petersson, Andrea Cimitan, Andreas Neustifter, 
+    Andreas Nilsson, Andrew Conkling, Andrés G. Aragoneses, Andy Midgette, 
+    Arthur Carli, Arun Raghavan, Aurélien Mino, Aydemir Ulaş Şahin, 
+    Ben Maurer, Benjamín Valero Espinosa, Bertrand Lorentz, Bill Dawson, 
+    Bob Copeland, Bojan Rajkovic, Brad Taylor, Brandon Perry, Brian Lucas, 
+    Brian Nickel, Brian Teague, Chow Loong Jin, Chris Howie, Chris Jones, 
+    Chris Lahey, Chris Toshok, Chris Turchin, Christian Hergert, 
+    Christian Krause, Christoph Burgdorf, Christopher James Halse Rogers, 
+    Claude Paroz, Cody Russell, Cosmin Banu, Dan Wilson, Dan Winship, 
+    Daniel Munkton, Daniel Siegel, David Nielsen, David Spreen, David Stone, 
+    Diego E. Pettenò, Eitan Isaacson, Elena Grassi, Eoin Hennessy, 
+    Eric Butler, Erik Schmidt, Fabian Jost, Felipe Almeida Lessa, 
+    Fernando Casanova, Florent Thoumie, Fredrik Hedberg, Félix Velasco, 
+    Gabriel Burt, Garrett LeSage, Götz Waschk, Haitao Feng, 
+    Hans Petter Jansson, Harold Schreckengost, Iain Lane, 
+    Igor Guerrero Fonseca, Ilya Konstantinov, Ivan N. Zlatev, Jack Deslippe, 
+    Jakub Steiner, James Willcox, Jan Arne Petersen, Jason Conti, Jason Taylor, 
+    Jeff Tickle, Jeff Wheeler, Jensen Somers, Jeroen Budts, Jo Shields, 
+    Johannes Kuhn, John Millikin, Jordi Mas, Jorge Castro, Julien Moutte, 
+    Juri Pakaste, Ján Sokoly, Jérémie Laval, K. Vishnoo Charan Reddy, 
+    Ken Vandine, Kevin Duffus, Konstantin Oshiyko, Larry Ewing, 
+    Lauri Kotilainen, Lukas Lipka, Marijn Ros, Matt Enright, Michael Kaiser, 
+    Michael Martin-Smucker, Michael Monreal, Michael Monreal, Michał Sawicz, 
+    Miguel de Icaza, Mike Gemünde, Mike Urbanski, Moritz Schallaböck, 
+    Nathan Palmer, Neil Loknath, Nicholas Doyle, Nicholas Parker, 
+    Nicolò Chieffo, Nils Naumann, Oben Sonne, Olivier Dufour, Oscar Forero, 
+    Pacho Ramos, Patrick van Staveren, Paul Cutler, Paul Lange, Pavel Antonov, 
+    Pepijn van de Geer, Pete Johanson, Peter de Kraker, Pratik Patel, 
+    Przemysław Grzegorczyk, Robin Stocker, Roderich Schupp, Romain Tartière, 
+    Ruben Vermeersch, Ryan Collier, Sandy Armstrong, Scott Peterson, 
+    Sebastian Dröge, Shaun McCance, Tim Yamin, Tobias Mueller, Todd Berman, 
+    Travis Glenn Hansen, Travis Reitter, Trey Ethridge, Valentin Sawadski, 
+    Will Farrington, William Pettersson, Wouter Bolsterlee, Zhou Ting, 
