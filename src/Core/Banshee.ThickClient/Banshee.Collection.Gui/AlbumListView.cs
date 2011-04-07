@@ -121,7 +121,7 @@ namespace Banshee.Collection.Gui
 
         private void UninstallPreferences (Sources.SourceEventArgs args)
         {
-            if (args.Source.Equals (music_lib)) {
+            if (!args.Source.Equals (music_lib)) {
                 return;
             }
 
