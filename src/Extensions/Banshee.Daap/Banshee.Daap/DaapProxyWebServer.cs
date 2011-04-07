@@ -49,14 +49,14 @@ namespace Banshee.Daap
     {
         private ArrayList databases = new ArrayList();
 
-        public DaapProxyWebServer() : base (new IPEndPoint(IPAddress.Any, 8089), "DAAP Proxy")
+        public DaapProxyWebServer() : base (new IPEndPoint(IPAddress.Loopback, 8089), "DAAP Proxy")
         {
         }
 
         protected override bool BindServerSocket ()
         {
             if (!base.BindServerSocket ()) {
-                EndPoint = new IPEndPoint(IPAddress.Any, 0);
+                EndPoint = new IPEndPoint(IPAddress.Loopback, 0);
                 try {
                     server.Bind (EndPoint);
                 } catch (System.Net.Sockets.SocketException e) {

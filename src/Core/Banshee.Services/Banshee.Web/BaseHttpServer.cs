@@ -76,7 +76,7 @@ namespace Banshee.Web
             get { return running; }
         }
 
-        private EndPoint end_point = new IPEndPoint (IPAddress.Any, 80);
+        private EndPoint end_point = new IPEndPoint (IPAddress.Loopback, 80);
         protected EndPoint EndPoint {
             get { return end_point; }
             set {
