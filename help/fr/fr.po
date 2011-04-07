@@ -2,14 +2,14 @@
 # Copyright (C) 2010 banshee's COPYRIGHT HOLDER
 # This file is distributed under the same license as the banshee package.
 # Alain LOJEWSKI <allomervan@gmail.com>, 2010
-# Bruno Brouard <annoa.b@gmail.com>, 2010
+# Bruno Brouard <annoa.b@gmail.com>, 2010-2011
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: banshee master\n"
-"POT-Creation-Date: 2010-12-03 21:29+0000\n"
-"PO-Revision-Date: 2010-11-03 21:18+0000\n"
-"Last-Translator: Alain Lojewski <allomervan@gmail.com>\n"
+"POT-Creation-Date: 2011-04-04 22:05+0000\n"
+"PO-Revision-Date: 2011-04-07 14:37+0200\n"
+"Last-Translator: Bruno Brouard <annoa.b@gmail.com>\n"
 "Language-Team: GNOME French Team <gnomefr@traduc.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -131,14 +131,14 @@ msgstr ""
 msgid ""
 "To change Now Playing to hide the Banshee user interface and use the full "
 "screen mode, you can press the <key>F</key>, press the <gui>Fullscreen</gui> "
-"button in the upper right hand corner of Banshee, or choose <guiseq>View<gui/"
-">Fullscreen<gui/></guiseq> to start Fullscreen mode."
+"button in the upper right hand corner of Banshee, or choose "
+"<guiseq><gui>View</gui><gui>Fullscreen</gui></guiseq> to start Fullscreen "
+"mode."
 msgstr ""
 "Pour passer du mode Lecture en cours au mode plein écran et cacher "
 "l'interface utilisateur de Banshee, vous pouvez appuyer sur la touche "
-"<key>F</key> ou cliquer sur le bouton <gui>Plein écran</gui> dans le coin "
-"supérieur droit ou sélectionner la case <gui>Plein écran</gui> du menu "
-"<guiseq><gui>Affichage</gui></guiseq>."
+"<key>F</key>, cliquer sur le bouton <gui>Plein écran</gui> dans le coin "
+"supérieur droit ou sélectionner le menu <guiseq><gui>Affichage</gui><gui>Plein écran</gui></guiseq>"
 
 #: C/ui.page:74(title)
 msgid "Library"
@@ -314,7 +314,7 @@ msgstr "Synchronisation de toute votre bibliothèque"
 
 #: C/sync.page:101(p)
 msgid ""
-"You can drag and drop media to your portable music player form Banshee. "
+"You can drag and drop media to your portable music player from Banshee. "
 "Select the file or files you want to copy to your portable media player and "
 "then press and hold your right mouse button and drag the file(s) to your "
 "portable media player icon in Banshee. This will copy the files to your "
@@ -375,18 +375,18 @@ msgstr "Suppression de pistes de votre baladeur"
 msgid ""
 "To remove songs stored on your portable music player, choose your player in "
 "Banshee to view its library. Then choose the tracks you would like to remove "
-"and right click the tracks and choose \"Delete\" or from the menu choose "
-"<guiseq><gui>Edit</gui><gui>Delete</gui></guiseq>."
+"and right click the tracks and choose <gui>Delete</gui> or from the menu "
+"choose <guiseq><gui>Edit</gui><gui>Delete</gui></guiseq>."
 msgstr ""
 "Pour supprimer des morceaux de votre baladeur, cliquez sur celui-ci pour "
 "afficher son contenu, sélectionnez les pistes à supprimer, faites un clic "
-"droit et choisissez « Supprimer », ou à partir du menu, choisissez l'élément "
-"<guiseq><gui>Édition</gui><gui>Supprimer</gui></guiseq>."
+"droit et choisissez <gui>Supprimer</gui>, ou à partir du menu, choisissez l'élément "
+"de menu <guiseq><gui>Édition</gui><gui>Supprimer</gui></guiseq>."
 
 #: C/sync.page:142(p)
 msgid ""
-"Deleting files from your portable music will permanently remove the files "
-"and you will not be able to recover them."
+"Deleting files from your portable music player will permanently remove the "
+"files and you will not be able to recover them."
 msgstr ""
 "La suppression de fichiers de votre baladeur est un acte irréversible et "
 "vous ne pourrez plus les récupérer."
@@ -405,12 +405,14 @@ msgstr "Ajout de colonnes"
 
 #: C/sort.page:30(p)
 msgid ""
-"As your library grows, you may want to sort your library view to play search "
-"or view certain songs, artists, or albums."
+"As your library grows, you may want to change your library view to add "
+"additional information about the songs in your library or change the way you "
+"can view and sort your songs, artists or albums."
 msgstr ""
 "Au fur et à mesure que votre bibliothèque s'étoffe, vous pourriez être amené "
-"à l'agencer de façon à retrouver ou visionner plus facilement certains "
-"titres, artistes ou albums."
+"à modifier la vue de la bibliothèque pour ajouter des informations "
+"supplémentaires sur les chansons de votre bibliothèque ou modifier la façon "
+"de retrouver ou visionner certains titres, artistes ou albums."
 
 #: C/sort.page:34(p)
 msgid ""
@@ -481,9 +483,9 @@ msgstr ""
 msgid ""
 "A search query consists of some basic terms, for example, <em>dave matthews</"
 "em>. By entering <em>dave matthews</em> in the search box, Banshee will "
-"search all metatdata fields including Track Title, Album Title, Album "
-"Artist, Year, etc. Any track whose metadata includes <em>dave</em> and "
-"<em>matthews</em> will be returned. Search terms are case, meaning you don't "
+"search all metadata fields including Track Title, Album Title, Album Artist, "
+"Year, etc. Any track whose metadata includes <em>dave</em> and <em>matthews</"
+"em> will be returned. Search terms are case insensitive, meaning you don't "
 "have to capitalize. <em>dave</em>, <em>Dave</em>, and <em>DAVE</em> all mean "
 "the same thing when searching."
 msgstr ""
@@ -556,9 +558,9 @@ msgid "OR, or, <key>|</key>, <key>,</key>"
 msgstr "OR, or, <key>|</key>, <key>,</key>"
 
 #: C/search.page:69(p)
-msgid "Search results will be two terms with either result in any field."
+msgid "Search results will be two songs with either result in any field."
 msgstr ""
-"Les résultats de la recherche sont deux termes avec l'un ou l'autre résultat "
+"Les résultats de la recherche sont deux chansons avec l'un ou l'autre résultat "
 "dans n'importe quel champ."
 
 #: C/search.page:73(p)
@@ -599,8 +601,8 @@ msgstr "dave, matthews"
 
 #: C/search.page:92(p) C/search.page:97(p) C/search.page:102(p)
 msgid ""
-"Matches any fields in a track containing both <em>dave</em> or <em>matthews</"
-"em>."
+"Matches any fields in a track containing either <em>dave</em> or "
+"<em>matthews</em>."
 msgstr ""
 "Correspond à n'importe quel champ d'une piste contenant <em>dave</em> ou "
 "<em>matthews</em>."
@@ -618,8 +620,7 @@ msgid "-\"dave matthews\""
 msgstr "-\"dave matthews\""
 
 #: C/search.page:107(p)
-msgid ""
-"Displays all tracks whose fields do not containt <em>dave matthews</em>."
+msgid "Displays all tracks whose fields do not contain <em>dave matthews</em>."
 msgstr ""
 "Affiche toutes les pistes dont les champs ne contiennent pas <em>dave "
 "matthews</em>."
@@ -687,7 +688,7 @@ msgstr ""
 #: C/play.page:42(p)
 msgid ""
 "You can also start playing an album by choosing the album in the album "
-"browser and pressing use your mouse to double click the song name, press the "
+"browser and using your mouse to double click the song name, press the "
 "<key>Spacebar</key>, or choose <guiseq><gui>Playback</gui><gui>Play</gui></"
 "guiseq> from the Banshee menu."
 msgstr ""
@@ -748,7 +749,7 @@ msgstr "Lecture d'un podcast"
 
 #: C/play.page:76(p)
 msgid ""
-"Podcasts shows you all Podcasts you're subscribed too, all Podcast shows "
+"Podcasts shows you all Podcasts you're subscribed to, all Podcast shows "
 "available, and the Podcast browser lists all Podcasts in order of newest "
 "first."
 msgstr ""
@@ -845,13 +846,14 @@ msgstr ""
 msgid ""
 "You can select multiple files by using your mouse and pressing <key>Control</"
 "key> and choosing each file with your mouse or select a range of files by "
-"pressing <key>Shift</key> twice to select that range of files. You can then "
-"drag and drop it over the <gui>Play Queue</gui> in the far left window pane "
-"or right click the tracks and choose <gui>Add to Play Queue</gui>."
+"pressing <key>Shift</key> and clicking twice to select that range of files. "
+"You can then drag and drop it over the <gui>Play Queue</gui> in the far left "
+"window pane or right click the tracks and choose <gui>Add to Play Queue</"
+"gui>."
 msgstr ""
 "Vous pouvez ajouter plusieurs pistes en les sélectionnant une à une avec la "
 "souris tout en maintenant la touche <key>Ctrl</key> enfoncée, ou ajouter un "
-"intervalle de pistes en appuyant sur la touche <key>Maj</key> pour "
+"intervalle de pistes en appuyant sur la touche <key>Maj</key> et en cliquant une deuxième fois pour "
 "sélectionner cet ensemble. Faites alors un glisser-déposer de la sélection "
 "avec la souris dans la <gui>File d'attente de lecture</gui> du volet de "
 "gauche ou faites un clic droit et choisissez <gui>Ajouter à la file "
@@ -983,7 +985,7 @@ msgstr ""
 "défaut sont :"
 
 #: C/manage-tags.page:63(gui)
-msgid "Track Title:"
+msgid "Track Title"
 msgstr "Titre du morceau"
 
 #: C/manage-tags.page:64(gui)
@@ -1029,7 +1031,7 @@ msgstr ""
 msgid "Create and manage playlists."
 msgstr "Création et gestion des listes de lecture."
 
-#: C/manage-playlists.page:19(title)
+#: C/manage-playlists.page:19(title) C/keyboardshortcuts.page:69(title)
 msgid "Playlists"
 msgstr "Listes de lecture"
 
@@ -1079,7 +1081,7 @@ msgstr ""
 #: C/manage-playlists.page:42(p)
 msgid ""
 "You can create a new playlist by pressing <keyseq><key>Control</key><key>N</"
-"key></keyseq>, from the menu choosing <guiseq><gui>Menu</gui><gui>New "
+"key></keyseq>, from the menu choosing <guiseq><gui>Media</gui><gui>New "
 "Playlist</gui></guiseq> or by selecing the track(s) you would like to add to "
 "the playlist. Select the track(s), right click them, and choose "
 "<guiseq><gui>Add to Playlist</gui><gui>New Playlist</gui></guiseq>. You can "
@@ -1256,7 +1258,7 @@ msgid "Recent Favorites (Songs listened to often in the past week)"
 msgstr "Favoris récents (morceaux fréquemment écoutés cette semaine)"
 
 #: C/manage-playlists.page:135(p)
-msgid "Recently Added (Songs imported within the last week"
+msgid "Recently Added (Songs imported within the last week)"
 msgstr "Récemment ajoutés (morceaux importés cette semaine)"
 
 #: C/manage-playlists.page:136(p)
@@ -1402,7 +1404,7 @@ msgstr ""
 
 #: C/lastfm.page:80(p)
 msgid ""
-"In Banshee's context menu on the left hand side, you will now have a Last.fm "
+"In Banshee's sources pane on the left hand side, you will now have a Last.fm "
 "section, including your Last.fm radio stations. You will need an active "
 "internet connection to listen to Last.fm radio. Choose the radio station you "
 "wish to listen to and Banshee will communicate with Last.fm to populate "
@@ -1412,7 +1414,7 @@ msgid ""
 "<guiseq><gui>Playback</gui><gui>Next</gui></guiseq> to play the next song in "
 "your radio station queue."
 msgstr ""
-"Dans la fenêtre gauche de Banshee est apparue une section Last.fm contenant "
+"Dans le panneau des sources de Banshee, sur le côté gauche, est apparue une section Last.fm contenant "
 "vos stations radio Last.fm. Si vous disposez d'une connexion internet "
 "active, vous pouvez choisir une station et Banshee se connecte aux morceaux "
 "les plus populaires de celle-ci. Appuyez sur le bouton <gui>Lire</gui> ou "
@@ -1470,29 +1472,29 @@ msgstr "B"
 msgid "Play the previous song"
 msgstr "Lecture du titre précédent"
 
-#: C/keyboardshortcuts.page:49(title) C/keyboardshortcuts.page:69(title)
+#: C/keyboardshortcuts.page:49(title)
 msgid "Library Interaction"
 msgstr "Interaction avec la bibliothèque"
 
-#: C/keyboardshortcuts.page:56(key) C/keyboardshortcuts.page:76(key)
+# BUG : only Ctrl + I  ?
+#: C/keyboardshortcuts.page:56(p)
+msgid "<key>/</key>, <keyseq><key>Control</key><key>F</key></keyseq>"
+msgstr "<key>/</key>, <keyseq><key>Ctrl</key><key>I</key></keyseq>"
+
+#: C/keyboardshortcuts.page:56(p)
+msgid "Move the focus to the search box"
+msgstr "Déplacement du focus dans la boîte de la recherche"
+
+#: C/keyboardshortcuts.page:60(key) C/keyboardshortcuts.page:76(key)
 #: C/keyboardshortcuts.page:114(key) C/keyboardshortcuts.page:118(key)
 #: C/keyboardshortcuts.page:123(key) C/keyboardshortcuts.page:127(key)
 #: C/keyboardshortcuts.page:132(key) C/keyboardshortcuts.page:137(key)
 msgid "Control"
 msgstr "Ctrl"
 
-#: C/keyboardshortcuts.page:56(key) C/keyboardshortcuts.page:110(key)
-msgid "F"
-msgstr "F"
-
-#: C/keyboardshortcuts.page:56(p)
-msgid "Move the focus to the search box"
-msgstr "Déplacement du focus dans la boîte de la recherche"
-
-# BUG : only Ctrl + I  ?
-#: C/keyboardshortcuts.page:60(p)
-msgid "<key>/</key>, <keyseq><key>Control</key><key>F</key></keyseq>"
-msgstr "<key>/</key>, <keyseq><key>Ctrl</key><key>I</key></keyseq>"
+#: C/keyboardshortcuts.page:60(key)
+msgid "I"
+msgstr "I"
 
 #: C/keyboardshortcuts.page:61(p)
 msgid "Open import media dialog"
@@ -1517,6 +1519,10 @@ msgstr "Marquage des épisodes sélectionnés comme anciens"
 #: C/keyboardshortcuts.page:103(title)
 msgid "Interface"
 msgstr "Interface"
+
+#: C/keyboardshortcuts.page:110(key)
+msgid "F"
+msgstr "F"
 
 #: C/keyboardshortcuts.page:110(p)
 msgid "Toggle full-screen mode"
@@ -1886,8 +1892,8 @@ msgid ""
 "MP3 Store from the Banshee menu on the left. This will load the Amazon MP3 "
 "Store just as if you were in a web browser. You can search Amazon for the "
 "music you wish to buy and after logging in to Amazon, buy music with one "
-"click. Banshee will automatically download and import the your purchase into "
-"the library."
+"click. Banshee will automatically download and import your purchase into the "
+"library."
 msgstr ""
 "Vous pouvez aussi chercher des titres sur Amazon avec Banshee. Sélectionnez "
 "boutique MP3 Amazon dans le volet de gauche. Ceci téléchargera la "
@@ -1973,7 +1979,7 @@ msgstr "Ajout d'une station de radio"
 msgid ""
 "To add an internet radio station to Banshee, press <gui>Add Station</gui> in "
 "the upper right hand corner of Banshee or, from the menu, choose "
-"<guiseq><gui>Menu</gui><gui>Add Station</gui></guiseq>."
+"<guiseq><gui>Media</gui><gui>Add Station</gui></guiseq>."
 msgstr ""
 "Pour ajouter une station de radio internet à Banshee, appuyez sur le bouton "
 "<gui>Ajouter une station</gui> au haut à droite, ou allez dans le menu "
@@ -1995,15 +2001,15 @@ msgid ""
 "kind of music the internet radio station plays from the available drop down "
 "selections. You will then need to enter the <gui>Station Name</gui>. Enter a "
 "name for the radio station. Then press tab or use your mouse to select the "
-"<gui>Stream URL:</gui> dialog to paste the URL of the radio station. Using "
+"<gui>Stream URL</gui> field to paste the URL of the radio station. Using "
 "your mouse right click and choose <gui>Paste</gui> or press "
-"<keyseq><key>Control</key>+<key>V</key></keyseq>."
+"<keyseq><key>Control</key><key>V</key></keyseq>."
 msgstr ""
 "Banshee ouvre une boîte de dialogue avec plusieurs champs et vous demande "
 "d'entrer le genre, le titre et l'URL de flux de la station de radio que vous "
 "souhaitez ajouter. Choisissez le <gui>Type de station</gui> dans le menu "
 "déroulant. Saisissez le nom de votre station dans le champ adéquat. D'un "
-"clic droit dans le champ <gui>URL du flux :</gui> choisissez <gui>copier</"
+"clic droit dans le champ <gui>URL du flux</gui> choisissez <gui>copier</"
 "gui> ou appuyez sur <keyseq><key>Ctrl</key><key>V</key></keyseq>."
 
 #: C/add-radio.page:62(p)
@@ -2134,4 +2140,4 @@ msgstr ""
 msgid "translator-credits"
 msgstr ""
 "Alain LOJEWSKI <allomervan@gmail.com>, 2010\n"
-"Bruno Brouard <annoa.b@gmail.com>, 2010"
+"Bruno Brouard <annoa.b@gmail.com>, 2010-2011"
