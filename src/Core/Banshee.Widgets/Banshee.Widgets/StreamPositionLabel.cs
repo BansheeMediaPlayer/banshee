@@ -174,12 +174,14 @@ namespace Banshee.Widgets
             }
         }
 
+        private string last_text;
         private void UpdateLabel (string text)
         {
-            if (!IsRealized || layout == null) {
+            if (!IsRealized || layout == null || text == last_text) {
                 return;
             }
 
+            last_text = text;
             layout.SetMarkup (String.Format (format_string, GLib.Markup.EscapeText (text)));
             QueueResize ();
         }
