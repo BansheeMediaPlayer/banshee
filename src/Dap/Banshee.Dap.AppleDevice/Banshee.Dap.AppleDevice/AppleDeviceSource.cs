@@ -27,17 +27,20 @@
 //
 
 using System;
+using System.Linq;
+using System.Collections.Generic;
+using System.Threading;
+
+using Hyena;
+using Hyena.Query;
+
 using Banshee.Base;
 using Banshee.Collection.Database;
 using Banshee.ServiceStack;
 using Banshee.Library;
-using System.Collections.Generic;
-using System.Threading;
 using Banshee.Hardware;
 using Banshee.Sources;
 using Banshee.I18n;
-using Hyena.Query;
-using Hyena;
 using Banshee.Playlist;
 
 namespace Banshee.Dap.AppleDevice
@@ -93,6 +96,9 @@ namespace Banshee.Dap.AppleDevice
 
             Initialize ();
             GPod.ITDB.InitIpod (Volume.MountPoint, Device.IpodInfo == null ? null : Device.IpodInfo.ModelNumber, Name);
+
+            // HACK: ensure that m4a, and mp3 are set as accepted by the device; bgo#633552
+            AcceptableMimeTypes = (AcceptableMimeTypes ?? new string [0]).Union (new string [] { "taglib/m4a", "taglib/mp3" }).ToArray ();
 
             // FIXME: Properly parse the device, color and generation and don't use the fallback strings
 
