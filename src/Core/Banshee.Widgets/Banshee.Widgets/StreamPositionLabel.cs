@@ -202,7 +202,6 @@ namespace Banshee.Widgets
             set {
                 buffering_progress = Math.Max (0.0, Math.Min (1.0, value));
                 UpdateLabel ();
-                QueueDraw ();
             }
         }
 
@@ -228,7 +227,6 @@ namespace Banshee.Widgets
                 if (state != value) {
                     state = value;
                     UpdateLabel ();
-                    QueueDraw ();
                 }
             }
         }
@@ -239,7 +237,6 @@ namespace Banshee.Widgets
                 if (is_live != value) {
                     is_live = value;
                     UpdateLabel ();
-                    QueueDraw ();
                 }
             }
         }
