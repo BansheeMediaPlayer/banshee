@@ -368,6 +368,8 @@ namespace Lastfm
 
                 state = State.Idle;
             }
+
+            sr.Close ();
         }
 
         //
@@ -478,6 +480,7 @@ namespace Lastfm
             }
 
             state = State.Idle;
+            sr.Close ();
         }
 
         //
@@ -590,30 +593,30 @@ namespace Lastfm
                 WebResponse my_resp = now_playing_post.EndGetResponse (ar);
 
                 Stream s = my_resp.GetResponseStream ();
-                StreamReader sr = new StreamReader (s, Encoding.UTF8);
+                using (StreamReader sr = new StreamReader (s, Encoding.UTF8)) {
+                    string line = sr.ReadLine ();
+                    if (line == null) {
+                        Log.Warning ("Audioscrobbler NowPlaying failed", "No response", false);
+                    }
 
-                string line = sr.ReadLine ();
-                if (line == null) {
-                    Log.Warning ("Audioscrobbler NowPlaying failed", "No response", false);
-                }
-
-                if (line.StartsWith ("BADSESSION")) {
-                    Log.Warning ("Audioscrobbler NowPlaying failed", "Session ID sent was invalid", false);
-                    // attempt to re-handshake on the next interval
-                    session_id = null;
-                    next_interval = DateTime.Now + new TimeSpan (0, 0, RETRY_SECONDS);
-                    state = State.NeedHandshake;
-                    StartTransitionHandler ();
-                    return;
-                } else if (line.StartsWith ("OK")) {
-                    // NowPlaying submitted
-                    Log.DebugFormat ("Submitted NowPlaying track to Audioscrobbler");
-                    now_playing_started = false;
-                    now_playing_post = null;
-                    current_now_playing_data = null;
-                    return;
-                } else {
-                    Log.Warning ("Audioscrobbler NowPlaying failed", "Unexpected or no response", false);
+                    if (line.StartsWith ("BADSESSION")) {
+                        Log.Warning ("Audioscrobbler NowPlaying failed", "Session ID sent was invalid", false);
+                        // attempt to re-handshake on the next interval
+                        session_id = null;
+                        next_interval = DateTime.Now + new TimeSpan (0, 0, RETRY_SECONDS);
+                        state = State.NeedHandshake;
+                        StartTransitionHandler ();
+                        return;
+                    } else if (line.StartsWith ("OK")) {
+                        // NowPlaying submitted
+                        Log.DebugFormat ("Submitted NowPlaying track to Audioscrobbler");
+                        now_playing_started = false;
+                        now_playing_post = null;
+                        current_now_playing_data = null;
+                        return;
+                    } else {
+                        Log.Warning ("Audioscrobbler NowPlaying failed", "Unexpected or no response", false);
+                    }
                 }
             }
             catch (Exception e) {
