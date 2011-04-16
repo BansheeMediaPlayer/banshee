@@ -194,7 +194,7 @@ namespace Banshee.AmazonMp3.Store
 
         public string GetActionUrl (string action)
         {
-            return String.Concat (REDIRECT_URL, Country, "/", action);
+            return String.Concat (StoreSourcePreferences.RedirectUrl.Get (), Country, "/", action);
         }
     }
 }
