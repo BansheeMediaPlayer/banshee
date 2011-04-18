@@ -44,7 +44,6 @@ EXTRA_DIST = \
 	gconf-schema-rules \
 	gnome-doc-utils.make
 
-DISTCLEANFILES = gnome-doc-utils.make
 CLEANFILES = *.exe *.mdb
 MAINTAINERCLEANFILES = Makefile.in
 
