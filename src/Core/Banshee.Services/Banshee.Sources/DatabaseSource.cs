@@ -592,7 +592,7 @@ namespace Banshee.Sources
         protected void SkipTrackIfRemoved ()
         {
             var playback_src = ServiceManager.PlaybackController.Source as DatabaseSource;
-            if (playback_src != this && playback_src.Parent != this)
+            if (playback_src == null || (playback_src != this && playback_src.Parent != this))
                 return;
 
             var track = ServiceManager.PlayerEngine.CurrentTrack as DatabaseTrackInfo;
