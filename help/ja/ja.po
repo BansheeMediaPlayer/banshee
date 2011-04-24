@@ -1,0 +1,2086 @@
+# Japanese translation for banshee.
+# Copyright (C) 2011 banshee's COPYRIGHT HOLDER
+# This file is distributed under the same license as the 'banshee' package.
+# Hajime Taira <htaira@redhat.com>, 2011.
+# Jiro Matsuzawa <matsuzawa.jr@gmail.com>, 2011.
+# Kentaro KAZUHAMA <kazken3@gmail.com>, 2011.
+# Takayuki KUSANO <AE5T-KSN@asahi-net.or.jp>, 2011.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: banshee master\n"
+"POT-Creation-Date: 2011-04-22 20:33+0000\n"
+"PO-Revision-Date: 2011-04-01 00:58+0900\n"
+"Last-Translator: Hajime Taira <htaira@redhat.com>\n"
+"Language-Team: Japanese <gnome-translation@gnome.gr.jp>\n"
+"Language: ja\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#. When image changes, this message will be marked fuzzy or untranslated for you.
+#. It doesn't matter what you translate it to: it's not used at all.
+#: C/ui.page:29(None) C/introduction.page:45(None)
+msgid "@@image: 'figures/banshee.png'; md5=THIS FILE DOESN'T EXIST"
+msgstr "@@image: 'figures/banshee.png'; md5=THIS FILE DOESN'T EXIST"
+
+#: C/ui.page:8(desc)
+msgid "An overview of <app>Banshee's</app> user interface."
+msgstr "<app>Banshee</app>のユーザインタフェースの概要"
+
+#: C/ui.page:12(name) C/sync.page:12(name) C/sort.page:12(name)
+#: C/search.page:12(name) C/play.page:12(name) C/play-queue.page:12(name)
+#: C/manage-tags.page:13(name) C/manage-playlists.page:13(name)
+#: C/manage-coverart.page:12(name) C/lastfm.page:12(name)
+#: C/keyboardshortcuts.page:10(name) C/introduction.page:12(name)
+#: C/index.page:9(name) C/import.page:11(name) C/extensions.page:11(name)
+#: C/amazon.page:12(name) C/advanced.page:11(name) C/add-radio.page:14(name)
+#: C/add-podcast.page:14(name)
+msgid "Paul Cutler"
+msgstr "Paul Cutler"
+
+#: C/ui.page:13(email) C/sync.page:13(email) C/sort.page:13(email)
+#: C/search.page:13(email) C/play.page:13(email) C/play-queue.page:13(email)
+#: C/manage-tags.page:14(email) C/manage-playlists.page:14(email)
+#: C/manage-coverart.page:13(email) C/lastfm.page:13(email)
+#: C/keyboardshortcuts.page:11(email) C/introduction.page:13(email)
+#: C/index.page:10(email) C/import.page:12(email) C/extensions.page:12(email)
+#: C/amazon.page:13(email) C/advanced.page:12(email)
+#: C/add-radio.page:15(email) C/add-podcast.page:15(email)
+msgid "pcutler@gnome.org"
+msgstr "pcutler@gnome.org"
+
+#: C/ui.page:24(title)
+msgid "Introduction to the Banshee User Interface"
+msgstr "Bansheeのユーザインタフェースについて"
+
+#: C/ui.page:27(title) C/introduction.page:43(title)
+msgid "<gui>Banshee Media Player</gui> window"
+msgstr "<gui>Bansheeメディア・プレイヤー</gui> のウィンドウ"
+
+#: C/ui.page:28(app) C/introduction.page:44(app) C/index.page:21(title)
+msgid "Banshee Media Player"
+msgstr "Bansheeメディア・プレイヤー"
+
+#: C/ui.page:30(p) C/introduction.page:46(p)
+msgid "<app>Banshee</app> library interface"
+msgstr "<app>Banshee</app>ライブラリのインタフェース"
+
+#: C/ui.page:35(title)
+msgid "Sources"
+msgstr "ソース"
+
+#: C/ui.page:36(p)
+msgid ""
+"Your music and video sources are shown on the left in Banshee. The sources "
+"give you quick access to your Play Queue, Music, Videos, Amazon, Last.fm, "
+"Podcasts and more."
+msgstr ""
+"Bansheeの左側には、音楽、ビデオなどのソースが表示されます。これにより再生"
+"キュー、音楽、ビデオ、Amazon、Last.fm、ポッドキャストなどに素早くアクセスする"
+"ことができます。"
+
+#: C/ui.page:42(p)
+msgid ""
+"The menu choices will change depending on the source you have chosen. For "
+"example, to use the menu to import a Podcast, you will need to choose the "
+"Podcast source. The menu option for importing a Podcast is not available "
+"when viewing the video or music library."
+msgstr ""
+"メニューの項目は、選択したソースに応じて変わります。たとえば、ポッドキャスト"
+"を購読するためのメニューを出したい場合、ポッドキャストのソースを選択する必要"
+"があります。ポッドキャストを行動するすためのメニューの項目が表示されている時"
+"には音楽ライブラリやビデオライブラリは利用できません。"
+
+#: C/ui.page:50(title)
+msgid "Library Browser"
+msgstr "ライブラリブラウザ"
+
+#: C/ui.page:51(p)
+msgid ""
+"When you select a music or video source from Sources, Banshee will display "
+"your content in the Library browser. Depending on the source you choose, "
+"Banshee can display your music or video library, Podcast subscriptions or "
+"even the Amazon Music Store to allow you to buy music."
+msgstr ""
+"Bansheeのウィンドウの左側のソースから音楽やビデオのソースを選択すると、ライブ"
+"ラリのブラウザにコンテンツが表示されます。Bansheeのウィンドウの右側はソースに"
+"応じて音楽のライブラリ、ビデオのライブラリ、ポッドキャストの購読、Amazon MP3"
+"ストアから音楽を購入ができる画面に変わります。"
+
+#: C/ui.page:58(title)
+msgid "Now Playing View"
+msgstr "再生中のビュー"
+
+#: C/ui.page:59(p)
+msgid ""
+"Helpful when using Banshee in full screen mode, the Now Playing mode hides "
+"the library to give you a larger view of the music or video you're watching. "
+"When listening to music, the Now Playing view will show you the artist name, "
+"album and cover art if available. If you are watching a video, Banshee will "
+"display the video."
+msgstr ""
+"Bansheeでフルスクリーンモードで使うと、再生中モードを隠して音楽のライブラリを"
+"大きく表示、もしくは再生中のビデオを大きく表示することができます。音楽を再生"
+"中の時、アーティスト名とアルバムのカバーアートが表示されます。もしビデオを見"
+"ている時であれば、フルスクリーンでビデオを楽しめます。"
+
+#: C/ui.page:65(p)
+msgid ""
+"To change Now Playing to hide the Banshee user interface and use the full "
+"screen mode, you can press the <key>F</key>, press the <gui>Fullscreen</gui> "
+"button in the upper right hand corner of Banshee, or choose "
+"<guiseq><gui>View</gui><gui>Fullscreen</gui></guiseq> to start Fullscreen "
+"mode."
+msgstr ""
+"再生中にBansheeのユーザーインタフェースを隠して、フルスクリーンモードに変更し"
+"たい場合、<key>F</key>を押すか、Bansheeのウィンドウの右上にある<gui>フルスク"
+"リーン</gui>ボタンを押します。もしくはBansheeのメニューから<guiseq><gui>表示"
+"</gui><gui>フルスクリーン</gui></guiseq>を選ぶとフルスクリーンモードに移行し"
+"ます。"
+
+#: C/ui.page:74(title)
+msgid "Library"
+msgstr "ライブラリ"
+
+#: C/ui.page:75(p)
+msgid ""
+"The Library view in Banshee will change depending on the Source you have "
+"chosen. The Music Library will display cover art, artists in your library, "
+"and list of songs. The Podcast Library will display your Podcast "
+"subscriptions, podcasts that are downloaded or not downloaded, and all, new "
+"or old podcasts. Please see each Source's help page for detailed information "
+"on managing a source."
+msgstr ""
+"Bansheeのライブラリビューは、選択したソースに応じて変わります。音楽のライブラ"
+"リはライブラリ内のアーティスト、曲のリスト、カバーアートが表示されます。ポッ"
+"ドキャストのライブラリはポッドキャストの購読をダウンロード／ダウンロードされ"
+"ていない。もしくはすべての新しい／古いポッドキャストが表示されます。ソースの"
+"管理方法の詳細については各ソースのヘルプページを参照してください。"
+
+#: C/sync.page:9(desc)
+msgid "Sync your media to a portable media player or smartphone."
+msgstr "音楽をポータブルメディアプレイヤーもしくはスマートフォンに同期します。"
+
+#: C/sync.page:24(title)
+msgid "Sync"
+msgstr "同期"
+
+#: C/sync.page:26(p)
+msgid ""
+"Banshee supports syncing your music to portable media players and "
+"smartphones. You can add specific music tracks, albums or playlist or allow "
+"Banshee to keep your music player in sync with your entire library. After "
+"your player is connected to your computer you can also play back the songs "
+"on your portable player in Banshee. When syncing music in a lossless format, "
+"such as FLAC, Banshee will automatically transcode your music for you to a "
+"lossy format such as Ogg Vorbis or MP3, if you have the correct codecs "
+"installed."
+msgstr ""
+"Bansheeはポータブルミュージックプレイヤーやスマートフォンへの音楽の同期をサ"
+"ポートしています。特定の音楽トラック、アルバム、プレイリストのみを追加するこ"
+"ともできます。また、Bansheeはライブラリ全体を同期して、お手持ちのポータブル"
+"ミュージックプレイヤーを常に同一の状態に保つことができます。Bansheeにポータブ"
+"ルメディアプレイヤーが接続されている時も、直接ポータブルミュージックプレイ"
+"ヤー上の音楽をBansheeで直接再生することができます。同期する音楽がFLACなどのロ"
+"スレスフォーマットの場合、BansheeがサポートするOgg VorbisやMP3などの非可逆"
+"フォーマットに自動的にフォーマットを変換してくれます。これにはあらかじめ対応"
+"するコーデックがインストールされている必要があります。"
+
+#: C/sync.page:37(title)
+msgid "Device Support"
+msgstr "デバイスサポート"
+
+#: C/sync.page:38(p)
+msgid ""
+"Banshee supports almost all modern portable music players and smartphones "
+"with the notable exception of the Apple iPhone, iPad and iPod Touch."
+msgstr ""
+"Bansheeは、ほとんどの音楽プレイヤーとスマートフォン（Apple iPhone、iPad、"
+"iPod touchは著しく例外的なので非対応）に対応しています。"
+
+#: C/sync.page:42(p)
+msgid ""
+"When you plug your device in, Banshee will display it in the left menu. "
+"Pressing the device icon will take you to your device home page in Banshee "
+"displaying your sync preferences."
+msgstr ""
+"もし、デバイスを接続した時、Bansheeは左側のメニューに表示します。デバイスのア"
+"イコンをクリックすると同期の設定を表示するページに移ります。"
+
+#: C/sync.page:50(title)
+msgid "Sync Your Music"
+msgstr "音楽を同期する"
+
+#: C/sync.page:51(p)
+msgid ""
+"You can choose to manage the media on your portable music by having Banshee "
+"automatically sync it or manage your music and media manually."
+msgstr ""
+"Bansheeで選択することにより、お手持ちのポータブルミュージックプレイヤー上の音"
+"楽とビデオを自動的に同期するか手動で管理することができます。"
+
+#: C/sync.page:56(p)
+msgid ""
+"Choose your device from the Banshee menu and then choose how you want to "
+"sync your media, including:"
+msgstr "Bansheeのメニューからメディアを同期したいデバイスを選択してください。"
+
+#: C/sync.page:60(p)
+msgid "Music"
+msgstr "音楽"
+
+#: C/sync.page:61(p)
+msgid "Audiobooks"
+msgstr "オーディオブック"
+
+#: C/sync.page:62(p)
+msgid "Videos"
+msgstr "ビデオ"
+
+#: C/sync.page:63(p)
+msgid "Podcast"
+msgstr "ポッドキャスト"
+
+#: C/sync.page:66(p)
+msgid "From the dropdown menu next to each of the media, choose from:"
+msgstr "ドロップダウンメニューから次のメディアを選択できます。"
+
+#: C/sync.page:69(p)
+msgid "Manage manually"
+msgstr "手動で管理する"
+
+#: C/sync.page:70(p)
+msgid "Sync entire library"
+msgstr "すべてのライブラリと同期"
+
+#: C/sync.page:74(p)
+msgid ""
+"If you choose to sync your entire library automatically with your portable "
+"media player make sure your portable media player has enough storage space. "
+"If your library is larger than the space on your portable media player, "
+"Banshee will sync media until your player is full and then stop."
+msgstr ""
+"ポータブルメディアプレーヤーに十分な記憶領域自動的にライブラリ全体を同期しま"
+"す。同期対象のライブラリのデータ容量が接続されているポータブルミュージックプ"
+"レイヤーの容量よりも上回る場合、Bansheeは容量が一杯になるまでメディアの同期を"
+"行います。"
+
+#: C/sync.page:82(p)
+msgid ""
+"If you have created playlists or smart playlists in your music library, they "
+"will also be displayed as a sync option for Music. This can be helpful when "
+"creating smart playlists, as smart playlists will automatically update as "
+"new content is added based on the playlist rules, and Banshee will sync the "
+"new playlist to your device every time you plug it in."
+msgstr ""
+"もし、音楽ライブラリの中にプレイリストやスマートプレイリストを作成している場"
+"合、音楽の同期する際にオプションとして表示されます。スマートプレイリストは新"
+"しいコンテンツが追加された場合、ルールに従いプレイリストへ追加してくれるのを"
+"支援する仕組みです。Bansheeにて音楽を同期する際に、ポータブルミュージックプレ"
+"イヤー上に新しいプレイリストを作成する場合、すでに作成してあるスマートプレイ"
+"リストを参考にすることができます。"
+
+#: C/sync.page:89(p)
+msgid ""
+"Banshee will display the total hard drive space of your portable music "
+"player in a graph in the bottom center of Banshee. The graph will show you "
+"how much space is taken by audio files, video, other and free space. "
+"Directly below that Banshee will show you how many total items are stored on "
+"your portable music player, how many hours or days of listening that is "
+"equal to, and total space used."
+msgstr ""
+"Bansheeの下部中央のグラフには接続されているポータブルミュージックプレーヤー内"
+"のストレージの容量が表示されます。グラフ中の情報には、ポータブルミュージック"
+"プレーヤーの容量を音楽、ビデオ、その他と空き容量がどのぐらいの割合を占めてい"
+"るのか、また、アイテムの合計数、再生時間の総合計、使用領域の合計が表示されま"
+"す。"
+
+#: C/sync.page:100(title)
+msgid "Sync Your Entire Library"
+msgstr "ライブラリ全部を同期する"
+
+#: C/sync.page:101(p)
+msgid ""
+"You can drag and drop media to your portable music player from Banshee. "
+"Select the file or files you want to copy to your portable media player and "
+"then press and hold your right mouse button and drag the file(s) to your "
+"portable media player icon in Banshee. This will copy the files to your "
+"device."
+msgstr ""
+"Bansheeからメディアをポータブルミュージックプレイヤーへドラッグアンドドロップ"
+"することができます。まず転送したいファイルを選択して右クリックし、Banshee上の"
+"ポータブルミュージックプレイヤーのアイコンへドラッグアンドドロップするとお手"
+"持ちのポータブルミュージックプレイヤーへコピーされます。"
+
+#: C/sync.page:108(p)
+msgid ""
+"If your music library is encoded in a format that your portable media player "
+"does not support, such as OGG or FLAC, and you have the necessary codecs "
+"installed, Banshee can automatically transcode these files to MP3 when "
+"transferring to your portable media player. Check with your Linux "
+"distribution for the necessary codecs as it is outside the scope of this "
+"help and varies by distribution."
+msgstr ""
+"もし、音楽ライブラリの中の音楽ファイルがOGGファイルまたはGLACなど、サポートさ"
+"れていない形式でエンコードされている場合、ポータブルメディアプレイヤーに転送"
+"する際にBansheeはMP3形式に自動的に変換することができます。（必要なコーデック"
+"がインストールされている必要があります）コーデックについてはディストリビュー"
+"ションによって異なりますのでヘルプには記述しません。必要なコーデックについて"
+"お使いのLinuxディストリビューションをご確認ください。"
+
+#: C/sync.page:117(p)
+msgid ""
+"You may need to eject your device to load the files correctly on your "
+"portable music player. To eject your device in Banshee, using your mouse "
+"right click the device in the Banshee menu and press <gui>Disconnect</gui>."
+msgstr ""
+"お手持ちのポータブルメディアプレイヤーから正しくファイルを読み込むためには、"
+"Bansheeでマウント中のポータブルメディアプレイヤーを安全に取り外す必要がありま"
+"す。Banshee中から安全に取り外したい時、任意のポータブルメディアプレイヤーを右"
+"クリックしてBansheeのメニューから<gui>切断</gui>をクリックしてください。"
+
+#: C/sync.page:127(title)
+msgid "Play Music From Your Portable Music Player"
+msgstr "ポータブルミュージックプレイヤー内の楽曲を再生する"
+
+#: C/sync.page:128(p)
+msgid ""
+"You can play music stored on your portable music player directly in Banshee. "
+"Choose your player in the Banshee menu on the left and your portable music "
+"player's library will be displayed. You can then play music in Banshee just "
+"as you would music in your own library."
+msgstr ""
+"ポータブルミュージックプレイヤーに保存された音楽をBansheeで直接再生することが"
+"できます。左側のメニューにポータブルミュージックプレイヤーのライブラリが表示"
+"されます。Bansheeのメニューからお使いのお使いのプレーヤーを選択してください。"
+"その後、自身のライブラリ内の音楽と同じようにBansheeで音楽を再生することができ"
+"ます。"
+
+#: C/sync.page:135(title)
+msgid "Remove Music From your Portable Music Player"
+msgstr "ポータブルミュージックプレイヤー内から楽曲を削除する"
+
+#: C/sync.page:136(p)
+msgid ""
+"To remove songs stored on your portable music player, choose your player in "
+"Banshee to view its library. Then choose the tracks you would like to remove "
+"and right click the tracks and choose <gui>Delete</gui> or from the menu "
+"choose <guiseq><gui>Edit</gui><gui>Delete</gui></guiseq>."
+msgstr ""
+"ポータブルミュージックプレイヤーに保存した楽曲を削除したい場合、任意のポータ"
+"ブルミュージックプレイヤーを選択し、Bansheeのライブラリーを表示します。次に削"
+"除したいトラックを選択し、右クリックしてメニューから<gui>削除</gui>を選びま"
+"す。もしくはBansheeのメニューから<guiseq><gui>編集</gui><gui>削除</gui></"
+"guiseq>を選びます。"
+
+#: C/sync.page:142(p)
+msgid ""
+"Deleting files from your portable music player will permanently remove the "
+"files and you will not be able to recover them."
+msgstr ""
+"お手持ちのミュージックメディアプレーヤーからファイルを削除すると完全に削除さ"
+"れます。削除したファイルは復元することはできません。"
+
+#: C/sort.page:9(desc)
+msgid "Sort your media and add additional columns."
+msgstr "アイテムのソートと列の追加"
+
+#: C/sort.page:24(title)
+msgid "Sort your media"
+msgstr "アイテムのソート"
+
+#: C/sort.page:28(title)
+msgid "Adding Columns"
+msgstr "列の追加"
+
+#: C/sort.page:30(p)
+msgid ""
+"As your library grows, you may want to change your library view to add "
+"additional information about the songs in your library or change the way you "
+"can view and sort your songs, artists or albums."
+msgstr ""
+"ライブラリが大きくなるにつれて、ライブラリ内のトラックの情報を追加したり、表"
+"示することができます。また、ライブラリビュー内の曲のタイトル、アーティストや"
+"アルバムをソートする方法を変更することができます。"
+
+#: C/sort.page:34(p)
+msgid ""
+"You can add additional columns to the library view in <app>Banshee</app> to "
+"give you more information about the songs and also allow you to sort by. By "
+"default, Banshee displays columns for songs including <gui>Name</gui>, "
+"<gui>Artist</gui>, <gui>Album</gui> and <gui>Time</gui>. To add additional "
+"columns, using your mouse right click on any of the columns and Banshee will "
+"display all available column to choose from. Click the checkbox next to the "
+"name of the column you wish to add to the library view."
+msgstr ""
+"<app>Banshee</app>のライブラリビューに追加の列を加えることができます。そのト"
+"ラックの詳細な情報を一覧表示することができ、また追加した列を元にソートできる"
+"ようになります。Bansheeのデフォルトでは<gui>タイトル</gui>、<gui>アーティスト"
+"</gui>、<gui>アルバム</gui>、<gui>再生時間</gui>が表示されています。追加の列"
+"を追加するには、Bansheeのいずれかの列の上でマウスの右クリックを使用すると、利"
+"用可能な列の一覧が表示されるので追加したい列のチェックボックスをオンにしてく"
+"ださい。"
+
+#: C/sort.page:46(title)
+msgid "Sorting Columns"
+msgstr "列をソート"
+
+#: C/sort.page:47(p)
+msgid ""
+"You can sort your library by using your mouse to click on any of the columns "
+"displayed in library view. If you wish to sort your music library by Artist, "
+"click the <gui>Artist</gui> column header and Banshee will automatically "
+"sort that column alphabetically. Clicking the <gui>Artist</gui> column again "
+"will sort the column in reverse alphabetical order."
+msgstr ""
+"Bansheeのライブラリビューに表示される列のいずれかをマウスでクリックして、ライ"
+"ブラリをソートすることができます。音楽ライブラリをアーティストのアルファベッ"
+"ト順にソートしたい場合、<gui>アーティスト</gui>列のヘッダーをクリックすると自"
+"動的にソートされます。<gui>アーティスト</gui>列のヘッダーをもう一度クリックす"
+"るとアルファベットの順逆にソートされます。"
+
+#: C/search.page:9(desc)
+msgid "Search your media and perfom basic queries."
+msgstr "アイテムの検索と基本的な問い合わせの実行"
+
+#: C/search.page:24(title)
+msgid "Searching your Banshee Library"
+msgstr "Bansheeのライブラリを検索"
+
+#: C/search.page:26(p)
+msgid ""
+"Banshee features a powerful search language. You can search your library "
+"quickly and easily with basic search terms or perform detailed searches with "
+"Banshee's advanced search terminology."
+msgstr ""
+"Bansheeは強力な検索式を備えています。基本的な検索キーワードでもライブラリをす"
+"ばやく簡単に検索できます。また、Bansheeの高度な検索式によって詳細な検索も行え"
+"ます。"
+
+#: C/search.page:30(p)
+msgid ""
+"To perform a search of your media in Banshee, press the <key>S</key> or "
+"click the <gui>Search</gui> box in the upper right hand corner of the "
+"Library view in Banshee."
+msgstr ""
+"Bansheeでアイテムの検索を実行するには、<key>S</key>を押すか、Bansheeのライブ"
+"ラリビューの右上にある<gui>検索ボックス</gui>をクリックします。"
+
+#: C/search.page:35(p)
+msgid ""
+"A search query consists of some basic terms, for example, <em>dave matthews</"
+"em>. By entering <em>dave matthews</em> in the search box, Banshee will "
+"search all metadata fields including Track Title, Album Title, Album Artist, "
+"Year, etc. Any track whose metadata includes <em>dave</em> and <em>matthews</"
+"em> will be returned. Search terms are case insensitive, meaning you don't "
+"have to capitalize. <em>dave</em>, <em>Dave</em>, and <em>DAVE</em> all mean "
+"the same thing when searching."
+msgstr ""
+"検索問い合わせは、いくつかの基本的なキーワードで構成されています。たとえば、"
+"<em>dave matthews</em>。検索ボックスに<em>dave matthews</em>と入力した場合、"
+"Bansheeは、すべてのトラックの情報のすべての項目（トラックのタイトル、アルバム"
+"のタイトル、アルバムのアーティスト、発売された年など）から<em>dave</em>と"
+"<em>matthews</em>が含まれる結果を返します。検索キーワードの中では<em>dave</"
+"em>や<em>Dave</em>、<em>DAVE</em>といった大文字小文字の区別は行わず、同様に扱"
+"われます。"
+
+#: C/search.page:43(title)
+msgid "Basic Operators"
+msgstr "基本的な演算子"
+
+#: C/search.page:44(p)
+msgid ""
+"Operators can be placed between any two search words or placed before a "
+"search word. The default operation is <gui>AND</gui> and is used when no "
+"other operators are used between two search terms. Because it is the "
+"default, there is no explicit AND operator."
+msgstr ""
+"検索条件の演算子は任意の2つの検索キーワードの間に記述、もしくは検索キーワード"
+"の前に記述します。既定の動作は<gui>AND</gui>となります。その他の演算子は2つの"
+"検索キーワードの間に記述されている時のみ使用されます。AND 演算子もあります。"
+"また、明示的なAND演算子をがあります。"
+
+#: C/search.page:49(p)
+msgid ""
+"Other basic operators include <gui>OR</gui> and <gui>NOT</gui>. Together, "
+"these three operations can yield very powerful queries to help you search "
+"your media."
+msgstr ""
+"その他の基本的な演算子は、<gui>OR</gui>と<gui>NOT</gui>が含まれています。ま"
+"た、これらの3つの演算子を使うことにより、メディアを検索するため非常に強力な検"
+"索問い合わせを行うことができます。"
+
+#: C/search.page:56(title)
+msgid "Logical Operators and Examples"
+msgstr "論理演算子と検索式の例"
+
+#: C/search.page:57(p)
+msgid ""
+"The following is a list of logical operators and examples of the search "
+"results when searching using them."
+msgstr "以下は論理演算子とそれらを使用して検索、検索した結果の例です。"
+
+#: C/search.page:62(gui)
+msgid "Operator"
+msgstr "演算子"
+
+#: C/search.page:62(gui) C/search.page:84(gui)
+msgid "Description"
+msgstr "説明"
+
+#: C/search.page:65(p)
+msgid "<em>default</em>, <em>white space</em>"
+msgstr "<em>default</em>, <em>white space</em>"
+
+#: C/search.page:65(p)
+msgid "Search for two terms with a space between the two words or terms."
+msgstr ""
+"２個のキーワードから検索したい場合、２個のキーワードの間に半角スペースを入れ"
+"てください。"
+
+#: C/search.page:69(p)
+msgid "OR, or, <key>|</key>, <key>,</key>"
+msgstr "OR, or, <key>|</key>, <key>,</key>"
+
+#: C/search.page:69(p)
+msgid "Search results will be two songs with either result in any field."
+msgstr ""
+"検索結果は、任意のフィールドのいずれかの結果を持つ2つの楽曲になります。"
+
+#: C/search.page:73(p)
+msgid "NOT, not,<key>-</key>"
+msgstr "NOT, not,<key>-</key>"
+
+#: C/search.page:73(p)
+msgid ""
+"Do not display search results with any search term that follows the operator "
+"of NOT, not,<key>-</key>."
+msgstr ""
+"NOT、not、<key>-</key>の演算子を記述することにより、検索キーワードの含む検索"
+"結果を表示しません。"
+
+#: C/search.page:80(p)
+msgid "Examples of logical operations include:"
+msgstr "論理演算子を含む検索式の例:"
+
+#: C/search.page:84(gui)
+msgid "Query"
+msgstr "問い合わせ"
+
+#: C/search.page:87(p)
+msgid "dave matthews"
+msgstr "dave matthews"
+
+#: C/search.page:87(p)
+msgid ""
+"Matches any fields in a track containing both <em>dave</em> and "
+"<em>matthews</em>."
+msgstr ""
+"いずれかの項目に<em>dave</em>と<em>matthews</em>を含んでいるトラックが該当し"
+"ます。"
+
+#: C/search.page:92(p)
+msgid "dave, matthews"
+msgstr "dave, matthews"
+
+#: C/search.page:92(p) C/search.page:97(p) C/search.page:102(p)
+msgid ""
+"Matches any fields in a track containing either <em>dave</em> or "
+"<em>matthews</em>."
+msgstr ""
+"いずれかの項目に<em>dave</em>か<em>matthews</em>を含んでいるトラックが該当し"
+"ます。"
+
+#: C/search.page:97(p)
+msgid "dave or matthews"
+msgstr "dave or matthews"
+
+#: C/search.page:102(p)
+msgid "dave | matthews"
+msgstr "dave | matthews"
+
+#: C/search.page:107(p)
+msgid "-\"dave matthews\""
+msgstr "-\"dave matthews\""
+
+#: C/search.page:107(p)
+msgid "Displays all tracks whose fields do not contain <em>dave matthews</em>."
+msgstr ""
+"項目に<em>dave matthews</em>を含んでいないすべてのトラックが表示されます。"
+
+#: C/search.page:114(p)
+msgid ""
+"For more information on performing more complex search queries, see the "
+"<link xref=\"adv-search\"/> page."
+msgstr ""
+"より複雑な検索を行いたい場合、詳しいは、<link xref=\"adv-search\"/>ページを参"
+"照してください。"
+
+#: C/rb-import.page:8(desc)
+msgid ""
+"Import music and categorizations from the <app>Rhythmbox</app> music player."
+msgstr ""
+"<app>Rhythmbox</app>ミュージック・プレイヤーから音楽と分類をインポートしま"
+"す。"
+
+#: C/rb-import.page:12(title)
+msgid "Import your <app>Rhythmbox</app> library"
+msgstr "<app>Rhythmbox</app>のライブラリからインポートする"
+
+#: C/play.page:9(desc)
+msgid "Play your videos and music files."
+msgstr "動画と楽曲を再生する"
+
+#: C/play.page:24(title)
+msgid "Play Your Media"
+msgstr "メディアを再生する"
+
+#: C/play.page:27(title)
+msgid "Play your music"
+msgstr "楽曲を再生する"
+
+#: C/play.page:29(p)
+msgid ""
+"To play music in Banshee, choose the Music source. The music library will "
+"show you all artists in your music library, cover art for each album, and a "
+"list of all songs in your library."
+msgstr ""
+"Bansheeで音楽を再生するには音楽ソースを選択します。音楽ライブラリには音楽ライ"
+"ブラリ内のすべてのアーティスト、各アルバム用のカバーアート、およびライブラリ"
+"内のすべての曲のリストが表示されます。"
+
+#: C/play.page:33(p)
+msgid ""
+"Choose the album or song you wish to play from the list of artists, albums "
+"or use the search bar in the upper right hand corner of Banshee."
+msgstr ""
+"アルバムや曲、アーティスト、アルバムのリストから選択して再生したり、Bansheeの"
+"右上隅にある検索ボックスを使用します。"
+
+#: C/play.page:37(p)
+msgid ""
+"To start playing a song, use your mouse to double click the song name, press "
+"the <key>Spacebar</key>, or choose <guiseq><gui>Playback</gui><gui>Play</"
+"gui></guiseq> from the Banshee menu."
+msgstr ""
+"曲の再生を開始するには、トラック名をダブルクリックを押しての<key>スペースキー"
+"</key>、またはBansheeのメニューから<guiseq><gui>再生</gui><gui>再生</gui></"
+"guiseq>を選びます。"
+
+#: C/play.page:42(p)
+msgid ""
+"You can also start playing an album by choosing the album in the album "
+"browser and using your mouse to double click the song name, press the "
+"<key>Spacebar</key>, or choose <guiseq><gui>Playback</gui><gui>Play</gui></"
+"guiseq> from the Banshee menu."
+msgstr ""
+"アルバム一覧からアルバムを選択し、曲の名前をマウスでダブルクリックするか、 "
+"<key>スペースバー</key>を押す、もしくはBansheeのメニューから<guiseq><gui>再生"
+"</gui><gui>再生</gui></guiseq>を選ぶことでアルバムを再生することができます。"
+
+#: C/play.page:48(p)
+msgid ""
+"To play all songs by one artist, choose the artist in the artist browser and "
+"press the <key>Spacebar</key>, or choose <guiseq><gui>Playback</"
+"gui><gui>Play</gui></guiseq> from the Banshee menu."
+msgstr ""
+"１人のアーティストに関するすべての曲を再生するには、アーティストのブラウザで"
+"好きなアーティストを選択して、<key>スペースキー</key>を押すか、Bansheeのメ"
+"ニューから<guiseq><gui>再生</gui><gui>再生</gui>を選びます。"
+
+#: C/play.page:53(p)
+msgid ""
+"Banshee also displays your Favorite albums (those you play the most), Recent "
+"Favorites, Recently Added and Unheard music. Choose the one you wish to "
+"listen to and you can play songs from each."
+msgstr ""
+"Bansheeには、お気に入り（頻繁に再生された）、最近のお気に入り、最近追加した項"
+"目、再生されていない曲が表示されます。あなたが聞きたいものを選んでください。"
+
+#: C/play.page:61(title)
+msgid "Play a video"
+msgstr "動画を再生する"
+
+#: C/play.page:63(p)
+msgid ""
+"Your imported videos are listed alphabetically. To play a video, choose the "
+"video you wish to play from the list and press the <key>Spacebar</key>, or "
+"choose <guiseq><gui>Playback</gui><gui>Play</gui></guiseq> from the Banshee "
+"menu."
+msgstr ""
+"インポートしたビデオはアルファベット順に表示されます。ビデオを再生するには、"
+"リストから再生したいビデオを選んだ後に、<key>スペースキー</key>を押すか、また"
+"はBansheeのメニューから<guiseq><gui>再生</gui><gui>再生</gui></guiseq>を選び"
+"ます。"
+
+#: C/play.page:68(p)
+msgid ""
+"Banshee also shows your Favorite videos (those you watch the most) and "
+"Unwatched videos. Choose one and you can play a video from the list."
+msgstr ""
+"また、Bansheeはお気に入りのビデオ（あなたが頻繁に再生するビデオ）、注目されて"
+"いないビデオを表示します。いずれかを選択するとリストからビデオを再生すること"
+"ができます。"
+
+#: C/play.page:74(title)
+msgid "Play a Podcast"
+msgstr "ポッドキャストを再生する"
+
+#: C/play.page:76(p)
+msgid ""
+"Podcasts shows you all Podcasts you're subscribed to, all Podcast shows "
+"available, and the Podcast browser lists all Podcasts in order of newest "
+"first."
+msgstr ""
+"ポッドキャストのソースは、購読しているすべてのポッドキャストを表示します。"
+"ポッドキャストのブラウザでは、購読しているすべてのポットキャストが新しいもの"
+"から順にリスト表示されます。"
+
+#: C/play.page:80(p)
+msgid ""
+"To play a Podcast, choose the Podcast you wish to play from the list and "
+"press the <key>Spacebar</key>, or choose <guiseq><gui>Playback</"
+"gui><gui>Play</gui></guiseq> from the Banshee menu."
+msgstr ""
+"ポッドキャストを再生する場合、再生したいポッドキャストを選択した後にエピソー"
+"ドを選び、<key>スペースキー</key>を押すか、もしくはBansheeのメニューから"
+"<guiseq><gui>再生</gui><gui>再生</gui></guiseq>を選びます。"
+
+#: C/play.page:88(title)
+msgid "Play an internet radio station"
+msgstr "インターネットラジオステーションを再生する"
+
+#: C/play.page:90(p)
+msgid ""
+"The Radio source shows you all internet radio stations you have added to "
+"Banshee alphabetically."
+msgstr ""
+"ラジオのソースはBansheeに追加したすべてのインターネットラジオステーションをア"
+"ルファベット順に表示します。"
+
+#: C/play.page:94(p)
+msgid ""
+"To play an internet radio station, choose the radio station you wish to play "
+"from the list and press the <key>Spacebar</key>, or choose "
+"<guiseq><gui>Playback</gui><gui>Play</gui></guiseq> from the Banshee menu."
+msgstr ""
+"インターネットラジオステーションを再生するには、再生したいラジオステーション"
+"をリストから選択し、<key>スペースキー</key>を押すか、Bansheeのメニューから"
+"<guiseq><gui>再生</gui><gui>再生</gui></guiseq>を選びます。"
+
+#: C/play-queue.page:9(desc)
+msgid "Add media to your play queue."
+msgstr "メディアを再生キューに追加する"
+
+#: C/play-queue.page:18(title)
+msgid "Play Queue"
+msgstr "再生キュー"
+
+#: C/play-queue.page:20(p)
+msgid ""
+"The <gui>Play Queue</gui> allows you to add music to play in a sequential "
+"order. You can add many tracks to let you listen to hours of music non-stop. "
+"You can add individual tracks or entire albums, and sort or re-order them."
+msgstr ""
+"<gui>再生キュー</gui>に音楽を追加すると順番に再生されます。音楽をノンストップ"
+"で聞き続けられるぐらい多くのトラックを追加することができます。また、個々のト"
+"ラックまたはアルバム全体を追加することができます。それらをソートしたり、再生"
+"順を並び替えることができます。"
+
+#: C/play-queue.page:26(title)
+msgid "Add Music to the Play Queue"
+msgstr "楽曲を再生キューに追加する"
+
+#: C/play-queue.page:28(p)
+msgid ""
+"From your music library, you will need to select the music tracks or albums "
+"you want to add to the play queue."
+msgstr ""
+"音楽ライブラリから、トラックやアルバムを選択して再生キューに追加する必要があ"
+"ります。"
+
+#: C/play-queue.page:32(p)
+msgid ""
+"To add an entire album to the Play Queue, using your mouse press and hold "
+"the album and drag the album over <gui>Play Queue</gui> in the far left "
+"window pane."
+msgstr ""
+"再生キューにアルバム全体を追加するには、アルバムをマウスでドラッグし、ウィン"
+"ドウで左側の<gui>再生キュー</gui>の上にアルバムをドロップします。"
+
+#: C/play-queue.page:37(p)
+msgid ""
+"You can add music tracks to the Play Queue individually or as a group. To "
+"add an individual file, drag and drop it over the <gui>Play Queue</gui> in "
+"the far left window pane, or right click the track and choose <gui>Add to "
+"Play Queue</gui>."
+msgstr ""
+"個別のファイルまたはグループのファイルを再生キューに追加することができます。"
+"個々のファイルを追加するにはファイルをドラッグして、ウィンドウの一番左の<gui>"
+"再生キュー</gui>の上にドロップするか、トラックで右クリックして<gui>再生キュー"
+"へ追加</gui>を選びます。"
+
+#: C/play-queue.page:43(p)
+msgid ""
+"You can select multiple files by using your mouse and pressing <key>Control</"
+"key> and choosing each file with your mouse or select a range of files by "
+"pressing <key>Shift</key> and clicking twice to select that range of files. "
+"You can then drag and drop it over the <gui>Play Queue</gui> in the far left "
+"window pane or right click the tracks and choose <gui>Add to Play Queue</"
+"gui>."
+msgstr ""
+"複数のファイルを選択するには、マウスを使用して<key>Control</key>を押しながら"
+"各ファイルの選択を繰り替えすか、<key>Shift</key>を押しながら始点と終点を決め"
+"て、その範囲のファイルを選択します。そうして、<gui>再生キュー</gui>に選択した"
+"ファイルをドラッグアンドドロップするか、選択したファイルの上で右クリックし"
+"<gui>再生キューへ追加</gui>を選びます。"
+
+#: C/play-queue.page:56(title)
+msgid "Organize Your Play Queue"
+msgstr "プレイリストを整理する"
+
+#: C/play-queue.page:58(p)
+msgid ""
+"Your Play Queue is organized in the order of the tracks you added. The first "
+"tracks or albums you added to the queue will be the first to be played. You "
+"can re-order your Play Queue by using your mouse and dragging and dropping a "
+"track or group of tracks in the list. Choose the track(s) you wish to re-"
+"order with your mouse and release your mouse over the number or place in the "
+"list you wish those files to be in the queue."
+msgstr ""
+"再生キューはトラックを追加した順番で構成されています。再生キューに最初に登録"
+"したトラック、またはアルバムから再生されていきます。マウスを使って並べ替えし"
+"たいトラックをリスト内でドラッグアンドドロップすることで再生順を変更できま"
+"す。"
+
+#: C/play-queue.page:70(title)
+msgid "Removing Tracks from the Play Queue"
+msgstr "プレイリストからトラックを削除中"
+
+#: C/play-queue.page:72(p)
+msgid ""
+"You can remove an individual track, a group of tracks, or clear your entire "
+"play queue."
+msgstr ""
+"個々のトラック、トラックのグループを再生キューから削除したり、再生キュー全体"
+"をクリアできます。"
+
+#: C/play-queue.page:76(p)
+msgid ""
+"To remove an individual track or group of tracks, select the track with your "
+"mouse and then press <key>Delete</key>."
+msgstr ""
+"削除するには個々のトラックまたはグループのトラックをマウスで選択し、"
+"<key>Delete</key>を押します。"
+
+#: C/play-queue.page:80(p)
+msgid ""
+"To clear your entire Play Queue, press the <gui>Clear</gui> button in the "
+"upper right hand corner of the Play Queue."
+msgstr ""
+"再生キューの全体をクリアするには、再生キューのウィンドウの右上の<gui>クリア</"
+"gui>ボタンをクリックします。"
+
+#: C/manage-tags.page:10(desc)
+msgid "Edit and change music tags and metadata."
+msgstr "楽曲タグとメタデータの編集および変更"
+
+#: C/manage-tags.page:25(title)
+msgid "Music Metadata"
+msgstr "楽曲のメタデータ"
+
+#: C/manage-tags.page:29(title)
+msgid "Music metadata"
+msgstr "楽曲のメタデータ"
+
+#: C/manage-tags.page:31(p)
+msgid ""
+"Digital music contains metadata that stores information in the music file "
+"including the artist, album, year recorded, genre, and more. Almost all "
+"music purchased over the internet will have the metadata already embedded "
+"and if you import music from CDs, Banshee will include the metadata when "
+"ripping the CD if available. For more information on ripping CDs and "
+"including the metadata see the <link xref=\"import\"/>."
+msgstr ""
+"音楽ファイルの中の情報にはアーティスト、アルバム名、録音した年、ジャンルなど"
+"がメタデータが含まれています。インターネット上で購入したほぼすべての音楽ファ"
+"イルは、メタデータがすでに埋め込まれており、BansheeでCDからリッピングする場合"
+"は可能な限りメタデータを含んでリッピングします。メタデータを含んでCDをリッピ"
+"ングする方法の詳細については<link xref=\"import\"/>を参照してください。"
+
+#: C/manage-tags.page:39(p)
+msgid ""
+"Popular metadata formats are ID3v1 and ID3v2 for MP3 files and Vorbis "
+"comments for OGG Vorbis files."
+msgstr ""
+"一般的によく使われるメタデータ形式としては、MP3ファイルではID3v1とID3v2、OGG "
+"VorbisファイルではVorbis commentsがあります。"
+
+#: C/manage-tags.page:42(p)
+msgid ""
+"If you have imported songs that do not contain metadata, <app>Banshee</app> "
+"will display <gui>Unknown</gui> for most fields in the library."
+msgstr ""
+"もし、メタデータが含まれていない楽曲をインポートした場合、<app>Banshee</app>"
+"のライブラリ内の多くの項目に<gui>不明</gui>と表示されます。"
+
+#: C/manage-tags.page:50(title)
+msgid "Edit Your Metadata"
+msgstr "メタデータを編集する"
+
+#: C/manage-tags.page:52(p)
+msgid ""
+"You can change and edit the metadata of your songs. Select the song or songs "
+"you want to update and hit the <key>E</key>, choose <guiseq><gui>Edit</"
+"gui><gui>Edit Track Information</gui></guiseq> from the menu, or use your "
+"mouse and right click on the files and select <gui>Edit Track Information</"
+"gui>."
+msgstr ""
+"トラックの情報を変更できます。情報を変更したいトラックを選択し<key>E</key>を"
+"押すか、Bansheeのメニューから<guiseq><gui>編集</gui><gui>トラック情報を編集</"
+"gui></guiseq>を選びます。もしくは選択したトラックの上で右クリックして<gui>ト"
+"ラック情報を編集</gui>を選びます。"
+
+#: C/manage-tags.page:59(p)
+msgid ""
+"A dialog box will appear that shows the song's metadata and allow you to "
+"change or update it. The default fields displayed include:"
+msgstr ""
+"ダイアログボックスにはトラックのメタデータ情報が表示されます。この情報は変更"
+"および更新することができます。デフォルトで表示される項目には次のものがありま"
+"す。"
+
+#: C/manage-tags.page:63(gui)
+msgid "Track Title"
+msgstr "トラックタイトル"
+
+#: C/manage-tags.page:64(gui)
+msgid "Track Artist"
+msgstr "アーティスト"
+
+#: C/manage-tags.page:65(gui)
+msgid "Album Title"
+msgstr "アルバム"
+
+#: C/manage-tags.page:66(gui)
+msgid "Genre"
+msgstr "ジャンル"
+
+#: C/manage-tags.page:67(gui)
+msgid "Track Number"
+msgstr "トラック番号"
+
+#: C/manage-tags.page:68(gui)
+msgid "Disc Number"
+msgstr "ディスク番号"
+
+#: C/manage-tags.page:69(gui) C/manage-playlists.page:109(gui)
+msgid "Year"
+msgstr "年"
+
+#: C/manage-tags.page:72(p)
+msgid ""
+"Update the song's information. If you have selected multiple songs to edit "
+"press the right arrow icon to the right of the <gui>Track Title</gui> field "
+"or press the <gui>Forward</gui> button at the bottom of the dialog when "
+"finished with each song. When you have completed editing all metadata, press "
+"<gui>Save</gui>."
+msgstr ""
+"トラックの情報を編集する時、もし複数のトラックを選択した場合には個々のトラッ"
+"クの情報を入力した後に、<gui>タイトル</gui>の項目の右下の<gui>進む</gui>ボタ"
+"ンを押して、すべてのメタデータの編集がおわった後に<gui>保存</gui>をクリックし"
+"ます。"
+
+#: C/manage-playlists.page:10(desc)
+msgid "Create and manage playlists."
+msgstr "プレイリストの作成と管理"
+
+#: C/manage-playlists.page:19(title) C/keyboardshortcuts.page:69(title)
+msgid "Playlists"
+msgstr "プレイリスト"
+
+#: C/manage-playlists.page:21(p)
+msgid ""
+"Playlists allow you to create and save a list of music tracks to be played "
+"in a specific order. Playlists are convenient to create a list of your "
+"favorite songs or to split your library into smaller lists that are easy to "
+"browse through. Some portable media players even allow you to transfer the "
+"playlist so you can take it with you on the go."
+msgstr ""
+"プレイリストは作成して、音楽トラックを任意の順番で再生するリストを保存するこ"
+"とができます。プレイリストはあなたのお気に入りの曲のリストを作成したり、ライ"
+"ブラリの中を分割して簡単に見渡すことができ便利です。一部のポータブルミュー"
+"ジックプレーヤーは、外出先でもプレイリスト通りに聴くことができるようにプレイ"
+"リストを転送することができます。"
+
+#: C/manage-playlists.page:28(p)
+msgid ""
+"Banshee supports normal playlists, which include songs you add to the "
+"playlist, as well as smart playlists. Smart Playlists are automatically "
+"generated playlists based on your listening habits, favorite music, or more."
+msgstr ""
+"Bansheeは、ノーマルなプレイリストをサポートします。あなたが追加した楽曲がプレ"
+"イリストに含まれています。スマートプレイリストはあなたの再生頻度、音楽の好み"
+"などの情報を元に自動的に生成されるプレイリストのことです。"
+
+#: C/manage-playlists.page:34(title)
+msgid "Normal Playlists"
+msgstr "通常のプレイリスト"
+
+#: C/manage-playlists.page:36(p)
+msgid ""
+"A normal playlist is a list of songs that you add and manage. You might want "
+"to create your own list of songs by your favorite artist from multiple "
+"albums, your latest favorite songs, or an upbeat playlist to listen to while "
+"you exercise."
+msgstr ""
+"通常のプレイリストは曲の追加および管理を行うリストです。あなたの好きなアー"
+"ティストの曲の独自のリストを複数のアルバムから作成することができます。たとえ"
+"ば、最新の好きな曲のプレイリストや、運動中に聴くためアップビートのプレイリス"
+"トなどといった感じです。"
+
+#: C/manage-playlists.page:42(p)
+msgid ""
+"You can create a new playlist by pressing <keyseq><key>Control</key><key>N</"
+"key></keyseq>, from the menu choosing <guiseq><gui>Media</gui><gui>New "
+"Playlist</gui></guiseq> or by selecing the track(s) you would like to add to "
+"the playlist. Select the track(s), right click them, and choose "
+"<guiseq><gui>Add to Playlist</gui><gui>New Playlist</gui></guiseq>. You can "
+"also drag and drop them to a new playlist by selecting the track(s) and "
+"dragging them to the left hand window pane over <gui>Music</gui>. As you "
+"drag it over <gui>Music</gui>, a new option <gui><em>New Playlist</em></gui> "
+"will appear and you can drop the track(s) over <gui><em>New Playlist</em></"
+"gui> to add them to the playlist. You can repeat this process until you have "
+"added all the tracks you want in the playlist."
+msgstr ""
+"プレイリストを作成するには、トラックを選択した状態で<keyseq><key>Control</"
+"key><key>N</key></keyseq>を押すか、Bansheeのメニューから<guiseq><gui>メディア"
+"</gui><gui>新しいプレイリスト</gui></guiseq>を選びます。選択されたトラックの"
+"上で右クリックを行いメニューから<guiseq><gui>プレイリストへ追加</gui><gui>新"
+"しいプレイリスト</gui></guiseq>を選択しても構いません。新しいプレイリストに追"
+"加したいトラックを選択して、左側の<gui>音楽</gui>のアイコンに対してドラッグし"
+"て<gui><em>新しいプレイリスト</em></gui>を選んでも構いません。<gui><em>新しい"
+"プレイリスト</em></gui>の中にトラックが追加されます。プレイリストに必要なト"
+"ラックが追加され終わるまで、この作業を繰り返し行います"
+
+#: C/manage-playlists.page:56(p)
+msgid ""
+"To give your playlist its own name, select the playlist and right click on "
+"the playlist and press <gui>Rename Playlist</gui> and enter the name of your "
+"playlist."
+msgstr ""
+"プレイリストに独自の名前を付けるには、プレイリストを右クリックして<gui>名前の"
+"変更</gui>を選びます。そして、プレイリスト名を入力した後にEnterキーを押しま"
+"す。"
+
+#: C/manage-playlists.page:61(p)
+msgid ""
+"You can change the order of the playlist by dragging and dropping the song "
+"to the new position in the playlist. Songs can only be re-ordered in the "
+"playlist when none of the columns are sorted. To unsort a column, press the "
+"column until the up or down arrow is no longer showing and the column is "
+"blank and then re-order the playlist."
+msgstr ""
+"プレイリストからトラックをドラッグアンドドロップすることによって、順番を新し"
+"い位置に変更することができます。列のいずれかがソートされている場合、トラック"
+"だけプレイリストで並び替えることができます。ソートされていない列にて列のヘッ"
+"ダーの上向き矢印または下向き矢印をクリックするとソートされます。"
+
+#: C/manage-playlists.page:68(p)
+msgid ""
+"To remove a track from the playlist, select the track(s) you wish to remove. "
+"Press the <key>Delete</key>, from the menu choose <guiseq><gui>Edit</"
+"gui><gui>Remove from Playlist</gui></guiseq> or right click the track(s) "
+"with your mouse and press <gui>Remove from Playlist</gui>."
+msgstr ""
+"プレイリストからトラックを削除する場合、削除したいトラックを選択して"
+"<key>Delete</key>を押します。またはBansheeのメニューから<guiseq><gui>編集</"
+"gui><gui>プレイリストから削除</gui></guiseq>を選びます。もしくは選択したト"
+"ラックで右クリックし、<gui>プレイリストから削除</gui>を選びます。"
+
+#: C/manage-playlists.page:76(title)
+msgid "Smart Playlist"
+msgstr "スマートプレイリスト"
+
+#: C/manage-playlists.page:78(p)
+msgid ""
+"Smart Playlists allow you to quickly generate a dynamic playlist based on a "
+"number of pre-set variables. You can quickly create a new playlist based on "
+"a specific artist, favorites or more."
+msgstr ""
+"スマートプレイリストを作ることにより、あらかじめ設定されたルールに基づいて迅"
+"速に動的なプレイリストを作成することができます。特定のアーティスト、お気に入"
+"り、その他のルールに基づいて新しいプレイリストを作成することができます。"
+
+#: C/manage-playlists.page:83(p)
+msgid ""
+"To create a new Smart Playlist, from the menu choose <guiseq><gui>Media</"
+"gui><gui>New Smart Playlist</gui></guiseq>. You will be presented with a "
+"dialog to create a new Smart Playlist. Enter the name of your playlist and "
+"then choose the criteria your playlist should be based on. You can choose "
+"from any field included in the song's meatadata, such as Album, Artist or "
+"Year. Choose the criteria and then choose from one of the following:"
+msgstr ""
+"新しいスマートプレイリストを作成するには、Bansheeのメニューから<guiseq><gui>"
+"メディア</gui><gui>新しいスマートプレイリストを作成</gui></guiseq>を選択して"
+"ください。新しいスマートプレイリストを作成するためのダイアログが表示されま"
+"す。プレイリストの名前を入力し、プレイリストが基準とすべき項目を選択してくだ"
+"さい。トラックの情報のいずれかの項目がアルバム、アーティスト、発売された年な"
+"ど次の情報から基準を選択します。"
+
+#: C/manage-playlists.page:93(p) C/manage-playlists.page:109(gui)
+#: C/manage-playlists.page:113(gui)
+msgid "is"
+msgstr "等しい"
+
+#: C/manage-playlists.page:94(p)
+msgid "is not"
+msgstr "等しくない"
+
+#: C/manage-playlists.page:95(p)
+msgid "less than"
+msgstr "以後"
+
+#: C/manage-playlists.page:96(p)
+msgid "more than"
+msgstr "以前"
+
+#: C/manage-playlists.page:97(p)
+msgid "at most"
+msgstr "多くて"
+
+#: C/manage-playlists.page:98(p)
+msgid "at least"
+msgstr "少なくて"
+
+#: C/manage-playlists.page:101(p)
+msgid ""
+"You can also press the <gui>+</gui> button to add an addition query to the "
+"Smart Playlist. For example, you could create a smart playlist that includes "
+"all songs from 2010 that you rated 5 stars. To create this playlist you "
+"would choose:"
+msgstr ""
+"<gui>+</gui>ボタンを押すことによって、スマートプレイリストに追加する項目を増"
+"やせます。たとえば、2010年に発売されたすべての曲で評価が5つ星であるものという"
+"スマートプレイリストを作成することができます。このプレイリストを作成するには"
+"次の項目を選びます。"
+
+#: C/manage-playlists.page:110(gui)
+msgid "2010"
+msgstr "2010"
+
+#: C/manage-playlists.page:113(gui)
+msgid "Rating"
+msgstr "評価"
+
+#: C/manage-playlists.page:114(p)
+msgid "<gui/>5 stars"
+msgstr "<gui/>5つ星"
+
+#: C/manage-playlists.page:118(p)
+msgid ""
+"You can then optionally select how many songs are included by pressing the "
+"<gui>Limit</gui> to checkbox and choosing the number of songs to be included."
+msgstr ""
+"選択する曲の数が多すぎる場合、必要に応じて<gui>制限する</gui>のチェックボック"
+"スを押すと、曲の数を絞り込むことができます。"
+
+#: C/manage-playlists.page:123(p)
+msgid ""
+"Banshee also includes smart playlists already created for you. Press the "
+"<gui>Open in editor</gui> button to view how the playlist created was or to "
+"modify it. If you press <gui>Create and save</gui> the playlist will be "
+"automatically generated and saved for you. The following playlists are "
+"included:"
+msgstr ""
+"Bansheeには、あらかじめ作成されているスマートプレイリストがいくつかあります。"
+"<gui>編集</gui>ボタンを押すことで、そのスマートプレイリストがどのように作られ"
+"たのかを見ることができます。また、それを変更することができます。<gui>作成と保"
+"存</gui>を押すとスマートプレイリストが作成され保存されます。あらかじめ用意さ"
+"れているスマートプレイリストには次のものがあります。"
+
+#: C/manage-playlists.page:131(title)
+msgid "Banshee Smart Playlists"
+msgstr "Bansheeスマートプレイリスト"
+
+#: C/manage-playlists.page:132(p)
+msgid "Favorites (Songs rated four and five stars)"
+msgstr "お気に入り（評価が4つ星か5つ星の楽曲）"
+
+#: C/manage-playlists.page:133(p)
+msgid "Recent Favorites (Songs listened to often in the past week)"
+msgstr "最近のお気に入り（最近１週間でよく再生された楽曲）"
+
+#: C/manage-playlists.page:135(p)
+msgid "Recently Added (Songs imported within the last week)"
+msgstr "最近追加した項目 (先週インポートされた楽曲)"
+
+#: C/manage-playlists.page:136(p)
+msgid "Unheard (Songs that have not been played or skipped)"
+msgstr "再生されていない曲（再生されていないかスキップされた楽曲）"
+
+#: C/manage-playlists.page:137(p)
+msgid "Neglected Favorites (Favorites not played in over two months)"
+msgstr "注目されていない（お気に入りだが2ヶ月間再生されていない）"
+
+#: C/manage-playlists.page:139(p)
+msgid "700 MB of Favorites (A data CD worth of favorite songs)"
+msgstr "お気に入り中の700MB（お気に入りの楽曲から選ばれたデータCD）"
+
+#: C/manage-playlists.page:140(p)
+msgid "80 Minutes of Favorites (An audio CD worth of favorite songs)"
+msgstr "お気に入り中の80分（お気に入りの楽曲から選ばれた音楽CD）"
+
+#: C/manage-playlists.page:142(p)
+msgid "Unrated (Songs that haven't been rated)"
+msgstr "未評価（評価がなされていない楽曲）"
+
+#: C/manage-coverart.page:9(desc)
+msgid "Manage or change your albums cover art."
+msgstr "アルバムのカバーアートの管理と変更"
+
+#: C/manage-coverart.page:24(title)
+msgid "Cover art"
+msgstr "カバーアート"
+
+#: C/lastfm.page:9(desc)
+msgid "Enable Last.fm, song reporting and Last.fm radio."
+msgstr "Last.fmを有効にすれば、曲の情報送信とLast.fmラジオが利用できます"
+
+#: C/lastfm.page:24(title)
+msgid "Last.fm"
+msgstr "Last.fm"
+
+#: C/lastfm.page:26(p)
+msgid ""
+"Last.fm is a popular online service that offers both free and paid versions. "
+"Last.fm offers information on music artists and albums and if you create a "
+"user profile Last.fm allows you to track the music you listen to in Banshee "
+"for free. If you subscribe as a paying member, you can also listen to "
+"streaming music from Last.fm in various music clients, including Banshee. "
+"Last.fm offers multiple channels to stream, including recommended music for "
+"you based on your listening habits, your favorites and more."
+msgstr ""
+"Last.fmは人気のあるオンラインサービスです。無料と有料のバージョンが提供されて"
+"います。Last.fmを使うことによってLast.fmはユーザープロファイルを作成すること"
+"により、音楽アーティストやアルバムに関する情報を提供しています。Last.fmから自"
+"由に音楽を追跡することができます。費用を支払ってLast.fmのプレミアムメンバーに"
+"加入した際には、Bansheeを含む多くのミュージックプレイヤーで、Last.fmから音楽"
+"をストリーミングで聴くことができます。Last.fmはあなたの視聴傾向、あなたの好み"
+"などに基づいて、お勧めする音楽を含む複数のチャネルをストリーミングとして提供"
+"します。"
+
+#: C/lastfm.page:35(title)
+msgid "Enable Last.fm"
+msgstr "Last.fmを有効化"
+
+#: C/lastfm.page:36(p)
+msgid ""
+"To get the most out of Last.fm, you will want to create a Last.fm profile. "
+"Visit <link href=\"http://www.last.fm/join\">http://www.last.fm/join</link> "
+"to create an account or choose <guiseq><gui>Edit</gui><gui>Preferences</"
+"gui></guiseq> from the Banshee menu. Then press the <gui>Source Specific</"
+"gui> tab and press the <gui>Source</gui> drop down menu and choose <gui>Last."
+"fm</gui> and select the <em>Sign up for Last.fm</em> link."
+msgstr ""
+"Last.fmを最大限に活用するには、Last.fmのプロファイルを作成することになるで"
+"しょう。ウェブブラウザで<link href=\"http://www.lastfm.jp/join\">にアクセス"
+"し、マイプロフィールを作成するか、Bansheeのメニューから<guiseq><gui>編集</"
+"gui><gui>設定</gui></guiseq>を選択肢、<gui>情報個別の項目</gui>のタブを押し"
+"て、<gui>ソース</gui>のドロップダウンメニューから<gui>Last.fm</gui>を選択しま"
+"す。そして、<em>Last.fmにサインアップする</em>のリンクをクリックします。"
+
+#: C/lastfm.page:45(p)
+msgid ""
+"To enable Banshee to report the songs you play on your computer to Last.fm, "
+"sign in to Last.fm in Banshee in the <gui>Source Specific</gui> preferences. "
+"Enter your username and press the <gui>Log in to Last.fm</gui> button. You "
+"will be directed to a Last.fm webpage in your browser to grant Banshee "
+"access. Press the <gui>Yes, allow access</gui> link in your browser and you "
+"will be redirected to a webpage that displays a message that Banshee now has "
+"access to Last.fm. Return to Banshee and press the <gui>Finish Logging In</"
+"gui> button to complete the process."
+msgstr ""
+"Bansheeで再生中の曲をレポートにするには、まず、Bansheeの設定の<gui>情報個別の"
+"項目</gui>からLast.fmにログインします。ユーザー名を入力し、<gui>Last.fmへログ"
+"イン</gui>を押すとBansheeからウェブブラウザが自動的に起動し、直接Last.fmの"
+"ウェブページにアクセスします。ウェブブラウザで<gui>Yes, allow access</gui>の"
+"リンクをクリックすると、BansheeがLast.fmのアクセス権を与えたという画面になり"
+"ます。Bansheeの画面に戻り、<gui>ログインを完了</gui>ボタンを押すと処理が完了"
+"します。"
+
+#: C/lastfm.page:58(title)
+msgid "Enable Last.fm Song Reporting"
+msgstr "曲の情報送信を有効にします"
+
+#: C/lastfm.page:59(p)
+msgid ""
+"After you have successfully linked Banshee to your Last.fm profile, to "
+"enable Banshee to report the songs to your Last.fm profile, in the "
+"<gui>Source Specific</gui> tab in Banshee's preferences, press the "
+"<gui>Enable Song Reporting</gui> checkbox. If you have an active internet "
+"connection, Banshee will now send Last.fm information regarding the songs "
+"you play. To view your play history, visit your profile on the Last.fm "
+"website. Last.fm will automatically update your music metadata if any of "
+"your artist, song title or album information is incorrect."
+msgstr ""
+"Last.fmのプロファイルにBansheeを正常にリンクした後、BansheeはあなたのLast.fm"
+"のプロフィールに曲をレポートすることができるようになります。Bansheeの<gui>情"
+"報個別の項目</gui>のタブの中にある設定項目で<gui>曲の情報送信を有効にする</"
+"gui>のチェックボックスを有効にすると、インターネット接続が有効な場合、Banshee"
+"は現在あなたは再生中の曲についての情報がLast.fmに送信されます。あなたの再生履"
+"歴を表示するには、Last.fmのWebサイトでプロフィールを確認してください。アー"
+"ティストや曲のタイトル、アルバム情報のいずれかが間違っている場合、Last.fmは自"
+"動的に音楽のメタデータを更新します。"
+
+#: C/lastfm.page:72(title)
+msgid "Listen to Last.fm Radio"
+msgstr "Last.fmラジオを聴けます"
+
+#: C/lastfm.page:73(p)
+msgid ""
+"Last.fm radio is free for residents of the United States, United Kingdom and "
+"Germany. Residents of other countries will have to pay for a premium account "
+"with Last.fm to listen to radio. Premium members, in all countries, also "
+"receive premium radio features: listening to playlists and stations of music "
+"you've loved or tagged."
+msgstr ""
+"Last.fmラジオは、アメリカ、イギリス、ドイツの居住者向けの無料のサービスです。"
+"その他の国の居住者はラジオを聞く際にLast.fmのプレミアムアカウントの支払いが必"
+"要となります。プレミアムメンバーは、すべての国で自由にLast.fmラジオを聴くこと"
+"ができます。また、プレイリスト機能や音楽放送局を聴くこと、あなたが気に入った"
+"ラジオ曲にタグ付けすることもできます。"
+
+#: C/lastfm.page:80(p)
+msgid ""
+"In Banshee's sources pane on the left hand side, you will now have a Last.fm "
+"section, including your Last.fm radio stations. You will need an active "
+"internet connection to listen to Last.fm radio. Choose the radio station you "
+"wish to listen to and Banshee will communicate with Last.fm to populate "
+"songs for that radio station. Press the <gui>Play</gui> button in Banshee or "
+"<key>Spacebar</key> to start streaming a Last.fm radio station. You can also "
+"press the <gui>Next</gui> button in Banshee, <key>N</key> or choose "
+"<guiseq><gui>Playback</gui><gui>Next</gui></guiseq> to play the next song in "
+"your radio station queue."
+msgstr ""
+"Bansheeの左側のソースの中で、Last.fmのソースを選ぶと、あなたが視聴できるLast."
+"fmのラジオステーションが表示されます。Last.fmのラジオを聴く際にはインターネッ"
+"ト接続が必要になります。あなたが聴きたいラジオステーションを選択して、Banshee"
+"がLast.fmのラジオステーションと通信してくれるのを待ってください。Bansheeの"
+"<gui>再生</gui>ボタンを押すか、<key>スペースキー</key>を押すとLast.fmのラジオ"
+"ステーションからストリーミングが始まります。Bansheeの<gui>次へ</gui>ボタンを"
+"押すか、<key>N</key>を押す、もしくはBansheeのメニューから<guiseq><gui>再生</"
+"gui><gui>次へ</gui></guiseq>を選ぶとラジオステーションのキューの中で次の曲が"
+"再生されます。"
+
+#: C/keyboardshortcuts.page:7(desc) C/advanced.page:27(title)
+#: C/advanced.page:29(title)
+msgid "Keyboard Shortcuts"
+msgstr "キーボードショートカット"
+
+#: C/keyboardshortcuts.page:24(title)
+msgid "Control Banshee using Keyboard Shortcuts"
+msgstr "キーボードショートカットでBansheeを操作する"
+
+#: C/keyboardshortcuts.page:28(title)
+msgid "Playback Control"
+msgstr "再生操作"
+
+#: C/keyboardshortcuts.page:32(gui) C/keyboardshortcuts.page:53(gui)
+#: C/keyboardshortcuts.page:73(gui) C/keyboardshortcuts.page:90(gui)
+#: C/keyboardshortcuts.page:107(gui)
+msgid "Key"
+msgstr "キー"
+
+#: C/keyboardshortcuts.page:32(gui) C/keyboardshortcuts.page:53(gui)
+#: C/keyboardshortcuts.page:73(gui) C/keyboardshortcuts.page:90(gui)
+#: C/keyboardshortcuts.page:107(gui)
+msgid "Action"
+msgstr "アクション"
+
+#: C/keyboardshortcuts.page:35(p)
+msgid "Space Bar"
+msgstr "スペースキー"
+
+#: C/keyboardshortcuts.page:35(p)
+msgid "Play or Pause the current song"
+msgstr "現在の楽曲を再生または停止します"
+
+#: C/keyboardshortcuts.page:38(p) C/keyboardshortcuts.page:76(key)
+msgid "N"
+msgstr "N"
+
+#: C/keyboardshortcuts.page:38(p)
+msgid "Play the next song"
+msgstr "次の楽曲を再生します"
+
+#: C/keyboardshortcuts.page:41(p)
+msgid "B"
+msgstr "B"
+
+#: C/keyboardshortcuts.page:41(p)
+msgid "Play the previous song"
+msgstr "前の楽曲を再生します"
+
+#: C/keyboardshortcuts.page:49(title)
+msgid "Library Interaction"
+msgstr "ライブラリの相互作用"
+
+#: C/keyboardshortcuts.page:56(p)
+msgid "<key>/</key>, <keyseq><key>Control</key><key>F</key></keyseq>"
+msgstr "<key>/</key>, <keyseq><key>Control</key><key>F</key></keyseq>"
+
+#: C/keyboardshortcuts.page:56(p)
+msgid "Move the focus to the search box"
+msgstr "検索ボックスにフォーカスを移動します"
+
+#: C/keyboardshortcuts.page:60(key) C/keyboardshortcuts.page:76(key)
+#: C/keyboardshortcuts.page:114(key) C/keyboardshortcuts.page:118(key)
+#: C/keyboardshortcuts.page:123(key) C/keyboardshortcuts.page:127(key)
+#: C/keyboardshortcuts.page:132(key) C/keyboardshortcuts.page:137(key)
+msgid "Control"
+msgstr "操作"
+
+#: C/keyboardshortcuts.page:60(key)
+msgid "I"
+msgstr "I"
+
+#: C/keyboardshortcuts.page:61(p)
+msgid "Open import media dialog"
+msgstr "メディアのインポートダイアログを開きます"
+
+#: C/keyboardshortcuts.page:76(p)
+msgid "Create New Playlist"
+msgstr "新しいプレイリストを作成する"
+
+#: C/keyboardshortcuts.page:86(title) C/add-podcast.page:26(title)
+msgid "Podcasts"
+msgstr "ポッドキャスト"
+
+#: C/keyboardshortcuts.page:93(key)
+msgid "Y"
+msgstr "Y"
+
+#: C/keyboardshortcuts.page:93(p)
+msgid "Mark the selected episodes as old"
+msgstr "マークを付けたエピソードは古いものです。"
+
+#: C/keyboardshortcuts.page:103(title)
+msgid "Interface"
+msgstr "インタフェース"
+
+#: C/keyboardshortcuts.page:110(key)
+msgid "F"
+msgstr "F"
+
+#: C/keyboardshortcuts.page:110(p)
+msgid "Toggle full-screen mode"
+msgstr "フルスクリーンを有効にする"
+
+#: C/keyboardshortcuts.page:114(key) C/keyboardshortcuts.page:118(key)
+msgid "A"
+msgstr "A"
+
+#: C/keyboardshortcuts.page:114(p)
+msgid "Select all songs in playlist view"
+msgstr "プレイリストにあるすべての楽曲を選択します"
+
+#: C/keyboardshortcuts.page:118(key)
+msgid "Shift"
+msgstr "Shift"
+
+#: C/keyboardshortcuts.page:119(p)
+msgid "Unselect all songs in playlist view"
+msgstr "プレイリストビューから、すべての楽曲の選択を外す"
+
+#: C/keyboardshortcuts.page:123(key)
+msgid "W"
+msgstr "W"
+
+#: C/keyboardshortcuts.page:123(p)
+msgid "Hide Banshee Window (Requires Notification Area Plug-in Enabled"
+msgstr ""
+"Bansheeウィンドウを隠す（通知領域アイコンのプラグインが有効化されている必要が"
+"あります）"
+
+#: C/keyboardshortcuts.page:127(key)
+msgid "Left Mouse Button"
+msgstr "左クリック"
+
+#: C/keyboardshortcuts.page:128(p)
+msgid "Play Previous Song (Requires Notification Area Plug-in Enabled"
+msgstr ""
+"前の楽曲を再生します（通知領域アイコンのプラグインが有効化されている必要があ"
+"ります）"
+
+#: C/keyboardshortcuts.page:132(key)
+msgid "Right Mouse Button"
+msgstr "右クリック"
+
+#: C/keyboardshortcuts.page:133(p)
+msgid "Play Next Song (Requires Notification Area Plug-in Enabled"
+msgstr ""
+"次の楽曲を再生します（通知領域アイコンのプラグインが有効化されている必要があ"
+"ります）"
+
+#: C/keyboardshortcuts.page:137(key)
+msgid "Middle Mouse Button"
+msgstr "中クリック"
+
+#: C/keyboardshortcuts.page:138(p)
+msgid "Toggle Play / Pause (Requires Notification Area Plug-in Enabled"
+msgstr ""
+"再生と停止を切り替える（通知領域アイコンのプラグインが有効化されている必要が"
+"あります）"
+
+#: C/itunes-import.page:8(desc)
+msgid ""
+"Import music and categorizations from the <app>iTunes</app> media player."
+msgstr ""
+"<app>iTunes</app>メディアプレイヤーから楽曲とカテゴリ分けをインポートする"
+
+#: C/itunes-import.page:12(title)
+msgid "Import your <app>iTunes</app> library"
+msgstr "<app>iTunes</app>ライブラリからインポートする"
+
+#: C/introduction.page:8(desc)
+msgid "Introduction to the <app>Banshee Media Player</app>."
+msgstr "<app>Bansheeメディア・プレイヤー</app>について"
+
+#: C/introduction.page:24(title)
+msgid "Introduction"
+msgstr "はじめに"
+
+#: C/introduction.page:26(p)
+msgid ""
+"<app>Banshee</app> is a media player that allows you to play your music, "
+"videos, and other media as well sync it with portable devices to take your "
+"media on the go."
+msgstr ""
+"<app>Banshee</app>はメディアプレイヤーです。音楽、ビデオ、その他のメディアの"
+"再生することができます。また、ポータブルデバイスとの同期して、外出先でも音楽"
+"やビデオを楽しめます。"
+
+#: C/introduction.page:31(p)
+msgid ""
+"<app>Banshee</app> includes features to import your media, manage its "
+"metadata, and play your music and videos."
+msgstr ""
+"<app>Banshee</app>にはメディアをインポート、メタデータの管理、音楽とビデオを"
+"再生する機能があります。"
+
+#: C/introduction.page:35(p)
+msgid ""
+"Banshee also helps you sync your music and videos to popular portable "
+"devices, such as digital audio players and smartphones. Banshee supports "
+"popular devices including most iPods, Sandisk and Creative MP3 players, and "
+"Android powered phones."
+msgstr ""
+"Bansheeはポータブルミュージックプレーヤーやスマートフォンなどの一般的な携帯機"
+"器に対して音楽やビデオを同期することができます。BansheeはほとんどのiPod、"
+"SandiskとCreative MP3プレーヤーなどの一般的なデバイス、また、Androidを搭載し"
+"た携帯電話をサポートしています。"
+
+#: C/index.page:24(title)
+msgid "Add, Remove &amp; Play"
+msgstr "追加と削除、再生"
+
+#: C/index.page:28(title)
+msgid "Manage &amp; Sort"
+msgstr "管理と並び替え"
+
+#: C/index.page:32(title)
+msgid "Sync your media with a portable music player"
+msgstr "ポータブルミュージックプレイヤーと楽曲を同期します"
+
+#: C/index.page:36(title)
+msgid "Add additional functionality to Banshee"
+msgstr "Bansheeに追加機能を加える"
+
+#: C/index.page:40(title)
+msgid "Advanced options and help"
+msgstr "詳細な設定とヘルプ"
+
+#: C/index.page:44(title)
+msgid "Common Problems"
+msgstr "一般的な問題"
+
+#: C/import.page:8(desc)
+msgid "Add music and videos from your computer to your Banshee library."
+msgstr ""
+"コンピュータ上の音楽ファイルやビデオファイルをBansheeのライブラリへ追加しま"
+"す。"
+
+#: C/import.page:15(name)
+msgid "Shaun McCance"
+msgstr "Shaun McCance"
+
+#: C/import.page:16(email)
+msgid "shaunm@gnome.org"
+msgstr "shaunm@gnome.org"
+
+#: C/import.page:21(title)
+msgid "Import music &amp; videos"
+msgstr "楽曲とビデオのインポート"
+
+#: C/import.page:23(p)
+msgid ""
+"You can import music and videos stored on your computer into Banshee. "
+"Imported files appear in your sources and can be edited and managed like any "
+"other media in Banshee."
+msgstr ""
+"お使いのコンピュータ上に保存された音楽やビデオをBansheeにインポートすることが"
+"できます。インポートされたファイルはソースに存在する既存のファイルと同じく編"
+"集や管理ができます。"
+
+#: C/import.page:27(p)
+msgid ""
+"To import music or video files on your computer, choose <guiseq><gui>Media</"
+"gui><gui>Import Media</gui></guiseq>. A dialog will appear with a number of "
+"choices."
+msgstr ""
+"コンピュータ上の音楽ファイルやビデオファイルをインポートするには、"
+"<guiseq><gui>メディア</gui><gui>メディアのインポート</gui></guiseq>を選びま"
+"す。ダイアログには選択肢がいくつか表示されます。"
+
+#: C/import.page:31(p)
+msgid ""
+"Plugins may add additional import choices. See <link xref=\"#plugins\"/> "
+"below."
+msgstr ""
+"プラグインによりインポート元の選択肢を追加することができます。 詳しくは<link "
+"xref=\"#plugins\"/>をご覧ください。"
+
+#: C/import.page:37(gui)
+msgid "Local Folders"
+msgstr "ローカルフォルダ"
+
+#: C/import.page:38(p)
+msgid ""
+"Choose this option to import all music and video files within a specified "
+"folder, including all subfolders. You will be prompted with a dialog to "
+"choose a folder to import from."
+msgstr ""
+"指定されたフォルダ内（すべてのサブフォルダを含め）のすべての音楽ファイルやビ"
+"デオファイルをインポートするには、このオプションを選択してください。インポー"
+"トするフォルダを選択するダイアログが表示されます。"
+
+#: C/import.page:43(gui)
+msgid "Local Files"
+msgstr "ローカルファイル"
+
+#: C/import.page:44(p)
+msgid ""
+"Choose this option to import only the specific file or files you select. You "
+"will be prompted with a dialog to choose the file or files to import."
+msgstr ""
+"このオプションを選んだ場合、特定のファイルだけをインポートしたり、選択した"
+"ファイルをインポートします。インポートしたいファイルを選択するダイアログが表"
+"示されます。"
+
+#: C/import.page:49(gui)
+msgid "Home Folder"
+msgstr "ホームフォルダ"
+
+#: C/import.page:50(p)
+msgid ""
+"Choose this option to import all music and video files in your entire home "
+"folder, including files in any subfolders."
+msgstr ""
+"ホームフォルダ内（すべてのサブフォルダ内のファイルを含む）のすべての音楽ファ"
+"イルやビデオファイルをインポートするには、このオプションを選択してください。"
+
+#: C/import.page:54(gui)
+msgid "Videos From Photos Folder"
+msgstr "写真のフォルダのビデオ"
+
+#: C/import.page:55(p)
+msgid ""
+"Many digital cameras can take short videos, and photo-management "
+"applications often download these videos directly into your Photos folder. "
+"Choose this option to import any videos that have been stored in your Photos "
+"folder."
+msgstr ""
+"多くのデジタルカメラは、短いビデオを撮ることができます。写真管理アプリケー"
+"ションの多くは写真のフォルダに直接これらのビデオをダウンロードします。写真の"
+"フォルダに保存されているすべてのビデオファイルをインポートするには、このオプ"
+"ションを選択してください。"
+
+#: C/import.page:63(p)
+msgid ""
+"You can safely import from a folder you have already imported from without "
+"worrying about duplicate entries in your library."
+msgstr ""
+"ライブラリ内のすでにインポートした重複したエントリを心配することなく、フォル"
+"ダから安全にインポートすることができます。"
+
+#: C/import.page:68(title)
+msgid "Import from a Playlist"
+msgstr "プレイリストからのインポート"
+
+#: C/import.page:69(p)
+msgid ""
+"You can also import music from playlists. Most playlist files end in "
+"<em>m3u</em>. To import from a playlist, from the Banshee menu choose "
+"<guiseq><gui>Media</gui><gui>Import Playlist</gui></guiseq> and locate the "
+"playlist file in your folder, select it and press <gui>Import</gui>."
+msgstr ""
+"プレイリストから楽曲をインポートすることができます。<em>m3u</em>形式の拡張子"
+"のほとんどのプレイリストファイルに対応しています。プレイリストからインポート"
+"するには、Bansheeのメニューから<guiseq><gui>メディア</gui><gui>プレイリストの"
+"インポート</gui></guiseq>を選び、プレイリストを含むフォルダを選択した後に"
+"<gui>インポート</gui>をクリックします。"
+
+#: C/import.page:78(title)
+msgid "Additional Import Sources"
+msgstr "追加のインポートソース"
+
+#: C/import.page:79(p)
+msgid ""
+"Plugins may add additional import choices. The following additional sources "
+"will be available if the appropriate plugins are enabled:"
+msgstr ""
+"プラグインにてインポート元の選択肢を追加することができます。また、適切なプラ"
+"グインが有効になっている場合、次の追加のソースが利用できるようになります："
+
+#: C/extensions.page:8(desc)
+msgid "Add additional functionality to Banshee."
+msgstr "Bansheeに追加機能を加える"
+
+#: C/extensions.page:23(title)
+msgid "Banshee Extensions"
+msgstr "Bansheeの拡張機能"
+
+#: C/extensions.page:27(title)
+msgid "Official Banshee Extensions"
+msgstr "公式のBanshee機能拡張"
+
+#: C/extensions.page:29(title)
+msgid "Manage extensions for Banshee"
+msgstr "Banshee機能拡張を管理する"
+
+#: C/extensions.page:34(title)
+msgid "Community Banshee Extensions"
+msgstr "コミュニティのBanshee機能拡張"
+
+#: C/extensions.page:36(title)
+msgid "Add community built extensions for Banshee"
+msgstr "コミュニティビルドのBanshee機能拡張を管理する"
+
+#: C/emusic.page:8(desc)
+msgid "Import music purchased from eMusic."
+msgstr "eMusicで購入した楽曲をインポートする"
+
+#: C/emusic.page:12(title)
+msgid "Import your eMusic tracks"
+msgstr "eMusicのトラックをインポートする"
+
+#: C/amazon.page:9(desc)
+msgid "Sync and purchase music from the Amazon MP3 Store."
+msgstr "Amazon MP3ストアで購入した楽曲を同期する"
+
+#: C/amazon.page:24(title)
+msgid "Amazon MP3 Store"
+msgstr "Amazon MP3ストア"
+
+#: C/amazon.page:26(p)
+msgid ""
+"Banshee supports downloading and importing music from the Amazon MP3 store. "
+"You can manually import Amazon music files, purchase music in your web "
+"browser or buy music inside of Banshee. Amazon only offers music for sale as "
+"an MP3 in certain countries and depending on your location, you may not be "
+"able to buy Amazon MP3s."
+msgstr ""
+"BansheeはAmazon MP3ストアから音楽のダウンロードとインポートをサポートしていま"
+"す。ウェブブラウザもしくはBansheeの中でAmazonから購入した音楽ファイルは手動で"
+"インポートすることができます。Amazonは一部の国ではMP3形式による音楽の販売を提"
+"供していますが、場所によってはAmazonからMP3ファイルを購入することができない場"
+"合もあります。"
+
+#: C/amazon.page:34(p)
+msgid ""
+"Banshee uses an Amazon affiliate code for all music purchases. All money "
+"made via this affiliate code is donated to the GNOME Foundation."
+msgstr ""
+"Bansheeは、すべての楽曲の購入に対してAmazonアフィリエイトコードを使います。こ"
+"のアフィリエイトコードで得たすべての利益はGNOME Foundationに寄付されます。"
+
+#: C/amazon.page:40(title)
+msgid "Purchase Amazon MP3s in your web browser"
+msgstr "ウェブブラウザからAmazon MP3を購入する"
+
+#: C/amazon.page:42(p)
+msgid ""
+"Music purchased from Amazon's MP3 store can be automatically downloaded and "
+"imported into Banshee. Banshee associates itself with the .amz file Amazon "
+"provides for MP3 purchases. When you buy music on Amazon, your web browser "
+"will download the .amz file and Banshee will automatically open it and begin "
+"the download and import the music."
+msgstr ""
+"楽曲をAmazon MP3ストアから購入した場合、自動的にダウンロードされてBansheeにイ"
+"ンポートされます。 Bansheeは、Amazonと連携して.amzファイルからMP3をダウンロー"
+"ドするための仕組みを提供しています。 Amazonで音楽を購入する場合、Webブラウザ"
+"は.amzファイルをダウンロードすると自動的にBansheeを開き、ダウンロードを開始し"
+"て楽曲をインポートします。"
+
+#: C/amazon.page:51(title)
+msgid "Buy Amazon MP3s in Banshee"
+msgstr "Banshee内でAmazon MP3を購入する"
+
+#: C/amazon.page:53(p)
+msgid ""
+"You can also search for songs on Amazon within Banshee. Choose the Amazon "
+"MP3 Store from the Banshee menu on the left. This will load the Amazon MP3 "
+"Store just as if you were in a web browser. You can search Amazon for the "
+"music you wish to buy and after logging in to Amazon, buy music with one "
+"click. Banshee will automatically download and import your purchase into the "
+"library."
+msgstr ""
+"Banshee内でAmazonで曲を検索することができます。Bansheeの左側のソースから"
+"Amazon MP3ストアを選択してください。これはウェブブラウザだった場合と同じく、"
+"Amazon MP3ストアが読み込まれます。Amazonにログインした後、購入したい音楽を検"
+"索することができ、ワンクリックで購入できます。購入した後、Bansheeは自動的にダ"
+"ウンロードし、ライブラリにインポートします。"
+
+#: C/amazon.page:63(title)
+msgid "Import Amazon MP3s manually"
+msgstr "Amazon MP3を手動でインポートする"
+
+#: C/amazon.page:65(p)
+msgid ""
+"When music is purchased from Amazon in a web browser, a file with the "
+"extension .amz is downloaded and saved to your hard drive. To import music "
+"purchased manually from Amazon, in Banshee choose <guiseq><gui>Media</"
+"gui><gui>Import Media</gui></guiseq> from the menu and select the *.amz file "
+"to be imported. Banshee will then open this file and connect to the Amazon "
+"MP3 store to begin the download."
+msgstr ""
+"ウェブブラウザからAmazon MP3ストアで音楽を購入した時、.amz形式の拡張を持った"
+"ファイルがハードディスクにダウンロードされます。Amazonから購入した音楽を手動"
+"でBansheeへインポートする場合、Bansheeのメニューから<guiseq><gui>メディア</"
+"gui><gui>メディアをインポート</gui></guiseq>を選び、.amzファイルを選択してイ"
+"ンポートを行います。Bansheeは指定されたファイルを開き、Amazon MP3ストアに接続"
+"し、ダウンロードが始まります。"
+
+#: C/amazon.page:74(p)
+msgid ""
+"Amazon .amz files are only active for a short time. If you do not download "
+"your music quickly, the file will expire and you cannot download your music "
+"from Amazon. Amazon does not publish how long files are active. It is "
+"recommended you download and import any purchases from Amazon within an hour "
+"of purchase."
+msgstr ""
+"Amazonの.amzファイルには短時間だけ有効なファイルです。購入した音楽をすぐにダ"
+"ウンロードしないでファイルが有効期限切れになるとAmazonから音楽をダウンロード"
+"することはできません。Amazonは.amzファイルがどのぐらいの期間有効なのか確認す"
+"る方法を公開していません。そのため、ダウンロード購入したらすぐにAmazonからイ"
+"ンポートすることをお勧めします。"
+
+#: C/advanced.page:8(desc)
+msgid "Get help for advanced actions."
+msgstr "詳細な使い方についてのヘルプ"
+
+#: C/advanced.page:23(title)
+msgid "Advanced Options and Help"
+msgstr "詳細なオプションとヘルプ"
+
+#: C/add-radio.page:11(desc)
+msgid "Add, remove and play internet radio stations in Banshee."
+msgstr "Banshee上でインターネットラジオステーションを再生、追加、削除します。"
+
+#: C/add-radio.page:26(title)
+msgid "Internet Radio"
+msgstr "インターネットラジオ"
+
+#: C/add-radio.page:29(title)
+msgid "What is Internet Radio?"
+msgstr "インターネットラジオとは？"
+
+#: C/add-radio.page:31(p)
+msgid ""
+"Internet radio stations are similar to regular radio stations, allowing an "
+"individual or organization to stream music live over the internet. Internet "
+"radio stations can be a simultaneous stream of a regular radio station, an "
+"amateur broadcasting their own station, or commercial internet radio "
+"stations that include live DJs and even commercials."
+msgstr ""
+"インターネットラジオステーションは、組織や個人がインターネット上で音楽のライ"
+"ブストリームを可能にします。これは通常のラジオステーションに似ています。イン"
+"ターネットラジオ局は、通常のラジオステーションの同時ストリーム、アマチュア放"
+"送独自のストリーム、またはライブDJやコマーシャルを含む商用インターネットラジ"
+"オステーションを行うことができます。"
+
+#: C/add-radio.page:41(title)
+msgid "Add Radio Station"
+msgstr "ラジオステーションを追加する"
+
+#: C/add-radio.page:43(p)
+msgid ""
+"To add an internet radio station to Banshee, press <gui>Add Station</gui> in "
+"the upper right hand corner of Banshee or, from the menu, choose "
+"<guiseq><gui>Media</gui><gui>Add Station</gui></guiseq>."
+msgstr ""
+"インターネットラジオステーションをBansheeへ追加するためには、Bansheeの右上に"
+"ある<gui>ステーションを追加</gui>をクリックするか、もしくは<guiseq><gui>メ"
+"ディア</gui><gui>ステーションを追加</gui></guiseq>を選びます。"
+
+#: C/add-radio.page:48(p)
+msgid ""
+"From the internet radio station's webpage, copy the link to their stream URL "
+"in your web browser. In most browsers, you can right click on the link and "
+"press <gui>Copy Link</gui>."
+msgstr ""
+"Webブラウザを使いインターネットラジオステーションのWebページからストリームの"
+"URLへのリンクをコピーしてください。ほとんどのブラウザでは、リンクの上で右ク"
+"リックしてメニューから<gui>リンクのURLをコピー</gui>を選びます。"
+
+#: C/add-radio.page:54(p)
+msgid ""
+"Banshee will prompt you to enter the <gui>Station Genre</gui>. Choose the "
+"kind of music the internet radio station plays from the available drop down "
+"selections. You will then need to enter the <gui>Station Name</gui>. Enter a "
+"name for the radio station. Then press tab or use your mouse to select the "
+"<gui>Stream URL</gui> field to paste the URL of the radio station. Using "
+"your mouse right click and choose <gui>Paste</gui> or press "
+"<keyseq><key>Control</key><key>V</key></keyseq>."
+msgstr ""
+"Bansheeは、<gui>ステーションジャンル</gui>を入力するプロンプトを表示します。"
+"インターネットラジオステーションで聞ける音楽の種類をドロップダウンリストから"
+"選択してください。ラジオステーションに対する<gui>ステーション名</gui>を入力す"
+"る必要ががあります。<gui>ストリームURL</gui>にはラジオステーションのURLをウェ"
+"ブブラウザなどから貼り付けてください。マウスで右クリックして<gui>貼り付け</"
+"gui>を選ぶか、<keyseq><key>Control</key><key>V</key></keyseq>で貼り付けられま"
+"す。"
+
+#: C/add-radio.page:62(p)
+msgid ""
+"You can optionally also fill out the fields for <gui>Station Creator</gui>, "
+"<gui>Description</gui>, and <gui>Rating</gui>."
+msgstr ""
+"必要に応じて、また、<gui>ステーションの作者</gui>、<gui>説明</gui>と<gui>評価"
+"</gui>のフィールドに任意で記入することができます。"
+
+#: C/add-radio.page:66(p)
+msgid ""
+"Then press <gui>Save</gui> to save the internet radio station in Banshee."
+msgstr ""
+"次に<gui>保存</gui>ボタンを押して、Bansheeのインターネットラジオステーション"
+"を保存を押してください。"
+
+#: C/add-podcast.page:11(desc)
+msgid "Add, remove and play podcasts in Banshee."
+msgstr "Bansheeでポッドキャストを追加、削除および再生"
+
+#: C/add-podcast.page:29(title)
+msgid "What is a Podcast?"
+msgstr "ポッドキャストとは？"
+
+#: C/add-podcast.page:31(p)
+msgid ""
+"Podcasts are recorded programs, similar to radio programs, that are "
+"available on the internet and allow you to subscribe. When you subscribe to "
+"a podcast in Banshee, each time a new program is released, Banshee will "
+"automatically download the podcast and allow you to listen to it."
+msgstr ""
+"ポッドキャストは、インターネット上で購読できるようにラジオ番組を録画ようなも"
+"のです。Bansheeでポッドキャストは購読することで、Bansheeは自動的にポッドキャ"
+"ストをダウンロードし、新しい番組を聞くことができます。"
+
+#: C/add-podcast.page:36(p)
+msgid ""
+"There are podcasts on almost any subject including music, movies, Linux, and "
+"more. Search the internet using your favorite search engine with a search "
+"term such as \"movie podcast\" and you will be presented with many options "
+"to choose from."
+msgstr ""
+"世の中には、音楽、映画、Linuxなど、いろいろなジャンルの多くのポッドキャストが"
+"あります。お好みの検索エンジンで\"映画 ポッドキャスト\"などとインターネットか"
+"ら検索すると多くのポッドキャストが見つかるでしょう。"
+
+#: C/add-podcast.page:44(title)
+msgid "Add a Podcast"
+msgstr "ポッドキャストの追加"
+
+#: C/add-podcast.page:46(p)
+msgid ""
+"To add a Podcast to Banshee you will first need to visit the podcast's home "
+"page on the internet in your browser. Almost all podcasts will have a button "
+"or link displayed to subscribe to the podcast. Copy the link to the "
+"podcast's subscription. In most web browsers, you can right click on the "
+"link and choose <gui>Copy link</gui>."
+msgstr ""
+"ポッドキャストをBansheeに追加するには、まず最初にインターネットからポッドキャ"
+"ストを提供しているホームページをウェブブラウザでアクセスする必要があります。"
+"ほぼすべてのポッドキャストはポッドキャストを購読するボタンまたはリンクが提供"
+"されています。ウェブブラウザでポッドキャスト購読用のリンクを右クリックして"
+"<gui>リンクのURLをコピー</gui>を選びます。"
+
+#: C/add-podcast.page:53(p)
+msgid ""
+"In Banshee, press and choose <gui>Subscribe to Podcasts</gui> in the upper "
+"right hand corner, from the menu choose <guiseq><gui>Media</gui><gui> "
+"Subscribe to Podcast</gui></guiseq> or use the keyboard shortcut "
+"<keyseq><key>Shift</key><key>Control</key><key>F</key></keyseq>."
+msgstr ""
+"Bansheeのウィンドウの右上にある<gui>新しいポッドキャストで購読</gui>ボタンを"
+"押すか、もしくはBansheeのメニューから<guiseq><gui>メディア</gui><gui>ポッド"
+"キャストで購読</gui></guiseq>、それかキーボードのショートカットで"
+"<keyseq><key>Shift</key><key>Control</key><key>F</key></keyseq>を押します。"
+
+#: C/add-podcast.page:59(p)
+msgid ""
+"Banshee will then allow you to choose how you want to download new podcasts "
+"from a drop down menu. Your choices include:"
+msgstr ""
+"Bansheeではドロップダウンメニューから新しいポッドキャストをダウンロードする方"
+"法を選択することできます。次のような選択肢があります："
+
+#: C/add-podcast.page:63(p)
+msgid ""
+"Download the Most Recent Episode (This will automatically download the last "
+"episode that was released)."
+msgstr ""
+"最新のエピソードをダウンロードする（これは最後の公開されたエピソードが自動的"
+"にダウンロードされます）"
+
+#: C/add-podcast.page:65(p)
+msgid "Download All Episodes (This will download all episodes)."
+msgstr ""
+"すべてのエピソードをダウンロード（これはすべてのエピソードがダウンロードされ"
+"ます）"
+
+#: C/add-podcast.page:66(p)
+msgid ""
+"Let Me Decide Which Episodes to Download (This will allow you to choose "
+"which episodes you would like to download)."
+msgstr ""
+"どのエピソードをダウンロードするか確認する（これはダウンロードを希望するエピ"
+"ソードを選択できるようになります）"
+
+#: C/add-podcast.page:70(p)
+msgid "After you have added a Podcast feed, Banshee will display:"
+msgstr "ポッドキャストのフィードを追加した後、Bansheeが表示されます："
+
+#: C/add-podcast.page:73(p)
+msgid "<gui>Name</gui>: (Name of the specific episode)"
+msgstr "<gui>名前</gui>: （特定のエピソードの名前）"
+
+#: C/add-podcast.page:74(p)
+msgid "<gui>Podcast</gui>: (Name of the Podcast)"
+msgstr "<gui>ポッドキャスト</gui>: （ポッドキャストの名前）"
+
+#: C/add-podcast.page:75(p)
+msgid "<gui>Published</gui> (Date the episode was published or released)"
+msgstr ""
+"<gui>公開日</gui>（エピソードが発行された日、もしくはリリースされた日）"
+
+#. Put one translator per line, in the form of NAME <EMAIL>, YEAR1, YEAR2
+#: C/index.page:0(None)
+msgid "translator-credits"
+msgstr ""
+"Hajime Taira <htaira@redhat.com>, 2011.\n"
+"Jiro Matsuzawa <matsuzawa.jr@gmail.com>, 2011.\n"
+"Kentaro KAZUHAMA <kazken3@gmail.com>, 2011.\n"
+"Takayuki KUSANO <AE5T-KSN@asahi-net.or.jp>, 2011."
