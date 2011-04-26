@@ -114,6 +114,9 @@ namespace Lastfm
 
         public JsonObject GetResponseObject ()
         {
+            if (response_stream == null)
+                return null;
+
             Deserializer deserializer = new Deserializer (response_stream);
             object obj = deserializer.Deserialize ();
             JsonObject json_obj = obj as Hyena.Json.JsonObject;
