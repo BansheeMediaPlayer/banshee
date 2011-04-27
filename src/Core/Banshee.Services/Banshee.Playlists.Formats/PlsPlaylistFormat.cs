@@ -60,7 +60,7 @@ namespace Banshee.Playlists.Formats
                 return false;
             }
 
-            return line.Trim() == "[playlist]";
+            return line.Trim().ToLower() == "[playlist]";
         }
 
         public PlsPlaylistFormat()
