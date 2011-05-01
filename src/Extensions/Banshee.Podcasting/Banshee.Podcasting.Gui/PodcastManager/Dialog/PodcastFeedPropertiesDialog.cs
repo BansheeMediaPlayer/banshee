@@ -123,7 +123,8 @@ namespace Banshee.Podcasting.Gui
                 Xalign = 0f
             };
 
-            var feed_url_text = new Label (feed.Url.ToString ()) {
+            var feed_url_text = new Label () {
+                Text = feed.Url.ToString (),
                 Wrap = false,
                 Selectable = true,
                 Xalign = 0f,
