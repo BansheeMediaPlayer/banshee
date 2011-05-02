@@ -1,5 +1,5 @@
 ===============================================================================
-WELCOME TO BANSHEE 2.0.0 - Released April 6, 2011
+WELCOME TO BANSHEE 2.0.1 - Released May 2, 2011
 ===============================================================================
 
   * Banshee is a multimedia management and playback application for GNOME.
@@ -8,165 +8,34 @@ WELCOME TO BANSHEE 2.0.0 - Released April 6, 2011
     and video podcasts.  Sync your Android, iPod, and other devices. We think
     you'll love the new Banshee!"
 
-  * Learn More: http://banshee.fm/download/archives/2.0.0
+  * Learn More: http://banshee.fm/download/archives/2.0.1
 
 
 ===============================================================================
 NEW AWESOME FEATURES AND ENHANCEMENTS
 ===============================================================================
 
-    Banshee 2.0 is the culmination of six months' work by 36 developers and
-    dozens of translators, bug reporters, and testers.  It is a stable release,
-    the successor to Banshee 1.8.
+    Banshee 2.0.1 is a stable, bug-fix-only release building on Banshee 2.0.0.
 
-    New Features:
+    Notable Bugs Fixed (40 fixed since 2.0.0):
 
-      * Artist/Album Browser Track Actions
+      * AmazonMp3.Store: Fix signed-in detection for UK store
+      * PodcastFeedPropertiesDialog: Fix display of feed URL (underscore)
+      * bgo#648941: Add .spc to whitelist
+      * bgo#648458: PlsPlaylistFormat: Make parsing the header case-insensitive
+      * bgo#647754: Add USB ids for Xperia X12
+      * bgo#647024: Lastfm: Fix NRE crash
+      * bgo#646991: AlbumListView: Fix disappearing option in Preferences
+      * bgo#647932: DatabaseSource: Fix NRE in SkipTrackIfRemoved
+      * bgo#642140: Last.fm: Close HTTP streams when finished with them
+      * bgo#633552: AppleDevice: Ensure m4a/mp3 are supported
+      * bgo#647144: StreamPositionLabel: Avoid unnecessary redraws
+      * bgo#647089: Daap: Bind to IPAddress.Loopback instead of Any
+      * bgo#647059: Fix Remote Daap crash
 
-            Track actions (play, queue, remove, delete, edit, properties)
-            now work for the artist and album browser too!  Right click an
-            artist or album to act on it, or click an album and press 'q' to
-            queue it.
+    Updated Translations:
 
-      * 'Play After' Queue Options
-
-            Want to listen to a track, album, or artist right after the playing
-            track, album, or artist?  The 'Play After' option will insert it
-            into the queue to make it happen.
-
-      * User Interface Improvements
-
-            We have made several changes toward a cleaner and more usable UI.
-            We got rid of the active source's title bar.  Search is now beside
-            the volume button.  The source list has smaller icons, hidden
-            counts for the libraries, and named group-separators.  The seek
-            slider and search entry are resizable via their grips.
-
-            Podcasts episodes are now shown in a grid, with several lines of
-            description shown to help you find an appealing episode to enjoy.
-
-      * Ubuntu One Music Store and SoundMenu Extensions
-
-            These two extensions have been moved from Banshee Community
-            Extensions and are now core Banshee extensions.
-
-      * Subtitles
-
-            Added support for embedded and external-file subtitles.
-
-    Enhancements:
-
-      * Support Amazon Cloud Player browsing and downloading
-      * Remember sources' column configuration
-      * 'Shuffle by' respects user-selected artist/album 
-      * MultimediaKeys: Support Pause, FastForward, Rewind, Repeat and Shuffle
-      * Album grid has tooltips for ellipsized text
-      * MusicBrainz cover art search supports CDBaby and Jamendo
-      * Allow to clear the play queue while in Populate mode
-      * Add a new 'Recently Played' default smart playlist
-      * Blank track editor spin buttons when 0
-      * Remove Home and Photo folder import sources
-      * Improved write-metadata-to-file performance
-      * Many improvements and fixes to the F1 user guide
-      * Add support for handling u1ms:// links
-      * AmazonMp3.Store: amazon.ca support
-      * Daap: Keep a list of recently used remote servers
-      * Advertise lastfm scheme handling in the .desktop files
-      * MiroGuide: Handle Listen links from front page
-      * Playlists: Recognize m3u playlists without header (bgo#645351)
-      * LibraryWatcher: Guard against watching incorrect dirs (bgo#633309)
-      * Subscribe to Internet Archive searches as podcasts
-      * Massively rework the podcast edit dialog
-      * Add 'Podcast Properties' to episode menu
-      * WebOSDevice: Support playlists (bgo#641486)
-      * New Devices Supported:
-        - Huawei Ideos Android phones
-        - LG Ally phone
-        - LG Optimus S Android phone
-        - Nexus S and Xperia X10 mini pro
-        - Sharp IS01 and IS03 Android phones
-        - Sirius Alpha Android phone
-      * Add DBus method to clear the play queue
-      * MPRIS 2.0 support - DBus API
-      * Windows build (alpha-quality) now available
-      * Mac build (beta-quality) has been updated
-
-    Notable Bugs Fixed (277 fixed since 1.8):
-
-      * Remove unused Mono.Addins.Gui dependency
-      * Fix checkbox hover prelight in Fixup
-      * Always grab search entry focus on ctrl+f
-      * MiroGuide: Properly escape search query strings
-      * AmazonMp3.Store: Fix search query escaping
-      * [TrackEditor] Don't try to load metadata over HTTP
-      * [AppleDevice] Sync dialog would be displayed forever
-      * bgo#587936: AppleDevice: Sync the Sort* fields
-      * bgo#631172: AppleDevice: Fix podcast support
-      * bgo#636448: AppleDevice: Fix music appearing in Videos in Banshee
-      * bgo#634652: AppleDevice: Remove invalid tracks before syncing
-      * bgo#540503: Remove Jump... from context menu
-      * bgo#540525: Stop when the playing track is deleted
-      * bgo#545998: Sensitize and pluralize podcast actions appropriately
-      * bgo#609463: Equalizer distortion
-      * bgo#620010: Displaying random image for "All Albums"
-      * bgo#623441: Duplicates on import due to character encoding
-      * bgo#624734: Allow editing Radio stations again
-      * bgo#629005: Full-screen on multi-head displays
-      * bgo#629534: TaskStatusIcon missing-ctor crash
-      * bgo#630039: Concatenated and untranslatable string
-      * bgo#631277: Crash in when editing some tracks' metadata
-      * bgo#631687: Non-local tracks added to DAP without extensions
-      * bgo#631961: [Gio] Invalid cast exception
-      * bgo#632114: Hang when replaying video
-      * bgo#632246: Missing-ctor issue in SourceComboBox
-      * bgo#632420: Use the MeeGo client if appropriate
-      * bgo#632715: Bookmarks UI not getting loaded
-      * bgo#633579: Fixup not getting reloaded correctly
-      * bgo#633764: [Dap] not transcoding some files when we should
-      * bgo#633841: Recognize webm as video
-      * bgo#634096: Empty track # in filename patterns
-      * bnc#642505: Insecure LD_LIBRARY_PATH
-      * bgo#637202: Initialize the ipod each time we load
-      * bgo#630209: Fix podcast flag for video podcasts
-      * bgo#635780: Prevent GroupSources from being selected
-      * bgo#540394: Don't overwrite existing files when ripping
-      * bgo#635776: Ensure karma-sharp's DLLmap is copied in the build
-      * bgo#634662: Make search entry in MeeGo panel correctly show query
-      * bgo#634686: Fix streaming broken after first play
-      * bgo#635426: Ensure track filter actions updated
-      * bgo#635453: Fix regression with importing mkv
-      * bgo#637333: MeeGo: Fix NRE at start up
-      * bgo#637350: Fix SimpleTable crash
-      * bgo#636077: Fix Podcasts selection bug w/ DAP plugged in
-      * bgo#637366: SmartPlaylistSource: Fix NRE with "selected by random"
-      * bgo#637365: SmartPlaylistSource: Clear the condition when it's not enabled
-      * bgo#637303: FileChooserDialog: Fix error message on first launch
-      * bgo#637627: FullscreenWindow: Keep fullscreen when showing volume osd
-      * bgo#638477: X11NotificationArea: Enhance check for RGBA visual
-      * bgo#637991: SourceRowRenderer: Fix vertical alignment calculation
-      * bgo#611796: [Preferences] Have source list use theme icon size
-      * bgo#639044: UnknownTrackInfo: Avoid NRE if URI is null
-      * bgo#639032: LastfmStreaming: Delete the Loved stations from the database
-      * bgo#639603: Fix NRE when current track doesn't have a Uri
-      * bgo#486543: Playlists: Fix parsing when started from root directory
-      * bgo#640276: AmazonMp3.Store: Fix country detection for United Kingdom
-      * bgo#638070: LibraryWatcher: Don't watch non-existing dirs
-      * bgo#635779: Fix crash after disabling some extensions
-      * bgo#636435: PlayQueueSource: Fix track prepending when not playing
-      * bgo#641000: NowPlaying: Fix resizing fullscreen control bar
-      * bgo#640455: PlayQueue: Additional padding for the fill controls
-      * bgo#643407: GStreamerSharp: Properly handle GStreamer errors
-      * bgo#641674: SmartPlaylists: Fix queries with { and }
-      * bgo#623183: DatabaseTrackInfo: Fix rating update on current track
-      * bgo#637717: audio-profiles: fix duration for CBR lame profile
-      * bgo#614192: GStreamer: Fix inappropriate repeating
-      * bgo#643782: Mpris: Distinguish between music and video playlists
-      * bgo#641515: Workaround X BadMatch crash
-      * bgo#619609: Metadata: Do not fetch covers for unknown albums/artists
-      * bgo#631012: Audiobook: Fix crash when switch to playlist
-      * bgo#628087: Handle setting SearchEntry.Query to nullb
-      * bgo#602145: InternetRadio: Clear playback errors when playing
-      * bgo#635951: Fix skipping removed/deleted tracks
+      Dutch, Galician, Greek, Hungarian, Korean, Russian, Telugu, Vietnamese
 
 ===============================================================================
 SOURCES / PACKAGES
@@ -175,10 +44,10 @@ SOURCES / PACKAGES
 Sources
 -------
 
-    * Banshee 2.0.0 Tarballs:
-      http://download.banshee.fm/banshee/stable/2.0.0/banshee-2.0.0.tar.bz2
-      http://download.banshee.fm/banshee/stable/2.0.0/banshee-2.0.0.tar.gz
-      http://download.banshee.fm/banshee/stable/2.0.0/banshee-2.0.0.sha256sum
+    * Banshee 2.0.1 Tarballs:
+      http://download.banshee.fm/banshee/stable/2.0.1/banshee-2.0.1.tar.bz2
+      http://download.banshee.fm/banshee/stable/2.0.1/banshee-2.0.1.tar.gz
+      http://download.banshee.fm/banshee/stable/2.0.1/banshee-2.0.1.sha256sum
 
 Packages
 --------
@@ -186,18 +55,6 @@ Packages
     Download and installation information is available here:
 
     * http://banshee.fm/download/
-
-    Packages for openSUSE are available from the openSUSE Build Service:
-
-    * http://download.opensuse.org/repositories/Banshee/
-
-    Binaries for Mac OS X 10.5 and 10.6:
-
-    * http://download.banshee.fm/banshee/stable/2.0.0/banshee-2.0.0.macosx.intel.dmg
-
-    Binaries for Windows:
-
-    * http://download.banshee.fm/banshee/stable/2.0.0/Banshee-2.0.0.msi
 
 ===============================================================================
 DEPENDENCIES
@@ -267,7 +124,7 @@ REPORT BUGS - HELP THE PROJECT - GROW THE COMMUNITY
     hesitate to file bugs!
 
     * http://banshee.fm/contribute/file-bugs
-    * http://bugzilla.gnome.org/enter_bug.cgi?product=banshee&version=1.9.6
+    * http://bugzilla.gnome.org/enter_bug.cgi?product=banshee&version=2.0.1
 
 
 ===============================================================================
@@ -280,30 +137,16 @@ Contributors For This Release
     The following people directly contributed to the release of this version
     of Banshee. Without their help, there would be no release!
 
-      Aaron Bockover, Alan McGovern, Alexander Kojevnikov, Alex Launi,
-      Alex Willmy, Andreas Nilsson, Andrés G. Aragoneses, Aran Cox,
-      Aurélien Mino, Benjamín Valero Espinosa, Bertrand Lorentz,
-      Chow Loong Jin, Christian Krause, Dougal Stanton, Dustin C. Hatch,
-      Frank Ziegler, Gabriel Burt, Ján Sokoly, Jensen Somers, Jonas Urth Olsen,
-      kentaro KAZUHAMA, Koichi Akabe, Mackenan Grassi, Mark Busby,
-      Martin Lettner, Michał Sawicz, Olivier Dufour, Paul Cutler,
-      Pete Johanson, Raimo Radczewski, Rodney Dawes, Samuel Gyger,
-      Sjoerd Simons, Tim Fisken, William Friesen, Yuuto Tokunaga, Zhou Ting
+      Bertrand Lorentz, Christopher James Halse Rogers, David Nielsen,
+      Dustin C. Hatch, Frank Ziegler, Gabriel Burt, Michael Martin-Smucker,
+      Olivier Dufour, Will Thompson
 
     The following people contributed updated translations to this release.
     Without them, our project's reach would be much more limited.
 
-      Andika Triwidada, Andrej Žnidaršič, Ángel Sanz, António Lima,
-      Aron Xu, Benjamín Valero Espinosa, Bruce Cowan, Bruno Brouard,
-      Carles Ferrando, Cheng-Chia Tseng, Daniel Korostil, Daniel Mustieles,
-      Daniel Nylander, David Planella, Fran Diéguez, Gabor Kelemen,
-      Gabriel F. Vilar, Gianvito Cavasoli, Inaki Larranaga Murgoitio,
-      Joe Hansen, Jordi Mas, Jorge González, Kenneth Nielsen, Kentaro KAZUHAMA,
-      Kjartan Maraas, Krix Apolinário, Leonid Kanter, Lucian Adrian Grijincu,
-      Marek Černocký, Mario Blättermann, Matej Urbančič, Maxim V. Dziumanenko,
-      Michael Kotsarinis, Petr Kovar, Rudolfs Mazurs, Sira Nokyoongtong,
-      Takayuki KUSANO, Ville-Pekka Vainio, Xandru Armesto, Yaron Shahrabani,
-      Yuri Myasoedov, Žygimantas Beručka, Χάρης Κουζινόπουλος
+      Changwoo Ryu, Fran Diéguez, Gabor Kelemen, Hajime Mizuno,
+      Lê Hoàng Phương, Michael Kotsarinis, Nguyễn Thái Ngọc Duy,
+      Nguyễn Thái Ngọc Duy, Wouter Bolsterlee, Yuri Myasoedov, krishnababu k
 
 Contributors In Past Releases
 -----------------------------
