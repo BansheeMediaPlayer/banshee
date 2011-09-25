@@ -67,7 +67,7 @@ namespace Banshee.Collection.Database
             "wmd",  "wmv",  "wmx",  "wv",   "wvc",  "wvx",  "yuv",  "f4v",
             "f4a",  "f4b",  "669",  "it",   "med",  "mod",  "mol",  "mtm",
             "nst",  "s3m",  "stm",  "ult",  "wow",  "xm",   "xnm",  "spx",
-            "ts",   "webm", "spc"
+            "ts",   "webm", "spc",  "mka"
         );
 
         public static bool IsWhiteListedFile (string path)
