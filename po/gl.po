@@ -4,22 +4,22 @@
 #
 # Ignacio Casal Quinteiro <nacho.resa@gmail.com>, 2008.
 # Antón Méixome <meixome@mancomun.org>, 2009.
-# Fran Dieguez <frandieguez@ubuntu.com>, 2009, 2010.
 # Fran Diéguez <frandieguez@gnome.org>, 2010, 2011.
+# Fran Dieguez <frandieguez@gnome.org>, 2009, 2010, 2011.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: banshee-master-po-gl-3484\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=banshee&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2011-08-18 19:48+0000\n"
-"PO-Revision-Date: 2011-08-29 10:46+0200\n"
-"Last-Translator: Fran Diéguez <frandieguez@gnome.org>\n"
+"POT-Creation-Date: 2011-09-22 06:26+0000\n"
+"PO-Revision-Date: 2011-09-25 12:33+0200\n"
+"Last-Translator: Fran Dieguez <frandieguez@gnome.org>\n"
 "Language-Team: Galician <gnome-l10n-gl@gnome.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=(n!=1);\n"
 "X-Generator: Lokalize 0.3\n"
 
 #. ../src/Dap/Banshee.Dap.AppleDevice/Banshee.Dap.AppleDevice.addin.xml
@@ -800,7 +800,6 @@ msgstr "Non foi posíbel crear o transcodificador"
 
 #: ../src/Backends/Banshee.GStreamerSharp/Banshee.GStreamerSharp/AudioCdRipper.cs:259
 #, csharp-format
-#| msgid "Could not create encoder pipeline"
 msgid "Could not create encoder pipeline : {0}"
 msgstr "Non foi posíbel crear a tubería do codificador: {0}"
 
@@ -810,12 +809,10 @@ msgstr "GStreamer# 0.10"
 
 #: ../src/Backends/Banshee.GStreamerSharp/Banshee.GStreamerSharp/Transcoder.cs:79
 #, csharp-format
-#| msgid "Could not create encoding pipeline"
 msgid "Could not create encoding pipeline : {0}"
 msgstr "Non foi posíbel crear a tubería de codificación: {0}"
 
 #: ../src/Backends/Banshee.GStreamerSharp/Banshee.GStreamerSharp/Transcoder.cs:198
-#| msgid "Could not create 'sinkben' plugin"
 msgid "Could not create 'sinkbin' plugin"
 msgstr "Non foi posíbel crear o engadido 'sinkbin'"
 
@@ -1821,7 +1818,7 @@ msgstr ""
 "Non se encontrou ningún motor de reprodución. Asegúrese de que Banshee se "
 "instalou correctamente."
 
-#: ../src/Core/Banshee.Services/Banshee.MediaEngine/PlayerEngineService.cs:366
+#: ../src/Core/Banshee.Services/Banshee.MediaEngine/PlayerEngineService.cs:373
 msgid "Problem with Player Engine"
 msgstr "Problema co motor de reprodución"
 
@@ -2165,7 +2162,7 @@ msgstr "cuantización"
 #. Translators: noun
 #: ../src/Core/Banshee.Services/Banshee.Query/BansheeQuery.cs:169
 #: ../src/Core/Banshee.Services/Banshee.Query/BansheeQuery.cs:363
-#: ../src/Core/Banshee.Services/Banshee.Sources/Source.cs:666
+#: ../src/Core/Banshee.Services/Banshee.Sources/Source.cs:668
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui.TrackEditor/StatisticsPage.cs:95
 msgid "Name"
 msgstr "Nome"
@@ -2580,7 +2577,7 @@ msgid "Delete Smart Playlist"
 msgstr "Eliminar a lista de reprodución intelixente"
 
 #: ../src/Core/Banshee.Services/Banshee.Sources/DatabaseSource.cs:148
-#: ../src/Extensions/Banshee.InternetRadio/Banshee.InternetRadio/InternetRadioSource.cs:160
+#: ../src/Extensions/Banshee.InternetRadio/Banshee.InternetRadio/InternetRadioSource.cs:161
 #, csharp-format
 msgid "All Genres ({0})"
 msgstr "Todo os xéneros ({0})"
@@ -2672,15 +2669,15 @@ msgstr "Engadindo {0} de{1} a {2}"
 msgid "Deleting {0} of {1} From {2}"
 msgstr "Eliminando {0} de{1} desde {2}"
 
-#: ../src/Core/Banshee.Services/Banshee.Sources/Source.cs:671
+#: ../src/Core/Banshee.Services/Banshee.Sources/Source.cs:673
 msgid "Size Ascending"
 msgstr "Tamaño ascendente"
 
-#: ../src/Core/Banshee.Services/Banshee.Sources/Source.cs:676
+#: ../src/Core/Banshee.Services/Banshee.Sources/Source.cs:678
 msgid "Size Descending"
 msgstr "Tamaño descendente"
 
-#: ../src/Core/Banshee.Services/Banshee.Sources/Source.cs:789
+#: ../src/Core/Banshee.Services/Banshee.Sources/Source.cs:791
 #, csharp-format
 msgid "{0} item"
 msgid_plural "{0} items"
@@ -3819,11 +3816,11 @@ msgstr "Artista:"
 msgid "Album:"
 msgstr "Álbum:"
 
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui.TrackEditor/TrackEditorDialog.cs:313
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui.TrackEditor/TrackEditorDialog.cs:314
 msgid "Sync all field _values"
 msgstr "Sincronizar todos os _valores dos campos"
 
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui.TrackEditor/TrackEditorDialog.cs:318
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui.TrackEditor/TrackEditorDialog.cs:319
 msgid ""
 "Apply the values of all common fields set for this track to all of the "
 "tracks selected in this editor"
@@ -3831,23 +3828,23 @@ msgstr ""
 "Aplicar os valores dos campos comúns estabelecidos para esta pista a todas "
 "as pistas seleccionadas neste editor"
 
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui.TrackEditor/TrackEditorDialog.cs:418
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui.TrackEditor/TrackEditorDialog.cs:419
 #, csharp-format
 msgid "<i>Editing {0} of {1} items</i>"
 msgstr "<i>Editando {0} de {1} elementos</i>"
 
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui.TrackEditor/TrackEditorDialog.cs:698
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui.TrackEditor/TrackEditorDialog.cs:699
 #, csharp-format
 msgid "Save the changes made to the open track?"
 msgid_plural "Save the changes made to {0} of {1} open tracks?"
 msgstr[0] "Gardar os cambios feitos á pista aberta?"
 msgstr[1] "Gardar os cambios feitos ás {0} de {1} pistas abertas?"
 
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui.TrackEditor/TrackEditorDialog.cs:715
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui.TrackEditor/TrackEditorDialog.cs:716
 msgid "Close _without Saving"
 msgstr "Pechar _sen gardar"
 
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui.TrackEditor/TrackEditorDialog.cs:752
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui.TrackEditor/TrackEditorDialog.cs:753
 #, csharp-format
 msgid "If you don't save, changes from the last {0} will be permanently lost."
 msgstr "Se non garda, os cambios das últimas {0} perderanse permanentemente."
@@ -4236,29 +4233,29 @@ msgstr "Permite portadas"
 msgid "Supports photos"
 msgstr "Permite imaxes"
 
-#: ../src/Dap/Banshee.Dap.AppleDevice/Banshee.Dap.AppleDevice/AppleDeviceSource.cs:452
+#: ../src/Dap/Banshee.Dap.AppleDevice/Banshee.Dap.AppleDevice/AppleDeviceSource.cs:453
 msgid "Track duration is zero"
 msgstr "A duración da pista é cero"
 
-#: ../src/Dap/Banshee.Dap.AppleDevice/Banshee.Dap.AppleDevice/AppleDeviceSource.cs:555
+#: ../src/Dap/Banshee.Dap.AppleDevice/Banshee.Dap.AppleDevice/AppleDeviceSource.cs:556
 msgid "Syncing iPod"
 msgstr "Sincronizando iPod"
 
-#: ../src/Dap/Banshee.Dap.AppleDevice/Banshee.Dap.AppleDevice/AppleDeviceSource.cs:556
+#: ../src/Dap/Banshee.Dap.AppleDevice/Banshee.Dap.AppleDevice/AppleDeviceSource.cs:557
 msgid "Preparing to synchronize..."
 msgstr "Preparándose para sincronizar..."
 
-#: ../src/Dap/Banshee.Dap.AppleDevice/Banshee.Dap.AppleDevice/AppleDeviceSource.cs:559
+#: ../src/Dap/Banshee.Dap.AppleDevice/Banshee.Dap.AppleDevice/AppleDeviceSource.cs:560
 #, csharp-format
 msgid "Adding track {0} of {1}"
 msgstr "Engadindo a pista {0} de{1}"
 
-#: ../src/Dap/Banshee.Dap.AppleDevice/Banshee.Dap.AppleDevice/AppleDeviceSource.cs:595
+#: ../src/Dap/Banshee.Dap.AppleDevice/Banshee.Dap.AppleDevice/AppleDeviceSource.cs:596
 #, csharp-format
 msgid "Removing track {0} of {1}"
 msgstr "Eliminando a pista {0} de{1}"
 
-#: ../src/Dap/Banshee.Dap.AppleDevice/Banshee.Dap.AppleDevice/AppleDeviceSource.cs:648
+#: ../src/Dap/Banshee.Dap.AppleDevice/Banshee.Dap.AppleDevice/AppleDeviceSource.cs:649
 msgid "Writing media database"
 msgstr "Escribindo a base de datos multimedia"
 
@@ -4485,12 +4482,10 @@ msgstr ""
 "Produciuse un erro ao inicializar a compatibilidade de dispositivos MTP"
 
 #: ../src/Dap/Banshee.Dap.Mtp/Banshee.Dap.Mtp/MtpSource.cs:83
-msgid ""
-"There was an error intializing MTP device support.  See http://www.banshee-"
-"project.org/Guide/DAPs/MTP for more information."
+#| msgid "Error Initializing MTP Device Support"
+msgid "There was an error intializing MTP device support."
 msgstr ""
-"Houbo un erro incializando a compatibilidade para dispositivos MTP.  Vexa "
-"http://www.banshee-project.org/Guide/DAPs/MTP para máis información."
+"Produciuse un erro ao inicializar a compatibilidade de dispositivos MTP."
 
 #: ../src/Dap/Banshee.Dap.Mtp/Banshee.Dap.Mtp/MtpSource.cs:142
 #: ../src/Hyena/Hyena.Gui/Hyena.Gui.Dialogs/VersionInformationDialog.cs:66
@@ -4700,23 +4695,23 @@ msgstr "<i>{0}</i> aínda estase importando á fonoteca. Quere detelo?"
 msgid "Cannot Import CD"
 msgstr "Non se pode importar o CD"
 
-#: ../src/Extensions/Banshee.AudioCd/Banshee.AudioCd/AudioCdService.cs:233
+#: ../src/Extensions/Banshee.AudioCd/Banshee.AudioCd/AudioCdService.cs:237
 msgid "Audio CDs"
 msgstr "CD de son"
 
-#: ../src/Extensions/Banshee.AudioCd/Banshee.AudioCd/AudioCdService.cs:235
+#: ../src/Extensions/Banshee.AudioCd/Banshee.AudioCd/AudioCdService.cs:239
 msgid "Audio CD Importing"
 msgstr "Importación de CD de son"
 
-#: ../src/Extensions/Banshee.AudioCd/Banshee.AudioCd/AudioCdService.cs:238
+#: ../src/Extensions/Banshee.AudioCd/Banshee.AudioCd/AudioCdService.cs:242
 msgid "_Import format"
 msgstr "Formato de _importación"
 
-#: ../src/Extensions/Banshee.AudioCd/Banshee.AudioCd/AudioCdService.cs:242
+#: ../src/Extensions/Banshee.AudioCd/Banshee.AudioCd/AudioCdService.cs:246
 msgid "_Automatically import audio CDs when inserted"
 msgstr "Importar _automaticamente os CD de son ao inserilos"
 
-#: ../src/Extensions/Banshee.AudioCd/Banshee.AudioCd/AudioCdService.cs:243
+#: ../src/Extensions/Banshee.AudioCd/Banshee.AudioCd/AudioCdService.cs:247
 msgid ""
 "When an audio CD is inserted, automatically begin importing it if metadata "
 "can be found and it is not already in the library."
@@ -4724,19 +4719,19 @@ msgstr ""
 "Ao inserir un CD de son, comezar a importar automaticamente se se poden "
 "encontrar metadatos e non está xa na fonoteca."
 
-#: ../src/Extensions/Banshee.AudioCd/Banshee.AudioCd/AudioCdService.cs:247
+#: ../src/Extensions/Banshee.AudioCd/Banshee.AudioCd/AudioCdService.cs:251
 msgid "_Eject when done importing"
 msgstr "_Expulsar ao rematar a importación"
 
-#: ../src/Extensions/Banshee.AudioCd/Banshee.AudioCd/AudioCdService.cs:248
+#: ../src/Extensions/Banshee.AudioCd/Banshee.AudioCd/AudioCdService.cs:252
 msgid "When an audio CD has been imported, automatically eject it."
 msgstr "Cando un CD de son sexa importado, expulsalo automaticamente."
 
-#: ../src/Extensions/Banshee.AudioCd/Banshee.AudioCd/AudioCdService.cs:251
+#: ../src/Extensions/Banshee.AudioCd/Banshee.AudioCd/AudioCdService.cs:255
 msgid "Use error correction when importing"
 msgstr "Usar corrección de erros ao importar"
 
-#: ../src/Extensions/Banshee.AudioCd/Banshee.AudioCd/AudioCdService.cs:252
+#: ../src/Extensions/Banshee.AudioCd/Banshee.AudioCd/AudioCdService.cs:256
 msgid ""
 "Error correction tries to work around problem areas on a disc, such as "
 "surface scratches, but will slow down importing substantially."
@@ -4745,20 +4740,20 @@ msgstr ""
 "discos, tales como raiaduras na superficie, pero ralentizará moito a "
 "importación."
 
-#: ../src/Extensions/Banshee.AudioCd/Banshee.AudioCd/AudioCdService.cs:320
+#: ../src/Extensions/Banshee.AudioCd/Banshee.AudioCd/AudioCdService.cs:324
 #: ../src/Extensions/Banshee.AudioCd/Banshee.AudioCd/AudioCdSource.cs:441
 msgid "Import CD"
 msgstr "Importar CD"
 
-#: ../src/Extensions/Banshee.AudioCd/Banshee.AudioCd/AudioCdService.cs:321
+#: ../src/Extensions/Banshee.AudioCd/Banshee.AudioCd/AudioCdService.cs:325
 msgid "Import this audio CD to the library"
 msgstr "Importar este CD de son á fonoteca"
 
-#: ../src/Extensions/Banshee.AudioCd/Banshee.AudioCd/AudioCdService.cs:327
+#: ../src/Extensions/Banshee.AudioCd/Banshee.AudioCd/AudioCdService.cs:331
 msgid "Duplicate CD"
 msgstr "Copiar un CD"
 
-#: ../src/Extensions/Banshee.AudioCd/Banshee.AudioCd/AudioCdService.cs:328
+#: ../src/Extensions/Banshee.AudioCd/Banshee.AudioCd/AudioCdService.cs:332
 msgid "Duplicate this audio CD"
 msgstr "Copiar este CD de son"
 
@@ -5700,22 +5695,22 @@ msgstr "Editar emisora"
 msgid "Station"
 msgstr "Emisora"
 
-#: ../src/Extensions/Banshee.InternetRadio/Banshee.InternetRadio/InternetRadioSource.cs:154
+#: ../src/Extensions/Banshee.InternetRadio/Banshee.InternetRadio/InternetRadioSource.cs:155
 #, csharp-format
 msgid "{0} station"
 msgid_plural "{0} stations"
 msgstr[0] "{0} emisora"
 msgstr[1] "{0} emisoras"
 
-#: ../src/Extensions/Banshee.InternetRadio/Banshee.InternetRadio/InternetRadioSource.cs:240
+#: ../src/Extensions/Banshee.InternetRadio/Banshee.InternetRadio/InternetRadioSource.cs:241
 msgid "Please provide a valid station URI"
 msgstr "Proporcione un URI de emisora válida"
 
-#: ../src/Extensions/Banshee.InternetRadio/Banshee.InternetRadio/InternetRadioSource.cs:253
+#: ../src/Extensions/Banshee.InternetRadio/Banshee.InternetRadio/InternetRadioSource.cs:254
 msgid "Please provide a station genre"
 msgstr "Proporcione un xénero para a emisora"
 
-#: ../src/Extensions/Banshee.InternetRadio/Banshee.InternetRadio/InternetRadioSource.cs:261
+#: ../src/Extensions/Banshee.InternetRadio/Banshee.InternetRadio/InternetRadioSource.cs:262
 msgid "Please provide a station title"
 msgstr "Proporcione un título para a emisora"
 
@@ -7096,10 +7091,17 @@ msgid "Connected to Last.fm."
 msgstr "Conectado a Last.fm."
 
 #: ../src/Libraries/Migo/Migo.Syndication/Feed.cs:151
-#: ../src/Libraries/Migo/Migo.Syndication/RssParser.cs:97
 #: ../src/Libraries/Migo/Migo.Syndication/RssParser.cs:100
+#: ../src/Libraries/Migo/Migo.Syndication/RssParser.cs:103
 msgid "Unknown Podcast"
 msgstr "Podcast descoñecido"
+
+#~ msgid ""
+#~ "There was an error intializing MTP device support.  See http://www."
+#~ "banshee-project.org/Guide/DAPs/MTP for more information."
+#~ msgstr ""
+#~ "Houbo un erro incializando a compatibilidade para dispositivos MTP.  Vexa "
+#~ "http://www.banshee-project.org/Guide/DAPs/MTP para máis información."
 
 #~ msgid "iPod Support"
 #~ msgstr "Compatibilidade para iPod"
