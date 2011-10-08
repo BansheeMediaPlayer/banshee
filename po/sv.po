@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: banshee\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-09-03 13:13+0200\n"
-"PO-Revision-Date: 2011-09-03 13:17+0100\n"
+"POT-Creation-Date: 2011-10-08 18:37+0200\n"
+"PO-Revision-Date: 2011-10-08 18:38+0100\n"
 "Last-Translator: Daniel Nylander <po@danielnylander.se>\n"
 "Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
 "Language: sv\n"
@@ -2055,7 +2055,7 @@ msgstr "kvantisering"
 #. Translators: noun
 #: ../src/Core/Banshee.Services/Banshee.Query/BansheeQuery.cs:169
 #: ../src/Core/Banshee.Services/Banshee.Query/BansheeQuery.cs:363
-#: ../src/Core/Banshee.Services/Banshee.Sources/Source.cs:666
+#: ../src/Core/Banshee.Services/Banshee.Sources/Source.cs:668
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui.TrackEditor/StatisticsPage.cs:95
 msgid "Name"
 msgstr "Namn"
@@ -2564,15 +2564,15 @@ msgstr "Lägger till {0} av {1} till {2}"
 msgid "Deleting {0} of {1} From {2}"
 msgstr "Tar bort {0} av {1} från {2}"
 
-#: ../src/Core/Banshee.Services/Banshee.Sources/Source.cs:671
+#: ../src/Core/Banshee.Services/Banshee.Sources/Source.cs:673
 msgid "Size Ascending"
 msgstr "Storlek stigande"
 
-#: ../src/Core/Banshee.Services/Banshee.Sources/Source.cs:676
+#: ../src/Core/Banshee.Services/Banshee.Sources/Source.cs:678
 msgid "Size Descending"
 msgstr "Storlek fallande"
 
-#: ../src/Core/Banshee.Services/Banshee.Sources/Source.cs:789
+#: ../src/Core/Banshee.Services/Banshee.Sources/Source.cs:791
 #, csharp-format
 msgid "{0} item"
 msgid_plural "{0} items"
@@ -4332,8 +4332,8 @@ msgid "Error Initializing MTP Device Support"
 msgstr "Fel vid initiering av MTP-enhetsstöd"
 
 #: ../src/Dap/Banshee.Dap.Mtp/Banshee.Dap.Mtp/MtpSource.cs:83
-msgid "There was an error intializing MTP device support.  See http://www.banshee-project.org/Guide/DAPs/MTP for more information."
-msgstr "Det inträffade ett fel vid initiering av MTP-enhetsstödet.  Se http://www.banshee-project.org/Guide/DAPs/MTP för mer information."
+msgid "There was an error intializing MTP device support."
+msgstr "Det uppstod ett fel vid initiering av stöd för MTP-enheter."
 
 #: ../src/Dap/Banshee.Dap.Mtp/Banshee.Dap.Mtp/MtpSource.cs:142
 msgid "Version"
@@ -6667,11 +6667,17 @@ msgid "Connected to Last.fm."
 msgstr "Ansluten till Last.fm."
 
 #: ../src/Libraries/Migo/Migo.Syndication/Feed.cs:151
-#: ../src/Libraries/Migo/Migo.Syndication/RssParser.cs:97
 #: ../src/Libraries/Migo/Migo.Syndication/RssParser.cs:100
+#: ../src/Libraries/Migo/Migo.Syndication/RssParser.cs:103
 msgid "Unknown Podcast"
 msgstr "Okänd poddsändning"
 
+#~ msgid ""
+#~ "There was an error intializing MTP device support.  See http://www."
+#~ "banshee-project.org/Guide/DAPs/MTP for more information."
+#~ msgstr ""
+#~ "Det inträffade ett fel vid initiering av MTP-enhetsstödet.  Se http://www."
+#~ "banshee-project.org/Guide/DAPs/MTP för mer information."
 #~ msgid "iPod Support"
 #~ msgstr "iPod-stöd"
 #~ msgid "Support for most iPod devices."
