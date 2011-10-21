@@ -42,6 +42,10 @@ namespace Banshee.Sources.Gui
 {
     public class SourceRowRenderer : CellRendererText
     {
+        protected SourceRowRenderer (IntPtr raw) : base (raw)
+        {
+        }
+
         public static void CellDataHandler (CellLayout layout, CellRenderer cell, TreeModel model, TreeIter iter)
         {
             SourceRowRenderer renderer = cell as SourceRowRenderer;
