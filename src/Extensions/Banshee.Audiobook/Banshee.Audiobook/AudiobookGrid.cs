@@ -66,6 +66,10 @@ namespace Banshee.Audiobook
             RowActivated += (o, a) => library.Actions["AudiobookOpen"].Activate ();
         }
 
+        protected AudiobookGrid (IntPtr raw) : base ()
+        {
+        }
+
         public void SetLibrary (AudiobookLibrarySource library)
         {
             SetModel (library.BooksModel);
