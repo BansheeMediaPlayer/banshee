@@ -81,6 +81,10 @@ namespace Banshee.Gui.Widgets
             Update ();
         }
 
+        protected TaskStatusIcon (IntPtr raw) : base (raw)
+        {
+        }
+
         private void Update ()
         {
             lock (jobs) {
