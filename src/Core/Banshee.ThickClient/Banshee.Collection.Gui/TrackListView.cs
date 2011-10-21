@@ -53,6 +53,10 @@ namespace Banshee.Collection.Gui
             default_column_controller = new DefaultColumnController ();
         }
 
+        protected TrackListView (IntPtr raw) : base (raw)
+        {
+        }
+
         public override void SetModel (IListModel<TrackInfo> value, double vpos)
         {
             //Console.WriteLine ("TrackListView.SetModel for {0} with vpos {1}", value, vpos);

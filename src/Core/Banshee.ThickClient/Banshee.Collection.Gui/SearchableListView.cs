@@ -44,6 +44,14 @@ namespace Banshee.Collection.Gui
 {
     public class SearchableListView<T> : ListView<T>
     {
+        protected SearchableListView () : base ()
+        {
+        }
+
+        protected SearchableListView (IntPtr raw) : base (raw)
+        {
+        }
+
         private EntryPopup search_popup;
 
         private long previous_search_offset;

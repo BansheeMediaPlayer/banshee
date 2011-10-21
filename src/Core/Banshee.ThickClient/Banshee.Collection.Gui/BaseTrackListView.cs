@@ -82,6 +82,10 @@ namespace Banshee.Collection.Gui
             };
         }
 
+        protected BaseTrackListView (IntPtr raw) : base (raw)
+        {
+        }
+
         public override bool SelectOnRowFound {
             get { return true; }
         }
