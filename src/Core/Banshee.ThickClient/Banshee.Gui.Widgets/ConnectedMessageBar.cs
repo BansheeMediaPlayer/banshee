@@ -68,6 +68,10 @@ namespace Banshee.Gui.Widgets
             LeftPadding = 15;
         }
 
+        protected ConnectedMessageBar (IntPtr raw) : base (raw)
+        {
+        }
+
         private void ConnectSource (Source source)
         {
             if (source == this.source)
