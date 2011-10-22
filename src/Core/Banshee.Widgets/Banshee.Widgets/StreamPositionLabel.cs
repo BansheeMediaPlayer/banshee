@@ -57,6 +57,10 @@ namespace Banshee.Widgets
             this.seekRange.ValueChanged += OnSliderUpdated;
         }
 
+        protected StreamPositionLabel (IntPtr raw) : base (raw)
+        {
+        }
+
         protected override void OnRealized ()
         {
             base.OnRealized ();
