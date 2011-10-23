@@ -488,18 +488,11 @@ namespace Banshee.NotificationArea
             }
         }
 
-        private Cairo.Color TextLightColor {
-            get {
-                return Hyena.Gui.Theming.GtkTheme.GetCairoTextMidColor (notif_area.Widget);
-            }
-        }
-
         private string MarkupFormat (string fmt, params string [] args)
         {
             string [] new_args = new string [args.Length + 2];
-            new_args[0] = String.Format ("<span color=\"{0}\" size=\"small\">",
-                CairoExtensions.ColorGetHex (TextLightColor, false));
-            new_args[1] = "</span>";
+            new_args[0] = "<i>";
+            new_args[1] = "</i>";
 
             for (int i = 0; i < args.Length; i++) {
                 new_args[i + 2] = GLib.Markup.EscapeText (args[i]);
