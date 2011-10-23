@@ -166,11 +166,14 @@ namespace Daap {
                 // This is the first address we've resolved, however, it's an IPv6 address.
                 // Try and resolve the hostname in hope that it'll end up as an IPv4 address - it doesn't
                 // really matter if it still ends up with an IPv6 address, we're not risking anything.
-
-                foreach (IPAddress addr in Dns.GetHostEntry (args.Service.HostEntry.HostName).AddressList) {
-                    if (addr.AddressFamily == AddressFamily.InterNetwork) {
-                        address = addr;
+                try {
+                    foreach (IPAddress addr in Dns.GetHostEntry (args.Service.HostEntry.HostName).AddressList) {
+                        if (addr.AddressFamily == AddressFamily.InterNetwork) {
+                            address = addr;
+                        }
                     }
+                } catch (SocketException) {
+                    Log.WarningFormat ("Unable to resolve IPv6 host {0}", args.Service.HostEntry.HostName);
                 }
             }
 
