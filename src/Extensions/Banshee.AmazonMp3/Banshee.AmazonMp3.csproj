@@ -61,6 +61,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Banshee.AmazonMp3\" />
+    <Folder Include="Banshee.AmazonMp3\Tests\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Banshee.AmazonMp3\AmazonDownloadManager.cs" />
@@ -69,6 +70,7 @@
     <Compile Include="Banshee.AmazonMp3\AmzXspfPlaylist.cs" />
     <Compile Include="Banshee.AmazonMp3\ConsoleTool.cs" />
     <Compile Include="Banshee.AmazonMp3\ImportSource.cs" />
+    <Compile Include="Banshee.AmazonMp3\Tests\AmzXspfPlaylistTest.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

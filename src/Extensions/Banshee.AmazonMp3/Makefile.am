@@ -9,7 +9,8 @@ SOURCES =  \
 	Banshee.AmazonMp3/AmzMp3Downloader.cs \
 	Banshee.AmazonMp3/AmzXspfPlaylist.cs \
 	Banshee.AmazonMp3/ConsoleTool.cs \
-	Banshee.AmazonMp3/ImportSource.cs
+	Banshee.AmazonMp3/ImportSource.cs \
+	Banshee.AmazonMp3/Tests/AmzXspfPlaylistTest.cs
 
 RESOURCES = Banshee.AmazonMp3.addin.xml
 

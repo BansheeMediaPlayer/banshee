@@ -16,6 +16,7 @@ TEST_ASSEMBLIES = \
 	Banshee.Gnome.dll \
 	Banshee.Services.dll \
 	Banshee.Fixup.dll \
+	Banshee.AmazonMp3.exe \
 	Banshee.Dap.Mtp.dll
 
 if ENABLE_GIO
