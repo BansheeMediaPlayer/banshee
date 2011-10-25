@@ -70,18 +70,18 @@ namespace Banshee.AmazonMp3
 
         private void Decrypt (Stream stream)
         {
-            // Useful for debugging, support loading an unencrypted XSPF file
-            var xml_magic = new byte [5];
-            if (stream.Read (xml_magic, 0, 5) == 5 &&
-                xml_magic[0] == 0x3c &&
-                xml_magic[1] == 0x3f &&
-                xml_magic[2] == 0x78 &&
-                xml_magic[3] == 0x6d &&
-                xml_magic[4] == 0x6c) {
-                stream.Seek (0, SeekOrigin.Begin);
-                Load (stream);
-                AmzLoad ();
-                return;
+            // Amazon sometimes sends an unencrypted XSPF file, which doesn't start
+            // with <?xml... but with a <playlist> tag
+            var magic = new byte [10];
+            if (stream.Read (magic, 0, 10) == 10) {
+                string start = System.Text.Encoding.UTF8.GetString (magic);
+
+                if (start.Contains ("<?xml") || start.Contains ("<playlist")) {
+                    stream.Seek (0, SeekOrigin.Begin);
+                    Load (stream);
+                    AmzLoad ();
+                    return;
+                }
             }
 
             stream.Seek (0, SeekOrigin.Begin);

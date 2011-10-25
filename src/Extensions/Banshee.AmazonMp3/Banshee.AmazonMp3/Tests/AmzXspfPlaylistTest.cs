@@ -63,6 +63,12 @@ namespace Banshee.AmazonMp3.Tests
             TestPlaylist ("decrypted.amz", 12);
         }
 
+        [Test]
+        public void LoadCleartextAmz ()
+        {
+            TestPlaylist ("clear.amz", 4);
+        }
+
         public void TestPlaylist (string filename, int track_number)
         {
             var playlist = new AmzXspfPlaylist (Path.Combine (data_dir, filename));
