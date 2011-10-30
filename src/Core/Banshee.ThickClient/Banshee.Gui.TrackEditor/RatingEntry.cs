@@ -38,6 +38,10 @@ namespace Banshee.Gui.TrackEditor
             AlwaysShowEmptyStars = true;
         }
 
+        protected RatingEntry (IntPtr raw) : base (raw)
+        {
+        }
+
         public void SetAsReadOnly ()
         {
             Sensitive = false;
