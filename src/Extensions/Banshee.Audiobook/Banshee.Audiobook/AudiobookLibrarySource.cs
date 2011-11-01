@@ -124,7 +124,7 @@ namespace Banshee.Audiobook
 
                     ServiceManager.DbConnection.Execute (
                         "UPDATE CoreTracks SET Attributes = Attributes | ? WHERE PrimarySourceID = ?",
-                        TrackMediaAttributes.AudioBook, this.DbId);
+                        (int)TrackMediaAttributes.AudioBook, this.DbId);
                 }
             };
 
