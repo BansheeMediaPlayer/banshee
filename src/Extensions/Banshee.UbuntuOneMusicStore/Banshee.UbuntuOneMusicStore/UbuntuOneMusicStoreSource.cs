@@ -60,7 +60,10 @@ namespace Banshee.UbuntuOneMusicStore
             }
 
             // So we can handle u1ms:// URIs
-            ServiceManager.Get<DBusCommandService> ().ArgumentPushed += OnCommandLineArgument;
+            var dbus_service = ServiceManager.Get<DBusCommandService> ();
+            if (dbus_service != null) {
+                dbus_service.ArgumentPushed += OnCommandLineArgument;
+            }
 
             // make sure that the u1ms uri gets handled on banshee startup
             foreach (string uri in ApplicationContext.CommandLine.Files) {
@@ -73,7 +76,10 @@ namespace Banshee.UbuntuOneMusicStore
 
         ~UbuntuOneMusicStoreSource ()
         {
-            ServiceManager.Get<DBusCommandService> ().ArgumentPushed -= OnCommandLineArgument;
+            var dbus_service = ServiceManager.Get<DBusCommandService> ();
+            if (dbus_service != null) {
+                dbus_service.ArgumentPushed -= OnCommandLineArgument;
+            }
         }
 
         // A count of 0 will be hidden in the source TreeView
