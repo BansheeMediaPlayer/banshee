@@ -54,6 +54,7 @@ namespace Banshee.Dap
 {
     public abstract class DapSource : RemovableSource, IDisposable
     {
+        private bool flushed = false;
         private DapSync sync;
         private DapInfoBar dap_info_bar;
         private Page page;
@@ -97,6 +98,8 @@ namespace Banshee.Dap
 
         public override void Dispose ()
         {
+            Flush ();
+
             PurgeTemporaryPlaylists ();
             PurgeTracks ();
 
@@ -312,10 +315,18 @@ namespace Banshee.Dap
 
         protected override void Eject ()
         {
-            if (!Sync.Enabled) {
-                // If sync isn't enabled, then make sure we've written saved our playlists
-                // Track transfers happen immediately, but playlists saves don't
-                SyncPlaylists ();
+            Flush ();
+        }
+
+        private void Flush ()
+        {
+            if (!flushed) {
+                flushed = true;
+                if (!Sync.Enabled) {
+                    // If sync isn't enabled, then make sure we've written saved our playlists
+                    // Track transfers happen immediately, but playlists saves don't
+                    SyncPlaylists ();
+                }
             }
         }
 
