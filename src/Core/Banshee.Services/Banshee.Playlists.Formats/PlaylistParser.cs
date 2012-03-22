@@ -52,6 +52,7 @@ namespace Banshee.Playlists.Formats
         private List<Dictionary<string, object>> elements;
         private Uri base_uri = null;
         private string title = null;
+        private readonly int HTTP_REQUEST_RETRIES = 3;
 
         public PlaylistParser ()
         {
@@ -77,30 +78,8 @@ namespace Banshee.Playlists.Formats
                 if (uri.Scheme == "file") {
                     stream = Banshee.IO.File.OpenRead (uri);
                 } else if (uri.Scheme == "http") {
-                    HttpWebRequest request = (HttpWebRequest)WebRequest.Create (uri.AbsoluteUri);
-                    request.UserAgent = Banshee.Web.Browser.UserAgent;
-                    request.KeepAlive = false;
-                    request.Timeout = 5 * 1000;
-                    request.AllowAutoRedirect = true;
-
-                    // Parse out and set credentials, if any
-                    string user_info = new Uri (uri.AbsoluteUri).UserInfo;
-                    if (!String.IsNullOrEmpty (user_info)) {
-                        string username = String.Empty;
-                        string password = String.Empty;
-                        int cIndex = user_info.IndexOf (":");
-                        if (cIndex != -1) {
-                            username = user_info.Substring (0, cIndex);
-                            password = user_info.Substring (cIndex + 1);
-                        } else {
-                            username = user_info;
-                        }
-                        request.Credentials = new NetworkCredential (username, password);
-                    }
-
-                    response = (HttpWebResponse)request.GetResponse ();
+                    response = Download (uri, HTTP_REQUEST_RETRIES);
                     web_stream = response.GetResponseStream ();
-
                     try {
                         stream = new MemoryStream ();
 
@@ -166,6 +145,50 @@ namespace Banshee.Playlists.Formats
                 elements = playlist.Elements;
                 Title = playlist.Title ?? Path.GetFileNameWithoutExtension (uri.LocalPath);
                 return true;
+            }
+        }
+
+        private HttpWebResponse Download (SafeUri uri, int nb_retries)
+        {
+            Hyena.ThreadAssist.AssertNotInMainThread ();
+
+            while (true) {
+                try {
+                    HttpWebRequest request = (HttpWebRequest)WebRequest.Create (uri.AbsoluteUri);
+                    request.UserAgent = Banshee.Web.Browser.UserAgent;
+                    request.KeepAlive = false;
+                    request.Timeout = 5 * 1000;
+                    request.AllowAutoRedirect = true;
+
+                    // Parse out and set credentials, if any
+                    string user_info = new Uri (uri.AbsoluteUri).UserInfo;
+                    if (!String.IsNullOrEmpty (user_info)) {
+                        string username = String.Empty;
+                        string password = String.Empty;
+                        int cIndex = user_info.IndexOf (":");
+                        if (cIndex != -1) {
+                            username = user_info.Substring (0, cIndex);
+                            password = user_info.Substring (cIndex + 1);
+                        } else {
+                            username = user_info;
+                        }
+                        request.Credentials = new NetworkCredential (username, password);
+                    }
+
+                    var response = (HttpWebResponse)request.GetResponse ();
+                    if (response.StatusCode == HttpStatusCode.GatewayTimeout) {
+                        throw new WebException ("", WebExceptionStatus.Timeout);
+                    }
+                    return response;
+                } catch (WebException e) {
+                    if (e.Status == WebExceptionStatus.Timeout && nb_retries > 0) {
+                        nb_retries--;
+                        Log.InformationFormat ("Playlist download from {0} timed out, retrying in 1 second...", uri.AbsoluteUri);
+                        System.Threading.Thread.Sleep (1000);
+                    } else {
+                        throw;
+                    }
+                }
             }
         }
 
