@@ -124,10 +124,11 @@ namespace Banshee.UPnPClient
         {
             RemoteContentDirectory remote_dir = new RemoteContentDirectory (content_directory);
             DateTime begin = DateTime.Now;
-            Container root = remote_dir.GetRootObject ();
             bool recursive_browse = !content_directory.CanSearch;
 
             try {
+                Container root = remote_dir.GetRootObject ();
+
                 if (!recursive_browse) {
                     try {
                         Log.Debug ("Content directory is searchable, let's search");
