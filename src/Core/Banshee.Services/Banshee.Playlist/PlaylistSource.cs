@@ -103,7 +103,7 @@ namespace Banshee.Playlist
             remove_track_range_command = new HyenaSqliteCommand (@"
                 DELETE FROM CorePlaylistEntries WHERE PlaylistID = ? AND
                     EntryID IN (SELECT ItemID FROM CoreCache
-                        WHERE ModelID = ? LIMIT ?, ?)"
+                        WHERE ModelID = ? ORDER BY OrderID LIMIT ?, ?)"
             );
         }
 
