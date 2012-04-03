@@ -16,6 +16,13 @@ AC_DEFUN([BANSHEE_CHECK_LIBWEBKIT],
 		AC_SUBST(LIBWEBKIT_CFLAGS)
 		AM_CONDITIONAL(HAVE_LIBWEBKIT, [test x$have_libwebkit = xyes])
 
+		PKG_CHECK_MODULES(LIBSOUP_2_38,
+			libsoup-gnome-2.4 >= 2.38,
+			have_libsoup_2_28=yes, have_libsoup_2_28=no)
+		if test x$have_libsoup_2_28 = xyes; then
+			AC_DEFINE(HAVE_LIBSOUP_2_38, 1, [libsoup-gnome-2.4 >= 2.38 detected])
+		fi
+
 		have_libsoup_gnome=no
 		PKG_CHECK_MODULES(LIBSOUP_GNOME,
 			libsoup-gnome-2.4 >= $SOUP_GNOME_MIN_VERSION,

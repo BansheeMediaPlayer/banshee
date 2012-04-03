@@ -50,6 +50,12 @@ ossifer_session_initialize (const gchar *cookie_db_path,
 
     session = webkit_get_default_session ();
 
+#ifdef HAVE_LIBSOUP_2_38
+    g_object_set (session,
+                  SOUP_SESSION_SSL_USE_SYSTEM_CA_FILE, TRUE,
+                  NULL);
+#endif
+
 #ifdef HAVE_LIBSOUP_GNOME
     path = g_strdup_printf ("%s.sqlite", cookie_db_path);
     cookie_jar = soup_cookie_jar_sqlite_new (path, FALSE);
