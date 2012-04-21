@@ -133,7 +133,7 @@ namespace Banshee.InternetArchive
             };
 
             var examples = new FlowBox () { Spacing = 0 };
-            examples.Add (PaddingBox (new Label () { Markup = "Examples:" }));
+            examples.Add (PaddingBox (new Label () { Markup = Catalog.GetString ("Examples:") }));
 
             foreach (var search in example_searches) {
                 var this_search = search;
