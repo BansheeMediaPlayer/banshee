@@ -464,8 +464,11 @@ namespace Banshee.Dap.AppleDevice
         public override void SyncPlaylists ()
         {
             if (!IsReadOnly && Monitor.TryEnter (sync_mutex)) {
-                PerformSync ();
-                Monitor.Exit (sync_mutex);
+                try {
+                    PerformSync ();
+                } finally {
+                    Monitor.Exit (sync_mutex);
+                }
             }
         }
 
