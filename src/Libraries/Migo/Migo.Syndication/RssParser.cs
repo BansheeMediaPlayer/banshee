@@ -193,8 +193,9 @@ namespace Migo.Syndication
                 FeedEnclosure enclosure = new FeedEnclosure ();
 
                 enclosure.Url = GetXmlNodeText (node, "enclosure/@url");
-                if (enclosure.Url == null)
+                if (String.IsNullOrEmpty (enclosure.Url)) {
                     return null;
+                }
 
                 enclosure.FileSize = Math.Max (0, GetInt64 (node, "enclosure/@length"));
                 enclosure.MimeType = GetXmlNodeText (node, "enclosure/@type");
@@ -236,8 +237,9 @@ namespace Migo.Syndication
 
                 FeedEnclosure enclosure = new FeedEnclosure ();
                 enclosure.Url = GetXmlNodeText (node, "@url");
-                if (enclosure.Url == null)
+                if (String.IsNullOrEmpty (enclosure.Url)) {
                     return null;
+                }
 
                 enclosure.FileSize = Math.Max (0, GetInt64 (node, "@fileSize"));
                 enclosure.MimeType = GetXmlNodeText (node, "@type");

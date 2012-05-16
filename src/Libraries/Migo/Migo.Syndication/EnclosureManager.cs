@@ -117,21 +117,25 @@ namespace Migo.Syndication
                     Feed parentFeed = enclosure.Item.Feed;
 
                     if (parentFeed != null) {
-                        task = download_manager.CreateDownloadTask (enclosure.Url, enclosure);
-                        //Console.WriteLine ("Task DL path:  {0}", task.LocalPath);
-                        task.Name = String.Format ("{0} - {1}", parentFeed.Title, enclosure.Item.Title);
-
-                        //task.StatusChanged
-                        task.Completed += OnDownloadTaskCompletedHandler;
-
-                        // Race condition...
-                        // Should only be added when the task is associated or
-                        // it can be canceled before it is added to the progress manager.
-
-                        // Add a pre-association dict and move tasks to the
-                        // queued dict once they've been offically added.
-
-                        queued_downloads.Add (enclosure, task);
+                        try {
+                            task = download_manager.CreateDownloadTask (enclosure.Url, enclosure);
+                            //Console.WriteLine ("Task DL path:  {0}", task.LocalPath);
+                            task.Name = String.Format ("{0} - {1}", parentFeed.Title, enclosure.Item.Title);
+    
+                            //task.StatusChanged
+                            task.Completed += OnDownloadTaskCompletedHandler;
+    
+                            // Race condition...
+                            // Should only be added when the task is associated or
+                            // it can be canceled before it is added to the progress manager.
+    
+                            // Add a pre-association dict and move tasks to the
+                            // queued dict once they've been offically added.
+    
+                            queued_downloads.Add (enclosure, task);
+                        } catch (Exception e) {
+                            Log.Exception ("Could not download podcast enclosure", e);
+                        }
                     }
                 }
 
