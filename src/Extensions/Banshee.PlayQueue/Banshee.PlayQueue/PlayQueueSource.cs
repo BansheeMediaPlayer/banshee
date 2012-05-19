@@ -174,17 +174,19 @@ namespace Banshee.PlayQueue
                 if (current_track == null)
                     return;
 
-                int enabled_count = EnabledCount;
+                int shuffle_count = EnabledCount;
                 int first_view_order = (int)CurrentTrackViewOrder;
-                int last_view_order = first_view_order + enabled_count;
 
                 // If the current track is playing, don't shuffle it
-                if (ServiceManager.PlayerEngine.IsPlaying (current_track))
+                if (ServiceManager.PlayerEngine.IsPlaying (current_track)) {
                     first_view_order++;
+                    shuffle_count--;
+                }
 
                 // Nothing to do if less than 2 tracks
-                if (last_view_order - first_view_order < 2)
+                if (shuffle_count < 2) {
                     return;
+                }
 
                 // Save the current_track index, so we can update the current track
                 // to be whatever one is at that position after we shuffle them -- assuming
@@ -194,7 +196,7 @@ namespace Banshee.PlayQueue
                 // Setup a function that will return a random ViewOrder in the range we want
                 var rand = new Random ();
                 var func_id = "play-queue-shuffle-order-" + rand.NextDouble ().ToString ();
-                var view_orders = Enumerable.Range (first_view_order, last_view_order)
+                var view_orders = Enumerable.Range (first_view_order, shuffle_count)
                                             .OrderBy (a => rand.NextDouble ())
                                             .ToList ();
                 int i = 0;
