@@ -181,7 +181,7 @@ namespace Banshee.ServiceStack
 
                 return service;
             } catch (Exception e) {
-                if (service is IRequiredService) {
+                if (typeof (IRequiredService).IsAssignableFrom (type)) {
                     Log.ErrorFormat ("Error initializing required service {0}",
                             service == null ? type.ToString () : service.ServiceName, false);
                     throw;
