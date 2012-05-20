@@ -51,9 +51,13 @@ namespace Banshee.ServiceStack
 {
     public abstract class DbIteratorJob : SimpleAsyncJob
     {
+        // If we have that much consecutive errors, the job is aborted
+        private const int MAX_FAILURE_COUNT = 5;
+
         private HyenaSqliteCommand count_command;
         private HyenaSqliteCommand select_command;
         private int current_count;
+        private int failure_count;
 
         protected HyenaSqliteCommand CountCommand {
             set { count_command = value; }
@@ -106,6 +110,7 @@ namespace Banshee.ServiceStack
                 using (HyenaDataReader reader = new HyenaDataReader (ServiceManager.DbConnection.Query (select_command))) {
                     if (reader.Read ()) {
                         IterateCore (reader);
+                        failure_count = 0;
                     } else {
                         return false;
                     }
@@ -115,6 +120,11 @@ namespace Banshee.ServiceStack
                 throw;
             } catch (Exception e) {
                 Log.Exception (e);
+                failure_count++;
+                if (failure_count > MAX_FAILURE_COUNT) {
+                    Log.WarningFormat ("Too many consecutive errors for job '{0}', aborting", this.Title);
+                    return false;
+                }
             } finally {
                 Progress = (double) current_count / (double) total;
                 current_count++;
