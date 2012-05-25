@@ -16,8 +16,8 @@ msgstr ""
 "Project-Id-Version: banshee.master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=banshee&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2012-02-24 20:18+0000\n"
-"PO-Revision-Date: 2012-02-26 19:56+0100\n"
+"POT-Creation-Date: 2012-05-25 03:28+0000\n"
+"PO-Revision-Date: 2012-05-25 13:01+0200\n"
 "Last-Translator: Daniel Mustieles <daniel.mustieles@gmail.com>\n"
 "Language-Team: Español <gnome-es-list@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -623,7 +623,7 @@ msgid "Audio Quality"
 msgstr "Calidad del sonido"
 
 #: ../data/desktop-files/common.desktop.in.h:1
-#: ../src/Dap/Banshee.Dap/Banshee.Dap/DapSource.cs:193
+#: ../src/Dap/Banshee.Dap/Banshee.Dap/DapSource.cs:196
 msgid "Media Player"
 msgstr "Reproductor multimedia"
 
@@ -939,8 +939,8 @@ msgstr "Opciones de control de reproducción"
 msgid ""
 "Play the next track, optionally restarting if the 'restart' value is set"
 msgstr ""
-"Reproduce la pista siguiente, reiniciando opcionalmente si el valor "
-"«restart» está establecido"
+"Reproduce la pista siguiente, reiniciando opcionalmente si el valor «restart» "
+"está establecido"
 
 #: ../src/Clients/Booter/Booter/Entry.cs:165
 msgid ""
@@ -1302,7 +1302,7 @@ msgid "Stream location not found"
 msgstr "No se encontró la ubicación del flujo"
 
 #: ../src/Core/Banshee.Core/Banshee.Collection/TrackInfo.cs:347
-#: ../src/Dap/Banshee.Dap/Banshee.Dap/DapSource.cs:328
+#: ../src/Dap/Banshee.Dap/Banshee.Dap/DapSource.cs:339
 msgid "File not found"
 msgstr "No se encontró el archivo"
 
@@ -1675,12 +1675,12 @@ msgstr "Agrupación"
 #. Catalog.GetString ("Music Library")
 #: ../src/Core/Banshee.Services/Banshee.Library/MusicLibrarySource.cs:60
 #: ../src/Dap/Banshee.Dap/Banshee.Dap/MusicGroupSource.cs:39
-#: ../src/Extensions/Banshee.UPnPClient/Banshee.UPnPClient/UPnPMusicSource.cs:57
+#: ../src/Extensions/Banshee.UPnPClient/Banshee.UPnPClient/UPnPMusicSource.cs:49
 msgid "Music"
 msgstr "Música"
 
 #: ../src/Core/Banshee.Services/Banshee.Library/MusicLibrarySource.cs:66
-#: ../src/Extensions/Banshee.UPnPClient/Banshee.UPnPClient/UPnPMusicSource.cs:60
+#: ../src/Extensions/Banshee.UPnPClient/Banshee.UPnPClient/UPnPMusicSource.cs:52
 msgid "Search your music"
 msgstr "Buscar en su música"
 
@@ -1803,12 +1803,12 @@ msgid "Videos"
 msgstr "Vídeos"
 
 #: ../src/Core/Banshee.Services/Banshee.Library/VideoLibrarySource.cs:48
-#: ../src/Extensions/Banshee.UPnPClient/Banshee.UPnPClient/UPnPVideoSource.cs:60
+#: ../src/Extensions/Banshee.UPnPClient/Banshee.UPnPClient/UPnPVideoSource.cs:52
 msgid "Search your videos"
 msgstr "Buscar en sus vídeos"
 
 #: ../src/Core/Banshee.Services/Banshee.Library/VideoLibrarySource.cs:65
-#: ../src/Extensions/Banshee.UPnPClient/Banshee.UPnPClient/UPnPVideoSource.cs:77
+#: ../src/Extensions/Banshee.UPnPClient/Banshee.UPnPClient/UPnPVideoSource.cs:69
 msgid "Produced By"
 msgstr "Producido por"
 
@@ -2570,7 +2570,7 @@ msgstr "drm"
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui.TrackEditor/StatisticsPage.cs:234
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui.TrackEditor/StatisticsPage.cs:236
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui.TrackEditor/StatisticsPage.cs:238
-#: ../src/Dap/Banshee.Dap/Banshee.Dap/DapSource.cs:389
+#: ../src/Dap/Banshee.Dap/Banshee.Dap/DapSource.cs:400
 msgid "Unknown"
 msgstr "Desconocido"
 
@@ -2936,13 +2936,17 @@ msgstr "Extraordinaria gestión y reproducción multimedia"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui.Dialogs/AboutDialog.cs:98
 #, csharp-format
+#| msgid ""
+#| "Copyright © 2005–{0} Novell, Inc.\n"
+#| "Copyright © 2005–{0} Others\n"
+#| "Copyright © 2005 Aaron Bockover"
 msgid ""
 "Copyright © 2005–{0} Novell, Inc.\n"
-"Copyright © 2005–{0} Others\n"
+"Copyright © 2005–{1} Others\n"
 "Copyright © 2005 Aaron Bockover"
 msgstr ""
 "Copyright © 2005–{0} Novell, Inc.\n"
-"Copyright © 2005–{0} Otros\n"
+"Copyright © 2005–{1} Otros\n"
 "Copyright © 2005 Aaron Bockover"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui.Dialogs/AboutDialog.cs:104
@@ -4209,6 +4213,19 @@ msgstr "Mostrar el examinador"
 msgid "Show or hide the artist/album browser"
 msgstr "Mostrar u ocultar el examinador de artista/álbum"
 
+#: ../src/Core/Banshee.WebBrowser/Banshee.WebBrowser/NavigationControl.cs:156
+msgid ""
+"This page is blocked because it is probably not the one you are looking for!"
+msgstr ""
+"Esta página está bloqueada porque probablemente no es la que está buscando."
+
+#. Translators: {0} is the URL of the web page that was requested
+#: ../src/Core/Banshee.WebBrowser/Banshee.WebBrowser/NavigationControl.cs:158
+#, csharp-format
+#| msgid "The specified resource is invalid."
+msgid "The security certificate for {0} is invalid."
+msgstr "El recurso especificado para {0} no es válido."
+
 #: ../src/Core/Banshee.WebBrowser/Banshee.WebSource/WebBrowserShell.cs:121
 #, csharp-format
 msgid "Loading {0}..."
@@ -4295,25 +4312,25 @@ msgstr "Soporta imágenes"
 msgid "Track duration is zero"
 msgstr "La duración de la pista es cero"
 
-#: ../src/Dap/Banshee.Dap.AppleDevice/Banshee.Dap.AppleDevice/AppleDeviceSource.cs:556
+#: ../src/Dap/Banshee.Dap.AppleDevice/Banshee.Dap.AppleDevice/AppleDeviceSource.cs:559
 msgid "Syncing iPod"
 msgstr "Sincronizando iPod"
 
-#: ../src/Dap/Banshee.Dap.AppleDevice/Banshee.Dap.AppleDevice/AppleDeviceSource.cs:557
+#: ../src/Dap/Banshee.Dap.AppleDevice/Banshee.Dap.AppleDevice/AppleDeviceSource.cs:560
 msgid "Preparing to synchronize..."
 msgstr "Preparándose para sincronizar…"
 
-#: ../src/Dap/Banshee.Dap.AppleDevice/Banshee.Dap.AppleDevice/AppleDeviceSource.cs:560
+#: ../src/Dap/Banshee.Dap.AppleDevice/Banshee.Dap.AppleDevice/AppleDeviceSource.cs:563
 #, csharp-format
 msgid "Adding track {0} of {1}"
 msgstr "Añadiendo pista {0} de {1}"
 
-#: ../src/Dap/Banshee.Dap.AppleDevice/Banshee.Dap.AppleDevice/AppleDeviceSource.cs:596
+#: ../src/Dap/Banshee.Dap.AppleDevice/Banshee.Dap.AppleDevice/AppleDeviceSource.cs:599
 #, csharp-format
 msgid "Removing track {0} of {1}"
 msgstr "Quitando pista {0} de {1}"
 
-#: ../src/Dap/Banshee.Dap.AppleDevice/Banshee.Dap.AppleDevice/AppleDeviceSource.cs:649
+#: ../src/Dap/Banshee.Dap.AppleDevice/Banshee.Dap.AppleDevice/AppleDeviceSource.cs:652
 msgid "Writing media database"
 msgstr "Escribiendo la base de datos multimedia"
 
@@ -4327,35 +4344,35 @@ msgstr "Sincronizar {0}"
 msgid "Devices"
 msgstr "Dispositivos"
 
-#: ../src/Dap/Banshee.Dap/Banshee.Dap/DapSource.cs:176
+#: ../src/Dap/Banshee.Dap/Banshee.Dap/DapSource.cs:179
 msgid "Device Properties"
 msgstr "Propiedades del dispositivo"
 
-#: ../src/Dap/Banshee.Dap/Banshee.Dap/DapSource.cs:200
+#: ../src/Dap/Banshee.Dap/Banshee.Dap/DapSource.cs:203
 msgid "Product"
 msgstr "Producto"
 
-#: ../src/Dap/Banshee.Dap/Banshee.Dap/DapSource.cs:201
+#: ../src/Dap/Banshee.Dap/Banshee.Dap/DapSource.cs:204
 msgid "Vendor"
 msgstr "Fabricante"
 
-#: ../src/Dap/Banshee.Dap/Banshee.Dap/DapSource.cs:284
+#: ../src/Dap/Banshee.Dap/Banshee.Dap/DapSource.cs:287
 #: ../src/Extensions/Banshee.Podcasting/Banshee.Podcasting.Data/PodcastSource.cs:141
 #, csharp-format
 msgid "Loading {0}"
 msgstr "Cargando {0}"
 
-#: ../src/Dap/Banshee.Dap/Banshee.Dap/DapSource.cs:370
+#: ../src/Dap/Banshee.Dap/Banshee.Dap/DapSource.cs:381
 #: ../src/Extensions/Banshee.Podcasting/Banshee.Podcasting.Gui/ColumnCellYesNo.cs:37
 msgid "Yes"
 msgstr "Sí"
 
-#: ../src/Dap/Banshee.Dap/Banshee.Dap/DapSource.cs:370
+#: ../src/Dap/Banshee.Dap/Banshee.Dap/DapSource.cs:381
 #: ../src/Extensions/Banshee.Podcasting/Banshee.Podcasting.Gui/ColumnCellYesNo.cs:38
 msgid "No"
 msgstr "No"
 
-#: ../src/Dap/Banshee.Dap/Banshee.Dap/DapSource.cs:391
+#: ../src/Dap/Banshee.Dap/Banshee.Dap/DapSource.cs:402
 #, csharp-format
 msgid ""
 "The {0} format is not supported by the device, and no converter was found to "
@@ -4364,12 +4381,12 @@ msgstr ""
 "El formato {0} no está soportado por el dispositivo, y no se ha encontrado "
 "ningún conversor para convertirlo."
 
-#: ../src/Dap/Banshee.Dap/Banshee.Dap/DapSource.cs:397
+#: ../src/Dap/Banshee.Dap/Banshee.Dap/DapSource.cs:408
 msgid "File format conversion support is not available"
 msgstr ""
 "El soporte para la conversión de formatos de archivo no está disponible"
 
-#: ../src/Dap/Banshee.Dap/Banshee.Dap/DapSource.cs:423
+#: ../src/Dap/Banshee.Dap/Banshee.Dap/DapSource.cs:434
 msgid "Error converting file"
 msgstr "Error al convertir el archivo"
 
@@ -4417,7 +4434,7 @@ msgid "Audio"
 msgstr "Sonido"
 
 #: ../src/Dap/Banshee.Dap/Banshee.Dap.Gui/DapInfoBar.cs:69
-#: ../src/Extensions/Banshee.UPnPClient/Banshee.UPnPClient/UPnPVideoSource.cs:57
+#: ../src/Extensions/Banshee.UPnPClient/Banshee.UPnPClient/UPnPVideoSource.cs:49
 msgid "Video"
 msgstr "Vídeo"
 
@@ -4852,11 +4869,11 @@ msgstr "Iniciar sesión"
 msgid "Connecting to {0}"
 msgstr "Conectando a {0}"
 
-#: ../src/Extensions/Banshee.Daap/Banshee.Daap/DaapService.cs:187
+#: ../src/Extensions/Banshee.Daap/Banshee.Daap/DaapService.cs:185
 msgid "Add Remote DAAP Server"
 msgstr "Añadir servidor DAAP remoto"
 
-#: ../src/Extensions/Banshee.Daap/Banshee.Daap/DaapService.cs:188
+#: ../src/Extensions/Banshee.Daap/Banshee.Daap/DaapService.cs:186
 msgid "Add a new remote DAAP server"
 msgstr "Añadir un nuevo servidor DAAP remoto"
 
@@ -5307,6 +5324,11 @@ msgstr "NASA"
 #: ../src/Extensions/Banshee.InternetArchive/Banshee.InternetArchive/HomeView.cs:132
 msgid "Library of Congress"
 msgstr "Biblioteca del congreso"
+
+#: ../src/Extensions/Banshee.InternetArchive/Banshee.InternetArchive/HomeView.cs:136
+#| msgid "Sample"
+msgid "Examples:"
+msgstr "Ejemplos:"
 
 #: ../src/Extensions/Banshee.InternetArchive/Banshee.InternetArchive/HomeView.cs:148
 msgid ""
@@ -6391,9 +6413,8 @@ msgid ""
 "The iTunes library refers to your music directory as \"{0}\" but Banshee was "
 "not able to infer the location of this directory. Please locate it."
 msgstr ""
-"La colección de iTunes indica que su carpeta de música es «{0}», pero "
-"Banshee no ha podido deducir la ubicación de esta carpeta. Por favor, "
-"localícela."
+"La colección de iTunes indica que su carpeta de música es «{0}», pero Banshee "
+"no ha podido deducir la ubicación de esta carpeta. Por favor, localícela."
 
 #: ../src/Extensions/Banshee.PlayerMigration/Banshee.PlayerMigration/ItunesPlayerImportSource.cs:74
 msgid "iTunes Media Player"
@@ -6499,11 +6520,11 @@ msgstr "Limpiar la cola de reproducción al salir"
 msgid "Remove From Play Queue"
 msgstr "Quitar de la cola de reproducción"
 
-#: ../src/Extensions/Banshee.PlayQueue/Banshee.PlayQueue/PlayQueueSource.cs:965
+#: ../src/Extensions/Banshee.PlayQueue/Banshee.PlayQueue/PlayQueueSource.cs:967
 msgid "Number of _played songs to show"
 msgstr "Número de canciones _reproducidas que mostrar"
 
-#: ../src/Extensions/Banshee.PlayQueue/Banshee.PlayQueue/PlayQueueSource.cs:971
+#: ../src/Extensions/Banshee.PlayQueue/Banshee.PlayQueue/PlayQueueSource.cs:973
 msgid "Number of _upcoming songs to show"
 msgstr "Número de canciones pró_ximas que mostrar"
 
@@ -6835,12 +6856,11 @@ msgstr "Parar la monitorización SQL"
 msgid "Track Preview"
 msgstr "Vista previa de la pista"
 
-#: ../src/Extensions/Banshee.UPnPClient/Banshee.UPnPClient/UPnPContainerSource.cs:42
-#| msgid "Shared Music"
+#: ../src/Extensions/Banshee.UPnPClient/Banshee.UPnPClient/UPnPContainerSource.cs:39
 msgid "Shared Media"
 msgstr "Medios compartidos"
 
-#: ../src/Extensions/Banshee.UPnPClient/Banshee.UPnPClient/UPnPServerSource.cs:55
+#: ../src/Extensions/Banshee.UPnPClient/Banshee.UPnPClient/UPnPServerSource.cs:52
 msgid "UPnP Share"
 msgstr "Compartición UPnP"
 
@@ -7057,7 +7077,7 @@ msgstr "Guardar e iniciar sesión"
 msgid "Authorize for Last.fm"
 msgstr "Autorizar para Last.fm"
 
-#: ../src/Libraries/Lastfm/Lastfm/AudioscrobblerConnection.cs:449
+#: ../src/Libraries/Lastfm/Lastfm/AudioscrobblerConnection.cs:450
 msgid ""
 "Last.fm username is invalid or Banshee is not authorized to access your "
 "account."
