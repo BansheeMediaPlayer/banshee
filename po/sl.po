@@ -9,14 +9,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: banshee master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=banshee&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2012-03-18 19:25+0000\n"
-"PO-Revision-Date: 2012-03-18 20:40+0100\n"
+"POT-Creation-Date: 2012-05-25 11:03+0000\n"
+"PO-Revision-Date: 2012-05-27 16:17+0100\n"
 "Last-Translator: Matej Urbančič <mateju@svn.gnome.org>\n"
 "Language-Team: Slovenian GNOME Translation Team <gnome-si@googlegroups.com>\n"
-"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: \n"
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 1 : n%100==2 ? 2 : n%100==3 || n%100==4 ? 3 : 0);\n"
 "X-Launchpad-Export-Date: 2011-04-11 06:24+0000\n"
 "X-Generator: Launchpad (build 12757)\n"
@@ -589,7 +589,7 @@ msgid "Audio Quality"
 msgstr "Kakovost zvoka"
 
 #: ../data/desktop-files/common.desktop.in.h:1
-#: ../src/Dap/Banshee.Dap/Banshee.Dap/DapSource.cs:193
+#: ../src/Dap/Banshee.Dap/Banshee.Dap/DapSource.cs:196
 msgid "Media Player"
 msgstr "Predstavni predvajalnik"
 
@@ -1229,7 +1229,7 @@ msgid "Stream location not found"
 msgstr "Mesta pretoka ni mogoče najti"
 
 #: ../src/Core/Banshee.Core/Banshee.Collection/TrackInfo.cs:347
-#: ../src/Dap/Banshee.Dap/Banshee.Dap/DapSource.cs:328
+#: ../src/Dap/Banshee.Dap/Banshee.Dap/DapSource.cs:339
 msgid "File not found"
 msgstr "Datoteke ni mogoče najti"
 
@@ -1592,12 +1592,12 @@ msgstr "Združevanje"
 #. Catalog.GetString ("Music Library")
 #: ../src/Core/Banshee.Services/Banshee.Library/MusicLibrarySource.cs:60
 #: ../src/Dap/Banshee.Dap/Banshee.Dap/MusicGroupSource.cs:39
-#: ../src/Extensions/Banshee.UPnPClient/Banshee.UPnPClient/UPnPMusicSource.cs:57
+#: ../src/Extensions/Banshee.UPnPClient/Banshee.UPnPClient/UPnPMusicSource.cs:49
 msgid "Music"
 msgstr "Glasba"
 
 #: ../src/Core/Banshee.Services/Banshee.Library/MusicLibrarySource.cs:66
-#: ../src/Extensions/Banshee.UPnPClient/Banshee.UPnPClient/UPnPMusicSource.cs:60
+#: ../src/Extensions/Banshee.UPnPClient/Banshee.UPnPClient/UPnPMusicSource.cs:52
 msgid "Search your music"
 msgstr "Iskanje po zbirki posnetkov"
 
@@ -1722,12 +1722,12 @@ msgid "Videos"
 msgstr "Video posnetki"
 
 #: ../src/Core/Banshee.Services/Banshee.Library/VideoLibrarySource.cs:48
-#: ../src/Extensions/Banshee.UPnPClient/Banshee.UPnPClient/UPnPVideoSource.cs:60
+#: ../src/Extensions/Banshee.UPnPClient/Banshee.UPnPClient/UPnPVideoSource.cs:52
 msgid "Search your videos"
 msgstr "Iskanje po video posnetkih"
 
 #: ../src/Core/Banshee.Services/Banshee.Library/VideoLibrarySource.cs:65
-#: ../src/Extensions/Banshee.UPnPClient/Banshee.UPnPClient/UPnPVideoSource.cs:77
+#: ../src/Extensions/Banshee.UPnPClient/Banshee.UPnPClient/UPnPVideoSource.cs:69
 msgid "Produced By"
 msgstr "Proizvedeno"
 
@@ -2468,7 +2468,7 @@ msgstr "drm"
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui.TrackEditor/StatisticsPage.cs:234
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui.TrackEditor/StatisticsPage.cs:236
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui.TrackEditor/StatisticsPage.cs:238
-#: ../src/Dap/Banshee.Dap/Banshee.Dap/DapSource.cs:389
+#: ../src/Dap/Banshee.Dap/Banshee.Dap/DapSource.cs:400
 msgid "Unknown"
 msgstr "Neznano"
 
@@ -4178,25 +4178,25 @@ msgstr "Podpira fotografije"
 msgid "Track duration is zero"
 msgstr "Trajanje skladbe je nič"
 
-#: ../src/Dap/Banshee.Dap.AppleDevice/Banshee.Dap.AppleDevice/AppleDeviceSource.cs:556
+#: ../src/Dap/Banshee.Dap.AppleDevice/Banshee.Dap.AppleDevice/AppleDeviceSource.cs:559
 msgid "Syncing iPod"
 msgstr "Usklajevanje iPoda"
 
-#: ../src/Dap/Banshee.Dap.AppleDevice/Banshee.Dap.AppleDevice/AppleDeviceSource.cs:557
+#: ../src/Dap/Banshee.Dap.AppleDevice/Banshee.Dap.AppleDevice/AppleDeviceSource.cs:560
 msgid "Preparing to synchronize..."
 msgstr "Pripravljanje na usklajevanje ..."
 
-#: ../src/Dap/Banshee.Dap.AppleDevice/Banshee.Dap.AppleDevice/AppleDeviceSource.cs:560
+#: ../src/Dap/Banshee.Dap.AppleDevice/Banshee.Dap.AppleDevice/AppleDeviceSource.cs:563
 #, csharp-format
 msgid "Adding track {0} of {1}"
 msgstr "Dodajanje skladbe {0} od {1}"
 
-#: ../src/Dap/Banshee.Dap.AppleDevice/Banshee.Dap.AppleDevice/AppleDeviceSource.cs:596
+#: ../src/Dap/Banshee.Dap.AppleDevice/Banshee.Dap.AppleDevice/AppleDeviceSource.cs:599
 #, csharp-format
 msgid "Removing track {0} of {1}"
 msgstr "Odstranjevanje skladbe {0} od {1}"
 
-#: ../src/Dap/Banshee.Dap.AppleDevice/Banshee.Dap.AppleDevice/AppleDeviceSource.cs:649
+#: ../src/Dap/Banshee.Dap.AppleDevice/Banshee.Dap.AppleDevice/AppleDeviceSource.cs:652
 msgid "Writing media database"
 msgstr "Zapisovanje podatkovne zbirke predstavnih datotek"
 
@@ -4210,44 +4210,44 @@ msgstr "Uskladitev {0}"
 msgid "Devices"
 msgstr "Naprave"
 
-#: ../src/Dap/Banshee.Dap/Banshee.Dap/DapSource.cs:176
+#: ../src/Dap/Banshee.Dap/Banshee.Dap/DapSource.cs:179
 msgid "Device Properties"
 msgstr "Lastnosti naprave"
 
-#: ../src/Dap/Banshee.Dap/Banshee.Dap/DapSource.cs:200
+#: ../src/Dap/Banshee.Dap/Banshee.Dap/DapSource.cs:203
 msgid "Product"
 msgstr "Izdelek"
 
-#: ../src/Dap/Banshee.Dap/Banshee.Dap/DapSource.cs:201
+#: ../src/Dap/Banshee.Dap/Banshee.Dap/DapSource.cs:204
 msgid "Vendor"
 msgstr "Ponudnik"
 
-#: ../src/Dap/Banshee.Dap/Banshee.Dap/DapSource.cs:284
+#: ../src/Dap/Banshee.Dap/Banshee.Dap/DapSource.cs:287
 #: ../src/Extensions/Banshee.Podcasting/Banshee.Podcasting.Data/PodcastSource.cs:141
 #, csharp-format
 msgid "Loading {0}"
 msgstr "Nalaganje {0}"
 
-#: ../src/Dap/Banshee.Dap/Banshee.Dap/DapSource.cs:370
+#: ../src/Dap/Banshee.Dap/Banshee.Dap/DapSource.cs:381
 #: ../src/Extensions/Banshee.Podcasting/Banshee.Podcasting.Gui/ColumnCellYesNo.cs:37
 msgid "Yes"
 msgstr "Da"
 
-#: ../src/Dap/Banshee.Dap/Banshee.Dap/DapSource.cs:370
+#: ../src/Dap/Banshee.Dap/Banshee.Dap/DapSource.cs:381
 #: ../src/Extensions/Banshee.Podcasting/Banshee.Podcasting.Gui/ColumnCellYesNo.cs:38
 msgid "No"
 msgstr "Ne"
 
-#: ../src/Dap/Banshee.Dap/Banshee.Dap/DapSource.cs:391
+#: ../src/Dap/Banshee.Dap/Banshee.Dap/DapSource.cs:402
 #, csharp-format
 msgid "The {0} format is not supported by the device, and no converter was found to convert it"
 msgstr "Naprava ne podpira vrste zapisa {0}, in ni mogoče najti pretvornika za njeno pretvarjanje"
 
-#: ../src/Dap/Banshee.Dap/Banshee.Dap/DapSource.cs:397
+#: ../src/Dap/Banshee.Dap/Banshee.Dap/DapSource.cs:408
 msgid "File format conversion support is not available"
 msgstr "Podpora za pretvorbo vrste datoteke ni na voljo"
 
-#: ../src/Dap/Banshee.Dap/Banshee.Dap/DapSource.cs:423
+#: ../src/Dap/Banshee.Dap/Banshee.Dap/DapSource.cs:434
 msgid "Error converting file"
 msgstr "Napaka med pretvarjanjem datoteke"
 
@@ -4291,7 +4291,7 @@ msgid "Audio"
 msgstr "Zvok"
 
 #: ../src/Dap/Banshee.Dap/Banshee.Dap.Gui/DapInfoBar.cs:69
-#: ../src/Extensions/Banshee.UPnPClient/Banshee.UPnPClient/UPnPVideoSource.cs:57
+#: ../src/Extensions/Banshee.UPnPClient/Banshee.UPnPClient/UPnPVideoSource.cs:49
 msgid "Video"
 msgstr "Video"
 
@@ -5161,6 +5161,11 @@ msgstr "NASA"
 #: ../src/Extensions/Banshee.InternetArchive/Banshee.InternetArchive/HomeView.cs:132
 msgid "Library of Congress"
 msgstr "Kongresna knjižnica"
+
+#: ../src/Extensions/Banshee.InternetArchive/Banshee.InternetArchive/HomeView.cs:136
+#| msgid "Sample"
+msgid "Examples:"
+msgstr "Primeri:"
 
 #: ../src/Extensions/Banshee.InternetArchive/Banshee.InternetArchive/HomeView.cs:148
 msgid "The Internet Archive, a 501(c)(3) non-profit, is building a digital library of Internet sites and other cultural artifacts in digital form. Like a paper library, we provide free access to researchers, historians, scholars, and the general public."
@@ -6305,11 +6310,11 @@ msgstr "Počisti čakalno vrsto predvajanja ob končanju"
 msgid "Remove From Play Queue"
 msgstr "Odstrani iz čakalne vrste predvajanja"
 
-#: ../src/Extensions/Banshee.PlayQueue/Banshee.PlayQueue/PlayQueueSource.cs:965
+#: ../src/Extensions/Banshee.PlayQueue/Banshee.PlayQueue/PlayQueueSource.cs:967
 msgid "Number of _played songs to show"
 msgstr "Število _predvajanih skladb za prikaz"
 
-#: ../src/Extensions/Banshee.PlayQueue/Banshee.PlayQueue/PlayQueueSource.cs:971
+#: ../src/Extensions/Banshee.PlayQueue/Banshee.PlayQueue/PlayQueueSource.cs:973
 msgid "Number of _upcoming songs to show"
 msgstr "Število _prihajajočih skladb za prikaz"
 
@@ -6640,11 +6645,11 @@ msgstr "Zaustavi nadziranje SQL"
 msgid "Track Preview"
 msgstr "Predogled skladbe"
 
-#: ../src/Extensions/Banshee.UPnPClient/Banshee.UPnPClient/UPnPContainerSource.cs:42
+#: ../src/Extensions/Banshee.UPnPClient/Banshee.UPnPClient/UPnPContainerSource.cs:39
 msgid "Shared Media"
 msgstr "Predstavne vsebine v souporabi"
 
-#: ../src/Extensions/Banshee.UPnPClient/Banshee.UPnPClient/UPnPServerSource.cs:55
+#: ../src/Extensions/Banshee.UPnPClient/Banshee.UPnPClient/UPnPServerSource.cs:52
 msgid "UPnP Share"
 msgstr "Souporaba UPnP"
 
