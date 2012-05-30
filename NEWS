@@ -1,89 +1,20 @@
 ===============================================================================
-Banshee 2.4.0 - 2012-03-21
+Banshee 2.4.1 - 2012-05-24
 ===============================================================================
 
-    Banshee 2.4 is the culmination of six months' work by 31 developers, 33
-    translators and dozens of bug reporters and testers. It is a stable release,
-    the successor to Banshee 2.2.
+    Banshee 2.4.1 is a stable, bug-fix-only release building on Banshee 2.4.0.
 
-    New Features:
+    Notable Bugs Fixed (12 fixed since 2.4.0):
 
-      * DVD playback support
-
-            Watch your DVDs with Banshee. You can navigate in the DVD's menus
-            using the mouse or the keyboard.
-
-      * More flexible browsing of your media
-
-            You can now display the genres and years in the browser, in
-            addition to the artists and the albums, and use them to filter your
-            music library. The artist filter can be hidden, or it can be set to
-            only display album artists, instead of all artists in your library.
-
-      * UPnP support
-
-            Browse and play music or videos shared over your local network
-            by a UPnP device.
-
-    Enhancements:
-
-      * Several improvements to Muinshee, our alternative UI
-      * Add separate options for writing ratings and play counts to files
-      * Dap.MassStorage: Add support for the Archos Internet Tablet
-      * Dap.MassStorage: Don't sync 'unknown album' metadata
-      * Update values for the Smiley Face equalizer preset
-      * MusicBrainz: Enable FreeBSD support
-      * Set the PulseAudio media.role property
-      * StreamPositionLabel: Fix label when loading
-      * Preferences: Change wording of Metadata settings
-      * Add a Composer filter in the SearchEntry filter menu
-      * bgo#548636: Lastfm: Use one single directory for last.fm caching
-      * bgo#587964: Dap: Add support for DOS folder separator in playlists
-      * bgo#589196: Dap.MassStorage: metadata resync in manual mode.
-      * bgo#608389: AudiobookLibrarySource: Accept tracks dragged from playlists
-      * bgo#664424: AsxPlaylistFormat: Add support for external ASX playlists
-      * bgo#664642: Add support for the NEC LifeTouch Note
-      * bgo#666488: Dap.MassStorage: Add and use specific icons for Xperia phones
-      * bgo#666493: Emusic.Store: Remove unneeded refresh
-      * bgo#665997: Mpris: Add xesam:userRating field in track metadata.
-
-    Notable Bugs Fixed (91 fixed since 2.2.0):
-
-      * UbuntuOneMusicStore: Ensure u1ms URIs passed at startup get loaded
-      * Daap: Fix crash while resolving the address of a DAAP service
-      * DatabaseImportManager: Support importing .mka files
-      * Notify playlists on rating change through d-bus or command line
-      * Mpris: Change trackid type from string to DBus object path
-      * Mpris: Fix OpenUri method to also support http URIs
-      * Gio: Fix encoding of URIs in Directory class and fix values in database
-      * LibraryWatcher: Catch and log exception when processing changes
-      * bgo#548366: Allow primary sources to marked as temporary
-      * bgo#628518: build: Add a --disable-webkit flag to configure
-      * bgo#638130: Fix importing of rating and play count when updating track
-      * bgo#644145: Fix FileLocation queries for the StartsWith operator
-      * bgo#644270: Fix crash on Windows if the log file can't be opened
-      * bgo#647898: Try to fetch coverart without an internet connection
-      * bgo#648522: Fix race condition when starting multiple instances.
-      * bgo#649277: NotificationArea: Only use supported tags in the message
-      * bgo#651743: YouTubeTile: Fix construction of the playback URI
-      * bgo#656439: Audiobook: Add a button to go back to the list of audiobooks
-      * bgo#656533: Notification: Fix application name used in internal notify#
-      * bgo#658803: Prune CoverArtDownloads table when removing tracks
-      * bgo#659146: Daap: Always send revision-number in update requests
-      * bgo#659841: GnomeBackend: Be more robust against GConf failures
-      * bgo#661322: PlaybackShuffleActions: Fix crash when setting shuffle mode
-      * bgo#661467: AmazonMp3: Handle plain text AMZ files now sent by Amazon
-      * bgo#662122: AudioscrobblerConnection: Fix crash during scrobbling
-      * bgo#662883: Fix activation of UbuntuOneMusicStore source on startup
-      * bgo#662906: AudiobookLibrarySource: Fix crash when adding tracks
-      * bgo#663318: GConfProxy: Don't use a proxy if the proxy host is empty
-      * bgo#664079: Skip empty files when importing and show error
-      * bgo#664381: Dap.MassStorage: Rename Xperia X12 to Xperia arc
-      * bgo#666981: LibraryWatcher: avoid importing incomplete files
-      * bgo#667355: SourceWatcher: Fix SQL error caused by incorrect escaping.
-      * bgo#667478: Fix build with libmtp 1.1.
-      * bgo#668417: Fix MusicBrainz dllmap for cross-architecture support
-      * bgo#671536: WebBrowser: Implement SSL certificate validation
+      * Migo.Syndication: Handle feeds with malformed enclosure URLs
+      * bgo#626659: ServiceManager: check properly if a service is required
+      * bgo#634758: PlaylistSource: Make sure the right tracks are removed
+      * bgo#662909: PlaylistParser: Retry HTTP request after timeout
+      * bgo#666696: DapSource: Flush pending changes when quitting
+      * bgo#672744: UPnPServerSource: Fix crash when getting the root object
+      * bgo#673037: libossifer: Fix certificate validation with libsoup 2.38
+      * bgo#673416: DbIteratorJob: Abort job after several consecutive failures
+      * bgo#676144: PlayQueueSource: Fix high memory usage when shuffling
 
 ===============================================================================
 SOURCES / PACKAGES
@@ -92,9 +23,9 @@ SOURCES / PACKAGES
 Sources
 -------
 
-    * Banshee 2.4.0 Tarballs:
-      http://ftp.gnome.org/pub/GNOME/sources/banshee/2.4/banshee-2.4.0.tar.xz
-      http://ftp.gnome.org/pub/GNOME/sources/banshee/2.4/banshee-2.4.0.sha256sum
+    * Banshee 2.4.1 Tarballs:
+      http://ftp.gnome.org/pub/GNOME/sources/banshee/2.4/banshee-2.4.1.tar.xz
+      http://ftp.gnome.org/pub/GNOME/sources/banshee/2.4/banshee-2.4.1.sha256sum
 
 Packages
 --------
@@ -117,7 +48,7 @@ REPORT BUGS - HELP THE PROJECT - GROW THE COMMUNITY
     hesitate to file bugs!
 
     * http://banshee.fm/contribute/file-bugs
-    * http://bugzilla.gnome.org/enter_bug.cgi?product=banshee&version=2.4.0
+    * http://bugzilla.gnome.org/enter_bug.cgi?product=banshee&version=2.4.1
 
 
 ===============================================================================
@@ -130,23 +61,11 @@ Contributors For This Release
     The following people directly contributed to the release of this version
     of Banshee. Without their help, there would be no release!
 
-     Adam Lofts, Age Bosma, Alex Launi, Alexander Kojevnikov, Andre Klapper,
-     Andres G. Aragoneses, Arun Raghavan, Bertrand Lorentz, Chow Loong Jin,
-     Felipe Castillo, Frank Ziegler, James Otting, Jo Shields, Jordi Mas,
-     Kentaro KAZUHAMA, Kevin Anthony, Neil Loknath, Nuno Araujo,
-     OKANO Takayoshi, Olivier Dufour, Pacho Ramos, Phil Trimble, Robin Stocker,
-     Roderich Schupp, Rodney Dawes, Timothy Arceri, Tobias Arrskog,
-     Travis Glenn Hansen, Udesh Liyanaarachchi, Will Thompson, William Witt
+     Andres G. Aragoneses, Bertrand Lorentz, Olivier Dufour
 
     The following people contributed updated translations to this release.
     Without them, our project's reach would be much more limited.
 
-     Andrej Žnidaršič, António Lima, Benjamín Valero, Bruno Brouard,
-     Changwoo Ryu, Cheng-Chia Tseng, Christian Kirbach, Daniel Mustieles,
-     Daniel Nylander, Fran Diéguez, Funda Wang, Gabor Kelemen,
-     Gianvito Cavasoli, Hajime Taira, Hendrik Knackstedt, Jiro Matsuzawa,
-     Jordi Mas, Jorge González, Kentaro KAZUHAMA, Kristjan SCHMIDT,
-     Marek Černocký, Mario Blättermann, Matej Urbančič, Mateusz Kacprzak,
-     Misha Shnurapet, Muhammet Kara, OKANO Takayoshi, Pavol Klačanský,
-     Piotr Drąg, Praveen Illa, Rudolfs Mazurs, Yuri Myasoedov, Мирослав Николић
+     Andika Triwidada, Bruno Brouard, Daniel Mustieles, Gabor Kelemen,
+     Matej Urbančič, Piotr Drąg
 
