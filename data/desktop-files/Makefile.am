@@ -17,6 +17,7 @@ endif
 @INTLTOOL_DESKTOP_RULE@
 
 install-data-hook:
+	test -f $(DESTDIR)$(datadir)/applications/defaults.list && \
 	test -z $(DESTDIR) && update-desktop-database $(DESTDIR)$(datadir)/applications || :
 
 EXTRA_DIST = \
