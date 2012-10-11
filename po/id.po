@@ -9,7 +9,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=banshee&keywords=I18N+L10N&component=general\n"
 "POT-Creation-Date: 2012-09-30 17:36+0000\n"
-"PO-Revision-Date: 2012-10-08 20:30+0700\n"
+"PO-Revision-Date: 2012-10-11 23:03+0700\n"
 "Last-Translator: Andika Triwidada <andika@gmail.com>\n"
 "Language-Team: GNOME Indonesian Translation Team <gnome@i15n.org>\n"
 "Language: id_ID\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Poedit 1.5.3\n"
+"X-Generator: Poedit 1.5.4\n"
 
 #. ../src/Dap/Banshee.Dap.AppleDevice/Banshee.Dap.AppleDevice.addin.xml
 #: ../data/addin-xml-strings.cs:8
@@ -599,6 +599,9 @@ msgid ""
 "A proprietary lossy audio format with high quality output at a lower file "
 "size than MP3. A 96 kbps WMA is equivalent to a 128 kbps MP3."
 msgstr ""
+"Suatu format audio lossy yang proprietary dengan keluaran kualitas tinggi "
+"berukuran lebih kecil daripada MP3. Suatu WMA 96kbps ekuivalen dengan MP3 "
+"128 kbps."
 
 #: ../data/audio-profiles/wma.xml.in.h:3
 msgid "Use a variable bitrate"
@@ -959,14 +962,16 @@ msgid ""
 "Enable or disable playback stopping after the currently playing track (value "
 "should be either 'true' or 'false')"
 msgstr ""
+"Fungsikan atau matikan pemutaran untuk berhenti setelah trek yang sedang "
+"diputar (nilai mesti berupa 'true' atau 'false')"
 
 #: ../src/Clients/Booter/Booter/Entry.cs:174
 msgid "Set the playback volume (0-100), prefix with +/- for relative values"
-msgstr ""
+msgstr "Atur volume main (0-100), awali dengan +/- untuk nilai relatif"
 
 #: ../src/Clients/Booter/Booter/Entry.cs:175
 msgid "Seek to a specific point (seconds, float)"
-msgstr ""
+msgstr "Seek ke titik tertentu (detik, pecahan)"
 
 #: ../src/Clients/Booter/Booter/Entry.cs:176
 msgid "Set the currently played track's rating (0 to 5)"
@@ -974,7 +979,7 @@ msgstr "Tata peringkat trek yang kini dimainkan (0 sampai 5)"
 
 #: ../src/Clients/Booter/Booter/Entry.cs:179
 msgid "Player Engine Query Options"
-msgstr ""
+msgstr "Opsi Query Mesin Pemutar"
 
 #: ../src/Clients/Booter/Booter/Entry.cs:180
 msgid "Current player state"
@@ -998,11 +1003,11 @@ msgstr "Volume pemutar"
 
 #: ../src/Clients/Booter/Booter/Entry.cs:185
 msgid "Player position in currently playing track"
-msgstr ""
+msgstr "Posisi pemutar dalam trek yang sedang diputar"
 
 #: ../src/Clients/Booter/Booter/Entry.cs:188
 msgid "Playing Track Metadata Query Options"
-msgstr ""
+msgstr "Opsi Query Metadata Trek Yang Diputar"
 
 #: ../src/Clients/Booter/Booter/Entry.cs:189
 msgid "URI"
@@ -1448,12 +1453,11 @@ msgstr "menurut lagu"
 
 #: ../src/Core/Banshee.Services/Banshee.Collection.Database/RandomByTrack.cs:48
 msgid "Play songs randomly from the playlist"
-msgstr ""
+msgstr "Putar lagu secara acak dari daftar putar"
 
 #: ../src/Core/Banshee.Services/Banshee.Collection/ImportManager.cs:138
-#, fuzzy
 msgid "Scanning for media"
-msgstr "Memindai pesan-pesan yang berubah"
+msgstr "Memindai media"
 
 #: ../src/Core/Banshee.Services/Banshee.Collection/ImportManager.cs:188
 #: ../src/Core/Banshee.Services/Banshee.Database/BansheeDbFormatMigrator.cs:1419
@@ -1494,6 +1498,7 @@ msgstr "Meningkatkan Basis Data Banshee Anda"
 msgid ""
 "Please wait while your old Banshee database is migrated to the new format."
 msgstr ""
+"Harap tunggu ketika basis data Banshee lama Anda dimigrasi ke format baru."
 
 #: ../src/Core/Banshee.Services/Banshee.Database/BansheeDbFormatMigrator.cs:1416
 msgid "Refreshing Metadata"
@@ -1557,7 +1562,7 @@ msgstr "Ska"
 
 #: ../src/Core/Banshee.Services/Banshee.Equalizer/EqualizerManager.cs:294
 msgid "Smiley Face Curve"
-msgstr ""
+msgstr "Kurva Wajah Smiley"
 
 #: ../src/Core/Banshee.Services/Banshee.Equalizer/EqualizerManager.cs:297
 msgid "Soft"
@@ -1677,7 +1682,7 @@ msgstr "Lain-lain"
 
 #: ../src/Core/Banshee.Services/Banshee.Library/MusicLibrarySource.cs:92
 msgid "_Sort an artist's albums by year, not title"
-msgstr ""
+msgstr "Urutkan album arti_s menurut tahun, bukan judul"
 
 #: ../src/Core/Banshee.Services/Banshee.Library/MusicLibrarySource.cs:102
 #, csharp-format
@@ -1699,9 +1704,8 @@ msgid "Songs rated four and five stars"
 msgstr "Lagu dengan peringkat empat dan lima bintang"
 
 #: ../src/Core/Banshee.Services/Banshee.Library/MusicLibrarySource.cs:141
-#, fuzzy
 msgid "Recent Favorites"
-msgstr "Gabung _Favorit"
+msgstr "Favorit Terkini"
 
 #: ../src/Core/Banshee.Services/Banshee.Library/MusicLibrarySource.cs:142
 msgid "Songs listened to often in the past week"
@@ -1830,10 +1834,12 @@ msgid ""
 "No player engines were found. Please ensure Banshee has been cleanly "
 "installed."
 msgstr ""
+"Mesin pemutar tak ditemukan. Harap pastikan Banshee telah dipasang secara "
+"bersih."
 
 #: ../src/Core/Banshee.Services/Banshee.MediaEngine/PlayerEngineService.cs:375
 msgid "Problem with Player Engine"
-msgstr ""
+msgstr "Masalah dengan Mesin Pemutar"
 
 #: ../src/Core/Banshee.Services/Banshee.MediaEngine/TranscoderService.cs:135
 #, csharp-format
@@ -1861,39 +1867,36 @@ msgid "Sync _metadata between library and files"
 msgstr "Selaraskan _metadata antara pustaka dan berkas"
 
 #: ../src/Core/Banshee.Services/Banshee.Metadata/SaveTrackMetadataService.cs:50
-#, fuzzy
 msgid ""
 "Enable this option to have metadata in sync between your library and "
 "supported media files"
 msgstr ""
-"Aktifkan opsi ini untuk menyimpan metadata peringkat dan cacah main di dalam "
+"Aktifkan opsi ini untuk menyelaraskan metadata antara pustaka Anda dan "
 "berkas audio yang didukung"
 
 #: ../src/Core/Banshee.Services/Banshee.Metadata/SaveTrackMetadataService.cs:55
 msgid "Sync _ratings between library and files"
-msgstr ""
+msgstr "Sela_raskan nilai antara pustaka dan berkas"
 
 #: ../src/Core/Banshee.Services/Banshee.Metadata/SaveTrackMetadataService.cs:56
-#, fuzzy
 msgid ""
 "Enable this option to have rating metadata synced between your library and "
 "supported audio files"
 msgstr ""
-"Aktifkan opsi ini untuk menyimpan metadata peringkat dan cacah main di dalam "
-"berkas audio yang didukung"
+"Aktifkan opsi ini untuk menyelaraskan metadata peringkat antara pustakan "
+"Anda dan berkas audio yang didukung"
 
 #: ../src/Core/Banshee.Services/Banshee.Metadata/SaveTrackMetadataService.cs:61
 msgid "Sync play counts between library and files"
-msgstr ""
+msgstr "Selaraskan cacah main antara pustaka dan berkas"
 
 #: ../src/Core/Banshee.Services/Banshee.Metadata/SaveTrackMetadataService.cs:62
-#, fuzzy
 msgid ""
 "Enable this option to have playcount metadata synced between your library "
 "and supported audio files"
 msgstr ""
-"Aktifkan opsi ini untuk menyimpan metadata peringkat dan cacah main di dalam "
-"berkas audio yang didukung"
+"Aktifkan opsi ini untuk menyelaraskan metadata cacah main antara pustakan "
+"Anda dan berkas audio yang didukung"
 
 #: ../src/Core/Banshee.Services/Banshee.Networking/Network.cs:52
 msgid "There is no available network connection"
@@ -1916,6 +1919,8 @@ msgid ""
 "Some features require a broadband Internet connection such as Last.fm or "
 "cover art fetching"
 msgstr ""
+"Beberapa fitur memerlukan koneksi Internet jalur lebar seperti Last.fm atau "
+"pengambilan gambar sampul"
 
 #: ../src/Core/Banshee.Services/Banshee.Playlist/AbstractPlaylistSource.cs:153
 msgid "Search this playlist"
@@ -1955,7 +1960,7 @@ msgstr "Windows Media ASX (*.asx)"
 
 #: ../src/Core/Banshee.Services/Banshee.Playlists.Formats/M3uPlaylistFormat.cs:45
 msgid "MPEG Version 3.0 Extended (*.m3u)"
-msgstr ""
+msgstr "MPEG Versi 3.0 yang Diperluas (*.m3u)"
 
 #: ../src/Core/Banshee.Services/Banshee.Playlists.Formats/PlsPlaylistFormat.cs:53
 msgid "Shoutcast Playlist version 2 (*.pls)"
@@ -1963,7 +1968,7 @@ msgstr "Shoutcast Playlist versi 2 (*.pls)"
 
 #: ../src/Core/Banshee.Services/Banshee.Playlists.Formats/XspfPlaylistFormat.cs:44
 msgid "XML Shareable Playlist Format version 1 (*.xspf)"
-msgstr ""
+msgstr "XML Shareable Playlist Format versi 1 (*.xspf)"
 
 #. Pages (tabs)
 #: ../src/Core/Banshee.Services/Banshee.Preferences/PreferenceService.cs:50
@@ -1971,9 +1976,8 @@ msgid "General"
 msgstr "Umum"
 
 #: ../src/Core/Banshee.Services/Banshee.Preferences/PreferenceService.cs:51
-#, fuzzy
 msgid "Source Specific"
-msgstr "Kepala surat tertentu"
+msgstr "Spesifik Sumber"
 
 #: ../src/Core/Banshee.Services/Banshee.Preferences/PreferenceService.cs:52
 msgid "Extensions"
@@ -1986,7 +1990,7 @@ msgstr "Kebijakan Berkas"
 
 #: ../src/Core/Banshee.Services/Banshee.Preferences/PreferenceService.cs:66
 msgid "Improve Banshee by sending anonymous usage data"
-msgstr ""
+msgstr "Tingkatkan Banshee dengan mengirim data pemakaian anonim"
 
 #: ../src/Core/Banshee.Services/Banshee.Query/BansheeQuery.cs:65
 msgid "items"
@@ -2045,9 +2049,8 @@ msgid "album"
 msgstr "album"
 
 #: ../src/Core/Banshee.Services/Banshee.Query/BansheeQuery.cs:96
-#, fuzzy
 msgid "on"
-msgstr "nyala"
+msgstr "pada"
 
 #: ../src/Core/Banshee.Services/Banshee.Query/BansheeQuery.cs:96
 msgid "from"
@@ -2072,9 +2075,8 @@ msgstr "discnum"
 
 #. Translators: These are unique search fields (and nouns). You can use CSV for synonyms. Please, no spaces. Blank ok.
 #: ../src/Core/Banshee.Services/Banshee.Query/BansheeQuery.cs:112
-#, fuzzy
 msgid "discs"
-msgstr "Gabung Cakram..."
+msgstr "cakram"
 
 #: ../src/Core/Banshee.Services/Banshee.Query/BansheeQuery.cs:112
 msgid "cds"
@@ -2087,11 +2089,11 @@ msgstr "trek"
 
 #: ../src/Core/Banshee.Services/Banshee.Query/BansheeQuery.cs:121
 msgid "trackno"
-msgstr ""
+msgstr "trackno"
 
 #: ../src/Core/Banshee.Services/Banshee.Query/BansheeQuery.cs:121
 msgid "tracknum"
-msgstr ""
+msgstr "tracknum"
 
 #. Translators: These are unique search fields. You can use CSV for synonyms. Please, no spaces. Blank ok.
 #: ../src/Core/Banshee.Services/Banshee.Query/BansheeQuery.cs:130
@@ -2100,7 +2102,7 @@ msgstr "trek"
 
 #: ../src/Core/Banshee.Services/Banshee.Query/BansheeQuery.cs:130
 msgid "trackcount"
-msgstr ""
+msgstr "trackcount"
 
 #: ../src/Core/Banshee.Services/Banshee.Query/BansheeQuery.cs:136
 msgid "Beats per Minute"
@@ -2117,24 +2119,22 @@ msgid "bitrate"
 msgstr "bitrate"
 
 #: ../src/Core/Banshee.Services/Banshee.Query/BansheeQuery.cs:147
-#, fuzzy
 msgid "kbs"
-msgstr "A4Tech KBS-8"
+msgstr "kbs"
 
 #: ../src/Core/Banshee.Services/Banshee.Query/BansheeQuery.cs:147
 msgid "kps"
-msgstr ""
+msgstr "kps"
 
 #. Translators: noun
 #: ../src/Core/Banshee.Services/Banshee.Query/BansheeQuery.cs:154
-#, fuzzy
 msgid "Sample Rate"
-msgstr "Laju sampel:"
+msgstr "Laju Cuplikan"
 
 #. Translators: These are unique search fields. You can use CSV for synonyms. Please, no spaces. Blank ok.
 #: ../src/Core/Banshee.Services/Banshee.Query/BansheeQuery.cs:156
 msgid "samplerate"
-msgstr ""
+msgstr "samplerate"
 
 #: ../src/Core/Banshee.Services/Banshee.Query/BansheeQuery.cs:156
 msgid "Hz"
@@ -2236,7 +2236,7 @@ msgstr "lisensi"
 
 #: ../src/Core/Banshee.Services/Banshee.Query/BansheeQuery.cs:226
 msgid "licensed"
-msgstr ""
+msgstr "dilisensikan"
 
 #: ../src/Core/Banshee.Services/Banshee.Query/BansheeQuery.cs:226
 msgid "under"
@@ -2258,17 +2258,16 @@ msgstr "Cacah Putar"
 
 #. Translators: These are unique search fields (and nouns). You can use CSV for synonyms. Please, no spaces. Blank ok.
 #: ../src/Core/Banshee.Services/Banshee.Query/BansheeQuery.cs:242
-#, fuzzy
 msgid "plays"
-msgstr "{0} kali main"
+msgstr "putar"
 
 #: ../src/Core/Banshee.Services/Banshee.Query/BansheeQuery.cs:242
 msgid "playcount"
-msgstr ""
+msgstr "playcount"
 
 #: ../src/Core/Banshee.Services/Banshee.Query/BansheeQuery.cs:242
 msgid "listens"
-msgstr ""
+msgstr "dengar"
 
 #: ../src/Core/Banshee.Services/Banshee.Query/BansheeQuery.cs:248
 msgid "Skip Count"
@@ -2277,11 +2276,11 @@ msgstr "Cacah Dilewati"
 #. Translators: These are unique search fields (and nouns). You can use CSV for synonyms. Please, no spaces. Blank ok.
 #: ../src/Core/Banshee.Services/Banshee.Query/BansheeQuery.cs:250
 msgid "skips"
-msgstr ""
+msgstr "lewat,lewati,lompat,lompati"
 
 #: ../src/Core/Banshee.Services/Banshee.Query/BansheeQuery.cs:250
 msgid "skipcount"
-msgstr ""
+msgstr "skipcount"
 
 #: ../src/Core/Banshee.Services/Banshee.Query/BansheeQuery.cs:256
 msgid "File Size"
@@ -2344,9 +2343,8 @@ msgid "type"
 msgstr "jenis"
 
 #: ../src/Core/Banshee.Services/Banshee.Query/BansheeQuery.cs:282
-#, fuzzy
 msgid "mimetype"
-msgstr "JENISMIME"
+msgstr "mimetype"
 
 #: ../src/Core/Banshee.Services/Banshee.Query/BansheeQuery.cs:282
 msgid "format"
@@ -2363,7 +2361,7 @@ msgstr "Terakhir Diputar"
 #. Translators: These are unique search fields. You can use CSV for synonyms. Please, no spaces. Blank ok.
 #: ../src/Core/Banshee.Services/Banshee.Query/BansheeQuery.cs:290
 msgid "lastplayed"
-msgstr ""
+msgstr "terakhir_main"
 
 #: ../src/Core/Banshee.Services/Banshee.Query/BansheeQuery.cs:290
 msgid "played"
@@ -2371,26 +2369,24 @@ msgstr "diputar"
 
 #: ../src/Core/Banshee.Services/Banshee.Query/BansheeQuery.cs:290
 msgid "playedon"
-msgstr ""
+msgstr "playedon"
 
 #: ../src/Core/Banshee.Services/Banshee.Query/BansheeQuery.cs:296
-#, fuzzy
 msgid "Last Skipped"
-msgstr "Penyelarasan Dilewati"
+msgstr "Terakhir Dilewati"
 
 #. Translators: These are unique search fields. You can use CSV for synonyms. Please, no spaces. Blank ok.
 #: ../src/Core/Banshee.Services/Banshee.Query/BansheeQuery.cs:298
 msgid "lastskipped"
-msgstr ""
+msgstr "terakhir_lewat"
 
 #: ../src/Core/Banshee.Services/Banshee.Query/BansheeQuery.cs:298
-#, fuzzy
 msgid "skipped"
-msgstr "Penyelarasan Dilewati"
+msgstr "dilewati"
 
 #: ../src/Core/Banshee.Services/Banshee.Query/BansheeQuery.cs:298
 msgid "skippedon"
-msgstr ""
+msgstr "skippedon"
 
 #: ../src/Core/Banshee.Services/Banshee.Query/BansheeQuery.cs:304
 msgid "Date Added"
@@ -2415,13 +2411,12 @@ msgstr "dateadded"
 
 #: ../src/Core/Banshee.Services/Banshee.Query/BansheeQuery.cs:306
 msgid "importedon"
-msgstr ""
+msgstr "importedon"
 
 #: ../src/Core/Banshee.Services/Banshee.Query/BansheeQuery.cs:317
 #: ../src/Core/Banshee.Services/Banshee.SmartPlaylist/SmartPlaylistSource.cs:65
-#, fuzzy
 msgid "Smart Playlist"
-msgstr "Hapus Daftar Putar"
+msgstr "Daftar Putar Cerdas"
 
 #. Translators: These are unique search fields (and nouns). You can use CSV for synonyms. Please, no spaces. Blank ok.
 #: ../src/Core/Banshee.Services/Banshee.Query/BansheeQuery.cs:326
@@ -2435,7 +2430,7 @@ msgstr "Galat Pemutaran"
 #. Translators: These are unique search fields (and nouns). Please, no spaces. Blank ok.
 #: ../src/Core/Banshee.Services/Banshee.Query/BansheeQuery.cs:334
 msgid "playbackerror"
-msgstr ""
+msgstr "galat,putar"
 
 #. Translators: noun
 #: ../src/Core/Banshee.Services/Banshee.Query/BansheeQuery.cs:351
@@ -2444,12 +2439,11 @@ msgstr "BPM"
 
 #: ../src/Core/Banshee.Services/Banshee.Query/BansheeQuery.cs:352
 msgid "Skips"
-msgstr ""
+msgstr "Lewati"
 
 #: ../src/Core/Banshee.Services/Banshee.Query/BansheeQuery.cs:353
-#, fuzzy
 msgid "Plays"
-msgstr "{0} kali main"
+msgstr "Putar"
 
 #: ../src/Core/Banshee.Services/Banshee.Query/BansheeQuery.cs:368
 msgid "Highest Rating"
@@ -2469,31 +2463,27 @@ msgstr "Skor Terrendah"
 
 #: ../src/Core/Banshee.Services/Banshee.Query/BansheeQuery.cs:374
 msgid "Most Often Played"
-msgstr ""
+msgstr "Paling Sering Diputar"
 
 #: ../src/Core/Banshee.Services/Banshee.Query/BansheeQuery.cs:375
 msgid "Least Often Played"
-msgstr ""
+msgstr "Paling Jarang Diputar"
 
 #: ../src/Core/Banshee.Services/Banshee.Query/BansheeQuery.cs:377
-#, fuzzy
 msgid "Most Recently Played"
-msgstr "Yang baru-baru ini dimainkan"
+msgstr "Yang Baru-baru Ini Diputar"
 
 #: ../src/Core/Banshee.Services/Banshee.Query/BansheeQuery.cs:378
-#, fuzzy
 msgid "Least Recently Played"
-msgstr "Yang baru-baru ini dimainkan"
+msgstr "Yang Paling Terdahulu Diputar"
 
 #: ../src/Core/Banshee.Services/Banshee.Query/BansheeQuery.cs:380
-#, fuzzy
 msgid "Most Recently Added"
-msgstr "Yang Dipakai Terkini pertama"
+msgstr "Yang Baru-baru Ini Ditambahkan"
 
 #: ../src/Core/Banshee.Services/Banshee.Query/BansheeQuery.cs:381
-#, fuzzy
 msgid "Least Recently Added"
-msgstr "Yang Dipakai Terdahulu pertama"
+msgstr "Yang Paling Terdahulu Ditambahkan"
 
 #: ../src/Core/Banshee.Services/Banshee.Query/BansheeQuery.cs:529
 msgid "Random"
@@ -2530,7 +2520,7 @@ msgstr "hilang"
 
 #: ../src/Core/Banshee.Services/Banshee.Query/PlaybackErrorQueryValue.cs:51
 msgid "notfound"
-msgstr ""
+msgstr "notfound"
 
 #. Translators: These are unique strings for playback errors. Please, no spaces. Blank ok.
 #: ../src/Core/Banshee.Services/Banshee.Query/PlaybackErrorQueryValue.cs:54
@@ -2540,7 +2530,7 @@ msgstr "CodecNotFound"
 
 #: ../src/Core/Banshee.Services/Banshee.Query/PlaybackErrorQueryValue.cs:56
 msgid "nocodec"
-msgstr ""
+msgstr "nocodec"
 
 #. Translators: These are unique strings for playback errors. Please, no spaces. Blank ok.
 #: ../src/Core/Banshee.Services/Banshee.Query/PlaybackErrorQueryValue.cs:59
@@ -2569,18 +2559,17 @@ msgstr "tak dikenal"
 
 #: ../src/Core/Banshee.Services/Banshee.SmartPlaylist/Migrator.cs:78
 msgid "Unable to Migrate Smart Playlists"
-msgstr ""
+msgstr "Tak Bisa Memigrasi Daftar Putar Cerdas"
 
 #: ../src/Core/Banshee.Services/Banshee.SmartPlaylist/Migrator.cs:79
 #, csharp-format
 msgid "Please file a bug with this error: {0}"
-msgstr ""
+msgstr "Harap laporkan kutu dengan galat ini: {0}"
 
 #: ../src/Core/Banshee.Services/Banshee.SmartPlaylist/SmartPlaylistSource.cs:66
 #: ../src/Core/Banshee.ThickClient/Banshee.SmartPlaylist.Gui/Editor.cs:49
-#, fuzzy
 msgid "Edit Smart Playlist"
-msgstr "Sunting Daftar Putar Otomatis"
+msgstr "Sunting Daftar Putar Cerdas"
 
 #: ../src/Core/Banshee.Services/Banshee.SmartPlaylist/SmartPlaylistSource.cs:254
 msgid "Delete Smart Playlist"
@@ -2645,20 +2634,17 @@ msgid "Errors"
 msgstr "Galat"
 
 #: ../src/Core/Banshee.Services/Banshee.Sources/PrimarySource.cs:215
-#, fuzzy
 msgid "Sort Playlists By"
-msgstr "Urutkan Stasiun menurut"
+msgstr "Urutkan Daftar Putar Menurut"
 
 #. Translators: this is a noun, referring to the harddisk
 #: ../src/Core/Banshee.Services/Banshee.Sources/PrimarySource.cs:225
-#, fuzzy
 msgid "Drive"
 msgstr "Drive"
 
 #: ../src/Core/Banshee.Services/Banshee.Sources/PrimarySource.cs:250
-#, fuzzy
 msgid "Folder hie_rarchy"
-msgstr "Hi_rarki folder:"
+msgstr "Hi_rarki folder"
 
 #: ../src/Core/Banshee.Services/Banshee.Sources/PrimarySource.cs:251
 msgid "File _name"
@@ -2701,9 +2687,8 @@ msgid "Libraries"
 msgstr "Pustaka"
 
 #: ../src/Core/Banshee.Services/Banshee.Streaming/RadioTrackInfo.cs:48
-#, fuzzy
 msgid "Unknown Stream"
-msgstr "URL Stream:"
+msgstr "Stream Tak Dikenal"
 
 #: ../src/Core/Banshee.Services/Banshee.Streaming/RadioTrackInfo.cs:83
 #: ../src/Core/Banshee.Services/Banshee.Streaming/RadioTrackInfo.cs:92
@@ -2729,6 +2714,9 @@ msgid ""
 "\n"
 " Check your 'Preferred Applications' settings."
 msgstr ""
+"{0} tak dapat dibuka: {1}\n"
+"\n"
+" Periksa pengaturan 'Aplikasi Yang Disukai'."
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Addins.Gui/AddinView.cs:49
 msgid "Show:"
@@ -2769,6 +2757,8 @@ msgid ""
 "To put the playlist in manual sort mode, click the currently sorted column "
 "header until the sort arrow goes away."
 msgstr ""
+"Untuk mengubah mode pengurutan daftar putar menjadi manual, klik tajuk kolom "
+"terurut saat ini sampai panah urutan hilang."
 
 #. Translators: this is {disc number} of {disc count}
 #. Translators: this is {track number} of {track count}
@@ -2781,24 +2771,20 @@ msgid "{0} of {1}"
 msgstr "{0} dari {1}"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Collection.Gui/ColumnCellStatusIndicator.cs:220
-#, fuzzy
 msgid "Playing"
 msgstr "Memutar"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Collection.Gui/ColumnCellStatusIndicator.cs:221
-#, fuzzy
 msgid "Paused"
-msgstr "Ditahan"
+msgstr "Diistirahatkan"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Collection.Gui/ColumnCellStatusIndicator.cs:223
-#, fuzzy
 msgid "Protected"
-msgstr "Protected"
+msgstr "Dilindungi"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Collection.Gui/ColumnCellStatusIndicator.cs:224
-#, fuzzy
 msgid "External Document"
-msgstr "Manajer Dokumen"
+msgstr "Dokumen Eksternal"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Collection.Gui/CoverArtEditor.cs:80
 msgid "Choose New Cover Art..."
@@ -2842,7 +2828,7 @@ msgstr "{0} bits"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.ContextPane/ContextPane.cs:119
 msgid "Make the context pane larger or smaller"
-msgstr ""
+msgstr "Buat panel konteks lebih besar atau kecil"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.ContextPane/ContextPane.cs:123
 msgid "Hide context pane"
@@ -2850,7 +2836,7 @@ msgstr "Sembunyikan panel konteks"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.ContextPane/ContextPane.cs:144
 msgid "Waiting for playback to begin..."
-msgstr ""
+msgstr "Menunggu pemutaran dimulai..."
 
 #: ../src/Core/Banshee.ThickClient/Banshee.ContextPane/ContextPane.cs:150
 #: ../src/Core/Banshee.Widgets/Banshee.Widgets/StreamPositionLabel.cs:152
@@ -2936,7 +2922,7 @@ msgstr "Situs Web Banshee"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui.Dialogs/ConfirmShutdownDialog.cs:50
 msgid "Important tasks are running"
-msgstr ""
+msgstr "Tugas penting sedang berjalan"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui.Dialogs/ConfirmShutdownDialog.cs:53
 msgid ""
@@ -2968,13 +2954,13 @@ msgstr ""
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui.Dialogs/DefaultApplicationHelperDialog.cs:72
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui/SourceActions.cs:443
-#, fuzzy, csharp-format
+#, csharp-format
 msgid "Do not ask me this again"
-msgstr "Jangan tunjukkan lagi"
+msgstr "Jangan tanyakan lagi"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui.Dialogs/DefaultApplicationHelperDialog.cs:86
 msgid "Make Banshee the Default"
-msgstr ""
+msgstr "Jadikan Banshee Baku"
 
 #. Translators: verb
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui.Dialogs/GtkFileChooserDialog.cs:53
@@ -2983,7 +2969,7 @@ msgstr "I_mpor"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui.Dialogs/ImageFileChooserDialog.cs:39
 msgid "Select album cover image"
-msgstr ""
+msgstr "Pilih gambar sampul album"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui.Dialogs/ImageFileChooserDialog.cs:47
 msgid "All image files"
@@ -3007,14 +2993,12 @@ msgid "Browse..."
 msgstr "Ramban…"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui.Dialogs/OpenLocationDialog.cs:64
-#, fuzzy
 msgid "Enter the address of the file you would like to open:"
-msgstr "Masukan _alamat berkas yang ingin dibuka:"
+msgstr "Masukan alamat berkas yang ingin dibuka:"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui.Dialogs/SeekDialog.cs:41
-#, fuzzy
 msgid "Seek to Position"
-msgstr "Sumbu untuk meratakan posisi"
+msgstr "Geser ke Posisi"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui/GlobalActions.cs:50
 msgid "_Media"
@@ -3029,14 +3013,12 @@ msgid "Import media from a variety of sources"
 msgstr "Impor media dari berbagai sumber"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui/GlobalActions.cs:57
-#, fuzzy
 msgid "Import _Playlist..."
-msgstr "Hapus Daftar Putar"
+msgstr "Impor Daftar _Putar..."
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui/GlobalActions.cs:58
-#, fuzzy
 msgid "Import a playlist"
-msgstr "Hapus Daftar Putar"
+msgstr "Mengimpor suatu daftar putar"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui/GlobalActions.cs:61
 msgid "Rescan Music Library"
@@ -3094,6 +3076,7 @@ msgstr "Pencarian Koleksi Tingkat Lanjut"
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui/GlobalActions.cs:96
 msgid "Learn advanced ways to search your media collection"
 msgstr ""
+"Pelajari cara-cara tingkat lanjut untuk mencari pada koleksi media Anda"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui/GlobalActions.cs:101
 msgid "Banshee _Home Page"
@@ -3155,11 +3138,11 @@ msgstr "Menuju _Ke..."
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui/PlaybackActions.cs:86
 msgid "Seek to a specific location in current item"
-msgstr ""
+msgstr "Menuju ke lokasi spesifik dalam butir saat ini"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui/PlaybackActions.cs:90
 msgid "Jump to the currently playing item"
-msgstr ""
+msgstr "Lompat ke butir yang kini sedang diputar"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui/PlaybackActions.cs:94
 msgid "Restart the current item"
@@ -3171,7 +3154,7 @@ msgstr "Berhenti Ketika _Selesai"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui/PlaybackActions.cs:100
 msgid "Stop playback after the current item finishes playing"
-msgstr ""
+msgstr "Hentikan memutar setelah butir saat ini selesai dimainkan"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui/PlaybackActions.cs:106
 msgid "_Playback"
@@ -3272,9 +3255,8 @@ msgid "Create a new empty playlist"
 msgstr "Buat daftar putar baru yang kosong"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui/SourceActions.cs:79
-#, fuzzy
 msgid "New _Smart Playlist..."
-msgstr "Buat daftar lagu yang baru"
+msgstr "Daftar Putar Cerda_s Baru…"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui/SourceActions.cs:80
 msgid "Create a new smart playlist"
@@ -3302,16 +3284,15 @@ msgstr "Ekspor suatu daftar putar"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui/SourceActions.cs:101
 msgid "Unmap"
-msgstr ""
+msgstr "Unmap"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui/SourceActions.cs:104
 msgid "Source Properties"
 msgstr "Properti Sumber"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui/SourceActions.cs:107
-#, fuzzy
 msgid "Sort Children by"
-msgstr "Urutkan Stasiun menurut"
+msgstr "Urutkan Anak menurut"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui/SourceActions.cs:111
 msgid "Switch Source"
@@ -3319,7 +3300,7 @@ msgstr "Pindah Sumber"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui/SourceActions.cs:112
 msgid "Switch to a source by typing its name"
-msgstr ""
+msgstr "Tukar ke suatu sumber dengan mengetikkan namanya"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui/SourceActions.cs:115
 #: ../src/Core/Banshee.ThickClient/Banshee.Preferences.Gui/PreferenceDialog.cs:50
@@ -3329,12 +3310,11 @@ msgstr "Preferensi"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui/SourceActions.cs:116
 msgid "Edit preferences related to this source"
-msgstr ""
+msgstr "Sunting preferensi yang terkait dengan sumber ini"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui/SourceActions.cs:120
-#, fuzzy
 msgid "New _Smart Playlist"
-msgstr "Buat daftar lagu yang baru"
+msgstr "Daftar Putar Cerda_s Baru"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui/SourceActions.cs:129
 #: ../src/Extensions/Banshee.Fixup/Banshee.Fixup/FixSource.cs:84
@@ -3346,7 +3326,7 @@ msgstr "Segarkan"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui/SourceActions.cs:130
 msgid "Refresh this randomly sorted smart playlist"
-msgstr ""
+msgstr "Segarkan daftar putar cerdas terurut acak ini"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui/SourceActions.cs:297
 msgid "Could not export playlist"
@@ -3358,9 +3338,8 @@ msgid "Are you sure you want to delete this {0}?"
 msgstr "Anda yakin ingin menghapus {0} ini?"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui/SourceActions.cs:477
-#, fuzzy
 msgid "Separate by Type"
-msgstr "Kelompokkan menurut Tipe"
+msgstr "Pisahkan menurut Tipe"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:110
 msgid "Select _All"
@@ -3371,14 +3350,12 @@ msgid "Select all tracks"
 msgstr "Pilih semua trek"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:114
-#, fuzzy
 msgid "Select _None"
-msgstr "Tiada Pilihan"
+msgstr "Pilih Tak Satupu_n"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:115
-#, fuzzy
 msgid "Unselect all tracks"
-msgstr "Pilih semua trek"
+msgstr "Keluarkan semua trek dari pilihan"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:118
 #: ../src/Extensions/Banshee.Audiobook/Banshee.Audiobook/Actions.cs:59
@@ -3397,14 +3374,12 @@ msgid "Properties"
 msgstr "Properti"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:123
-#, fuzzy
 msgid "View information on selected tracks"
-msgstr "Sunting informasi pada trek yang dipilih"
+msgstr "Tilik informasi pada trek yang dipilih"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:127
-#, fuzzy
 msgid "Play the selected item"
-msgstr "%'d objek lain dipilih"
+msgstr "Putar butir yang dipilih"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:130
 msgid "Add _to Playlist"
@@ -3421,32 +3396,28 @@ msgid "Create new playlist from selected tracks"
 msgstr "Buat daftar putar baru dari trek yang dipilih"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:140
-#, fuzzy
 msgid "_Remove"
 msgstr "_Hapus"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:141
 msgid "Remove selected track(s) from this source"
-msgstr ""
+msgstr "Hapus trek yang dipilih dari sumber ini"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:144
-#, fuzzy
 msgid "Remove From _Library"
-msgstr "Hapus Dari Pustaka"
+msgstr "Hapus Dari _Pustaka"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:145
-#, fuzzy
 msgid "Remove selected track(s) from library"
-msgstr "Hapus setiap butir yang dipilih dari pustaka"
+msgstr "Hapus butir yang dipilih dari pustaka"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:148
-#, fuzzy
 msgid "_Open Containing Folder"
-msgstr "Buka _Folder Pemuat"
+msgstr "Buka F_older Pemuat"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:149
 msgid "Open the folder that contains the selected item"
-msgstr ""
+msgstr "Buka folder yang memuat butir yang dipilih"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:152
 msgid "_Delete From Drive"
@@ -3454,19 +3425,19 @@ msgstr "Hapus Dari _Drive"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:153
 msgid "Permanently delete selected item(s) from medium"
-msgstr ""
+msgstr "Hapus secara permanen butir yang dipilih dari medium"
 
 #. Translators: this is a verb (command), not a noun (things)
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:159
 #: ../src/Extensions/Banshee.InternetArchive/Banshee.InternetArchive/HeaderFilters.cs:170
 #: ../src/Extensions/Banshee.MeeGo/Banshee.MeeGo/SearchEntry.cs:112
-#, fuzzy, csharp-format
+#, csharp-format
 msgid "_Search"
 msgstr "_Cari"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:160
 msgid "Search for items matching certain criteria"
-msgstr ""
+msgstr "Cari butir yang cocok dengan kriteria tertentu"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:163
 msgid "By Matching _Album"
@@ -3474,7 +3445,7 @@ msgstr "Menurut _Album Yang Cocok"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:164
 msgid "Search all songs of this album"
-msgstr ""
+msgstr "Cari semua lagi pada album ini"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:167
 msgid "By Matching A_rtist"
@@ -3482,7 +3453,7 @@ msgstr "Menurut A_rtis Yang Cocok"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:168
 msgid "Search all songs of this artist"
-msgstr ""
+msgstr "Cari semua lagu dari artis ini"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:322
 #, csharp-format
@@ -3490,13 +3461,12 @@ msgid "_Delete From \"{0}\""
 msgstr "Hapus _Dari \"{0}\""
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:535
-#, fuzzy
 msgid "The folder could not be found."
-msgstr "Dokumen tak dapat ditemukan."
+msgstr "Folder tak dapat ditemukan."
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:536
 msgid "Please check that the track's location is accessible by the system."
-msgstr ""
+msgstr "Harap periksa apakah lokasi trek dapat diakses oleh sistem."
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:607
 #, csharp-format
@@ -3506,14 +3476,13 @@ msgid_plural ""
 msgstr[0] "Anda yakin ingin menghapus permanen {0} objek yang dipilih?"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:611
-#, fuzzy
 msgid "If you delete the selection, it will be permanently lost."
-msgstr "Bila Anda menghapus sebuah objek, maka akan dihapus permanen."
+msgstr "Bila Anda menghapus pilihan, itu akan hilang selamanya."
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:614
-#, fuzzy, csharp-format
+#, csharp-format
 msgid "Remove selection from {0}?"
-msgstr "Hapus Tag Dari Pilihan"
+msgstr "Hapus pilihan dari {0}?"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:617
 #, csharp-format
@@ -3538,34 +3507,33 @@ msgid ""
 "This value will affect how this album is sorted; if you enter 'Various "
 "Artists' then the album will located with other albums that start with 'V'."
 msgstr ""
+"Nilai ini akan mempengaruhi bagaimana album ini diurut; bila Anda memasukkan "
+"'Berbagai Artis' maka album akan ditempatkan dengan album lain yang "
+"berawalan 'V'."
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui.TrackEditor/BasicTrackDetailsPage.cs:44
 msgid "Basic Details"
 msgstr "Rincian Dasar"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui.TrackEditor/BasicTrackDetailsPage.cs:69
-#, fuzzy
 msgid "Track _Title:"
-msgstr "Judul Trek"
+msgstr "Judul _Trek:"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui.TrackEditor/BasicTrackDetailsPage.cs:77
-#, fuzzy
 msgid "Set all track artists to this value"
-msgstr "Tata artis trek semua pengurutan ke nilai ini"
+msgstr "Tata semua artis trek ke nilai ini"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui.TrackEditor/BasicTrackDetailsPage.cs:78
-#, fuzzy
 msgid "Track _Artist:"
-msgstr "Artis Trek - Judul Trek"
+msgstr "_Artis Trek:"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui.TrackEditor/BasicTrackDetailsPage.cs:86
 msgid "Set all compilation album artists to these values"
-msgstr ""
+msgstr "Tata semua artis album kompilasi ke nilai ini"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui.TrackEditor/BasicTrackDetailsPage.cs:106
-#, fuzzy
 msgid "Set all album titles to this value"
-msgstr "Tata judul album semua pengurutan ke nilai ini"
+msgstr "Tata semua judul album ke nilai ini"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui.TrackEditor/BasicTrackDetailsPage.cs:107
 msgid "Albu_m Title:"
@@ -3573,12 +3541,11 @@ msgstr "Judul Albu_m:"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui.TrackEditor/BasicTrackDetailsPage.cs:113
 msgid "Set all genres to this value"
-msgstr ""
+msgstr "Tata semua aliran ke nilai ini"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui.TrackEditor/BasicTrackDetailsPage.cs:114
-#, fuzzy
 msgid "_Genre:"
-msgstr "_Jenis Musik:"
+msgstr "_Aliran:"
 
 #. Translators: "of" is the word beteen a track/disc number and the total count.
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui.TrackEditor/BasicTrackDetailsPage.cs:124
@@ -3591,14 +3558,13 @@ msgid "Automatically set track number and count"
 msgstr "Otomatis isi nomor trek dan cacah"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui.TrackEditor/BasicTrackDetailsPage.cs:144
-#, fuzzy
 msgid "Track _Number:"
-msgstr "Nomor Trek"
+msgstr "_Nomor Trek:"
 
 #. Catalog.GetString ("Automatically set disc number and count"),
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui.TrackEditor/BasicTrackDetailsPage.cs:166
 msgid "Set all disc numbers and counts to these values"
-msgstr ""
+msgstr "Tata semua nomor dan cacah diska ke nilai ini"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui.TrackEditor/BasicTrackDetailsPage.cs:167
 msgid "_Disc Number:"
@@ -3606,7 +3572,7 @@ msgstr "Nomor _Cakram:"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui.TrackEditor/BasicTrackDetailsPage.cs:196
 msgid "Set all years to this value"
-msgstr ""
+msgstr "Tata semua tahun ke nilai ini"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui.TrackEditor/BasicTrackDetailsPage.cs:197
 msgid "_Year:"
@@ -3614,10 +3580,9 @@ msgstr "_Tahun:"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui.TrackEditor/BasicTrackDetailsPage.cs:204
 msgid "Set all ratings to this value"
-msgstr ""
+msgstr "Tata semua peringkat ke nilai ini"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui.TrackEditor/BasicTrackDetailsPage.cs:205
-#, fuzzy
 msgid "_Rating:"
 msgstr "Pe_ringkat:"
 
@@ -3627,7 +3592,7 @@ msgstr "Ekstra"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui.TrackEditor/ExtraTrackDetailsPage.cs:50
 msgid "Set all composers to this value"
-msgstr ""
+msgstr "Tata semua komposer ke nilai ini"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui.TrackEditor/ExtraTrackDetailsPage.cs:51
 msgid "C_omposer:"
@@ -3635,7 +3600,7 @@ msgstr "K_omposer:"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui.TrackEditor/ExtraTrackDetailsPage.cs:57
 msgid "Set all conductors to this value"
-msgstr ""
+msgstr "Tata semua konduktor ke nilai ini"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui.TrackEditor/ExtraTrackDetailsPage.cs:58
 msgid "Con_ductor:"
@@ -3643,16 +3608,15 @@ msgstr "Kon_duktor:"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui.TrackEditor/ExtraTrackDetailsPage.cs:69
 msgid "Set all groupings to this value"
-msgstr ""
+msgstr "Tata semua pengelompokan ke nilai ini"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui.TrackEditor/ExtraTrackDetailsPage.cs:70
-#, fuzzy
 msgid "_Grouping:"
-msgstr "pengelompokan"
+msgstr "Pen_gelompokan:"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui.TrackEditor/ExtraTrackDetailsPage.cs:80
 msgid "Set all beats per minute to this value"
-msgstr ""
+msgstr "Tata semua ketukan per menit ke nilai ini"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui.TrackEditor/ExtraTrackDetailsPage.cs:81
 msgid "Bea_ts Per Minute:"
@@ -3660,7 +3624,7 @@ msgstr "Ke_tukan Per Menit:"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui.TrackEditor/ExtraTrackDetailsPage.cs:93
 msgid "Set all copyrights to this value"
-msgstr ""
+msgstr "Tata semua hak cipta ke nilai ini"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui.TrackEditor/ExtraTrackDetailsPage.cs:94
 msgid "Copyrig_ht:"
@@ -3668,16 +3632,15 @@ msgstr "_Hak cipta:"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui.TrackEditor/ExtraTrackDetailsPage.cs:100
 msgid "Set all licenses to this value"
-msgstr ""
+msgstr "Tata semua lisensi ke nilai ini"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui.TrackEditor/ExtraTrackDetailsPage.cs:101
-#, fuzzy
 msgid "_License URI:"
-msgstr "Masukkan URI"
+msgstr "URI _Lisensi:"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui.TrackEditor/ExtraTrackDetailsPage.cs:110
 msgid "Set all comments to this value"
-msgstr ""
+msgstr "Tata semua komentar ke nilai ini"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui.TrackEditor/ExtraTrackDetailsPage.cs:111
 msgid "Co_mment:"
@@ -3704,36 +3667,32 @@ msgid "Set all sort track titles to this value"
 msgstr "Tata judul trek semua pengurutan ke nilai ini"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui.TrackEditor/SortingPage.cs:53
-#, fuzzy
 msgid "Sort Track Title:"
-msgstr "Artis Trek - Judul Trek"
+msgstr "Urutan Judul Trek:"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui.TrackEditor/SortingPage.cs:60
 msgid "Set all sort track artists to this value"
 msgstr "Tata artis trek semua pengurutan ke nilai ini"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui.TrackEditor/SortingPage.cs:61
-#, fuzzy
 msgid "Sort Track Artist:"
-msgstr "Artis Trek - Judul Trek"
+msgstr "Urutan Artis Trek:"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui.TrackEditor/SortingPage.cs:67
 msgid "Set all sort album artists to this value"
 msgstr "Tata artis album semua pengurutan ke nilai ini"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui.TrackEditor/SortingPage.cs:68
-#, fuzzy
 msgid "Sort Album Artist:"
-msgstr "Artis Album, Judul Album"
+msgstr "Urutan Artis Album:"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui.TrackEditor/SortingPage.cs:74
 msgid "Set all sort album titles to this value"
 msgstr "Tata judul album semua pengurutan ke nilai ini"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui.TrackEditor/SortingPage.cs:75
-#, fuzzy
 msgid "Sort Album Title:"
-msgstr "Artis Album, Judul Album"
+msgstr "Urutan Judul Album:"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui.TrackEditor/StatisticsPage.cs:185
 msgid "File Name:"
@@ -3772,44 +3731,38 @@ msgid "Bits Per Sample:"
 msgstr "Bit Per Cuplikan:"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui.TrackEditor/StatisticsPage.cs:216
-#, fuzzy
 msgid "Video Dimensions:"
-msgstr "<b>dimensi Baru</b>"
+msgstr "Dimensi Video:"
 
 #. Translators: {0} is the description of the codec
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui.TrackEditor/StatisticsPage.cs:223
-#, fuzzy, csharp-format
+#, csharp-format
 msgid "{0} Codec:"
-msgstr "Kodek:"
+msgstr "Kodek {0}:"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui.TrackEditor/StatisticsPage.cs:228
 msgid "Container Formats:"
 msgstr "Format Wadah:"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui.TrackEditor/StatisticsPage.cs:233
-#, fuzzy
 msgid "Imported On:"
-msgstr "_Aksi"
+msgstr "Diimpor Pada:"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui.TrackEditor/StatisticsPage.cs:235
-#, fuzzy
 msgid "Last Played:"
-msgstr "Terakhir Diputar"
+msgstr "Terakhir Diputar:"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui.TrackEditor/StatisticsPage.cs:237
-#, fuzzy
 msgid "Last Skipped:"
-msgstr "Penyelarasan Dilewati"
+msgstr "Terakhir Dilewati:"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui.TrackEditor/StatisticsPage.cs:239
-#, fuzzy
 msgid "Play Count:"
-msgstr "Cacah Putar"
+msgstr "Cacah Putar:"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui.TrackEditor/StatisticsPage.cs:240
-#, fuzzy
 msgid "Skip Count:"
-msgstr "Cacah Dilewati"
+msgstr "Cacah Dilewati:"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui.TrackEditor/StatisticsPage.cs:241
 msgid "Score:"
@@ -3833,14 +3786,12 @@ msgid "Track Properties"
 msgstr "Properti Trek"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui.TrackEditor/TrackEditorDialog.cs:151
-#, fuzzy
 msgid "Show the previous track"
-msgstr "Putar trek sebelumnya"
+msgstr "Tampilkan trek sebelumnya"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui.TrackEditor/TrackEditorDialog.cs:157
-#, fuzzy
 msgid "Show the next track"
-msgstr "Putar trek berikutnya"
+msgstr "Tampilkan trek berikutnya"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui.TrackEditor/TrackEditorDialog.cs:187
 msgid "Title:"
@@ -3856,7 +3807,7 @@ msgstr "Album:"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui.TrackEditor/TrackEditorDialog.cs:314
 msgid "Sync all field _values"
-msgstr ""
+msgstr "Selaraskan semua _nilai ruas"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui.TrackEditor/TrackEditorDialog.cs:319
 msgid ""
@@ -3875,17 +3826,17 @@ msgstr "<i>Menyunting {0} dari {1} butir</i>"
 #, csharp-format
 msgid "Save the changes made to the open track?"
 msgid_plural "Save the changes made to {0} of {1} open tracks?"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Simpan perubahan yang dibuat ke {0} dari {1} trek yang terbuka?"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui.TrackEditor/TrackEditorDialog.cs:716
 msgid "Close _without Saving"
 msgstr "Tutup _tanpa Menyimpan"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui.TrackEditor/TrackEditorDialog.cs:753
-#, fuzzy, csharp-format
+#, csharp-format
 msgid "If you don't save, changes from the last {0} will be permanently lost."
-msgstr "Jika tidak disimpan, perubahan dari menit-menit terakhir akan hilang."
+msgstr ""
+"Jika Anda tidak menyimpan, perubahan dari {0} terakhir akan hilang selamanya."
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui/ViewActions.cs:62
 msgid "_View"
@@ -3893,11 +3844,11 @@ msgstr "_Tilikan"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui/ViewActions.cs:65
 msgid "_Equalizer"
-msgstr ""
+msgstr "_Equalizer"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui/ViewActions.cs:66
 msgid "View the graphical equalizer"
-msgstr ""
+msgstr "Lihat equaliser grafis"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui/ViewActions.cs:74
 msgid "_Context Pane"
@@ -3905,7 +3856,7 @@ msgstr "Panel _Konteks"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui/ViewActions.cs:75
 msgid "Show the context pane beneath the track list"
-msgstr ""
+msgstr "Tampilkan panel konteks di bawah daftar trek"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui/ViewActions.cs:82
 msgid "_Fullscreen"
@@ -3913,16 +3864,15 @@ msgstr "Layar _Penuh"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui/ViewActions.cs:83
 msgid "Enter or leave fullscreen mode"
-msgstr ""
+msgstr "Masuk atau tinggalkan mode layar penuh"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui/ViewActions.cs:88
-#, fuzzy
 msgid "Show Cover _Art"
-msgstr "Pengambilan Gambar Sampul"
+msgstr "T_ampilkan Gambar Sampul"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui/ViewActions.cs:89
 msgid "Toggle display of album cover art"
-msgstr ""
+msgstr "Jungkitkan tampilnya gambar sampul album"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui.Widgets/TaskStatusIcon.cs:96
 msgid "Active Task Running"
@@ -3974,24 +3924,25 @@ msgid "{0}by{1} {2}"
 msgstr "{0}oleh{1} {2}"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui.Widgets/UserJobTile.cs:138
-#, fuzzy
 msgid "Stop Operation"
-msgstr "Hentikan operasi saat ini"
+msgstr "Hentikan Operasi"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui.Widgets/UserJobTile.cs:139
-#, fuzzy, csharp-format
+#, csharp-format
 msgid "Stop {0}"
-msgstr "Stop:"
+msgstr "Hentikan {0}"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui.Widgets/UserJobTile.cs:142
 msgid "This operation is still performing work. Would you like to stop it?"
 msgstr ""
+"Operasi ini masih melakukan pekerjaan. Apakah Anda hendak menghentikannya?"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui.Widgets/UserJobTile.cs:144
 #, csharp-format
 msgid ""
 "The '{0}' operation is still performing work. Would you like to stop it?"
 msgstr ""
+"Operasi '{0}' masih melakukan pekerjaan. Apakah Anda hendak menghentikannya?"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui.Widgets/UserJobTile.cs:148
 msgid "Continue"
@@ -4004,12 +3955,11 @@ msgstr "Lanjutkan {0}"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui.Widgets/UserJobTile.cs:184
 msgid "Stopping..."
-msgstr ""
+msgstr "Menghentikan..."
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Library.Gui/FileImportSource.cs:45
-#, fuzzy
 msgid "Import Files to Library"
-msgstr "Impor Folder ke Pustaka"
+msgstr "Impor Berkas ke Pustaka"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Library.Gui/FileImportSource.cs:48
 msgid "Media Files"
@@ -4102,9 +4052,9 @@ msgid "Reset"
 msgstr "Reset"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Preferences.Gui/DefaultPreferenceWidgets.cs:120
-#, fuzzy, csharp-format
+#, csharp-format
 msgid "Reset location to default ({0})"
-msgstr "Reset ke ukuran baku"
+msgstr "Reset lokasi ke baku ({0})"
 
 #. FIXME this shouldn't be hard-coded to 'Source:', but this is the only
 #. user of this code atm...
@@ -4119,12 +4069,11 @@ msgstr "Tak bisa menampilkan preferensi"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Preferences.Gui/PreferenceDialog.cs:56
 msgid "The preferences service could not be found."
-msgstr ""
+msgstr "Layanan preferensi tak dapat ditemukan."
 
 #: ../src/Core/Banshee.ThickClient/Banshee.SmartPlaylist.Gui/Editor.cs:80
-#, fuzzy
 msgid "New Smart Playlist"
-msgstr "Buat daftar lagu yang baru"
+msgstr "Daftar Putar Cerdas Baru"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.SmartPlaylist.Gui/Editor.cs:96
 msgid "Playlist _Name:"
@@ -4132,7 +4081,7 @@ msgstr "_Nama Daftar Putar:"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.SmartPlaylist.Gui/Editor.cs:108
 msgid "Predefined Smart Playlists"
-msgstr ""
+msgstr "Daftar Putar Cerdas Terpradefinisi"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.SmartPlaylist.Gui/Editor.cs:119
 msgid "Open in editor"
@@ -4151,48 +4100,46 @@ msgid "Configure the filters available in the browser"
 msgstr "Mengkonfigurasi penyaring yang tersedia dalam peramban"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Sources.Gui/CompositeTrackSourceContents.cs:102
-#, fuzzy
 msgid "Show Artist Filter"
-msgstr "Tampilkan pesan bantuan ini"
+msgstr "Tampilkan Penyaring Artis"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Sources.Gui/CompositeTrackSourceContents.cs:103
 msgid "Show a list of artists to filter by"
-msgstr ""
+msgstr "Tampilkan daftar artis untuk menyaring dengannya"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Sources.Gui/CompositeTrackSourceContents.cs:107
-#, fuzzy
 msgid "Show all Artists"
-msgstr "Tampilkan semua header"
+msgstr "Tampilkan semua Artis"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Sources.Gui/CompositeTrackSourceContents.cs:108
 msgid "Show all artists in the artist filter"
-msgstr ""
+msgstr "Tampilkan semua artis dalam penyaring artis"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Sources.Gui/CompositeTrackSourceContents.cs:111
-#, fuzzy
 msgid "Show Album Artists"
-msgstr "Artis Album, Judul Album"
+msgstr "Tampilkan Artis Album"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Sources.Gui/CompositeTrackSourceContents.cs:112
 msgid "Show only album artists, not artists with only single tracks"
 msgstr ""
+"Hanya tampilkan artis dengan album, bukan artis yang hanya memiliki trek "
+"tunggal"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Sources.Gui/CompositeTrackSourceContents.cs:117
-#, fuzzy
 msgid "Show Genre Filter"
-msgstr "Putar trek berikutnya"
+msgstr "Tampilkan Penyaring Aliran"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Sources.Gui/CompositeTrackSourceContents.cs:118
 msgid "Show a list of genres to filter by"
-msgstr ""
+msgstr "Tampilkan daftar aliran untuk menyaring dengannya"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Sources.Gui/CompositeTrackSourceContents.cs:122
 msgid "Show Year Filter"
-msgstr ""
+msgstr "Tampilkan Penyaring Tahun"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Sources.Gui/CompositeTrackSourceContents.cs:123
 msgid "Show a list of years to filter by"
-msgstr ""
+msgstr "Tampilkan daftar tahun untuk menyaring"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Sources.Gui/CompositeTrackSourceContents.cs:228
 #: ../src/Extensions/Banshee.InternetRadio/Banshee.InternetRadio/InternetRadioSourceContents.cs:62
@@ -4226,13 +4173,13 @@ msgstr "Tampilkan atau sembunyikan peramban artis/album"
 #: ../src/Core/Banshee.WebBrowser/Banshee.WebBrowser/NavigationControl.cs:156
 msgid ""
 "This page is blocked because it is probably not the one you are looking for!"
-msgstr ""
+msgstr "Halaman ini diblokir karena mungkin bukan yang Anda cari!"
 
 #. Translators: {0} is the URL of the web page that was requested
 #: ../src/Core/Banshee.WebBrowser/Banshee.WebBrowser/NavigationControl.cs:158
-#, fuzzy, csharp-format
+#, csharp-format
 msgid "The security certificate for {0} is invalid."
-msgstr "Sumber daya yang dinyatakan tak valid."
+msgstr "Sertifikat keamanan bagi {0} tak valid."
 
 #: ../src/Core/Banshee.WebBrowser/Banshee.WebSource/WebBrowserShell.cs:121
 #, csharp-format
@@ -4252,9 +4199,8 @@ msgid "Clear search"
 msgstr "Bersihkan pencarian"
 
 #: ../src/Core/Banshee.Widgets/Banshee.Widgets/SeekSlider.cs:58
-#, fuzzy
 msgid "Seek"
-msgstr "Cari"
+msgstr "Seek"
 
 #: ../src/Core/Banshee.Widgets/Banshee.Widgets/StreamPositionLabel.cs:150
 msgid "Idle"
@@ -4298,14 +4244,12 @@ msgstr "Nomor seri"
 #. ipod_device.ModelInfo.Capabilities.CopyTo (capabilities, 0);
 #. AddDapProperty (Catalog.GetString ("Capabilities"), String.Join (", ", capabilities));
 #: ../src/Dap/Banshee.Dap.AppleDevice/Banshee.Dap.AppleDevice/AppleDeviceSource.cs:130
-#, fuzzy
 msgid "Supports cover art"
-msgstr "Pengambilan Gambar Sampul"
+msgstr "Mendukung gambar sampul"
 
 #: ../src/Dap/Banshee.Dap.AppleDevice/Banshee.Dap.AppleDevice/AppleDeviceSource.cs:131
-#, fuzzy
 msgid "Supports photos"
-msgstr "Cacah foto"
+msgstr "Mendukung foto"
 
 #: ../src/Dap/Banshee.Dap.AppleDevice/Banshee.Dap.AppleDevice/AppleDeviceSource.cs:462
 msgid "Track duration is zero"
@@ -4331,7 +4275,7 @@ msgstr "Menghapus trek {0} dari {1}"
 
 #: ../src/Dap/Banshee.Dap.AppleDevice/Banshee.Dap.AppleDevice/AppleDeviceSource.cs:706
 msgid "Writing media database"
-msgstr ""
+msgstr "Menulis basis data media"
 
 #: ../src/Dap/Banshee.Dap/Banshee.Dap/DapLibrarySync.cs:131
 #, csharp-format
@@ -4377,19 +4321,20 @@ msgid ""
 "The {0} format is not supported by the device, and no converter was found to "
 "convert it"
 msgstr ""
+"Format {0} tak didukung oleh perangkat, dan tak ada pengonversi yang "
+"ditemukan untuk mengonversinya"
 
 #: ../src/Dap/Banshee.Dap/Banshee.Dap/DapSource.cs:413
 msgid "File format conversion support is not available"
-msgstr ""
+msgstr "Dukungan konversi format berkas tak tersedia"
 
 #: ../src/Dap/Banshee.Dap/Banshee.Dap/DapSource.cs:439
-#, fuzzy
 msgid "Error converting file"
-msgstr "Mengkonversi file toc"
+msgstr "Galat saat mengonversi berkas"
 
 #: ../src/Dap/Banshee.Dap/Banshee.Dap/DapSync.cs:135
 msgid "Sync when first plugged in and when the libraries change"
-msgstr ""
+msgstr "Selaraskan ketika pertama ditancapkan dan ketika pustaka berubah"
 
 #: ../src/Dap/Banshee.Dap/Banshee.Dap/DapSync.cs:136
 msgid ""
@@ -4412,7 +4357,7 @@ msgstr "Selaraskan"
 #, csharp-format
 msgid "The sync operation will remove one track from your device."
 msgid_plural "The sync operation will remove {0} tracks from your device."
-msgstr[0] ""
+msgstr[0] "Operasi penyelarasan akan menghapus {0} trek dari perangkat Anda."
 
 #: ../src/Dap/Banshee.Dap/Banshee.Dap.Gui/DapActions.cs:110
 msgid "Are you sure you want to continue?"
@@ -4452,9 +4397,8 @@ msgid "Device name"
 msgstr "Nama perangkat"
 
 #: ../src/Dap/Banshee.Dap/Banshee.Dap.Gui/DapPropertiesDialog.cs:99
-#, fuzzy
 msgid "Encode to"
-msgstr "Balas ke %s"
+msgstr "Enkodekan ke"
 
 #: ../src/Dap/Banshee.Dap/Banshee.Dap.Gui/DapPropertiesDialog.cs:109
 msgid "Capacity used"
@@ -4522,12 +4466,11 @@ msgstr[0] "Folder Video"
 
 #: ../src/Dap/Banshee.Dap.MassStorage/Banshee.Dap.MassStorage/MassStorageSource.cs:128
 msgid "Required Folder Depth"
-msgstr ""
+msgstr "Kedalaman Folder Yang Diperlukan"
 
 #: ../src/Dap/Banshee.Dap.MassStorage/Banshee.Dap.MassStorage/MassStorageSource.cs:131
-#, fuzzy
 msgid "Supports Playlists"
-msgstr "Memuat daftar main"
+msgstr "Mendukung Daftar Putar"
 
 #: ../src/Dap/Banshee.Dap.MassStorage/Banshee.Dap.MassStorage/RockBoxDevice.cs:41
 msgid "Rockbox Device"
@@ -4539,11 +4482,11 @@ msgstr "Nada panggil"
 
 #: ../src/Dap/Banshee.Dap.Mtp/Banshee.Dap.Mtp/MtpSource.cs:82
 msgid "Error Initializing MTP Device Support"
-msgstr ""
+msgstr "Galat Saat Inisialisasi Dukungan Perangkat MTP"
 
 #: ../src/Dap/Banshee.Dap.Mtp/Banshee.Dap.Mtp/MtpSource.cs:83
 msgid "There was an error initializing MTP device support."
-msgstr ""
+msgstr "Ada galat saat menginisialisasi dukungan perangkat MTP."
 
 #: ../src/Dap/Banshee.Dap.Mtp/Banshee.Dap.Mtp/MtpSource.cs:142
 #: ../src/Hyena/Hyena.Gui/Hyena.Gui.Dialogs/VersionInformationDialog.cs:66
@@ -4648,9 +4591,8 @@ msgid "Merge Discs..."
 msgstr "Gabung Cakram..."
 
 #: ../src/Extensions/Banshee.Audiobook/Banshee.Audiobook/Actions.cs:57
-#, fuzzy
 msgid "Go to Audiobooks"
-msgstr "Lihat _Hari Ini"
+msgstr "Ke Audiobook"
 
 #: ../src/Extensions/Banshee.Audiobook/Banshee.Audiobook/Actions.cs:61
 #: ../src/Extensions/Banshee.Audiobook/Banshee.Audiobook/Actions.cs:65
@@ -4735,22 +4677,22 @@ msgid "D_etect"
 msgstr "D_eteksi"
 
 #: ../src/Extensions/Banshee.Bpm/Banshee.Bpm/BpmEntry.cs:104
-#, fuzzy
 msgid "T_ap"
-msgstr "AP"
+msgstr "_Sentuh"
 
 #: ../src/Extensions/Banshee.Bpm/Banshee.Bpm/BpmEntry.cs:112
 msgid "Have Banshee attempt to auto-detect the BPM of this song"
-msgstr ""
+msgstr "Biarkan Banshee mencoba mendeteksi otomatis BPM lagu ini"
 
 #: ../src/Extensions/Banshee.Bpm/Banshee.Bpm/BpmEntry.cs:114
 msgid "Play this song"
 msgstr "Putar lagu ini"
 
 #: ../src/Extensions/Banshee.Bpm/Banshee.Bpm/BpmEntry.cs:117
-#, fuzzy
 msgid "Tap this button to the beat to set the BPM for this song manually"
-msgstr "Sentuh tombol ini ke beat untuk menata BPM bagi lagu ini secara manual"
+msgstr ""
+"Sentuh tombol ini seirama ketukan untuk menata BPM bagi lagu ini secara "
+"manual"
 
 #: ../src/Extensions/Banshee.Bpm/Banshee.Bpm/BpmService.cs:147
 msgid "_Automatically detect BPM for all songs"
@@ -4764,9 +4706,8 @@ msgstr ""
 "Deteksi ketukan per menit (BPM) bagi semua lagu yang nilainya belum ditata"
 
 #: ../src/Extensions/Banshee.CoverArt/Banshee.CoverArt/CoverArtJob.cs:58
-#, fuzzy
 msgid "Downloading Cover Art"
-msgstr "Pengambilan Gambar Sampul"
+msgstr "Mengunduh Gambar Sampul"
 
 #: ../src/Extensions/Banshee.CoverArt/Banshee.CoverArt/CoverArtJob.cs:129
 #, csharp-format
@@ -4774,19 +4715,16 @@ msgid "{0} - {1}"
 msgstr "{0} - {1}"
 
 #: ../src/Extensions/Banshee.Daap/Banshee.Daap/DaapContainerSource.cs:42
-#, fuzzy
 msgid "Shared Music"
-msgstr "Folder Musik"
+msgstr "Musik Bersama"
 
 #: ../src/Extensions/Banshee.Daap/Banshee.Daap/DaapErrorView.cs:73
-#, fuzzy
 msgid "Disconnected from music share"
-msgstr "Mengambil lagu dari share musik"
+msgstr "Diputus dari musik bersama"
 
 #: ../src/Extensions/Banshee.Daap/Banshee.Daap/DaapErrorView.cs:74
-#, fuzzy
 msgid "Unable to connect to music share"
-msgstr "Share musik '%s' memerlukan sandi untuk menyambung"
+msgstr "Tak bisa menyambung ke musik bersama"
 
 #: ../src/Extensions/Banshee.Daap/Banshee.Daap/DaapErrorView.cs:88
 msgid "Back"
@@ -4801,6 +4739,12 @@ msgid ""
 "an intentional limitation by Apple in iTunes® 7 and newer, we apologize for "
 "the unfortunate inconvenience."
 msgstr ""
+"iTunes® 7 memperkenalkan masalah kompatibilitas baru dan kini hanya bekerja "
+"dengan klien iTunes® 7 lain.\n"
+"\n"
+"Tak ada klien pihak ketika yang dapat menyambung ke kongsi musik iTunes® "
+"lagi. Ini adalah pembatasan yang disengaja oleh Apple dalam iTunes® 7 dan "
+"yang lebih baru, kami minta maaf atas ketidaknyamanan ini."
 
 #: ../src/Extensions/Banshee.Daap/Banshee.Daap/DaapErrorView.cs:111
 msgid "Common reasons for connection failures:"
@@ -4816,11 +4760,11 @@ msgstr "Proses log masuk dibatalkan"
 
 #: ../src/Extensions/Banshee.Daap/Banshee.Daap/DaapErrorView.cs:119
 msgid "Too many users are connected to this share"
-msgstr ""
+msgstr "Terlalu banyak pengguna yang menyambung ke share ini"
 
 #: ../src/Extensions/Banshee.Daap/Banshee.Daap/DaapErrorView.cs:121
 msgid "You are no longer connected to this music share"
-msgstr ""
+msgstr "Anda tak lagi tersambung ke share musik ini"
 
 #: ../src/Extensions/Banshee.Daap/Banshee.Daap/DaapErrorView.cs:125
 msgid "Try connecting again"
@@ -4828,7 +4772,7 @@ msgstr "Coba menyambung lagi"
 
 #: ../src/Extensions/Banshee.Daap/Banshee.Daap/DaapErrorView.cs:139
 msgid "The music share is hosted by iTunes® 7 or newer"
-msgstr ""
+msgstr "Share musik diwadahi oleh iTunes® 7 atau yang lebih baru"
 
 #: ../src/Extensions/Banshee.Daap/Banshee.Daap/DaapLoginDialog.cs:47
 msgid "Login to Music Share"
@@ -4867,9 +4811,8 @@ msgid "Add a new remote DAAP server"
 msgstr "Tambahkan server DAAP jauh yang baru"
 
 #: ../src/Extensions/Banshee.Daap/Banshee.Daap/DaapSource.cs:60
-#, fuzzy
 msgid "Music Share"
-msgstr "Berbagi musik _saya"
+msgstr "Share Musik"
 
 #: ../src/Extensions/Banshee.Daap/Banshee.Daap/DaapSource.cs:202
 #, csharp-format
@@ -4908,9 +4851,8 @@ msgstr "Mengunduh Trek eMusic"
 
 #: ../src/Extensions/Banshee.Emusic/Banshee.Emusic/DownloadManager/DownloadUserJob.cs:51
 #: ../src/Extensions/Banshee.Podcasting/Banshee.Podcasting.Gui/DownloadManager/DownloadUserJob.cs:51
-#, fuzzy
 msgid "Initializing..."
-msgstr "Menginisialisasi..."
+msgstr "Menginisialisasi…"
 
 #: ../src/Extensions/Banshee.Emusic/Banshee.Emusic/DownloadManager/DownloadUserJob.cs:52
 msgid "Cancel all eMusic downloads?"
@@ -4921,7 +4863,7 @@ msgstr "Batalkan semua unduhan eMusic?"
 #, csharp-format
 msgid "Transferring {0} file at {1} KB/s"
 msgid_plural "Transferring {0} of {2} files at {1} KB/s"
-msgstr[0] ""
+msgstr[0] "Menransfer {0} dari {2} berkas pada {1} KB/d"
 
 #: ../src/Extensions/Banshee.Emusic/Banshee.Emusic/DownloadManager/DownloadUserJob.cs:133
 #: ../src/Extensions/Banshee.Podcasting/Banshee.Podcasting.Gui/DownloadManager/DownloadUserJob.cs:133
@@ -4931,7 +4873,7 @@ msgstr "Membatalkan Pengunduhan"
 #: ../src/Extensions/Banshee.Emusic/Banshee.Emusic/DownloadManager/DownloadUserJob.cs:135
 #: ../src/Extensions/Banshee.Podcasting/Banshee.Podcasting.Gui/DownloadManager/DownloadUserJob.cs:135
 msgid "Waiting for downloads to terminate..."
-msgstr "Menunggu pengunduhan berakhir..."
+msgstr "Menunggu pengunduhan berakhir…"
 
 #: ../src/Extensions/Banshee.Emusic/Banshee.Emusic/EmusicImport.cs:59
 msgid "Import eMusic Downloads to Library"
@@ -4991,6 +4933,9 @@ msgid ""
 "Displayed are albums that should likely be merged.  For each row, click the "
 "desired title to make it bold, or uncheck it to take no action."
 msgstr ""
+"Yang ditampilkan adalah album yang sepertinya mesti digabung. Untuk setiap "
+"baris, klik judul yang diinginkan untuk membuatnya tebal, atau hapus "
+"contreng untuk tak melakukan aksi."
 
 #: ../src/Extensions/Banshee.Fixup/Banshee.Fixup/ArtistDuplicateSolver.cs:46
 msgid "Duplicate Artists"
@@ -5001,15 +4946,17 @@ msgid ""
 "Displayed are artists that should likely be merged.  For each row, click the "
 "desired name to make it bold, or uncheck it to take no action."
 msgstr ""
+"Yang ditampilkan adalah artis yang sepertinya mesti digabung. Untuk setiap "
+"baris, klik judul yang diinginkan untuk membuatnya tebal, atau hapus "
+"contreng untuk tak melakukan aksi."
 
 #: ../src/Extensions/Banshee.Fixup/Banshee.Fixup/FixActions.cs:50
 msgid "Fix Music Metadata..."
 msgstr "Perbaiki Metadata Musik..."
 
 #: ../src/Extensions/Banshee.Fixup/Banshee.Fixup/FixSource.cs:48
-#, fuzzy
 msgid "Metadata Fixer"
-msgstr "Perbaikan Metadata"
+msgstr "Permerbaik Metadata"
 
 #: ../src/Extensions/Banshee.Fixup/Banshee.Fixup/FixSource.cs:54
 msgid "Problem Type:"
@@ -5041,14 +4988,14 @@ msgstr " dan "
 #. separated by a pipe (|)
 #: ../src/Extensions/Banshee.Fixup/Banshee.Fixup/Solver.cs:198
 msgid "a|an|the"
-msgstr ""
+msgstr "a|an|the"
 
 #. Translators: This is the format commonly used in your langauge for
 #. suffixing an article, eg in English: ", The"
 #: ../src/Extensions/Banshee.Fixup/Banshee.Fixup/Solver.cs:202
 #, csharp-format
 msgid ", {0}"
-msgstr ""
+msgstr ", {0}"
 
 #: ../src/Extensions/Banshee.Fixup/Banshee.Fixup/View.cs:77
 msgid "Fix?"
@@ -5117,7 +5064,6 @@ msgid "Creator:"
 msgstr "Pembuat:"
 
 #: ../src/Extensions/Banshee.InternetArchive/Banshee.InternetArchive/DetailsView.cs:222
-#, fuzzy
 msgid "Venue:"
 msgstr "Tempat:"
 
@@ -5188,9 +5134,8 @@ msgid "Lineage:"
 msgstr "Garis Keturunan:"
 
 #: ../src/Extensions/Banshee.InternetArchive/Banshee.InternetArchive/DetailsView.cs:249
-#, fuzzy
 msgid "Transferred by:"
-msgstr "Urut Berdasar"
+msgstr "Ditransfer melalui:"
 
 #: ../src/Extensions/Banshee.InternetArchive/Banshee.InternetArchive/DetailsView.cs:266
 msgid "Reviews"
@@ -5218,9 +5163,9 @@ msgid "Collection:"
 msgstr "Koleksi"
 
 #: ../src/Extensions/Banshee.InternetArchive/Banshee.InternetArchive/HeaderFilters.cs:117
-#, fuzzy, csharp-format
+#, csharp-format
 msgid "Optional Query"
-msgstr "Kuiri tidak sah"
+msgstr "Kuiri Opsional"
 
 #: ../src/Extensions/Banshee.InternetArchive/Banshee.InternetArchive/HeaderFilters.cs:164
 msgid "Sort by:"
@@ -5319,6 +5264,10 @@ msgid ""
 "library, we provide free access to researchers, historians, scholars, and "
 "the general public."
 msgstr ""
+"The Internet Archive, suatu nirlaba 501©(3), sedang membangun pustaka "
+"dijital dari situs-situs Internet dan artefak kebudayaan lain dalam bentuk "
+"dijital. Seperti suatu pustaka kertas, kami memberikan akses bebas ke para "
+"peneliti, sejarawan, ilmuwan, dan kalangan umum."
 
 #: ../src/Extensions/Banshee.InternetArchive/Banshee.InternetArchive/HomeView.cs:151
 msgid "Visit the Internet Archive online at archive.org"
@@ -5372,9 +5321,8 @@ msgid "Fetch more results from the Internet Archive?"
 msgstr "Ambil lebih banyak hasil dari Internet Archive?"
 
 #: ../src/Extensions/Banshee.InternetArchive/Banshee.InternetArchive/SearchView.cs:94
-#, fuzzy
 msgid "Fetch More"
-msgstr "Ambil lebih banyak trek"
+msgstr "Ambil Lagi"
 
 #: ../src/Extensions/Banshee.InternetArchive/Banshee.InternetArchive/SearchView.cs:128
 #: ../src/Extensions/Banshee.InternetArchive/InternetArchive/Field.cs:61
@@ -5460,18 +5408,16 @@ msgstr "Film Rumahan"
 
 #: ../src/Extensions/Banshee.InternetArchive/InternetArchive/MediaType.cs:79
 #: ../src/Extensions/Banshee.InternetArchive/InternetArchive/MediaType.cs:104
-#, fuzzy
 msgid "News & Public Affairs"
-msgstr "Berita & "
+msgstr "Berita & Masalah Publik"
 
 #: ../src/Extensions/Banshee.InternetArchive/InternetArchive/MediaType.cs:80
 msgid "Open Source Movies"
 msgstr "Film Open Source"
 
 #: ../src/Extensions/Banshee.InternetArchive/InternetArchive/MediaType.cs:81
-#, fuzzy
 msgid "Prelinger Archives"
-msgstr "Semua arsip"
+msgstr "Arsip Prelinger"
 
 #: ../src/Extensions/Banshee.InternetArchive/InternetArchive/MediaType.cs:82
 #: ../src/Extensions/Banshee.InternetArchive/InternetArchive/MediaType.cs:109
@@ -5535,19 +5481,16 @@ msgid "Grateful Dead"
 msgstr "Grateful Dead"
 
 #: ../src/Extensions/Banshee.InternetArchive/InternetArchive/MediaType.cs:101
-#, fuzzy
 msgid "Live Music Archive"
-msgstr "Arsip Musik Hidup"
+msgstr "Arsip Musik Pertunjukan Langsung"
 
 #: ../src/Extensions/Banshee.InternetArchive/InternetArchive/MediaType.cs:102
-#, fuzzy
 msgid "Music & Arts"
 msgstr "Seni & Musik"
 
 #: ../src/Extensions/Banshee.InternetArchive/InternetArchive/MediaType.cs:103
-#, fuzzy
 msgid "Netlabels"
-msgstr "Rincian"
+msgstr "Netlabel"
 
 #: ../src/Extensions/Banshee.InternetArchive/InternetArchive/MediaType.cs:105
 msgid "Non-English Audio"
@@ -5690,40 +5633,34 @@ msgstr "Kunjungi Halaman Profil Last.fm Anda"
 
 #: ../src/Extensions/Banshee.Lastfm/Banshee.Lastfm.Audioscrobbler/AudioscrobblerService.cs:146
 #: ../src/Extensions/Banshee.Lastfm/Banshee.Lastfm/LastfmPreferences.cs:93
-#, fuzzy
 msgid "_Enable Song Reporting From Banshee"
-msgstr "Aktifkan P_elaporan Lagu"
+msgstr "Aktifkan P_elaporan Lagu Dari Banshee"
 
 #: ../src/Extensions/Banshee.Lastfm/Banshee.Lastfm.Audioscrobbler/AudioscrobblerService.cs:147
-#, fuzzy
 msgid "Enable song reporting From Banshee"
-msgstr "Aktifkan pelaporan lagu"
+msgstr "Aktifkan pelaporan lagu dari Banshee"
 
 #: ../src/Extensions/Banshee.Lastfm/Banshee.Lastfm.Audioscrobbler/AudioscrobblerService.cs:152
 #: ../src/Extensions/Banshee.Lastfm/Banshee.Lastfm/LastfmPreferences.cs:98
-#, fuzzy
 msgid "_Enable Song Reporting From Device"
-msgstr "Aktifkan P_elaporan Lagu"
+msgstr "Aktifkan P_elaporan Lagu Dari Perangkat"
 
 #: ../src/Extensions/Banshee.Lastfm/Banshee.Lastfm.Audioscrobbler/AudioscrobblerService.cs:153
-#, fuzzy
 msgid "Enable song reporting From Device"
-msgstr "Aktifkan pelaporan lagu"
+msgstr "Aktifkan pelaporan lagu dari perangkat"
 
 #: ../src/Extensions/Banshee.Lastfm/Banshee.Lastfm.Audioscrobbler/AudioscrobblerService.cs:402
-#, fuzzy
 msgid "Scrobbling from device"
-msgstr "Setelah mengimpor dari suatu perangkat:"
+msgstr "Scrobbling dari perangkat"
 
 #: ../src/Extensions/Banshee.Lastfm/Banshee.Lastfm.Audioscrobbler/AudioscrobblerService.cs:403
-#, fuzzy
 msgid "Scrobbling from device..."
-msgstr "Setelah mengimpor dari suatu perangkat:"
+msgstr "Scrobbling dari perangkat…"
 
 #: ../src/Extensions/Banshee.Lastfm/Banshee.Lastfm.Audioscrobbler/AudioscrobblerService.cs:414
-#, fuzzy, csharp-format
+#, csharp-format
 msgid "Processing track {0} of {1} ..."
-msgstr "Judul Trek"
+msgstr "Memroses trek {0} dari {1} ..."
 
 #: ../src/Extensions/Banshee.Lastfm/Banshee.Lastfm/LastfmActions.cs:66
 msgid "Connect"
@@ -6061,9 +5998,8 @@ msgid "For User:"
 msgstr "Bagi Pengguna:"
 
 #: ../src/Extensions/Banshee.LastfmStreaming/Banshee.LastfmStreaming/StationType.cs:112
-#, fuzzy
 msgid "Of User:"
-msgstr "Pengguna"
+msgstr "Dari Pengguna:"
 
 #: ../src/Extensions/Banshee.LastfmStreaming/Banshee.LastfmStreaming/StationType.cs:120
 msgid "Group"
@@ -6224,6 +6160,7 @@ msgstr "Sederhanakan"
 #: ../src/Extensions/Banshee.NowPlaying/Banshee.NowPlaying/NowPlayingSource.cs:60
 msgid "Hide/Show the source list, menu, toolbar, and status bar"
 msgstr ""
+"Sembunyikan/tampilkan daftar sumber, menu, bilah alat, dan bilah status"
 
 #: ../src/Extensions/Banshee.OpticalDisc/Banshee.OpticalDisc.AudioCd/AudioCdDiscModel.cs:75
 #: ../src/Extensions/Banshee.OpticalDisc/Banshee.OpticalDisc.AudioCd/AudioCdSource.cs:54
@@ -6240,9 +6177,8 @@ msgid "Importing Audio CD"
 msgstr "Mengimpor CD Audio"
 
 #: ../src/Extensions/Banshee.OpticalDisc/Banshee.OpticalDisc.AudioCd/AudioCdRipper.cs:122
-#, fuzzy
 msgid "Initializing Drive"
-msgstr "Temperatur kandar"
+msgstr "Menginisialisasi Kandar"
 
 #: ../src/Extensions/Banshee.OpticalDisc/Banshee.OpticalDisc.AudioCd/AudioCdRipper.cs:124
 #, csharp-format
@@ -6278,24 +6214,28 @@ msgid ""
 "When an audio CD is inserted, automatically begin importing it if metadata "
 "can be found and it is not already in the library."
 msgstr ""
+"Ketika suatu CD audio disisipkan, secara otomatis mulai mengimpornya bila "
+"metadata dapat ditemukan dan belum ada dalam pustaka."
 
 #: ../src/Extensions/Banshee.OpticalDisc/Banshee.OpticalDisc.AudioCd/AudioCdService.cs:119
 msgid "_Eject when done importing"
-msgstr ""
+msgstr "K_eluarkan ketika selesai mengimpor"
 
 #: ../src/Extensions/Banshee.OpticalDisc/Banshee.OpticalDisc.AudioCd/AudioCdService.cs:120
 msgid "When an audio CD has been imported, automatically eject it."
-msgstr ""
+msgstr "Ketika suatu CD audio telah diimpor, otomatis keluarkan."
 
 #: ../src/Extensions/Banshee.OpticalDisc/Banshee.OpticalDisc.AudioCd/AudioCdService.cs:123
 msgid "Use error correction when importing"
-msgstr ""
+msgstr "Pakai koreksi kesalahan ketika mengimpor"
 
 #: ../src/Extensions/Banshee.OpticalDisc/Banshee.OpticalDisc.AudioCd/AudioCdService.cs:124
 msgid ""
 "Error correction tries to work around problem areas on a disc, such as "
 "surface scratches, but will slow down importing substantially."
 msgstr ""
+"Koreksi kesalahan mencoba mengatasi masalah pada cakram, seperti permukaan "
+"yang tergores, tapi akan memperlambat pengimporan secara substansial."
 
 #: ../src/Extensions/Banshee.OpticalDisc/Banshee.OpticalDisc.AudioCd/AudioCdService.cs:192
 #: ../src/Extensions/Banshee.OpticalDisc/Banshee.OpticalDisc.AudioCd/AudioCdSource.cs:311
@@ -6315,9 +6255,8 @@ msgid "Duplicate this audio CD"
 msgstr "Gandakan CD audio ini"
 
 #: ../src/Extensions/Banshee.OpticalDisc/Banshee.OpticalDisc.AudioCd/AudioCdSource.cs:113
-#, fuzzy
 msgid "Searching for track information..."
-msgstr "Informasi lagu untuk trek %02i"
+msgstr "Mencari informasi trek..."
 
 #: ../src/Extensions/Banshee.OpticalDisc/Banshee.OpticalDisc.AudioCd/AudioCdSource.cs:146
 msgid "Could not fetch track information"
@@ -6341,7 +6280,6 @@ msgstr "Preferensi CD Audio"
 
 #: ../src/Extensions/Banshee.OpticalDisc/Banshee.OpticalDisc.AudioCd/AudioCdSource.cs:286
 #: ../src/Extensions/Banshee.OpticalDisc/Banshee.OpticalDisc.Dvd/DvdSource.cs:64
-#, fuzzy
 msgid "Eject Disc"
 msgstr "Keluarkan Disk"
 
@@ -6352,9 +6290,9 @@ msgstr "Impor \"{0}\""
 
 #. Translators: {0} is the type of disc, "Audio CD" or "DVD"
 #: ../src/Extensions/Banshee.OpticalDisc/Banshee.OpticalDisc/DiscSource.cs:154
-#, fuzzy, csharp-format
+#, csharp-format
 msgid "Ejecting {0}..."
-msgstr "Keluarkan media"
+msgstr "Mengeluarkan {0}..."
 
 #. Translators: {0} is the type of disc, "Audio CD" or "DVD". {1} is the error message.
 #: ../src/Extensions/Banshee.OpticalDisc/Banshee.OpticalDisc/DiscSource.cs:173
@@ -6363,24 +6301,20 @@ msgid "Could not eject {0}: {1}"
 msgstr "Tak bisa mengeluarkan {0}: {1}"
 
 #: ../src/Extensions/Banshee.OpticalDisc/Banshee.OpticalDisc.Dvd/DvdService.cs:91
-#, fuzzy
 msgid "Go to Menu"
-msgstr "Buka menu DVD"
+msgstr "Ke Menu"
 
 #: ../src/Extensions/Banshee.OpticalDisc/Banshee.OpticalDisc.Dvd/DvdService.cs:92
-#, fuzzy
 msgid "Navigate to menu"
-msgstr "Buka menu DVD"
+msgstr "Menuju ke menu"
 
 #: ../src/Extensions/Banshee.OpticalDisc/Banshee.OpticalDisc.Dvd/DvdSource.cs:38
-#, fuzzy
 msgid "DVD"
 msgstr "DVD"
 
 #: ../src/Extensions/Banshee.OpticalDisc/Banshee.OpticalDisc.Dvd/DvdSource.cs:63
-#, fuzzy
 msgid "DVD Preferences"
-msgstr "Preferensi accerciser"
+msgstr "Preferensi DVD"
 
 #: ../src/Extensions/Banshee.PlayerMigration/Banshee.PlayerMigration/AmarokPlayerImportSource.cs:143
 #, csharp-format
@@ -6874,14 +6808,12 @@ msgid "Track Preview"
 msgstr "Pratilik Trek"
 
 #: ../src/Extensions/Banshee.UPnPClient/Banshee.UPnPClient/UPnPContainerSource.cs:39
-#, fuzzy
 msgid "Shared Media"
-msgstr "Pemutar Media"
+msgstr "Media Terkongsi"
 
 #: ../src/Extensions/Banshee.UPnPClient/Banshee.UPnPClient/UPnPServerSource.cs:52
-#, fuzzy
 msgid "UPnP Share"
-msgstr "Untuk berbagi"
+msgstr "Kongsi UPnP"
 
 #: ../src/Extensions/Banshee.YouTube/Banshee.YouTube.Gui/VideoStreamTile.cs:136
 msgid "Uploaded by"
