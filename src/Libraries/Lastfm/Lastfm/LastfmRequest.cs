@@ -212,9 +212,12 @@ namespace Lastfm
             StringBuilder data = new StringBuilder ();
             data.AppendFormat ("method={0}", method);
             data.AppendFormat ("&api_key={0}", LastfmCore.ApiKey);
+
             foreach (KeyValuePair<string, string> param in parameters) {
-                data.AppendFormat ("&{0}={1}", param.Key, Uri.EscapeDataString (param.Value));
+                data.AppendFormat ("&{0}={1}",
+                                   param.Key, param.Value != null ? Uri.EscapeDataString (param.Value) : null);
             }
+
             data.AppendFormat ("&api_sig={0}", GetSignature ());
 
             return data.ToString ();
