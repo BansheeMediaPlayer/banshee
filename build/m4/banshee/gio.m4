@@ -2,6 +2,9 @@ AC_DEFUN([BANSHEE_CHECK_GIO_SHARP],
 [
 	GNOMESHARP_REQUIRED=2.8
 	GIOSHARP_REQUIRED=2.22.3
+
+	GUDEVSHARP_REQUIRED=0.1
+	GKEYFILESHARP_REQUIRED=0.1
 	
 	AC_ARG_ENABLE(gio, AC_HELP_STRING([--disable-gio], [Disable GIO for IO operations]), ,enable_gio="yes")
 	AC_ARG_ENABLE(gio_hardware, AC_HELP_STRING([--disable-gio-hardware], [Disable GIO Hardware backend]), ,enable_gio_hardware="yes")
@@ -42,13 +45,24 @@ AC_DEFUN([BANSHEE_CHECK_GIO_SHARP],
 			enable_gio="$enable_gio", enable_gio=no)
 
 		if test "x$enable_gio_hardware" = "xyes"; then
-			PKG_CHECK_MODULES(GUDEV_SHARP,
-				gudev-sharp-1.0 >= 0.1,
-				enable_gio_hardware=yes, enable_gio_hardware=no)
 
+			has_gudev_sharp=no
+			PKG_CHECK_MODULES(GUDEV_SHARP,
+				gudev-sharp-1.0 >= $GUDEVSHARP_REQUIRED,
+				has_gudev_sharp=yes, has_gudev_sharp=no)
+
+			if test "x$has_gudev_sharp" = "xno"; then
+				AC_MSG_ERROR([gudev-sharp-1.0 was not found or is not up to date. Please install gudev-sharp-1.0 of at least version $GUDEVSHARP_REQUIRED, or disable GIO Hardware support by passing --disable-gio-hardware])
+			fi
+
+			has_gkeyfile_sharp=no
 			PKG_CHECK_MODULES(GKEYFILE_SHARP,
-				gkeyfile-sharp >= 0.1,
-				enable_gio_hardware="$enable_gio_hardware", enable_gio_hardware=no)
+				gkeyfile-sharp >= $GKEYFILESHARP_REQUIRED,
+				has_gkeyfile_sharp=yes, has_gkeyfile_sharp=no)
+
+			if test "x$has_gkeyfile_sharp" = "xno"; then
+				AC_MSG_ERROR([gkeyfile-sharp was not found or is not up to date. Please install gkeyfile-sharp of at least version $GKEYFILESHARP_REQUIRED, or disable GIO Hardware support by passing --disable-gio-hardware])
+			fi
 
 			if test "x$enable_gio_hardware" = "xno"; then
 				GUDEV_SHARP_LIBS=''
