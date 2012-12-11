@@ -44,6 +44,10 @@ if [ ! -z "$BANSHEE_CLIENT" ]; then
 	BANSHEE_CLIENT="--client=${BANSHEE_CLIENT}"
 fi
 
+if [ "$BANSHEE_DEBUG" = "--debug" ] && [ "x$BANSHEE_PROFILE" = "x" ]; then
+	BANSHEE_PROFILE="--profile=gui-thread-check"
+fi
+
 # We were testing the SGen compacting GC; disabled for 2.0 release b/c there are serious
 # issues with sgen on Mono 2.8.0
 #export MONO_ENV_OPTIONS="--gc=sgen"

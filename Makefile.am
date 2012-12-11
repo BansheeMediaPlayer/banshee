@@ -57,11 +57,15 @@ check-bootstrap-env:
 		done; \
 	fi
 
+PROFILE_DEFAULT=--profile=log:time=fast,calls,noalloc,maxframes=5
+PROFILE_HEAP=--profile=logging:heap=all,gc-dumps=-1
+PROFILE_GUI=--profile=gui-thread-check
+
 run: check-bootstrap-env $(MO_FILES)
-	(cd bin; $(MONO) --debug $(BANSHEE_DEV_MONO_OPTIONS) Nereid.exe --debug --uninstalled $(BANSHEE_DEV_OPTIONS))
+	(cd bin; $(MONO) --debug $(PROFILE_GUI) $(BANSHEE_DEV_MONO_OPTIONS) Nereid.exe --debug --uninstalled $(BANSHEE_DEV_OPTIONS))
 
 run-profiled: check-bootstrap-env $(MO_FILES)
-	(cd bin; LD_LIBRARY_PATH=$(LD_LIBRARY_PATH):/usr/local/lib $(MONO) --debug $(BANSHEE_DEV_MONO_OPTIONS) --profile=log:time=fast,calls,noalloc,maxframes=5 Nereid.exe --uninstalled $(BANSHEE_DEV_OPTIONS))
+	(cd bin; LD_LIBRARY_PATH=$(LD_LIBRARY_PATH):/usr/local/lib $(MONO) --debug $(BANSHEE_DEV_MONO_OPTIONS) $(PROFILE_DEFAULT) Nereid.exe --uninstalled $(BANSHEE_DEV_OPTIONS))
 
 run-logged: check-bootstrap-env $(MO_FILES)
 	(cd bin; $(MONO) --debug $(BANSHEE_DEV_MONO_OPTIONS) Nereid.exe --debug --uninstalled $(BANSHEE_DEV_OPTIONS) | tee last-run-log)
@@ -78,7 +82,7 @@ run-trace: $(MO_FILES)
 		Nereid.exe --uninstalled $(BANSHEE_DEV_OPTIONS) > ../banshee.trace)
 
 run-profile-heap: $(MO_FILES)
-	(cd bin; $(MONO) --profile=logging:heap=all,gc-dumps=-1 --debug $(BANSHEE_DEV_MONO_OPTIONS) Nereid.exe --debug --uninstalled $(BANSHEE_DEV_OPTIONS))
+	(cd bin; $(MONO) $(PROFILE_HEAP) --debug $(BANSHEE_DEV_MONO_OPTIONS) Nereid.exe --debug --uninstalled $(BANSHEE_DEV_OPTIONS))
 
 query-trace:
 	@echo "Did you set BANSHEE_DEV_MONO_OPTIONS to --trace=disabled?"; \
