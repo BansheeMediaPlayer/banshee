@@ -151,7 +151,7 @@ namespace Banshee.Dap.Gui
         private void OnPlaylistChanged (object o, EventArgs args)
         {
             var db_src = o as DatabaseSource;
-            combo.Update (db_src, String.Format (Catalog.GetString ("Sync from “{0}”"), db_src.Name), db_src.Order);
+            combo.Update (db_src, String.Format (Catalog.GetString ("Sync from \u201c{0}\u201d"), db_src.Name), db_src.Order);
         }
 
         private void OnChildSourceAdded (SourceEventArgs args)
