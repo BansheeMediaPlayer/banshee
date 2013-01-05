@@ -21,10 +21,19 @@ AC_DEFUN([BANSHEE_CHECK_DAP_MTP],
 				LIBMTP_HAS_MODDATE=yes,
 				LIBMTP_HAS_MODDATE=no,
 				[[#include <libmtp.h>]])
+
+		AC_MSG_CHECKING([whether LIBMTP_FILETYPE_FOLDER enum value is defined])
+		AC_COMPUTE_INT([LIBMTP_HAS_FOLDER], [LIBMTP_FILETYPE_FOLDER], [#include <libmtp.h>], LIBMTP_HAS_FOLDER=no)
+		if test "x$LIBMTP_HAS_FOLDER" = "xno"; then
+			AC_MSG_RESULT([no])
+		else
+			AC_MSG_RESULT([yes])
+		fi
 	fi
 
 	AM_CONDITIONAL(ENABLE_MTP, test "x$enable_libmtp" = "xyes")
 	AM_CONDITIONAL(LIBMTP_TRACK_STRUCT_HAS_MODDATE, [test "$LIBMTP_HAS_MODDATE" = "yes"])
+	AM_CONDITIONAL(LIBMTP_FILETYPE_ENUM_HAS_FOLDER, [test "$LIBMTP_HAS_FOLDER" = "0"])
 	AC_CHECK_SIZEOF(time_t)
 	AM_CONDITIONAL(LIBMTP_SIZEOF_TIME_T_64, [test "x$ac_cv_sizeof_time_t" = "x8"])
 ])
