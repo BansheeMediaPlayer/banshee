@@ -248,7 +248,15 @@ namespace Lastfm
                 return;
             }
 
-            var response = current_scrobble_request.GetResponseObject ();
+            JsonObject response = null;
+            try {
+                response = current_scrobble_request.GetResponseObject ();
+            } catch (Exception e) {
+                Log.Exception ("Failed to process the scrobble response", e);
+                state = State.Idle;
+                return;
+            }
+
             var error = current_scrobble_request.GetError ();
             if (error == StationError.ServiceOffline || error == StationError.TemporarilyUnavailable) {
                 Log.WarningFormat ("Lastfm is temporarily unavailable: {0}", (string)response ["message"]);
