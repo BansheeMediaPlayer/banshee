@@ -654,6 +654,7 @@ namespace Banshee.Sources
             if (!AddTrackJob.IsFinished) {
                 AddTrackJob.Finish ();
             }
+            add_track_job = null;
             is_adding = false;
         }
 
@@ -666,7 +667,6 @@ namespace Banshee.Sources
 
                 if (add_track_job.IsFinished) {
                     finished = true;
-                    add_track_job = null;
                 } else {
                     if (add_track_job.Completed % 10 == 0)
                         notify = true;
