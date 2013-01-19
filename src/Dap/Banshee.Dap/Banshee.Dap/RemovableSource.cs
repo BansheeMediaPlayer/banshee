@@ -101,8 +101,11 @@ namespace Banshee.Dap
         public bool Unmap ()
         {
             DatabaseTrackInfo track = ServiceManager.PlayerEngine.CurrentTrack as DatabaseTrackInfo;
-            if (track != null && track.PrimarySourceId == this.DbId) {
-                ServiceManager.PlayerEngine.Close ();
+            if (track != null) {
+                if (track.PrimarySourceId == this.DbId ||
+                    (!String.IsNullOrEmpty (BaseDirectory) && track.LocalPath.StartsWith (BaseDirectory))) {
+                    ServiceManager.PlayerEngine.Close ();
+                }
             }
 
             SetStatus (String.Format (Catalog.GetString ("Disconnecting {0}..."), GenericName), false);
