@@ -404,6 +404,10 @@ namespace Banshee.Dap.AppleDevice
             get { return false; }//!database_supported; }
         }
 
+        public override string BaseDirectory {
+            get { return Volume.MountPoint; }
+        }
+
         public override void Import ()
         {
             Banshee.ServiceStack.ServiceManager.Get<LibraryImportManager> ().Enqueue (GPod.ITDB.GetMusicPath (Device));
