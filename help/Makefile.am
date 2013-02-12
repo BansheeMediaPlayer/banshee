@@ -29,7 +29,7 @@ DOC_PAGES = \
 	sync.page \
 	ui.page
 
-DOC_LINGUAS = ca cs da de el en_GB es fr gl hu ja sl uk zh_CN
+DOC_LINGUAS = ca cs da de el en_GB es fr gl hu ja pt_BR sl uk zh_CN
 dist-hook: doc-dist-hook
 
 endif

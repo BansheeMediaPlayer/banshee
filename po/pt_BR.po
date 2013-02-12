@@ -1,8 +1,8 @@
 # Brazilian Portuguese translation of banshee.
-# This file is distributed under the same license as the banshee package.
 # Copyright © 2005–2011 Novell, Inc.
 # Copyright © 2005–2012 Outros
 # Copyright © 2005 Aaron Bockover
+# This file is distributed under the same license as the banshee package.
 # Marco Carvalho <marcocarvalho89@yahoo.com.br>, 2005.
 # Evandro Fernandes Giovanini <evandrofg@ig.com.br>, 2006.
 # Vladimir Melo <vladimirmelo.psi@gmail.com>, 2007-2008.
@@ -20,15 +20,18 @@
 # Carlos José Pereira <carlao2005@gmail.com>, 2010.
 # Lucas Mezencio <lucas.mezencio@gmail.com>, 2012.
 # Rafael Ferreira <rafael.f.f1@gmail.com>, 2013.
-# referências baseadas no gstreamer
+#
+# Referências baseadas no gstreamer
 # filesink -> consumidor de arquivo
+# scrobble   -> http://www.lastfm.com.br/help/faq?category=Scrobbling
+# scrobbling -> http://www.lastfm.com.br/help/faq?category=Scrobbling
 msgid ""
 msgstr ""
-"Project-Id-Version: banshee\n"
+"Project-Id-Version: banshee help\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=banshee&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2013-01-06 14:56+0000\n"
-"PO-Revision-Date: 2013-01-12 14:30-0300\n"
+"POT-Creation-Date: 2013-01-25 00:16+0000\n"
+"PO-Revision-Date: 2013-02-12 18:05-0300\n"
 "Last-Translator: Rafael Ferreira <rafael.f.f1@gmail.com>\n"
 "Language-Team: Brazilian Portuguese <gnome-pt_br-list@gnome.org>\n"
 "Language: pt_BR\n"
@@ -161,7 +164,7 @@ msgstr "Busca por arte de capas"
 
 #: ../data/addin-xml-strings.cs:54
 msgid "Fetch cover art for all items in your library."
-msgstr "Obter arte de capa para todos os itens de sua biblioteca."
+msgstr "Obtenha arte de capa para todos os itens de sua biblioteca."
 
 #. ../src/Extensions/Banshee.Daap/Banshee.Daap.addin.xml
 #: ../data/addin-xml-strings.cs:58
@@ -188,7 +191,7 @@ msgstr "Importação do eMusic"
 
 #: ../data/addin-xml-strings.cs:69
 msgid "Download and import music purchased from eMusic."
-msgstr "Baixar e importar músicas compradas do eMusic."
+msgstr "Baixe e importe músicas compradas do eMusic."
 
 #. ../src/Extensions/Banshee.FileSystemQueue/Banshee.FileSystemQueue.addin.xml
 #: ../data/addin-xml-strings.cs:73
@@ -197,7 +200,7 @@ msgstr "Visualização da fila do sistema de arquivos"
 
 #: ../data/addin-xml-strings.cs:74
 msgid "Preview files without importing to your library."
-msgstr "Pré-visualize arquivos sem importá-los para sua biblioteca."
+msgstr "Visualize arquivos sem importá-los para sua biblioteca."
 
 #. ../src/Extensions/Banshee.Fixup/Banshee.Fixup.addin.xml
 #: ../data/addin-xml-strings.cs:78
@@ -206,8 +209,7 @@ msgstr "Conserto de Metadados"
 
 #: ../data/addin-xml-strings.cs:79
 msgid "Fix broken and missing metadata using bulk operations."
-msgstr ""
-"Consertar metadados quebrados e inexistentes usando operações em massa."
+msgstr "Conserte metadados quebrados e inexistentes usando operações em massa."
 
 #. ../src/Extensions/Banshee.InternetArchive/Banshee.InternetArchive.addin.xml
 #: ../data/addin-xml-strings.cs:83
@@ -235,7 +237,7 @@ msgstr "Ouça e organize estações de radio na internet."
 msgid "Last.fm Scrobbling"
 msgstr "Mecanismo de scrobble do Last.fm"
 
-# Como não há tradução explícita para "scrobbling", coloco um descritivo entre parênteses para o usuário sentir-se mais confortável.
+# http://www.lastfm.com.br/help/faq?category=Scrobbling
 #: ../data/addin-xml-strings.cs:94
 msgid "Last.fm scrobbling and context pane recommendations."
 msgstr ""
@@ -1702,12 +1704,12 @@ msgstr "Agrupamento"
 #: ../src/Dap/Banshee.Dap/Banshee.Dap/MusicGroupSource.cs:39
 #: ../src/Extensions/Banshee.UPnPClient/Banshee.UPnPClient/UPnPMusicSource.cs:49
 msgid "Music"
-msgstr "Música"
+msgstr "Músicas"
 
 #: ../src/Core/Banshee.Services/Banshee.Library/MusicLibrarySource.cs:66
 #: ../src/Extensions/Banshee.UPnPClient/Banshee.UPnPClient/UPnPMusicSource.cs:52
 msgid "Search your music"
-msgstr "Pesquisar sua música"
+msgstr "Pesquisar suas músicas"
 
 #. Misc section
 #: ../src/Core/Banshee.Services/Banshee.Library/MusicLibrarySource.cs:89
@@ -1717,7 +1719,7 @@ msgstr "Diversos"
 
 #: ../src/Core/Banshee.Services/Banshee.Library/MusicLibrarySource.cs:92
 msgid "_Sort an artist's albums by year, not title"
-msgstr "_Ordenar um album de artísta pelo ano, não pelo título"
+msgstr "_Ordenar os álbuns de um artista pelo ano, não pelo título"
 
 #: ../src/Core/Banshee.Services/Banshee.Library/MusicLibrarySource.cs:102
 #, csharp-format
@@ -1750,7 +1752,7 @@ msgstr "Músicas ouvidas com mais frequência na última semana"
 #: ../src/Core/Banshee.Services/Banshee.Library/MusicLibrarySource.cs:146
 #: ../src/Extensions/Banshee.InternetArchive/InternetArchive/Sort.cs:95
 msgid "Recently Added"
-msgstr "Adicionado recentemente"
+msgstr "Adicionadas recentemente"
 
 #: ../src/Core/Banshee.Services/Banshee.Library/MusicLibrarySource.cs:147
 msgid "Songs imported within the last week"
@@ -1766,7 +1768,7 @@ msgstr "Músicas reproduzidas recentemente"
 
 #: ../src/Core/Banshee.Services/Banshee.Library/MusicLibrarySource.cs:156
 msgid "Unheard"
-msgstr "Não ouvida"
+msgstr "Não ouvidas"
 
 #: ../src/Core/Banshee.Services/Banshee.Library/MusicLibrarySource.cs:157
 msgid "Songs that have not been played or skipped"
@@ -1774,7 +1776,7 @@ msgstr "Músicas que não foram reproduzidas ou puladas"
 
 #: ../src/Core/Banshee.Services/Banshee.Library/MusicLibrarySource.cs:164
 msgid "Neglected Favorites"
-msgstr "Favoritas esquecidas"
+msgstr "Favoritos esquecidos"
 
 #: ../src/Core/Banshee.Services/Banshee.Library/MusicLibrarySource.cs:165
 msgid "Favorites not played in over two months"
@@ -1948,15 +1950,15 @@ msgstr "Será assumido que há uma conexão de rede disponível e em funcionamen
 
 #: ../src/Core/Banshee.Services/Banshee.Networking/Network.cs:159
 msgid "_Disable features requiring Internet access"
-msgstr "_Desabilitar recursos que requerem acesso à Internet"
+msgstr "_Desabilitar recursos que precisam de acesso à Internet"
 
 #: ../src/Core/Banshee.Services/Banshee.Networking/Network.cs:160
 msgid ""
 "Some features require a broadband Internet connection such as Last.fm or "
 "cover art fetching"
 msgstr ""
-"Alguns recursos requerem uma conexão banda larga à Internet, como o Last.fm "
-"ou a busca por arte de capa"
+"Alguns recursos precisam de uma conexão com à Internet, como o Last.fm ou a "
+"busca por arte de capa"
 
 #: ../src/Core/Banshee.Services/Banshee.Playlist/AbstractPlaylistSource.cs:153
 msgid "Search this playlist"
@@ -2355,7 +2357,7 @@ msgstr "localização"
 
 #: ../src/Core/Banshee.Services/Banshee.Query/BansheeQuery.cs:272
 msgid "Time"
-msgstr "tempo"
+msgstr "Tempo"
 
 #. Translators: These are unique search fields. You can use CSV for synonyms. Please, no spaces. Blank ok.
 #: ../src/Core/Banshee.Services/Banshee.Query/BansheeQuery.cs:274
@@ -3104,13 +3106,23 @@ msgid "_Tools"
 msgstr "Ferrame_ntas"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui/GlobalActions.cs:88
+#, csharp-format
+msgid "The rescan operation will remove one track from your music library."
+msgid_plural ""
+"The rescan operation will remove {0} tracks from your music library."
+msgstr[0] ""
+"A operação de varredura removerá uma faixa da sua biblioteca de músicas."
+msgstr[1] ""
+"A operação de varredura removerá {0} faixas da sua biblioteca de músicas."
+
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/GlobalActions.cs:99
 #: ../src/Extensions/Banshee.InternetArchive/Banshee.InternetArchive/HeaderFilters.cs:134
 msgid "_Help"
 msgstr "Aj_uda"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui/GlobalActions.cs:91
 msgid "_Contents"
-msgstr "_Conteúdo"
+msgstr "S_umário"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui/GlobalActions.cs:95
 msgid "Advanced Collection Searching"
@@ -3221,7 +3233,7 @@ msgstr "Repetir"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui/PlaybackRepeatActions.cs:78
 msgid "Repeat _Off"
-msgstr "Repetir _desligado"
+msgstr "Repetição _desligada"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui/PlaybackRepeatActions.cs:79
 msgid "Do not repeat playlist"
@@ -3286,7 +3298,7 @@ msgstr "Ativar legenda embutida {0}"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui/PlaybackSubtitleActions.cs:147
 msgid "Hide subtitles"
-msgstr "Esconder legendas"
+msgstr "Ocultar legendas"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui/SourceActions.cs:75
 msgid "_New Playlist"
@@ -3902,7 +3914,7 @@ msgstr "_Equalizador"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui/ViewActions.cs:66
 msgid "View the graphical equalizer"
-msgstr "Vê o equalizador gráfico"
+msgstr "Veja o equalizador gráfico"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui/ViewActions.cs:74
 msgid "_Context Pane"
@@ -3931,8 +3943,8 @@ msgstr "Alternar a exibição de arte de capa do álbum"
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui.Widgets/TaskStatusIcon.cs:96
 msgid "Active Task Running"
 msgid_plural "Active Tasks Running"
-msgstr[0] "Tarefa executando:"
-msgstr[1] "Tarefas executando:"
+msgstr[0] "Tarefa em execução:"
+msgstr[1] "Tarefas em execução:"
 
 #. Translators: {0} and {1} are for markup so ignore them, {2} and {3}
 #. are Podcast Name and Published Date, respectively;
@@ -5018,7 +5030,7 @@ msgstr ""
 
 #: ../src/Extensions/Banshee.Fixup/Banshee.Fixup/FixActions.cs:50
 msgid "Fix Music Metadata..."
-msgstr "Consertar metadados da música..."
+msgstr "Consertar metadados de músicas..."
 
 #: ../src/Extensions/Banshee.Fixup/Banshee.Fixup/FixSource.cs:48
 msgid "Metadata Fixer"
@@ -5703,25 +5715,27 @@ msgstr "Visita o seu perfil do Last.fm"
 #: ../src/Extensions/Banshee.Lastfm/Banshee.Lastfm.Audioscrobbler/AudioscrobblerService.cs:146
 #: ../src/Extensions/Banshee.Lastfm/Banshee.Lastfm/LastfmPreferences.cs:93
 msgid "_Enable Song Reporting From Banshee"
-msgstr "_Habilitar relatório de música do Banshee"
+msgstr "_Habilitar relatório de músicas do Banshee"
 
 #: ../src/Extensions/Banshee.Lastfm/Banshee.Lastfm.Audioscrobbler/AudioscrobblerService.cs:147
 msgid "Enable song reporting From Banshee"
-msgstr "Habilita relatório de música do Banshee"
+msgstr "Habilitar relatório de músicas do Banshee"
 
 #: ../src/Extensions/Banshee.Lastfm/Banshee.Lastfm.Audioscrobbler/AudioscrobblerService.cs:152
 #: ../src/Extensions/Banshee.Lastfm/Banshee.Lastfm/LastfmPreferences.cs:98
 msgid "_Enable Song Reporting From Device"
-msgstr "_Habilita relatório de música do dispositivo"
+msgstr "_Habilitar relatório de músicas do dispositivo"
 
 #: ../src/Extensions/Banshee.Lastfm/Banshee.Lastfm.Audioscrobbler/AudioscrobblerService.cs:153
 msgid "Enable song reporting From Device"
-msgstr "Habilita relatório de música do dispositivo"
+msgstr "Habilitar relatório de músicas do dispositivo"
 
+# Q: O que é scrobble? A: http://www.lastfm.com.br/help/faq?category=99
 #: ../src/Extensions/Banshee.Lastfm/Banshee.Lastfm.Audioscrobbler/AudioscrobblerService.cs:402
 msgid "Scrobbling from device"
 msgstr "Fazendo Scrobble do dispositivo"
 
+# Q: O que é scrobble? A: http://www.lastfm.com.br/help/faq?category=99
 #: ../src/Extensions/Banshee.Lastfm/Banshee.Lastfm.Audioscrobbler/AudioscrobblerService.cs:403
 msgid "Scrobbling from device..."
 msgstr "Fazendo Scrobble do dispositivo..."
@@ -5849,7 +5863,7 @@ msgstr "Você precisa permitir que o Banshee acesse sua conta no Last.fm."
 
 #: ../src/Extensions/Banshee.Lastfm/Banshee.Lastfm/LastfmPreferences.cs:304
 msgid "Finish Logging In"
-msgstr "Completar autorização"
+msgstr "Concluir autorização"
 
 #: ../src/Extensions/Banshee.Lastfm/Banshee.Lastfm/LastfmPreferences.cs:318
 #, csharp-format
@@ -6475,7 +6489,7 @@ msgstr "_de"
 
 #: ../src/Extensions/Banshee.PlayQueue/Banshee.PlayQueue/PlayQueueActions.cs:52
 msgid "Add to Play Queue"
-msgstr "Adicionar à lista de reprodução"
+msgstr "Adicionar à fila de reprodução"
 
 #: ../src/Extensions/Banshee.PlayQueue/Banshee.PlayQueue/PlayQueueActions.cs:53
 msgid "Append selected songs to the play queue"
@@ -6647,11 +6661,11 @@ msgstr "Baixando"
 
 #: ../src/Extensions/Banshee.Podcasting/Banshee.Podcasting.Gui/ColumnCellUnheard.cs:57
 msgid "New Items"
-msgstr "Items novos"
+msgstr "Itens novos"
 
 #: ../src/Extensions/Banshee.Podcasting/Banshee.Podcasting.Gui/ColumnCellUnheard.cs:58
 msgid "All Items"
-msgstr "Todos os items"
+msgstr "Todos os itens"
 
 #: ../src/Extensions/Banshee.Podcasting/Banshee.Podcasting.Gui/DownloadManager/DownloadUserJob.cs:50
 msgid "Downloading Podcast(s)"
@@ -6758,7 +6772,7 @@ msgstr "Baixar novos episódios"
 #: ../src/Extensions/Banshee.Podcasting/Banshee.Podcasting.Gui/PodcastManager/Dialog/PodcastFeedPropertiesDialog.cs:112
 #: ../src/Extensions/Banshee.Podcasting/Banshee.Podcasting.Gui/PodcastManager/Dialog/PodcastSubscribeDialog.cs:137
 msgid "Archive all episodes except the newest one"
-msgstr "Arquivar todos os episódios, exceto, o mais recente"
+msgstr "Arquivar todos os episódios, exceto o mais recente"
 
 #: ../src/Extensions/Banshee.Podcasting/Banshee.Podcasting.Gui/PodcastManager/Dialog/PodcastFeedPropertiesDialog.cs:136
 #: ../src/Extensions/Banshee.Podcasting/Banshee.Podcasting.Gui/PodcastManager/Dialog/PodcastPropertiesDialog.cs:105
@@ -6880,7 +6894,7 @@ msgstr "Parar monitoramento SQL"
 
 #: ../src/Extensions/Banshee.UbuntuOneMusicStore/Banshee.UbuntuOneMusicStore/UbuntuOneMusicStoreSource.cs:133
 msgid "Track Preview"
-msgstr "Pre-visualizar a faixa"
+msgstr "Visualização de faixa"
 
 #: ../src/Extensions/Banshee.UPnPClient/Banshee.UPnPClient/UPnPContainerSource.cs:39
 msgid "Shared Media"
