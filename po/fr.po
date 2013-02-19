@@ -19,9 +19,9 @@ msgstr ""
 "Project-Id-Version: banshee 2.4\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=banshee&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2012-09-13 22:35+0000\n"
-"PO-Revision-Date: 2012-05-24 22:10+0200\n"
-"Last-Translator: Alain Lojewski <allomervan@gmail.com>\n"
+"POT-Creation-Date: 2013-02-12 20:25+0000\n"
+"PO-Revision-Date: 2013-02-18 23:06+0100\n"
+"Last-Translator: Pierre Henry <pierrehenry73@yahoo.fr>\n"
 "Language-Team: GNOME French Team <gnomefr@traduc.org>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
@@ -638,7 +638,7 @@ msgid "Audio Quality"
 msgstr "Qualité audio"
 
 #: ../data/desktop-files/common.desktop.in.h:1
-#: ../src/Dap/Banshee.Dap/Banshee.Dap/DapSource.cs:196
+#: ../src/Dap/Banshee.Dap/Banshee.Dap/DapSource.cs:194
 msgid "Media Player"
 msgstr "Lecteur multimédia"
 
@@ -832,10 +832,8 @@ msgstr "Impossible de créer le pipeline de codage : {0}"
 
 #. Translators: verb
 #: ../src/Backends/Banshee.Osx/Banshee.OsxBackend/OsxFileChooserDialog.cs:66
-#, fuzzy
-#| msgid "_Import"
 msgid "Import"
-msgstr "_Importer"
+msgstr "Importer"
 
 #: ../src/Backends/Banshee.Windows/Banshee.Windows/VersionUpdater.cs:72
 msgid "Can't check for updates"
@@ -1318,7 +1316,7 @@ msgid "Stream location not found"
 msgstr "L'emplacement du flux n'a pas été trouvé"
 
 #: ../src/Core/Banshee.Core/Banshee.Collection/TrackInfo.cs:347
-#: ../src/Dap/Banshee.Dap/Banshee.Dap/DapSource.cs:343
+#: ../src/Dap/Banshee.Dap/Banshee.Dap/DapSource.cs:344
 msgid "File not found"
 msgstr "Fichier introuvable"
 
@@ -1625,10 +1623,8 @@ msgid "File Organization"
 msgstr "Organisation des fichiers"
 
 #: ../src/Core/Banshee.Services/Banshee.Library/LibrarySource.cs:81
-#, fuzzy
-#| msgid "Co_py files to media folders when importing"
 msgid "Co_py files to media folder when importing"
-msgstr "Co_pier les fichiers dans les dossiers multimédias à l'importation"
+msgstr "Co_pier les fichiers dans le dossier média lors de l'importation"
 
 #: ../src/Core/Banshee.Services/Banshee.Library/LibrarySource.cs:87
 msgid "_Update file and folder names"
@@ -2594,7 +2590,7 @@ msgstr "gdn"
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui.TrackEditor/StatisticsPage.cs:234
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui.TrackEditor/StatisticsPage.cs:236
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui.TrackEditor/StatisticsPage.cs:238
-#: ../src/Dap/Banshee.Dap/Banshee.Dap/DapSource.cs:404
+#: ../src/Dap/Banshee.Dap/Banshee.Dap/DapSource.cs:405
 msgid "Unknown"
 msgstr "Inconnu"
 
@@ -4320,29 +4316,29 @@ msgstr "Prend en charge l'affichage des pochettes d'albums"
 msgid "Supports photos"
 msgstr "Prend en charge l'affichage des photos"
 
-#: ../src/Dap/Banshee.Dap.AppleDevice/Banshee.Dap.AppleDevice/AppleDeviceSource.cs:465
+#: ../src/Dap/Banshee.Dap.AppleDevice/Banshee.Dap.AppleDevice/AppleDeviceSource.cs:462
 msgid "Track duration is zero"
 msgstr "La durée de la piste est nulle"
 
-#: ../src/Dap/Banshee.Dap.AppleDevice/Banshee.Dap.AppleDevice/AppleDeviceSource.cs:571
+#: ../src/Dap/Banshee.Dap.AppleDevice/Banshee.Dap.AppleDevice/AppleDeviceSource.cs:566
 msgid "Syncing iPod"
 msgstr "Synchronisation de l'iPod"
 
-#: ../src/Dap/Banshee.Dap.AppleDevice/Banshee.Dap.AppleDevice/AppleDeviceSource.cs:572
+#: ../src/Dap/Banshee.Dap.AppleDevice/Banshee.Dap.AppleDevice/AppleDeviceSource.cs:567
 msgid "Preparing to synchronize..."
 msgstr "Préparation de la synchronisation..."
 
-#: ../src/Dap/Banshee.Dap.AppleDevice/Banshee.Dap.AppleDevice/AppleDeviceSource.cs:575
+#: ../src/Dap/Banshee.Dap.AppleDevice/Banshee.Dap.AppleDevice/AppleDeviceSource.cs:589
 #, csharp-format
 msgid "Adding track {0} of {1}"
 msgstr "Ajout de la piste {0} sur {1}"
 
-#: ../src/Dap/Banshee.Dap.AppleDevice/Banshee.Dap.AppleDevice/AppleDeviceSource.cs:611
+#: ../src/Dap/Banshee.Dap.AppleDevice/Banshee.Dap.AppleDevice/AppleDeviceSource.cs:632
 #, csharp-format
 msgid "Removing track {0} of {1}"
 msgstr "Suppression de la piste {0} sur {1}"
 
-#: ../src/Dap/Banshee.Dap.AppleDevice/Banshee.Dap.AppleDevice/AppleDeviceSource.cs:664
+#: ../src/Dap/Banshee.Dap.AppleDevice/Banshee.Dap.AppleDevice/AppleDeviceSource.cs:706
 msgid "Writing media database"
 msgstr "Écriture de la base de données des médias"
 
@@ -4360,31 +4356,31 @@ msgstr "Périphériques"
 msgid "Device Properties"
 msgstr "Propriétés du périphérique"
 
-#: ../src/Dap/Banshee.Dap/Banshee.Dap/DapSource.cs:203
+#: ../src/Dap/Banshee.Dap/Banshee.Dap/DapSource.cs:201
 msgid "Product"
 msgstr "Produit"
 
-#: ../src/Dap/Banshee.Dap/Banshee.Dap/DapSource.cs:204
+#: ../src/Dap/Banshee.Dap/Banshee.Dap/DapSource.cs:202
 msgid "Vendor"
 msgstr "Fournisseur"
 
-#: ../src/Dap/Banshee.Dap/Banshee.Dap/DapSource.cs:291
+#: ../src/Dap/Banshee.Dap/Banshee.Dap/DapSource.cs:292
 #: ../src/Extensions/Banshee.Podcasting/Banshee.Podcasting.Data/PodcastSource.cs:141
 #, csharp-format
 msgid "Loading {0}"
 msgstr "Chargement de {0}"
 
-#: ../src/Dap/Banshee.Dap/Banshee.Dap/DapSource.cs:385
+#: ../src/Dap/Banshee.Dap/Banshee.Dap/DapSource.cs:386
 #: ../src/Extensions/Banshee.Podcasting/Banshee.Podcasting.Gui/ColumnCellYesNo.cs:37
 msgid "Yes"
 msgstr "Oui"
 
-#: ../src/Dap/Banshee.Dap/Banshee.Dap/DapSource.cs:385
+#: ../src/Dap/Banshee.Dap/Banshee.Dap/DapSource.cs:386
 #: ../src/Extensions/Banshee.Podcasting/Banshee.Podcasting.Gui/ColumnCellYesNo.cs:38
 msgid "No"
 msgstr "Non"
 
-#: ../src/Dap/Banshee.Dap/Banshee.Dap/DapSource.cs:406
+#: ../src/Dap/Banshee.Dap/Banshee.Dap/DapSource.cs:407
 #, csharp-format
 msgid ""
 "The {0} format is not supported by the device, and no converter was found to "
@@ -4393,13 +4389,13 @@ msgstr ""
 "Le format {0} n'est pas pris en charge par le périphérique et aucun "
 "convertisseur n'a été trouvé pour le convertir"
 
-#: ../src/Dap/Banshee.Dap/Banshee.Dap/DapSource.cs:412
+#: ../src/Dap/Banshee.Dap/Banshee.Dap/DapSource.cs:413
 msgid "File format conversion support is not available"
 msgstr ""
 "La prise en charge de la conversion de format de fichiers n'est pas "
 "disponible"
 
-#: ../src/Dap/Banshee.Dap/Banshee.Dap/DapSource.cs:438
+#: ../src/Dap/Banshee.Dap/Banshee.Dap/DapSource.cs:439
 msgid "Error converting file"
 msgstr "Erreur lors de la conversion du fichier"
 
@@ -4438,7 +4434,7 @@ msgstr[1] ""
 msgid "Are you sure you want to continue?"
 msgstr "Voulez-vous vraiment continuer ?"
 
-#: ../src/Dap/Banshee.Dap/Banshee.Dap.Gui/DapActions.cs:118
+#: ../src/Dap/Banshee.Dap/Banshee.Dap.Gui/DapActions.cs:121
 msgid "Remove tracks"
 msgstr "Supprimer les pistes"
 
@@ -4887,11 +4883,11 @@ msgstr "Identifiant"
 msgid "Connecting to {0}"
 msgstr "Connexion à {0}"
 
-#: ../src/Extensions/Banshee.Daap/Banshee.Daap/DaapService.cs:185
+#: ../src/Extensions/Banshee.Daap/Banshee.Daap/DaapService.cs:186
 msgid "Add Remote DAAP Server"
 msgstr "Ajouter un serveur distant DAAP"
 
-#: ../src/Extensions/Banshee.Daap/Banshee.Daap/DaapService.cs:186
+#: ../src/Extensions/Banshee.Daap/Banshee.Daap/DaapService.cs:187
 msgid "Add a new remote DAAP server"
 msgstr "Ajoute un nouveau serveur distant DAAP"
 
@@ -5729,43 +5725,34 @@ msgstr "Visiter la page de votre profil Last.fm"
 
 #: ../src/Extensions/Banshee.Lastfm/Banshee.Lastfm.Audioscrobbler/AudioscrobblerService.cs:146
 #: ../src/Extensions/Banshee.Lastfm/Banshee.Lastfm/LastfmPreferences.cs:93
-#, fuzzy
-#| msgid "_Enable Song Reporting"
 msgid "_Enable Song Reporting From Banshee"
-msgstr "_Activer l'informateur de morceau"
+msgstr "_Activer l'informateur de morceau de Banshee"
 
 #: ../src/Extensions/Banshee.Lastfm/Banshee.Lastfm.Audioscrobbler/AudioscrobblerService.cs:147
-#, fuzzy
-#| msgid "Enable song reporting"
 msgid "Enable song reporting From Banshee"
-msgstr "Active l'informateur de morceau"
+msgstr "Activer l'informateur de morceau de Banshee"
 
 #: ../src/Extensions/Banshee.Lastfm/Banshee.Lastfm.Audioscrobbler/AudioscrobblerService.cs:152
 #: ../src/Extensions/Banshee.Lastfm/Banshee.Lastfm/LastfmPreferences.cs:98
-#, fuzzy
-#| msgid "_Enable Song Reporting"
 msgid "_Enable Song Reporting From Device"
-msgstr "_Activer l'informateur de morceau"
+msgstr "_Activer l'informateur de morceau de l'appareil"
 
 #: ../src/Extensions/Banshee.Lastfm/Banshee.Lastfm.Audioscrobbler/AudioscrobblerService.cs:153
-#, fuzzy
-#| msgid "Enable song reporting"
 msgid "Enable song reporting From Device"
-msgstr "Active l'informateur de morceau"
+msgstr "Activer l'informateur de morceau de l'appareil"
 
 #: ../src/Extensions/Banshee.Lastfm/Banshee.Lastfm.Audioscrobbler/AudioscrobblerService.cs:402
 msgid "Scrobbling from device"
-msgstr ""
+msgstr "Publication des écoutes depuis l'appareil"
 
 #: ../src/Extensions/Banshee.Lastfm/Banshee.Lastfm.Audioscrobbler/AudioscrobblerService.cs:403
 msgid "Scrobbling from device..."
-msgstr ""
+msgstr "Publication des écoutes depuis l'appareil..."
 
 #: ../src/Extensions/Banshee.Lastfm/Banshee.Lastfm.Audioscrobbler/AudioscrobblerService.cs:414
-#, fuzzy, csharp-format
-#| msgid "Removing track {0} of {1}"
+#, csharp-format
 msgid "Processing track {0} of {1} ..."
-msgstr "Suppression de la piste {0} sur {1}"
+msgstr "Traitement de la piste {0} sur {1} ..."
 
 #: ../src/Extensions/Banshee.Lastfm/Banshee.Lastfm/LastfmActions.cs:66
 msgid "Connect"
@@ -6404,10 +6391,9 @@ msgstr "Importer « {0} »"
 
 #. Translators: {0} is the type of disc, "Audio CD" or "DVD"
 #: ../src/Extensions/Banshee.OpticalDisc/Banshee.OpticalDisc/DiscSource.cs:154
-#, fuzzy, csharp-format
-#| msgid "Disconnecting {0}..."
+#, csharp-format
 msgid "Ejecting {0}..."
-msgstr "Déconnexion de {0}..."
+msgstr "Éjection de {0}..."
 
 #. Translators: {0} is the type of disc, "Audio CD" or "DVD". {1} is the error message.
 #: ../src/Extensions/Banshee.OpticalDisc/Banshee.OpticalDisc/DiscSource.cs:173
@@ -6425,7 +6411,7 @@ msgstr "Se déplacer vers le menu"
 
 #: ../src/Extensions/Banshee.OpticalDisc/Banshee.OpticalDisc.Dvd/DvdSource.cs:38
 msgid "DVD"
-msgstr ""
+msgstr "DVD"
 
 #: ../src/Extensions/Banshee.OpticalDisc/Banshee.OpticalDisc.Dvd/DvdSource.cs:63
 msgid "DVD Preferences"
@@ -7216,26 +7202,30 @@ msgstr "Il n'y a pas assez de voisins pour cette station."
 #: ../src/Libraries/Lastfm/Lastfm/RadioConnection.cs:308
 msgid "This user is not allowed to listen to radio during peak usage"
 msgstr ""
+"Cet utilisateur n'a pas le droit d'écouter la radio pendant les pics "
+"d'utilisation"
 
 #: ../src/Libraries/Lastfm/Lastfm/RadioConnection.cs:310
-#, fuzzy
-#| msgid "Stream location not found"
 msgid "Radio station not found"
-msgstr "L'emplacement du flux n'a pas été trouvé"
+msgstr "Station de radio introuvable"
 
 #: ../src/Libraries/Lastfm/Lastfm/RadioConnection.cs:312
 msgid "This application is not allowed to make requests to the web services"
 msgstr ""
+"Cette application n'est pas autorisée à effectuer des demandes aux services "
+"Web"
 
 #: ../src/Libraries/Lastfm/Lastfm/RadioConnection.cs:314
 msgid "This type of request is no longer supported"
-msgstr ""
+msgstr "Ce type de demande n'est plus pris en charge"
 
 #: ../src/Libraries/Lastfm/Lastfm/RadioConnection.cs:316
 msgid ""
 "Your IP has made too many requests in a short period, exceeding our API "
 "guidelines"
 msgstr ""
+"Votre adresse IP a effectué trop de demandes pendant une courte période, "
+"dépassant nos régles d'utilisations de l'API"
 
 #: ../src/Libraries/Lastfm/Lastfm/RadioConnection.cs:318
 msgid "There was an unknown error."
@@ -7273,21 +7263,3 @@ msgstr "Connecté à Last.fm."
 msgid "Unknown Podcast"
 msgstr "Podcast inconnu"
 
-#~ msgid "Volume"
-#~ msgstr "Volume"
-
-#~ msgid "Muted"
-#~ msgstr "Muet"
-
-#~ msgid "Full Volume"
-#~ msgstr "Volume maximum"
-
-#~ msgid "Dvd"
-#~ msgstr "DVD"
-
-#~ msgid ""
-#~ "Last.fm username is invalid or Banshee is not authorized to access your "
-#~ "account."
-#~ msgstr ""
-#~ "Le nom d'utilisateur Last.fm n'est pas valide ou Banshee n'est pas "
-#~ "autorisé à accéder à votre compte."
