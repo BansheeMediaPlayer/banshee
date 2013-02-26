@@ -9,4 +9,12 @@ AC_DEFUN([BANSHEE_CHECK_GCONF],
 	m4_pattern_allow([AM_GCONF_SOURCE_2])
 
 	AM_GCONF_SOURCE_2
+
+	# dbus-glib is needed for the workaround for bgo#692374
+	PKG_CHECK_MODULES(DBUS_GLIB, dbus-glib-1 >= 0.80, have_dbus_glib="yes", have_dbus_glib="no")
+	if test "x$have_dbus_glib" = "xyes"; then
+		AM_CONDITIONAL(HAVE_DBUS_GLIB, true)
+	else
+		AM_CONDITIONAL(HAVE_DBUS_GLIB, false)
+	fi
 ])

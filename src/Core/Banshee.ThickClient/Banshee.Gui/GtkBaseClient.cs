@@ -28,6 +28,7 @@
 
 using System;
 using System.IO;
+using System.Runtime.InteropServices;
 
 using Mono.Addins;
 
@@ -100,6 +101,9 @@ namespace Banshee.Gui
         {
         }
 
+        [DllImport ("libdbus-glib-1-2.dll")]
+        internal static extern void dbus_g_thread_init ();
+
         protected virtual void InitializeGtk ()
         {
             Log.Debug ("Initializing GTK");
@@ -107,6 +111,13 @@ namespace Banshee.Gui
             if (!GLib.Thread.Supported) {
                 GLib.Thread.Init ();
             }
+
+#if HAVE_DBUS_GLIB
+            // Using GConf from multiple threads causes crashes if multithreading is not initialized explictly in dbus
+            // This is a workaround for bgo#692374
+            dbus_g_thread_init ();
+#endif
+
             Gtk.Application.Init ();
 
             if (ApplicationContext.CommandLine.Contains ("debug-gtkrc")) {
