@@ -143,7 +143,8 @@ namespace Banshee.Dap
         private ProgressBar UsedProgressBar {
             get {
                 ProgressBar usedBar = new ProgressBar();
-                usedBar.Fraction = (double)source.BytesUsed / (double)source.BytesCapacity;
+                double progress = (double)source.BytesUsed / (double)source.BytesCapacity;
+                usedBar.Fraction = Math.Max (0.0, Math.Min (1.0, progress));
                 usedBar.Text = String.Format (
                     Catalog.GetString("{0} of {1}"),
                     new Hyena.Query.FileSizeQueryValue (source.BytesUsed).ToUserQuery (),
