@@ -101,7 +101,7 @@ namespace Banshee.Gui.TrackEditor
 
         public void UpdateWrapWidth ()
         {
-            if (view.IsRealized) {
+            if (view.IsRealized && model != null) {
                 var width = GetValueWidth ();
 
                 model.Foreach ((TreeModel m, TreePath path, TreeIter iter) => {
