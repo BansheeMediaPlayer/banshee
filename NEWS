@@ -8,7 +8,7 @@ Banshee 2.6.1 - 2013-04-11
       * bgo#697683: Dap.MassStorage: add product id for (WebOS) Palm Pre 2
       * DatabaseImportManager: Add .amr to import whitelist
 
-    Notable Bugs Fixed (14 fixed since 2.6.0):
+    Notable Bugs Fixed (15 fixed since 2.6.0):
 
       * bgo#689123: DatabaseTrackInfo: don't default to MusicFilePattern when null
       * bgo#696700: DapPropertiesDialog: Make sure progress bar value is valid
@@ -24,6 +24,7 @@ Banshee 2.6.1 - 2013-04-11
       * bgo#639947: Dap: Use Unicode codes for quotation marks
       * bgo#685920: LastFm: Null check for scrobble parameters
       * bgo#685131: Add GTK category in .desktop files to comply with spec
+      * bgo#679769: StatisticsPage: Fix crash when no tracks are selected
 
 ===============================================================================
 SOURCES / PACKAGES
@@ -32,9 +33,9 @@ SOURCES / PACKAGES
 Sources
 -------
 
-    * Banshee 2.6.0 Tarballs:
-      http://ftp.gnome.org/pub/GNOME/sources/banshee/2.6/banshee-2.6.0.tar.xz
-      http://ftp.gnome.org/pub/GNOME/sources/banshee/2.6/banshee-2.6.0.sha256sum
+    * Banshee 2.6.1 Tarballs:
+      http://ftp.gnome.org/pub/GNOME/sources/banshee/2.6/banshee-2.6.1.tar.xz
+      http://ftp.gnome.org/pub/GNOME/sources/banshee/2.6/banshee-2.6.1.sha256sum
 
 Packages
 --------
@@ -76,5 +77,5 @@ Contributors For This Release
     The following people contributed updated translations to this release.
     Without them, our project's reach would be much more limited.
 
-     Alexandre Franke, Andika Triwidada, Rafael Ferreira, Wolfgang Stöggl,
+     Alexandre Franke, Andika Triwidada, Rafael Ferreira, Wolfgang Stöggl
      
