@@ -5,19 +5,20 @@
 # Jorge González <jorgegonz@svn.gnome.org>, 2010, 2011.
 # Ángel Sanz <mizo0mizo@gmail.com>, 2010, 2011.
 # Benjamín Valero Espinosa <benjavalero@gmail.com>, 2010, 2011, 2012.
-# Daniel Mustieles <daniel.mustieles@gmail.com>, 2011, 2012.
+# Daniel Mustieles <daniel.mustieles@gmail.com>, 2011, 2012, 2013.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: banshee-help.master\n"
-"POT-Creation-Date: 2012-05-01 12:56+0000\n"
-"PO-Revision-Date: 2012-05-03 16:39+0200\n"
+"POT-Creation-Date: 2013-04-14 20:58+0000\n"
+"PO-Revision-Date: 2013-04-16 13:17+0200\n"
 "Last-Translator: Daniel Mustieles <daniel.mustieles@gmail.com>\n"
 "Language-Team: Español <gnome-es-list@gnome.org>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=(n!=1);\n"
 
 #. When image changes, this message will be marked fuzzy or untranslated for you.
 #. It doesn't matter what you translate it to: it's not used at all.
@@ -34,7 +35,7 @@ msgstr "Una vista general de la interfaz de usuario de <app>Banshee</app>."
 #: C/manage-tags.page:13(name) C/manage-playlists.page:13(name)
 #: C/manage-coverart.page:12(name) C/lastfm.page:12(name)
 #: C/keyboardshortcuts.page:10(name) C/introduction.page:12(name)
-#: C/index.page:9(name) C/import.page:11(name) C/extensions.page:11(name)
+#: C/index.page:10(name) C/import.page:11(name) C/extensions.page:11(name)
 #: C/amazon.page:12(name) C/advanced.page:11(name) C/add-radio.page:14(name)
 #: C/add-podcast.page:14(name)
 msgid "Paul Cutler"
@@ -45,7 +46,7 @@ msgstr "Paul Cutler"
 #: C/manage-tags.page:14(email) C/manage-playlists.page:14(email)
 #: C/manage-coverart.page:13(email) C/lastfm.page:13(email)
 #: C/keyboardshortcuts.page:11(email) C/introduction.page:13(email)
-#: C/index.page:10(email) C/import.page:12(email) C/extensions.page:12(email)
+#: C/index.page:11(email) C/import.page:12(email) C/extensions.page:12(email)
 #: C/amazon.page:13(email) C/advanced.page:12(email)
 #: C/add-radio.page:15(email) C/add-podcast.page:15(email)
 msgid "pcutler@gnome.org"
@@ -59,7 +60,7 @@ msgstr "Introducción a la interfaz de usuario de Banshee"
 msgid "<gui>Banshee Media Player</gui> window"
 msgstr "Ventana del <gui>Reproductor multimedia Banshee</gui>"
 
-#: C/ui.page:28(app) C/index.page:21(title)
+#: C/ui.page:28(app) C/index.page:26(title)
 msgid "Banshee Media Player"
 msgstr "Reproductor multimedia Banshee"
 
@@ -1366,23 +1367,10 @@ msgstr ""
 "inicio de sesión</gui> para completar el proceso."
 
 #: C/lastfm.page:58(title)
-#| msgid "Enable Last.fm Song Reporting"
 msgid "Enable Last.fm Song Reporting From Banshee"
 msgstr "Activar el informe de canciones en Last.fm desde Banshee"
 
 #: C/lastfm.page:59(p)
-#| msgid ""
-#| "After you have successfully linked Banshee to your Last.fm profile you "
-#| "must ensure that you have enabled Banshee to report your songs. To enable "
-#| "Banshee to report the songs to your Last.fm profile go to Banshee's "
-#| "preferences, select the <gui>Source Specific</gui> tab, select <gui>Last."
-#| "fm</gui> from the dropdown, and press the <gui>Enable Song Reporting</"
-#| "gui> checkbox. If you have an active internet connection Banshee will now "
-#| "send Last.fm information regarding the songs you play. To view your play "
-#| "history visit your profile on the Last.fm website. Last.fm will "
-#| "automatically update your music metadata if any of your artist, song "
-#| "title, or album information is incorrect (although we recommend that you "
-#| "use the Metadata Fixer extension to correct your files instead)."
 msgid ""
 "After you have successfully linked Banshee to your Last.fm profile you must "
 "ensure that you have enabled Banshee to report your songs. To enable Banshee "
@@ -1409,7 +1397,6 @@ msgstr ""
 "use la extensión «Reparar metadatos» para corregir sus archivos)."
 
 #: C/lastfm.page:75(title)
-#| msgid "Enable Last.fm Song Reporting"
 msgid "Enable Last.fm Song Reporting From Your Device"
 msgstr "Activar el informe de canciones en Last.fm desde su dispositivo"
 
@@ -1718,30 +1705,34 @@ msgstr ""
 "mayoría de reproductores MP3, iPod, Sandisk y Creative y teléfonos con "
 "Android."
 
-#: C/index.page:24(title)
+#: C/index.page:14(name)
+msgid "Sindhu S"
+msgstr "Sindhu S"
+
+#: C/index.page:15(email)
+msgid "sindhus@live.in"
+msgstr "sindhus@live.in"
+
+#: C/index.page:29(title)
 msgid "Add, Remove &amp; Play"
 msgstr "Añadir, quitar y reproducir"
 
-#: C/index.page:28(title)
+#: C/index.page:33(title)
 msgid "Manage &amp; Sort"
 msgstr "Gestionar y ordenar"
 
-#: C/index.page:32(title)
+#: C/index.page:37(title)
 msgid "Sync your media with a portable music player"
 msgstr ""
 "Sincronizar su contenido multimedia con un reproductor de música portátil"
 
-#: C/index.page:36(title)
+#: C/index.page:41(title)
 msgid "Add additional functionality to Banshee"
 msgstr "Agregar una funcionalidad adicional a Banshee"
 
-#: C/index.page:40(title)
+#: C/index.page:45(title)
 msgid "Advanced options and help"
 msgstr "Opciones avanzadas y ayuda"
-
-#: C/index.page:44(title)
-msgid "Common Problems"
-msgstr "Problemas comunes"
 
 #: C/import.page:8(desc)
 msgid "Add music and videos from your computer to your Banshee library."
@@ -2226,3 +2217,6 @@ msgstr ""
 "Daniel Mustieles <daniel.mustieles@gmail.com>, 2011\n"
 "Benjamín Valero Espinosa <benjavalero@gmail.com>, 2010, 2011\n"
 "Ángel Sanz <mizo0mizo@gmail.com>, 2011"
+
+#~ msgid "Common Problems"
+#~ msgstr "Problemas comunes"
