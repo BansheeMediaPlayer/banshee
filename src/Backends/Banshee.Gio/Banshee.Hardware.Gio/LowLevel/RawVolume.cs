@@ -239,10 +239,15 @@ namespace Banshee.Hardware.Gio
                 if (Volume.Drive == null) {
                     return null;
                 }
+
+                var device = Manager.GudevDeviceFromGioDrive (Volume.Drive);
+                if (device == null) {
+                    return null;
+                }
                 return new RawBlockDevice (Volume.Drive,
                                            Manager,
                                            new GioDriveMetadetaSource (Volume.Drive),
-                                           new UdevMetadataSource (Manager.GudevDeviceFromGioDrive (Volume.Drive)));
+                                           new UdevMetadataSource (device));
             }
         }
 
