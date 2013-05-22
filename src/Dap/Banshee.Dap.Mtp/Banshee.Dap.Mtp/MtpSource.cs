@@ -294,7 +294,7 @@ namespace Banshee.Dap.Mtp
         private long bytes_used;
         public override long BytesUsed {
             get {
-                if (Monitor.TryEnter (mtp_device)) {
+                if (mtp_device != null && Monitor.TryEnter (mtp_device)) {
                     try {
                         bytes_used = 0;
                         foreach (DeviceStorage s in mtp_device.GetStorage ()) {
