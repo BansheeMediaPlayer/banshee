@@ -663,7 +663,7 @@ namespace Banshee.Sources
             bool finished = false, notify = false;
 
             lock (this) {
-                add_track_job.Completed++;
+                AddTrackJob.Completed++;
 
                 if (add_track_job.IsFinished) {
                     finished = true;
