@@ -360,9 +360,12 @@ _bp_pipeline_construct (BansheePlayer *player)
     player->volume = gst_element_factory_make ("volume", NULL);
     g_return_val_if_fail (player->volume != NULL, FALSE);
 
+// gstreamer on OS X does not call the callback upon initialization (see bgo#680917)
+#ifdef __APPLE__
     // call the volume changed callback once so the volume from the pipeline is
     // set in the player object
     bp_volume_changed_callback (player->playbin, NULL, player);
+#endif
 
     audiosinkqueue = gst_element_factory_make ("queue", "audiosinkqueue");
     g_return_val_if_fail (audiosinkqueue != NULL, FALSE);
