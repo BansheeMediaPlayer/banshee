@@ -1,10 +1,12 @@
 //
 // ArtworkManager.cs
 //
-// Author:
+// Authors:
 //   Aaron Bockover <abockover@novell.com>
+//   Andrés G. Aragoneses <knocte@gmail.com>
 //
 // Copyright (C) 2007-2008 Novell, Inc.
+// Copyright (C) 2013 Andrés G. Aragoneses
 //
 // Permission is hereby granted, free of charge, to any person obtaining
 // a copy of this software and associated documentation files (the
@@ -28,9 +30,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.Text.RegularExpressions;
-
-using Mono.Unix;
 
 using Gdk;
 
@@ -67,6 +66,11 @@ namespace Banshee.Collection.Gui
         }
 
         public ArtworkManager ()
+        {
+            Init ();
+        }
+
+        protected virtual void Init ()
         {
             AddCachedSize (36);
             AddCachedSize (40);
@@ -122,13 +126,9 @@ namespace Banshee.Collection.Gui
                 return surface;
             }
 
-            if (null_artwork_ids.Contains (id)) {
-                return null;
-            }
-
             Pixbuf pixbuf = LookupScalePixbuf (id, size);
             if (pixbuf == null || pixbuf.Handle == IntPtr.Zero) {
-                null_artwork_ids.Add (id);
+                // no need to add to null_artwork_ids here, LookupScalePixbuf already did it
                 return null;
             }
 
@@ -165,6 +165,8 @@ namespace Banshee.Collection.Gui
         public Pixbuf LookupScalePixbuf (string id, int size)
         {
             if (id == null || (size != 0 && size < 10)) {
+                // explicitly don't add this id into null_artwork_ids here,
+                // otherwise it would blacklist all other non-invalid sizes
                 return null;
             }
 
@@ -232,6 +234,9 @@ namespace Banshee.Collection.Gui
                     }
 
                     DisposePixbuf (pixbuf);
+                    if (scaled_pixbuf == null || scaled_pixbuf.Handle == IntPtr.Zero) {
+                        null_artwork_ids.Add (id);
+                    }
                     return scaled_pixbuf;
                 } catch {}
             }

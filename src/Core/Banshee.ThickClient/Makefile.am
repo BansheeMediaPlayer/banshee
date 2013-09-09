@@ -35,6 +35,7 @@ SOURCES =  \
 	Banshee.Collection.Gui/QueryFilterView.cs \
 	Banshee.Collection.Gui/SearchableListView.cs \
 	Banshee.Collection.Gui/TerseTrackListView.cs \
+	Banshee.Collection.Gui/Tests/ArtworkManagerTests.cs \
 	Banshee.Collection.Gui/TrackFilterListView.cs \
 	Banshee.Collection.Gui/TrackListView.cs \
 	Banshee.Collection.Gui/XmlColumnController.cs \
