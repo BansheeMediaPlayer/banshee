@@ -16,6 +16,11 @@ addin-xml-strings.cs: $(ADDIN_XML_FILES) $(top_srcdir)/build/addin-xml-string-ex
 	@echo "  GEN   $@"
 	$(MONO) $(top_srcdir)/build/addin-xml-string-extractor.exe $(ADDIN_XML_FILES) > $@
 
+@INTLTOOL_XML_RULE@
+appdatadir = $(datadir)/appdata
+dist_appdata_DATA = $(appdata_in_files:.xml.in=.xml)
+appdata_in_files = banshee.appdata.xml.in
+
 all: addin-xml-strings.cs
 
 EXTRA_DIST = \
