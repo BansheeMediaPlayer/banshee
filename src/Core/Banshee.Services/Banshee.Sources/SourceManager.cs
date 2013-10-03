@@ -100,11 +100,6 @@ namespace Banshee.Sources
                     AddinManager.RemoveExtensionNodeHandler ("/Banshee/SourceManager/Source", OnExtensionChanged);
                 } catch {}
 
-                active_source = null;
-                default_source = null;
-                music_library = null;
-                video_library = null;
-
                 // Do dispose extension sources
                 foreach (Source source in extension_sources.Values) {
                     RemoveSource (source, true);
@@ -117,6 +112,11 @@ namespace Banshee.Sources
 
                 sources.Clear ();
                 extension_sources.Clear ();
+
+                active_source = null;
+                default_source = null;
+                music_library = null;
+                video_library = null;
             }
         }
 
