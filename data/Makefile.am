@@ -25,7 +25,11 @@ all: addin-xml-strings.cs
 
 EXTRA_DIST = \
 	$(dbusservice_in_files) \
-	addin-xml-strings.cs
+	addin-xml-strings.cs \
+	$(appdata_in_files)
+
+CLEANFILES = \
+        $(appdata_DATA)
 
 DISTCLEANFILES = \
 	$(dbusservice_DATA)
