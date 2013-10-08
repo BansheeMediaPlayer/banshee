@@ -13,7 +13,7 @@
 # Carlos Eduardo Moreira dos Santos <cems@cemshost.com.br>, 2008.
 # Fábio Nogueira <deb-user-ba@ubuntu.com>, 2008.
 # Amanda Magalhães <amandinha@comum.org>, 2010.
-# Enrico Nicoletto <liverig@gmail.com>, 2010.
+# Enrico Nicoletto <liverig@gmail.com>, 2010, 2013.
 # Pablo Garrido <pablo@pablogarrido.com.br>, 2010.
 # Michel Recondo <michel@recondo.com.br>, 2008, 2010.
 # Daniel S. Koda <danielskoda@gmail.com>, 2009, 2010.
@@ -25,14 +25,15 @@
 # filesink -> consumidor de arquivo
 # scrobble   -> http://www.lastfm.com.br/help/faq?category=Scrobbling
 # scrobbling -> http://www.lastfm.com.br/help/faq?category=Scrobbling
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: banshee help\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=banshee&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2013-01-25 00:16+0000\n"
-"PO-Revision-Date: 2013-02-12 18:05-0300\n"
-"Last-Translator: Rafael Ferreira <rafael.f.f1@gmail.com>\n"
+"POT-Creation-Date: 2013-10-07 20:24+0000\n"
+"PO-Revision-Date: 2013-10-08 14:42-0300\n"
+"Last-Translator: Enrico Nicoletto <liverig@gmail.com>\n"
 "Language-Team: Brazilian Portuguese <gnome-pt_br-list@gnome.org>\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
@@ -653,6 +654,25 @@ msgstr "Reprodutor de mídia Banshee"
 #: ../data/desktop-files/common.desktop.in.h:3
 msgid "Play and organize your media collection"
 msgstr "Reproduza e organize a sua coleção de mídia"
+
+#. Writing GNOME below, instead of just "Linux", is inclusive of *BSD OSs
+#: ../data/banshee.appdata.xml.in.h:2
+msgid ""
+"Banshee is an open source multimedia management and playback application for "
+"GNOME, Mac and Windows."
+msgstr ""
+"Banshee é um gerenciador de multimídia de código aberto e aplicativo de "
+"reprodução para o GNOME, Mac e Windows."
+
+#: ../data/banshee.appdata.xml.in.h:3
+msgid ""
+"Play your music and videos. Stay entertained and up to date with podcasts "
+"and video podcasts. Sync your Android, iPod, and other devices. We think "
+"you'll love Banshee!"
+msgstr ""
+"Reproduza suas músicas e vídeos. Fique entretido e mantenha-se atualizado "
+"com podcasts de áudio e video. Sincronize seu Android, iPod, e outros "
+"dispositivos. Acreditamos que você irá amar o Banshee!"
 
 #: ../libbanshee/banshee-bpmdetector.c:202 ../libbanshee/banshee-ripper.c:270
 #: ../src/Backends/Banshee.GStreamerSharp/Banshee.GStreamerSharp/AudioCdRipper.cs:240
@@ -2809,7 +2829,7 @@ msgstr ""
 #: ../src/Core/Banshee.ThickClient/Banshee.Collection.Gui/ColumnCellDiscAndCount.cs:40
 #: ../src/Core/Banshee.ThickClient/Banshee.Collection.Gui/ColumnCellTrackAndCount.cs:40
 #: ../src/Core/Banshee.Widgets/Banshee.Widgets/StreamPositionLabel.cs:174
-#: ../src/Dap/Banshee.Dap/Banshee.Dap.Gui/DapPropertiesDialog.cs:148
+#: ../src/Dap/Banshee.Dap/Banshee.Dap.Gui/DapPropertiesDialog.cs:149
 #, csharp-format
 msgid "{0} of {1}"
 msgstr "{0} de {1}"
@@ -3106,16 +3126,6 @@ msgid "_Tools"
 msgstr "Ferrame_ntas"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui/GlobalActions.cs:88
-#, csharp-format
-msgid "The rescan operation will remove one track from your music library."
-msgid_plural ""
-"The rescan operation will remove {0} tracks from your music library."
-msgstr[0] ""
-"A operação de varredura removerá uma faixa da sua biblioteca de músicas."
-msgstr[1] ""
-"A operação de varredura removerá {0} faixas da sua biblioteca de músicas."
-
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui/GlobalActions.cs:99
 #: ../src/Extensions/Banshee.InternetArchive/Banshee.InternetArchive/HeaderFilters.cs:134
 msgid "_Help"
 msgstr "Aj_uda"
@@ -4316,29 +4326,29 @@ msgstr "Suporta arte de capa"
 msgid "Supports photos"
 msgstr "Suporta fotos"
 
-#: ../src/Dap/Banshee.Dap.AppleDevice/Banshee.Dap.AppleDevice/AppleDeviceSource.cs:462
+#: ../src/Dap/Banshee.Dap.AppleDevice/Banshee.Dap.AppleDevice/AppleDeviceSource.cs:466
 msgid "Track duration is zero"
 msgstr "A duração da faixa é zero"
 
-#: ../src/Dap/Banshee.Dap.AppleDevice/Banshee.Dap.AppleDevice/AppleDeviceSource.cs:566
+#: ../src/Dap/Banshee.Dap.AppleDevice/Banshee.Dap.AppleDevice/AppleDeviceSource.cs:570
 msgid "Syncing iPod"
 msgstr "Sincronizando o iPod"
 
-#: ../src/Dap/Banshee.Dap.AppleDevice/Banshee.Dap.AppleDevice/AppleDeviceSource.cs:567
+#: ../src/Dap/Banshee.Dap.AppleDevice/Banshee.Dap.AppleDevice/AppleDeviceSource.cs:571
 msgid "Preparing to synchronize..."
 msgstr "Preparando para sincroniar..."
 
-#: ../src/Dap/Banshee.Dap.AppleDevice/Banshee.Dap.AppleDevice/AppleDeviceSource.cs:589
+#: ../src/Dap/Banshee.Dap.AppleDevice/Banshee.Dap.AppleDevice/AppleDeviceSource.cs:593
 #, csharp-format
 msgid "Adding track {0} of {1}"
 msgstr "Adicionando faixa {0} de {1}"
 
-#: ../src/Dap/Banshee.Dap.AppleDevice/Banshee.Dap.AppleDevice/AppleDeviceSource.cs:632
+#: ../src/Dap/Banshee.Dap.AppleDevice/Banshee.Dap.AppleDevice/AppleDeviceSource.cs:636
 #, csharp-format
 msgid "Removing track {0} of {1}"
 msgstr "Removendo faixa {0} de {1}"
 
-#: ../src/Dap/Banshee.Dap.AppleDevice/Banshee.Dap.AppleDevice/AppleDeviceSource.cs:706
+#: ../src/Dap/Banshee.Dap.AppleDevice/Banshee.Dap.AppleDevice/AppleDeviceSource.cs:710
 msgid "Writing media database"
 msgstr "Gravando o banco de dados de mídia"
 
@@ -4506,12 +4516,12 @@ msgstr "Importar música comprada"
 msgid "Disconnect"
 msgstr "Desconectar"
 
-#: ../src/Dap/Banshee.Dap/Banshee.Dap/RemovableSource.cs:108
+#: ../src/Dap/Banshee.Dap/Banshee.Dap/RemovableSource.cs:111
 #, csharp-format
 msgid "Disconnecting {0}..."
 msgstr "Desconectando {0}..."
 
-#: ../src/Dap/Banshee.Dap/Banshee.Dap/RemovableSource.cs:115
+#: ../src/Dap/Banshee.Dap/Banshee.Dap/RemovableSource.cs:118
 #, csharp-format
 msgid "Could not disconnect {0}: {1}"
 msgstr "Não foi possível desconectar {0}: {1}"
@@ -7235,6 +7245,14 @@ msgstr "Conectado ao Last.fm."
 #: ../src/Libraries/Migo/Migo.Syndication/RssParser.cs:103
 msgid "Unknown Podcast"
 msgstr "Podcast desconhecido"
+
+#~ msgid "The rescan operation will remove one track from your music library."
+#~ msgid_plural ""
+#~ "The rescan operation will remove {0} tracks from your music library."
+#~ msgstr[0] ""
+#~ "A operação de varredura removerá uma faixa da sua biblioteca de músicas."
+#~ msgstr[1] ""
+#~ "A operação de varredura removerá {0} faixas da sua biblioteca de músicas."
 
 #~ msgid "Volume"
 #~ msgstr "Volume"
