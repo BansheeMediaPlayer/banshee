@@ -4,20 +4,21 @@
 #
 # Kéménczy Kálmán <kkemenczy at novell dot com>, 2006.
 # Gabor Kelemen <kelemeng at gnome dot hu>, 2006, 2007, 2008, 2009, 2010, 2011, 2012.
+# Balázs Úr <urbalazs at gmail dot com>, 2013.
 msgid ""
 msgstr ""
 "Project-Id-Version: banshee master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=banshee&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2012-09-04 17:57+0000\n"
-"PO-Revision-Date: 2012-09-20 15:05+0200\n"
-"Last-Translator: Gabor Kelemen <kelemeng at gnome dot hu>\n"
+"POT-Creation-Date: 2013-10-13 00:11+0000\n"
+"PO-Revision-Date: 2013-10-13 13:17+0200\n"
+"Last-Translator: Balázs Úr <urbalazs at gmail dot com>\n"
 "Language-Team: Hungarian <gnome-hu-list at gnome dot org>\n"
 "Language: hu\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 1.4\n"
+"X-Generator: Lokalize 1.2\n"
 "Plural-Forms:  nplurals=2; plural=(n != 1);\n"
 
 #. ../src/Dap/Banshee.Dap.AppleDevice/Banshee.Dap.AppleDevice.addin.xml
@@ -616,7 +617,7 @@ msgid "Audio Quality"
 msgstr "Hangminőség"
 
 #: ../data/desktop-files/common.desktop.in.h:1
-#: ../src/Dap/Banshee.Dap/Banshee.Dap/DapSource.cs:196
+#: ../src/Dap/Banshee.Dap/Banshee.Dap/DapSource.cs:194
 msgid "Media Player"
 msgstr "Médialejátszó"
 
@@ -631,6 +632,25 @@ msgstr "Banshee médialejátszó"
 #: ../data/desktop-files/common.desktop.in.h:3
 msgid "Play and organize your media collection"
 msgstr "Médiagyűjteményének lejátszása és rendszerezése"
+
+#. Writing GNOME below, instead of just "Linux", is inclusive of *BSD OSs
+#: ../data/banshee.appdata.xml.in.h:2
+msgid ""
+"Banshee is an open source multimedia management and playback application for "
+"GNOME, Mac and Windows."
+msgstr ""
+"A Banshee egy nyílt forrású multimédia-kezelő és lejátszó alkalmazás GNOME, "
+"Mac és Windows platformokhoz."
+
+#: ../data/banshee.appdata.xml.in.h:3
+msgid ""
+"Play your music and videos. Stay entertained and up to date with podcasts "
+"and video podcasts. Sync your Android, iPod, and other devices. We think "
+"you'll love Banshee!"
+msgstr ""
+"Zenék és videók lejátszása. Szórakoztató és naprakész marad a podcastokkal és "
+"videó podcastokkal. Szinkronizál az Androiddal, iPoddal és más eszközökkel. "
+"Úgy gondoljuk, hogy imádni fogja a Banshee-t!"
 
 #: ../libbanshee/banshee-bpmdetector.c:202 ../libbanshee/banshee-ripper.c:270
 #: ../src/Backends/Banshee.GStreamerSharp/Banshee.GStreamerSharp/AudioCdRipper.cs:240
@@ -810,7 +830,6 @@ msgstr "A kódoló adatcsatorna nem hozható létre: {0}"
 
 #. Translators: verb
 #: ../src/Backends/Banshee.Osx/Banshee.OsxBackend/OsxFileChooserDialog.cs:66
-#| msgid "_Import"
 msgid "Import"
 msgstr "Importálás"
 
@@ -1290,7 +1309,7 @@ msgid "Stream location not found"
 msgstr "Az adatfolyam helye nem található"
 
 #: ../src/Core/Banshee.Core/Banshee.Collection/TrackInfo.cs:347
-#: ../src/Dap/Banshee.Dap/Banshee.Dap/DapSource.cs:343
+#: ../src/Dap/Banshee.Dap/Banshee.Dap/DapSource.cs:344
 msgid "File not found"
 msgstr "A fájl nem található"
 
@@ -1596,7 +1615,6 @@ msgid "File Organization"
 msgstr "Fájlrendszerezés"
 
 #: ../src/Core/Banshee.Services/Banshee.Library/LibrarySource.cs:81
-#| msgid "Co_py files to media folders when importing"
 msgid "Co_py files to media folder when importing"
 msgstr "_Fájlok másolása a médiamappába importáláskor"
 
@@ -1955,7 +1973,7 @@ msgstr "Lejátszólista törlése"
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui/SourceActions.cs:176
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:135
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:462
-#: ../src/Core/Banshee.ThickClient/Banshee.Sources.Gui/SourceView.cs:595
+#: ../src/Core/Banshee.ThickClient/Banshee.Sources.Gui/SourceView.cs:612
 #: ../src/Core/Banshee.ThickClient/Banshee.Sources.Gui/SourceView_DragAndDrop.cs:214
 msgid "New Playlist"
 msgstr "Új lejátszólista"
@@ -2560,7 +2578,7 @@ msgstr "drm"
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui.TrackEditor/StatisticsPage.cs:234
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui.TrackEditor/StatisticsPage.cs:236
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui.TrackEditor/StatisticsPage.cs:238
-#: ../src/Dap/Banshee.Dap/Banshee.Dap/DapSource.cs:404
+#: ../src/Dap/Banshee.Dap/Banshee.Dap/DapSource.cs:405
 msgid "Unknown"
 msgstr "Ismeretlen"
 
@@ -2781,7 +2799,7 @@ msgstr ""
 #: ../src/Core/Banshee.ThickClient/Banshee.Collection.Gui/ColumnCellDiscAndCount.cs:40
 #: ../src/Core/Banshee.ThickClient/Banshee.Collection.Gui/ColumnCellTrackAndCount.cs:40
 #: ../src/Core/Banshee.Widgets/Banshee.Widgets/StreamPositionLabel.cs:174
-#: ../src/Dap/Banshee.Dap/Banshee.Dap.Gui/DapPropertiesDialog.cs:148
+#: ../src/Dap/Banshee.Dap/Banshee.Dap.Gui/DapPropertiesDialog.cs:149
 #, csharp-format
 msgid "{0} of {1}"
 msgstr "{1}/{0}"
@@ -2923,10 +2941,6 @@ msgstr "Kivételes multimédia-kezelés és -lejátszás"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui.Dialogs/AboutDialog.cs:98
 #, csharp-format
-#| msgid ""
-#| "Copyright © 2005–{0} Novell, Inc.\n"
-#| "Copyright © 2005–{0} Others\n"
-#| "Copyright © 2005 Aaron Bockover"
 msgid ""
 "Copyright © 2005–{0} Novell, Inc.\n"
 "Copyright © 2005–{1} Others\n"
@@ -3591,19 +3605,19 @@ msgstr "Minden lemezszám és darabszám beállítása erre az értékre"
 msgid "_Disc Number:"
 msgstr "_Lemezszám:"
 
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui.TrackEditor/BasicTrackDetailsPage.cs:188
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui.TrackEditor/BasicTrackDetailsPage.cs:196
 msgid "Set all years to this value"
 msgstr "Minden Év beállítása erre az értékre"
 
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui.TrackEditor/BasicTrackDetailsPage.cs:189
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui.TrackEditor/BasicTrackDetailsPage.cs:197
 msgid "_Year:"
 msgstr "É_v:"
 
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui.TrackEditor/BasicTrackDetailsPage.cs:196
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui.TrackEditor/BasicTrackDetailsPage.cs:204
 msgid "Set all ratings to this value"
 msgstr "Minden Értékelés beállítása erre az értékre"
 
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui.TrackEditor/BasicTrackDetailsPage.cs:197
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui.TrackEditor/BasicTrackDetailsPage.cs:205
 msgid "_Rating:"
 msgstr "É_rtékelés:"
 
@@ -4269,29 +4283,29 @@ msgstr "Támogatja a borítókat"
 msgid "Supports photos"
 msgstr "Támogatja a fényképeket"
 
-#: ../src/Dap/Banshee.Dap.AppleDevice/Banshee.Dap.AppleDevice/AppleDeviceSource.cs:465
+#: ../src/Dap/Banshee.Dap.AppleDevice/Banshee.Dap.AppleDevice/AppleDeviceSource.cs:466
 msgid "Track duration is zero"
 msgstr "A szám időtartama nulla"
 
-#: ../src/Dap/Banshee.Dap.AppleDevice/Banshee.Dap.AppleDevice/AppleDeviceSource.cs:571
+#: ../src/Dap/Banshee.Dap.AppleDevice/Banshee.Dap.AppleDevice/AppleDeviceSource.cs:570
 msgid "Syncing iPod"
 msgstr "iPod szinkronizálása"
 
-#: ../src/Dap/Banshee.Dap.AppleDevice/Banshee.Dap.AppleDevice/AppleDeviceSource.cs:572
+#: ../src/Dap/Banshee.Dap.AppleDevice/Banshee.Dap.AppleDevice/AppleDeviceSource.cs:571
 msgid "Preparing to synchronize..."
 msgstr "Szinkronizálás előkészítése…"
 
-#: ../src/Dap/Banshee.Dap.AppleDevice/Banshee.Dap.AppleDevice/AppleDeviceSource.cs:575
+#: ../src/Dap/Banshee.Dap.AppleDevice/Banshee.Dap.AppleDevice/AppleDeviceSource.cs:593
 #, csharp-format
 msgid "Adding track {0} of {1}"
 msgstr "{1}/{0} szám hozzáadása"
 
-#: ../src/Dap/Banshee.Dap.AppleDevice/Banshee.Dap.AppleDevice/AppleDeviceSource.cs:611
+#: ../src/Dap/Banshee.Dap.AppleDevice/Banshee.Dap.AppleDevice/AppleDeviceSource.cs:636
 #, csharp-format
 msgid "Removing track {0} of {1}"
 msgstr "{1}/{0} szám eltávolítása"
 
-#: ../src/Dap/Banshee.Dap.AppleDevice/Banshee.Dap.AppleDevice/AppleDeviceSource.cs:664
+#: ../src/Dap/Banshee.Dap.AppleDevice/Banshee.Dap.AppleDevice/AppleDeviceSource.cs:710
 msgid "Writing media database"
 msgstr "Média-adatbázis írása"
 
@@ -4309,31 +4323,31 @@ msgstr "Eszközök"
 msgid "Device Properties"
 msgstr "Eszköztulajdonságok"
 
-#: ../src/Dap/Banshee.Dap/Banshee.Dap/DapSource.cs:203
+#: ../src/Dap/Banshee.Dap/Banshee.Dap/DapSource.cs:201
 msgid "Product"
 msgstr "Termék"
 
-#: ../src/Dap/Banshee.Dap/Banshee.Dap/DapSource.cs:204
+#: ../src/Dap/Banshee.Dap/Banshee.Dap/DapSource.cs:202
 msgid "Vendor"
 msgstr "Gyártó"
 
-#: ../src/Dap/Banshee.Dap/Banshee.Dap/DapSource.cs:291
+#: ../src/Dap/Banshee.Dap/Banshee.Dap/DapSource.cs:292
 #: ../src/Extensions/Banshee.Podcasting/Banshee.Podcasting.Data/PodcastSource.cs:141
 #, csharp-format
 msgid "Loading {0}"
 msgstr "{0} betöltése"
 
-#: ../src/Dap/Banshee.Dap/Banshee.Dap/DapSource.cs:385
+#: ../src/Dap/Banshee.Dap/Banshee.Dap/DapSource.cs:386
 #: ../src/Extensions/Banshee.Podcasting/Banshee.Podcasting.Gui/ColumnCellYesNo.cs:37
 msgid "Yes"
 msgstr "Igen"
 
-#: ../src/Dap/Banshee.Dap/Banshee.Dap/DapSource.cs:385
+#: ../src/Dap/Banshee.Dap/Banshee.Dap/DapSource.cs:386
 #: ../src/Extensions/Banshee.Podcasting/Banshee.Podcasting.Gui/ColumnCellYesNo.cs:38
 msgid "No"
 msgstr "Nem"
 
-#: ../src/Dap/Banshee.Dap/Banshee.Dap/DapSource.cs:406
+#: ../src/Dap/Banshee.Dap/Banshee.Dap/DapSource.cs:407
 #, csharp-format
 msgid ""
 "The {0} format is not supported by the device, and no converter was found to "
@@ -4342,11 +4356,11 @@ msgstr ""
 "Az eszköz nem támogatja a(z) {0} formátumot és nem található átalakító az "
 "átalakításához."
 
-#: ../src/Dap/Banshee.Dap/Banshee.Dap/DapSource.cs:412
+#: ../src/Dap/Banshee.Dap/Banshee.Dap/DapSource.cs:413
 msgid "File format conversion support is not available"
 msgstr "A fájlformátum-átalakítás nem érhető el"
 
-#: ../src/Dap/Banshee.Dap/Banshee.Dap/DapSource.cs:438
+#: ../src/Dap/Banshee.Dap/Banshee.Dap/DapSource.cs:439
 msgid "Error converting file"
 msgstr "Hiba a fájl átalakításakor"
 
@@ -4385,7 +4399,7 @@ msgstr[1] ""
 msgid "Are you sure you want to continue?"
 msgstr "Biztos, hogy folytatni kívánja?"
 
-#: ../src/Dap/Banshee.Dap/Banshee.Dap.Gui/DapActions.cs:118
+#: ../src/Dap/Banshee.Dap/Banshee.Dap.Gui/DapActions.cs:121
 msgid "Remove tracks"
 msgstr "Számok eltávolítása"
 
@@ -4460,12 +4474,12 @@ msgstr "Megvásárolt zene importálása"
 msgid "Disconnect"
 msgstr "Bontás"
 
-#: ../src/Dap/Banshee.Dap/Banshee.Dap/RemovableSource.cs:108
+#: ../src/Dap/Banshee.Dap/Banshee.Dap/RemovableSource.cs:111
 #, csharp-format
 msgid "Disconnecting {0}..."
 msgstr "{0} leválasztása…"
 
-#: ../src/Dap/Banshee.Dap/Banshee.Dap/RemovableSource.cs:115
+#: ../src/Dap/Banshee.Dap/Banshee.Dap/RemovableSource.cs:118
 #, csharp-format
 msgid "Could not disconnect {0}: {1}"
 msgstr "A(z) {0} nem választható le: {1}"
@@ -4827,11 +4841,11 @@ msgstr "Bejelentkezés"
 msgid "Connecting to {0}"
 msgstr "Kapcsolódás: {0}"
 
-#: ../src/Extensions/Banshee.Daap/Banshee.Daap/DaapService.cs:185
+#: ../src/Extensions/Banshee.Daap/Banshee.Daap/DaapService.cs:186
 msgid "Add Remote DAAP Server"
 msgstr "Távoli DAAP-kiszolgáló hozzáadása"
 
-#: ../src/Extensions/Banshee.Daap/Banshee.Daap/DaapService.cs:186
+#: ../src/Extensions/Banshee.Daap/Banshee.Daap/DaapService.cs:187
 msgid "Add a new remote DAAP server"
 msgstr "Új távoli DAAP-kiszolgáló hozzáadása"
 
@@ -5283,7 +5297,6 @@ msgid "Library of Congress"
 msgstr "Kongresszusi könyvtár"
 
 #: ../src/Extensions/Banshee.InternetArchive/Banshee.InternetArchive/HomeView.cs:136
-#| msgid "Sample"
 msgid "Examples:"
 msgstr "Példák:"
 
@@ -5666,23 +5679,19 @@ msgstr "Saját last.fm profiloldal meglátogatása"
 
 #: ../src/Extensions/Banshee.Lastfm/Banshee.Lastfm.Audioscrobbler/AudioscrobblerService.cs:146
 #: ../src/Extensions/Banshee.Lastfm/Banshee.Lastfm/LastfmPreferences.cs:93
-#| msgid "_Enable Song Reporting"
 msgid "_Enable Song Reporting From Banshee"
 msgstr "Szá_mok jelentésének engedélyezése a Bansheeből"
 
 #: ../src/Extensions/Banshee.Lastfm/Banshee.Lastfm.Audioscrobbler/AudioscrobblerService.cs:147
-#| msgid "Enable song reporting"
 msgid "Enable song reporting From Banshee"
 msgstr "Számok jelentésének engedélyezése a Bansheeből"
 
 #: ../src/Extensions/Banshee.Lastfm/Banshee.Lastfm.Audioscrobbler/AudioscrobblerService.cs:152
 #: ../src/Extensions/Banshee.Lastfm/Banshee.Lastfm/LastfmPreferences.cs:98
-#| msgid "_Enable Song Reporting"
 msgid "_Enable Song Reporting From Device"
 msgstr "Szám_ok jelentésének engedélyezése az eszközről"
 
 #: ../src/Extensions/Banshee.Lastfm/Banshee.Lastfm.Audioscrobbler/AudioscrobblerService.cs:153
-#| msgid "Enable song reporting"
 msgid "Enable song reporting From Device"
 msgstr "Számok jelentésének engedélyezése az eszközről"
 
@@ -5696,7 +5705,6 @@ msgstr "Beküldés az eszközről…"
 
 #: ../src/Extensions/Banshee.Lastfm/Banshee.Lastfm.Audioscrobbler/AudioscrobblerService.cs:414
 #, csharp-format
-#| msgid "Removing track {0} of {1}"
 msgid "Processing track {0} of {1} ..."
 msgstr "{1}/{0} szám feldolgozása…"
 
@@ -6332,7 +6340,6 @@ msgstr "„{0}” importálása"
 #. Translators: {0} is the type of disc, "Audio CD" or "DVD"
 #: ../src/Extensions/Banshee.OpticalDisc/Banshee.OpticalDisc/DiscSource.cs:154
 #, csharp-format
-#| msgid "Disconnecting {0}..."
 msgid "Ejecting {0}..."
 msgstr "{0} kiadása…"
 
@@ -7138,7 +7145,6 @@ msgid "This user is not allowed to listen to radio during peak usage"
 msgstr "Ez a felhasználó nem hallgathat rádiót csúcsidőben"
 
 #: ../src/Libraries/Lastfm/Lastfm/RadioConnection.cs:310
-#| msgid "Stream location not found"
 msgid "Radio station not found"
 msgstr "A rádióállomás nem található"
 
@@ -7155,8 +7161,8 @@ msgid ""
 "Your IP has made too many requests in a short period, exceeding our API "
 "guidelines"
 msgstr ""
-"Az IP-címe túl sok kérést küldött rövid idő alatt, meghaladva az "
-"API-irányelveket"
+"Az IP-címe túl sok kérést küldött rövid idő alatt, meghaladva az API-"
+"irányelveket"
 
 #: ../src/Libraries/Lastfm/Lastfm/RadioConnection.cs:318
 msgid "There was an unknown error."
