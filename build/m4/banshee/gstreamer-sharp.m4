@@ -5,12 +5,9 @@ AC_DEFUN([BANSHEE_CHECK_GSTREAMER_SHARP],
 	if test "x$enable_gst_sharp" = "xyes"; then
 		PKG_CHECK_MODULES(GST_SHARP, gstreamer-sharp-0.10)
 		AC_SUBST(GST_SHARP_LIBS)
-
-		PLAYBACK_BACKEND="Banshee.GStreamerSharp"
-		AC_SUBST(PLAYBACK_BACKEND)
-
-		dnl Clutter support is not available in Gst# backend (and was opt-in in the unmanaged one)
-		AM_CONDITIONAL(HAVE_CLUTTER, false)
+		AM_CONDITIONAL(ENABLE_GST_SHARP, true)
+	else
+		AM_CONDITIONAL(ENABLE_GST_SHARP, false)
 	fi
 ])
 

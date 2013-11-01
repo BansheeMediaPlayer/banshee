@@ -53,13 +53,15 @@ SHAMROCK_EXPAND_DATADIR
 
 PKG_CHECK_MODULES(GLIB, glib-2.0 >= 2.22)
 
+dnl Clutter support is not available in Gst# backend and is opt-in in the unmanaged one
+dnl so we set a default value here for simplicity
+AM_CONDITIONAL(HAVE_CLUTTER, false)
+
 dnl For the new media backend using gstreamer# (disabled by default for now)
 BANSHEE_CHECK_GSTREAMER_SHARP
 
-if test "x$enable_gst_sharp" != "xyes"; then
-	dnl Default media backend, libbanshee/native dependencies
-	BANSHEE_CHECK_GSTREAMER
-fi
+dnl Default media backend, libbanshee/native dependencies
+BANSHEE_CHECK_GSTREAMER
 
 dnl User help
 SHAMROCK_CHECK_GNOME_DOC_UTILS(0.17.3)
@@ -338,7 +340,8 @@ ${PACKAGE}-${VERSION}
     Mono Runtime:          ${MONO}
     Gtk#:                  ${gtk_sharp_version}
 
-  Video/Graphics:
+  Media/Graphics:
+    GStreamer C backend:   ${enable_gst_native}
     Clutter:               ${enable_clutter}
 
   Operating System/Desktop Environment:

@@ -14,7 +14,11 @@ SOURCES =  \
 RESOURCES = Banshee.GStreamer.addin.xml
 INSTALL_DIR = $(BACKENDS_INSTALL_DIR)
 
+if ENABLE_GST_NATIVE
 include $(top_srcdir)/build/build.mk
+module_SCRIPTS += Banshee.GStreamer.dll.config
+else
+include $(top_srcdir)/build/build.dist.mk
+endif
 
 EXTRA_DIST += Banshee.GStreamer.dll.config
-module_SCRIPTS += Banshee.GStreamer.dll.config

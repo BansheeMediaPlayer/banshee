@@ -1,7 +1,8 @@
 SUBDIRS = \
 	Banshee.Gio \
 	Banshee.Gnome \
-	$(PLAYBACK_BACKEND) \
+	Banshee.GStreamer \
+	Banshee.GStreamerSharp \
 	Banshee.Unix \
 	Banshee.Osx \
 	Banshee.Windows

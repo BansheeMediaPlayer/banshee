@@ -7,7 +7,12 @@ INCLUDES = \
 	$(GST_CFLAGS) 
 
 bansheelibdir = $(pkglibdir)
-bansheelib_LTLIBRARIES = libbanshee.la
+
+bansheelib_LTLIBRARIES = 
+if ENABLE_GST_NATIVE
+bansheelib_LTLIBRARIES += libbanshee.la
+all: $(top_builddir)/bin/libbanshee.so
+endif
 
 libbanshee_la_LDFLAGS = -avoid-version -module
 libbanshee_la_SOURCES =  \
@@ -53,8 +58,6 @@ noinst_HEADERS =  \
 libbanshee_la_LIBADD = \
 	$(LIBBANSHEE_LIBS) \
 	$(GST_LIBS)
-
-all: $(top_builddir)/bin/libbanshee.so
 
 $(top_builddir)/bin/libbanshee.so: libbanshee.la
 	mkdir -p $(top_builddir)/bin

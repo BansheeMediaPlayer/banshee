@@ -15,7 +15,11 @@ SOURCES =  \
 
 RESOURCES = Banshee.GStreamerSharp.addin.xml
 
+if ENABLE_GST_SHARP
 include $(top_srcdir)/build/build.mk
-EXTRA_DIST += Banshee.GStreamerSharp.dll.config
 module_SCRIPTS += Banshee.GStreamerSharp.dll.config
+else
+include $(top_srcdir)/build/build.dist.mk
+endif
 
+EXTRA_DIST += Banshee.GStreamerSharp.dll.config
