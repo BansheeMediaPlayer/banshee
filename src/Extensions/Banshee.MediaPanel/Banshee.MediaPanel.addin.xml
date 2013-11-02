@@ -18,11 +18,5 @@
   <Extension path="/Banshee/ServiceManager/Service">
     <Service class="Banshee.MediaPanel.MediaPanelService"/>
   </Extension>
-
-  <!-- FIXME: this theme is heavily broken in Ubuntu's GTK3, and if anything, it
-              should be enabled/disabled when the MediaPanel UI is shown/hidden
-  <Extension path="/Banshee/ThickClient/GtkBaseClient/PostInitializeGtk">
-    <PostInitializeGtk class="Banshee.MediaPanel.MediaPanelThemeLoader"/>
-  </Extension-->
    
 </Addin>

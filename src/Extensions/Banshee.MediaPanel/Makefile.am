@@ -10,7 +10,6 @@ SOURCES =  \
 	Banshee.MediaPanel/MediaPanel.cs \
 	Banshee.MediaPanel/MediaPanelContents.cs \
 	Banshee.MediaPanel/MediaPanelService.cs \
-	Banshee.MediaPanel/MediaPanelTheme.cs \
 	Banshee.MediaPanel/PlaybackBox.cs \
 	Banshee.MediaPanel/SearchEntry.cs \
 	Banshee.MediaPanel/TrackInfoDisplay.cs
