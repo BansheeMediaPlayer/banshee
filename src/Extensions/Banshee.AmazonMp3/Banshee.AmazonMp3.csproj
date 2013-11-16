@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -8,7 +8,6 @@
     <ProjectGuid>{930ADBFD-07F1-4044-A1C5-8B28BD23DB5C}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AssemblyName>Banshee.AmazonMp3</AssemblyName>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <ReleaseVersion>1.3</ReleaseVersion>
     <RootNamespace>Banshee.AmazonMp3</RootNamespace>
   </PropertyGroup>
@@ -42,6 +41,7 @@
     <Reference Include="atk-sharp, Version=3.0.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
     <Reference Include="taglib-sharp">
       <HintPath>..\..\..\bin\bin\taglib-sharp.dll</HintPath>
+      <Package>taglib-sharp</Package>
     </Reference>
   </ItemGroup>
   <ItemGroup>

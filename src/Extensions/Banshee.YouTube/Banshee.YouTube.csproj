@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -8,7 +8,6 @@
     <ProjectGuid>{387DC336-45F9-4263-9606-2881907D2105}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AssemblyName>Banshee.YouTube</AssemblyName>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <RootNamespace>Banshee.YouTube</RootNamespace>
     <ReleaseVersion>1.3</ReleaseVersion>
     <ErrorReport>prompt</ErrorReport>
@@ -51,12 +50,15 @@
     </Reference>
     <Reference Include="Google.GData.YouTube">
       <HintPath>..\..\..\bin\bin\Google.GData.YouTube.dll</HintPath>
+      <Package>gdata-sharp-youtube</Package>
     </Reference>
     <Reference Include="Google.GData.Extensions">
       <HintPath>..\..\..\bin\bin\Google.GData.Extensions.dll</HintPath>
+      <Package>gdata-sharp-core</Package>
     </Reference>
     <Reference Include="Google.GData.Client">
       <HintPath>..\..\..\bin\bin\Google.GData.Client.dll</HintPath>
+      <Package>gdata-sharp-core</Package>
     </Reference>
     <Reference Include="Mono.Posix">
       <HintPath>..\..\..\bin\bin\Mono.Posix.dll</HintPath>
