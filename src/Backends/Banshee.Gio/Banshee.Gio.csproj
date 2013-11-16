@@ -52,11 +52,11 @@
     <Reference Include="gio-sharp, Version=3.0.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
     </Reference>
     <Reference Include="Mono.Posix" />
-    <Reference Include="gkeyfile-sharp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=e886e4e52ee77480">
-      <SpecificVersion>False</SpecificVersion>
-      <Package>gkeyfile-sharp</Package>
-    </Reference>
     <Reference Include="gudev-sharp, Version=3.0.0.0, Culture=neutral, PublicKeyToken=3565e728cafab25e" />
+    <Reference Include="taglib-sharp, Version=2.1.0.0, Culture=neutral, PublicKeyToken=db62eba44689b5b0">
+      <Package>taglib-sharp</Package>
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Banshee.IO.Gio\DemuxVfs.cs" />

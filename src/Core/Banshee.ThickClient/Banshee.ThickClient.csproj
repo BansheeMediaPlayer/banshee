@@ -78,13 +78,6 @@
       <HintPath>..\..\..\bin\bin\Mono.Addins.dll</HintPath>
       <Package>mono-addins</Package>
     </Reference>
-    <Reference Include="Mono.Addins.Gui">
-      <HintPath>..\..\..\bin\bin\Mono.Addins.Gui.dll</HintPath>
-    </Reference>
-    <Reference Include="Mono.Addins.Setup">
-      <HintPath>..\..\..\bin\bin\Mono.Addins.Setup.dll</HintPath>
-      <Package>mono-addins-setup</Package>
-    </Reference>
     <Reference Include="dbus-sharp">
       <HintPath>..\..\..\bin\bin\dbus-sharp.dll</HintPath>
     </Reference>
@@ -104,6 +97,7 @@
     <Reference Include="Mono.Security">
       <HintPath>..\..\..\bin\bin\Mono.Security.dll</HintPath>
     </Reference>
+    <Reference Include="gio-sharp, Version=3.0.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\browser-album-cover.png">
