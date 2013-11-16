@@ -20,7 +20,6 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
-    <WarningLevel>4</WarningLevel>
     <Optimize>false</Optimize>
     <OutputPath>..\..\..\bin</OutputPath>
     <DefineConstants>INTERNAL_NOTIFY_SHARP</DefineConstants>
@@ -29,7 +28,6 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <PlatformTarget>x86</PlatformTarget>
-    <WarningLevel>4</WarningLevel>
     <Optimize>false</Optimize>
     <OutputPath>..\..\..\bin\bin</OutputPath>
     <DefineConstants>INTERNAL_NOTIFY_SHARP</DefineConstants>
@@ -56,11 +54,9 @@
       <HintPath>..\..\..\bin\bin\cairo-sharp.dll</HintPath>
     </Reference>
     <Reference Include="dbus-sharp">
-      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\bin\bin\dbus-sharp.dll</HintPath>
     </Reference>
     <Reference Include="dbus-sharp-glib">
-      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\bin\bin\dbus-sharp-glib.dll</HintPath>
     </Reference>
     <ProjectReference Include="..\..\Hyena\Hyena.Gui\Hyena.Gui.csproj">
@@ -83,14 +79,11 @@
     <Reference Include="glib-sharp, Version=3.0.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
     <Reference Include="gdk-sharp, Version=3.0.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
     <Reference Include="Mono.Posix">
-      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\bin\bin\Mono.Posix.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Banshee.NotificationArea\X11NotificationArea.cs" />
     <Compile Include="Banshee.NotificationArea\NotificationAreaService.cs" />
-    <Compile Include="Banshee.NotificationArea\X11NotificationAreaBox.cs" />
     <Compile Include="Banshee.NotificationArea\INotificationAreaBox.cs" />
     <Compile Include="Banshee.NotificationArea\GtkNotificationAreaBox.cs" />
     <Compile Include="Banshee.NotificationArea\TrackInfoPopup.cs" />
@@ -109,10 +102,10 @@
   <ProjectExtensions>
     <MonoDevelop>
       <Properties>
-        <MonoDevelop.Autotools.MakefileInfo IntegrationEnabled="true" RelativeMakefileName="./Makefile.am">
-          <BuildFilesVar Sync="true" Name="SOURCES" />
+        <MonoDevelop.Autotools.MakefileInfo IntegrationEnabled="True" RelativeMakefileName="./Makefile.am">
+          <BuildFilesVar Sync="True" Name="SOURCES" />
           <DeployFilesVar />
-          <ResourcesVar Sync="true" Name="RESOURCES" />
+          <ResourcesVar Sync="True" Name="RESOURCES" />
           <OthersVar />
           <GacRefVar />
           <AsmRefVar />

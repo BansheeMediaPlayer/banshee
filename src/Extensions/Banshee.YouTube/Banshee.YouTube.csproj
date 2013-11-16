@@ -47,23 +47,18 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="ICSharpCode.SharpZipLib">
-      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\bin\bin\ICSharpCode.SharpZipLib.dll</HintPath>
     </Reference>
     <Reference Include="Google.GData.YouTube">
-      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\bin\bin\Google.GData.YouTube.dll</HintPath>
     </Reference>
     <Reference Include="Google.GData.Extensions">
-      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\bin\bin\Google.GData.Extensions.dll</HintPath>
     </Reference>
     <Reference Include="Google.GData.Client">
-      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\bin\bin\Google.GData.Client.dll</HintPath>
     </Reference>
     <Reference Include="Mono.Posix">
-      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\bin\bin\Mono.Posix.dll</HintPath>
     </Reference>
     <Reference Include="gtk-sharp, Version=3.0.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
@@ -75,10 +70,10 @@
   <ProjectExtensions>
     <MonoDevelop>
       <Properties>
-        <MonoDevelop.Autotools.MakefileInfo IntegrationEnabled="true" RelativeMakefileName="Makefile.am" RelativeConfigureInPath="../../..">
-          <BuildFilesVar Sync="true" Name="SOURCES" />
+        <MonoDevelop.Autotools.MakefileInfo IntegrationEnabled="True" RelativeMakefileName="Makefile.am" RelativeConfigureInPath="../../..">
+          <BuildFilesVar Sync="True" Name="SOURCES" />
           <DeployFilesVar />
-          <ResourcesVar Sync="true" Name="RESOURCES" />
+          <ResourcesVar Sync="True" Name="RESOURCES" />
           <OthersVar Name="LINK" />
           <GacRefVar />
           <AsmRefVar />

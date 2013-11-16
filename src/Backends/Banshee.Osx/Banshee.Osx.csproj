@@ -70,12 +70,12 @@
     <Reference Include="System.Core" />
     <Reference Include="Mono.Addins, Version=0.6.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756">
       <Private>False</Private>
+      <Package>mono-addins</Package>
     </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Banshee.OsxBackend\HardwareManager.cs" />
     <Compile Include="Banshee.OsxBackend\OsxService.cs" />
-    <Compile Include="OsxIntegration.GtkOsxApplication\GtkOSxApplication.cs" />
     <Compile Include="Banshee.Hardware.Osx\UsbDevice.cs" />
     <Compile Include="Banshee.Hardware.Osx\CdromDevice.cs" />
     <Compile Include="Banshee.Hardware.Osx\Device.cs" />
@@ -88,6 +88,7 @@
     <Compile Include="Banshee.Hardware.Osx\LowLevel\DiskArbitration.cs" />
     <Compile Include="Banshee.Hardware.Osx\LowLevel\CoreFoundation.cs" />
     <Compile Include="Banshee.OsxBackend\OsxFileChooserDialog.cs" />
+    <Compile Include="OsxIntegration.GtkOsxApplication\GtkOsxApplication.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Banshee.Osx.addin.xml">
@@ -101,10 +102,10 @@
   <ProjectExtensions>
     <MonoDevelop>
       <Properties>
-        <MonoDevelop.Autotools.MakefileInfo IntegrationEnabled="true" RelativeMakefileName="Makefile.am">
-          <BuildFilesVar Sync="true" Name="SOURCES" />
+        <MonoDevelop.Autotools.MakefileInfo IntegrationEnabled="True" RelativeMakefileName="Makefile.am">
+          <BuildFilesVar Sync="True" Name="SOURCES" />
           <DeployFilesVar />
-          <ResourcesVar Sync="true" Name="RESOURCES" />
+          <ResourcesVar Sync="True" Name="RESOURCES" />
           <OthersVar />
           <GacRefVar />
           <AsmRefVar />

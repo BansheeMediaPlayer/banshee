@@ -22,7 +22,6 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <OutputPath>..\..\..\bin</OutputPath>
-    <WarningLevel>4</WarningLevel>
     <Optimize>false</Optimize>
     <ConsolePause>false</ConsolePause>
     <Commandlineparameters>--debug --uninstalled</Commandlineparameters>
@@ -33,17 +32,14 @@
     <PlatformTarget>x86</PlatformTarget>
     <Externalconsole>true</Externalconsole>
     <OutputPath>..\..\..\bin\bin</OutputPath>
-    <WarningLevel>4</WarningLevel>
     <Optimize>false</Optimize>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="dbus-sharp">
-      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\bin\bin\dbus-sharp.dll</HintPath>
     </Reference>
     <Reference Include="Mono.Posix">
-      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\bin\bin\Mono.Posix.dll</HintPath>
     </Reference>
   </ItemGroup>
@@ -76,8 +72,8 @@
   <ProjectExtensions>
     <MonoDevelop>
       <Properties>
-        <MonoDevelop.Autotools.MakefileInfo IntegrationEnabled="true" RelativeMakefileName="Makefile.am">
-          <BuildFilesVar Sync="true" Name="SOURCES" />
+        <MonoDevelop.Autotools.MakefileInfo IntegrationEnabled="True" RelativeMakefileName="Makefile.am">
+          <BuildFilesVar Sync="True" Name="SOURCES" />
           <DeployFilesVar />
           <ResourcesVar />
           <OthersVar />
