@@ -275,7 +275,7 @@ namespace Banshee.Sources.Gui
                     cr.MoveTo (
                         cell_area.X + cell_area.Width - count_layout_width - 2,
                         cell_area.Y + 0.5 + (double)(cell_area.Height - count_layout_height) / 2.0);
-                    PangoCairoHelper.ShowLayout (cr, count_layout);
+                    Pango.CairoHelper.ShowLayout (cr, count_layout);
                 }
 
                 count_layout.Dispose ();

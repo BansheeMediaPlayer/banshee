@@ -276,24 +276,24 @@ namespace Banshee.Gui.Widgets
 
             if (current_track == null) {
                 // Fade in the whole stage, nothing to fade out
-                CairoExtensions.PushGroup (cr);
+                cr.PushGroup ();
                 RenderStage (cr, incoming_track, incoming_image);
-                CairoExtensions.PopGroupToSource (cr);
+                cr.PopGroupToSource ();
 
                 cr.PaintWithAlpha (stage.Actor.Percent);
                 return;
             }
 
             // Draw the old cover art more and more translucent
-            CairoExtensions.PushGroup (cr);
+            cr.PushGroup ();
             RenderCoverArt (cr, current_image);
-            CairoExtensions.PopGroupToSource (cr);
+            cr.PopGroupToSource ();
             cr.PaintWithAlpha (1.0 - stage.Actor.Percent);
 
             // Draw the new cover art more and more opaque
-            CairoExtensions.PushGroup (cr);
+            cr.PushGroup ();
             RenderCoverArt (cr, incoming_image);
-            CairoExtensions.PopGroupToSource (cr);
+            cr.PopGroupToSource ();
             cr.PaintWithAlpha (stage.Actor.Percent);
 
             bool same_artist_album = incoming_track != null ? incoming_track.ArtistAlbumEqual (current_track) : false;
@@ -307,16 +307,16 @@ namespace Banshee.Gui.Widgets
             // the old out, and then the new in
             if (stage.Actor.Percent <= 0.5) {
                 // Fade out old text
-                CairoExtensions.PushGroup (cr);
+                cr.PushGroup ();
                 RenderTrackInfo (cr, current_track, !same_track, !same_artist_album);
-                CairoExtensions.PopGroupToSource (cr);
+                cr.PopGroupToSource ();
 
                 cr.PaintWithAlpha (1.0 - (stage.Actor.Percent * 2.0));
             } else {
                 // Fade in new text
-                CairoExtensions.PushGroup (cr);
+                cr.PushGroup ();
                 RenderTrackInfo (cr, incoming_track, !same_track, !same_artist_album);
-                CairoExtensions.PopGroupToSource (cr);
+                cr.PopGroupToSource ();
 
                 cr.PaintWithAlpha ((stage.Actor.Percent - 0.5) * 2.0);
             }

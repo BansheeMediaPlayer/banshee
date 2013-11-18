@@ -137,7 +137,7 @@ namespace Banshee.Collection.Gui
             if (!String.IsNullOrEmpty (album.ArtistName)) {
                 context.Context.MoveTo (x, y + fl_height);
                 context.Context.SetSourceColor (text_color);
-                PangoCairoHelper.ShowLayout (context.Context, layout);
+                Pango.CairoHelper.ShowLayout (context.Context, layout);
             }
 
             // Render the first line, resetting the state
@@ -151,7 +151,7 @@ namespace Banshee.Collection.Gui
             context.Context.MoveTo (x, y);
             text_color.A = 1;
             context.Context.SetSourceColor (text_color);
-            PangoCairoHelper.ShowLayout (context.Context, layout);
+            Pango.CairoHelper.ShowLayout (context.Context, layout);
         }
 
         public virtual int ComputeRowHeight (Widget widget)

@@ -130,7 +130,7 @@ namespace Banshee.Podcasting.Gui
             if (feed.DbId > 0) {
                 context.Context.MoveTo (x, y + fl_height);
                 context.Context.SetSourceColor (text_color);
-                PangoCairoHelper.ShowLayout (context.Context, layout);
+                Pango.CairoHelper.ShowLayout (context.Context, layout);
             }
 
             // Render the first line, resetting the state
@@ -144,7 +144,7 @@ namespace Banshee.Podcasting.Gui
             context.Context.MoveTo (x, y);
             text_color.A = 1;
             context.Context.SetSourceColor (text_color);
-            PangoCairoHelper.ShowLayout (context.Context, layout);
+            Pango.CairoHelper.ShowLayout (context.Context, layout);
         }
 
         public override int ComputeRowHeight (Widget widget)

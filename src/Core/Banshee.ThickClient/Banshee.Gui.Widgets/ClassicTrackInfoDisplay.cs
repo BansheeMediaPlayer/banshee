@@ -213,7 +213,7 @@ namespace Banshee.Gui.Widgets
             if (renderTrack) {
                 cr.MoveTo (x, y);
                 cr.SetSourceColor (TextColor);
-                PangoCairoHelper.ShowLayout (cr, first_line_layout);
+                Pango.CairoHelper.ShowLayout (cr, first_line_layout);
             }
 
             if (!renderArtistAlbum) {
@@ -221,7 +221,7 @@ namespace Banshee.Gui.Widgets
             }
 
             cr.MoveTo (x, y + fl_height);
-            PangoCairoHelper.ShowLayout (cr, second_line_layout);
+            Pango.CairoHelper.ShowLayout (cr, second_line_layout);
         }
 
 #endregion

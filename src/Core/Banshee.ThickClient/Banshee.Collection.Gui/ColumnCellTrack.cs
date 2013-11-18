@@ -85,7 +85,7 @@ namespace Banshee.Collection.Gui
             color.A = (!context.Opaque) ? 0.3 : 1.0;
             context.Context.SetSourceColor (color);
 
-            PangoCairoHelper.ShowLayout (context.Context, context.Layout);
+            Pango.CairoHelper.ShowLayout (context.Context, context.Layout);
         }
 
         public Pango.Weight FontWeight {

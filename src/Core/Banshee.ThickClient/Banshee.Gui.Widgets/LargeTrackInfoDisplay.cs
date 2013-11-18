@@ -257,17 +257,17 @@ namespace Banshee.Gui.Widgets
             if (render_track) {
                 cr.MoveTo (track_info_alloc.X, track_info_alloc.Y);
                 cr.SetSourceColor (TextColor);
-                PangoCairoHelper.ShowLayout (cr, first_line_layout);
+                Pango.CairoHelper.ShowLayout (cr, first_line_layout);
 
                 RenderTrackRating (cr, track);
             }
 
             if (render_artist_album) {
                 cr.MoveTo (track_info_alloc.X, track_info_alloc.Y + fl_height);
-                PangoCairoHelper.ShowLayout (cr, second_line_layout);
+                Pango.CairoHelper.ShowLayout (cr, second_line_layout);
 
                 cr.MoveTo (track_info_alloc.X, track_info_alloc.Y + fl_height + sl_height);
-                PangoCairoHelper.ShowLayout (cr, third_line_layout);
+                Pango.CairoHelper.ShowLayout (cr, third_line_layout);
             }
         }
 
