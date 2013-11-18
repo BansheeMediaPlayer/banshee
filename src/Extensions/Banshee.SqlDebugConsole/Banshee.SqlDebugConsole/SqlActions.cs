@@ -77,11 +77,13 @@ namespace Banshee.SqlDebugConsole
             UpdateActions ();
         }
 
-        public override void Dispose ()
+        protected override void Dispose (bool disposing)
         {
-            Actions.UIManager.RemoveUi (actions_id);
-            Actions.RemoveActionGroup (this);
-            base.Dispose ();
+            if (disposing) {
+                Actions.UIManager.RemoveUi (actions_id);
+                Actions.RemoveActionGroup (this);
+            }
+            base.Dispose (disposing);
         }
 
 #region Action Handlers
