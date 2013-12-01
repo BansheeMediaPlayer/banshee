@@ -64,10 +64,11 @@ namespace Banshee.Gui.TrackEditor
 
         protected override void OnGetPreferredHeight (out int minimum_height, out int natural_height)
         {
-            Pango.FontMetrics metrics = PangoContext.GetMetrics (
-                entry.StyleContext.GetFont (StateFlags.Normal), PangoContext.Language);
-            int line_height = ((int)(metrics.Ascent + metrics.Descent) + 512) >> 10; // PANGO_PIXELS(d)
-            metrics.Dispose ();
+            int line_height;
+            using (Pango.FontMetrics metrics = PangoContext.GetMetrics (
+                entry.StyleContext.GetFont (StateFlags.Normal), PangoContext.Language)) {
+                line_height = ((metrics.Ascent + metrics.Descent) + 512) >> 10; // PANGO_PIXELS(d)
+            }
             minimum_height = natural_height = (line_height + 2) * 2;
         }
 
