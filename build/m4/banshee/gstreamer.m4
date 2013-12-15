@@ -1,6 +1,20 @@
 AC_DEFUN([BANSHEE_CHECK_GSTREAMER],
 [
-	AC_ARG_ENABLE(gst_native, AC_HELP_STRING([--disable-gst-native], [Disable GStreamer native backend]), , enable_gst_native="yes")
+	AC_ARG_ENABLE(gst_sharp, AC_HELP_STRING([--enable-gst-sharp], [Enable Gst# backend]), , enable_gst_sharp="no")
+
+	if test "x$enable_gst_sharp" = "xyes"; then
+		PKG_CHECK_MODULES(GST_SHARP, gstreamer-sharp-0.10)
+		AC_SUBST(GST_SHARP_LIBS)
+		AM_CONDITIONAL(ENABLE_GST_SHARP, true)
+
+		AC_ARG_ENABLE(gst_native, AC_HELP_STRING([--enable-gst-native], [Enable GStreamer native backend]), , enable_gst_native="no")
+
+	else
+		AM_CONDITIONAL(ENABLE_GST_SHARP, false)
+
+		AC_ARG_ENABLE(gst_native, AC_HELP_STRING([--disable-gst-native], [Disable GStreamer native backend]), , enable_gst_native="yes")
+	fi
+
 
 	if test "x$enable_gst_native" = "xyes"; then
 		BANSHEE_CHECK_LIBBANSHEE

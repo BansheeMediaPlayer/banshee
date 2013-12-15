@@ -57,10 +57,7 @@ dnl Clutter support is not available in Gst# backend and is opt-in in the unmana
 dnl so we set a default value here for simplicity
 AM_CONDITIONAL(HAVE_CLUTTER, false)
 
-dnl For the new media backend using gstreamer# (disabled by default for now)
-BANSHEE_CHECK_GSTREAMER_SHARP
-
-dnl Default media backend, libbanshee/native dependencies
+dnl Media backends
 BANSHEE_CHECK_GSTREAMER
 
 dnl User help
