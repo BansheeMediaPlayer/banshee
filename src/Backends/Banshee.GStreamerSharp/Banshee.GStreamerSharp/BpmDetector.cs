@@ -1,10 +1,14 @@
 //
 // BpmDetector.cs
 //
-// Author:
+// Authors:
 //   Gabriel Burt <gburt@novell.com>
+//   Andrés G. Aragoneses <knocte@gmail.com>
+//   Stephan Sundermann <stephansundermann@gmail.com>
 //
 // Copyright (C) 2008-2011 Novell, Inc.
+// Copyright (C) 2013 Andrés G. Aragoneses
+// Copyright (C) 2013 Stephan Sundermann
 //
 // Permission is hereby granted, free of charge, to any person obtaining
 // a copy of this software and associated documentation files (the
@@ -45,8 +49,6 @@ using Banshee.MediaEngine;
 using Banshee.ServiceStack;
 using Banshee.Configuration;
 using Banshee.Preferences;
-using Gst.CorePlugins;
-using Gst.BasePlugins;
 
 namespace Banshee.GStreamerSharp
 {
@@ -56,20 +58,20 @@ namespace Banshee.GStreamerSharp
         Dictionary<int, int> bpm_histogram = new Dictionary<int, int> ();
 
         Pipeline pipeline;
-        FileSrc filesrc;
-        FakeSink fakesink;
+        Element filesrc;
+        Element fakesink;
 
         public event BpmEventHandler FileFinished;
 
         public BpmDetector ()
         {
             try {
-                pipeline = new Pipeline ();
-                filesrc          = new FileSrc ();
-                var decodebin    = new DecodeBin2 ();
+                pipeline = new Pipeline ("the pipeline");
+                filesrc          = ElementFactory.Make ("filesrc", "the filesrc");
+                var decodebin    = ElementFactory.Make ("decodebin", "the decodebin");
                 var audioconvert = Make ("audioconvert");
                 var bpmdetect    = Make ("bpmdetect");
-                fakesink         = new FakeSink ();
+                fakesink         = ElementFactory.Make ("fakesink", "the fakesink");
 
                 pipeline.Add (filesrc, decodebin, audioconvert, bpmdetect, fakesink);
 
@@ -79,29 +81,28 @@ namespace Banshee.GStreamerSharp
                 }
 
                 // decodebin and audioconvert are linked dynamically when the decodebin creates a new pad
-                decodebin.NewDecodedPad += delegate(object o, DecodeBin2.NewDecodedPadArgs args) {
+                decodebin.PadAdded += (o,args) => {
                     var audiopad = audioconvert.GetStaticPad ("sink");
                     if (audiopad.IsLinked) {
                         return;
                     }
 
-                    using (var caps = args.Pad.Caps) {
-                        using (var str = caps[0]) {
-                            if (!str.Name.Contains ("audio"))
-                                return;
-                        }
-                    }
+                    var caps = args.NewPad.QueryCaps ();
+                    if (caps == null)
+                        return;
 
-                    args.Pad.Link (audiopad);
+                    var str = caps[0];
+                    if (!str.Name.Contains ("audio"))
+                        return;
+
+                    args.NewPad.Link (audiopad);
                 };
 
                 if (!Element.Link (audioconvert, bpmdetect, fakesink)) {
                     Log.Error ("Could not link pipeline elements");
                     throw new Exception ();
                 }
-
                 pipeline.Bus.AddWatch (OnBusMessage);
-                //gst_bus_add_watch (gst_pipeline_get_bus (GST_PIPELINE (detector->pipeline)), bbd_pipeline_bus_callback, detector);
             } catch (Exception e) {
                 Log.Exception (e);
                 throw new ApplicationException (Catalog.GetString ("Could not create BPM detection driver."), e);
@@ -112,39 +113,39 @@ namespace Banshee.GStreamerSharp
         {
             switch (msg.Type) {
             case MessageType.Tag:
-                Pad pad;
-                TagList tag_list;
-                msg.ParseTag (out pad, out tag_list);
+                TagList tag_list = msg.ParseTag ();
 
                 foreach (var name in tag_list.Tags) {
                     if (name == "beats-per-minute") {
-                        if (tag_list.GetTagSize (name) < 1) continue;
-                        var tag = tag_list.GetTag (name);
-                        foreach (var val in tag) {
-                            if (val is double) {
-                                double bpm = (double)val;
-                                int rounded = (int) Math.Round (bpm);
-                                if (!bpm_histogram.ContainsKey(rounded)) {
-                                    bpm_histogram[rounded] = 1;
-                                } else {
-                                    bpm_histogram[rounded]++;
-                                }
-                            }
-                            break;
+                        if (tag_list.GetTagSize (name) < 1) {
+                            continue;
                         }
+                        tag_list.Foreach (delegate(TagList list, string tagname) {
+                            for (uint i = 0; i < tag_list.GetTagSize (tagname); i++) {
+                                GLib.Value val = tag_list.GetValueIndex (tagname, i);
+                                if (val.Val is double) {
+                                    double bpm = (double)val;
+                                    int rounded = (int)Math.Round (bpm);
+                                    if (!bpm_histogram.ContainsKey (rounded)) {
+                                        bpm_histogram [rounded] = 1;
+                                    } else {
+                                        bpm_histogram [rounded]++;
+                                    }
+                                }
+                                val.Dispose ();
+                            }
+                        });
                     }
                 }
-
-                tag_list.Dispose ();
                 break;
 
             case MessageType.Error:
-                Enum error_type;
-                string err_msg, debug;
-                msg.ParseError (out error_type, out err_msg, out debug);
+                string debug;
+                GLib.GException error;
+                msg.ParseError (out error, out debug);
 
                 IsDetecting = false;
-                Log.ErrorFormat ("BPM Detection error", err_msg);
+                Log.ErrorFormat ("BPM Detection error: {0}", error.Message);
                 break;
 
             case MessageType.Eos:
@@ -197,7 +198,7 @@ namespace Banshee.GStreamerSharp
                 Log.DebugFormat ("GStreamer running beat detection on {0}", path);
                 IsDetecting = true;
                 fakesink.SetState (State.Null);
-                filesrc.Location = path;
+                filesrc ["location"] = path;
                 pipeline.SetState (State.Playing);
             } catch (Exception e) {
                 Log.Exception (e);
@@ -212,7 +213,7 @@ namespace Banshee.GStreamerSharp
 
         private static Gst.Element Make (string name)
         {
-            var e = ElementFactory.Make (name);
+            var e = ElementFactory.Make (name, "the " + name);
             if (e == null) {
                 Log.ErrorFormat ("BPM Detector unable to make element '{0}'", name);
                 throw new Exception ();

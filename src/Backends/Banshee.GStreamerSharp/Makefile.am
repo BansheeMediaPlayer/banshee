@@ -8,6 +8,7 @@ SOURCES =  \
 	Banshee.GStreamerSharp/BpmDetector.cs \
 	Banshee.GStreamerSharp/CddaManager.cs \
 	Banshee.GStreamerSharp/DvdManager.cs \
+	Banshee.GStreamerSharp/GstExtensions.cs \
 	Banshee.GStreamerSharp/PlayerEngine.cs \
 	Banshee.GStreamerSharp/Transcoder.cs \
 	Banshee.GStreamerSharp/VideoManager.cs \

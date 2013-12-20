@@ -1,10 +1,14 @@
 //
 // AudioCdRipper.cs
 //
-// Author:
+// Authors:
 //   Olivier Dufour <olivier.duff@gmail.com>
+//   Andrés G. Aragoneses <knocte@gmail.com>
+//   Stephan Sundermann <stephansundermann@gmail.com>
 //
 // Copyright (c) 2011 Olivier Dufour
+// Copyright (C) 2013 Andrés G. Aragoneses
+// Copyright (C) 2013 Stephan Sundermann
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -100,19 +104,19 @@ namespace Banshee.GStreamerSharp
         void OnTick (object o, System.Timers.ElapsedEventArgs args)
         {
             Format format = Format.Time;
-            State state;
+            State state, pending;
             long position;
 
-            pipeline.GetState (out state, 0);
+            pipeline.GetState (out state, out pending, 0);
             if (state != State.Playing) {
                 return;
             }
 
-            if (!cddasrc.QueryPosition (ref format, out position)) {
+            if (!cddasrc.QueryPosition (format, out position)) {
                 return;
             }
 
-            RaiseProgress (current_track, TimeSpan.FromSeconds (position / (long)Clock.Second));
+            RaiseProgress (current_track, TimeSpan.FromSeconds (position / (long)Constants.SECOND));
         }
 
         public void Finish ()
@@ -161,8 +165,8 @@ namespace Banshee.GStreamerSharp
             tags.Add (TagMergeMode.Replace, CommonTags.AlbumDiscNumber, (uint)track.DiscNumber);
             tags.Add (TagMergeMode.Replace, CommonTags.AlbumDiscCount, (uint)track.DiscCount);
 
-            tags.Add (TagMergeMode.Replace, Gst.Tag.Date, track.Year);
-            tags.Add (TagMergeMode.Replace, Gst.Tag.Date, track.ReleaseDate);
+            tags.Add (TagMergeMode.Replace, CommonTags.Date, track.Year);
+            tags.Add (TagMergeMode.Replace, CommonTags.Date, track.ReleaseDate);
 
             tags.Add (TagMergeMode.Replace, CommonTags.Composer, track.Composer);
             tags.Add (TagMergeMode.Replace, CommonTags.Copyright, track.Copyright);
@@ -175,60 +179,66 @@ namespace Banshee.GStreamerSharp
             return tags;
         }
 
+        private GLib.GType ToGType (Type t)
+        {
+            return (GLib.GType)t;
+        }
+
         public void RipTrack (int trackIndex, TrackInfo track, SafeUri outputUri, out bool taggingSupported)
         {
             taggingSupported = false;
             TrackReset ();
             current_track = track;
 
-            using (TagList tags = MakeTagList (track)) {
-                output_path = String.Format ("{0}.{1}", outputUri.LocalPath, output_extension);
+            TagList tags = MakeTagList (track);
+            output_path = String.Format ("{0}.{1}", outputUri.LocalPath, output_extension);
 
-                // Avoid overwriting an existing file
-                int i = 1;
-                while (Banshee.IO.File.Exists (new SafeUri (output_path))) {
-                    output_path = String.Format ("{0} ({1}).{2}", outputUri.LocalPath, i++, output_extension);
-                }
-
-                Log.DebugFormat ("GStreamer ripping track {0} to {1}", trackIndex, output_path);
-
-                if (!ConstructPipeline ()) {
-                    return;
-                }
-
-                // initialize the pipeline, set the sink output location
-                filesink.SetState (State.Null);
-                filesink ["location"] = output_path;
-
-                var version = new System.Version (Banshee.ServiceStack.Application.Version);
-
-                // find an element to do the tagging and set tag data
-                foreach (Element element in encoder.GetAllByInterface (typeof (TagSetter))) {
-                    TagSetter tag_setter = element as TagSetter;
-                    if (tag_setter != null) {
-                        tag_setter.AddTag (TagMergeMode.ReplaceAll, Tag.Encoder,
-                            new Gst.GLib.Value (String.Format ("Banshee {0}", Banshee.ServiceStack.Application.Version)));
-                        tag_setter.AddTag (TagMergeMode.ReplaceAll, Tag.EncoderVersion,
-                            new Gst.GLib.Value ( (version.Major << 16) | (version.Minor << 8) | version.Build));
-
-                        if (tags != null) {
-                            tag_setter.AddTag (tags, TagMergeMode.Append);
-                        }
-
-                        /*if (banshee_is_debugging ()) {
-                            bt_tag_list_dump (gst_tag_setter_get_tag_list (tag_setter));
-                        }*/
-
-                        // We'll warn the user in the UI if we can't tag the encoded audio files
-                        taggingSupported = true;
-                    }
-                }
-
-                // Begin the rip
-                cddasrc ["track"] = trackIndex + 1;
-                pipeline.SetState (State.Playing);
-                timer.Start ();
+            // Avoid overwriting an existing file
+            int i = 1;
+            while (Banshee.IO.File.Exists (new SafeUri (output_path))) {
+                output_path = String.Format ("{0} ({1}).{2}", outputUri.LocalPath, i++, output_extension);
             }
+
+            Log.DebugFormat ("GStreamer ripping track {0} to {1}", trackIndex, output_path);
+
+            if (!ConstructPipeline ()) {
+                return;
+            }
+
+            // initialize the pipeline, set the sink output location
+            filesink.SetState (State.Null);
+            filesink ["location"] = output_path;
+
+            var version = new System.Version (Banshee.ServiceStack.Application.Version);
+
+
+            // find an element to do the tagging and set tag data
+            foreach (Element element in encoder.IterateAllByInterface (TagSetterAdapter.GType)) {
+                ITagSetter tag_setter = element as ITagSetter;
+
+                if (tag_setter != null) {
+                    tag_setter.AddTagValue (TagMergeMode.ReplaceAll, Constants.TAG_ENCODER,
+                        new GLib.Value (String.Format ("Banshee {0}", Banshee.ServiceStack.Application.Version)));
+                    tag_setter.AddTagValue (TagMergeMode.ReplaceAll, Constants.TAG_VERSION,
+                        new GLib.Value ( (version.Major << 16) | (version.Minor << 8) | version.Build));
+
+                    if (tags != null) {
+                        tag_setter.MergeTags (tags, TagMergeMode.Append);
+                    }
+
+                    /*if (banshee_is_debugging ()) {
+                        bt_tag_list_dump (gst_tag_setter_get_tag_list (tag_setter));
+                    }*/
+
+                    // We'll warn the user in the UI if we can't tag the encoded audio files
+                    taggingSupported = true;
+                }
+            }
+
+            // Begin the rip
+            cddasrc ["track"] = trackIndex + 1;
+            pipeline.SetState (State.Playing);
+            timer.Start ();
         }
 
         bool ConstructPipeline ()
@@ -241,7 +251,7 @@ namespace Banshee.GStreamerSharp
                 return false;
             }
 
-            cddasrc = ElementFactory.MakeFromUri (URIType.Src, "cdda://1", "cddasrc");
+            cddasrc = Element.MakeFromUri (URIType.Src, "cdda://1", "cddasrc");
             if (cddasrc == null) {
                 RaiseError (current_track, Catalog.GetString ("Could not initialize element from cdda URI"));
                 return false;
@@ -249,12 +259,12 @@ namespace Banshee.GStreamerSharp
 
             cddasrc ["device"] = device;
 
-            if (cddasrc.HasProperty ("paranoia-mode")) {
+            try {
                 cddasrc ["paranoia-mode"] = paranoia_mode;
-            }
+            } catch (Gst.PropertyNotFoundException) { }
 
             try {
-            encoder = (Bin)Parse.BinFromDescription (encoder_pipeline, true);
+                encoder = Parse.BinFromDescription (encoder_pipeline, true);
             } catch (Exception e) {
                 string err = Catalog.GetString ("Could not create encoder pipeline : {0}");
                 RaiseError (current_track, String.Format (err, e.Message));
@@ -267,7 +277,7 @@ namespace Banshee.GStreamerSharp
                 return false;
             }
 
-            queue ["max-size-time"] = 120 * Gst.Clock.Second;
+            queue ["max-size-time"] = 120L * Gst.Constants.SECOND;
 
             filesink = ElementFactory.Make ("filesink", "filesink");
             if (filesink == null) {
@@ -288,25 +298,22 @@ namespace Banshee.GStreamerSharp
 
         private string ProbeMimeType ()
         {
-            Iterator elem_iter = ((Bin)encoder).ElementsRecurse;
             string preferred_mimetype = null;
-            IEnumerator en = elem_iter.GetEnumerator ();
 
-            while (en.MoveNext ()) {
-                Element element = (Element)en.Current;
-                Iterator pad_iter = element.SrcPads;
+            foreach (Element element in encoder.IterateRecurse ()) {
+                Iterator pad_iter = element.IterateSrcPads ();
                 IEnumerator enu = pad_iter.GetEnumerator ();
 
                 while (enu.MoveNext ()) {
                     Pad pad = (Pad)enu.Current;
-                    Caps caps = pad.Caps;
+                    Caps caps = pad.QueryCaps ();
                     Structure str = (caps != null ? caps [0] : null);
 
                     if (str != null) {
                         string mimetype = str.Name;
                         int mpeg_layer;
 
-                        Gst.GLib.Value val = str.GetValue ("mpegversion");
+                        GLib.Value val = str.GetValue ("mpegversion");
 
                         // Prefer and adjust audio/mpeg, leaving MP3 as audio/mpeg
                         if (mimetype.StartsWith ("audio/mpeg")) {
@@ -371,10 +378,10 @@ namespace Banshee.GStreamerSharp
                     break;
 
                 case MessageType.Error:
-                    Enum error_type;
-                    string err_msg, debug;
-                    msg.ParseError (out error_type, out err_msg, out debug);
-                    RaiseError (current_track, String.Format ("{0} : {1}", err_msg, debug));
+                    GLib.GException err;
+                    string debug;
+                    msg.ParseError (out err, out debug);
+                    RaiseError (current_track, String.Format ("{0} : {1}", err.Message, debug));
                     timer.Stop ();
                     break;
             }

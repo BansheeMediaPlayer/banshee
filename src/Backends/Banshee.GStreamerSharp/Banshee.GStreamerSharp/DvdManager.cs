@@ -1,10 +1,14 @@
 //
 // DvdManager.cs
 //
-// Author:
+// Authors:
 //   Olivier Dufour <olivier.duff@gmail.com>
+//   Andrés G. Aragoneses <knocte@gmail.com>
+//   Stephan Sundermann <stephansundermann@gmail.com>
 //
-// Copyright 2011 Olivier Dufour
+// Copyright (C) 2011 Olivier Dufour
+// Copyright (C) 2013 Andrés G. Aragoneses
+// Copyright (C) 2013 Stephan Sundermann
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -26,9 +30,7 @@
 using System;
 
 using Gst;
-using Gst.BasePlugins;
-using Gst.Cdda;
-using Gst.Interfaces;
+using Gst.Video;
 
 using Hyena;
 
@@ -36,14 +38,14 @@ namespace Banshee.GStreamerSharp
 {
     public class DvdManager
     {
-        public DvdManager (PlayBin2 playbin)
+        public DvdManager (Element playbin)
         {
             if (playbin != null) {
                 playbin.AddNotification ("source", OnSourceChanged);
             }
         }
 
-        Navigation Navigation {
+        INavigation Navigation {
             get; set;
         }
 
@@ -68,25 +70,24 @@ namespace Banshee.GStreamerSharp
             return source;
         }
 
-        private void OnSourceChanged (object o, Gst.GLib.NotifyArgs args)
+        private void OnSourceChanged (object o, GLib.NotifyArgs args)
         {
             if (Device == null) {
                 return;
             }
 
-            var dvd_src = GetDvdSource (o as PlayBin2);
+            var playbin = o as Element;
+            var dvd_src = GetDvdSource (playbin);
             if (dvd_src == null) {
                 return;
             }
 
             // dvd source elements should always have this property
-            if (dvd_src.HasProperty ("device")) {
-                Log.DebugFormat ("dvd: setting device property on source ({0})", Device);
-                dvd_src ["device"] = Device;
-            }
+            dvd_src ["device"] = Device;
+            Log.DebugFormat ("dvd: setting device property on source ({0})", Device);
         }
 
-        public bool HandleURI (PlayBin2 playbin, string uri)
+        public bool HandleURI (Element playbin, string uri)
         {
             // Processes URIs like dvd://<device-node> and overrides
             // track transitioning through playbin if playback was already happening
@@ -132,17 +133,18 @@ namespace Banshee.GStreamerSharp
             return false;
         }
 
-        public void HandleCommandsChanged (PlayBin2 playbin)
+        public void HandleCommandsChanged (Element playbin)
         {
             InDvdMenu = false;
             // Get available command to know if player is in menu
-            Gst.Query query = NavigationQuery.NewCommands ();
+            // FIXME: GlobalVideo should be Gst.Video.Global
+            Gst.Query query = GlobalVideo.NavigationQueryNewCommands ();
 
             NavigationCommand[] cmds;
             if (Navigation == null) {
                 FindNavigation (playbin);
             }
-            if (!(((Element)Navigation).Query (query) && NavigationQuery.ParseCommands (query, out cmds))) {
+            if (!(((Element)Navigation).Query (query) && NavigationAdapter.ParseCommands (query, out cmds))) {
                 return;
             }
             foreach (NavigationCommand cmd in cmds) {
@@ -160,11 +162,11 @@ namespace Banshee.GStreamerSharp
             }
         }
 
-        public void FindNavigation (PlayBin2 playbin)
+        public void FindNavigation (Element playbin)
         {
             Element video_sink = null;
             Element navigation = null;
-            Navigation previous_navigation;
+            INavigation previous_navigation;
 
             previous_navigation = Navigation;
             video_sink = playbin ["video-sink"] as Element;
@@ -177,14 +179,13 @@ namespace Banshee.GStreamerSharp
             }
 
             navigation = (video_sink is Bin)
-                ? ((Bin)video_sink).GetByInterface (typeof (NavigationAdapter))
+                ? ((Bin)video_sink).GetByInterface (NavigationAdapter.GType)
                 : video_sink;
 
-            Navigation = navigation as Navigation;
-
+            Navigation = navigation as INavigation;
         }
 
-        public void NotifyMouseMove (PlayBin2 playbin, double x, double y)
+        public void NotifyMouseMove (Element playbin, double x, double y)
         {
             if (Navigation == null) {
                 FindNavigation (playbin);
@@ -194,7 +195,7 @@ namespace Banshee.GStreamerSharp
             }
         }
 
-        public void NotifyMouseButtonPressed (PlayBin2 playbin, int button, double x, double y)
+        public void NotifyMouseButtonPressed (Element playbin, int button, double x, double y)
         {
             if (Navigation == null) {
                 FindNavigation (playbin);
@@ -204,7 +205,7 @@ namespace Banshee.GStreamerSharp
             }
         }
 
-        public void NotifyMouseButtonReleased (PlayBin2 playbin, int button, double x, double y)
+        public void NotifyMouseButtonReleased (Element playbin, int button, double x, double y)
         {
             if (Navigation == null) {
                 FindNavigation (playbin);
@@ -214,7 +215,7 @@ namespace Banshee.GStreamerSharp
             }
         }
 
-        public void NavigateToLeftMenu (PlayBin2 playbin)
+        public void NavigateToLeftMenu (Element playbin)
         {
             if (Navigation == null) {
                 FindNavigation (playbin);
@@ -224,7 +225,7 @@ namespace Banshee.GStreamerSharp
             }
         }
 
-        public void NavigateToRightMenu (PlayBin2 playbin)
+        public void NavigateToRightMenu (Element playbin)
         {
             if (Navigation == null) {
                 FindNavigation (playbin);
@@ -234,7 +235,7 @@ namespace Banshee.GStreamerSharp
             }
         }
 
-        public void NavigateToUpMenu (PlayBin2 playbin)
+        public void NavigateToUpMenu (Element playbin)
         {
             if (Navigation == null) {
                 FindNavigation (playbin);
@@ -244,7 +245,7 @@ namespace Banshee.GStreamerSharp
             }
         }
 
-        public void NavigateToDownMenu (PlayBin2 playbin)
+        public void NavigateToDownMenu (Element playbin)
         {
             if (Navigation == null) {
                 FindNavigation (playbin);
@@ -254,17 +255,18 @@ namespace Banshee.GStreamerSharp
             }
         }
 
-        public void NavigateToMenu (PlayBin2 playbin)
+        public void NavigateToMenu (Element playbin)
         {
             if (Navigation == null) {
                 FindNavigation (playbin);
             }
             if (Navigation != null) {
-                Navigation.SendCommand (NavigationCommand.DvdMenu);
+                // Menu1 == DvdMenu http://cgit.freedesktop.org/gstreamer/gst-plugins-base/tree/gst-libs/gst/video/navigation.h?h=1.0#n96 
+                Navigation.SendCommand (NavigationCommand.Menu1);
             }
         }
 
-        public void ActivateCurrentMenu (PlayBin2 playbin)
+        public void ActivateCurrentMenu (Element playbin)
         {
             if (Navigation == null) {
                 FindNavigation (playbin);
@@ -274,19 +276,19 @@ namespace Banshee.GStreamerSharp
             }
         }
 
-        public void GoToNextChapter (PlayBin2 playbin)
+        public void GoToNextChapter (Element playbin)
         {
             long index;
             Format format = Util.FormatGetByNick ("chapter");
-            playbin.QueryPosition (ref format, out index);
+            playbin.QueryPosition (format, out index);
             playbin.Seek (1.0, format, SeekFlags.Flush, SeekType.Set, index + 1, SeekType.None, 0L);
         }
 
-        public void GoToPreviousChapter (PlayBin2 playbin)
+        public void GoToPreviousChapter (Element playbin)
         {
             long index;
             Format format = Util.FormatGetByNick ("chapter");
-            playbin.QueryPosition (ref format, out index);
+            playbin.QueryPosition (format, out index);
             playbin.Seek (1.0, format, SeekFlags.Flush, SeekType.Set, index - 1, SeekType.None, 0L);
         }
     }

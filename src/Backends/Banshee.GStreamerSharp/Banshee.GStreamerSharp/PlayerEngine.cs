@@ -1,10 +1,14 @@
 //
 // PlayerEngine.cs
 //
-// Author:
+// Authors:
 //   Gabriel Burt <gburt@novell.com>
+//   Andrés G. Aragoneses <knocte@gmail.com>
+//   Stephan Sundermann <stephansundermann@gmail.com>
 //
 // Copyright (C) 2010 Novell, Inc.
+// Copyright (C) 2013 Andrés G. Aragoneses
+// Copyright (C) 2013 Stephan Sundermann
 //
 // Permission is hereby granted, free of charge, to any person obtaining
 // a copy of this software and associated documentation files (the
@@ -37,9 +41,6 @@ using Mono.Unix;
 
 using Gst;
 using Gst.PbUtils;
-using Gst.BasePlugins;
-using Gst.CorePlugins;
-using Gst.Interfaces;
 
 using Hyena;
 using Hyena.Data;
@@ -51,12 +52,13 @@ using Banshee.MediaEngine;
 using Banshee.ServiceStack;
 using Banshee.Configuration;
 using Banshee.Preferences;
+using Gst.Video;
 
 namespace Banshee.GStreamerSharp
 {
     public class PlayerEngine : Banshee.MediaEngine.PlayerEngine, IEqualizer, IVisualizationDataSource
     {
-        private class AudioSinkBin : Bin
+        internal class AudioSinkBin : Bin
         {
             Element hw_audio_sink;
             Element volume;
@@ -65,7 +67,7 @@ namespace Banshee.GStreamerSharp
             Element preamp;
             Element first;
             GhostPad visible_sink;
-            Tee audiotee;
+            Element audiotee;
             object pipeline_lock = new object ();
 
             public AudioSinkBin (IntPtr o) : base(o)
@@ -80,7 +82,7 @@ namespace Banshee.GStreamerSharp
                 first = hw_audio_sink;
 
                 // Our audio sink is a tee, so plugins can attach their own pipelines
-                audiotee = ElementFactory.Make ("tee", "audiotee") as Tee;
+                audiotee = ElementFactory.Make ("tee", "audiotee");
                 if (audiotee == null) {
                     Log.Error ("Can not create audio tee!");
                 } else {
@@ -101,12 +103,14 @@ namespace Banshee.GStreamerSharp
                 }
 
                 equalizer = ElementFactory.Make ("equalizer-10bands", "equalizer-10bands");
+
                 if (equalizer != null) {
                     Element eq_audioconvert = ElementFactory.Make ("audioconvert", "audioconvert");
                     Element eq_audioconvert2 = ElementFactory.Make ("audioconvert", "audioconvert2");
                     preamp = ElementFactory.Make ("volume", "preamp");
 
-                    Add (eq_audioconvert, preamp, equalizer, eq_audioconvert2);
+                    this.Add (eq_audioconvert, preamp, equalizer, eq_audioconvert2);
+
                     Element.Link (eq_audioconvert, preamp, equalizer, eq_audioconvert2, first);
 
                     first = eq_audioconvert;
@@ -116,7 +120,7 @@ namespace Banshee.GStreamerSharp
                 // Link the first tee pad to the primary audio sink queue
                 Pad sinkpad = first.GetStaticPad ("sink");
                 Pad pad = RequestTeePad ();
-                audiotee.AllocPad = pad;
+                audiotee["alloc-pad"] = pad;
                 pad.Link (sinkpad);
                 first = audiotee;
 
@@ -132,18 +136,21 @@ namespace Banshee.GStreamerSharp
                 // the Ready state before they'll contain an actual sink.
                 sink.SetState (State.Ready);
 
-                if (sink.HasProperty ("volume")) {
+                try {
+                    var volume = sink ["volume"];
                     volumeProvider = sink;
-                    Log.DebugFormat ("Sink {0} has native volume.", volumeProvider.Name);
-                } else {
+                    Log.DebugFormat ("Sink {0} has native volume: {1}", volumeProvider.Name, volume);
+                } catch (Gst.PropertyNotFoundException) {
                     var sinkBin = sink as Bin;
                     if (sinkBin != null) {
-                        foreach (Element e in sinkBin.ElementsRecurse) {
-                            if (e.HasProperty ("volume")) {
+                        foreach (Element e in sinkBin.IterateRecurse ()) {
+                            try {
+                                var volume = e ["volume"];
                                 volumeProvider = e;
-                                Log.DebugFormat ("Found volume provider {0} in {1}.",
-                                    volumeProvider.Name, sink.Name);
-                            }
+                                Log.DebugFormat ("Found volume provider {0} in {1}: {2}",
+                                    volumeProvider.Name, sink.Name, volume);
+                                break;
+                            } catch (Gst.PropertyNotFoundException) { }
                         }
                     }
                 }
@@ -178,16 +185,16 @@ namespace Banshee.GStreamerSharp
                 get { return rgvolume != null; }
                 set {
                     if (value && rgvolume == null) {
-                        visible_sink.SetBlocked (true, InsertReplayGain);
+                        visible_sink.AddProbe (PadProbeType.Idle, InsertReplayGain);
                         Log.Debug ("Enabled ReplayGain volume scaling.");
                     } else if (!value && rgvolume != null) {
-                        visible_sink.SetBlocked (false, RemoveReplayGain);
+                        visible_sink.AddProbe (PadProbeType.Idle, RemoveReplayGain);
                         Log.Debug ("Disabled ReplayGain volume scaling.");
                     }
                 }
             }
 
-            void InsertReplayGain (Pad pad, bool blocked)
+            PadProbeReturn InsertReplayGain (Pad pad, PadProbeInfo info)
             {
                 lock (pipeline_lock) {
                     if (rgvolume == null) {
@@ -199,10 +206,10 @@ namespace Banshee.GStreamerSharp
                         first = rgvolume;
                     }
                 }
-                visible_sink.SetBlocked (false, (_, __) => { });
+                return PadProbeReturn.Remove;
             }
 
-            void RemoveReplayGain (Pad pad, bool blocked)
+            PadProbeReturn RemoveReplayGain (Pad pad, PadProbeInfo info)
             {
                 lock (pipeline_lock) {
                     if (rgvolume != null) {
@@ -214,7 +221,7 @@ namespace Banshee.GStreamerSharp
                         visible_sink.SetTarget (first.GetStaticPad ("sink"));
                     }
                 }
-                visible_sink.SetBlocked (false, (_, __) => { });
+                return PadProbeReturn.Remove;
             }
 
 
@@ -240,10 +247,16 @@ namespace Banshee.GStreamerSharp
 
             public int [] BandRange {
                 get {
+                    // http://gstreamer.freedesktop.org/data/doc/gstreamer/head/gst-plugins-good-plugins/html/gst-plugins-good-plugins-equalizer-10bands.html#GstIirEqualizer10Bands--band0
+                    return new [] { -24, 12 };
+
+                    /* TODO: should we check for band0::gain like it was done before? if yes, use paramspec.min|max retrieval
                     int min = -1;
                     int max = -1;
 
+                    //http://gstreamer.freedesktop.org/data/doc/gstreamer/head/gst-plugins-good-plugins/html/gst-plugins-good-plugins-equalizer-10bands.html
                     PropertyInfo pspec = new PropertyInfo();
+
 
                     if (equalizer.HasProperty ("band0::gain")) {
                         pspec = equalizer.GetPropertyInfo ("band0::gain");
@@ -255,8 +268,7 @@ namespace Banshee.GStreamerSharp
                         min = (int)((double)pspec.Min);
                         max = (int)((double)pspec.Max);
                     }
-
-                    return new int [] { min, max };
+                    */
                 }
             }
 
@@ -275,9 +287,9 @@ namespace Banshee.GStreamerSharp
                     uint[] ret = new uint[count];
 
                     if (equalizer != null) {
-                        ChildProxy equalizer_child_proxy = ChildProxyAdapter.GetObject (equalizer);
+                        IChildProxy equalizer_child_proxy = ChildProxyAdapter.GetObject (equalizer);
                         for (uint i = 0; i < count; i++) {
-                            Gst.Object band = equalizer_child_proxy.GetChildByIndex (i);
+                            Gst.Object band = (Gst.Object)equalizer_child_proxy.GetChildByIndex (i);
                             ret [i] = (uint)(double)band ["freq"];
                         }
                     }
@@ -292,14 +304,14 @@ namespace Banshee.GStreamerSharp
                     if (band >= GetNBands ()) {
                         throw new ArgumentOutOfRangeException ("band", "Attempt to set out-of-range equalizer band");
                     }
-                    Gst.Object the_band = ChildProxyAdapter.GetObject (equalizer).GetChildByIndex (band);
+                    Gst.Object the_band = (Gst.Object)ChildProxyAdapter.GetObject (equalizer).GetChildByIndex (band);
                     the_band ["gain"] = value;
                 }
             }
 
             public Pad RequestTeePad ()
             {
-                var pad = audiotee.GetRequestPad ("src%d");
+                var pad = audiotee.GetRequestPad ("src_%u");
                 if (pad == null) {
                     throw new InvalidOperationException ("Could not retrieve tee pad");
                 }
@@ -308,7 +320,7 @@ namespace Banshee.GStreamerSharp
         }
 
 
-        PlayBin2 playbin;
+        Element playbin;
         AudioSinkBin audio_sink;
         uint iterate_timeout_id = 0;
         List<string> missing_details = new List<string> ();
@@ -342,7 +354,7 @@ namespace Banshee.GStreamerSharp
             }
 
             Gst.Application.Init ();
-            playbin = new PlayBin2 ();
+            playbin = ElementFactory.Make ("playbin", "the playbin");
 
             next_track_set = new ManualResetEvent (false);
 
@@ -355,12 +367,11 @@ namespace Banshee.GStreamerSharp
                 Volume = (ushort)PlayerEngineService.VolumeSchema.Get ();
             }
 
-            Pad teepad = audio_sink.RequestTeePad ();
-            visualization = new Visualization (audio_sink, teepad);
+            visualization = new Visualization (audio_sink);
 
             playbin.AddNotification ("volume", OnVolumeChanged);
             playbin.Bus.AddWatch (OnBusMessage);
-            playbin.AboutToFinish += OnAboutToFinish;
+            playbin.Connect ("about-to-finish", OnAboutToFinish);
 
             cdda_manager = new CddaManager (playbin);
             dvd_manager = new DvdManager (playbin);
@@ -417,7 +428,7 @@ namespace Banshee.GStreamerSharp
             OnEventChanged (PlayerEvent.PrepareVideoWindow);
         }
 
-        void OnAboutToFinish (object o, Gst.GLib.SignalArgs args)
+        void OnAboutToFinish (object o, GLib.SignalArgs args)
         {
             // This is needed to make Shuffle-by-* work.
             // Shuffle-by-* uses the LastPlayed field to determine what track in the grouping to play next.
@@ -451,7 +462,7 @@ namespace Banshee.GStreamerSharp
                 return;
             }
 
-            playbin.Uri = uri.AbsoluteUri;
+            playbin ["uri"] = uri.AbsoluteUri;
 
             if (maybeVideo) {
                 LookupForSubtitle (uri);
@@ -466,8 +477,7 @@ namespace Banshee.GStreamerSharp
             if (accurate_seek) {
                 seek_flags |= SeekFlags.Accurate;
             }
-               
-            playbin.Seek (Format.Time, seek_flags, (long)(position * Gst.Clock.MSecond));
+            playbin.SeekSimple (Format.Time, seek_flags, (((long)position) * Constants.MSECOND));
             OnEventChanged (PlayerEvent.Seek);
         }
 
@@ -490,30 +500,27 @@ namespace Banshee.GStreamerSharp
                     break;
 
                 case MessageType.Buffering:
-                    int buffer_percent;
-                    msg.ParseBuffering (out buffer_percent);
+                    int buffer_percent = msg.ParseBuffering ();
                     HandleBuffering (buffer_percent);
                     break;
 
                 case MessageType.Tag:
-                    Pad pad;
-                    TagList tag_list;
-                    msg.ParseTag (out pad, out tag_list);
-
-                    HandleTag (pad, tag_list);
+                    TagList tag_list = msg.ParseTag ();
+                    tag_list.Foreach (HandleTag);
                     break;
 
                 case MessageType.Error:
-                    Enum error_type;
-                    string err_msg, debug;
-                    msg.ParseError (out error_type, out err_msg, out debug);
+                    GLib.GException err;
+                    string debug;
+                    msg.ParseError (out err, out debug);
 
-                    HandleError (error_type, err_msg, debug);
+                    HandleError (err);
                     break;
 
                 case MessageType.Element:
-                    if (MissingPluginMessage.IsMissingPluginMessage (msg)) {
-                        string detail = MissingPluginMessage.GetInstallerDetail (msg);
+
+                    if (GlobalPbUtil.IsMissingPluginMessage (msg)) {
+                        string detail = GlobalPbUtil.MissingPluginMessageGetInstallerDetail (msg);
 
                         if (detail == null)
                             return false;
@@ -526,16 +533,19 @@ namespace Banshee.GStreamerSharp
                         Log.DebugFormat ("Saving missing element details ('{0}')", detail);
                         missing_details.Add (detail);
 
-                        Log.Error ("Missing GStreamer Plugin", MissingPluginMessage.GetDescription (msg), true);
+                        Log.Error ("Missing GStreamer Plugin", GlobalPbUtil.MissingPluginMessageGetDescription (msg), true);
 
                         InstallPluginsContext install_context = new InstallPluginsContext ();
-                        Install.InstallPlugins (missing_details.ToArray (), install_context, OnInstallPluginsReturn);
-                    } else if (msg.Src == playbin && msg.Structure.Name == "playbin2-stream-changed") {
-                        HandleStreamChanged ();
-                    } else if (NavigationMessage.MessageGetType (msg) == NavigationMessageType.CommandsChanged) {
+                        GlobalPbUtil.InstallPluginsAsync (missing_details.ToArray (), install_context, OnInstallPluginsReturn);
+                    } else if (NavigationAdapter.MessageGetType (msg) == NavigationMessageType.CommandsChanged) {
                         dvd_manager.HandleCommandsChanged (playbin);
                     }
                     break;
+
+                case MessageType.StreamStart:
+                    HandleStreamStart ();
+                    break;
+
                 case MessageType.Application:
                     string name;
                     Structure s = msg.Structure;
@@ -556,12 +566,12 @@ namespace Banshee.GStreamerSharp
             }
         }
 
-        private void OnVolumeChanged (object o, Gst.GLib.NotifyArgs args)
+        private void OnVolumeChanged (object o, GLib.NotifyArgs args)
         {
             OnEventChanged (PlayerEvent.Volume);
         }
 
-        private void HandleStreamChanged ()
+        private void HandleStreamStart ()
         {
             // Set the current track as fully played before signaling EndOfStream.
             ServiceManager.PlayerEngine.IncrementLastPlayed (1.0);
@@ -569,15 +579,15 @@ namespace Banshee.GStreamerSharp
             OnEventChanged (PlayerEvent.StartOfStream);
         }
 
-        private void HandleError (Enum domain, string error_message, string debug)
+        private void HandleError (GLib.GException ex)
         {
             TrackInfo failed_track = CurrentTrack;
             Close (true);
 
-            error_message = error_message ?? Catalog.GetString ("Unknown Error");
+            var error_message = String.IsNullOrEmpty (ex.Message) ? Catalog.GetString ("Unknown Error") : ex.Message;
 
-            if (domain is ResourceError) {
-                ResourceError domain_code = (ResourceError)domain;
+            if (ex.Domain == Global.ResourceErrorQuark ()) {
+                ResourceError domain_code = (ResourceError)ex.Code;
                 if (failed_track != null) {
                     switch (domain_code) {
                     case ResourceError.NotFound:
@@ -588,8 +598,8 @@ namespace Banshee.GStreamerSharp
                     }
                 }
                 Log.Error (String.Format ("GStreamer resource error: {0}", domain_code), false);
-            } else if (domain is StreamError) {
-                StreamError domain_code = (StreamError)domain;
+            } else if (ex.Domain == Global.StreamErrorQuark ()) {
+                StreamError domain_code = (StreamError)ex.Code;
                 if (failed_track != null) {
                     switch (domain_code) {
                     case StreamError.CodecNotFound:
@@ -601,8 +611,8 @@ namespace Banshee.GStreamerSharp
                 }
 
                 Log.Error (String.Format ("GStreamer stream error: {0}", domain_code), false);
-            } else if (domain is CoreError) {
-                CoreError domain_code = (CoreError)domain;
+            } else if (ex.Domain == Global.CoreErrorQuark ()) {
+                CoreError domain_code = (CoreError)ex.Code;
                 if (failed_track != null) {
                     switch (domain_code) {
                     case CoreError.MissingPlugin:
@@ -614,10 +624,10 @@ namespace Banshee.GStreamerSharp
                 }
 
                 if (domain_code != CoreError.MissingPlugin) {
-                    Log.Error (String.Format ("GStreamer core error: {0}", (CoreError)domain), false);
+                    Log.Error (String.Format ("GStreamer core error: {0}", domain_code), false);
                 }
-            } else if (domain is LibraryError) {
-                Log.Error (String.Format ("GStreamer library error: {0}", (LibraryError)domain), false);
+            } else if (ex.Domain == Global.LibraryErrorQuark ()) {
+                Log.Error (String.Format ("GStreamer library error: {0}", ex.Code), false);
             }
 
             OnEventChanged (new PlayerEventErrorArgs (error_message));
@@ -644,22 +654,13 @@ namespace Banshee.GStreamerSharp
             }
         }
 
-        private void HandleTag (Pad pad, TagList tag_list)
+        private void HandleTag (TagList tag_list, string tagname)
         {
-            foreach (string tag in tag_list.Tags) {
-                if (String.IsNullOrEmpty (tag)) {
-                    continue;
-                }
-
-                if (tag_list.GetTagSize (tag) < 1) {
-                    continue;
-                }
-
-                List tags = tag_list.GetTag (tag);
-
-                foreach (object o in tags) {
-                    OnTagFound (new StreamTag () { Name = tag, Value = o });
-                }
+            for (uint i = 0; i < tag_list.GetTagSize (tagname); i++) {
+                GLib.Value val = tag_list.GetValueIndex (tagname, i);
+                Log.Debug ("Found Tag: " + tagname + " Value: " + val.Val);
+                OnTagFound (new StreamTag () { Name = tagname, Value = val.Val });
+                val.Dispose ();
             }
         }
 
@@ -703,7 +704,7 @@ namespace Banshee.GStreamerSharp
                 playbin.SetState (Gst.State.Ready);
             }
 
-            playbin.Uri = uri.AbsoluteUri;
+            playbin ["uri"] = uri.AbsoluteUri;
             if (maybeVideo) {
                 // Lookup for subtitle files with same name/folder
                 LookupForSubtitle (uri);
@@ -716,10 +717,10 @@ namespace Banshee.GStreamerSharp
             SafeUri suburi;
             int dot;
             // Always enable rendering of subtitles
-            int flags;
-            flags = (int)playbin.Flags;
+            uint flags;
+            flags = (uint)playbin["flags"];
             flags |= (1 << 2);//GST_PLAY_FLAG_TEXT
-            playbin.Flags = (ObjectFlags)flags;
+            playbin ["flags"] = flags;
 
             Log.Debug ("[subtitle]: looking for subtitles for video file");
             scheme = uri.Scheme;
@@ -739,7 +740,7 @@ namespace Banshee.GStreamerSharp
                 suburi = new SafeUri (subfile);
                 if (Banshee.IO.File.Exists (suburi)) {
                     Log.DebugFormat ("[subtitle]: Found subtitle file: {0}", subfile);
-                    playbin.Suburi = subfile;
+                    playbin ["suburi"] = subfile;
                     return;
                 }
             }
@@ -765,10 +766,19 @@ namespace Banshee.GStreamerSharp
 
         public override string GetSubtitleDescription (int index)
         {
-            return playbin.GetTextTags (index)
-             .GetTag (Gst.Tag.LanguageCode)
-             .Cast<string> ()
-             .FirstOrDefault (t => t != null);
+            var list = (TagList)playbin.Emit ("get-text-tags", new object[] { index });
+
+            if (list == null)
+                return String.Empty;
+
+            string code;
+            if (!list.GetString (Constants.TAG_LANGUAGE_CODE, out code))
+                return String.Empty;
+
+            var name = Gst.Tags.GlobalTag.TagGetLanguageName (code);
+            Log.Debug ("Subtitle language code " + code + " resolved to " + name);
+
+            return name;
         }
 
         public override ushort Volume {
@@ -790,8 +800,8 @@ namespace Banshee.GStreamerSharp
         public override uint Position {
             get {
                 long pos;
-                playbin.QueryPosition (ref query_format, out pos);
-                return (uint) ((ulong)pos / Gst.Clock.MSecond);
+                playbin.QueryPosition (query_format, out pos);
+                return (uint) ((ulong)pos / Constants.MSECOND);
             }
             set { Seek (value); }
         }
@@ -799,8 +809,8 @@ namespace Banshee.GStreamerSharp
         public override uint Length {
             get {
                 long duration;
-                playbin.QueryDuration (ref query_format, out duration);
-                return (uint) ((ulong)duration / Gst.Clock.MSecond);
+                playbin.QueryDuration (query_format, out duration);
+                return (uint) ((ulong)duration / Constants.MSECOND);
             }
         }
 
@@ -871,7 +881,7 @@ namespace Banshee.GStreamerSharp
         }
 
         public override int SubtitleCount {
-            get { return playbin.NText; }
+            get { return (int)playbin ["n-text"]; }
         }
 
         public override int SubtitleIndex {
@@ -882,11 +892,11 @@ namespace Banshee.GStreamerSharp
 
                 if (value == -1) {
                     flags &= ~(1 << 2);//GST_PLAY_FLAG_TEXT
-                    playbin.Flags = (ObjectFlags)flags;
+                    playbin ["flags"] = flags;
                 } else {
                     flags |= (1 << 2);//GST_PLAY_FLAG_TEXT
-                    playbin.Flags = (ObjectFlags)flags;
-                    playbin.CurrentText = value;
+                    playbin ["flags"] = flags;
+                    playbin ["current-text"] = value;
                 }
             }
         }
@@ -894,32 +904,32 @@ namespace Banshee.GStreamerSharp
         public override SafeUri SubtitleUri {
             set {
                 long pos = -1;
-                State state;
+                State state, pending;
                 Format format = Format.Bytes;
                 bool paused = false;
 
                 // GStreamer playbin does not support setting the suburi during playback
                 // so we have to stop/play and seek
-                playbin.GetState (out state, 0);
+                playbin.GetState (out state, out pending, 0);
                 paused = (state == State.Paused);
                 if (state >= State.Paused) {
-                    playbin.QueryPosition (ref format, out pos);
+                    playbin.QueryPosition (format, out pos);
                     playbin.SetState (State.Ready);
                     // Wait for the state change to complete
-                    playbin.GetState (out state, 0);
+                    playbin.GetState (out state, out pending, 0);
                 }
 
-                playbin.Suburi = value.AbsoluteUri;
+                playbin ["suburi"] = value.AbsoluteUri;
                 playbin.SetState (paused ? State.Paused : State.Playing);
 
                 // Wait for the state change to complete
-                playbin.GetState (out state, 0);
+                playbin.GetState (out state, out pending, 0);
 
                 if (pos != -1) {
-                    playbin.Seek (format, SeekFlags.Flush | SeekFlags.KeyUnit, pos);
+                    playbin.SeekSimple (format, SeekFlags.Flush | SeekFlags.KeyUnit, pos);
                 }
             }
-            get { return new SafeUri (playbin.Suburi); }
+            get { return new SafeUri ((string)playbin ["suburi"]); }
         }
 
 #region DVD support

@@ -4,9 +4,11 @@
 // Authors:
 //  Olivier Dufour <olivier.duff@gmail.com>
 //  Andrés G. Aragoneses <knocte@gmail.com>
+//   Stephan Sundermann <stephansundermann@gmail.com>
 //
 // Copyright (C) 2011 Olivier Dufour
 // Copyright (C) 2013 Andrés G. Aragoneses
+// Copyright (C) 2013 Stephan Sundermann
 //
 // Permission is hereby granted, free of charge, to any person obtaining
 // a copy of this software and associated documentation files (the
@@ -41,21 +43,20 @@ using Banshee.MediaProfiles;
 using Banshee.Configuration.Schema;
 
 using Gst;
-using Gst.BasePlugins;
-using Gst.Interfaces;
+using Gst.Video;
 
 namespace Banshee.GStreamerSharp
 {
     public class VideoManager
     {
-        PlayBin2 playbin;
+        Element playbin;
         VideoDisplayContextType video_display_context_type;
         IntPtr video_window;
         ulong? video_window_xid;
-        XOverlayAdapter xoverlay;
+        VideoOverlayAdapter xoverlay;
         object video_mutex = new object ();
 
-        public VideoManager (PlayBin2 playbin)
+        public VideoManager (Element playbin)
         {
             this.playbin = playbin;
         }
@@ -65,6 +66,7 @@ namespace Banshee.GStreamerSharp
             Element videosink;
             video_display_context_type = VideoDisplayContextType.GdkWindow;
 
+            //FIXME BEFORE PUSHING NEW GST# BACKEND: is gconfvideosink gone in 1.0? it is not there in the unmanaged backend 
             videosink = ElementFactory.Make ("gconfvideosink", "videosink");
             if (videosink == null) {
                 videosink = ElementFactory.Make ("autovideosink", "videosink");
@@ -76,12 +78,13 @@ namespace Banshee.GStreamerSharp
                     }
                 }
             }
-            
+
             playbin ["video-sink"] = videosink;
 
             // FIXME: the 2 lines below (SyncHandler and ElementAdded), if uncommented, cause hangs, and they
             //        don't seem to be useful at this point anyway, remove?
-            //playbin.Bus.SyncHandler = (bus, message) => {return bus.SyncSignalHandler (message); };
+            //a) playbin.Bus.SyncHandler = (bus, message) => { return bus.SyncSignalHandler (message); };
+            //b) playbin.Bus.EnableSyncMessageEmission ();
             playbin.Bus.SyncMessage += OnSyncMessage;
             //if (videosink is Bin) { ((Bin)videosink).ElementAdded += OnVideoSinkElementAdded; }
 
@@ -106,17 +109,19 @@ namespace Banshee.GStreamerSharp
         {
             Message message = args.Message;
 
-            if (message.Type != MessageType.Element)
+            var src = message.Src as Element;
+            if (src == null) {
                 return;
+            }
 
-            if (message.Structure == null || message.Structure.Name != "prepare-xwindow-id") {
+            if (!GlobalVideo.IsVideoOverlayPrepareWindowHandleMessage (message)) {
                 return;
             }
 
             bool found_xoverlay = FindXOverlay ();
 
             if (found_xoverlay) {
-                xoverlay.XwindowId = video_window_xid.Value;
+                xoverlay.WindowHandle = video_window_xid.Value;
             }
         }
 
@@ -143,7 +148,7 @@ namespace Banshee.GStreamerSharp
                 return false;
             }
 
-            xoverlay.XwindowId = video_window_xid.Value;
+            xoverlay.WindowHandle = video_window_xid.Value;
             return true;
         }
 
@@ -153,7 +158,7 @@ namespace Banshee.GStreamerSharp
             Element xoverlay_element;
             bool    found_xoverlay;
 
-            video_sink = playbin.VideoSink;
+            video_sink = (Element)playbin ["video-sink"];
 
             lock (video_mutex) {
 
@@ -163,23 +168,28 @@ namespace Banshee.GStreamerSharp
                 }
 
                 xoverlay_element = video_sink is Bin
-                    ? ((Bin)video_sink).GetByInterface (new XOverlayAdapter ().GType)
+                    ? ((Bin)video_sink).GetByInterface (VideoOverlayAdapter.GType)
                     : video_sink;
 
                 if (xoverlay_element == null) {
                     return false;
                 }
-                xoverlay = new XOverlayAdapter (xoverlay_element.Handle);
+
+                xoverlay = new VideoOverlayAdapter (xoverlay_element.Handle);
 
                 if (!PlatformDetection.IsWindows) {
                     // We can't rely on aspect ratio from dshowvideosink
-                    if (xoverlay != null && xoverlay_element.HasProperty ("force-aspect-ratio")) {
-                        xoverlay_element ["force-aspect-ratio"] = true;
+                    if (xoverlay != null) {
+                        try {
+                            xoverlay_element ["force-aspect-ratio"] = true;
+                        } catch (PropertyNotFoundException) { }
                     }
                 }
 
-                if (xoverlay != null && xoverlay_element.HasProperty ("handle-events")) {
-                    xoverlay_element ["handle-events"] = false;
+                if (xoverlay != null) {
+                    try {
+                        xoverlay_element ["handle-events"] = false;
+                    } catch (PropertyNotFoundException) { }
                 }
 
                 found_xoverlay = (xoverlay != null) ? true : false;
@@ -190,25 +200,28 @@ namespace Banshee.GStreamerSharp
 
         public void ParseStreamInfo ()
         {
-            //int audios_streams;
+            int audios_streams;
             int video_streams;
-            //int text_streams;
+            int text_streams;
             Pad vpad = null;
 
-            //audios_streams = playbin.NAudio;
-            video_streams = playbin.NVideo;
-            //text_streams = playbin.NText;
+            audios_streams = (int)playbin["n-audio"];
+            video_streams = (int)playbin ["n-video"];
+            text_streams = (int)playbin["n-text"];
 
             if (video_streams > 0) {
                 int i;
                 /* Try to obtain a video pad */
-                for (i = 0; i < video_streams && vpad == null; i++) {
-                    vpad = playbin.GetVideoPad (i);
+                for (i = 0; i < video_streams; i++) {
+                    vpad = (Pad)playbin.Emit ("get-video-pad", new object [] { i });
+                    if (vpad != null) {
+                        break;
+                    }
                 }
             }
 
             if (vpad != null) {
-                Caps caps = vpad.NegotiatedCaps;
+                Caps caps = vpad.CurrentCaps;
                 if (caps != null) {
                     OnCapsSet (vpad, null);
                 }
@@ -216,11 +229,11 @@ namespace Banshee.GStreamerSharp
             }
         }
 
-        private void OnCapsSet (object o, Gst.GLib.NotifyArgs args)
+        private void OnCapsSet (object o, GLib.NotifyArgs args)
         {
             Structure s = null;
             int width, height, fps_n, fps_d, par_n, par_d;
-            Caps caps = ((Pad)o).NegotiatedCaps;
+            Caps caps = ((Pad)o).CurrentCaps;
 
             width = height = fps_n = fps_d = 0;
             if (caps == null) {
@@ -228,7 +241,7 @@ namespace Banshee.GStreamerSharp
             }
 
             /* Get video decoder caps */
-            s = caps [0];
+            s = caps.GetStructure (0);
             if (s != null) {
                 /* We need at least width/height and framerate */
                 if (!(s.HasField ("framerate") && s.HasField ("width") && s.HasField ("height"))) {
@@ -237,12 +250,12 @@ namespace Banshee.GStreamerSharp
                 Fraction f = new Fraction (s.GetValue ("framerate"));
                 fps_n = f.Numerator;
                 fps_d = f.Denominator;
-                Gst.GLib.Value val;
+                GLib.Value val;
                 width = (int)s.GetValue ("width");
                 height = (int)s.GetValue ("height");
                 /* Get the PAR if available */
                 val = s.GetValue ("pixel-aspect-ratio");
-                if (!val.Equals (Gst.GLib.Value.Empty)) {
+                if (!val.Equals (GLib.Value.Empty)) {
                     Fraction par = new Fraction (val);
                     par_n = par.Numerator;
                     par_d = par.Denominator;
@@ -281,6 +294,7 @@ namespace Banshee.GStreamerSharp
         {
             switch (System.Environment.OSVersion.Platform) {
                 case PlatformID.Unix:
+                    //FIXME: we should maybe stop relying on x11 http://gstreamer.freedesktop.org/data/doc/gstreamer/head/gst-plugins-base-libs/html/gst-plugins-base-libs-gstvideooverlay.html#GstVideoOverlay
                     video_window_xid = (ulong)gdk_x11_window_get_xid (window);
                 break;
                 case PlatformID.Win32NT:

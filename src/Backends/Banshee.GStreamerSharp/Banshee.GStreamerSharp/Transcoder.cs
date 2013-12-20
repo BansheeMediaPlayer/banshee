@@ -1,11 +1,15 @@
 //
 // Transcoder.cs
 //
-// Author:
+// Authors:
 //   Aaron Bockover <abockover@novell.com>
-//  Olivier Dufour <olivier.duff@gmail.com>
+//   Olivier Dufour <olivier.duff@gmail.com>
+//   Andrés G. Aragoneses <knocte@gmail.com>
+//   Stephan Sundermann <stephansundermann@gmail.com>
 //
 // Copyright (C) 2008 Novell, Inc.
+// Copyright (C) 2013 Andrés G. Aragoneses
+// Copyright (C) 2013 Stephan Sundermann
 //
 // Permission is hereby granted, free of charge, to any person obtaining
 // a copy of this software and associated documentation files (the
@@ -58,7 +62,7 @@ namespace Banshee.GStreamerSharp
                 Element resample_elem;
                 Pad encoder_pad;
 
-                sink_elem = ElementFactory.MakeFromUri (URIType.Sink, output_uri, "sink");
+                sink_elem = Element.MakeFromUri (URIType.Sink, output_uri, "sink");
                 if (sink_elem == null) {
                     throw new Exception (Catalog.GetString ("Could not create sink element"));
                 }
@@ -85,7 +89,7 @@ namespace Banshee.GStreamerSharp
                     throw new Exception (Catalog.GetString ("Could not get sink pad from encoder"));
                 }
 
-                Add (conv_elem, resample_elem, encoder_elem, sink_elem);
+                this.Add (conv_elem, resample_elem, encoder_elem, sink_elem);
                 Element.Link (conv_elem, resample_elem, encoder_elem, sink_elem);
 
                 AddPad (new GhostPad ("sink", encoder_pad));
@@ -118,8 +122,8 @@ namespace Banshee.GStreamerSharp
             Format format = Format.Time;
             long position, duration;
 
-            if (!pipeline.QueryDuration (ref format, out duration) ||
-                !sink_bin.QueryPosition (ref format, out position)) {
+            if (!pipeline.QueryDuration (format, out duration) ||
+                !sink_bin.QueryPosition (format, out position)) {
                 return;
             }
 
@@ -176,15 +180,15 @@ namespace Banshee.GStreamerSharp
 
             pipeline = new Gst.Pipeline ("pipeline");
 
-            source_elem = ElementFactory.MakeFromUri (URIType.Src, current_track.Uri.AbsoluteUri, "source");
+            source_elem = Element.MakeFromUri (URIType.Src, current_track.Uri.AbsoluteUri, "source");
             if (source_elem == null) {
                 RaiseError (current_track, Catalog.GetString ("Could not create source element"));
                 return false;
             }
 
-            decoder_elem = ElementFactory.Make ("decodebin2", "decodebin2");
+            decoder_elem = ElementFactory.Make ("decodebin", "the decodebin");
             if (decoder_elem == null) {
-                RaiseError (current_track, Catalog.GetString ("Could not create decodebin2 plugin"));
+                RaiseError (current_track, Catalog.GetString ("Could not create decodebin plugin"));
                 return false;
             }
 
@@ -212,7 +216,6 @@ namespace Banshee.GStreamerSharp
 
         private void OnPadAdded (object sender, PadAddedArgs args)
         {
-            Caps caps;
             Structure str;
             Pad audiopad;
 
@@ -222,14 +225,14 @@ namespace Banshee.GStreamerSharp
                 return;
             }
 
-            caps = args.Pad.Caps;
+            Caps caps = args.NewPad.Caps;
             str = caps [0];
 
             if(!str.Name.Contains ("audio")) {
                 return;
             }
-           
-            args.Pad.Link (audiopad);
+
+            args.NewPad.Link (audiopad);
         }
 
         private bool OnBusMessage (Bus bus, Message msg)
@@ -244,12 +247,12 @@ namespace Banshee.GStreamerSharp
                     break;
 
                 case MessageType.Error:
-                    Enum error_type;
-                    string err_msg, debug;
+                    GLib.GException ex;
+                    string debug;
                     is_transcoding = false;
                     timer.Stop ();
-                    msg.ParseError (out error_type, out err_msg, out debug);
-                    RaiseError (current_track, String.Format ("{0} : {1}", err_msg, debug));
+                    msg.ParseError (out ex, out debug);
+                    RaiseError (current_track, String.Format ("{0} : {1}", ex.Message, debug));
                     timer.Stop ();
                     break;
 

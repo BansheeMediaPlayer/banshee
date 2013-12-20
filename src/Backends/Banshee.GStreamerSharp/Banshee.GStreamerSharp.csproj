@@ -32,7 +32,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="gstreamer-sharp, Version=0.9.2.0, Culture=neutral, PublicKeyToken=4956b48baf980190">
+    <Reference Include="gstreamer-sharp, Version=0.99.0.0, Culture=neutral, PublicKeyToken=4956b48baf980190">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\bin\bin\gstreamer-sharp.dll</HintPath>
     </Reference>
@@ -75,6 +75,7 @@
     <Compile Include="Banshee.GStreamerSharp\VideoManager.cs" />
     <Compile Include="Banshee.GStreamerSharp\Visualization.cs" />
     <Compile Include="Banshee.GStreamerSharp\DvdManager.cs" />
+    <Compile Include="Banshee.GStreamerSharp\GstExtensions.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

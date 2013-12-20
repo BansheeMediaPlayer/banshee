@@ -1,10 +1,14 @@
 //
 // CddaManager.cs
 //
-// Author:
+// Authors:
 //   Olivier Dufour <olivier.duff@gmail.com>
+//   Andrés G. Aragoneses <knocte@gmail.com>
+//   Stephan Sundermann <stephansundermann@gmail.com>
 //
-// Copyright 2011
+// Copyright (C) 2011 Olivier Dufour
+// Copyright (C) 2013 Andrés G. Aragoneses
+// Copyright (C) 2013 Stephan Sundermann
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -23,11 +27,11 @@
 // LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
+
 using System;
 
 using Gst;
-using Gst.Cdda;
-using Gst.BasePlugins;
+using Gst.Audio;
 
 using Hyena;
 
@@ -35,7 +39,7 @@ namespace Banshee.GStreamerSharp
 {
     public class CddaManager
     {
-        public CddaManager (PlayBin2 playbin)
+        public CddaManager (Element playbin)
         {
             if (playbin != null) {
                 playbin.AddNotification ("source", OnSourceChanged);
@@ -46,54 +50,53 @@ namespace Banshee.GStreamerSharp
             get; set;
         }
 
-        private CddaBaseSrc GetCddaSource (Element playbin)
+        private AudioCdSrc GetCddaSource (Element playbin)
         {
-            CddaBaseSrc source = null;
+            AudioCdSrc source = null;
 
             if (playbin == null) {
                 return null;
             }
 
-            source = playbin ["source"] as CddaBaseSrc;
+            source = playbin ["source"] as AudioCdSrc;
 
             return source;
         }
 
-        private void OnSourceChanged (object o, Gst.GLib.NotifyArgs args)
+        private void OnSourceChanged (object o, GLib.NotifyArgs args)
         {
             if (Device == null) {
                 return;
             }
+            var playbin = o as Element;
 
-            var cdda_src = GetCddaSource (o as PlayBin2);
+            var cdda_src = GetCddaSource (playbin);
             if (cdda_src == null) {
                 return;
             }
 
             // CddaBaseSrc elements should always have this property
-            if (cdda_src.HasProperty ("device")) {
-                Log.DebugFormat ("cdda: setting device property on source ({0})", Device);
-                cdda_src ["device"] = Device;
-            }
+            Log.DebugFormat ("cdda: setting device property on source ({0})", Device);
+            cdda_src ["device"] = Device;
 
             // If the GstCddaBaseSrc is cdparanoia, it will have this property, so set it
-            if (cdda_src.HasProperty ("paranoia-mode")) {
+            try {
                 cdda_src ["paranoia-mode"] = 0;
-            }
+            } catch (Gst.PropertyNotFoundException) { }
         }
 
-        bool SeekToTrack (PlayBin2 playbin, int track)
+        bool SeekToTrack (Element playbin, int track)
         {
             Format format = Format.Undefined;
-            CddaBaseSrc cdda_src = null;
-            State state;
+            Element cdda_src = null;
+            State state, pending;
 
             format = Util.FormatGetByNick ("track");
             if (format == Format.Undefined) {
                 return false;
             }
 
-            playbin.GetState (out state, 0);
+            playbin.GetState (out state, out pending, 0);
             if (state < State.Paused) {
                 // We can only seek if the pipeline is playing or paused, otherwise
                 // we just allow playbin to do its thing, which will re-start the
@@ -115,7 +118,7 @@ namespace Banshee.GStreamerSharp
             return false;
         }
 
-        public bool HandleURI (PlayBin2 playbin, string uri)
+        public bool HandleURI (Element playbin, string uri)
         {
             // Processes URIs like cdda://<track-number>#<device-node> and overrides
             // track transitioning through playbin if playback was already happening
