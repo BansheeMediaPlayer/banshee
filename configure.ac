@@ -338,6 +338,7 @@ ${PACKAGE}-${VERSION}
     Gtk#:                  ${gtk_sharp_version}
 
   Media/Graphics:
+    GStreamer# backend:    ${enable_gst_sharp}
     GStreamer C backend:   ${enable_gst_native}
     Clutter:               ${enable_clutter}
 
@@ -376,7 +377,6 @@ EOF
 if test "x$enable_moonlight" = "xyes";    then br=yes; echo "  Moonlight Effects:   ${enable_moonlight}";    fi
 if test "x$enable_remote_audio" = "xyes"; then br=yes; echo "  Remote Audio:        ${enable_remote_audio}"; fi
 if test "x$enable_torrent" = "xyes";      then br=yes; echo "  Torrent Podcasts:    ${enable_torrent}";      fi
-if test "x$enable_gst_sharp" = "xyes";    then br=yes; echo "  Gst# Backend:        ${enable_gst_sharp} (unfinished, experimental!)";      fi
 
 if test -d ${expanded_libdir}/${PACKAGE}; then
 	if test x$br = xyes; then echo; fi
