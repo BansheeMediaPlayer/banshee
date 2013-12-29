@@ -1,10 +1,6 @@
 #include <config.h>
 #include <webkit/webkit.h>
 
-#ifdef HAVE_LIBSOUP_GNOME
-#  include <libsoup/soup-gnome.h>
-#endif
-
 typedef struct OssiferSession OssiferSession;
 
 typedef void (* OssiferSessionCookieJarChanged)
@@ -50,19 +46,12 @@ ossifer_session_initialize (const gchar *cookie_db_path,
 
     session = webkit_get_default_session ();
 
-#ifdef HAVE_LIBSOUP_2_38
     g_object_set (session,
                   SOUP_SESSION_SSL_USE_SYSTEM_CA_FILE, TRUE,
                   NULL);
-#endif
 
-#ifdef HAVE_LIBSOUP_GNOME
     path = g_strdup_printf ("%s.sqlite", cookie_db_path);
-    cookie_jar = soup_cookie_jar_sqlite_new (path, FALSE);
-#else
-    path = g_strdup_printf ("%s.txt", cookie_db_path);
-    cookie_jar = soup_cookie_jar_text_new (path, FALSE);
-#endif
+    cookie_jar = soup_cookie_jar_db_new (path, FALSE);
     soup_session_add_feature (session, SOUP_SESSION_FEATURE (cookie_jar));
     g_object_unref (cookie_jar);
     g_free (path);
@@ -70,10 +59,6 @@ ossifer_session_initialize (const gchar *cookie_db_path,
     g_signal_connect (cookie_jar, "changed",
         G_CALLBACK (ossifer_session_cookie_jar_changed),
         session_instance);
-
-#ifdef HAVE_LIBSOUP_GNOME
-    soup_session_add_feature_by_type (session, SOUP_TYPE_PROXY_RESOLVER_GNOME);
-#endif
 
     return session_instance;
 }

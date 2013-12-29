@@ -11,11 +11,6 @@ libossifer_la_CFLAGS = $(LIBWEBKIT_CFLAGS) -D_FORTIFY_SOURCE=2 -ggdb3 -Wall
 libossifer_la_LIBADD = $(LIBWEBKIT_LIBS)
 libossifer_la_LDFLAGS = -avoid-version -module
 
-if HAVE_LIBSOUP_GNOME
-libossifer_la_CFLAGS += $(LIBSOUP_GNOME_CFLAGS)
-libossifer_la_LIBADD += $(LIBSOUP_GNOME_LIBS)
-endif
-
 all: $(top_builddir)/bin/libossifer.so
 
 $(top_builddir)/bin/libossifer.so: libossifer.la
