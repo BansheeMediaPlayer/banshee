@@ -48,10 +48,14 @@ namespace Banshee.Hardware.Gio
                     if (volume == null) {
                         yield return null;
                     }
+                    var device = Manager.GudevDeviceFromGioVolume (volume);
+                    if (device == null) {
+                        yield return null;
+                    }
                     yield return new Volume (new RawVolume (volume,
                                                             Manager,
                                                             new GioVolumeMetadataSource (volume),
-                                                            new UdevMetadataSource (Manager.GudevDeviceFromGioVolume (volume))));
+                                                            new UdevMetadataSource (device)));
                 }
             }
         }

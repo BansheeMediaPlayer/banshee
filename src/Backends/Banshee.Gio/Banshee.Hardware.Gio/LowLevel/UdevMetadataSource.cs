@@ -71,6 +71,9 @@ namespace Banshee.Hardware.Gio
 
         public UdevMetadataSource (GUdev.Device device)
         {
+            if (device == null) {
+                throw new ArgumentNullException ("device");
+            }
             Device = device;
         }
 
