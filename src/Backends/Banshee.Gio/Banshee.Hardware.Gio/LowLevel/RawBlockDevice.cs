@@ -47,10 +47,12 @@ namespace Banshee.Hardware.Gio
                     var volume = GLib.VolumeAdapter.GetObject (notVolume as GLib.Object);
                     if (volume == null) {
                         yield return null;
+                        continue;
                     }
                     var device = Manager.GudevDeviceFromGioVolume (volume);
                     if (device == null) {
                         yield return null;
+                        continue;
                     }
                     yield return new Volume (new RawVolume (volume,
                                                             Manager,
