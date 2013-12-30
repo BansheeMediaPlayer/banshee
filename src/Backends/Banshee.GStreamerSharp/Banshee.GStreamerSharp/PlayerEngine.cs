@@ -354,6 +354,12 @@ namespace Banshee.GStreamerSharp
             }
 
             Gst.Application.Init ();
+        }
+
+        protected override bool DelayedInitialize { get { return true; } }
+
+        protected override void Initialize ()
+        {
             playbin = ElementFactory.Make ("playbin", "the playbin");
 
             next_track_set = new ManualResetEvent (false);
@@ -381,18 +387,9 @@ namespace Banshee.GStreamerSharp
             video_manager.Initialize ();
 
             dvd_manager.FindNavigation (playbin);
+
             OnStateChanged (PlayerState.Ready);
-        }
 
-        protected override bool DelayedInitialize {
-            get {
-                return true;
-            }
-        }
-
-        protected override void Initialize ()
-        {
-            base.Initialize ();
             InstallPreferences ();
             audio_sink.ReplayGainEnabled = ReplayGainEnabledSchema.Get ();
         }
