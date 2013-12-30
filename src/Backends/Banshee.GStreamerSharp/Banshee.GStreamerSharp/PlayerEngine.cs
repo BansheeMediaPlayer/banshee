@@ -245,58 +245,25 @@ namespace Banshee.GStreamerSharp
                 set { preamp ["volume"] = Math.Pow (10.0, value / 20.0); }
             }
 
-            public int [] BandRange {
-                get {
-                    // http://gstreamer.freedesktop.org/data/doc/gstreamer/head/gst-plugins-good-plugins/html/gst-plugins-good-plugins-equalizer-10bands.html#GstIirEqualizer10Bands--band0
-                    return new [] { -24, 12 };
-
-                    /* TODO: should we check for band0::gain like it was done before? if yes, use paramspec.min|max retrieval
-                    int min = -1;
-                    int max = -1;
-
-                    //http://gstreamer.freedesktop.org/data/doc/gstreamer/head/gst-plugins-good-plugins/html/gst-plugins-good-plugins-equalizer-10bands.html
-                    PropertyInfo pspec = new PropertyInfo();
-
-
-                    if (equalizer.HasProperty ("band0::gain")) {
-                        pspec = equalizer.GetPropertyInfo ("band0::gain");
-                    } else if (equalizer.HasProperty ("band0")) {
-                        pspec = equalizer.GetPropertyInfo ("band0");
-                    }
-
-                    if (pspec.Name != null) {
-                        min = (int)((double)pspec.Min);
-                        max = (int)((double)pspec.Max);
-                    }
-                    */
-                }
-            }
+            // The gain range is the same for all bands, and hardcoded in the "equalizer-10bands" element
+            // http://gstreamer.freedesktop.org/data/doc/gstreamer/head/gst-plugins-good-plugins/html/gst-plugins-good-plugins-equalizer-10bands.html#GstIirEqualizer10Bands--band0
+            private int [] band_range = new int [] { -24, 12 };
+            public int [] BandRange { get { return band_range; } }
 
             private uint GetNBands ()
             {
                 if (equalizer == null) {
                     return 0;
-                }
-
-                return ChildProxyAdapter.GetObject (equalizer).ChildrenCount;
-            }
-
-            public uint [] EqualizerFrequencies {
-                get {
-                    uint count = GetNBands ();
-                    uint[] ret = new uint[count];
-
-                    if (equalizer != null) {
-                        IChildProxy equalizer_child_proxy = ChildProxyAdapter.GetObject (equalizer);
-                        for (uint i = 0; i < count; i++) {
-                            Gst.Object band = (Gst.Object)equalizer_child_proxy.GetChildByIndex (i);
-                            ret [i] = (uint)(double)band ["freq"];
-                        }
-                    }
-
-                    return ret;
+                } else {
+                    // We're using "equalizer-10bands" which always has 10 bands
+                    return 10;
                 }
             }
+
+            // Frequency band values are hardcoded in the "equalizer-10bands" element
+            // See http://gstreamer.freedesktop.org/data/doc/gstreamer/head/gst-plugins-good-plugins/html/gst-plugins-good-plugins-equalizer-10bands.html#gst-plugins-good-plugins-equalizer-10bands.property-details
+            private uint [] frequencies = new uint [] { 29, 59, 119, 237, 474, 947, 1889, 3770, 7523, 15011 }; 
+            public uint [] EqualizerFrequencies { get { return frequencies; } }
 
             public void SetEqualizerGain (uint band, double value)
             {
@@ -304,8 +271,7 @@ namespace Banshee.GStreamerSharp
                     if (band >= GetNBands ()) {
                         throw new ArgumentOutOfRangeException ("band", "Attempt to set out-of-range equalizer band");
                     }
-                    Gst.Object the_band = (Gst.Object)ChildProxyAdapter.GetObject (equalizer).GetChildByIndex (band);
-                    the_band ["gain"] = value;
+                    equalizer ["band" + band] = value;
                 }
             }
 
