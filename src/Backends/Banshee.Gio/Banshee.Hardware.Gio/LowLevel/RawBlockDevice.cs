@@ -43,15 +43,21 @@ namespace Banshee.Hardware.Gio
 
         public IEnumerable<Volume> Volumes {
             get {
-                foreach (var notVolume in Drive.Volumes) {
-                    var volume = GLib.VolumeAdapter.GetObject (notVolume as GLib.Object);
+                foreach (var maybe_volume in Drive.Volumes) {
+                    var volume = maybe_volume as GLib.Volume ?? GLib.VolumeAdapter.GetObject (maybe_volume as GLib.Object);
                     if (volume == null) {
                         yield return null;
+                        continue;
+                    }
+                    var device = Manager.GudevDeviceFromGioVolume (volume);
+                    if (device == null) {
+                        yield return null;
+                        continue;
                     }
                     yield return new Volume (new RawVolume (volume,
                                                             Manager,
                                                             new GioVolumeMetadataSource (volume),
-                                                            new UdevMetadataSource (Manager.GudevDeviceFromGioVolume (volume))));
+                                                            new UdevMetadataSource (device)));
                 }
             }
         }
