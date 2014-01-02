@@ -43,8 +43,8 @@ namespace Banshee.Hardware.Gio
 
         public IEnumerable<Volume> Volumes {
             get {
-                foreach (var notVolume in Drive.Volumes) {
-                    var volume = GLib.VolumeAdapter.GetObject (notVolume as GLib.Object);
+                foreach (var maybe_volume in Drive.Volumes) {
+                    var volume = maybe_volume as GLib.IVolume ?? GLib.VolumeAdapter.GetObject (maybe_volume as GLib.Object);
                     if (volume == null) {
                         yield return null;
                         continue;
