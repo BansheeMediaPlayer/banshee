@@ -31,7 +31,7 @@ namespace JavaScriptCore
 {
     public class JSContext
     {
-        public const string NATIVE_IMPORT = "libwebkitgtk-1.0.so.0";
+        public const string NATIVE_IMPORT = "libwebkitgtk-3.0.so.0";
 
         public IntPtr Raw { get; private set; }
 
