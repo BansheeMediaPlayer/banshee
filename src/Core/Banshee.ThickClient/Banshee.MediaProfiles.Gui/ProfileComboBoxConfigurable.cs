@@ -84,9 +84,9 @@ namespace Banshee.MediaProfiles.Gui
             };
 
             Combo.StateChanged += delegate {
-                if (Combo.State == StateType.Insensitive) {
+                if (Combo.State == StateType.Insensitive && description.Parent != null) {
                     ((Container)parent ?? this).Remove (description);
-                } else {
+                } else if (description.Parent == null) {
                     description.PackInto (parent ?? this, parent != null);
                 }
             };
