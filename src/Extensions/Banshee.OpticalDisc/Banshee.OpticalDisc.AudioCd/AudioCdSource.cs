@@ -191,12 +191,12 @@ namespace Banshee.OpticalDisc.AudioCd
                     ripper.Start ();
                 }
             } catch (Exception e) {
+                Log.Error (Catalog.GetString ("Could not import CD"), e.Message, true);
+                Log.Exception (e);
+
                 if (ripper != null) {
                     ripper.Dispose ();
                 }
-
-                Log.Error (Catalog.GetString ("Could not import CD"), e.Message, true);
-                Log.Exception (e);
             }
         }
 
