@@ -361,7 +361,7 @@ namespace Banshee.GStreamerSharp
                 case MessageType.Eos:
                     pipeline.SetState (State.Null);
                     timer.Stop ();
-                    OnNativeFinished ();
+                    OnFinished ();
                     break;
 
                 case MessageType.StateChanged:
@@ -412,7 +412,7 @@ namespace Banshee.GStreamerSharp
             }
         }
 
-        private void OnNativeFinished ()
+        private void OnFinished ()
         {
             SafeUri uri = new SafeUri (output_path);
             TrackInfo track = current_track;
