@@ -371,7 +371,7 @@ namespace Banshee.GStreamerSharp
                         string mimetype = ProbeMimeType ();
                         if (mimetype == null)
                             return true;
-                        Log.Information ("Ripper : Found Mime Type for encoded content: {0}", mimetype);
+                        Log.InformationFormat ("Ripper : Found Mime Type for encoded content: {0}", mimetype);
                         RefreshTrackMimeType (mimetype);
                     }
                     break;
