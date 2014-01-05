@@ -412,21 +412,6 @@ namespace Banshee.GStreamerSharp
             }
         }
 
-        private void OnNativeMimeType (IntPtr ripper, IntPtr mimetype)
-        {
-            if (mimetype != IntPtr.Zero && current_track != null) {
-                string type = GLib.Marshaller.Utf8PtrToString (mimetype);
-                if (type != null) {
-                    string [] split = type.Split (';', '.', ' ', '\t');
-                    if (split != null && split.Length > 0) {
-                        current_track.MimeType = split[0].Trim ();
-                    } else {
-                        current_track.MimeType = type.Trim ();
-                    }
-                }
-            }
-        }
-
         private void OnNativeFinished ()
         {
             SafeUri uri = new SafeUri (output_path);
