@@ -320,6 +320,11 @@ namespace Banshee.GStreamerSharp
             }
 
             Gst.Application.Init ();
+
+            var profile_manager = ServiceManager.MediaProfileManager;
+            if (profile_manager != null) {
+                profile_manager.Initialized += MediaProfileBackend.OnMediaProfileManagerInitialized;
+            }
         }
 
         protected override bool DelayedInitialize { get { return true; } }
