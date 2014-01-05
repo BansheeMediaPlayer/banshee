@@ -313,10 +313,9 @@ namespace Banshee.GStreamerSharp
                         string mimetype = str.Name;
                         int mpeg_layer;
 
-                        GLib.Value val = str.GetValue ("mpegversion");
-
                         // Prefer and adjust audio/mpeg, leaving MP3 as audio/mpeg
                         if (mimetype.StartsWith ("audio/mpeg")) {
+                            GLib.Value val = str.GetValue ("mpegversion");
                             mpeg_layer = (Int32)val.Val;
                             switch (mpeg_layer) {
                                 case 2: mimetype = "audio/mp2"; break;
