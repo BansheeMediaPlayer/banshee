@@ -48,6 +48,9 @@ namespace Banshee.GStreamerSharp
         INavigation Navigation {
             get; set;
         }
+        Element NavigationElement {
+            get; set;
+        }
 
         public string Device {
             get; set;
@@ -144,7 +147,7 @@ namespace Banshee.GStreamerSharp
             if (Navigation == null) {
                 FindNavigation (playbin);
             }
-            if (!(((Element)Navigation).Query (query) && NavigationAdapter.ParseCommands (query, out cmds))) {
+            if (!(NavigationElement.Query (query) && NavigationAdapter.ParseCommands (query, out cmds))) {
                 return;
             }
             foreach (NavigationCommand cmd in cmds) {
@@ -178,11 +181,10 @@ namespace Banshee.GStreamerSharp
                 }
             }
 
-            navigation = (video_sink is Bin)
+            NavigationElement = (video_sink is Bin)
                 ? ((Bin)video_sink).GetByInterface (NavigationAdapter.GType)
                 : video_sink;
-
-            Navigation = navigation as INavigation;
+            Navigation = NavigationAdapter.GetObject (navigation);
         }
 
         public void NotifyMouseMove (Element playbin, double x, double y)
