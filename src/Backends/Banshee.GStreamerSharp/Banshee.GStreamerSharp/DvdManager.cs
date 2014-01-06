@@ -168,7 +168,6 @@ namespace Banshee.GStreamerSharp
         public void FindNavigation (Element playbin)
         {
             Element video_sink = null;
-            Element navigation = null;
             INavigation previous_navigation;
 
             previous_navigation = Navigation;
@@ -184,7 +183,7 @@ namespace Banshee.GStreamerSharp
             NavigationElement = (video_sink is Bin)
                 ? ((Bin)video_sink).GetByInterface (NavigationAdapter.GType)
                 : video_sink;
-            Navigation = NavigationAdapter.GetObject (navigation);
+            Navigation = NavigationAdapter.GetObject (NavigationElement);
         }
 
         public void NotifyMouseMove (Element playbin, double x, double y)
