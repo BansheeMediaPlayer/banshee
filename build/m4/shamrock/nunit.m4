@@ -1,6 +1,7 @@
 AC_DEFUN([SHAMROCK_CHECK_NUNIT],
 [
 	NUNIT_REQUIRED=2.4.7
+	MONO_NUNIT_REQUIRED=2.4
 
 	AC_ARG_ENABLE(tests, AC_HELP_STRING([--enable-tests], [Enable NUnit tests]),
 		enable_tests=$enableval, enable_tests="no")
@@ -16,7 +17,7 @@ AC_DEFUN([SHAMROCK_CHECK_NUNIT],
 		AM_CONDITIONAL(ENABLE_TESTS, test "x$do_tests" = "xyes")
 
 		if test "x$do_tests" = "xno"; then
-			PKG_CHECK_MODULES(NUNIT, mono-nunit >= 2.4,
+			PKG_CHECK_MODULES(NUNIT, mono-nunit >= $MONO_NUNIT_REQUIRED,
 				do_tests="yes", do_tests="no")
 
 			AC_SUBST(NUNIT_LIBS)
