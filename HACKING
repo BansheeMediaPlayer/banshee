@@ -93,6 +93,11 @@ guidelines. If code is in violation, you will be asked to reformat it.
   12. Please write `private` accessors even if the language defaults
     to it in the context you're in.
 
+  13. For tests, use the Assert.That(actual, Is.EqualTo(expected)); syntax,
+      which is more readable, and prevents you from misplacing the expected
+      parameter in the place of the actual parameter (a mistake that is very
+      usual when using the older Assert.AreEqual(,) syntax).
+
 
 .NET API Naming Guidelines
 ==========================

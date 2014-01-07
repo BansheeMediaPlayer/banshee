@@ -129,15 +129,15 @@ namespace Lastfm.Tests
             string expected_without_querystring = expected.Substring (0, expected.IndexOf ("?"));
             string actual_without_querystring = actual.Substring (0, actual.IndexOf ("?"));
 
-            Assert.AreEqual (expected_without_querystring, actual_without_querystring);
+            Assert.That (actual_without_querystring, Is.EqualTo (expected_without_querystring));
 
             var expected_parameters = expected.Substring (expected.IndexOf ("?")).Split (new [] {'&'});
             var actual_parameters = new List<string> (actual.Substring (actual.IndexOf ("?")).Split (new [] {'&'}));
 
-            Assert.AreEqual (expected_parameters.Length, actual_parameters.Count);
+            Assert.That (actual_parameters.Count, Is.EqualTo (expected_parameters.Length));
             foreach (var expected_param in expected_parameters) {
-                Assert.IsTrue (actual_parameters.Contains (expected_param),
-                               String.Format ("URI {0} is missing parameter '{1}'", actual, expected_param));
+                Assert.That (actual_parameters.Contains (expected_param),
+                             String.Format ("URI {0} is missing parameter '{1}'", actual, expected_param));
             }
         }
 
