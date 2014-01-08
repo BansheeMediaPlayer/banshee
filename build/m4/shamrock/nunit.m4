@@ -2,21 +2,26 @@ AC_DEFUN([SHAMROCK_CHECK_NUNIT],
 [
 	NUNIT_REQUIRED=2.5
 
-	AC_ARG_ENABLE(tests, AC_HELP_STRING([--enable-tests], [Enable NUnit tests]),
-		enable_tests=$enableval, enable_tests="no")
+	do_tests=no
+	PKG_CHECK_MODULES(NUNIT, nunit >= $NUNIT_REQUIRED,
+		have_nunit="yes", have_nunit="no")
 
-	if test "x$enable_tests" = "xno"; then
-		do_tests=no
-		AM_CONDITIONAL(ENABLE_TESTS, false)
+	if test "x$have_nunit" = "xyes"; then
+		AC_ARG_ENABLE(tests,
+			AS_HELP_STRING([--disable-tests], [Disable NUnit tests]))
+
+		AS_IF([test "x$enable_tests" != "xno"], [
+			do_tests=yes
+			AC_SUBST(NUNIT_LIBS)
+		])
 	else
-		PKG_CHECK_MODULES(NUNIT, nunit >= $NUNIT_REQUIRED,
-			do_tests="yes", do_tests="no")
+		AC_ARG_ENABLE(tests,
+			AS_HELP_STRING([--enable-tests], [Enable NUnit tests]))
 
-		AC_SUBST(NUNIT_LIBS)
-		AM_CONDITIONAL(ENABLE_TESTS, test "x$do_tests" = "xyes")
-
-		if test "x$do_tests" = "xno"; then
+		AS_IF([test "x$enable_tests" = "xyes"], [
 			AC_MSG_ERROR([nunit was not found or is not up to date. Please install nunit $NUNIT_REQUIRED or higher.])
-		fi
+		])
+
 	fi
+	AM_CONDITIONAL(ENABLE_TESTS, test "x$do_tests" = "xyes")
 ])
