@@ -133,7 +133,7 @@ namespace Lastfm
         private StringBuilder incremental_data;
 
         // This is close to the max based on testing.
-        private const int MAX_POST_LENGTH = 7000;
+        private const int MAX_POST_LENGTH = 6900;
 
         public void AddParameter (string param_name, string param_value)
         {
