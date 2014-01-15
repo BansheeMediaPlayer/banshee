@@ -57,8 +57,10 @@ namespace Banshee.Dap.Gui
         protected override void OnDestroyed ()
         {
             base.OnDestroyed ();
-            source.Updated -= OnSourceUpdated;
-            source = null;
+            if (source != null) {
+                source.Updated -= OnSourceUpdated;
+                source = null;
+            }
         }
 
         private void BuildWidget ()
