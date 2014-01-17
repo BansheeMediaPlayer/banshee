@@ -37,11 +37,11 @@ RUNNER = \
 		echo -e "\033[1mRunning tests on $${asm}...\033[0m"; \
 		$(ENV_OPTIONS) $(NUNIT_CONSOLE) -nologo -noshadow $$asm; \
 		export CURRENT_EXIT_CODE="$$?"; \
-		if [[ $${CURRENT_EXIT_CODE} -eq 1 ]]; then \
+		if [[ $${CURRENT_EXIT_CODE} -ne 0 ]]; then \
 			export GLOBAL_EXIT_CODE=1; \
 		fi; \
 	done; \
-	if [[ $${GLOBAL_EXIT_CODE} -eq 1 ]]; then \
+	if [[ $${GLOBAL_EXIT_CODE} -ne 0 ]]; then \
 		echo "One or more tests failed"; \
 		exit $${GLOBAL_EXIT_CODE}; \
 	fi
