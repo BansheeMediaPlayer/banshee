@@ -30,12 +30,13 @@ TEST_ASSEMBLIES += Banshee.UbuntuOneMusicStore.dll
 endif
 
 ENV_OPTIONS = TZ=America/Chicago LC_ALL=it_IT LANG=it_IT
+MONO_OPTIONS = MONO_ENV_OPTIONS=--debug
 NUNIT_CONSOLE = $$(echo $$(which nunit-console2 || which nunit-console))
 RUNNER = \
 	GLOBAL_EXIT_CODE=0; \
 	for asm in $${TEST_ASSEMBLIES}; do \
 		echo -e "\033[1mRunning tests on $${asm}...\033[0m"; \
-		$(ENV_OPTIONS) $(NUNIT_CONSOLE) -nologo -noshadow $$asm \
+		$(ENV_OPTIONS) $(MONO_OPTIONS) $(NUNIT_CONSOLE) -nologo -noshadow $$asm \
 			|| GLOBAL_EXIT_CODE=$$?; \
 	done; \
 	if [[ $${GLOBAL_EXIT_CODE} -ne 0 ]]; then \
