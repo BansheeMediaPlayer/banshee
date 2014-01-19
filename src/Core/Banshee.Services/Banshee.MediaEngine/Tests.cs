@@ -169,7 +169,7 @@ namespace Banshee.MediaEngine
             Log.DebugFormat ("AssertTransition: {0}", String.Join (", ", states.Select (s => s.ToString ()).ToArray ()));
             int result_count = 0;
             var reset_event = new ManualResetEvent (false);
-            var handler = new PlayerEventHandler (a => {
+            var handler = new Action<PlayerEventArgs> (a => {
                 lock (states) {
                     if (result_count < states.Length) {
                         var sca = a as PlayerEventStateChangeArgs;
@@ -201,7 +201,15 @@ namespace Banshee.MediaEngine
                 reset_event.Set ();
             });
 
-            service.ConnectEvent (handler);
+            AssertionException exception = null;
+            var guarded_handler = new PlayerEventHandler (args => {
+                try {
+                    handler (args);
+                } catch (AssertionException ae) {
+                    exception = ae;
+                }
+            });
+            service.ConnectEvent (guarded_handler);
 
             if (action != null) action ();
 
@@ -212,9 +220,12 @@ namespace Banshee.MediaEngine
                     Assert.Fail (String.Format ("Waited {0}s for state/event, didn't happen", seconds));
                     break;
                 }
+                if (exception != null) {
+                    throw exception;
+                }
             }
 
-            service.DisconnectEvent (handler);
+            service.DisconnectEvent (guarded_handler);
         }
 
         //[Test]
