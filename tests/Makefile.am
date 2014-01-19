@@ -33,6 +33,10 @@ ENV_OPTIONS = TZ=America/Chicago LC_ALL=it_IT LANG=it_IT
 MONO_OPTIONS = MONO_ENV_OPTIONS=--debug
 NUNIT_CONSOLE = $$(echo $$(which nunit-console2 || which nunit-console))
 RUNNER = \
+	if [[ "x$(NUNIT_CONSOLE)" = "x" ]]; then \
+		echo "NUnit runner not found; please install nunit-console or nunit-console2"; \
+		exit 1; \
+	fi; \
 	GLOBAL_EXIT_CODE=0; \
 	for asm in $${TEST_ASSEMBLIES}; do \
 		echo -e "\033[1mRunning tests on $${asm}...\033[0m"; \
