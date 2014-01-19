@@ -208,7 +208,7 @@ namespace Banshee.MediaEngine
             while (result_count < states.Length) {
                 reset_event.Reset ();
                 if (!reset_event.WaitOne (3000)) {
-                    Assert.Fail (String.Format ("Waited 3s for state/event, didnt' happen"));
+                    Assert.Fail (String.Format ("Waited 3s for state/event, didn't happen"));
                     break;
                 }
             }
