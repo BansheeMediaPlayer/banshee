@@ -191,11 +191,12 @@ namespace Banshee.MediaEngine
                         var evnt = (states[result_count] as PlayerEvent?) ?? PlayerEvent.StateChange;
                         var state = states[result_count] as PlayerState?;
 
-                        result_count++;
-                        Assert.AreEqual (evnt, last_event);
+                        Assert.That (last_event, Is.EqualTo (evnt), String.Format ("Event[{0}] doesn't match", result_count));
                         if (state != null) {
-                            Assert.AreEqual (state, last_state);
+                            Assert.That (last_state, Is.EqualTo (state), String.Format ("State[{0}] doesn't match", result_count));
                         }
+
+                        result_count++;
                     }
                 }
                 reset_event.Set ();
@@ -221,7 +222,7 @@ namespace Banshee.MediaEngine
                     break;
                 }
                 if (exception != null) {
-                    throw exception;
+                    throw new AssertionException (exception.Message, exception);
                 }
             }
 
