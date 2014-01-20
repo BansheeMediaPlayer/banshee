@@ -81,6 +81,12 @@ namespace Banshee.Collection.Gui.Tests
                 var artist_album_id = CoverArtSpec.CreateArtistAlbumId ("Metallica", "Master Of Puppets");
                 jpg_file_path = CoverArtSpec.GetPathForSize (artist_album_id, CustomArtworkManager.SizeTest); // i.e.: /home/knocte/.cache/media-art/36/album-d33f25dbd7dfb4817a7e99f6bc2de49e.jpg"
                 var pixbuf = new Pixbuf (png_file_path);
+
+                var dir = System.IO.Path.GetDirectoryName (jpg_file_path);
+                if (!System.IO.Directory.Exists (dir)) {
+                    System.IO.Directory.CreateDirectory (dir);
+                }
+
                 pixbuf.Save (jpg_file_path, "jpeg");
 
                 var artwork_manager = new CustomArtworkManager ();
