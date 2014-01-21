@@ -220,13 +220,7 @@ namespace Banshee.MediaEngine
                 pending_track = null;
             }
 
-            if (ThreadAssist.InMainThread) {
-                RaiseEventChanged (args);
-            } else {
-                ThreadAssist.ProxyToMain (delegate {
-                    RaiseEventChanged (args);
-                });
-            }
+            ThreadAssist.ProxyToMain (() => RaiseEventChanged (args));
         }
 
         private void RaiseEventChanged (PlayerEventArgs args)
