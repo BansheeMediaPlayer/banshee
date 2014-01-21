@@ -145,7 +145,7 @@ namespace Banshee.Collection
         }
 
         public virtual bool IsPlaying {
-            get { return (IsPlayingMethod != null) ? IsPlayingMethod (this) : false; }
+            get { return IsPlayingMethod != null && IsPlayingMethod (this); }
         }
 
         [Exportable (ExportName = "URI")]
