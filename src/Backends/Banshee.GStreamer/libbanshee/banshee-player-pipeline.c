@@ -111,7 +111,7 @@ bp_next_track_starting (BansheePlayer *player)
     player->in_gapless_transition = FALSE;
 
     if (player->next_track_starting_cb != NULL) {
-        bp_debug ("[gapless] Triggering track-change signal");
+        bp_debug ("Triggering track-change signal");
         player->next_track_starting_cb (player);
     }
     return FALSE;
