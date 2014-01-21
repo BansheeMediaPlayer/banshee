@@ -92,6 +92,7 @@ namespace Banshee.MediaEngine
 
         public void Open (TrackInfo track)
         {
+            pending_track = null;
             HandleOpen (track);
         }
 
