@@ -3,8 +3,10 @@
 //
 // Author:
 //   Gabriel Burt <gburt@novell.com>
+//   Andrés G. Aragoneses <knocte@gmail.com>
 //
 // Copyright (C) 2010 Novell, Inc.
+// Copyright (C) 2014 Andrés G. Aragoneses
 //
 // Permission is hereby granted, free of charge, to any person obtaining
 // a copy of this software and associated documentation files (the
@@ -91,8 +93,39 @@ namespace Banshee.MediaEngine
             AssertTransition (() => service.TrackInfoUpdated (), PlayerEvent.TrackInfoUpdated);
             LoadAndPlay ("A_girl.ogg");
             AssertTransition (() => service.TrackInfoUpdated (), PlayerEvent.TrackInfoUpdated);
+        }
 
-            AssertTransition (() => service.Dispose (), PlayerState.Paused, PlayerState.Idle);
+        [Test] // https://bugzilla.gnome.org/show_bug.cgi?id=722731
+        public void TestThatInvalidTracksShouldNotBecomeCurrentTrack ()
+        {
+            var a_valid_track = "A_boy.ogg";
+            var a_valid_uri = new SafeUri (Paths.Combine (TestsDir, "data", a_valid_track));
+
+            var a_track_that_doesnt_exit = "this_does_not_exist_in_the_data_folder.ogg";
+            var an_invalid_track = new SafeUri (Paths.Combine (TestsDir, "data", a_track_that_doesnt_exit));
+
+            service.Open (a_valid_uri);
+            var current_track = service.CurrentTrack;
+            Assert.IsNotNull (current_track);
+            Assert.IsTrue (current_track.Uri.AbsolutePath.EndsWith (a_valid_track));
+
+            service.Play ();
+            current_track = service.CurrentTrack;
+            Assert.IsNotNull (current_track);
+            Assert.IsTrue (current_track.Uri.AbsolutePath.EndsWith (a_valid_track));
+
+            service.SetNextTrack (an_invalid_track);
+            WaitUntil (PlayerState.Idle);
+            Assert.IsNull (service.CurrentTrack);
+
+            service.Open (a_valid_uri);
+            service.Play ();
+            WaitUntil (PlayerEvent.StartOfStream);
+
+            current_track = service.CurrentTrack;
+            Assert.IsNotNull (current_track);
+            var actual_filename = System.IO.Path.GetFileName (SafeUri.UriToFilename (current_track.Uri));
+            Assert.AreEqual (a_valid_track, actual_filename);
         }
 
         private void LoadAndPlay (string filename)
@@ -279,6 +312,62 @@ namespace Banshee.MediaEngine
         public void ModifyEvent (PlayerEvent eventMask, PlayerEventHandler handler)
         */
 
+        private void WaitUntil (PlayerEvent @event)
+        {
+            WaitUntil (@event, null);
+        }
+
+        private void WaitUntil (PlayerState state)
+        {
+            WaitUntil (null, state);
+        }
+
+        private void WaitUntil (PlayerEvent? @event, PlayerState? state)
+        {
+            Exception exception = null;
+            PlayerEvent? last_event = null;
+            PlayerState? last_state = null;
+
+            var reset_event = new ManualResetEvent (false);
+            var handler = new PlayerEventHandler (a => {
+                try {
+                    var sca = a as PlayerEventStateChangeArgs;
+                    last_state = sca != null ? sca.Current : service.CurrentState;
+                    last_event = a.Event;
+                    reset_event.Set ();
+                } catch (Exception ex) {
+                    exception = ex;
+                }
+            });
+            service.ConnectEvent (handler);
+
+            const int seconds = 3;
+            int max_count = 10;
+
+            Func<bool> matches = () =>
+                (@event != null && @event.Value.Equals (last_event.Value))
+                || (state != null && state.Value.Equals (last_state.Value));
+
+            do {
+                reset_event.Reset ();
+                if (!reset_event.WaitOne (TimeSpan.FromSeconds (seconds))) {
+                    Assert.Fail (String.Format ("Waited {0}s for state/event, didn't happen", seconds));
+                    break;
+                }
+                if (exception != null) {
+                    throw exception;
+                }
+                if (max_count == 0) {
+                    Assert.Fail (String.Format ("More than {0} events happened, but not {1}", max_count, @event));
+                } else {
+                    max_count--;
+                }
+            } while (!matches ());
+
+            service.DisconnectEvent (handler);
+        }
+
+
         Thread main_thread;
         GLib.MainLoop main_loop;
         bool started;
@@ -308,6 +397,8 @@ namespace Banshee.MediaEngine
         [TestFixtureTearDown]
         public void Teardown ()
         {
+            AssertTransition (() => service.Dispose (), PlayerState.Paused, PlayerState.Idle);
+
             GLib.Idle.Add (delegate { main_loop.Quit (); return false; });
             main_thread.Join ();
             main_thread = null;
