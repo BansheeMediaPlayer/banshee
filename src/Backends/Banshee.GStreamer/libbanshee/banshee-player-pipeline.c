@@ -55,14 +55,14 @@ bp_pipeline_process_tag (const GstTagList *tag_list, const gchar *tag_name, Bans
 {
     const GValue *value;
     gint value_count;
-    
+
     g_return_if_fail (IS_BANSHEE_PLAYER (player));
 
     value_count = gst_tag_list_get_tag_size (tag_list, tag_name);
     if (value_count < 1) {
         return;
     }
-    
+
     value = gst_tag_list_get_value_index (tag_list, tag_name, 0);
 
     if (value != NULL && player->tag_found_cb != NULL) {
@@ -95,11 +95,11 @@ bp_next_track_starting (BansheePlayer *player)
     has_video = bp_stream_has_video (player->playbin);
     if (player->in_gapless_transition && has_video) {
         gchar *uri;
-    
+
         bp_debug ("[Gapless]: Aborting gapless transition to stream with video.  Triggering normal track change");
         g_object_get (G_OBJECT (player->playbin), "uri", &uri, NULL);
         gst_element_set_state (player->playbin, GST_STATE_READY);
-        
+
         g_object_set (G_OBJECT (player->playbin), "uri", uri, NULL);
         gst_element_set_state (player->playbin, GST_STATE_PLAYING);
         g_free (uri);
@@ -124,7 +124,7 @@ bp_pipeline_bus_callback (GstBus *bus, GstMessage *message, gpointer userdata)
 
     g_return_val_if_fail (IS_BANSHEE_PLAYER (player), FALSE);
     g_return_val_if_fail (message != NULL, FALSE);
-    
+
     switch (GST_MESSAGE_TYPE (message)) {
         case GST_MESSAGE_EOS: {
             if (player->eos_cb != NULL) {
@@ -132,29 +132,29 @@ bp_pipeline_bus_callback (GstBus *bus, GstMessage *message, gpointer userdata)
             }
             break;
         }
-            
+
         case GST_MESSAGE_STATE_CHANGED: {
             GstState old, new, pending;
             gst_message_parse_state_changed (message, &old, &new, &pending);
-            
+
             _bp_missing_elements_handle_state_changed (player, old, new);
-            
+
             if (player->state_changed_cb != NULL && GST_MESSAGE_SRC (message) == GST_OBJECT (player->playbin)) {
                 player->state_changed_cb (player, old, new, pending);
             }
             break;
         }
-        
+
         case GST_MESSAGE_BUFFERING: {
             const GstStructure *buffering_struct;
             gint buffering_progress = 0;
-            
+
             buffering_struct = gst_message_get_structure (message);
             if (!gst_structure_get_int (buffering_struct, "buffer-percent", &buffering_progress)) {
                 g_warning ("Could not get completion percentage from BUFFERING message");
                 break;
             }
-            
+
             if (buffering_progress >= 100) {
                 player->buffering = FALSE;
                 if (player->target_state == GST_STATE_PLAYING) {
@@ -167,46 +167,46 @@ bp_pipeline_bus_callback (GstBus *bus, GstMessage *message, gpointer userdata)
                     gst_element_set_state (player->playbin, GST_STATE_PAUSED);
                 }
                 player->buffering = TRUE;
-            } 
+            }
 
             if (player->buffering_cb != NULL) {
                 player->buffering_cb (player, buffering_progress);
             }
             break;
         }
-        
+
         case GST_MESSAGE_TAG: {
             GstTagList *tags;
-            
+
             if (GST_MESSAGE_TYPE (message) != GST_MESSAGE_TAG) {
                 break;
             }
-            
+
             gst_message_parse_tag (message, &tags);
-            
+
             if (GST_IS_TAG_LIST (tags)) {
                 gst_tag_list_foreach (tags, (GstTagForeachFunc)bp_pipeline_process_tag, player);
                 gst_tag_list_free (tags);
             }
             break;
         }
-    
+
         case GST_MESSAGE_ERROR: {
             GError *error;
             gchar *debug;
-            
+
             _bp_pipeline_destroy (player);
-            
+
             if (player->error_cb != NULL) {
                 gst_message_parse_error (message, &error, &debug);
                 player->error_cb (player, error->domain, error->code, error->message, debug);
                 g_error_free (error);
                 g_free (debug);
             }
-            
+
             break;
-        } 
-        
+        }
+
         case GST_MESSAGE_ELEMENT: {
             _bp_missing_elements_process_message (player, message);
             _bp_dvd_elements_process_message (player, message);
@@ -227,10 +227,10 @@ bp_pipeline_bus_callback (GstBus *bus, GstMessage *message, gpointer userdata)
             }
             break;
         }
-        
+
         default: break;
     }
-    
+
     return TRUE;
 }
 
@@ -282,9 +282,9 @@ _bp_pipeline_construct (BansheePlayer *player)
     GstElement *audiosinkqueue;
     GstElement *eq_audioconvert = NULL;
     GstElement *eq_audioconvert2 = NULL;
-    
+
     g_return_val_if_fail (IS_BANSHEE_PLAYER (player), FALSE);
-    
+
     // Playbin is the core element that handles autoplugging (finding the right
     // source and decoder elements) based on source URI and stream content
     player->playbin = gst_element_factory_make ("playbin", "playbin");
@@ -307,7 +307,7 @@ _bp_pipeline_construct (BansheePlayer *player)
             audiosink = gst_element_factory_make ("alsasink", "audiosink");
         }
     }
-    
+
     g_return_val_if_fail (audiosink != NULL, FALSE);
 
     // Set the profile to "music and movies" (gst-plugins-good 0.10.3)
@@ -333,12 +333,12 @@ _bp_pipeline_construct (BansheePlayer *player)
     }
     bp_debug ("Audiosink has volume: %s",
         player->audiosink_has_volume ? "YES" : "NO");
-        
-    
+
+
     // Create a custom audio sink bin that will hold the real primary sink
     player->audiobin = gst_bin_new ("audiobin");
     g_return_val_if_fail (player->audiobin != NULL, FALSE);
-    
+
     // Our audio sink is a tee, so plugins can attach their own pipelines
     player->audiotee = gst_element_factory_make ("tee", "audiotee");
     g_return_val_if_fail (player->audiotee != NULL, FALSE);
@@ -364,14 +364,14 @@ _bp_pipeline_construct (BansheePlayer *player)
         eq_audioconvert2 = gst_element_factory_make ("audioconvert", "audioconvert2");
         player->preamp = gst_element_factory_make ("volume", "preamp");
     }
-    
+
     // Add elements to custom audio sink
     gst_bin_add_many (GST_BIN (player->audiobin), player->audiotee, player->volume, audiosinkqueue, audiosink, NULL);
-    
+
     if (player->equalizer != NULL) {
         gst_bin_add_many (GST_BIN (player->audiobin), eq_audioconvert, eq_audioconvert2, player->equalizer, player->preamp, NULL);
     }
-   
+
     // Ghost pad the audio bin so audio is passed from the bin into the tee
     teepad = gst_element_get_static_pad (player->audiotee, "sink");
     gst_element_add_pad (player->audiobin, gst_ghost_pad_new ("sink", teepad));
@@ -392,10 +392,10 @@ _bp_pipeline_construct (BansheePlayer *player)
     _bp_replaygain_pipeline_rebuild (player);
 
     _bp_vis_pipeline_setup (player);
-    
+
     // Now that our internal audio sink is constructed, tell playbin to use it
     g_object_set (G_OBJECT (player->playbin), "audio-sink", player->audiobin, NULL);
-    
+
     // Connect to the bus to get messages
     bus = gst_pipeline_get_bus (GST_PIPELINE (player->playbin));    
     gst_bus_add_watch (bus, bp_pipeline_bus_callback, player);
@@ -420,11 +420,11 @@ void
 _bp_pipeline_destroy (BansheePlayer *player)
 {
     g_return_if_fail (IS_BANSHEE_PLAYER (player));
-    
+
     if (player->playbin == NULL) {
         return;
     }
-    
+
     if (GST_IS_ELEMENT (player->playbin)) {
         player->target_state = GST_STATE_NULL;
         gst_element_set_state (player->playbin, GST_STATE_NULL);
@@ -436,8 +436,8 @@ _bp_pipeline_destroy (BansheePlayer *player)
 
         gst_object_unref (GST_OBJECT (player->playbin));
     }
-    
+
     _bp_vis_pipeline_destroy (player);
-    
+
     player->playbin = NULL;
 }
