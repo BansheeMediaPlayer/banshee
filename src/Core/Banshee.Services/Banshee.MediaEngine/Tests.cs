@@ -337,6 +337,13 @@ namespace Banshee.MediaEngine
 
         private void WaitUntil (PlayerEvent? @event, PlayerState? state)
         {
+            if (@event == null && state == null) {
+                throw new ArgumentException ("Event or state must be non-null");
+            }
+            if (@event != null && state != null) {
+                throw new ArgumentException ("Event and state cannot be both non-null");
+            }
+
             Exception exception = null;
             PlayerEvent? last_event = null;
             PlayerState? last_state = null;
@@ -357,6 +364,8 @@ namespace Banshee.MediaEngine
             const int seconds = 3;
             int max_count = 10;
 
+            string event_or_state_desc = @event != null ? @event.ToString () : state.ToString ();
+
             Func<bool> matches = () =>
                 (@event != null && @event.Value.Equals (last_event.Value))
                 || (state != null && state.Value.Equals (last_state.Value));
@@ -371,7 +380,7 @@ namespace Banshee.MediaEngine
                     throw exception;
                 }
                 if (max_count == 0) {
-                    Assert.Fail (String.Format ("More than {0} events happened, but not {1}", max_count, @event));
+                    Assert.Fail (String.Format ("Many events/states happened, but not {0}", event_or_state_desc));
                 } else {
                     max_count--;
                 }
