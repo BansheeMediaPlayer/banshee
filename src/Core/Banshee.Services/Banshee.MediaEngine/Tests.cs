@@ -224,7 +224,14 @@ namespace Banshee.MediaEngine
                         var evnt = (states[result_count] as PlayerEvent?) ?? PlayerEvent.StateChange;
                         var state = states[result_count] as PlayerState?;
 
-                        Assert.That (last_event, Is.EqualTo (evnt), String.Format ("Event[{0}] doesn't match", result_count));
+                        var evnt_or_state_desc = (evnt == PlayerEvent.StateChange ?
+                            evnt.ToString() + ">" + states[result_count].ToString () : evnt.ToString ());
+                        var last_evnt_or_state_desc = (last_event == PlayerEvent.StateChange ?
+                            last_event.ToString () + ">" + sca.Current.ToString () : last_event.ToString ());
+
+                        Assert.That (last_event, Is.EqualTo (evnt),
+                            String.Format ("Event[{0}] doesn't match (should be {1}, it was {2})",
+                                           result_count, evnt_or_state_desc, last_evnt_or_state_desc));
                         if (state != null) {
                             Assert.That (last_state, Is.EqualTo (state), String.Format ("State[{0}] doesn't match", result_count));
                         }
