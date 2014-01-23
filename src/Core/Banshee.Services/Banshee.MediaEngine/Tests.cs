@@ -478,11 +478,19 @@ namespace Banshee.MediaEngine
         [TestFixtureTearDown]
         public void Teardown ()
         {
-            AssertTransition (() => service.Dispose (), PlayerState.Paused, PlayerState.Idle);
+            try {
 
-            GLib.Idle.Add (delegate { main_loop.Quit (); return false; });
-            main_thread.Join ();
-            main_thread = null;
+                AssertTransition (() => service.Dispose (), PlayerState.Paused, PlayerState.Idle);
+
+            } finally {
+
+                GLib.Idle.Add (delegate {
+                    main_loop.Quit ();
+                    return false;
+                });
+                main_thread.Join ();
+                main_thread = null;
+            }
         }
 
         int play_when_idles = 0;
