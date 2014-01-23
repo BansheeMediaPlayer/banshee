@@ -31,6 +31,7 @@
 #if ENABLE_TESTS
 
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 
@@ -104,23 +105,22 @@ namespace Banshee.MediaEngine
             var a_track_that_doesnt_exit = "this_does_not_exist_in_the_data_folder.ogg";
             var an_invalid_track = new SafeUri (Paths.Combine (TestsDir, "data", a_track_that_doesnt_exit));
 
-            service.Open (a_valid_uri);
-            var current_track = service.CurrentTrack;
-            Assert.IsNotNull (current_track);
-            Assert.IsTrue (current_track.Uri.AbsolutePath.EndsWith (a_valid_track));
+            TrackInfo current_track = null;
 
-            service.Play ();
-            current_track = service.CurrentTrack;
-            Assert.IsNotNull (current_track);
-            Assert.IsTrue (current_track.Uri.AbsolutePath.EndsWith (a_valid_track));
+            WaitUntil (PlayerEvent.Error, () => {
+                service.Open (a_valid_uri);
+                current_track = service.CurrentTrack;
+                Assert.IsNotNull (current_track);
+                Assert.IsTrue (current_track.Uri.AbsolutePath.EndsWith (a_valid_track));
 
-            service.SetNextTrack (an_invalid_track);
-            WaitUntil (PlayerState.Idle);
-            Assert.IsNull (service.CurrentTrack);
+                service.SetNextTrack (an_invalid_track);
+                service.Play ();
+            });
 
-            service.Open (a_valid_uri);
-            service.Play ();
-            WaitUntil (PlayerEvent.StartOfStream);
+            WaitUntil (PlayerEvent.StartOfStream, () => {
+                service.Open (a_valid_uri);
+                service.Play ();
+            });
 
             current_track = service.CurrentTrack;
             Assert.IsNotNull (current_track);
@@ -332,18 +332,21 @@ namespace Banshee.MediaEngine
         public void ModifyEvent (PlayerEvent eventMask, PlayerEventHandler handler)
         */
 
-        private void WaitUntil (PlayerEvent @event)
+        private void WaitUntil (PlayerEvent @event, System.Action action)
         {
-            WaitUntil (@event, null);
+            WaitUntil (@event, null, action);
         }
 
-        private void WaitUntil (PlayerState state)
+        private void WaitUntil (PlayerState state, System.Action action)
         {
-            WaitUntil (null, state);
+            WaitUntil (null, state, action);
         }
 
-        private void WaitUntil (PlayerEvent? @event, PlayerState? state)
+        private void WaitUntil (PlayerEvent? @event, PlayerState? state, System.Action action)
         {
+            if (action == null) {
+                throw new ArgumentNullException ("action");
+            }
             if (@event == null && state == null) {
                 throw new ArgumentException ("Event or state must be non-null");
             }
@@ -351,47 +354,76 @@ namespace Banshee.MediaEngine
                 throw new ArgumentException ("Event and state cannot be both non-null");
             }
 
+            object lock_object = new object ();
+            string evnt_or_state_desc = @event != null ? @event.Value.ToString () : state.Value.ToString ();
+
             Exception exception = null;
-            PlayerEvent? last_event = null;
-            PlayerState? last_state = null;
+
+
+            Func<PlayerEventArgs, bool> matches = (a) => {
+                if (a == null) {
+                    throw new ArgumentNullException ("a");
+                }
+                var sca = a as PlayerEventStateChangeArgs;
+                PlayerEvent? last_event = a.Event;
+                PlayerState? last_state = null;
+                if (sca != null) {
+                    last_state = sca.Current;
+                }
+
+                return (@event != null && @event.Value.Equals (last_event.Value))
+                || (state != null && last_state != null && state.Value.Equals (last_state.Value));
+            };
+            var args_queue = new Queue<PlayerEventArgs> ();
 
             var reset_event = new ManualResetEvent (false);
+            reset_event.Reset ();
+
             var handler = new PlayerEventHandler (a => {
                 try {
-                    var sca = a as PlayerEventStateChangeArgs;
-                    last_state = sca != null ? sca.Current : service.CurrentState;
-                    last_event = a.Event;
-                    reset_event.Set ();
+                    lock (lock_object) {
+                        args_queue.Enqueue (a);
+                    }
                 } catch (Exception ex) {
                     exception = ex;
                 }
+                reset_event.Set ();
             });
             service.ConnectEvent (handler);
 
+            action ();
+
             const int seconds = 3;
-            int max_count = 10;
+            int count = 0;
+            const int max_count = 10;
 
             string event_or_state_desc = @event != null ? @event.ToString () : state.ToString ();
 
-            Func<bool> matches = () =>
-                (@event != null && @event.Value.Equals (last_event.Value))
-                || (state != null && state.Value.Equals (last_state.Value));
-
+            bool found = false;
             do {
-                reset_event.Reset ();
                 if (!reset_event.WaitOne (TimeSpan.FromSeconds (seconds))) {
-                    Assert.Fail (String.Format ("Waited {0}s for state/event, didn't happen", seconds));
+                    Assert.Fail (String.Format ("Waited {0}s for {1} at iteration {2}, but didn't happen",
+                                                seconds, evnt_or_state_desc, count));
                     break;
                 }
+                lock (lock_object) {
+                    while (args_queue.Count > 0) {
+                        var arg = args_queue.Dequeue ();
+                        if (matches (arg)) {
+                            found = true;
+                            break;
+                        }
+                        count++;
+                    }
+                }
+
                 if (exception != null) {
                     throw exception;
                 }
-                if (max_count == 0) {
-                    Assert.Fail (String.Format ("Many events/states happened, but not {0}", event_or_state_desc));
-                } else {
-                    max_count--;
+                if (count > max_count) {
+                    Assert.Fail (String.Format ("More than {0} events/states happened, but not {1}", max_count, event_or_state_desc));
                 }
-            } while (!matches ());
+            } while (!found);
 
             service.DisconnectEvent (handler);
         }
