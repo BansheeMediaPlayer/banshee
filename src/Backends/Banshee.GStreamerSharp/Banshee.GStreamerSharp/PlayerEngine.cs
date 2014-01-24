@@ -541,10 +541,12 @@ namespace Banshee.GStreamerSharp
 
         private void HandleStreamStart ()
         {
-            // Set the current track as fully played before signaling EndOfStream.
-            ServiceManager.PlayerEngine.IncrementLastPlayed (1.0);
-            OnEventChanged (PlayerEvent.EndOfStream);
-            OnEventChanged (PlayerEvent.StartOfStream);
+            if (CurrentState != PlayerState.Loaded && CurrentState != PlayerState.Loading) {
+                // Set the current track as fully played before signaling EndOfStream.
+                ServiceManager.PlayerEngine.IncrementLastPlayed (1.0);
+                OnEventChanged (PlayerEvent.EndOfStream);
+                OnEventChanged (PlayerEvent.StartOfStream);
+            }
         }
 
         private void HandleError (GLib.GException ex)
