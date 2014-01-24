@@ -417,7 +417,7 @@ namespace Banshee.GStreamer
 
                 // If the state is anything other than loaded, assume we were just playing a track and should
                 // EoS it and increment its playcount etc.
-                if (CurrentState != PlayerState.Loaded) {
+                if (CurrentState != PlayerState.Loaded && CurrentState != PlayerState.Loading) {
                     ServiceManager.PlayerEngine.IncrementLastPlayed (1.0);
                     OnEventChanged (PlayerEvent.EndOfStream);
                     OnEventChanged (PlayerEvent.StartOfStream);
