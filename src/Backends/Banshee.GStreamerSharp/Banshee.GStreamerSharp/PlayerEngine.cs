@@ -756,6 +756,8 @@ namespace Banshee.GStreamerSharp
                 if (audio_sink.VolumeNeedsSaving) {
                     PlayerEngineService.VolumeSchema.Set (value);
                 }
+
+                OnEventChanged (PlayerEvent.Volume);
             }
         }
 
