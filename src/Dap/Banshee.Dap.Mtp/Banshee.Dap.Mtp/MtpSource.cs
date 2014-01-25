@@ -311,7 +311,7 @@ namespace Banshee.Dap.Mtp
         private long bytes_capacity;
         public override long BytesCapacity {
             get {
-                if (Monitor.TryEnter (mtp_device)) {
+                if (mtp_device != null && Monitor.TryEnter (mtp_device)) {
                     try {
                         bytes_capacity = 0;
                         foreach (DeviceStorage s in mtp_device.GetStorage ()) {
