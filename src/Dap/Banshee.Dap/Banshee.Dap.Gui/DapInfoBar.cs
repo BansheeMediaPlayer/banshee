@@ -50,10 +50,6 @@ namespace Banshee.Dap.Gui
             BuildWidget ();
         }
 
-        protected DapInfoBar (IntPtr handle) : base (handle)
-        {
-        }
-
         protected override void OnDestroyed ()
         {
             base.OnDestroyed ();
