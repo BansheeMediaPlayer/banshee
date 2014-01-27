@@ -1,30 +1,27 @@
 ===============================================================================
-Banshee 2.6.1 - 2013-04-16
+Banshee 2.6.2 - 2014-__-__
 ===============================================================================
 
-    Banshee 2.6.1 is a stable, bug-fix release building on Banshee 2.6.0.
+    Banshee 2.6.2 is a stable, bug-fix release building on Banshee 2.6.1.
 
     Minor enhancements:
-      * bgo#697683: Dap.MassStorage: add product id for (WebOS) Palm Pre 2
-      * DatabaseImportManager: Add .amr to import whitelist
+      * Add basic AppData file for inclusion in open source app stores
 
-    Notable Bugs Fixed (15 fixed since 2.6.0):
+    Notable Bugs Fixed (13 fixed since 2.6.1):
 
-      * bgo#689123: DatabaseTrackInfo: don't default to MusicFilePattern when null
-      * bgo#696700: DapPropertiesDialog: Make sure progress bar value is valid
-      * bgo#696877: PlaylistFileUtil: Only import playlist items that are files
-      * bgo#692374: Avoid race when using GConf and DBus with threads
-      * bgo#696111: ListView: Do not enable a11y when it would cause freezes
-      * bgo#658142: Dap: better check for the playing track before ejecting
-      * bgo#684089: PrimarySource: prevent AddTrackJob respawn if cancelled
-      * bgo#689016: LastFm: Avoid crashing if scrobbling response is not JSON
-      * bgo#691694: configure: stop using obsolete AutoMake macro
-      * bgo#661902: Docs: Removed "Common Problems"
-      * bgo#688540: Mtp: Fix file type in sync with libmtp > 1.1.0
-      * bgo#639947: Dap: Use Unicode codes for quotation marks
-      * bgo#685920: LastFm: Null check for scrobble parameters
-      * bgo#685131: Add GTK category in .desktop files to comply with spec
-      * bgo#679769: StatisticsPage: Fix crash when no tracks are selected
+      * bgo#621222: [gapless] Playcount shouldn't be incremented as soon as song plays
+      * bgo#722947: prevent a crash when dealing with Nexus4
+      * bgo#722731: avoid highlighting wrong track after invalid track was played
+      * bgo#722219: avoid crash when disconnecting Nexus4
+      * bgo#722209: avoid crash when connecting Nexus4
+      * bgo#721203: CD audio source doesn't show up when inserting it
+      * bgo#709376: avoid warnings when shutting down
+      * ArtworkManager: prevent wrong retreival of empty artwork from cache
+      * bgo#686908: doesn't remember volume setting in Linux
+      * bgo#700753: crash if 1st transcoding job yields error
+      * bgo#687495: hang when dealing with Windows Phone
+      * bgo#699735: hang when mounting a LVM volume
+      * bgo#698347: configure fails with --disable-gnome (Mac)
 
 ===============================================================================
 SOURCES / PACKAGES
@@ -33,9 +30,9 @@ SOURCES / PACKAGES
 Sources
 -------
 
-    * Banshee 2.6.1 Tarballs:
-      http://ftp.gnome.org/pub/GNOME/sources/banshee/2.6/banshee-2.6.1.tar.xz
-      http://ftp.gnome.org/pub/GNOME/sources/banshee/2.6/banshee-2.6.1.sha256sum
+    * Banshee 2.6.2 Tarballs:
+      http://ftp.gnome.org/pub/GNOME/sources/banshee/2.6/banshee-2.6.2.tar.xz
+      http://ftp.gnome.org/pub/GNOME/sources/banshee/2.6/banshee-2.6.2.sha256sum
 
 Packages
 --------
@@ -58,7 +55,7 @@ REPORT BUGS - HELP THE PROJECT - GROW THE COMMUNITY
     hesitate to file bugs!
 
     * http://banshee.fm/contribute/file-bugs
-    * http://bugzilla.gnome.org/enter_bug.cgi?product=banshee&version=2.6.1
+    * http://bugzilla.gnome.org/enter_bug.cgi?product=banshee&version=2.6.2
 
 
 ===============================================================================
