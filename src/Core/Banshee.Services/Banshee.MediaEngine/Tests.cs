@@ -182,9 +182,14 @@ namespace Banshee.MediaEngine
             WaitFor (default_ignore, states);
         }
 
+        private void WaitFor (System.Func<PlayerState?, PlayerEvent?, bool> ignore, System.Action action, params object [] states)
+        {
+            AssertTransition (ignore, action, states);
+        }
+
         private void WaitFor (System.Func<PlayerState?, PlayerEvent?, bool> ignore, params object [] states)
         {
-            AssertTransition (ignore, null, states);
+            WaitFor (ignore, null, states);
         }
 
         private void AssertTransition (System.Action action, params object [] states)
