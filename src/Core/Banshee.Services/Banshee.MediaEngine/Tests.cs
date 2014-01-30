@@ -200,6 +200,16 @@ namespace Banshee.MediaEngine
         private void AssertTransition (System.Func<PlayerState?, PlayerEvent?, bool> ignore, System.Action action, params object [] states)
         {
             Log.DebugFormat ("AssertTransition: {0}", String.Join (", ", states.Select (s => s.ToString ()).ToArray ()));
+
+            foreach (var state in states) {
+                if (state == null) {
+                    throw new ArgumentException ("states array cannot contain nulls");
+                }
+                if (state.GetType () != typeof (PlayerEvent) && state.GetType () != typeof (PlayerState)) {
+                    throw new ArgumentException ("states array can only contain states or events, not " + state.GetType ().FullName);
+                }
+            }
+
             int result_count = 0;
             var reset_event = new ManualResetEvent (false);
             var handler = new Action<PlayerEventArgs> (a => {
