@@ -4,7 +4,7 @@ include $(top_srcdir)/build/gnome-doc-utils.make
 DOC_ID = banshee
 DOC_INCLUDES = legal.xml
 DOC_FIGURES = \
-	main-window.png
+	figures/main-window.png
 
 DOC_PAGES = \
 	amazon.page \
