@@ -50,6 +50,11 @@ namespace Banshee.MediaEngine
         private PlayerState current_state = PlayerState.NotReady;
         private PlayerState last_state = PlayerState.NotReady;
 
+        public DateTime CurrentTrackTimeStamp {
+            get;
+            private set;
+        }
+
         // will be changed to PlayerState.Idle after going to PlayerState.Ready
         private PlayerState idle_state = PlayerState.NotReady;
 
@@ -67,6 +72,7 @@ namespace Banshee.MediaEngine
 
         public void Reset ()
         {
+            CurrentTrackTimeStamp = DateTime.Now;
             current_track = null;
             OnStateChanged (idle_state);
         }
@@ -136,6 +142,7 @@ namespace Banshee.MediaEngine
             }
 
             try {
+                CurrentTrackTimeStamp = DateTime.Now;
                 current_track = track;
                 OnStateChanged (PlayerState.Loading);
                 OpenUri (uri, track.HasAttribute (TrackMediaAttributes.VideoStream) || track is UnknownTrackInfo);
@@ -217,6 +224,7 @@ namespace Banshee.MediaEngine
             if (args.Event == PlayerEvent.StartOfStream && pending_track != null) {
                 Log.DebugFormat ("OnEventChanged called with StartOfStream.  Replacing current_track with pending_track: \"{0}\"",
                                  pending_track.DisplayTrackTitle);
+                CurrentTrackTimeStamp = DateTime.Now;
                 current_track = pending_track;
                 pending_track = null;
             }

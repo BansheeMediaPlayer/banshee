@@ -396,8 +396,19 @@ namespace Banshee.GStreamerSharp
             OnEventChanged (PlayerEvent.PrepareVideoWindow);
         }
 
+        private System.DateTime about_to_finish_time_stamp;
+
         void OnAboutToFinish (object o, GLib.SignalArgs args)
         {
+            // HACK: ugly workaround for GStreamer's bug http://bugzilla.gnome.org/722769
+            // long story short, AboutToFinish signal firing twice for the same play of the same track
+            // causes problems when Gapless Enabled because of RequestNextTrack event being fired twice
+            if (about_to_finish_time_stamp == CurrentTrackTimeStamp) {
+                return;
+            }
+            about_to_finish_time_stamp = CurrentTrackTimeStamp;
+
+
             // This is needed to make Shuffle-by-* work.
             // Shuffle-by-* uses the LastPlayed field to determine what track in the grouping to play next.
             // Therefore, we need to update this before requesting the next track.

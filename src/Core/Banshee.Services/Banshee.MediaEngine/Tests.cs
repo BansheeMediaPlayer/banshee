@@ -128,6 +128,42 @@ namespace Banshee.MediaEngine
             Assert.AreEqual (a_valid_track, actual_filename);
         }
 
+        private void StopEngine ()
+        {
+            service.SetNextTrack ((TrackInfo)null);
+            service.Play ();
+        }
+
+        [Test]
+        // make sure https://bugzilla.gnome.org/show_bug.cgi?id=722769 doesn't happen, or that our workaround works
+        public void TestThatRequestNextTrackEventsAreNotDuplicated ()
+        {
+            WaitUntil (PlayerState.Idle, StopEngine);
+
+            var a_valid_track1 = "A_boy.ogg";
+            var a_valid_uri1 = new SafeUri (Paths.Combine (TestsDir, "data", a_valid_track1));
+
+            var a_valid_track2 = "A_girl.ogg";
+            var a_valid_uri2 = new SafeUri (Paths.Combine (TestsDir, "data", a_valid_track2));
+
+            var ignore_events_func = new Func<PlayerState?, PlayerEvent?, bool> ((s, e) =>
+                e != null && (e.Value == PlayerEvent.Volume));
+
+            WaitFor (ignore_events_func,
+                () => {
+                    service.Open (a_valid_uri1);
+                    service.Play ();
+                },
+                PlayerState.Loading,
+                PlayerState.Loaded,
+                PlayerEvent.StartOfStream,
+                PlayerState.Playing);
+
+            WaitFor (ignore_events_func,
+                PlayerEvent.RequestNextTrack, // <- this is the key, notice that we expect only one, not two
+                PlayerState.Idle);
+        }
+
         private void LoadAndPlay (string filename)
         {
             track_intercepts = 0;
@@ -406,7 +442,11 @@ namespace Banshee.MediaEngine
             });
             service.ConnectEvent (handler);
 
+            bool return_early = (state != null && service.CurrentState.Equals (state.Value));
             action ();
+            if (return_early) {
+                return;
+            }
 
             const int seconds = 3;
             int count = 0;
