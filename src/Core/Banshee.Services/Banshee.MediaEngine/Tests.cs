@@ -480,7 +480,14 @@ namespace Banshee.MediaEngine
         {
             try {
 
-                AssertTransition (() => service.Dispose (), PlayerState.Paused, PlayerState.Idle);
+                var a_valid_track1 = "A_boy.ogg";
+                var a_valid_uri = new SafeUri (Paths.Combine (TestsDir, "data", a_valid_track1));
+                WaitUntil (PlayerState.Playing, () => {
+                    service.Open (a_valid_uri);
+                    service.Play ();
+                });
+
+                AssertTransition (service.Dispose, PlayerState.Paused, PlayerState.Idle);
 
             } finally {
 
