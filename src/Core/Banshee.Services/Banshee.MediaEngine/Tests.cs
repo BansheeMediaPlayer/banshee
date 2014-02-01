@@ -146,20 +146,20 @@ namespace Banshee.MediaEngine
             var a_valid_track2 = "A_girl.ogg";
             var a_valid_uri2 = new SafeUri (Paths.Combine (TestsDir, "data", a_valid_track2));
 
-            var ignore_events_func = new Func<PlayerState?, PlayerEvent?, bool> ((s, e) =>
-                e != null && (e.Value == PlayerEvent.Volume));
+            var ignore_all_except_reqnext_and_idle = new Func<PlayerState?, PlayerEvent?, bool> ((s, e) => {
+                bool is_req_or_idle = PlayerEvent.RequestNextTrack.Equals (e.Value) ||
+                    (PlayerEvent.StateChange.Equals (e.Value) && PlayerState.Idle.Equals (s.Value));
+                return !is_req_or_idle;
+            });
 
-            WaitFor (ignore_events_func,
-                () => {
-                    service.Open (a_valid_uri1);
-                    service.Play ();
-                },
-                PlayerState.Loading,
-                PlayerState.Loaded,
-                PlayerEvent.StartOfStream,
-                PlayerState.Playing);
+            System.Action action = () => {
+                service.Open (a_valid_uri1);
+                service.Play ();
+            };
+            WaitUntil (PlayerState.Playing,
+                action);
 
-            WaitFor (ignore_events_func,
+            WaitFor (ignore_all_except_reqnext_and_idle,
                 PlayerEvent.RequestNextTrack, // <- this is the key, notice that we expect only one, not two
                 PlayerState.Idle);
         }
