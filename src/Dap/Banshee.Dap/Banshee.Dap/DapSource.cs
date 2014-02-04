@@ -540,18 +540,6 @@ namespace Banshee.Dap
             get { return BytesCapacity - BytesUsed - Math.Max (0, BytesReserved - BytesData); }
         }
 
-        public override bool CanRemoveTracks {
-            get { return base.CanRemoveTracks; }
-        }
-
-        public override bool CanDeleteTracks {
-            get { return base.CanDeleteTracks; }
-        }
-
-        public override bool CanAddTracks {
-            get { return base.CanAddTracks; }
-        }
-
         public override bool PlaylistsReadOnly {
             get { return IsReadOnly; }
         }
