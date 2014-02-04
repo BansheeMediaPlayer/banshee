@@ -98,6 +98,13 @@ namespace Banshee.Dap
 
         public override void Dispose ()
         {
+            if (load_thread != null) {
+                if (load_thread.IsAlive) {
+                    load_thread.Abort ();
+                }
+                load_thread = null;
+            }
+
             Flush ();
 
             PurgeTemporaryPlaylists ();
@@ -282,10 +289,12 @@ namespace Banshee.Dap
 
         public void LoadDeviceContents ()
         {
-            ThreadPool.QueueUserWorkItem (ThreadedLoadDeviceContents);
+            load_thread = ThreadAssist.Spawn (ThreadedLoadDeviceContents);
         }
 
-        private void ThreadedLoadDeviceContents (object state)
+        private Thread load_thread;
+
+        private void ThreadedLoadDeviceContents ()
         {
             try {
                 PurgeTracks ();
