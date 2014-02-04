@@ -254,6 +254,11 @@ namespace Banshee.Dap
 
         internal void UnmapDevice (string uuid)
         {
+            ThreadAssist.SpawnFromMain (() => Unmap (uuid));
+        }
+
+        private void Unmap (string uuid)
+        {
             DapSource source = null;
             lock (sync) {
                 if (sources.ContainsKey (uuid)) {
@@ -264,14 +269,14 @@ namespace Banshee.Dap
             }
 
             if (source != null) {
-                try {
-                    source.Dispose ();
-                    ThreadAssist.ProxyToMain (delegate {
+                ThreadAssist.ProxyToMain (delegate {
+                    try {
+                        source.Dispose ();
                         ServiceManager.SourceManager.RemoveSource (source);
-                    });
-                } catch (Exception e) {
-                    Log.Exception (e);
-                }
+                    } catch (Exception e) {
+                        Log.Exception (e);
+                    }
+                });
             }
         }
 
