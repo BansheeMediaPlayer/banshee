@@ -328,7 +328,7 @@ namespace Banshee.SoundMenu
                 current_nf.Show ();
 
             } catch (Exception e) {
-                Log.Warning ("Cannot show notification", e.Message, false);
+                Log.Exception ("Cannot show notification", e);
             }
         }
 

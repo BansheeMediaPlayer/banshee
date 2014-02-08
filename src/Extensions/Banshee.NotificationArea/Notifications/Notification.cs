@@ -262,6 +262,10 @@ namespace Notifications {
 		}
 
 		public void AttachToWidget (Gtk.Widget widget) {
+            if (widget == null) {
+                throw new ArgumentNullException ("widget");
+            }
+
 			int x, y;
 
 			widget.Window.GetOrigin (out x, out y);

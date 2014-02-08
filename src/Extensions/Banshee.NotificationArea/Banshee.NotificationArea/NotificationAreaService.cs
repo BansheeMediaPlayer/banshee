@@ -484,7 +484,7 @@ namespace Banshee.NotificationArea
                     current_nf.Summary = current_track.DisplayTrackTitle;
                     current_nf.Body = message;
                     current_nf.IconName = Banshee.ServiceStack.Application.IconName;
-                    if (notif_area != null) {
+                    if (notif_area != null && notif_area.Widget != null) {
                         current_nf.AttachToWidget (notif_area.Widget);
                     }
                 }
@@ -520,7 +520,7 @@ namespace Banshee.NotificationArea
 
                 current_nf.Show ();
             } catch (Exception e) {
-                Hyena.Log.Warning (Catalog.GetString ("Cannot show notification"), e.Message, false);
+                Hyena.Log.Exception (Catalog.GetString ("Cannot show notification"), e);
             }
         }
 
