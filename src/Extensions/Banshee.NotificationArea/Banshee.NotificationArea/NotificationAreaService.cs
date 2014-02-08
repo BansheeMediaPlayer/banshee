@@ -475,7 +475,9 @@ namespace Banshee.NotificationArea
                     current_nf.Summary = current_track.DisplayTrackTitle;
                     current_nf.Body = message;
                     current_nf.IconName = image;
-                    current_nf.AttachToWidget (notif_area.Widget);
+                    if (notif_area != null && notif_area.Widget != null) {
+                        current_nf.AttachToWidget (notif_area.Widget);
+                    }
                 }
                 current_nf.Urgency = Urgency.Low;
                 current_nf.Timeout = 4500;
@@ -484,7 +486,7 @@ namespace Banshee.NotificationArea
                 }
                 current_nf.Show ();
             } catch (Exception e) {
-                Hyena.Log.Warning (Catalog.GetString ("Cannot show notification"), e.Message, false);
+                Hyena.Log.Exception (Catalog.GetString ("Cannot show notification"), e);
             }
         }
 
