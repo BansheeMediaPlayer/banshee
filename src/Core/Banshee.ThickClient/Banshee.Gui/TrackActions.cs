@@ -43,7 +43,6 @@ using Banshee.Collection.Database;
 using Banshee.ServiceStack;
 using Banshee.Widgets;
 using Banshee.Gui;
-using Banshee.Gui.Dialogs;
 using Banshee.Gui.Widgets;
 using Hyena.Data;
 
@@ -281,8 +280,7 @@ namespace Banshee.Gui
                         filter_selection.Clear (false);
                         filter_selection.SelectAll ();
                     } else {
-                        Log.Error ("Filter focused, but selection is not filter selection!");
-                        Console.WriteLine (System.Environment.StackTrace);
+                        Log.Exception (new Exception ("Filter focused, but selection is not filter selection!"));
                     }
                 }
 
