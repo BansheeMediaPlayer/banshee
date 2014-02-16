@@ -140,11 +140,8 @@ namespace Banshee.MediaEngine
         {
             WaitUntil (PlayerState.Idle, StopEngine);
 
-            var a_valid_track1 = "A_boy.ogg";
-            var a_valid_uri1 = new SafeUri (Paths.Combine (TestsDir, "data", a_valid_track1));
-
-            var a_valid_track2 = "A_girl.ogg";
-            var a_valid_uri2 = new SafeUri (Paths.Combine (TestsDir, "data", a_valid_track2));
+            var a_valid_track = "A_boy.ogg";
+            var a_valid_uri = new SafeUri (Paths.Combine (TestsDir, "data", a_valid_track));
 
             var ignore_all_except_reqnext_and_idle = new Func<PlayerState?, PlayerEvent?, bool> ((s, e) => {
                 bool is_req_or_idle = PlayerEvent.RequestNextTrack.Equals (e.Value) ||
@@ -153,7 +150,7 @@ namespace Banshee.MediaEngine
             });
 
             System.Action action = () => {
-                service.Open (a_valid_uri1);
+                service.Open (a_valid_uri);
                 service.Play ();
             };
             WaitUntil (PlayerState.Playing,
