@@ -31,7 +31,6 @@ using System;
 using Hyena;
 using Hyena.Collections;
 
-using Banshee.Base;
 using Banshee.Sources;
 using Banshee.ServiceStack;
 using Banshee.Collection;
@@ -194,7 +193,7 @@ namespace Banshee.PlaybackController
         {
             if (!StopWhenFinished) {
                 if (RepeatMode == PlaybackRepeatMode.RepeatSingle) {
-                    QueuePlayTrack ();
+                    RepeatCurrentAsNext ();
                 } else {
                     last_was_skipped = false;
                     Next (RepeatMode == PlaybackRepeatMode.RepeatAll, false);
@@ -205,6 +204,15 @@ namespace Banshee.PlaybackController
 
             StopWhenFinished = false;
             return false;
+        }
+
+        private void RepeatCurrentAsNext ()
+        {
+            raise_started_after_transition = true;
+
+            player_engine.SetNextTrack (CurrentTrack);
+
+            OnTransition ();
         }
 
         public void First ()
