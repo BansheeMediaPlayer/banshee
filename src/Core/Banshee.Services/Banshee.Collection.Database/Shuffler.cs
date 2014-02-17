@@ -171,6 +171,15 @@ namespace Banshee.Collection.Database
                 if (track == null && repeat) {
                     random_began_at = (random_began_at == last_random) ? DateTime.Now : last_random;
                     track = GetRandomTrack (mode, repeat, true);
+
+                    if (track == null) {
+                        // previous retry could still return null because it still discards last track, to avoid duplicates
+                        // so, last resort: 1 track with shuffle ON and repeat ON is equivalent to repeat SINGLE and cannot
+                        // avoid duplicate playbacks
+                        random_began_at = DateTime.MaxValue;
+                        track = GetRandomTrack (mode, repeat, true);
+                        random_began_at = DateTime.Now;
+                    }
                 }
 
                 last_random = DateTime.Now;
