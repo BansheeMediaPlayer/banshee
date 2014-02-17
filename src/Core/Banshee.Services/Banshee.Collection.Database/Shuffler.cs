@@ -58,7 +58,6 @@ namespace Banshee.Collection.Database
         private static HyenaSqliteCommand add_discard_cmd = new HyenaSqliteCommand (String.Format ("{0} VALUES (?, ?, ?, ?)", modify_sql));
 
         private DateTime random_began_at = DateTime.MinValue;
-        private DateTime last_random = DateTime.MinValue;
         private List<RandomBy> random_modes;
         private Dictionary<TypeExtensionNode, RandomBy> node_map = new Dictionary<TypeExtensionNode, RandomBy> ();
         private DatabaseTrackListModel model;
@@ -81,6 +80,8 @@ namespace Banshee.Collection.Database
 
         private void OnPlayerEvent (Banshee.MediaEngine.PlayerEventArgs args)
         {
+            // TODO: check if we can assign last_track before returning the track inside GetRandom(), to avoid subscribing
+            //       to an event (if yes, the field should probably be renamed to last_random_track)
             last_track = ServiceManager.PlayerEngine.CurrentTrack;
         }
 
@@ -164,16 +165,14 @@ namespace Banshee.Collection.Database
                 }
 
                 if (random_began_at < notPlayedSince) {
-                    random_began_at = last_random = notPlayedSince;
+                    random_began_at = notPlayedSince;
                 }
 
                 TrackInfo track = GetRandomTrack (mode, repeat, resetSinceTime);
                 if (track == null && repeat) {
-                    random_began_at = (random_began_at == last_random) ? DateTime.Now : last_random;
+                    random_began_at = last_track.LastPlayed;
                     track = GetRandomTrack (mode, repeat, true);
                 }
-
-                last_random = DateTime.Now;
                 return track;
             }
         }
@@ -222,7 +221,7 @@ namespace Banshee.Collection.Database
 
                 if (!random.IsReady) {
                     if (!random.Next (random_began_at) && repeat) {
-                        random_began_at = last_random;
+                        random_began_at = last_track.LastPlayed;
                         random.Next (random_began_at);
                     }
                 }
