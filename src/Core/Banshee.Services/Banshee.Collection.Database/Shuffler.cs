@@ -168,7 +168,7 @@ namespace Banshee.Collection.Database
                 }
 
                 TrackInfo track = GetRandomTrack (mode, repeat, resetSinceTime);
-                if (track == null && (repeat || mode != "off")) {
+                if (track == null && repeat) {
                     random_began_at = (random_began_at == last_random) ? DateTime.Now : last_random;
                     track = GetRandomTrack (mode, repeat, true);
                 }
