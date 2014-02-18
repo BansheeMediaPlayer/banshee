@@ -73,9 +73,9 @@ namespace Banshee.Dap.Mtp
 
             MediaAttributes = TrackMediaAttributes.AudioStream;
             if (device != null) {
-                SetAttributeIf (file.InFolder (device.PodcastFolder) || Genre == "Podcast", TrackMediaAttributes.Podcast);
-                SetAttributeIf (file.InFolder (device.MusicFolder), TrackMediaAttributes.Music);
-                SetAttributeIf (file.InFolder (device.VideoFolder), TrackMediaAttributes.VideoStream);
+                SetAttributeIf (file.InFolder (device.PodcastFolder, true) || Genre == "Podcast", TrackMediaAttributes.Podcast);
+                SetAttributeIf (file.InFolder (device.MusicFolder, true), TrackMediaAttributes.Music);
+                SetAttributeIf (file.InFolder (device.VideoFolder, true), TrackMediaAttributes.VideoStream);
             }
 
             // This can be implemented if there's enough people requesting it

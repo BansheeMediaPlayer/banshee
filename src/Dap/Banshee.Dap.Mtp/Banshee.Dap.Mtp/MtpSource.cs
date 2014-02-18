@@ -273,7 +273,7 @@ namespace Banshee.Dap.Mtp
                     using (System.IO.TextWriter writer = new System.IO.StreamWriter (Banshee.IO.File.OpenWrite (empty_file, true))) {
                         writer.Write ("foo");
                     }
-                    Track mtp_track = new Track (System.IO.Path.GetFileName (empty_file.LocalPath), 3);
+                    Track mtp_track = new Track (System.IO.Path.GetFileName (empty_file.LocalPath), 3, mtp_device);
 
                     mtp_device.UploadTrack (empty_file.AbsolutePath, mtp_track, mtp_device.MusicFolder);
                     mtp_device.Remove (mtp_track);
@@ -425,7 +425,7 @@ namespace Banshee.Dap.Mtp
 
         public Track TrackInfoToMtpTrack (TrackInfo track, SafeUri fromUri)
         {
-			Track f = new Track (System.IO.Path.GetFileName (fromUri.LocalPath), (ulong) Banshee.IO.File.GetSize (fromUri));
+            Track f = new Track (System.IO.Path.GetFileName (fromUri.LocalPath), (ulong) Banshee.IO.File.GetSize (fromUri), mtp_device);
             MtpTrackInfo.ToMtpTrack (track, f);
             return f;
         }
