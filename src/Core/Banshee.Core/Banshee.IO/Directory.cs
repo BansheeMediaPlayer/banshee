@@ -37,36 +37,67 @@ namespace Banshee.IO
     {
         public static bool Exists (string directory)
         {
+            if (String.IsNullOrEmpty (directory)) {
+                throw new ArgumentNullException ("directory");
+            }
+
             return Provider.Directory.Exists (Provider.GetPath (directory));
         }
 
         public static void Create (string directory)
         {
+            if (String.IsNullOrEmpty (directory)) {
+                throw new ArgumentNullException ("directory");
+            }
+
             Provider.Directory.Create (Provider.GetPath (directory));
         }
 
         public static void Move (SafeUri from, SafeUri to)
         {
+            if (from == null) {
+                throw new ArgumentNullException ("from");
+            }
+            if (to == null) {
+                throw new ArgumentNullException ("to");
+            }
+
             Provider.Directory.Move (from, to);
         }
 
         public static void Delete (string directory)
         {
+            if (String.IsNullOrEmpty (directory)) {
+                throw new ArgumentNullException ("directory");
+            }
+
             Provider.Directory.Delete (Provider.GetPath (directory));
         }
 
         public static void Delete (string directory, bool recursive)
         {
+            if (String.IsNullOrEmpty (directory)) {
+                throw new ArgumentNullException ("directory");
+            }
+
             Provider.Directory.Delete (Provider.GetPath (directory), recursive);
         }
 
         public static IEnumerable<SafeUri> GetFiles (string directory)
         {
+            if (String.IsNullOrEmpty (directory)) {
+                throw new ArgumentNullException ("directory");
+            }
+
             return Provider.Directory.GetFiles (Provider.GetPath (directory));
         }
 
         public static IEnumerable<SafeUri> GetDirectories (string directory)
         {
+            if (String.IsNullOrEmpty (directory)) {
+                throw new ArgumentNullException ("directory");
+            }
+
             return Provider.Directory.GetDirectories (Provider.GetPath (directory));
         }
     }
