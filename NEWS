@@ -1,5 +1,5 @@
 ===============================================================================
-Banshee 2.6.2 - 2014-__-__
+Banshee 2.6.2 - 2014-02-18
 ===============================================================================
 
     Banshee 2.6.2 is a stable, bug-fix release building on Banshee 2.6.1.
@@ -7,8 +7,16 @@ Banshee 2.6.2 - 2014-__-__
     Minor enhancements:
       * Add basic AppData file for inclusion in open source app stores
 
-    Notable Bugs Fixed (15 fixed since 2.6.1):
+    Notable Bugs Fixed (23 fixed since 2.6.1):
 
+      * bgo#724678: Mtp: tracks in nested folders were not being shown
+      * bgo#724656: Dap: fix several issues with the Disconnect operation (context menu)
+      * bgo#724645: Dap: avoid NullReferenceException at shutdown if Mtp device was mounted
+      * bgo#627391: [gapless] fix smooth transition for Repeat-Single mode
+      * bgo#671221: fix Repeat-All mode if there are less than 3 tracks and Shuffle is ON
+      * bgo#724515: fix Repeat-OFF mode when Shuffle is ON
+      * bgo#723889: Notifications: avoid warning printed in the log
+      * bgo#723040: DapService: avoid freezing Banshee when unmapping device
       * bgo#679938: [gapless] Repeat always on
       * bgo#674293: [gapless] Banshee ignores "stop when finished"
       * bgo#621222: [gapless] Playcount shouldn't be incremented as soon as song plays
@@ -70,12 +78,13 @@ Contributors For This Release
     The following people directly contributed to the release of this version
     of Banshee. Without their help, there would be no release!
 
-     Andres G. Aragoneses, Michael Catanzaro, Roderich Schupp, Timo Dörr
+     Andres G. Aragoneses, Michael Catanzaro, Nicholas Little, Roderich Schupp,
+     Timo Dörr
 
     The following people contributed updated translations to this release.
     Without them, our project's reach would be much more limited.
 
      Andika Triwidada, Aurimas Černius, Balázs Úr, Benjamin Steinwender,
-     Enrico Nicoletto, Daniel Mustieles, Dimitris Spingos, Marek Černocký,
-     Matej Urbančič, Piotr Drąg, Rūdolfs Mazurs, Seong-ho Cho
+     Enrico Nicoletto, Daniel Mustieles, Dimitris Spingos, Мирослав Николић,
+     Marek Černocký, Matej Urbančič, Piotr Drąg, Rūdolfs Mazurs, Seong-ho Cho
 
