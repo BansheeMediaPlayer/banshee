@@ -104,7 +104,8 @@ namespace Banshee.Dap
             PurgeTracks ();
 
             if (dap_info_bar != null) {
-                dap_info_bar.Destroy ();
+                var info_bar = dap_info_bar;
+                ThreadAssist.ProxyToMain (info_bar.Destroy);
                 dap_info_bar = null;
             }
 

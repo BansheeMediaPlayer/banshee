@@ -348,7 +348,7 @@ namespace Banshee.Sources.Gui
                 // Resort the tree store. This is performed in an event handler
                 // known not to conflict with gtk_tree_view_bin_expose() to prevent
                 // errors about corrupting the TreeView's internal state.
-                foreach (Source dsource in ServiceManager.SourceManager.Sources) {
+                foreach (Source dsource in ServiceManager.SourceManager.Sources.ToArray ()) {
                     TreeIter iter = store.FindSource (dsource);
                     if (!TreeIter.Zero.Equals (iter) &&
                         (int)store.GetValue (iter, (int)SourceModel.Columns.Order) != dsource.Order)
