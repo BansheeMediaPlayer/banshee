@@ -139,7 +139,11 @@ namespace Mtp
             set { trackStruct.composer = value; }
         }
 
-        public Track (string filename, ulong filesize) : this (new TrackStruct (), null)
+        public Track (string filename, ulong filesize) : this (filename, filesize, null)
+        {
+        }
+
+        public Track (string filename, ulong filesize, MtpDevice device) : this (new TrackStruct (), device)
         {
             this.trackStruct.filename = filename;
             this.trackStruct.filesize = filesize;
@@ -154,9 +158,23 @@ namespace Mtp
 
         public bool InFolder (Folder folder)
         {
-            return folder != null && trackStruct.parent_id == folder.FolderId;
+            return InFolder (folder, false);
         }
-        
+
+        public bool InFolder (Folder folder, bool recursive)
+        {
+            if (folder == null) {
+                return false;
+            }
+
+            bool is_parent = trackStruct.parent_id == folder.FolderId;
+            if (is_parent || !recursive) {
+                return is_parent;
+            }
+
+            return Folder.Find (device, trackStruct.parent_id).HasAncestor (folder);
+        }
+
         public void Download (string path)
         {
             Download (path, null);

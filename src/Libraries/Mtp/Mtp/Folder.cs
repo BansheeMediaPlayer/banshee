@@ -104,7 +104,35 @@ namespace Mtp
             LIBMTP_destroy_folder_t (root);
             return folders;
         }
-        
+
+        private Folder CreateParentFolder ()
+        {
+            return Find (device, parentId);
+        }
+
+        public bool HasAncestor (Folder ancestor)
+        {
+            if (ancestor == null) {
+                throw new ArgumentNullException ("ancestor");
+            }
+
+            if (device != ancestor.device) {
+                throw new ArgumentException ("Folders are on different devices");
+            }
+
+            bool hasAncestor = false;
+            if (parentId != 0) {
+                if (parentId == ancestor.FolderId) {
+                    hasAncestor = true;
+                } else {
+                    Folder parent = CreateParentFolder ();
+
+                    hasAncestor = parent.HasAncestor (ancestor);
+                }
+            }
+            return hasAncestor;
+        }
+
         public void Remove()
         {
             MtpDevice.DeleteObject(device.Handle, FolderId);
@@ -152,6 +180,26 @@ namespace Mtp
         internal static IntPtr Find (IntPtr folderList, uint folderId )
         {
             return LIBMTP_Find_Folder (folderList, folderId);
+        }
+
+        internal static Folder Find (MtpDevice device, uint folderId)
+        {
+            if (device == null) {
+                throw new ArgumentNullException ("device");
+            }
+
+            Folder folder = null;
+            IntPtr root = GetFolderList (device.Handle);
+            try {
+                IntPtr ptr = Find (root, folderId);
+                if (ptr != IntPtr.Zero) {
+                    FolderStruct folderStruct = (FolderStruct)Marshal.PtrToStructure (ptr, typeof (FolderStruct));
+                    folder = new Folder (folderStruct, device);
+                }
+            } finally {
+                DestroyFolder (root);
+            }
+            return folder;
         }
 
         internal static IntPtr GetFolderList (MtpDeviceHandle handle)
