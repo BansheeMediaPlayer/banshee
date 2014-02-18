@@ -106,11 +106,11 @@ namespace Banshee.Dap.Gui
 
         private void OnSourceUpdated (object o, EventArgs args)
         {
-            if (source.Sync.Syncing)
-                return;
-
             ThreadAssist.ProxyToMain (delegate {
                 try {
+                    if (source == null || source.Sync.Syncing) {
+                        return;
+                    }
                     UpdateUsage ();
                 } catch (Exception e) {
                     Hyena.Log.Exception (e);
