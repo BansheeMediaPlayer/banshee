@@ -30,18 +30,14 @@
 
 using System;
 using System.Collections.Generic;
-using System.Linq;
 
 using Mono.Unix;
 using Mono.Addins;
 
 using Hyena;
-using Banshee.Base;
 using Banshee.Kernel;
 using Banshee.ServiceStack;
 using Banshee.Sources;
-using Banshee.Collection;
-using Banshee.Collection.Database;
 using Banshee.Hardware;
 
 namespace Banshee.Dap
@@ -261,6 +257,11 @@ namespace Banshee.Dap
         {
             DapSource source = null;
             lock (sync) {
+                if (sources == null) {
+                    // DapService already disposed...
+                    return;
+                }
+
                 if (sources.ContainsKey (uuid)) {
                     Log.DebugFormat ("Unmapping DAP source ({0})", uuid);
                     source = sources[uuid];
