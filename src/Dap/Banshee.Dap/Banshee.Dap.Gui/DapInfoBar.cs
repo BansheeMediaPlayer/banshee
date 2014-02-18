@@ -137,13 +137,17 @@ namespace Banshee.Dap.Gui
 
         private void UpdateUsage ()
         {
-            long data = source.BytesUsed - source.BytesMusic - source.BytesVideo;
-            double cap = (double)source.BytesCapacity;
+            var bytes_used = source.BytesUsed;
+            var bytes_music = source.BytesMusic;
+            var bytes_video = source.BytesVideo;
+            var cap = (double)source.BytesCapacity;
 
-            disk_bar.UpdateSegment (0, source.BytesMusic / cap);
-            disk_bar.UpdateSegment (1, source.BytesVideo / cap);
+            long data = bytes_used - bytes_music - bytes_video;
+
+            disk_bar.UpdateSegment (0, bytes_music / cap);
+            disk_bar.UpdateSegment (1, bytes_video / cap);
             disk_bar.UpdateSegment (2, data / cap);
-            disk_bar.UpdateSegment (3, (cap - source.BytesUsed) / cap);
+            disk_bar.UpdateSegment (3, (cap - bytes_used) / cap);
         }
     }
 }
