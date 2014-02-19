@@ -28,7 +28,6 @@
 //
 
 using System;
-using System.Linq;
 using System.IO;
 using System.Collections.Generic;
 using System.Threading;
@@ -37,7 +36,6 @@ using Mono.Unix;
 using Hyena;
 using Hyena.Data.Sqlite;
 
-using Banshee.Base;
 using Banshee.ServiceStack;
 using Banshee.Sources;
 using Banshee.Collection;
@@ -96,13 +94,20 @@ namespace Banshee.Dap
             TypeUniqueId = device.Serial;
         }
 
+        private object internal_lock = new object ();
+        protected virtual object InternalLock {
+            get { return internal_lock; }
+        }
+
         public override void Dispose ()
         {
-            if (load_thread != null) {
-                if (load_thread.IsAlive) {
-                    load_thread.Abort ();
+            lock (InternalLock) {
+                if (load_thread != null) {
+                    if (load_thread.IsAlive) {
+                        load_thread.Abort ();
+                    }
+                    load_thread = null;
                 }
-                load_thread = null;
             }
 
             Flush ();

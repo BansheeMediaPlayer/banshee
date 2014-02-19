@@ -32,14 +32,11 @@ using System.Threading;
 using Mono.Unix;
 
 using Hyena;
-using Hyena.Collections;
 using Mtp;
 using MTP = Mtp;
 
-using Banshee.Base;
 using Banshee.Dap;
 using Banshee.ServiceStack;
-using Banshee.Library;
 using Banshee.Sources;
 using Banshee.Playlist;
 using Banshee.Configuration;
@@ -51,7 +48,12 @@ namespace Banshee.Dap.Mtp
 {
     public class MtpSource : DapSource
     {
-		private MtpDevice mtp_device;
+
+        protected override object InternalLock {
+            get { return mtp_device; }
+        }
+        private MtpDevice mtp_device;
+
         //private bool supports_jpegs = false;
         private Dictionary<long, Track> track_map;
 
