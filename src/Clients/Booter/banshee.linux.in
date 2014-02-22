@@ -48,10 +48,6 @@ if [ "$BANSHEE_DEBUG" = "--debug" ] && [ "x$BANSHEE_PROFILE" = "x" ]; then
 	BANSHEE_PROFILE="--profile=gui-thread-check"
 fi
 
-# We were testing the SGen compacting GC; disabled for 2.0 release b/c there are serious
-# issues with sgen on Mono 2.8.0
-#export MONO_ENV_OPTIONS="--gc=sgen"
-
 if [ -n "$BANSHEE_DEBUG" -o -n "$BANSHEE_TRACE" -o -n "$BANSHEE_PROFILE" ]; then
     MONO_OPTIONS="$BANSHEE_DEBUG $BANSHEE_TRACE $BANSHEE_PROFILE"
     echo "** Running Mono with $MONO_OPTIONS **"
