@@ -1,10 +1,14 @@
 //
 // DBusConnection.cs
 //
-// Author:
+// Authors:
 //   Aaron Bockover <abockover@novell.com>
+//   Bertrand Lorentz <bertrand.lorentz@gmail.com>
+//   Andrés G. Aragoneses <knocte@gmail.com>
 //
 // Copyright (C) 2008 Novell, Inc.
+// Copyright (C) 2012 Bertrand Lorentz
+// Copyright (C) 2014 Andrés G. Aragoneses
 //
 // Permission is hereby granted, free of charge, to any person obtaining
 // a copy of this software and associated documentation files (the
@@ -33,7 +37,6 @@ using DBus;
 using org.freedesktop.DBus;
 
 using Hyena;
-using Banshee.Base;
 
 namespace Banshee.ServiceStack
 {
@@ -134,19 +137,14 @@ namespace Banshee.ServiceStack
                 return primary_instance;
             }
 
-            connect_tried = true;
+            bool enabled_and_primary_owner = Connect (DefaultServiceName);
 
-            try {
-                if (Connect (DefaultServiceName, true) == RequestNameReply.PrimaryOwner) {
-                    active_connections.Add (DefaultServiceName);
-                } else {
-                    primary_instance = false;
-                }
-            } catch (Exception e) {
-                Log.Exception ("DBus support could not be started. Disabling for this session.", e);
-                enabled = false;
+            // if DBus failed, enabled field has mutated from true to false during Connect()
+            if (!enabled) {
+                return primary_instance;
             }
 
+            primary_instance = enabled_and_primary_owner;
             return primary_instance;
         }
 
