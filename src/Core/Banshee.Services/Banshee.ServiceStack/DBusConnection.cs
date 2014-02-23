@@ -128,23 +128,23 @@ namespace Banshee.ServiceStack
         // false if Banshee is already running. If DBus is not available, we assume we're the primary instance
         public static bool GrabDefaultName ()
         {
-            bool primary_instance = false;
-
-            connect_tried = true;
+            bool primary_instance = true;
 
             if (!enabled) {
-                primary_instance = true;
+                return primary_instance;
             }
+
+            connect_tried = true;
 
             try {
                 if (Connect (DefaultServiceName, true) == RequestNameReply.PrimaryOwner) {
                     active_connections.Add (DefaultServiceName);
-                    primary_instance = true;
+                } else {
+                    primary_instance = false;
                 }
             } catch (Exception e) {
                 Log.Exception ("DBus support could not be started. Disabling for this session.", e);
                 enabled = false;
-                primary_instance = true;
             }
 
             return primary_instance;
