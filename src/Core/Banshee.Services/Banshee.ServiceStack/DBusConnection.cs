@@ -64,9 +64,6 @@ namespace Banshee.ServiceStack
         }
 
         private static bool connect_tried;
-        public static bool ConnectTried {
-            get { return connect_tried; }
-        }
 
         public static bool ApplicationInstanceAlreadyRunning {
             get {
@@ -90,6 +87,13 @@ namespace Banshee.ServiceStack
             }
 
             Bus.Session.ReleaseName (MakeBusName (serviceName));
+        }
+
+        public static void Init ()
+        {
+            if (!connect_tried) {
+                Connect ();
+            }
         }
 
         public static bool Connect ()

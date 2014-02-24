@@ -99,9 +99,7 @@ namespace Banshee.ServiceStack
             Catalog.Init (Application.InternalName, System.IO.Path.Combine (
                 Hyena.Paths.InstalledApplicationDataRoot, "locale"));
 
-            if (!DBusConnection.ConnectTried) {
-                DBusConnection.Connect ();
-            }
+            DBusConnection.Init ();
 
             ServiceManager.Run ();
 

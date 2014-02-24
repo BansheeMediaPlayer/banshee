@@ -68,9 +68,7 @@ namespace Halie
 
         public static void Main ()
         {
-            if (!DBusConnection.ConnectTried) {
-                DBusConnection.Connect ();
-            }
+            DBusConnection.Init ();
 
             if (!DBusConnection.Enabled) {
                 Error ("All commands ignored, DBus support is disabled");
