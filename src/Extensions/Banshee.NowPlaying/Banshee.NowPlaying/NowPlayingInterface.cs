@@ -209,7 +209,7 @@ namespace Banshee.NowPlaying
 
         public bool SetSource (ISource src)
         {
-            this.source = source as NowPlayingSource;
+            this.source = src as NowPlayingSource;
             return this.source != null;
         }
 
