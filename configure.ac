@@ -75,6 +75,9 @@ SHAMROCK_CHECK_MONO_2_0_GAC_ASSEMBLIES([
 BANSHEE_DESKTOP_NAME="_Name=Banshee"
 AC_SUBST(BANSHEE_DESKTOP_NAME)
 
+dnl Required dependencies (managed/core)
+BANSHEE_CHECK_GTK_SHARP
+
 dnl DBus Sharp libraries
 BANSHEE_CHECK_DBUS_SHARP
 
@@ -104,9 +107,6 @@ SHAMROCK_CHECK_NUNIT
 
 dnl External TagLib# libraries (optional)
 BANSHEE_CHECK_TAGLIB_SHARP
-
-dnl Required dependencies (managed/core)
-BANSHEE_CHECK_GTK_SHARP
 
 dnl OS X (optional through --enable-osx)
 BANSHEE_CHECK_OSX
