@@ -34,13 +34,10 @@ using System.IO;
 using Mono.Unix;
 
 using Hyena;
-using Hyena.Data.Sqlite;
 
-using Banshee.Base;
 using Banshee.Sources;
 using Banshee.Collection;
 using Banshee.Collection.Database;
-using Banshee.Configuration.Schema;
 using Banshee.ServiceStack;
 using Banshee.Streaming;
 
@@ -251,7 +248,7 @@ namespace Banshee.Collection.Database
 
         public void NotifyAllSources ()
         {
-            foreach (int primary_source_id in counts.Keys) {
+            foreach (long primary_source_id in counts.Keys) {
                 PrimarySource.GetById (primary_source_id).NotifyTracksAdded ();
             }
             counts.Clear ();

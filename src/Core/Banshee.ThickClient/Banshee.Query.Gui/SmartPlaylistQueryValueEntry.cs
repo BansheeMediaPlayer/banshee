@@ -35,9 +35,7 @@ using Hyena.Query.Gui;
 
 using Banshee.ServiceStack;
 using Banshee.Sources;
-using Banshee.Playlist;
 using Banshee.SmartPlaylist;
-using Banshee.Widgets;
 using Banshee.Query;
 
 namespace Banshee.Query.Gui
@@ -46,8 +44,8 @@ namespace Banshee.Query.Gui
     {
         protected ComboBoxText combo;
         protected SmartPlaylistQueryValue query_value;
-        protected Dictionary<int, int> playlist_id_combo_map = new Dictionary<int, int> ();
-        protected Dictionary<int, int> combo_playlist_id_map = new Dictionary<int, int> ();
+        protected Dictionary<long, int> playlist_id_combo_map = new Dictionary<long, int> ();
+        protected Dictionary<int, long> combo_playlist_id_map = new Dictionary<int, long> ();
 
         public SmartPlaylistQueryValueEntry () : base ()
         {
@@ -61,8 +59,8 @@ namespace Banshee.Query.Gui
                 if (playlist != null && playlist.DbId != null) {
                     if (Editor.CurrentlyEditing == null || (Editor.CurrentlyEditing != playlist && !playlist.DependsOn (Editor.CurrentlyEditing))) {
                         combo.AppendText (playlist.Name);
-                        playlist_id_combo_map [(int)playlist.DbId] = count;
-                        combo_playlist_id_map [count++] = (int) playlist.DbId;
+                        playlist_id_combo_map [playlist.DbId.Value] = count;
+                        combo_playlist_id_map [count++] = playlist.DbId.Value;
                     }
                 }
             }
@@ -80,7 +78,7 @@ namespace Banshee.Query.Gui
                 query_value = value as SmartPlaylistQueryValue;
                 if (!query_value.IsEmpty) {
                     try {
-                        combo.Active = playlist_id_combo_map [(int)query_value.IntValue];
+                        combo.Active = playlist_id_combo_map [query_value.IntValue];
                     } catch {}
                 }
 
