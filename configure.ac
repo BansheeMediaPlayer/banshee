@@ -53,13 +53,6 @@ SHAMROCK_EXPAND_DATADIR
 
 PKG_CHECK_MODULES(GLIB, glib-2.0 >= 2.22)
 
-dnl Clutter support is not available in Gst# backend and is opt-in in the unmanaged one
-dnl so we set a default value here for simplicity
-AM_CONDITIONAL(HAVE_CLUTTER, false)
-
-dnl Media backends
-BANSHEE_CHECK_GSTREAMER
-
 dnl User help
 SHAMROCK_CHECK_GNOME_DOC_UTILS(0.17.3)
 
@@ -77,6 +70,13 @@ AC_SUBST(BANSHEE_DESKTOP_NAME)
 
 dnl Required dependencies (managed/core)
 BANSHEE_CHECK_GTK_SHARP
+
+dnl Clutter support is not available in Gst# backend and is opt-in in the unmanaged one
+dnl so we set a default value here for simplicity
+AM_CONDITIONAL(HAVE_CLUTTER, false)
+
+dnl Media backends
+BANSHEE_CHECK_GSTREAMER
 
 dnl DBus Sharp libraries
 BANSHEE_CHECK_DBUS_SHARP
