@@ -12,8 +12,8 @@ https://wiki.gnome.org/Apps/Banshee/StableReleasesPolicy
 * Commit everything
 
 Release:
-* Run the `extras/make-release` script (from extras/ directory)
-  specifying your gnome username with the env var GNOME_FTP_USER.
+* Specifying your gnome username with the env var GNOME_FTP_USER,
+  run this script: `./extras/make-release`
   + Note that this makes the tag, adds the version to bugzilla,
     and uploads the tarballs. You need to ssh to master.gnome.org to
     install the tarballs on ftp.gnome.org.
