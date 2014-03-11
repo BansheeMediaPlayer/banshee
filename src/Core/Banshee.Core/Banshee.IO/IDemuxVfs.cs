@@ -28,9 +28,7 @@
 
 namespace Banshee.IO
 {
-    public interface IDemuxVfs : TagLib.File.IFileAbstraction
+    public interface IDemuxVfs : IFileSystemEntryPermissions, TagLib.File.IFileAbstraction
     {
-        bool IsReadable { get; }
-        bool IsWritable { get; }
     }
 }

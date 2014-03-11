@@ -73,5 +73,10 @@ namespace Banshee.IO
     	{
     	    return Provider.File.OpenWrite (uri, overwrite);
     	}
+
+        public static IFileSystemEntryPermissions GetPermissions (SafeUri uri)
+        {
+            return Provider.CreateDemuxVfs (uri);
+        }
     }
 }

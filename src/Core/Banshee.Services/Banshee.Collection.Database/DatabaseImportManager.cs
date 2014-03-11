@@ -165,6 +165,12 @@ namespace Banshee.Collection.Database
                 return null;
             }
 
+            if (!Banshee.IO.File.GetPermissions (uri).IsReadable) {
+                throw new InvalidFileException (String.Format (
+                    Catalog.GetString ("File is not readable so it could not be imported: {0}"),
+                    Path.GetFileName (uri.LocalPath)));
+            }
+
             if (Banshee.IO.File.GetSize (uri) == 0) {
                 throw new InvalidFileException (String.Format (
                     Catalog.GetString ("File is empty so it could not be imported: {0}"),

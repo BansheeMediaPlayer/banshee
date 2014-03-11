@@ -45,6 +45,7 @@ SOURCES =  \
 	Banshee.IO/IDemuxVfs.cs \
 	Banshee.IO/IDirectory.cs \
 	Banshee.IO/IFile.cs \
+	Banshee.IO/IFileSystemEntryPermissions.cs \
 	Banshee.IO/IProvider.cs \
 	Banshee.IO/Provider.cs \
 	Banshee.IO/ProviderConfiguration.cs \
