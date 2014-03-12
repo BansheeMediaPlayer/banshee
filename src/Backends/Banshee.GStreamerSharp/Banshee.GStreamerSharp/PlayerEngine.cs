@@ -7,7 +7,7 @@
 //   Stephan Sundermann <stephansundermann@gmail.com>
 //
 // Copyright (C) 2010 Novell, Inc.
-// Copyright (C) 2013 Andrés G. Aragoneses
+// Copyright (C) 2013-2014 Andrés G. Aragoneses
 // Copyright (C) 2013 Stephan Sundermann
 //
 // Permission is hereby granted, free of charge, to any person obtaining
@@ -33,8 +33,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.InteropServices;
 using System.Threading;
 
 using Mono.Unix;
@@ -43,9 +41,6 @@ using Gst;
 using Gst.PbUtils;
 
 using Hyena;
-using Hyena.Data;
-
-using Banshee.Base;
 using Banshee.Collection;
 using Banshee.Streaming;
 using Banshee.MediaEngine;
@@ -296,6 +291,11 @@ namespace Banshee.GStreamerSharp
         DvdManager dvd_manager = null;
         Visualization visualization;
 
+        bool gapless_enabled;
+        private bool next_track_pending;
+        private SafeUri pending_uri;
+        private bool pending_maybe_video;
+
         public PlayerEngine ()
         {
             Log.InformationFormat ("GStreamer# {0} Initializing; {1}.{2}",
@@ -348,7 +348,6 @@ namespace Banshee.GStreamerSharp
 
             playbin.AddNotification ("volume", OnVolumeChanged);
             playbin.Bus.AddWatch (OnBusMessage);
-            playbin.Connect ("about-to-finish", OnAboutToFinish);
 
             cdda_manager = new CddaManager (playbin);
             dvd_manager = new DvdManager (playbin);
@@ -363,6 +362,7 @@ namespace Banshee.GStreamerSharp
 
             InstallPreferences ();
             audio_sink.ReplayGainEnabled = ReplayGainEnabledSchema.Get ();
+            GaplessEnabled = GaplessEnabledSchema.Get ();
         }
 
         public override void Dispose ()
@@ -418,8 +418,13 @@ namespace Banshee.GStreamerSharp
             CurrentTrack.UpdateLastPlayed ();
 
             next_track_set.Reset ();
-            OnEventChanged (PlayerEvent.RequestNextTrack);
+            pending_uri = null;
+            next_track_pending = true;
 
+            OnEventChanged (PlayerEvent.RequestNextTrack);
+            // Gapless playback with Playbin2 requires that the about-to-finish callback does not return until
+            // the next uri has been set.  Block here for a second or until the RequestNextTrack event has
+            // finished triggering.
             if (!next_track_set.WaitOne (1000, false)) {
                 Log.Warning ("[Gapless]: Timed out while waiting for next track to be set.");
                 next_track_set.Set ();
@@ -428,10 +433,13 @@ namespace Banshee.GStreamerSharp
 
         public override void SetNextTrackUri (SafeUri uri, bool maybeVideo)
         {
+            next_track_pending = false;
             if (next_track_set.WaitOne (0, false)) {
                 // We've been asked to set the next track, but have taken too
                 // long to get here.  Bail for now, and the EoS handling will
                 // pick up the pieces.
+                pending_uri = uri;
+                pending_maybe_video = maybeVideo;
                 return;
             }
 
@@ -460,6 +468,33 @@ namespace Banshee.GStreamerSharp
             OnEventChanged (PlayerEvent.Seek);
         }
 
+        private void OnEos ()
+        {
+            if (!next_track_pending &&
+                (!GaplessEnabled || (CurrentTrack != null && CurrentTrack.HasAttribute (TrackMediaAttributes.VideoStream)))) {
+                // We don't request next track in OnEoS if gapless playback is enabled and current track has no video stream contained.
+                // The request next track is already called in OnAboutToFinish().
+                OnEventChanged (PlayerEvent.RequestNextTrack);
+            } else if (pending_uri != null) {
+                Log.Warning ("[Gapless] EOS signalled while waiting for next track.  This means that Banshee " +
+                    "was too slow at calculating what track to play next.  " +
+                    "If this happens frequently, please file a bug");
+                OnStateChanged (PlayerState.Loading);
+                OpenUri (pending_uri, pending_maybe_video);
+                Play ();
+                pending_uri = null;
+            } else if (!GaplessEnabled || (CurrentTrack != null && CurrentTrack.HasAttribute (TrackMediaAttributes.VideoStream))) {
+                // This should be unreachable - the RequestNextTrack event is delegated to the main thread
+                // and so blocks the bus callback from delivering the EOS message.
+                //
+                // Playback should continue as normal from here, when the RequestNextTrack message gets handled.
+                Log.Warning ("[Gapless] EndOfStream message received before the next track has been set.  " +
+                    "If this happens frequently, please file a bug");
+            } else {
+                Log.Debug ("[Gapless] Reach the last music under repeat off mode");
+            }
+        }
+
         private bool OnBusMessage (Bus bus, Message msg)
         {
             switch (msg.Type) {
@@ -467,7 +502,8 @@ namespace Banshee.GStreamerSharp
                     StopIterating ();
                     Close (false);
                     OnEventChanged (PlayerEvent.EndOfStream);
-                    OnEventChanged (PlayerEvent.RequestNextTrack);
+
+                    OnEos ();
                     break;
 
                 case MessageType.StateChanged:
@@ -552,6 +588,14 @@ namespace Banshee.GStreamerSharp
 
         private void HandleStreamStart ()
         {
+            if (!GaplessEnabled) {
+                return;
+            }
+
+            // Must do it here because the next track is already playing.
+
+            // If the state is anything other than loaded, assume we were just playing a track and should
+            // EoS it and increment its playcount etc.
             if (CurrentState != PlayerState.Loaded && CurrentState != PlayerState.Loading) {
                 // Set the current track as fully played before signaling EndOfStream.
                 ServiceManager.PlayerEngine.IncrementLastPlayed (1.0);
@@ -778,6 +822,22 @@ namespace Banshee.GStreamerSharp
             get { return true; }
         }
 
+        private bool GaplessEnabled {
+            get { return gapless_enabled; }
+            set
+            {
+                if (value == gapless_enabled) {
+                    return;
+                }
+                gapless_enabled = value;
+                if (value) {
+                    playbin.Connect ("about-to-finish", OnAboutToFinish);
+                } else {
+                    playbin.Disconnect ("about-to-finish", OnAboutToFinish);
+                }
+            }
+        }
+
         private static Format query_format = Format.Time;
         public override uint Position {
             get {
@@ -980,6 +1040,7 @@ namespace Banshee.GStreamerSharp
 #region Preferences
 
         private PreferenceBase replaygain_preference;
+        private PreferenceBase gapless_preference;
 
         private void InstallPreferences ()
         {
@@ -992,6 +1053,11 @@ namespace Banshee.GStreamerSharp
                 Catalog.GetString ("_Enable ReplayGain correction"),
                 Catalog.GetString ("For tracks that have ReplayGain data, automatically scale (normalize) playback volume"),
                 delegate { audio_sink.ReplayGainEnabled = ReplayGainEnabledSchema.Get (); }
+            ));
+            gapless_preference = service["general"]["misc"].Add (new SchemaPreference<bool> (GaplessEnabledSchema,
+                Catalog.GetString ("Enable _gapless playback"),
+                Catalog.GetString ("Eliminate the small playback gap on track change. Useful for concept albums and classical music"),
+                () => { GaplessEnabled = GaplessEnabledSchema.Get (); }
             ));
         }
 
@@ -1011,6 +1077,13 @@ namespace Banshee.GStreamerSharp
             false,
             "Enable ReplayGain",
             "If ReplayGain data is present on tracks when playing, allow volume scaling"
+        );
+
+        public static readonly SchemaEntry<bool> GaplessEnabledSchema = new SchemaEntry<bool> (
+            "player_engine", "gapless_playback_enabled",
+            true,
+            "Enable gapless playback",
+            "Eliminate the small playback gap on track change. Useful for concept albums and classical music"
         );
 
 #endregion
