@@ -30,16 +30,16 @@ msgstr ""
 "Project-Id-Version: banshee help\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=banshee&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2013-10-20 17:00+0000\n"
-"PO-Revision-Date: 2013-10-21 13:09-0300\n"
-"Last-Translator: Enrico Nicoletto <liverig@gmail.com>\n"
+"POT-Creation-Date: 2014-03-12 16:52+0000\n"
+"PO-Revision-Date: 2014-03-13 09:23-0300\n"
+"Last-Translator: Ricardo Barbosa <barbosa.cisco@gmail.com>\n"
 "Language-Team: Brazilian Portuguese <gnome-pt_br-list@gnome.org>\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Poedit 1.5.7\n"
+"X-Generator: Poedit 1.6.4\n"
 "X-Poedit-Bookmarks: -1,1229,-1,-1,-1,-1,-1,-1,-1,-1\n"
 
 #. ../src/Dap/Banshee.Dap.AppleDevice/Banshee.Dap.AppleDevice.addin.xml
@@ -264,7 +264,6 @@ msgstr "Atualiza automaticamente bibliotecas de música e vídeo."
 
 #. ../src/Extensions/Banshee.MediaPanel/Banshee.MediaPanel.addin.xml
 #: ../data/addin-xml-strings.cs:108
-#| msgid "MTP Media Player Support"
 msgid "MediaPanel Support"
 msgstr "Suporte a painel de mídia"
 
@@ -669,7 +668,7 @@ msgstr ""
 "dispositivos. Acreditamos que você irá amar o Banshee!"
 
 #: ../data/desktop-files/common.desktop.in.h:1
-#: ../src/Dap/Banshee.Dap/Banshee.Dap/DapSource.cs:194
+#: ../src/Dap/Banshee.Dap/Banshee.Dap/DapSource.cs:207
 msgid "Media Player"
 msgstr "Reprodutor de mídia"
 
@@ -715,7 +714,7 @@ msgid "Fullscreen video playback active"
 msgstr "Reprodução de vídeo em tela cheia ativada"
 
 #: ../src/Backends/Banshee.GStreamer/Banshee.GStreamer/AudioCdRipper.cs:89
-#: ../src/Backends/Banshee.GStreamerSharp/Banshee.GStreamerSharp/AudioCdRipper.cs:96
+#: ../src/Backends/Banshee.GStreamerSharp/Banshee.GStreamerSharp/AudioCdRipper.cs:100
 msgid "Could not find an encoder for ripping."
 msgstr "Não foi possível localizar um codificador para extração de áudio."
 
@@ -724,7 +723,7 @@ msgid "Could not create CD ripping driver."
 msgstr "Não foi possível criar o driver de extração de áudio do CD."
 
 #: ../src/Backends/Banshee.GStreamer/Banshee.GStreamer/BpmDetector.cs:71
-#: ../src/Backends/Banshee.GStreamerSharp/Banshee.GStreamerSharp/BpmDetector.cs:107
+#: ../src/Backends/Banshee.GStreamerSharp/Banshee.GStreamerSharp/BpmDetector.cs:108
 msgid "Could not create BPM detection driver."
 msgstr "Não foi possível criar o driver de detecção de BPM."
 
@@ -733,18 +732,18 @@ msgstr "Não foi possível criar o driver de detecção de BPM."
 msgid "Could not initialize GStreamer library"
 msgstr "Não foi possível iniciar a biblioteca do GStreamer"
 
-#: ../src/Backends/Banshee.GStreamer/Banshee.GStreamer/PlayerEngine.cs:510
-#: ../src/Backends/Banshee.GStreamerSharp/Banshee.GStreamerSharp/PlayerEngine.cs:570
+#: ../src/Backends/Banshee.GStreamer/Banshee.GStreamer/PlayerEngine.cs:521
+#: ../src/Backends/Banshee.GStreamerSharp/Banshee.GStreamerSharp/PlayerEngine.cs:612
 msgid "Unknown Error"
 msgstr "Erro desconhecido"
 
-#: ../src/Backends/Banshee.GStreamer/Banshee.GStreamer/PlayerEngine.cs:878
-#: ../src/Backends/Banshee.GStreamerSharp/Banshee.GStreamerSharp/PlayerEngine.cs:993
+#: ../src/Backends/Banshee.GStreamer/Banshee.GStreamer/PlayerEngine.cs:889
+#: ../src/Backends/Banshee.GStreamerSharp/Banshee.GStreamerSharp/PlayerEngine.cs:1053
 msgid "_Enable ReplayGain correction"
 msgstr "_Habilitar correção ReplayGain"
 
-#: ../src/Backends/Banshee.GStreamer/Banshee.GStreamer/PlayerEngine.cs:879
-#: ../src/Backends/Banshee.GStreamerSharp/Banshee.GStreamerSharp/PlayerEngine.cs:994
+#: ../src/Backends/Banshee.GStreamer/Banshee.GStreamer/PlayerEngine.cs:890
+#: ../src/Backends/Banshee.GStreamerSharp/Banshee.GStreamerSharp/PlayerEngine.cs:1054
 msgid ""
 "For tracks that have ReplayGain data, automatically scale (normalize) "
 "playback volume"
@@ -752,11 +751,13 @@ msgstr ""
 "Para faixas que têm dados do ReplayGain, automaticamente adaptar "
 "(normalizar) o volume da reprodução."
 
-#: ../src/Backends/Banshee.GStreamer/Banshee.GStreamer/PlayerEngine.cs:883
+#: ../src/Backends/Banshee.GStreamer/Banshee.GStreamer/PlayerEngine.cs:894
+#: ../src/Backends/Banshee.GStreamerSharp/Banshee.GStreamerSharp/PlayerEngine.cs:1058
 msgid "Enable _gapless playback"
 msgstr "Ativar _reprodução sem intervalos"
 
-#: ../src/Backends/Banshee.GStreamer/Banshee.GStreamer/PlayerEngine.cs:884
+#: ../src/Backends/Banshee.GStreamer/Banshee.GStreamer/PlayerEngine.cs:895
+#: ../src/Backends/Banshee.GStreamerSharp/Banshee.GStreamerSharp/PlayerEngine.cs:1059
 msgid ""
 "Eliminate the small playback gap on track change. Useful for concept albums "
 "and classical music"
@@ -770,7 +771,7 @@ msgstr "Não foi possível criar o transcodificador"
 
 #: ../src/Backends/Banshee.GStreamer/libbanshee/banshee-bpmdetector.c:203
 #: ../src/Backends/Banshee.GStreamer/libbanshee/banshee-ripper.c:267
-#: ../src/Backends/Banshee.GStreamerSharp/Banshee.GStreamerSharp/AudioCdRipper.cs:240
+#: ../src/Backends/Banshee.GStreamerSharp/Banshee.GStreamerSharp/AudioCdRipper.cs:250
 msgid "Could not create pipeline"
 msgstr "Não foi possível criar a linha de processamento"
 
@@ -780,12 +781,13 @@ msgstr "Não foi possível criar o elemento filesrc"
 
 #: ../src/Backends/Banshee.GStreamer/libbanshee/banshee-bpmdetector.c:215
 #: ../src/Backends/Banshee.GStreamer/libbanshee/banshee-transcoder.c:245
+#: ../src/Backends/Banshee.GStreamerSharp/Banshee.GStreamerSharp/Transcoder.cs:191
 msgid "Could not create decodebin plugin"
 msgstr "Não foi possível criar o plug-in decodebin"
 
 #: ../src/Backends/Banshee.GStreamer/libbanshee/banshee-bpmdetector.c:221
 #: ../src/Backends/Banshee.GStreamer/libbanshee/banshee-transcoder.c:263
-#: ../src/Backends/Banshee.GStreamerSharp/Banshee.GStreamerSharp/Transcoder.cs:68
+#: ../src/Backends/Banshee.GStreamerSharp/Banshee.GStreamerSharp/Transcoder.cs:72
 msgid "Could not create audioconvert plugin"
 msgstr "Não foi possível criar o plug-in audioconvert"
 
@@ -800,12 +802,12 @@ msgstr "Não foi possível criar o plug-in fakesink"
 #: ../src/Backends/Banshee.GStreamer/libbanshee/banshee-bpmdetector.c:242
 #: ../src/Backends/Banshee.GStreamer/libbanshee/banshee-bpmdetector.c:251
 #: ../src/Backends/Banshee.GStreamer/libbanshee/banshee-ripper.c:308
-#: ../src/Backends/Banshee.GStreamerSharp/Banshee.GStreamerSharp/AudioCdRipper.cs:281
+#: ../src/Backends/Banshee.GStreamerSharp/Banshee.GStreamerSharp/AudioCdRipper.cs:291
 msgid "Could not link pipeline elements"
 msgstr "Não foi possível encadear elementos da linha de processamento"
 
 #: ../src/Backends/Banshee.GStreamer/libbanshee/banshee-ripper.c:273
-#: ../src/Backends/Banshee.GStreamerSharp/Banshee.GStreamerSharp/AudioCdRipper.cs:246
+#: ../src/Backends/Banshee.GStreamerSharp/Banshee.GStreamerSharp/AudioCdRipper.cs:256
 msgid "Could not initialize element from cdda URI"
 msgstr "Não foi possível inicializar o componente do URI CDDA"
 
@@ -814,32 +816,32 @@ msgid "Could not create encoder pipeline"
 msgstr "Não foi possível criar a linha de processamento do codificador"
 
 #: ../src/Backends/Banshee.GStreamer/libbanshee/banshee-ripper.c:293
-#: ../src/Backends/Banshee.GStreamerSharp/Banshee.GStreamerSharp/AudioCdRipper.cs:266
+#: ../src/Backends/Banshee.GStreamerSharp/Banshee.GStreamerSharp/AudioCdRipper.cs:276
 msgid "Could not create queue plugin"
 msgstr "Não foi possível criar o plug-in de fila"
 
 #: ../src/Backends/Banshee.GStreamer/libbanshee/banshee-ripper.c:301
-#: ../src/Backends/Banshee.GStreamerSharp/Banshee.GStreamerSharp/AudioCdRipper.cs:274
+#: ../src/Backends/Banshee.GStreamerSharp/Banshee.GStreamerSharp/AudioCdRipper.cs:284
 msgid "Could not create filesink plugin"
 msgstr "Não foi possível criar o plug-in consumidor de arquivo"
 
 #: ../src/Backends/Banshee.GStreamer/libbanshee/banshee-transcoder.c:239
-#: ../src/Backends/Banshee.GStreamerSharp/Banshee.GStreamerSharp/Transcoder.cs:181
+#: ../src/Backends/Banshee.GStreamerSharp/Banshee.GStreamerSharp/Transcoder.cs:185
 msgid "Could not create source element"
 msgstr "Não foi possível criar o elemento fonte"
 
 #: ../src/Backends/Banshee.GStreamer/libbanshee/banshee-transcoder.c:251
-#: ../src/Backends/Banshee.GStreamerSharp/Banshee.GStreamerSharp/Transcoder.cs:63
+#: ../src/Backends/Banshee.GStreamerSharp/Banshee.GStreamerSharp/Transcoder.cs:67
 msgid "Could not create sink element"
 msgstr "Não foi possível criar o elemento sink"
 
 #: ../src/Backends/Banshee.GStreamer/libbanshee/banshee-transcoder.c:257
-#: ../src/Backends/Banshee.GStreamerSharp/Banshee.GStreamerSharp/Transcoder.cs:198
+#: ../src/Backends/Banshee.GStreamerSharp/Banshee.GStreamerSharp/Transcoder.cs:202
 msgid "Could not create sinkbin plugin"
 msgstr "Não foi possível criar plug-in de sinkbin"
 
 #: ../src/Backends/Banshee.GStreamer/libbanshee/banshee-transcoder.c:269
-#: ../src/Backends/Banshee.GStreamerSharp/Banshee.GStreamerSharp/Transcoder.cs:73
+#: ../src/Backends/Banshee.GStreamerSharp/Banshee.GStreamerSharp/Transcoder.cs:77
 msgid "Could not create audioresample plugin"
 msgstr "Não foi possível criar plug-in resample de áudio"
 
@@ -848,32 +850,28 @@ msgid "Could not create encoding pipeline"
 msgstr "Não foi possível criar a linha de processamento de codificação"
 
 #: ../src/Backends/Banshee.GStreamer/libbanshee/banshee-transcoder.c:281
-#: ../src/Backends/Banshee.GStreamerSharp/Banshee.GStreamerSharp/Transcoder.cs:85
+#: ../src/Backends/Banshee.GStreamerSharp/Banshee.GStreamerSharp/Transcoder.cs:89
 msgid "Could not get sink pad from encoder"
 msgstr "Não foi possível obter um bloco dissipador do codificador"
 
 #: ../src/Backends/Banshee.GStreamer/libbanshee/banshee-transcoder.c:344
-#: ../src/Backends/Banshee.GStreamerSharp/Banshee.GStreamerSharp/Transcoder.cs:269
+#: ../src/Backends/Banshee.GStreamerSharp/Banshee.GStreamerSharp/Transcoder.cs:272
 msgid "Could not construct pipeline"
 msgstr "Não foi possível construir a linha de processamento"
 
-#: ../src/Backends/Banshee.GStreamerSharp/Banshee.GStreamerSharp/AudioCdRipper.cs:259
+#: ../src/Backends/Banshee.GStreamerSharp/Banshee.GStreamerSharp/AudioCdRipper.cs:269
 #, csharp-format
 msgid "Could not create encoder pipeline : {0}"
 msgstr "Não foi possível criar o codificador do pipeline : {0}"
 
-#: ../src/Backends/Banshee.GStreamerSharp/Banshee.GStreamerSharp/PlayerEngine.cs:815
+#: ../src/Backends/Banshee.GStreamerSharp/Banshee.GStreamerSharp/PlayerEngine.cs:874
 msgid "GStreamer# 0.10"
 msgstr "GStreamer# 0.10"
 
-#: ../src/Backends/Banshee.GStreamerSharp/Banshee.GStreamerSharp/Transcoder.cs:79
+#: ../src/Backends/Banshee.GStreamerSharp/Banshee.GStreamerSharp/Transcoder.cs:83
 #, csharp-format
 msgid "Could not create encoding pipeline : {0}"
 msgstr "Não foi possível criar a codificação do pipeline : {0}"
-
-#: ../src/Backends/Banshee.GStreamerSharp/Banshee.GStreamerSharp/Transcoder.cs:187
-msgid "Could not create decodebin2 plugin"
-msgstr "Não foi possível criar o plug-in decodebin2"
 
 #. Translators: verb
 #: ../src/Backends/Banshee.Osx/Banshee.OsxBackend/OsxFileChooserDialog.cs:66
@@ -1260,7 +1258,7 @@ msgstr "En_fileirar"
 #: ../src/Clients/Muinshee/Muinshee/BaseDialog.cs:103
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui/PlaybackActions.cs:73
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui/PlaybackActions.cs:210
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:126
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:125
 msgid "_Play"
 msgstr "_Reproduzir"
 
@@ -1350,7 +1348,7 @@ msgid "Stream location not found"
 msgstr "Local de transmissão não localizado"
 
 #: ../src/Core/Banshee.Core/Banshee.Collection/TrackInfo.cs:348
-#: ../src/Dap/Banshee.Dap/Banshee.Dap/DapSource.cs:344
+#: ../src/Dap/Banshee.Dap/Banshee.Dap/DapSource.cs:359
 msgid "File not found"
 msgstr "Arquivo não encontrado"
 
@@ -1435,7 +1433,13 @@ msgstr "Todos os álbuns ({0})"
 msgid "All Artists ({0})"
 msgstr "Todos os artistas ({0})"
 
-#: ../src/Core/Banshee.Services/Banshee.Collection.Database/DatabaseImportManager.cs:173
+#: ../src/Core/Banshee.Services/Banshee.Collection.Database/DatabaseImportManager.cs:170
+#, csharp-format
+#| msgid "File is empty so it could not be imported: {0}"
+msgid "File is not readable so it could not be imported: {0}"
+msgstr "O arquivo não está legível e não pode ser importado:{0}"
+
+#: ../src/Core/Banshee.Services/Banshee.Collection.Database/DatabaseImportManager.cs:176
 #, csharp-format
 msgid "File is empty so it could not be imported: {0}"
 msgstr "O arquivo está vazio então ele não pode ser importado: {0}"
@@ -2017,8 +2021,8 @@ msgstr "Excluir lista de reprodução"
 #: ../src/Core/Banshee.Services/Banshee.Playlist/PlaylistSource.cs:397
 #: ../src/Core/Banshee.Services/Banshee.Playlist/PlaylistSource.cs:403
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui/SourceActions.cs:176
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:135
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:462
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:134
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:460
 #: ../src/Core/Banshee.ThickClient/Banshee.Sources.Gui/SourceView.cs:597
 #: ../src/Core/Banshee.ThickClient/Banshee.Sources.Gui/SourceView_DragAndDrop.cs:212
 msgid "New Playlist"
@@ -2568,7 +2572,7 @@ msgstr "Aleatório"
 #: ../src/Core/Banshee.Services/Banshee.Query/PlaybackErrorQueryValue.cs:44
 #: ../src/Core/Banshee.Services/Banshee.Query/PlaybackErrorQueryValue.cs:46
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui/PlaybackSubtitleActions.cs:146
-#: ../src/Dap/Banshee.Dap/Banshee.Dap.Gui/DapInfoBar.cs:97
+#: ../src/Dap/Banshee.Dap/Banshee.Dap.Gui/DapInfoBar.cs:103
 msgid "None"
 msgstr "Nenhum"
 
@@ -2620,11 +2624,11 @@ msgstr "drm"
 #. Translators: These are unique strings for playback errors. Please, no spaces. Blank ok.
 #: ../src/Core/Banshee.Services/Banshee.Query/PlaybackErrorQueryValue.cs:64
 #: ../src/Core/Banshee.Services/Banshee.Query/PlaybackErrorQueryValue.cs:66
-#: ../src/Core/Banshee.Services/Banshee.ServiceStack/Application.cs:363
+#: ../src/Core/Banshee.Services/Banshee.ServiceStack/Application.cs:361
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui.TrackEditor/StatisticsPage.cs:234
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui.TrackEditor/StatisticsPage.cs:236
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui.TrackEditor/StatisticsPage.cs:238
-#: ../src/Dap/Banshee.Dap/Banshee.Dap/DapSource.cs:405
+#: ../src/Dap/Banshee.Dap/Banshee.Dap/DapSource.cs:420
 msgid "Unknown"
 msgstr "Desconhecido"
 
@@ -3432,136 +3436,136 @@ msgstr "Você tem certeza de que quer excluir isso {0}?"
 msgid "Separate by Type"
 msgstr "Separar por tipo"
 
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:110
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:109
 msgid "Select _All"
 msgstr "Selecionar _tudo"
 
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:111
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:110
 msgid "Select all tracks"
 msgstr "Selecionar todas as faixas"
 
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:114
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:113
 msgid "Select _None"
 msgstr "Selecionar _nenhum"
 
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:115
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:114
 msgid "Unselect all tracks"
 msgstr "Desfaz seleção de todas as faixas"
 
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:118
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:117
 #: ../src/Extensions/Banshee.Audiobook/Banshee.Audiobook/Actions.cs:59
 msgid "_Edit Track Information"
 msgstr "_Editar informação de faixas"
 
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:119
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:118
 msgid "Edit information on selected tracks"
 msgstr "Edita informação nas faixas selecionadas"
 
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:122
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:121
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui.TrackEditor/StatisticsPage.cs:283
 #: ../src/Extensions/Banshee.Podcasting/Banshee.Podcasting.Gui/PodcastActions.cs:117
 #: ../src/Extensions/Banshee.Podcasting/Banshee.Podcasting.Gui/PodcastActions.cs:164
 msgid "Properties"
 msgstr "Propriedades"
 
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:123
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:122
 msgid "View information on selected tracks"
 msgstr "Vê informação nas faixas selecionadas"
 
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:127
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:126
 msgid "Play the selected item"
 msgstr "Reproduzir o item selecionado"
 
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:130
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:129
 msgid "Add _to Playlist"
 msgstr "Adicionar à _lista de reprodução"
 
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:131
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:130
 msgid "Append selected items to playlist or create new playlist from selection"
 msgstr ""
 "Adiciona as músicas selecionadas à lista de reprodução ou cria uma nova "
 "lista de reprodução a partir da seleção"
 
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:136
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:135
 msgid "Create new playlist from selected tracks"
 msgstr "Cria nova lista de reprodução a partir das faixas selecionadas"
 
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:140
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:139
 msgid "_Remove"
 msgstr "_Remover"
 
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:141
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:140
 msgid "Remove selected track(s) from this source"
 msgstr "Remove a(s) faixa(s) selecionada(s) desta fonte"
 
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:144
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:143
 msgid "Remove From _Library"
 msgstr "Remover da _biblioteca"
 
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:145
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:144
 msgid "Remove selected track(s) from library"
 msgstr "Remove a(s) faixa(s) selecionada(s) da biblioteca"
 
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:148
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:147
 msgid "_Open Containing Folder"
 msgstr "_Abrir a pasta recipiente"
 
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:149
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:148
 msgid "Open the folder that contains the selected item"
 msgstr "Abre a pasta que contém o item selecionado"
 
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:152
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:151
 msgid "_Delete From Drive"
 msgstr "_Excluir do drive"
 
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:153
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:152
 msgid "Permanently delete selected item(s) from medium"
 msgstr ""
 "Exclui permanentemente o(s) item(s) selecionado(s) do local de armazenamento"
 
 #. Translators: this is a verb (command), not a noun (things)
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:159
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:158
 #: ../src/Extensions/Banshee.InternetArchive/Banshee.InternetArchive/HeaderFilters.cs:171
 #: ../src/Extensions/Banshee.MediaPanel/Banshee.MediaPanel/SearchEntry.cs:112
 #, csharp-format
 msgid "_Search"
 msgstr "Pe_squisar:"
 
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:160
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:159
 msgid "Search for items matching certain criteria"
 msgstr "Pesquisa músicas satisfazendo certo critério"
 
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:163
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:162
 msgid "By Matching _Album"
 msgstr "Por combinação de á_lbum"
 
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:164
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:163
 msgid "Search all songs of this album"
 msgstr "Pesquisa todas as músicas deste álbum"
 
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:167
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:166
 msgid "By Matching A_rtist"
 msgstr "Por combinação de a_rtista"
 
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:168
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:167
 msgid "Search all songs of this artist"
 msgstr "Pesquisa todas as músicas deste artista"
 
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:322
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:320
 #, csharp-format
 msgid "_Delete From \"{0}\""
 msgstr "E_xcluir de \"{0}\""
 
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:535
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:533
 msgid "The folder could not be found."
 msgstr "A pasta não pode ser encontrada."
 
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:536
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:534
 msgid "Please check that the track's location is accessible by the system."
 msgstr ""
 "Por favor certifique-se que a localização da faixa é acessível pelo sistema."
 
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:607
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:605
 #, csharp-format
 msgid "Are you sure you want to permanently delete this item?"
 msgid_plural ""
@@ -3570,16 +3574,16 @@ msgstr[0] "Você tem certeza que quer excluir permanentemente este item?"
 msgstr[1] ""
 "Você tem certeza que quer excluir permanentemente os {0} itens selecionados?"
 
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:611
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:609
 msgid "If you delete the selection, it will be permanently lost."
 msgstr "Se você excluir a seleção, ela será perdida permanentemente."
 
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:614
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:612
 #, csharp-format
 msgid "Remove selection from {0}?"
 msgstr "Remover seleção de {0}?"
 
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:617
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:615
 #, csharp-format
 msgid "Are you sure you want to remove the selected item from your {1}?"
 msgid_plural ""
@@ -3590,11 +3594,11 @@ msgstr[1] ""
 "Você tem certeza que quer remover os {0} itens selecionados do(a) seu(sua) "
 "{1}?"
 
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:645
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:643
 msgid "Are you sure you want to continue?"
 msgstr "Você tem certeza de que quer continuar?"
 
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:656
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:654
 msgid "Remove tracks"
 msgstr "Remover faixas"
 
@@ -4340,7 +4344,7 @@ msgid "Available"
 msgstr "Disponível"
 
 #: ../src/Dap/Banshee.Dap.AppleDevice/Banshee.Dap.AppleDevice/AppleDeviceSource.cs:123
-#: ../src/Dap/Banshee.Dap.Mtp/Banshee.Dap.Mtp/MtpSource.cs:141
+#: ../src/Dap/Banshee.Dap.Mtp/Banshee.Dap.Mtp/MtpSource.cs:143
 msgid "Serial number"
 msgstr "Número serial"
 
@@ -4399,39 +4403,39 @@ msgid "Sync {0}"
 msgstr "Sincronizar {0}"
 
 #. This group source gives us a separator for DAPs in the source view.
-#: ../src/Dap/Banshee.Dap/Banshee.Dap/DapService.cs:64
+#: ../src/Dap/Banshee.Dap/Banshee.Dap/DapService.cs:60
 msgid "Devices"
 msgstr "Dispositivos"
 
-#: ../src/Dap/Banshee.Dap/Banshee.Dap/DapSource.cs:179
+#: ../src/Dap/Banshee.Dap/Banshee.Dap/DapSource.cs:192
 msgid "Device Properties"
 msgstr "Propriedades do dispositivo"
 
-#: ../src/Dap/Banshee.Dap/Banshee.Dap/DapSource.cs:201
+#: ../src/Dap/Banshee.Dap/Banshee.Dap/DapSource.cs:214
 msgid "Product"
 msgstr "Produto"
 
-#: ../src/Dap/Banshee.Dap/Banshee.Dap/DapSource.cs:202
+#: ../src/Dap/Banshee.Dap/Banshee.Dap/DapSource.cs:215
 msgid "Vendor"
 msgstr "Fabricante"
 
-#: ../src/Dap/Banshee.Dap/Banshee.Dap/DapSource.cs:292
+#: ../src/Dap/Banshee.Dap/Banshee.Dap/DapSource.cs:307
 #: ../src/Extensions/Banshee.Podcasting/Banshee.Podcasting.Data/PodcastSource.cs:141
 #, csharp-format
 msgid "Loading {0}"
 msgstr "Carregando {0}"
 
-#: ../src/Dap/Banshee.Dap/Banshee.Dap/DapSource.cs:386
+#: ../src/Dap/Banshee.Dap/Banshee.Dap/DapSource.cs:401
 #: ../src/Extensions/Banshee.Podcasting/Banshee.Podcasting.Gui/ColumnCellYesNo.cs:37
 msgid "Yes"
 msgstr "Sim"
 
-#: ../src/Dap/Banshee.Dap/Banshee.Dap/DapSource.cs:386
+#: ../src/Dap/Banshee.Dap/Banshee.Dap/DapSource.cs:401
 #: ../src/Extensions/Banshee.Podcasting/Banshee.Podcasting.Gui/ColumnCellYesNo.cs:38
 msgid "No"
 msgstr "Não"
 
-#: ../src/Dap/Banshee.Dap/Banshee.Dap/DapSource.cs:407
+#: ../src/Dap/Banshee.Dap/Banshee.Dap/DapSource.cs:422
 #, csharp-format
 msgid ""
 "The {0} format is not supported by the device, and no converter was found to "
@@ -4440,11 +4444,11 @@ msgstr ""
 "O dispositivo não possui suporte ao formato {0}, e nenhum conversor foi "
 "localizado para convertê-lo"
 
-#: ../src/Dap/Banshee.Dap/Banshee.Dap/DapSource.cs:413
+#: ../src/Dap/Banshee.Dap/Banshee.Dap/DapSource.cs:428
 msgid "File format conversion support is not available"
 msgstr "O suporte à conversão de formato de arquivos não está disponível"
 
-#: ../src/Dap/Banshee.Dap/Banshee.Dap/DapSource.cs:439
+#: ../src/Dap/Banshee.Dap/Banshee.Dap/DapSource.cs:454
 msgid "Error converting file"
 msgstr "Erro ao converter arquivo"
 
@@ -4467,7 +4471,7 @@ msgid "Sync Preferences"
 msgstr "Preferências de sincronização"
 
 #. singular form unused b/c we know it's > 1, but we still need GetPlural
-#: ../src/Dap/Banshee.Dap/Banshee.Dap/DapSync.cs:364
+#: ../src/Dap/Banshee.Dap/Banshee.Dap/DapSync.cs:360
 #, csharp-format
 msgid "The sync operation will remove one track from your device."
 msgid_plural "The sync operation will remove {0} tracks from your device."
@@ -4478,21 +4482,21 @@ msgstr[1] "A operação de sincronização removerá {0} faixas de seu dispositi
 msgid "Sync"
 msgstr "Sincronizar"
 
-#: ../src/Dap/Banshee.Dap/Banshee.Dap.Gui/DapInfoBar.cs:68
+#: ../src/Dap/Banshee.Dap/Banshee.Dap.Gui/DapInfoBar.cs:74
 #: ../src/Extensions/Banshee.InternetArchive/InternetArchive/MediaType.cs:97
 msgid "Audio"
 msgstr "Áudio"
 
-#: ../src/Dap/Banshee.Dap/Banshee.Dap.Gui/DapInfoBar.cs:69
+#: ../src/Dap/Banshee.Dap/Banshee.Dap.Gui/DapInfoBar.cs:75
 #: ../src/Extensions/Banshee.UPnPClient/Banshee.UPnPClient/UPnPVideoSource.cs:49
 msgid "Video"
 msgstr "Vídeo"
 
-#: ../src/Dap/Banshee.Dap/Banshee.Dap.Gui/DapInfoBar.cs:70
+#: ../src/Dap/Banshee.Dap/Banshee.Dap.Gui/DapInfoBar.cs:76
 msgid "Other"
 msgstr "Outro"
 
-#: ../src/Dap/Banshee.Dap/Banshee.Dap.Gui/DapInfoBar.cs:71
+#: ../src/Dap/Banshee.Dap/Banshee.Dap.Gui/DapInfoBar.cs:77
 msgid "Free Space"
 msgstr "Espaço disponível"
 
@@ -4593,27 +4597,27 @@ msgstr "Dispositivo Rockbox"
 msgid "Ringtones"
 msgstr "Toques para celular"
 
-#: ../src/Dap/Banshee.Dap.Mtp/Banshee.Dap.Mtp/MtpSource.cs:82
+#: ../src/Dap/Banshee.Dap.Mtp/Banshee.Dap.Mtp/MtpSource.cs:84
 msgid "Error Initializing MTP Device Support"
 msgstr "Erro iniciando o suporte a dispositivos MTP"
 
-#: ../src/Dap/Banshee.Dap.Mtp/Banshee.Dap.Mtp/MtpSource.cs:83
+#: ../src/Dap/Banshee.Dap.Mtp/Banshee.Dap.Mtp/MtpSource.cs:85
 msgid "There was an error initializing MTP device support."
 msgstr "Houve um erro inicializando o suporte a dispositivos MTP."
 
-#: ../src/Dap/Banshee.Dap.Mtp/Banshee.Dap.Mtp/MtpSource.cs:142
+#: ../src/Dap/Banshee.Dap.Mtp/Banshee.Dap.Mtp/MtpSource.cs:144
 #: ../src/Hyena/Hyena.Gui/Hyena.Gui.Dialogs/VersionInformationDialog.cs:66
 msgid "Version"
 msgstr "Versão"
 
-#: ../src/Dap/Banshee.Dap.Mtp/Banshee.Dap.Mtp/MtpSource.cs:144
+#: ../src/Dap/Banshee.Dap.Mtp/Banshee.Dap.Mtp/MtpSource.cs:146
 msgid "Battery level"
 msgstr "Nível da bateria"
 
 #. user_event.Progress = (double)current / total;
 #. Translators: {0} is the name of the MTP audio device (eg Gabe's Zen Player), {1} is the
 #. track currently being loaded, and {2} is the total # of tracks that will be loaded.
-#: ../src/Dap/Banshee.Dap.Mtp/Banshee.Dap.Mtp/MtpSource.cs:160
+#: ../src/Dap/Banshee.Dap.Mtp/Banshee.Dap.Mtp/MtpSource.cs:162
 #, csharp-format
 msgid "Loading {0} - {1} of {2}"
 msgstr "Carregando {0} - {1} de {2}"
@@ -6179,12 +6183,10 @@ msgid "lastfm://"
 msgstr "lastfm://"
 
 #: ../src/Extensions/Banshee.MediaPanel/banshee-media-panel.desktop.in.h:1
-#| msgid "Banshee Media Player"
 msgid "Banshee Media Panel"
 msgstr "Painel de mídia do Banshee"
 
 #: ../src/Extensions/Banshee.MediaPanel/banshee-media-panel.desktop.in.h:2
-#| msgid "Play and organize your media collection"
 msgid "Play and browse your media collection"
 msgstr "Navegue e reproduza sua coleção de mídia"
 
@@ -6202,7 +6204,6 @@ msgid "Now Playing"
 msgstr "Reproduzindo agora"
 
 #: ../src/Extensions/Banshee.MediaPanel/Banshee.MediaPanel/MediaPanelService.cs:98
-#| msgid "Media Player"
 msgid "Media _Panel"
 msgstr "_Painel de mídia"
 
@@ -6407,7 +6408,7 @@ msgstr ""
 "Desligar automaticamente importação desde que este álbum já exista na "
 "biblioteca de músicas."
 
-#: ../src/Extensions/Banshee.OpticalDisc/Banshee.OpticalDisc.AudioCd/AudioCdSource.cs:198
+#: ../src/Extensions/Banshee.OpticalDisc/Banshee.OpticalDisc.AudioCd/AudioCdSource.cs:194
 msgid "Could not import CD"
 msgstr "Não foi possível importar CD"
 
@@ -7290,6 +7291,9 @@ msgstr "Conectado ao Last.fm."
 #: ../src/Libraries/Migo/Migo.Syndication/RssParser.cs:103
 msgid "Unknown Podcast"
 msgstr "Podcast desconhecido"
+
+#~ msgid "Could not create decodebin2 plugin"
+#~ msgstr "Não foi possível criar o plug-in decodebin2"
 
 #~ msgid "Media"
 #~ msgstr "Mídia"
