@@ -227,6 +227,9 @@ namespace Banshee.Gui
 
         private void HandleEditMenuActivated (object sender, EventArgs args)
         {
+            // inside the "Edit" menu it's a bit redundant to have a label that starts as "Edit Track..."
+            this["TrackEditorAction"].Label = Catalog.GetString ("Track _Information");
+
             ResetRating ();
         }
 
