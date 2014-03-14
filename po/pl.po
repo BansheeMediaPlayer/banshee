@@ -13,8 +13,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: banshee\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-03-12 18:53+0100\n"
-"PO-Revision-Date: 2014-03-12 18:54+0100\n"
+"POT-Creation-Date: 2014-03-14 18:49+0100\n"
+"PO-Revision-Date: 2014-03-14 18:50+0100\n"
 "Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish <gnomepl@aviary.pl>\n"
 "Language: pl\n"
@@ -2014,7 +2014,7 @@ msgstr "Usuń listę odtwarzania"
 #: ../src/Core/Banshee.Services/Banshee.Playlist/PlaylistSource.cs:403
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui/SourceActions.cs:176
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:134
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:460
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:463
 #: ../src/Core/Banshee.ThickClient/Banshee.Sources.Gui/SourceView.cs:597
 #: ../src/Core/Banshee.ThickClient/Banshee.Sources.Gui/SourceView_DragAndDrop.cs:212
 msgid "New Playlist"
@@ -3554,20 +3554,25 @@ msgstr "Wg pasującego _wykonawcy"
 msgid "Search all songs of this artist"
 msgstr "Wyszukuje wszystkie utwory tego wykonawcy"
 
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:320
+#. inside the "Edit" menu it's a bit redundant to have a label that starts as "Edit Track..."
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:231
+msgid "Track _Information"
+msgstr "_Informacje o ścieżce"
+
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:323
 #, csharp-format
 msgid "_Delete From \"{0}\""
 msgstr "_Usuń z \"{0}\""
 
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:533
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:536
 msgid "The folder could not be found."
 msgstr "Nie można odnaleźć katalogu."
 
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:534
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:537
 msgid "Please check that the track's location is accessible by the system."
 msgstr "Proszę sprawdzić, czy system ma dostęp do położenia ścieżki."
 
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:605
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:608
 #, csharp-format
 msgid "Are you sure you want to permanently delete this item?"
 msgid_plural ""
@@ -3576,16 +3581,16 @@ msgstr[0] "Na pewno trwale usunąć ten element?"
 msgstr[1] "Na pewno trwale usunąć {0} zaznaczone elementy?"
 msgstr[2] "Na pewno trwale usunąć {0} zaznaczonych elementów?"
 
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:609
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:612
 msgid "If you delete the selection, it will be permanently lost."
 msgstr "Usunięcie zaznaczenia spowoduje jego bezpowrotną utratę."
 
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:612
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:615
 #, csharp-format
 msgid "Remove selection from {0}?"
 msgstr "Usunąć zaznaczenie z {0}?"
 
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:615
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:618
 #, csharp-format
 msgid "Are you sure you want to remove the selected item from your {1}?"
 msgid_plural ""
@@ -3594,11 +3599,11 @@ msgstr[0] "Na pewno usunąć zaznaczony element z {1}?"
 msgstr[1] "Na pewno usunąć {0} zaznaczone elementy z {1}?"
 msgstr[2] "Na pewno usunąć {0} zaznaczonych elementów z {1}?"
 
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:643
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:646
 msgid "Are you sure you want to continue?"
 msgstr "Na pewno kontynuować?"
 
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:654
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:657
 msgid "Remove tracks"
 msgstr "Usuń ścieżki"
 
