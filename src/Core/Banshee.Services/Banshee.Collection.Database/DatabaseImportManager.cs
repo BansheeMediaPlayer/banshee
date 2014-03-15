@@ -251,7 +251,8 @@ namespace Banshee.Collection.Database
 
         public void NotifyAllSources ()
         {
-            foreach (int primary_source_id in counts.Keys) {
+            var all_primary_source_ids = new List<int> (counts.Keys);
+            foreach (int primary_source_id in all_primary_source_ids) {
                 PrimarySource.GetById (primary_source_id).NotifyTracksAdded ();
             }
             counts.Clear ();
