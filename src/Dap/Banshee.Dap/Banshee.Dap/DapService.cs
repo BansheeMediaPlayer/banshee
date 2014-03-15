@@ -270,9 +270,9 @@ namespace Banshee.Dap
             }
 
             if (source != null) {
+                source.Dispose ();
                 ThreadAssist.ProxyToMain (delegate {
                     try {
-                        source.Dispose ();
                         ServiceManager.SourceManager.RemoveSource (source);
                     } catch (Exception e) {
                         Log.Exception (e);
