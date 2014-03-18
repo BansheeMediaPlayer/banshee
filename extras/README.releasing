@@ -3,7 +3,11 @@ To make a release:
 Pre-release:
 * If it's a stable release, check this first:
 https://wiki.gnome.org/Apps/Banshee/StableReleasesPolicy
-* Update src/Core/Banshee.Core/Resources/contributors.xml (manually)
+* Update src/Core/Banshee.Core/Resources/contributors.xml
+  + This needs to be done manually, but there's a handy command
+    that can help you a lot:
+  `git log 2.9.0..HEAD --no-merges "$@" | grep ^Author: | sed 's/ <.*//; s/^Author: //' | sort | uniq -c | sort -nr`
+  (if the previous release was 2.9.0)
 * Update AUTHORS (cd extras/ && ./create-authors > ../AUTHORS)
 * Update NEWS
 * Check version in configure.ac (don't forget the display version)
