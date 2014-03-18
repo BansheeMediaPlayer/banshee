@@ -2,7 +2,7 @@ dnl Granularly define the version components
 dnl Remember to also update the Display Version
 m4_define([banshee_version_major], [2])
 m4_define([banshee_version_minor], [9])
-m4_define([banshee_version_micro], [1])
+m4_define([banshee_version_micro], [2])
 
 dnl this can sometimes differ manually
 m4_define([banshee_display_version], ["2.9"])
