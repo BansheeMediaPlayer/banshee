@@ -1,91 +1,91 @@
 ===============================================================================
-Banshee 2.9.0 - 2013-10-08
+Banshee 2.9.1 - 2014-03-18
 ===============================================================================
 
-    Banshee 2.9.0 is the culmination of twelve months' work by 19 developers,
-    27 translators and dozens of bug reporters and testers. It is a development
-    release, the first of the 2.9.x releases leading up to our future stable
+    Banshee 2.9.1 is the culmination of five months' work by 17 developers,
+    21 translators and dozens of bug reporters and testers. It is a development
+    release, the second of the 2.9.x releases leading up to our future stable
     release Banshee 3.0.
 
     New Features:
 
-      * GTK3
+      * GStreamer 1.x compatibility
 
-            This is the first release using the 3.x version of GTK+, thanks
-            to work that has been done in Gtk# to bind this version.
+            This is the first official upstream release compatible with versions of
+            GStreamer 1.0 or newer.
 
-      * Device synchronization for Symbian
+      * Production-ready GStreamerSharp playback-engine backend, now default
 
-            Banshee can now sync media to Symbian devices like Nokia N95. Please
-            help testing this new feature so we can mention more Symbian devices
-            in our release notes for Banshee 3!
+            Our managed backend (that already allowed us to have playback working
+            in the Windows platform) has been migrated to work with the revamped
+            GStreamerSharp bindings (GObject-Introspection based, and capable of
+            binding GStreamer 1.0 or newer) and is now the default one for all
+            platforms.
+
+            This paves the way to finish the long-standing goal of completely
+            removing lower-level languages like C from our codebase, to lower
+            the barrier of entry to new contributors, reduce complexity and
+            increase stability.
+
+            You can still use the optional unmanaged GStreamer backend, but
+            before doing so we encourage you to provide us any feedback that
+            you may have about the managed one (reporting bugs or writing to
+            our forums or mailing lists), because we will deprecate this one
+            very soon.
+
+      * New "MediaPanel" UI, formerly called "MeeGo MediaPanel"
+
+            The MeeGo specific UI has been now been renamed to MediaPanel and
+            you can use it in your desktop environment now, just by clicking
+            in the Media Panel option under the View menu (this extension is
+            now enabled by default).
 
 
     Enhancements:
 
-      * Add basic AppData file for inclusion in open source app stores
-      * Add keywords to .desktop entry for easy find in Unity & GNOME Shell (bgo#700524)
-      * Main UI: make Search textbox remember its size (bgo#653819)
-      * Lastfm: avoid unnecessary wait when submitting successful scrobbles
-      * DatabaseImportManager: Add .amr to import whitelist
-      * PlayerEngine: Add support for accurate seek
-      * GSettings: implement new, still unused, SchemaExtractor for GSettings
-      * build: use the gui-thread-check profiler module by default when debugging
-      * configure: better guess for the C# compiler available
-      * AppleDeviceSource: use progressUpdaters for all sync operations
+      * Notifications: use notify-sharp-3.0 in the system if available
+      * bgo#690010: enable tests by default if NUnit dependency is found
+      * WebBrowser: drop dependency on 'libsoup-gnome', which was deprecated
+      * Video: default smart playlists are now invisible when empty, like Music ones
 
 
-    Notable Bugs Fixed (37 fixed since 2.6.0):
+    Notable Bugs Fixed (35 fixed since 2.9.0):
 
-      * bgo#709376: SourceManager: avoid warnings when shutting down
-      * ArtworkManager: prevent wrong inclusion of null artwork_id in cache
-      * bgo#686908: libbanshee: Only call volume set callback on Mac
-      * bgo#706173: Feed: Avoid loop when podcast has date values in the future
-      * bgo#700753: PrimarySource: fix crash if 1st track had a Dap transcoding error
-      * bgo#687495: MtpSource: prevent a freeze when dealing with Windows Phone
-      * bgo#696520: Handle all values from a rowid database column as long
-      * bgo#699735: Gio: prevent a freeze when mounting a LVM volume
-      * bgo#692153: InternetRadio: refresh UI after editing station
-      * bgo#679769: StatisticsPage: Fix crash when no tracks are selected
-      * bgo#696700: DapPropertiesDialog: Make sure progress bar value is valid
-      * bgo#696877: PlaylistFileUtil: Only import playlist items that are files
-      * bgo#692374: Avoid race when using GConf and DBus with threads
-      * bgo#696111: ListView: when initializing a11y, disable instead of hanging
-      * bgo#691532: LastFM: display progress for multiple-track scrobbles
-      * bgo#691696: build: Improve MSBuild experience without autotools
-      * bgo#689123: DatabaseTrackInfo: don't default to MusicFilePattern when null
-      * bgo#689018: Audioscrobbler: avoid 414 Request-URI Too Large
-      * bgo#691971: PrimarySource: Allow cancelling track delete job
-      * bgo#665268: InternetRadio: Previous should never mean a restart
-      * bgo#686657: InternetRadio: UI to correctly update status indicator columns
-      * bgo#658142: Dap: better check for the playing track before ejecting
-      * bgo#684089: PrimarySource: prevent AddTrackJob respawn if cancelled
-      * bgo#689016: LastFm: Avoid crashing if scrobbling response is not JSON
-      * bgo#653282: Dap.MassStorage: not import dirs twice for case-insensitive drives
-      * bgo#691694: configure: stop using obsolete AutoMake macro
-      * bnc#798267: build: test dmcs before gmcs when trying to find the compiler
-      * bgo#577225: RescanPipeline: warn about removal of many tracks
-      * bgo#688540: Mtp: Fix file type in sync with libmtp > 1.1.0
-      * bgo#690300: Dap: Settings of DAP sources are not remembered between sessions
-      * bgo#639947: Dap: Use Unicode codes for quotation marks
-      * bgo#686584: build: Make gio-hardware be enabled by default
-      * bgo#686584: build: make GIO backend be enabled by default
-      * bgo#686582: YouTube: advice about --disable-youtube configuration flag
-      * bgo#686671: configure: earlier check for glib
-      * bgo#685920: LastFm: Null check for scrobble parameters
-      * bgo#685131: Add GTK category in .desktop files to comply with spec
-
-
-    Known issues (unfortunately the major architectural change to GTK3 caused
-    some problems that we're still looking into):
-
-      * bgo#709617: No alternating colors in the ListView
-      * bgo#709619: ListView header decoration do not match regular TreeView
-      * bgo#666452: Drag and drop crash banshee on gtk3 branch
-      * Ubuntu: No text on the main (left) source switching pad when selecting
-      a source (fixed already in Ubuntu 13.10). To fix this manually in Ubuntu
-      version 13.04 (or older?), do:
-      `cd /usr/share/themes &&  wget -O - -o /dev/null http://bazaar.launchpad.net/~ubuntu-art-pkg/ubuntu-themes/trunk/diff/311 | sudo patch -p0`
+      * bgo#692374: require dbus-glib-1 to make sure to avoid GConf crashes
+      * bgo#725870: avoid hang when disconnecting Nexus 5
+      * bgo#724635: don't crash at iPod sync
+      * bgo#726336: avoid redundancy in submenu label text
+      * bgo#725185: avoid importing non-readable files
+      * bgo#696520: avoid pointless long->int runtime casts
+      * DBus: don't try to connect in GrabDefaultName() if dbus is disabled
+      * bgo#724730: avoid aborting MTP access when busy
+      * bgo#724678: tracks which were in nested folders under Music/ not shown
+      * bgo#724656: fix potential crashers when ejecting DAP source
+      * bgo#724645: fix crash at shutdown if MTP was mounted
+      * bgo#627391: [gapless] fix smooth transition for Repeat-Single mode
+      * bgo#671221: fix Repeat-All mode if there are less than 3 tracks and Shuffle is ON
+      * bgo#724515: fix Repeat-OFF mode when Shuffle is ON
+      * bgo#723889: avoid notifications-related warning printed in the log
+      * bgo#723040: DapService: avoid freezing Banshee when unmapping device
+      * bgo#679938: [gapless] Repeat always on
+      * bgo#674293: [gapless] Banshee ignores "stop when finished"
+      * bgo#621222: [gapless] Playcount shouldn't be incremented as soon as song plays
+      * bgo#723005: fix path of image referenced in Help
+      * bgo#722731: avoid highlighting wrong track after invalid track was played
+      * bgo#636992: avoid misleading [gapless] token in log
+      * bgo#722565: advice about nunit-console not available instead of failing
+      * bgo#720359: avoid 'URI too large' errors at LastFM scrobbling
+      * bgo#722947: prevent a crash when dealing with Nexus4
+      * bgo#722209: avoid crash when connecting Nexus4
+      * bgo#722219: avoid crash when disconnecting Nexus4
+      * bgo#664887: fail faster if --enable-tests used and NUnit was not found
+      * bgo#721203: CD audio source doesn't show up when inserting it
+      * bgo#712656: pkg-config files were still pointing to GTK2 instead of GTK3
+      * bgo#710266: PlayQueue: fix another GtkCRITICAL at shutdown
+      * bgo#710423: Fix build of the SoundMenu extension
+      * bgo#710475: fix build in Osx by avoiding optional parameters
+      * bgo#710266: avoid GtkCRITICAL in the console at shutdown
+      * bgo#709717: fix ListView scrolling with mouse wheel (regression from GTK2)
 
 
 ===============================================================================
@@ -95,9 +95,9 @@ SOURCES / PACKAGES
 Sources
 -------
 
-    * Banshee 2.9.0 Tarballs:
-      http://ftp.gnome.org/pub/GNOME/sources/banshee/2.9/banshee-2.9.0.tar.xz
-      http://ftp.gnome.org/pub/GNOME/sources/banshee/2.9/banshee-2.9.0.sha256sum
+    * Banshee 2.9.1 Tarballs:
+      http://ftp.gnome.org/pub/GNOME/sources/banshee/2.9/banshee-2.9.1.tar.xz
+      http://ftp.gnome.org/pub/GNOME/sources/banshee/2.9/banshee-2.9.1.sha256sum
 
 Packages
 --------
@@ -120,7 +120,7 @@ REPORT BUGS - HELP THE PROJECT - GROW THE COMMUNITY
     hesitate to file bugs!
 
     * http://banshee.fm/contribute/file-bugs
-    * http://bugzilla.gnome.org/enter_bug.cgi?product=banshee&version=2.9.0
+    * http://bugzilla.gnome.org/enter_bug.cgi?product=banshee&version=2.9.1
 
 
 ===============================================================================
@@ -133,19 +133,17 @@ Contributors For This Release
     The following people directly contributed to the release of this version
     of Banshee. Without their help, there would be no release!
 
-     Andres G. Aragoneses, Alex Willmy, Aruna Sankaranarayanan, Bertrand
-     Lorentz, Chow Loong Jin, Ekaterina Gerasimova, Hans Petter Jansson,
-     Hans Oesterholt, James Boocock, Michael Farrell, Nicholas Little,
-     Olivier Dufour, Phil Trimble, Rashid Khan, Samuel Gyger, Sindhu S,
-     Timo Dörr, Tomasz Maczynski
+     Andres G. Aragoneses, Andrey Gankov, Bertrand Lorentz, Chow Loong Jin,
+     Dmitriy PetukhovFrank, Frank Ziegler, Marcin Kolny, Michael Catanzaro,
+     Michael Foster, Michał Sawicz, Mirco Bauer, Nicholas Little, Olivier
+     Dufour, Phil Trimble, Roderich Schupp Sebastian Dröge, Stephan
+     Sundermann
 
     The following people contributed updated translations to this release.
     Without them, our project's reach would be much more limited.
 
-     Aleksej Kabanov, Alexandre Franke, Andika Triwidada, António Lima,
-     Aurimas Černius, Balázs Úr, Cheng-Chia Tseng, Daniel Mustieles, Dimitris
-     Spingos, dyzdyz010@sina.com, Enrico Nicoletto, Fran Diéguez, Hajime
-     Taira, Jiro Matsuzawa, Joe Hansen, Jordi Mas, Kjartan Maraas, Marek
-     Černocký, Martin Srebotnjak, Matej Urbančič, Muhammet Kara, Мирослав
-     Николић, Piotr Drąg, Milagros Alessandra Infante Montero, Rafael
-     Ferreira, Rūdolfs Mazurs, Wolfgang Stöggl, Yuri Myasoedov
+     Andika Triwidada, Antonio Fernandes C. Neto, Aurimas Černius, Benjamin
+     Steinwender, Balázs Úr, Cheng-Chia Tseng, Daniel Mustieles, Dimitris
+     Spingos, Enrico Nicoletto, Fran Diéguez, Jordi Mas, Marek Černocký,
+     Martin Srebotnjak, Matej Urbančič, michaeljayt, Мирослав Николић,
+     Piotr Drąg, Rafael Ferreira, Ricardo Barbosa, Seong-ho Cho, Tiago S.
