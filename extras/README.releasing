@@ -23,8 +23,8 @@ Release:
 * Specifying your gnome username with the env var GNOME_FTP_USER,
   run this script: `./extras/make-release`
   + Note that this makes the tag, adds the version to bugzilla,
-    and uploads the tarballs. You need to ssh to master.gnome.org to
-    install the tarballs on ftp.gnome.org.
+    and uploads the tarballs. You will be asked to ssh to
+    master.gnome.org to install the tarballs on ftp.gnome.org.
 
 Post-release:
 * In the master.gnome.org session, do:
