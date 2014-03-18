@@ -12,9 +12,7 @@ AC_DEFUN([BANSHEE_CHECK_GCONF],
 
 	# dbus-glib is needed for the workaround for bgo#692374
 	PKG_CHECK_MODULES(DBUS_GLIB, dbus-glib-1 >= 0.80, have_dbus_glib="yes", have_dbus_glib="no")
-	if test "x$have_dbus_glib" = "xyes"; then
-		AM_CONDITIONAL(HAVE_DBUS_GLIB, true)
-	else
-		AM_CONDITIONAL(HAVE_DBUS_GLIB, false)
+	if test "x$have_dbus_glib" = "xno"; then
+		AC_MSG_ERROR([Please install dbus-glib-1 development package or use --disable-gnome.])
 	fi
 ])
