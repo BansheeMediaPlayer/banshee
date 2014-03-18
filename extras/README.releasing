@@ -10,6 +10,10 @@ https://wiki.gnome.org/Apps/Banshee/StableReleasesPolicy
   (if the previous release was 2.9.0)
 * Update AUTHORS (cd extras/ && ./create-authors > ../AUTHORS)
 * Update NEWS
+* Update copyright years if needed, in the following paths:
+  + src/Core/Banshee.ThickClient/Banshee.Gui.Dialogs/AboutDialog.cs
+  + src/AssemblyInfo.cs.in
+  + COPYING
 * Check version in configure.ac (don't forget the display version)
 * Update banshee.doap, build/windows/Installer*
 * Run `make distcheck`
