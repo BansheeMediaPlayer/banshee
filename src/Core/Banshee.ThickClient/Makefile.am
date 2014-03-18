@@ -3,10 +3,6 @@ TARGET = library
 ASSEMBLY_BUILD_FLAGS = -unsafe
 LINK = $(REF_BANSHEE_THICKCLIENT)
 
-if HAVE_DBUS_GLIB
-BUILD_DEFINES = "-define:HAVE_DBUS_GLIB"
-endif
-
 SOURCES =  \
 	Banshee.Addins.Gui/AddinView.cs \
 	Banshee.CairoGlyphs/BansheeLineLogo.cs \

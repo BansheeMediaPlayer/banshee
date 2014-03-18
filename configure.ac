@@ -124,7 +124,6 @@ if test "x$enable_gnome" = "xyes"; then
 	AM_CONDITIONAL(ENABLE_GNOME, true)
 else
 	AM_CONDITIONAL(GCONF_SCHEMAS_INSTALL, false)
-	AM_CONDITIONAL(HAVE_DBUS_GLIB, false)
 	AM_CONDITIONAL(ENABLE_GNOME, false)
 fi
 
