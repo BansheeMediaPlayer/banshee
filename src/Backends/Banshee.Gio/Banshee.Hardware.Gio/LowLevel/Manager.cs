@@ -78,6 +78,11 @@ namespace Banshee.Hardware.Gio
                 return;
 
             var device = GudevDeviceFromGioMount (mount);
+            if (device == null) {
+                Hyena.Log.Debug (string.Format ("Tried to mount {0}/{1} with no matching udev device", mount.Volume.Name, mount.Volume.Uuid));
+                return;
+            }
+
             volume_device_map [mount.Volume.Handle] = device;
             var h = DeviceAdded;
             if (h != null) {
