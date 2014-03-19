@@ -16,8 +16,8 @@ msgstr ""
 "Project-Id-Version: banshee.master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=banshee&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2014-03-11 20:23+0000\n"
-"PO-Revision-Date: 2014-03-12 10:40+0100\n"
+"POT-Creation-Date: 2014-03-19 15:48+0000\n"
+"PO-Revision-Date: 2014-03-19 17:43+0100\n"
 "Last-Translator: Daniel Mustieles <daniel.mustieles@gmail.com>\n"
 "Language-Team: Español <gnome-es-list@gnome.org>\n"
 "Language: \n"
@@ -719,17 +719,17 @@ msgid "Could not initialize GStreamer library"
 msgstr "No se pudo inicializar la biblioteca de GStreamer"
 
 #: ../src/Backends/Banshee.GStreamer/Banshee.GStreamer/PlayerEngine.cs:521
-#: ../src/Backends/Banshee.GStreamerSharp/Banshee.GStreamerSharp/PlayerEngine.cs:568
+#: ../src/Backends/Banshee.GStreamerSharp/Banshee.GStreamerSharp/PlayerEngine.cs:612
 msgid "Unknown Error"
 msgstr "Error desconocido"
 
 #: ../src/Backends/Banshee.GStreamer/Banshee.GStreamer/PlayerEngine.cs:889
-#: ../src/Backends/Banshee.GStreamerSharp/Banshee.GStreamerSharp/PlayerEngine.cs:992
+#: ../src/Backends/Banshee.GStreamerSharp/Banshee.GStreamerSharp/PlayerEngine.cs:1053
 msgid "_Enable ReplayGain correction"
 msgstr "Activar corrección _ReplayGain"
 
 #: ../src/Backends/Banshee.GStreamer/Banshee.GStreamer/PlayerEngine.cs:890
-#: ../src/Backends/Banshee.GStreamerSharp/Banshee.GStreamerSharp/PlayerEngine.cs:993
+#: ../src/Backends/Banshee.GStreamerSharp/Banshee.GStreamerSharp/PlayerEngine.cs:1054
 msgid ""
 "For tracks that have ReplayGain data, automatically scale (normalize) "
 "playback volume"
@@ -738,10 +738,12 @@ msgstr ""
 "automáticamente el volumen de reproducción"
 
 #: ../src/Backends/Banshee.GStreamer/Banshee.GStreamer/PlayerEngine.cs:894
+#: ../src/Backends/Banshee.GStreamerSharp/Banshee.GStreamerSharp/PlayerEngine.cs:1058
 msgid "Enable _gapless playback"
 msgstr "Activar reproducción sin _huecos"
 
 #: ../src/Backends/Banshee.GStreamer/Banshee.GStreamer/PlayerEngine.cs:895
+#: ../src/Backends/Banshee.GStreamerSharp/Banshee.GStreamerSharp/PlayerEngine.cs:1059
 msgid ""
 "Eliminate the small playback gap on track change. Useful for concept albums "
 "and classical music"
@@ -848,7 +850,7 @@ msgstr "No se pudo crear la tubería"
 msgid "Could not create encoder pipeline : {0}"
 msgstr "No se pudo crear la tubería del codificador: {0}"
 
-#: ../src/Backends/Banshee.GStreamerSharp/Banshee.GStreamerSharp/PlayerEngine.cs:814
+#: ../src/Backends/Banshee.GStreamerSharp/Banshee.GStreamerSharp/PlayerEngine.cs:874
 msgid "GStreamer# 0.10"
 msgstr "GStreamer# 0.10"
 
@@ -1421,7 +1423,6 @@ msgstr "Todos los artistas ({0})"
 
 #: ../src/Core/Banshee.Services/Banshee.Collection.Database/DatabaseImportManager.cs:170
 #, csharp-format
-#| msgid "File is empty so it could not be imported: {0}"
 msgid "File is not readable so it could not be imported: {0}"
 msgstr "El archivo no se puede leer, por lo que no se pudo importar: {0}"
 
@@ -2007,7 +2008,7 @@ msgstr "Eliminar la lista de reproducción"
 #: ../src/Core/Banshee.Services/Banshee.Playlist/PlaylistSource.cs:403
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui/SourceActions.cs:176
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:134
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:460
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:463
 #: ../src/Core/Banshee.ThickClient/Banshee.Sources.Gui/SourceView.cs:597
 #: ../src/Core/Banshee.ThickClient/Banshee.Sources.Gui/SourceView_DragAndDrop.cs:212
 msgid "New Playlist"
@@ -3538,20 +3539,26 @@ msgstr "Por coincidencia de _artista"
 msgid "Search all songs of this artist"
 msgstr "Buscar todas las canciones de este artista"
 
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:320
+#. inside the "Edit" menu it's a bit redundant to have a label that starts as "Edit Track..."
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:231
+#| msgid "_Edit Track Information"
+msgid "Track _Information"
+msgstr "_Información de la pista"
+
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:323
 #, csharp-format
 msgid "_Delete From \"{0}\""
 msgstr "Eli_minar de «{0}»"
 
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:533
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:536
 msgid "The folder could not be found."
 msgstr "No se pudo encontrar la carpeta."
 
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:534
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:537
 msgid "Please check that the track's location is accessible by the system."
 msgstr "Compruebe que la ubicación de la pista es accesible por el sistema."
 
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:605
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:608
 #, csharp-format
 msgid "Are you sure you want to permanently delete this item?"
 msgid_plural ""
@@ -3561,16 +3568,16 @@ msgstr[1] ""
 "¿Está seguro de querer eliminar los {0} elementos seleccionados "
 "permanentemente?"
 
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:609
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:612
 msgid "If you delete the selection, it will be permanently lost."
 msgstr "Si elimina la selección, se perderá permanentemente."
 
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:612
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:615
 #, csharp-format
 msgid "Remove selection from {0}?"
 msgstr "¿Quitar la selección de {0}?"
 
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:615
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:618
 #, csharp-format
 msgid "Are you sure you want to remove the selected item from your {1}?"
 msgid_plural ""
@@ -3579,11 +3586,11 @@ msgstr[0] "¿Está seguro de querer quitar el elemento seleccionado de {1}?"
 msgstr[1] ""
 "¿Está seguro de querer quitar los {0} elementos seleccionados de {1}?"
 
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:643
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:646
 msgid "Are you sure you want to continue?"
 msgstr "¿Está seguro de que quiere continuar?"
 
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:654
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:657
 msgid "Remove tracks"
 msgstr "Quitar pistas"
 
