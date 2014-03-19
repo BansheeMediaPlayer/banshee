@@ -5,14 +5,15 @@
 # Kéménczy Kálmán <kkemenczy at novell dot com>, 2006.
 # Gabor Kelemen <kelemeng at gnome dot hu>, 2006, 2007, 2008, 2009, 2010, 2011, 2012.
 # Balázs Úr <urbalazs at gmail dot com>, 2012, 2013, 2014.
+# Balázs Úr <urbalazs@gmail.com>, 2014.
 msgid ""
 msgstr ""
 "Project-Id-Version: banshee master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=banshee&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2014-02-23 11:36+0000\n"
-"PO-Revision-Date: 2014-02-23 16:15+0100\n"
-"Last-Translator: Balázs Úr <urbalazs at gmail dot com>\n"
+"POT-Creation-Date: 2014-03-19 16:46+0000\n"
+"PO-Revision-Date: 2014-03-19 19:48+0100\n"
+"Last-Translator: Balázs Úr <urbalazs@gmail.com>\n"
 "Language-Team: Hungarian <gnome-hu-list at gnome dot org>\n"
 "Language: hu\n"
 "MIME-Version: 1.0\n"
@@ -240,7 +241,6 @@ msgstr "Zene- és videogyűjtemények automatikus frissítése."
 
 #. ../src/Extensions/Banshee.MediaPanel/Banshee.MediaPanel.addin.xml
 #: ../data/addin-xml-strings.cs:108
-#| msgid "MTP Media Player Support"
 msgid "MediaPanel Support"
 msgstr "MédiaPanel támogatása"
 
@@ -712,17 +712,17 @@ msgid "Could not initialize GStreamer library"
 msgstr "A GStreamer könyvtár előkészítése nem sikerült"
 
 #: ../src/Backends/Banshee.GStreamer/Banshee.GStreamer/PlayerEngine.cs:521
-#: ../src/Backends/Banshee.GStreamerSharp/Banshee.GStreamerSharp/PlayerEngine.cs:568
+#: ../src/Backends/Banshee.GStreamerSharp/Banshee.GStreamerSharp/PlayerEngine.cs:612
 msgid "Unknown Error"
 msgstr "Ismeretlen hiba"
 
 #: ../src/Backends/Banshee.GStreamer/Banshee.GStreamer/PlayerEngine.cs:889
-#: ../src/Backends/Banshee.GStreamerSharp/Banshee.GStreamerSharp/PlayerEngine.cs:992
+#: ../src/Backends/Banshee.GStreamerSharp/Banshee.GStreamerSharp/PlayerEngine.cs:1053
 msgid "_Enable ReplayGain correction"
 msgstr "_Visszhangerősítés javításának engedélyezése"
 
 #: ../src/Backends/Banshee.GStreamer/Banshee.GStreamer/PlayerEngine.cs:890
-#: ../src/Backends/Banshee.GStreamerSharp/Banshee.GStreamerSharp/PlayerEngine.cs:993
+#: ../src/Backends/Banshee.GStreamerSharp/Banshee.GStreamerSharp/PlayerEngine.cs:1054
 msgid ""
 "For tracks that have ReplayGain data, automatically scale (normalize) "
 "playback volume"
@@ -731,10 +731,12 @@ msgstr ""
 "automatikus normalizálása"
 
 #: ../src/Backends/Banshee.GStreamer/Banshee.GStreamer/PlayerEngine.cs:894
+#: ../src/Backends/Banshee.GStreamerSharp/Banshee.GStreamerSharp/PlayerEngine.cs:1058
 msgid "Enable _gapless playback"
 msgstr "_Szünetmentes lejátszás bekapcsolása"
 
 #: ../src/Backends/Banshee.GStreamer/Banshee.GStreamer/PlayerEngine.cs:895
+#: ../src/Backends/Banshee.GStreamerSharp/Banshee.GStreamerSharp/PlayerEngine.cs:1059
 msgid ""
 "Eliminate the small playback gap on track change. Useful for concept albums "
 "and classical music"
@@ -841,7 +843,7 @@ msgstr "Az adatcsatorna létrehozása nem sikerült"
 msgid "Could not create encoder pipeline : {0}"
 msgstr "A kódoló adatcsatorna létrehozása nem sikerült: {0}"
 
-#: ../src/Backends/Banshee.GStreamerSharp/Banshee.GStreamerSharp/PlayerEngine.cs:814
+#: ../src/Backends/Banshee.GStreamerSharp/Banshee.GStreamerSharp/PlayerEngine.cs:874
 msgid "GStreamer# 0.10"
 msgstr "GStreamer# 0.10"
 
@@ -1408,10 +1410,16 @@ msgstr "Minden album ({0})"
 msgid "All Artists ({0})"
 msgstr "Minden előadó ({0})"
 
-#: ../src/Core/Banshee.Services/Banshee.Collection.Database/DatabaseImportManager.cs:173
+#: ../src/Core/Banshee.Services/Banshee.Collection.Database/DatabaseImportManager.cs:170
+#, csharp-format
+#| msgid "File is empty so it could not be imported: {0}"
+msgid "File is not readable so it could not be imported: {0}"
+msgstr "A fájl nem olvasható, ezért nem lehet importálni: {0}"
+
+#: ../src/Core/Banshee.Services/Banshee.Collection.Database/DatabaseImportManager.cs:176
 #, csharp-format
 msgid "File is empty so it could not be imported: {0}"
-msgstr "A fájl üres, így nem importálható: {0}"
+msgstr "A fájl üres, ezért nem lehet importálni: {0}"
 
 #: ../src/Core/Banshee.Services/Banshee.Collection.Database/DatabaseQueryFilterModel.cs:48
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui.TrackEditor/StatisticsPage.cs:96
@@ -1985,7 +1993,7 @@ msgstr "Lejátszólista törlése"
 #: ../src/Core/Banshee.Services/Banshee.Playlist/PlaylistSource.cs:403
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui/SourceActions.cs:176
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:134
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:460
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:463
 #: ../src/Core/Banshee.ThickClient/Banshee.Sources.Gui/SourceView.cs:597
 #: ../src/Core/Banshee.ThickClient/Banshee.Sources.Gui/SourceView_DragAndDrop.cs:212
 msgid "New Playlist"
@@ -2587,7 +2595,7 @@ msgstr "drm"
 #. Translators: These are unique strings for playback errors. Please, no spaces. Blank ok.
 #: ../src/Core/Banshee.Services/Banshee.Query/PlaybackErrorQueryValue.cs:64
 #: ../src/Core/Banshee.Services/Banshee.Query/PlaybackErrorQueryValue.cs:66
-#: ../src/Core/Banshee.Services/Banshee.ServiceStack/Application.cs:363
+#: ../src/Core/Banshee.Services/Banshee.ServiceStack/Application.cs:361
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui.TrackEditor/StatisticsPage.cs:234
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui.TrackEditor/StatisticsPage.cs:236
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui.TrackEditor/StatisticsPage.cs:238
@@ -3515,20 +3523,26 @@ msgstr "_Előadó szerint"
 msgid "Search all songs of this artist"
 msgstr "Az előadó összes számának keresése"
 
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:320
+#. inside the "Edit" menu it's a bit redundant to have a label that starts as "Edit Track..."
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:231
+#| msgid "_Edit Track Information"
+msgid "Track _Information"
+msgstr "_Száminformációk"
+
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:323
 #, csharp-format
 msgid "_Delete From \"{0}\""
 msgstr "_Törlés innen: „{0}”"
 
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:533
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:536
 msgid "The folder could not be found."
 msgstr "A mappa nem található."
 
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:534
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:537
 msgid "Please check that the track's location is accessible by the system."
 msgstr "Ellenőrizze, hogy a szám helye elérhető a rendszer számára."
 
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:605
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:608
 #, csharp-format
 msgid "Are you sure you want to permanently delete this item?"
 msgid_plural ""
@@ -3536,16 +3550,16 @@ msgid_plural ""
 msgstr[0] "Biztos, hogy véglegesen törölni kívánja ezt az elemet?"
 msgstr[1] "Biztos, hogy véglegesen törölni kívánja a kijelölt {0} elemet?"
 
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:609
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:612
 msgid "If you delete the selection, it will be permanently lost."
 msgstr "Amennyiben törli a kiválasztott elemet, akkor az végleg elvész."
 
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:612
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:615
 #, csharp-format
 msgid "Remove selection from {0}?"
 msgstr "Eltávolítja a kijelölteket innen: {0}?"
 
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:615
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:618
 #, csharp-format
 msgid "Are you sure you want to remove the selected item from your {1}?"
 msgid_plural ""
@@ -3554,11 +3568,11 @@ msgstr[0] "Biztos, hogy véglegesen törölni kívánja ezt az elemet innen: {1}
 msgstr[1] ""
 "Biztos, hogy véglegesen törölni kívánja a kiválasztott {0} elemet innen: {1}?"
 
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:643
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:646
 msgid "Are you sure you want to continue?"
 msgstr "Biztos, hogy folytatni kívánja?"
 
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:654
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:657
 msgid "Remove tracks"
 msgstr "Számok eltávolítása"
 
@@ -6132,12 +6146,10 @@ msgid "lastfm://"
 msgstr "lastfm://"
 
 #: ../src/Extensions/Banshee.MediaPanel/banshee-media-panel.desktop.in.h:1
-#| msgid "Banshee Media Player"
 msgid "Banshee Media Panel"
 msgstr "Banshee médiapanel"
 
 #: ../src/Extensions/Banshee.MediaPanel/banshee-media-panel.desktop.in.h:2
-#| msgid "Play and organize your media collection"
 msgid "Play and browse your media collection"
 msgstr "Médiagyűjteményének lejátszása és böngészése"
 
@@ -6155,7 +6167,6 @@ msgid "Now Playing"
 msgstr "Most játszott"
 
 #: ../src/Extensions/Banshee.MediaPanel/Banshee.MediaPanel/MediaPanelService.cs:98
-#| msgid "Media Player"
 msgid "Media _Panel"
 msgstr "Média_panel"
 
