@@ -91,7 +91,7 @@ namespace Banshee.Collection.Gui
         public string GetTooltipMarkup (CellContext cellContext, double columnWidth)
         {
             var our_attributes = AttributesForBoundObject.Select (i => attributes_uc[i]);
-            return our_attributes.Count () > 0
+            return our_attributes.Any ()
                 ? String.Format ("Creative Commons {0}", String.Join ("-", our_attributes.ToArray ()))
                 : null;
         }

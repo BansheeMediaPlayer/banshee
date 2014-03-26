@@ -280,7 +280,7 @@ namespace Banshee.Lastfm.Recommendations
                 // Similar Artists
                 var artists = similar_artists.Take (20);
 
-                if (artists.Count () > 0) {
+                if (artists.Any ()) {
                     int artist_name_max_len = 2 * (int) artists.Select (a => a.Name.Length).Average ();
                     foreach (var similar_artist in artists) {
                         SimilarArtistTile tile = new SimilarArtistTile (similar_artist);
