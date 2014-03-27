@@ -572,7 +572,7 @@ namespace Banshee.Sources
         protected virtual void OnTracksChanged (params QueryField [] fields)
         {
             HandleTracksChanged (this, new TrackEventArgs (fields));
-            foreach (PrimarySource psource in PrimarySources) {
+            foreach (PrimarySource psource in PrimarySources.ToArray ()) {
                 psource.NotifyTracksChanged (fields);
             }
         }
