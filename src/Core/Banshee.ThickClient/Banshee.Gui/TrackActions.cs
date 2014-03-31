@@ -285,6 +285,8 @@ namespace Banshee.Gui
                     } else {
                         Log.Exception (new Exception ("Filter focused, but selection is not filter selection!"));
                     }
+                } else {
+                    UpdateActions (true, true, disable_for_filter_actions);
                 }
 
                 var selection = Selection;
@@ -325,8 +327,6 @@ namespace Banshee.Gui
 
                 if (FilterFocused) {
                     UpdateActions (false, false, disable_for_filter_actions);
-                } else {
-                    UpdateActions (true, true, disable_for_filter_actions);
                 }
             } else {
                 Sensitive = Visible = false;
