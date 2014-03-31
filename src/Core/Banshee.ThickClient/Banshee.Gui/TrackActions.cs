@@ -324,6 +324,8 @@ namespace Banshee.Gui
 
                 if (FilterFocused) {
                     UpdateActions (false, false, disable_for_filter_actions);
+                } else {
+                    UpdateActions (true, true, disable_for_filter_actions);
                 }
             } else {
                 Sensitive = Visible = false;
