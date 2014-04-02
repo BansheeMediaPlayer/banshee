@@ -34,7 +34,6 @@ using System.Collections.Generic;
 using Hyena;
 
 using Banshee.Base;
-using Banshee.Kernel;
 using Banshee.Collection;
 using Banshee.Streaming;
 using Banshee.Networking;
@@ -163,20 +162,20 @@ namespace Banshee.Metadata
 
         protected bool SaveHttpStream(Uri uri, string path, string [] ignoreMimeTypes)
         {
-            HttpWebResponse response = GetHttpStream(uri, ignoreMimeTypes);
-            Stream from_stream = response == null ? null : response.GetResponseStream ();
-            if(from_stream == null) {
-                if (response != null) {
-                    response.Close ();
+            using (HttpWebResponse response = GetHttpStream (uri, ignoreMimeTypes)) {
+                if (response == null) {
+                    return false;
                 }
-                return false;
+
+                using (Stream from_stream = response.GetResponseStream ()) {
+                    if (from_stream == null) {
+                        return false;
+                    }
+
+                    SaveAtomically (path, from_stream);
+                    return true;
+                }
             }
-
-            SaveAtomically (path, from_stream);
-
-            from_stream.Close ();
-
-            return true;
         }
 
         protected bool SaveHttpStreamCover (Uri uri, string albumArtistId, string [] ignoreMimeTypes)
