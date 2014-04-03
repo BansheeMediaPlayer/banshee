@@ -172,12 +172,12 @@ namespace Banshee.Playlist
             try {
                 Log.InformationFormat ("Importing playlist {0} to library", path);
                 SafeUri uri = new SafeUri (path);
-                PlaylistParser parser = new PlaylistParser ();
                 string relative_dir = System.IO.Path.GetDirectoryName (uri.LocalPath);
                 if (relative_dir[relative_dir.Length - 1] != System.IO.Path.DirectorySeparatorChar) {
                     relative_dir = relative_dir + System.IO.Path.DirectorySeparatorChar;
                 }
-                parser.BaseUri = new Uri (relative_dir);
+
+                var parser = new PlaylistParser (new Uri (relative_dir));
                 if (parser.Parse (uri)) {
                     List<string> uris = new List<string> ();
                     foreach (PlaylistElement element in parser.Elements) {

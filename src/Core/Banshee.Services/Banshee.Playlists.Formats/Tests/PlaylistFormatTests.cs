@@ -96,8 +96,7 @@ namespace Banshee.Playlists.Formats.Tests
         [Test]
         public void ReadAsxEntryRef ()
         {
-            PlaylistParser parser = new PlaylistParser ();
-            parser.BaseUri = BaseUri;
+            var parser = new PlaylistParser (BaseUri);
 
             parser.Parse (new SafeUri ("http://download.banshee.fm/test/remote.asx"));
             IPlaylistFormat plref = LoadPlaylist (new AsxPlaylistFormat (), "entryref.asx");
@@ -160,8 +159,7 @@ namespace Banshee.Playlists.Formats.Tests
         [Test]
         public void ReadDetectMagic ()
         {
-            PlaylistParser parser = new PlaylistParser ();
-            parser.BaseUri = BaseUri;
+            var parser = new PlaylistParser (BaseUri);
 
             foreach (string path in Directory.GetFiles (playlists_dir)) {
                 parser.Parse (new SafeUri (Path.Combine (Environment.CurrentDirectory, path)));

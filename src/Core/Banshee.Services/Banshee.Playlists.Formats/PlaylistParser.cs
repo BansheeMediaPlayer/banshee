@@ -54,6 +54,11 @@ namespace Banshee.Playlists.Formats
         private string title = null;
         private readonly int HTTP_REQUEST_RETRIES = 3;
 
+        public PlaylistParser (Uri baseUri)
+        {
+            base_uri = baseUri;
+        }
+
         public PlaylistParser ()
         {
             if (Environment.CurrentDirectory.Equals ("/")) {
@@ -138,7 +143,7 @@ namespace Banshee.Playlists.Formats
                 }
                 stream.Position = 0;
                 IPlaylistFormat playlist = (IPlaylistFormat)Activator.CreateInstance (matching_format.Type);
-                playlist.BaseUri = BaseUri;
+                playlist.BaseUri = base_uri;
                 playlist.Load (stream, false);
                 stream.Dispose ();
 
@@ -194,11 +199,6 @@ namespace Banshee.Playlists.Formats
 
         public List<PlaylistElement> Elements {
             get { return elements; }
-        }
-
-        public Uri BaseUri {
-            get { return base_uri; }
-            set { base_uri = value; }
         }
 
         public string Title {
