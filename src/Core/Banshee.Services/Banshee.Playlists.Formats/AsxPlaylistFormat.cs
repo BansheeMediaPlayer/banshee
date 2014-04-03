@@ -29,13 +29,11 @@
 using System;
 using System.IO;
 using System.Xml;
-using System.Collections.Generic;
 
 using Mono.Unix;
 
 using Hyena;
 
-using Banshee.Base;
 using Banshee.Sources;
 
 namespace Banshee.Playlists.Formats
@@ -145,7 +143,7 @@ namespace Banshee.Playlists.Formats
                         string uri_aux = xml_reader["HREF"] ?? xml_reader["href"];
                         if (uri_aux.StartsWith ("http", StringComparison.CurrentCultureIgnoreCase)) {
                             uri_aux = "mmsh" + uri_aux.Substring (4);
-                    }
+                        }
 
                         element.Uri = ResolveUri (uri_aux);
                         break;

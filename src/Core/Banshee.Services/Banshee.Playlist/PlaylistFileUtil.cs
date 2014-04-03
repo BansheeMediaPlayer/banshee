@@ -204,9 +204,10 @@ namespace Banshee.Playlist
                     }
 
                     // Give source a fallback value - MusicLibrary when it's null
-                    if (source == null)
+                    if (source == null) {
                         source = ServiceManager.SourceManager.MusicLibrary;
-                    
+                    }
+
                     // Only import an non-empty playlist
                     if (uris.Count > 0) {
                         ImportPlaylistWorker worker = new ImportPlaylistWorker (
