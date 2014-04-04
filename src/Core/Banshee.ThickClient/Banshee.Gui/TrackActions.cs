@@ -102,6 +102,11 @@ namespace Banshee.Gui
         public TrackActions () : base ("Track")
         {
             Add (new ActionEntry [] {
+                new ActionEntry ("SelectedTracksAction", null,
+                    Catalog.GetString ("Selected Track(s)"), "",
+                    Catalog.GetString ("Options for selected track(s)"),
+                    (o, e) => { ResetRating (); }),
+
                 new ActionEntry("TrackContextMenuAction", null,
                     String.Empty, null, null, OnTrackContextMenu),
 
@@ -211,7 +216,7 @@ namespace Banshee.Gui
         {
             if (Actions.UIManager.GetAction ("/MainMenu/EditMenu") != null) {
                 rating_proxy = new RatingActionProxy (Actions.UIManager, this["RateTracksAction"]);
-                rating_proxy.AddPath ("/MainMenu/EditMenu", "AddToPlaylist");
+                rating_proxy.AddPath ("/MainMenu/EditMenu/SelectedTracks", "AddToPlaylist");
                 rating_proxy.AddPath ("/TrackContextMenu", "AddToPlaylist");
                 Actions.UIManager.ActionsChanged -= HandleActionsChanged;
             }
@@ -229,8 +234,11 @@ namespace Banshee.Gui
         {
             // inside the "Edit" menu it's a bit redundant to have a label that starts as "Edit Track..."
             this["TrackEditorAction"].Label = Catalog.GetString ("Track _Information");
-
-            ResetRating ();
+            if (Selection.Count > 1) {
+                this ["SelectedTracksAction"].Label = Catalog.GetString ("Selected Tracks");
+            } else {
+                this ["SelectedTracksAction"].Label = Catalog.GetString ("Selected Track");
+            }
         }
 
         private void OnSelectionChanged ()
@@ -304,6 +312,7 @@ namespace Banshee.Gui
                 );
 
                 this["SelectAllAction"].Sensitive = track_source.Count > 0 && !selection.AllSelected;
+                UpdateAction ("SelectedTracksAction", track_source.Count > 0 && has_selection, has_selection, null);
                 UpdateAction ("RemoveTracksAction", track_source.CanRemoveTracks, has_selection, source);
                 UpdateAction ("DeleteTracksFromDriveAction", track_source.CanDeleteTracks, has_selection, source);
 

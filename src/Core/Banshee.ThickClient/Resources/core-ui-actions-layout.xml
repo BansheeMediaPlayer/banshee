@@ -56,26 +56,28 @@
     </menu>
 
     <menu name="EditMenu" action="EditMenuAction">
-      <placeholder name="AboveAddToPlaylist"/>
-      <menu name="AddToPlaylist" action="AddToPlaylistAction"></menu>
-      <placeholder name="BelowAddToPlaylist"/>
-      <menuitem name="TrackEditor" action="TrackEditorAction"/>
-      <separator/>
+      <menu name="SelectedTracks" action="SelectedTracksAction">
+        <placeholder name="AboveAddToPlaylist"/>
+        <menu name="AddToPlaylist" action="AddToPlaylistAction"></menu>
+        <placeholder name="BelowAddToPlaylist"/>
+        <menuitem name="TrackEditor" action="TrackEditorAction"/>
+        <separator/>
+        <menuitem name="RemoveTracks" action="RemoveTracksAction"/>
+        <menuitem name="RemoveTracksFromLibrary" action="RemoveTracksFromLibraryAction"/>
+        <menuitem name="DeleteTracksFromDrive" action="DeleteTracksFromDriveAction"/>
+        <separator/>
+        <menuitem name="OpenContainingFolder" action="OpenContainingFolderAction"/>
+        <separator/>
+        <menuitem name="TrackProperties" action="TrackPropertiesAction"/>
+      </menu>
       <menuitem name="SelectAll" action="SelectAllAction"/>
       <menuitem name="SelectNone" action="SelectNoneAction"/>
-      <separator/>
-      <menuitem name="RemoveTracks" action="RemoveTracksAction"/>
-      <menuitem name="RemoveTracksFromLibrary" action="RemoveTracksFromLibraryAction"/>
-      <menuitem name="DeleteTracksFromDrive" action="DeleteTracksFromDriveAction"/>
-      <separator/>
-      <menuitem name="OpenContainingFolder" action="OpenContainingFolderAction"/>
       <separator/>
       <menuitem name="RenameSource" action="RenameSourceAction"/>
       <menuitem name="RefreshSmartPlaylist" action="RefreshSmartPlaylistAction"/>
       <menuitem name="ExportPlaylist" action="ExportPlaylistAction"/>
       <menuitem name="SourceProperties" action="SourcePropertiesAction"/>
       <menuitem name="UnmapSource" action="UnmapSourceAction"/>
-      <menuitem name="TrackProperties" action="TrackPropertiesAction"/>
       <separator name="PreferencesSeparator" />
       <menuitem name="Preferences" action="PreferencesAction"/>
     </menu>

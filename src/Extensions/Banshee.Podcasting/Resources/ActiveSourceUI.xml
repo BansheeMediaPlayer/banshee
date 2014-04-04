@@ -15,16 +15,18 @@
     </menu>
 
     <menu name="EditMenu" action="EditMenuAction">
-      <placeholder name="BelowAddToPlaylist">
-        <separator />
-        <menuitem name="PodcastItemDownload" action="PodcastItemDownloadAction" />
-        <menuitem name="PodcastItemDeleteFile" action="PodcastItemDeleteFileAction" />
-        <!--
-        <menuitem name="PodcastItemCancel" action="PodcastItemCancelAction" />-->
-        <menuitem name="PodcastItemMarkNew" action="PodcastItemMarkNewAction" />
-        <menuitem name="PodcastItemMarkOld" action="PodcastItemMarkOldAction" />
-        <separator />
-      </placeholder>
+      <menu name="SelectedTracks" action="SelectedTracksAction">
+        <placeholder name="BelowAddToPlaylist">
+          <separator />
+          <menuitem name="PodcastItemDownload" action="PodcastItemDownloadAction" />
+          <menuitem name="PodcastItemDeleteFile" action="PodcastItemDeleteFileAction" />
+          <!--
+          <menuitem name="PodcastItemCancel" action="PodcastItemCancelAction" />-->
+          <menuitem name="PodcastItemMarkNew" action="PodcastItemMarkNewAction" />
+          <menuitem name="PodcastItemMarkOld" action="PodcastItemMarkOldAction" />
+          <separator />
+        </placeholder>
+      </menu>
     </menu>
   </menubar>
 
