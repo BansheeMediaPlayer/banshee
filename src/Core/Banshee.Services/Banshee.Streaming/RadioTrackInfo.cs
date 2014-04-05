@@ -290,9 +290,9 @@ namespace Banshee.Streaming
         private void LoadStreamUri(string uri)
         {
             try {
-                PlaylistParser parser = new PlaylistParser();
-                if (parser.Parse(new SafeUri(uri))) {
-                    foreach (PlaylistElement element in parser.Elements) {
+                var parsed_playlist = PlaylistParser.Parse (new SafeUri (uri));
+                if (parsed_playlist != null) {
+                    foreach (PlaylistElement element in parsed_playlist.Elements) {
                         if (element.Uri != null) {
                             // mms can be a nested link
                             string element_uri = element.Uri.ToString ();

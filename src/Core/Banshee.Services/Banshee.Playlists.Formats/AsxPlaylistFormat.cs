@@ -104,8 +104,8 @@ namespace Banshee.Playlists.Formats
                     case "entryref":
                         string href = xml_reader["HREF"] ?? xml_reader["href"];
                         if (href != null) {
-                            PlaylistParser secondary = new PlaylistParser ();
-                            if (secondary.Parse (new SafeUri (ResolveUri (href)))) {
+                            var secondary = PlaylistParser.Parse (new SafeUri (ResolveUri (href)));
+                            if (secondary != null) {
                                 // splice in Elements of secondary
                                 foreach (PlaylistElement e in secondary.Elements) {
                                     Elements.Add (e);

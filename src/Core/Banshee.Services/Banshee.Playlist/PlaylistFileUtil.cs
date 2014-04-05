@@ -177,10 +177,10 @@ namespace Banshee.Playlist
                     relative_dir = relative_dir + System.IO.Path.DirectorySeparatorChar;
                 }
 
-                var parser = new PlaylistParser (new Uri (relative_dir));
-                if (parser.Parse (uri)) {
+                var parsed_playlist = PlaylistParser.Parse (uri, new Uri (relative_dir));
+                if (parsed_playlist != null) {
                     List<string> uris = new List<string> ();
-                    foreach (PlaylistElement element in parser.Elements) {
+                    foreach (PlaylistElement element in parsed_playlist.Elements) {
                         if (element.Uri.IsFile) {
                             uris.Add (element.Uri.LocalPath);
                         } else {
@@ -211,7 +211,7 @@ namespace Banshee.Playlist
                     // Only import an non-empty playlist
                     if (uris.Count > 0) {
                         ImportPlaylistWorker worker = new ImportPlaylistWorker (
-                            parser.Title,
+                            parsed_playlist.Title,
                             uris.ToArray (), source, importer);
                         worker.Import ();
                     }

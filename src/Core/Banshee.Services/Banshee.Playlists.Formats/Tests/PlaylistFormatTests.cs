@@ -96,12 +96,10 @@ namespace Banshee.Playlists.Formats.Tests
         [Test]
         public void ReadAsxEntryRef ()
         {
-            var parser = new PlaylistParser (BaseUri);
-
-            parser.Parse (new SafeUri ("http://download.banshee.fm/test/remote.asx"));
+            var parsed_playlist = PlaylistParser.Parse (new SafeUri ("http://download.banshee.fm/test/remote.asx"), BaseUri);
             IPlaylistFormat plref = LoadPlaylist (new AsxPlaylistFormat (), "entryref.asx");
             Assert.AreEqual (2, plref.Elements.Count);
-            AssertEqual (parser.Elements, plref.Elements);
+            AssertEqual (parsed_playlist.Elements, plref.Elements);
         }
 
         private void AssertEqual (List<PlaylistElement> l1, List<PlaylistElement> l2)
@@ -159,14 +157,12 @@ namespace Banshee.Playlists.Formats.Tests
         [Test]
         public void ReadDetectMagic ()
         {
-            var parser = new PlaylistParser (BaseUri);
-
             foreach (string path in Directory.GetFiles (playlists_dir)) {
-                parser.Parse (new SafeUri (Path.Combine (Environment.CurrentDirectory, path)));
+                PlaylistParser.Parse (new SafeUri (Path.Combine (Environment.CurrentDirectory, path)), BaseUri);
             }
 
-            parser.Parse (new SafeUri ("http://download.banshee.fm/test/extended.pls"));
-            AssertTest (parser.Elements, false);
+            var parsed_playlist = PlaylistParser.Parse (new SafeUri ("http://download.banshee.fm/test/extended.pls"), BaseUri);
+            AssertTest (parsed_playlist.Elements, false);
         }
 
 #endregion
