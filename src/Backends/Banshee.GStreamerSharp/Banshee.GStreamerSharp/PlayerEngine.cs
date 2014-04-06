@@ -1069,7 +1069,9 @@ namespace Banshee.GStreamerSharp
             }
 
             service["general"]["misc"].Remove (replaygain_preference);
+            service["general"]["misc"].Remove (gapless_preference);
             replaygain_preference = null;
+            gapless_preference = null;
         }
 
         public static readonly SchemaEntry<bool> ReplayGainEnabledSchema = new SchemaEntry<bool> (
