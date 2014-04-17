@@ -77,6 +77,10 @@ namespace Banshee.Audiobook
             ShowAll ();
         }
 
+        protected BookView (IntPtr ptr) : base (ptr)
+        {
+        }
+
         private DatabaseAlbumInfo Book { get; set; }
 
         public void SetBook (DatabaseAlbumInfo book)
