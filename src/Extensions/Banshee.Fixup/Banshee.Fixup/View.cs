@@ -63,6 +63,10 @@ namespace Banshee.Fixup
             ShowAll ();
         }
 
+        protected View (IntPtr ptr) : base (ptr)
+        {
+        }
+
         private class ProblemListView : ListView<Problem>
         {
             ProblemModel model;
