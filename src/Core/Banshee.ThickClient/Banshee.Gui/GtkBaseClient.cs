@@ -112,9 +112,11 @@ namespace Banshee.Gui
                 GLib.Thread.Init ();
             }
 
+#if GNOME
             // Using GConf from multiple threads causes crashes if multithreading is not initialized explictly in dbus
             // This is a workaround for bgo#692374
             dbus_g_thread_init ();
+#endif
 
             Gtk.Application.Init ();
 
