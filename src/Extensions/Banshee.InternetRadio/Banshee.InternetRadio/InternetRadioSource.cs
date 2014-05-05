@@ -33,13 +33,11 @@ using Gtk;
 
 using Hyena;
 
-using Banshee.Base;
 using Banshee.Sources;
 using Banshee.Streaming;
 using Banshee.ServiceStack;
 using Banshee.Collection;
 using Banshee.Collection.Database;
-using Banshee.Configuration;
 using Banshee.PlaybackController;
 
 using Banshee.Gui;
@@ -138,7 +136,7 @@ namespace Banshee.InternetRadio
             ServiceManager.PlayerEngine.TrackIntercept += OnPlayerEngineTrackIntercept;
             //ServiceManager.PlayerEngine.ConnectEvent (OnTrackInfoUpdated, Banshee.MediaEngine.PlayerEvent.TrackInfoUpdated);
 
-            TrackEqualHandler = delegate (DatabaseTrackInfo a, TrackInfo b) {
+            TrackEqualHandler = (DatabaseTrackInfo a, TrackInfo b) => {
                 RadioTrackInfo radio_track = b as RadioTrackInfo;
                 return radio_track != null && DatabaseTrackInfo.TrackEqual (
                     radio_track.ParentTrack as DatabaseTrackInfo, a);
@@ -159,7 +157,7 @@ namespace Banshee.InternetRadio
 
         protected override IEnumerable<IFilterListModel> CreateFiltersFor (DatabaseSource src)
         {
-            DatabaseQueryFilterModel<string> genre_model = new DatabaseQueryFilterModel<string> (src, src.DatabaseTrackModel, ServiceManager.DbConnection,
+            var genre_model = new DatabaseQueryFilterModel<string> (src, src.DatabaseTrackModel, ServiceManager.DbConnection,
                         Catalog.GetString ("All Genres ({0})"), src.UniqueId, Banshee.Query.BansheeQuery.GenreField, "Genre");
 
             if (this == src) {
@@ -302,21 +300,13 @@ namespace Banshee.InternetRadio
                 }
             }
             RadioTrackInfo radio_track = ServiceManager.PlaybackController.CurrentTrack as RadioTrackInfo;
-            if (radio_track != null && radio_track.PlayNextStream ()) {
-                return true;
-            } else {
-                return false;
-            }
+            return radio_track != null && radio_track.PlayNextStream ();
         }
 
         public bool Previous (bool restart)
         {
             RadioTrackInfo radio_track = ServiceManager.PlaybackController.CurrentTrack as RadioTrackInfo;
-            if (radio_track != null && radio_track.PlayPreviousStream ()) {
-                return true;
-            } else {
-                return false;
-            }
+            return radio_track != null && radio_track.PlayPreviousStream ();
         }
 
         #endregion
