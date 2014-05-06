@@ -27,16 +27,11 @@
 //
 
 using System;
-using System.Linq;
-using System.Collections.Generic;
 using Mono.Unix;
 using Gtk;
 
 using Hyena;
-using Hyena.Query;
 
-using Banshee.Base;
-using Banshee.Collection;
 using Banshee.Configuration;
 using Banshee.ServiceStack;
 using Banshee.Sources;
@@ -45,17 +40,14 @@ using Banshee.Playlist;
 using Banshee.Playlist.Gui;
 using Banshee.Playlists.Formats;
 using Banshee.SmartPlaylist;
-using Banshee.Query;
-using Banshee.Gui.Dialogs;
 
 namespace Banshee.Gui
 {
     public class SourceActions : BansheeActionGroup
     {
-        private IHasSourceView source_view;
         public IHasSourceView SourceView {
-            get { return source_view; }
-            set { source_view = value; }
+            get;
+            set;
         }
 
         public event Action<Source> Updated;
@@ -142,7 +134,7 @@ namespace Banshee.Gui
 
         private void HandleActiveSourceChanged (SourceEventArgs args)
         {
-            ThreadAssist.ProxyToMain (delegate {
+            ThreadAssist.ProxyToMain (() => {
                 UpdateActions ();
 
                 if (last_source != null) {
@@ -162,7 +154,7 @@ namespace Banshee.Gui
 
         private void HandleActiveSourceUpdated (object o, EventArgs args)
         {
-            ThreadAssist.ProxyToMain (delegate {
+            ThreadAssist.ProxyToMain (() => {
                 UpdateActions (true);
             });
         }
@@ -232,9 +224,11 @@ namespace Banshee.Gui
             }
 
             int visible_children = 0;
-            foreach (Widget child in menu)
-                if (child.Visible)
+            foreach (Widget child in menu) {
+                if (child.Visible) {
                     visible_children++;
+                }
+            }
 
             if (visible_children == 0) {
                 SourceView.ResetHighlight ();
@@ -252,7 +246,7 @@ namespace Banshee.Gui
 
         private void OnImportSource (object o, EventArgs args)
         {
-            (ActionSource as IImportSource).Import ();
+            ((IImportSource)ActionSource).Import ();
         }
 
         private void OnRenameSource (object o, EventArgs args)
@@ -332,8 +326,9 @@ namespace Banshee.Gui
         {
             foreach (Widget proxy_widget in this["SortChildrenAction"].Proxies) {
                 MenuItem menu = proxy_widget as MenuItem;
-                if (menu == null)
+                if (menu == null) {
                     continue;
+                }
 
                 Menu submenu = BuildSortMenu (ActionSource);
                 menu.Submenu = submenu;
