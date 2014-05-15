@@ -3,10 +3,8 @@
 //
 // Author:
 //   Alex Launi <alex.launi@gmail.com>
-//   Nicholas Little <arealityfarbetween@googlemail.com>
 //
 // Copyright (c) 2010 Alex Launi
-// Copyright (c) 2014 Nicholas Little
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -59,7 +57,6 @@ namespace Banshee.Hardware.Gio
             monitor = VolumeMonitor.Default;
             monitor.MountAdded += HandleMonitorMountAdded;
             monitor.MountRemoved += HandleMonitorMountRemoved;
-            monitor.VolumeAdded += HandleMonitorVolumeAdded;
             monitor.VolumeRemoved += HandleMonitorVolumeRemoved;
             volume_device_map= new Dictionary<IntPtr, GUdev.Device> ();
         }
@@ -74,22 +71,38 @@ namespace Banshee.Hardware.Gio
 
         void HandleMonitorMountAdded (object o, MountAddedArgs args)
         {
-            Hyena.Log.Debug ("(Ignored) MountAdded event received");
+            // Manually get the mount as gio-sharp translates it to the wrong managed object
+            // TODO: check if this workaround is still needed
+            var mount = GLib.MountAdapter.GetObject ((GLib.Object) args.Args [0]);
+            if (mount.Volume == null)
+                return;
+
+            var device = GudevDeviceFromGioMount (mount);
+            if (device == null) {
+                Hyena.Log.Debug (string.Format ("Tried to mount {0}/{1} with no matching udev device", mount.Volume.Name, mount.Volume.Uuid));
+                return;
+            }
+
+            volume_device_map [mount.Volume.Handle] = device;
+            var h = DeviceAdded;
+            if (h != null) {
+                var v = new RawVolume (mount.Volume,
+                                          this,
+                                          new GioVolumeMetadataSource (mount.Volume),
+                                          new UdevMetadataSource (device));
+                h (this, new MountArgs (HardwareManager.Resolve (new Device (v))));
+            }
         }
 
         void HandleMonitorMountRemoved (object o, MountRemovedArgs args)
         {
-            Hyena.Log.Debug ("(Ignored) MountRemoved event received");
-        }
-
-        private void HandleMonitorVolumeAdded (object o, VolumeAddedArgs args)
-        {
-            var volume = GLib.VolumeAdapter.GetObject ((GLib.Object) args.Args [0]);
-            if (volume == null) {
+            // Manually get the mount as gio-sharp translates it to the wrong managed object
+            var mount = GLib.MountAdapter.GetObject ((GLib.Object) args.Args [0]);
+            if (mount.Volume == null) {
                 return;
             }
 
-            VolumeAdded (volume);
+            VolumeRemoved (mount.Volume);
         }
 
         void HandleMonitorVolumeRemoved (object o, VolumeRemovedArgs args)
@@ -102,23 +115,6 @@ namespace Banshee.Hardware.Gio
             VolumeRemoved (volume);
         }
 
-        private void VolumeAdded (GLib.IVolume volume)
-        {
-            var device = GudevDeviceFromGioVolume (volume);
-            volume_device_map [volume.Handle] = device;
-            var h = DeviceAdded;
-            if (h != null) {
-                if (device == null) {
-                    Hyena.Log.Debug (string.Format ("Tried to mount {0}/{1} with no matching udev device", volume.Name, volume.Uuid));
-                    return;
-                }
-                var v = new RawVolume (volume,
-                    this,
-                    new GioVolumeMetadataSource (volume),
-                    new UdevMetadataSource (device));
-                h (this, new MountArgs (HardwareManager.Resolve (new Device (v))));
-            }
-        }
 
         void VolumeRemoved (GLib.IVolume volume)
         {
