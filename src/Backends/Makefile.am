@@ -8,3 +8,9 @@ SUBDIRS = \
 	Banshee.Windows
 
 MAINTAINERCLEANFILES = Makefile.in
+
+uninstall-hook:
+	if test -d "$(pkglibdir)/Backends"; then \
+		rmdir "$(pkglibdir)/Backends"; \
+	fi
+

@@ -38,3 +38,8 @@ SUBDIRS = \
 
 
 MAINTAINERCLEANFILES = Makefile.in
+
+uninstall-hook:
+	if test -d "$(pkglibdir)/Extensions"; then \
+		rmdir "$(pkglibdir)/Extensions"; \
+	fi
