@@ -14,8 +14,10 @@ clean-local:
 	rm -rf $(top_builddir)/bin
 
 uninstall-hook:
-	if test `find $(pkglibdir) | wc -l` -eq 1; then \
-		rmdir $(pkglibdir); \
+	if test -d $(pkglibdir); then \
+		if test `find $(pkglibdir) | wc -l` -eq 1; then \
+			rmdir $(pkglibdir); \
+		fi \
 	fi
 
 dist-hook:
