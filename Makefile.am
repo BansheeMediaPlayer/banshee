@@ -15,9 +15,7 @@ clean-local:
 
 uninstall-hook:
 	if test -d $(pkglibdir); then \
-		if test `find $(pkglibdir) | wc -l` -eq 1; then \
-			rmdir $(pkglibdir); \
-		fi \
+		rmdir $(pkglibdir); \
 	fi
 
 dist-hook:
