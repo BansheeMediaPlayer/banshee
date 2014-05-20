@@ -428,7 +428,7 @@ namespace Banshee.Gui
             }
 
             // TODO find just the menu that was activated instead of modifying all proxies
-            foreach (Widget proxy_widget in (o as Gtk.Action).Proxies) {
+            foreach (Widget proxy_widget in ((Gtk.Action)o).Proxies) {
                 MenuItem menu = proxy_widget as MenuItem;
                 if (menu == null)
                     continue;
@@ -563,7 +563,7 @@ namespace Banshee.Gui
         private void OnRateTracks (object o, EventArgs args)
         {
             ThreadAssist.SpawnFromMain (delegate {
-                (ActiveSource as DatabaseSource).RateSelectedTracks (rating_proxy.LastRating);
+                ((DatabaseSource)ActiveSource).RateSelectedTracks (rating_proxy.LastRating);
             });
         }
 
