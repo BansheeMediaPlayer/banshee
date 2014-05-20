@@ -123,7 +123,7 @@ namespace Banshee.Audiobook
         private void OnEdit (object o, EventArgs a)
         {
             library.TrackModel.Selection.SelectAll ();
-            Actions.TrackActions["TrackEditorAction"].Activate ();
+            Actions.TrackActions["SelectedTracksEditorAction"].Activate ();
         }
 
         private void OnMerge (object o, EventArgs a)

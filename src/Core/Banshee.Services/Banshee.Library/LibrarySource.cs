@@ -61,7 +61,7 @@ namespace Banshee.Library
         public LibrarySource (string label, string name, int order) : base (label, label, name, order)
         {
             Properties.SetString ("GtkActionPath", "/LibraryContextMenu");
-            Properties.SetString ("RemoveTracksActionLabel", Catalog.GetString ("Remove From Library"));
+            Properties.SetString ("RemoveSelectedTracksActionLabel", Catalog.GetString ("Remove From Library"));
             IsLocal = true;
             base_dir_schema = CreateSchema<string> ("library-location", null, "The base directory under which files for this library are stored", null);
             copy_on_import = CreateSchema<bool> ("copy-on-import", false, "Copy files on import", "Copy and rename files to library directory when importing");

@@ -85,7 +85,7 @@ namespace Banshee.PlayQueue
 
             Order = 20;
             Properties.SetString ("Icon.Name", "source-playlist");
-            Properties.SetString ("RemoveTracksActionLabel", Catalog.GetString ("Remove From Play Queue"));
+            Properties.SetString ("RemoveSelectedTracksActionLabel", Catalog.GetString ("Remove From Play Queue"));
 
             DatabaseTrackModel.ForcedSortQuery = "CorePlaylistEntries.ViewOrder ASC, CorePlaylistEntries.EntryID ASC";
             DatabaseTrackModel.CanReorder = true;

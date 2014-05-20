@@ -130,7 +130,7 @@ namespace Banshee.Playlist
         private void SetProperties ()
         {
             Properties.SetString ("Icon.Name", "source-playlist");
-            Properties.SetString ("RemoveTracksActionLabel", Catalog.GetString ("Remove From Playlist"));
+            Properties.SetString ("RemoveSelectedTracksActionLabel", Catalog.GetString ("Remove From Playlist"));
             Properties.SetString ("UnmapSourceActionLabel", Catalog.GetString ("Delete Playlist"));
         }
 

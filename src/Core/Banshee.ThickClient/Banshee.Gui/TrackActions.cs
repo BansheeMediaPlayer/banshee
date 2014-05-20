@@ -41,6 +41,7 @@ using Banshee.Playlist;
 using Banshee.Collection;
 using Banshee.Collection.Database;
 using Banshee.ServiceStack;
+using Banshee.MediaEngine;
 using Banshee.Widgets;
 using Banshee.Gui;
 using Banshee.Gui.Widgets;
@@ -50,18 +51,22 @@ namespace Banshee.Gui
 {
     public class TrackActions : BansheeActionGroup
     {
-        private RatingActionProxy rating_proxy;
+        private RatingActionProxy selected_tracks_rating_proxy;
 
         private static readonly string [] require_selection_actions = new string [] {
-            "TrackPropertiesAction", "AddToPlaylistAction",
-            "RemoveTracksAction", "RemoveTracksFromLibraryAction", "OpenContainingFolderAction",
-            "DeleteTracksFromDriveAction", "RateTracksAction", "SelectNoneAction", "PlayTrack"
+            // Selected Track(s) >
+            "SelectedTracksAction", "AddSelectedTracksToPlaylistAction", "RateSelectedTracksAction",
+            "RemoveSelectedTracksAction", "RemoveTracksFromLibraryAction", "OpenSelectedTracksFolderAction",
+            "DeleteSelectedTracksFromDriveAction", "SelectedTracksPropertiesAction",
+
+            // Others >
+            "SelectNoneAction", "PlayTrack"
         };
 
         private static readonly string [] disable_for_filter_actions = new string [] {
             "SelectAllAction", "SelectNoneAction", "SearchMenuAction",
             // FIXME should be able to do this, just need to implement it
-            "RateTracksAction"
+            "RateSelectedTracksAction"
         };
 
         private Hyena.Collections.Selection filter_selection = new Hyena.Collections.Selection ();
@@ -102,13 +107,56 @@ namespace Banshee.Gui
         public TrackActions () : base ("Track")
         {
             Add (new ActionEntry [] {
+
+                /*
+                 * Selected Track(s) ActionEntries
+                 */
+
                 new ActionEntry ("SelectedTracksAction", null,
                     Catalog.GetString ("Selected Track(s)"), "",
                     Catalog.GetString ("Options for selected track(s)"),
                     (o, e) => { ResetRating (); }),
 
-                new ActionEntry("TrackContextMenuAction", null,
-                    String.Empty, null, null, OnTrackContextMenu),
+                new ActionEntry ("AddSelectedTracksToPlaylistAction", null,
+                    Catalog.GetString ("Add _to Playlist"), "",
+                    Catalog.GetString ("Append selected items to playlist or create new playlist from selection"),
+                    OnAddSelectedTracksToPlaylistMenu),
+
+                new ActionEntry ("RateSelectedTracksAction", null,
+                    String.Empty, null, null, OnRateSelectedTracks),
+
+                new ActionEntry ("SelectedTracksEditorAction", Stock.Edit,
+                    Catalog.GetString ("_Edit Track Information"), "",
+                    Catalog.GetString ("Edit information on selected tracks"), OnSelectedTracksEditor),
+
+                new ActionEntry ("RemoveSelectedTracksAction", Stock.Remove,
+                    Catalog.GetString ("_Remove"), "Delete",
+                    Catalog.GetString ("Remove selected track(s) from this source"), OnRemoveSelectedTracks),
+
+                new ActionEntry ("RemoveTracksFromLibraryAction", null,
+                    Catalog.GetString ("Remove From _Library"), "",
+                    Catalog.GetString ("Remove selected track(s) from library"), OnRemoveTracksFromLibrary),
+
+                new ActionEntry ("DeleteSelectedTracksFromDriveAction", null,
+                    Catalog.GetString ("_Delete From Drive"), "",
+                    Catalog.GetString ("Permanently delete selected item(s) from medium"), OnDeleteSelectedTracksFromDrive),
+
+                new ActionEntry ("OpenSelectedTracksFolderAction", null,
+                    Catalog.GetString ("_Open Containing Folder"), "",
+                    Catalog.GetString ("Open the folder that contains the selected item"), OnOpenSelectedTracksFolder),
+
+                new ActionEntry ("SelectedTracksPropertiesAction", Stock.Properties,
+                    Catalog.GetString ("Properties"), "",
+                    Catalog.GetString ("View information on selected tracks"), OnSelectedTracksProperties),
+
+                /*
+                 * Others
+                 */
+
+                new ActionEntry ("AddToNewPlaylistAction", Stock.New,
+                    Catalog.GetString ("New Playlist"), null,
+                    Catalog.GetString ("Create new playlist from selected tracks"),
+                    OnAddToNewPlaylist),
 
                 new ActionEntry("SelectAllAction", null,
                     Catalog.GetString("Select _All"), "<control>A",
@@ -118,46 +166,12 @@ namespace Banshee.Gui
                     Catalog.GetString("Select _None"), "<control><shift>A",
                     Catalog.GetString("Unselect all tracks"), OnSelectNone),
 
-                new ActionEntry ("TrackEditorAction", Stock.Edit,
-                    Catalog.GetString ("_Edit Track Information"), "E",
-                    Catalog.GetString ("Edit information on selected tracks"), OnTrackEditor),
-
-                new ActionEntry ("TrackPropertiesAction", Stock.Properties,
-                    Catalog.GetString ("Properties"), "",
-                    Catalog.GetString ("View information on selected tracks"), OnTrackProperties),
+                new ActionEntry("TrackContextMenuAction", null,
+                    String.Empty, null, null, OnTrackContextMenu),
 
                 new ActionEntry ("PlayTrack", null,
                     Catalog.GetString ("_Play"), "",
                     Catalog.GetString ("Play the selected item"), OnPlayTrack),
-
-                new ActionEntry ("AddToPlaylistAction", null,
-                    Catalog.GetString ("Add _to Playlist"), "",
-                    Catalog.GetString ("Append selected items to playlist or create new playlist from selection"),
-                    OnAddToPlaylistMenu),
-
-                new ActionEntry ("AddToNewPlaylistAction", Stock.New,
-                    Catalog.GetString ("New Playlist"), null,
-                    Catalog.GetString ("Create new playlist from selected tracks"),
-                    OnAddToNewPlaylist),
-
-                new ActionEntry ("RemoveTracksAction", Stock.Remove,
-                    Catalog.GetString ("_Remove"), "Delete",
-                    Catalog.GetString ("Remove selected track(s) from this source"), OnRemoveTracks),
-
-                new ActionEntry ("RemoveTracksFromLibraryAction", null,
-                    Catalog.GetString ("Remove From _Library"), "",
-                    Catalog.GetString ("Remove selected track(s) from library"), OnRemoveTracksFromLibrary),
-
-                new ActionEntry ("OpenContainingFolderAction", null,
-                    Catalog.GetString ("_Open Containing Folder"), "",
-                    Catalog.GetString ("Open the folder that contains the selected item"), OnOpenContainingFolder),
-
-                new ActionEntry ("DeleteTracksFromDriveAction", null,
-                    Catalog.GetString ("_Delete From Drive"), "",
-                    Catalog.GetString ("Permanently delete selected item(s) from medium"), OnDeleteTracksFromDrive),
-
-                new ActionEntry ("RateTracksAction", null,
-                    String.Empty, null, null, OnRateTracks),
 
                 new ActionEntry ("SearchMenuAction", Stock.Find,
                     Catalog.GetString ("_Search"), null,
@@ -177,7 +191,7 @@ namespace Banshee.Gui
             Actions.GlobalActions["EditMenuAction"].Activated += HandleEditMenuActivated;
             ServiceManager.SourceManager.ActiveSourceChanged += HandleActiveSourceChanged;
 
-            this["AddToPlaylistAction"].HideIfEmpty = false;
+            this["AddSelectedTracksToPlaylistAction"].HideIfEmpty = false;
             this["PlayTrack"].StockId = Gtk.Stock.MediaPlay;
         }
 
@@ -214,10 +228,10 @@ namespace Banshee.Gui
 
         private void HandleActionsChanged (object sender, EventArgs args)
         {
-            if (Actions.UIManager.GetAction ("/MainMenu/EditMenu") != null) {
-                rating_proxy = new RatingActionProxy (Actions.UIManager, this["RateTracksAction"]);
-                rating_proxy.AddPath ("/MainMenu/EditMenu/SelectedTracks", "AddToPlaylist");
-                rating_proxy.AddPath ("/TrackContextMenu", "AddToPlaylist");
+            if (Actions.UIManager.GetAction ("/MainMenu/EditMenu/SelectedTracks") != null) {
+                selected_tracks_rating_proxy = new RatingActionProxy (Actions.UIManager, this["RateSelectedTracksAction"]);
+                selected_tracks_rating_proxy.AddPath ("/MainMenu/EditMenu/SelectedTracks", "AddToPlaylist");
+                selected_tracks_rating_proxy.AddPath ("/TrackContextMenu", "AddToPlaylist");
                 Actions.UIManager.ActionsChanged -= HandleActionsChanged;
             }
         }
@@ -233,7 +247,7 @@ namespace Banshee.Gui
         private void HandleEditMenuActivated (object sender, EventArgs args)
         {
             // inside the "Edit" menu it's a bit redundant to have a label that starts as "Edit Track..."
-            this["TrackEditorAction"].Label = Catalog.GetString ("Track _Information");
+            this["SelectedTracksEditorAction"].Label = Catalog.GetString ("Track _Information");
             if (Selection.Count > 1) {
                 this ["SelectedTracksAction"].Label = Catalog.GetString ("Selected Tracks");
             } else {
@@ -312,25 +326,22 @@ namespace Banshee.Gui
                 );
 
                 this["SelectAllAction"].Sensitive = track_source.Count > 0 && !selection.AllSelected;
-                UpdateAction ("SelectedTracksAction", track_source.Count > 0 && has_selection, has_selection, null);
-                UpdateAction ("RemoveTracksAction", track_source.CanRemoveTracks, has_selection, source);
-                UpdateAction ("DeleteTracksFromDriveAction", track_source.CanDeleteTracks, has_selection, source);
-
-                //if it can delete tracks, most likely it can open their folder
-                UpdateAction ("OpenContainingFolderAction", track_source.CanDeleteTracks, has_single_selection, source);
-
+                UpdateAction ("SelectedTracksAction", has_selection, has_selection, null);
+                UpdateAction ("AddSelectedTracksToPlaylistAction", in_database && primary_source != null &&
+                    primary_source.SupportsPlaylists && !primary_source.PlaylistsReadOnly, has_selection, null);
+                UpdateAction ("RateSelectedTracksAction", source.HasEditableTrackProperties, has_selection, null);
+                UpdateAction ("SelectedTracksEditorAction", source.HasEditableTrackProperties, has_selection, source);
+                UpdateAction ("RemoveSelectedTracksAction", track_source.CanRemoveTracks, has_selection, source);
                 UpdateAction ("RemoveTracksFromLibraryAction", source.Parent is LibrarySource, has_selection, null);
-
-                UpdateAction ("TrackPropertiesAction", source.HasViewableTrackProperties, has_selection, source);
-                UpdateAction ("TrackEditorAction", source.HasEditableTrackProperties, has_selection, source);
-                UpdateAction ("RateTracksAction", source.HasEditableTrackProperties, has_selection, null);
-                UpdateAction ("AddToPlaylistAction", in_database && primary_source != null &&
-                        primary_source.SupportsPlaylists && !primary_source.PlaylistsReadOnly, has_selection, null);
+                UpdateAction ("DeleteSelectedTracksFromDriveAction", track_source.CanDeleteTracks, has_selection, source);
+                //if it can delete tracks, most likely it can open their folder
+                UpdateAction ("OpenSelectedTracksFolderAction", track_source.CanDeleteTracks, has_single_selection, source);
+                UpdateAction ("SelectedTracksPropertiesAction", source.HasViewableTrackProperties, has_selection, source);
 
                 if (primary_source != null &&
                     !(primary_source is LibrarySource) &&
                     primary_source.StorageName != null) {
-                    this["DeleteTracksFromDriveAction"].Label = String.Format (
+                    this["DeleteSelectedTracksFromDriveAction"].Label = String.Format (
                         Catalog.GetString ("_Delete From \"{0}\""), primary_source.StorageName);
                 }
 
@@ -353,7 +364,7 @@ namespace Banshee.Gui
                         rating = track.Rating;
                     }
                 }
-                rating_proxy.Reset (rating);
+                selected_tracks_rating_proxy.Reset (rating);
             }
         }
 
@@ -395,18 +406,18 @@ namespace Banshee.Gui
             return false;
         }
 
-        private void OnTrackProperties (object o, EventArgs args)
+        private void OnSelectedTracksProperties (object o, EventArgs args)
         {
-            if (current_source != null && !RunSourceOverrideHandler ("TrackPropertiesActionHandler")) {
+            if (current_source != null && !RunSourceOverrideHandler ("SelectedTracksPropertiesActionHandler")) {
                 var s = current_source as Source;
                 var readonly_tabs = s != null && !s.HasEditableTrackProperties;
                 TrackEditor.TrackEditorDialog.RunView (current_source.TrackModel, Selection, readonly_tabs);
             }
         }
 
-        private void OnTrackEditor (object o, EventArgs args)
+        private void OnSelectedTracksEditor (object o, EventArgs args)
         {
-            if (current_source != null && !RunSourceOverrideHandler ("TrackEditorActionHandler")) {
+            if (current_source != null && !RunSourceOverrideHandler ("SelectedTracksEditorActionHandler")) {
                 TrackEditor.TrackEditorDialog.RunEdit (current_source.TrackModel, Selection);
             }
         }
@@ -425,16 +436,20 @@ namespace Banshee.Gui
             }
         }
 
-        // Called when the Add to Playlist action is highlighted.
-        // Generates the menu of playlists to which you can add the selected tracks.
-        private void OnAddToPlaylistMenu (object o, EventArgs args)
+        private void OnAddSelectedTracksToPlaylistMenu (object o, EventArgs args)
         {
-            Source active_source = ServiceManager.SourceManager.ActiveSource;
-
             List<Source> children;
             lock (ActivePrimarySource.Children) {
                 children = new List<Source> (ActivePrimarySource.Children);
             }
+            OnAddToPlaylistMenu (o, children);
+        }
+
+        // Called when the Add to Playlist action is highlighted.
+        // Generates the menu of playlists to which you can add the selected tracks.
+        private void OnAddToPlaylistMenu (object o, List<Source> children)
+        {
+            Source active_source = ServiceManager.SourceManager.ActiveSource;
 
             // TODO find just the menu that was activated instead of modifying all proxies
             foreach (Widget proxy_widget in ((Gtk.Action)o).Proxies) {
@@ -491,7 +506,7 @@ namespace Banshee.Gui
             }
         }
 
-        private void OnRemoveTracks (object o, EventArgs args)
+        private void OnRemoveSelectedTracks (object o, EventArgs args)
         {
             ITrackModelSource source = ActiveSource as ITrackModelSource;
 
@@ -521,7 +536,7 @@ namespace Banshee.Gui
             }
         }
 
-        private void OnOpenContainingFolder (object o, EventArgs args)
+        private void OnOpenSelectedTracksFolder (object o, EventArgs args)
         {
             var source = ActiveSource as ITrackModelSource;
             if (source == null || source.TrackModel == null)
@@ -535,10 +550,15 @@ namespace Banshee.Gui
 
             foreach (var track in items) {
                 var path = System.IO.Path.GetDirectoryName (track.Uri.AbsolutePath);
-                if (Banshee.IO.Directory.Exists (path)) {
-                    System.Diagnostics.Process.Start (path);
-                    return;
-                }
+                OpenContainingFolder (path);
+            }
+        }
+
+        private void OpenContainingFolder (String path)
+        {
+            if (Banshee.IO.Directory.Exists (path)) {
+                System.Diagnostics.Process.Start (path);
+                return;
             }
 
             var md = new HigMessageDialog (
@@ -556,7 +576,7 @@ namespace Banshee.Gui
             }
         }
 
-        private void OnDeleteTracksFromDrive (object o, EventArgs args)
+        private void OnDeleteSelectedTracksFromDrive (object o, EventArgs args)
         {
             ITrackModelSource source = ActiveSource as ITrackModelSource;
 
@@ -569,10 +589,10 @@ namespace Banshee.Gui
         }
 
         // FIXME filter
-        private void OnRateTracks (object o, EventArgs args)
+        private void OnRateSelectedTracks (object o, EventArgs args)
         {
             ThreadAssist.SpawnFromMain (delegate {
-                ((DatabaseSource)ActiveSource).RateSelectedTracks (rating_proxy.LastRating);
+                ((DatabaseSource)ActiveSource).RateSelectedTracks (selected_tracks_rating_proxy.LastRating);
             });
         }
 

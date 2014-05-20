@@ -78,8 +78,8 @@ namespace Banshee.InternetRadio
             Properties.Set<ISourceContents> ("Nereid.SourceContents", new LazyLoadSourceContents<InternetRadioSourceContents> ());
 
             Properties.Set<string> ("SearchEntryDescription", Catalog.GetString ("Search your stations"));
-            Properties.SetString ("TrackEditorActionLabel", Catalog.GetString ("Edit Station"));
-            Properties.Set<InvokeHandler> ("TrackEditorActionHandler", delegate {
+            Properties.SetString ("SelectedTracksEditorActionLabel", Catalog.GetString ("Edit Station"));
+            Properties.Set<InvokeHandler> ("SelectedTracksEditorActionHandler", delegate {
                 var track_actions = ServiceManager.Get<InterfaceActionService> ().TrackActions;
                 var tracks = track_actions.SelectedTracks;
                 if (tracks == null || tracks.Count <= 0) {

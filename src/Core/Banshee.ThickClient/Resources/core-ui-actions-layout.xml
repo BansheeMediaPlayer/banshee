@@ -58,17 +58,17 @@
     <menu name="EditMenu" action="EditMenuAction">
       <menu name="SelectedTracks" action="SelectedTracksAction">
         <placeholder name="AboveAddToPlaylist"/>
-        <menu name="AddToPlaylist" action="AddToPlaylistAction"></menu>
+        <menu name="AddToPlaylist" action="AddSelectedTracksToPlaylistAction"></menu>
         <placeholder name="BelowAddToPlaylist"/>
-        <menuitem name="TrackEditor" action="TrackEditorAction"/>
+        <menuitem name="TrackEditor" action="SelectedTracksEditorAction"/>
         <separator/>
-        <menuitem name="RemoveTracks" action="RemoveTracksAction"/>
+        <menuitem name="RemoveTracks" action="RemoveSelectedTracksAction"/>
         <menuitem name="RemoveTracksFromLibrary" action="RemoveTracksFromLibraryAction"/>
-        <menuitem name="DeleteTracksFromDrive" action="DeleteTracksFromDriveAction"/>
+        <menuitem name="DeleteTracksFromDrive" action="DeleteSelectedTracksFromDriveAction"/>
         <separator/>
-        <menuitem name="OpenContainingFolder" action="OpenContainingFolderAction"/>
+        <menuitem name="OpenContainingFolder" action="OpenSelectedTracksFolderAction"/>
         <separator/>
-        <menuitem name="TrackProperties" action="TrackPropertiesAction"/>
+        <menuitem name="TrackProperties" action="SelectedTracksPropertiesAction"/>
       </menu>
       <menuitem name="SelectAll" action="SelectAllAction"/>
       <menuitem name="SelectNone" action="SelectNoneAction"/>
@@ -173,22 +173,22 @@
     <menuitem action="PlayTrack"/>
     <separator/>
     <placeholder name="AboveAddToPlaylist"/>
-    <menu name="AddToPlaylist" action="AddToPlaylistAction"></menu>
+    <menu name="AddToPlaylist" action="AddSelectedTracksToPlaylistAction"></menu>
     <placeholder name="BelowAddToPlaylist"/>
     <separator/>
-    <menuitem name="RemoveTracks" action="RemoveTracksAction"/>
+    <menuitem name="RemoveTracks" action="RemoveSelectedTracksAction"/>
     <menuitem name="RemoveTracksFromLibrary" action="RemoveTracksFromLibraryAction"/>
-    <menuitem name="DeleteTracksFromDrive" action="DeleteTracksFromDriveAction"/>
+    <menuitem name="DeleteTracksFromDrive" action="DeleteSelectedTracksFromDriveAction"/>
     <separator/>
-    <menuitem name="OpenContainingFolder" action="OpenContainingFolderAction"/>
+    <menuitem name="OpenContainingFolder" action="OpenSelectedTracksFolderAction"/>
     <menu name="SearchMenu" action="SearchMenuAction">
       <menuitem name="SearchForSameArtist" action="SearchForSameArtistAction"/>
       <menuitem name="SearchForSameAlbum" action="SearchForSameAlbumAction"/>
     </menu>
     <separator/>
     <placeholder name="AboveTrackProperties"/>
-    <menuitem name="TrackProperties" action="TrackPropertiesAction"/>
-    <menuitem name="TrackEditor" action="TrackEditorAction"/>
+    <menuitem name="TrackProperties" action="SelectedTracksPropertiesAction"/>
+    <menuitem name="TrackEditor" action="SelectedTracksEditorAction"/>
   </popup>
 </ui>
 
