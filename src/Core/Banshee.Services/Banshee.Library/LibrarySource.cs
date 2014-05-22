@@ -62,6 +62,7 @@ namespace Banshee.Library
         {
             Properties.SetString ("GtkActionPath", "/LibraryContextMenu");
             Properties.SetString ("RemoveSelectedTracksActionLabel", Catalog.GetString ("Remove From Library"));
+            Properties.SetString ("RemovePlayingTrackActionLabel", Catalog.GetString ("Remove From Library"));
             IsLocal = true;
             base_dir_schema = CreateSchema<string> ("library-location", null, "The base directory under which files for this library are stored", null);
             copy_on_import = CreateSchema<bool> ("copy-on-import", false, "Copy files on import", "Copy and rename files to library directory when importing");
@@ -174,7 +175,7 @@ namespace Banshee.Library
             Banshee.IO.File.Copy (track.Uri, uri, false);
         }*/
 
-        protected override void AddTrack (DatabaseTrackInfo track)
+        public override void AddTrack (DatabaseTrackInfo track)
         {
             // Ignore if already have it
             if (track.PrimarySourceId == DbId)

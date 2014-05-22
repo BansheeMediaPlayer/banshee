@@ -652,9 +652,25 @@ namespace Banshee.Gui.TrackEditor
             Run (model, selection, EditorMode.Edit);
         }
 
+        public static void RunEdit (TrackInfo track)
+        {
+            var model = new MemoryTrackListModel ();
+            model.Add (track);
+            model.Selection.SelectAll ();
+            Run (model, model.Selection, EditorMode.Edit);
+        }
+
         public static void RunView (TrackListModel model, Selection selection, bool readonlyTabs)
         {
             Run (model, selection, EditorMode.View, readonlyTabs);
+        }
+
+        public static void RunView (TrackInfo track, bool readonlyTabs)
+        {
+            var model = new MemoryTrackListModel ();
+            model.Add (track);
+            model.Selection.SelectAll ();
+            Run (model, model.Selection, EditorMode.View, readonlyTabs);
         }
 
         public static void Run (TrackListModel model, Selection selection, EditorMode mode)

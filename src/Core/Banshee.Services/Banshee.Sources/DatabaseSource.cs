@@ -692,7 +692,7 @@ namespace Banshee.Sources
             Log.ErrorFormat ("AddTrackRange not implemented by {0}", this);
         }
 
-        protected virtual void AddTrack (DatabaseTrackInfo track)
+        public virtual void AddTrack (DatabaseTrackInfo track)
         {
             Log.ErrorFormat ("AddTrack not implemented by {0}", this);
         }

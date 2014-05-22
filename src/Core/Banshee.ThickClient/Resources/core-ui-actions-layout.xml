@@ -56,6 +56,20 @@
     </menu>
 
     <menu name="EditMenu" action="EditMenuAction">
+      <menu name="PlayingTrack" action="PlayingTrackAction">
+        <placeholder name="AboveAddToPlaylist"/>
+        <menu name="AddToPlaylist" action="AddPlayingTrackToPlaylistAction"></menu>
+        <placeholder name="BelowAddToPlaylist"/>
+        <menuitem name="TrackEditor" action="PlayingTrackEditorAction"/>
+        <separator/>
+        <menuitem name="RemoveTracks" action="RemovePlayingTrackAction"/>
+        <menuitem name="DeleteTracksFromDrive" action="DeletePlayingTrackFromDriveAction"/>
+        <separator/>
+        <menuitem name="OpenContainingFolder" action="OpenPlayingTrackFolderAction"/>
+        <separator/>
+        <menuitem name="TrackProperties" action="PlayingTrackPropertiesAction"/>
+      </menu>
+      <separator/>
       <menu name="SelectedTracks" action="SelectedTracksAction">
         <placeholder name="AboveAddToPlaylist"/>
         <menu name="AddToPlaylist" action="AddSelectedTracksToPlaylistAction"></menu>

@@ -52,6 +52,9 @@ namespace Banshee.Gui
     public class TrackActions : BansheeActionGroup
     {
         private RatingActionProxy selected_tracks_rating_proxy;
+        private RatingActionProxy playing_track_rating_proxy;
+
+        private bool chosen_from_playing_track_submenu;
 
         private static readonly string [] require_selection_actions = new string [] {
             // Selected Track(s) >
@@ -107,6 +110,43 @@ namespace Banshee.Gui
         public TrackActions () : base ("Track")
         {
             Add (new ActionEntry [] {
+
+                /*
+                 * Playing Track ActionsEntries
+                 */
+
+                new ActionEntry ("PlayingTrackAction", null,
+                    Catalog.GetString ("Playing Track"), "",
+                    Catalog.GetString ("Options for playing track"),
+                    (o, e) => { ResetRating (); }),
+
+                new ActionEntry ("AddPlayingTrackToPlaylistAction", null,
+                    Catalog.GetString ("Add _to Playlist"), "",
+                    Catalog.GetString ("Append playing items to playlist or create new playlist from playing track"),
+                    OnAddPlayingTrackToPlaylistMenu),
+
+                new ActionEntry ("RatePlayingTrackAction", null,
+                    String.Empty, null, null, OnRatePlayingTrack),
+
+                new ActionEntry ("PlayingTrackEditorAction", Stock.Edit,
+                    Catalog.GetString ("_Edit Track Information"), "E",
+                    Catalog.GetString ("Edit information on playing track"), OnPlayingTrackEditor),
+
+                new ActionEntry ("RemovePlayingTrackAction", Stock.Remove,
+                    Catalog.GetString ("_Remove"), "",
+                    Catalog.GetString ("Remove playing track from this source"), OnRemovePlayingTrack),
+
+                new ActionEntry ("DeletePlayingTrackFromDriveAction", null,
+                    Catalog.GetString ("_Delete From Drive"), "",
+                    Catalog.GetString ("Permanently delete playing item from medium"), OnDeletePlayingTrackFromDrive),
+
+                new ActionEntry ("OpenPlayingTrackFolderAction", null,
+                    Catalog.GetString ("_Open Containing Folder"), "",
+                    Catalog.GetString ("Open the folder that contains playing item"), OnOpenPlayingTrackFolder),
+
+                new ActionEntry ("PlayingTrackPropertiesAction", Stock.Properties,
+                    Catalog.GetString ("Properties"), "",
+                    Catalog.GetString ("View information on playing track"), OnPlayingTrackProperties),
 
                 /*
                  * Selected Track(s) ActionEntries
@@ -190,7 +230,9 @@ namespace Banshee.Gui
 
             Actions.GlobalActions["EditMenuAction"].Activated += HandleEditMenuActivated;
             ServiceManager.SourceManager.ActiveSourceChanged += HandleActiveSourceChanged;
+            ServiceManager.PlayerEngine.ConnectEvent (OnPlayerEvent, PlayerEvent.StateChange);
 
+            this["AddPlayingTrackToPlaylistAction"].HideIfEmpty   = false;
             this["AddSelectedTracksToPlaylistAction"].HideIfEmpty = false;
             this["PlayTrack"].StockId = Gtk.Stock.MediaPlay;
         }
@@ -226,12 +268,25 @@ namespace Banshee.Gui
             });
         }
 
+        private void OnPlayerEvent (PlayerEventArgs args)
+        {
+            ThreadAssist.ProxyToMain (() => {
+                UpdateActions ();
+            });
+        }
+
         private void HandleActionsChanged (object sender, EventArgs args)
         {
-            if (Actions.UIManager.GetAction ("/MainMenu/EditMenu/SelectedTracks") != null) {
+            if (Actions.UIManager.GetAction ("/MainMenu/EditMenu/SelectedTracks") != null &&
+                Actions.UIManager.GetAction ("/MainMenu/EditMenu/PlayingTrack") != null) {
+
                 selected_tracks_rating_proxy = new RatingActionProxy (Actions.UIManager, this["RateSelectedTracksAction"]);
+                playing_track_rating_proxy = new RatingActionProxy (Actions.UIManager, this["RatePlayingTrackAction"]);
+
+                playing_track_rating_proxy.AddPath ("/MainMenu/EditMenu/PlayingTrack", "AddToPlaylist");
                 selected_tracks_rating_proxy.AddPath ("/MainMenu/EditMenu/SelectedTracks", "AddToPlaylist");
                 selected_tracks_rating_proxy.AddPath ("/TrackContextMenu", "AddToPlaylist");
+
                 Actions.UIManager.ActionsChanged -= HandleActionsChanged;
             }
         }
@@ -247,6 +302,7 @@ namespace Banshee.Gui
         private void HandleEditMenuActivated (object sender, EventArgs args)
         {
             // inside the "Edit" menu it's a bit redundant to have a label that starts as "Edit Track..."
+            this["PlayingTrackEditorAction"].Label = Catalog.GetString ("Track _Information");
             this["SelectedTracksEditorAction"].Label = Catalog.GetString ("Track _Information");
             if (Selection.Count > 1) {
                 this ["SelectedTracksAction"].Label = Catalog.GetString ("Selected Tracks");
@@ -312,10 +368,15 @@ namespace Banshee.Gui
                 }
 
                 var selection = Selection;
+                var playing_track = ServiceManager.PlayerEngine.CurrentTrack;
+                var playback_source = (DatabaseSource)ServiceManager.PlaybackController.Source;
                 int count = selection.Count;
                 Sensitive = Visible = true;
                 bool has_selection = count > 0;
                 bool has_single_selection = count == 1;
+                bool is_playing_or_paused = ServiceManager.PlayerEngine.CurrentState == PlayerState.Playing ||
+                                            ServiceManager.PlayerEngine.CurrentState == PlayerState.Paused;
+                bool is_idle = ServiceManager.PlayerEngine.CurrentState == PlayerState.Idle;
 
                 foreach (string action in require_selection_actions) {
                     this[action].Sensitive = has_selection;
@@ -326,6 +387,16 @@ namespace Banshee.Gui
                 );
 
                 this["SelectAllAction"].Sensitive = track_source.Count > 0 && !selection.AllSelected;
+
+                UpdateAction ("PlayingTrackAction", !is_idle && playing_track is DatabaseTrackInfo, is_playing_or_paused, null);
+                UpdateAction ("AddPlayingTrackToPlaylistAction", source is MusicLibrarySource, is_playing_or_paused, null);
+                UpdateAction ("RatePlayingTrackAction", playback_source.HasEditableTrackProperties, is_playing_or_paused, null);
+                UpdateAction ("PlayingTrackPropertiesAction", playback_source.HasViewableTrackProperties, is_playing_or_paused, source);
+                UpdateAction ("PlayingTrackEditorAction", playback_source.HasEditableTrackProperties, is_playing_or_paused, source);
+                UpdateAction ("RemovePlayingTrackAction", playback_source.CanRemoveTracks, is_playing_or_paused, source);
+                UpdateAction ("DeletePlayingTrackFromDriveAction", playback_source.CanDeleteTracks, is_playing_or_paused, source);
+                UpdateAction ("OpenPlayingTrackFolderAction", playback_source.CanDeleteTracks, is_playing_or_paused, source);
+
                 UpdateAction ("SelectedTracksAction", has_selection, has_selection, null);
                 UpdateAction ("AddSelectedTracksToPlaylistAction", in_database && primary_source != null &&
                     primary_source.SupportsPlaylists && !primary_source.PlaylistsReadOnly, has_selection, null);
@@ -342,6 +413,8 @@ namespace Banshee.Gui
                     !(primary_source is LibrarySource) &&
                     primary_source.StorageName != null) {
                     this["DeleteSelectedTracksFromDriveAction"].Label = String.Format (
+                        Catalog.GetString ("_Delete From \"{0}\""), primary_source.StorageName);
+                    this["DeletePlayingTrackFromDriveAction"].Label = String.Format (
                         Catalog.GetString ("_Delete From \"{0}\""), primary_source.StorageName);
                 }
 
@@ -365,6 +438,12 @@ namespace Banshee.Gui
                     }
                 }
                 selected_tracks_rating_proxy.Reset (rating);
+
+                var playing_track = ServiceManager.PlayerEngine.CurrentTrack as TrackInfo;
+                if (playing_track != null) {
+                    rating = playing_track.Rating;
+                    playing_track_rating_proxy.Reset (rating);
+                }
             }
         }
 
@@ -406,12 +485,30 @@ namespace Banshee.Gui
             return false;
         }
 
+        private void OnPlayingTrackProperties (object o, EventArgs args)
+        {
+            var track = ServiceManager.PlayerEngine.CurrentTrack as TrackInfo;
+            if (track != null && current_source != null && !RunSourceOverrideHandler ("PlayingTrackPropertiesActionHandler")) {
+                var s = current_source as Source;
+                var readonly_tabs = s != null && !s.HasEditableTrackProperties;
+                TrackEditor.TrackEditorDialog.RunView (track, readonly_tabs);
+            }
+        }
+
         private void OnSelectedTracksProperties (object o, EventArgs args)
         {
             if (current_source != null && !RunSourceOverrideHandler ("SelectedTracksPropertiesActionHandler")) {
                 var s = current_source as Source;
                 var readonly_tabs = s != null && !s.HasEditableTrackProperties;
                 TrackEditor.TrackEditorDialog.RunView (current_source.TrackModel, Selection, readonly_tabs);
+            }
+        }
+
+        private void OnPlayingTrackEditor (object o, EventArgs args)
+        {
+            var track = ServiceManager.PlayerEngine.CurrentTrack as TrackInfo;
+            if (track != null && current_source != null && !RunSourceOverrideHandler ("PlayingTrackEditorActionHandler")) {
+                TrackEditor.TrackEditorDialog.RunEdit (track);
             }
         }
 
@@ -436,9 +533,22 @@ namespace Banshee.Gui
             }
         }
 
+        // TODO This function works only for music library source now
+        //      but it should act on a source where a track is playing.
+        private void OnAddPlayingTrackToPlaylistMenu (object o, EventArgs args)
+        {
+            List<Source> children;
+            chosen_from_playing_track_submenu = true;
+            lock (ServiceManager.SourceManager.MusicLibrary.Children) {
+                children = new List<Source> (ServiceManager.SourceManager.MusicLibrary.Children);
+            }
+            OnAddToPlaylistMenu (o, children);
+        }
+
         private void OnAddSelectedTracksToPlaylistMenu (object o, EventArgs args)
         {
             List<Source> children;
+            chosen_from_playing_track_submenu = false;
             lock (ActivePrimarySource.Children) {
                 children = new List<Source> (ActivePrimarySource.Children);
             }
@@ -500,9 +610,29 @@ namespace Banshee.Gui
         private void AddToPlaylist (PlaylistSource playlist)
         {
             if (!FilterFocused) {
-                playlist.AddSelectedTracks (ActiveSource);
+                var track = ServiceManager.PlayerEngine.CurrentTrack as DatabaseTrackInfo;
+                if (chosen_from_playing_track_submenu && track != null) {
+                    playlist.AddTrack (track);
+                } else {
+                    playlist.AddSelectedTracks (ActiveSource);
+                }
             } else {
                 playlist.AddAllTracks (ActiveSource);
+            }
+        }
+
+        private void OnRemovePlayingTrack (object o, EventArgs args)
+        {
+            var playback_src = ServiceManager.PlaybackController.Source as DatabaseSource;
+            var track = ServiceManager.PlayerEngine.CurrentTrack as DatabaseTrackInfo;
+
+            if (playback_src != null && track != null) {
+                if (!ConfirmRemove (playback_src, false, 1)) {
+                    return;
+                }
+                if (playback_src != null && playback_src.CanRemoveTracks) {
+                    playback_src.RemoveTrack (track);
+                }
             }
         }
 
@@ -533,6 +663,15 @@ namespace Banshee.Gui
                         library.RemoveTracks (source.TrackModel as DatabaseTrackListModel, Selection);
                     });
                 }
+            }
+        }
+
+        private void OnOpenPlayingTrackFolder (object o, EventArgs args)
+        {
+            var track = ServiceManager.PlayerEngine.CurrentTrack as TrackInfo;
+            if (track != null) {
+                var path = System.IO.Path.GetDirectoryName (track.Uri.AbsolutePath);
+                OpenContainingFolder (path);
             }
         }
 
@@ -576,6 +715,24 @@ namespace Banshee.Gui
             }
         }
 
+        private void OnDeletePlayingTrackFromDrive (object o, EventArgs args)
+        {
+            var playback_src = ServiceManager.PlaybackController.Source as DatabaseSource;
+            var track = ServiceManager.PlayerEngine.CurrentTrack as DatabaseTrackInfo;
+
+            if (playback_src != null && track != null) {
+                if (!ConfirmRemove (playback_src, true, 1)) {
+                    return;
+                }
+
+                if (playback_src != null && playback_src.CanDeleteTracks) {
+                    var selection = new Hyena.Collections.Selection ();
+                    selection.Select (playback_src.TrackModel.IndexOf (track));
+                    playback_src.DeleteTracks (selection);
+                }
+            }
+        }
+
         private void OnDeleteSelectedTracksFromDrive (object o, EventArgs args)
         {
             ITrackModelSource source = ActiveSource as ITrackModelSource;
@@ -594,6 +751,14 @@ namespace Banshee.Gui
             ThreadAssist.SpawnFromMain (delegate {
                 ((DatabaseSource)ActiveSource).RateSelectedTracks (selected_tracks_rating_proxy.LastRating);
             });
+        }
+
+        private void OnRatePlayingTrack (object o, EventArgs args)
+        {
+            var track = ServiceManager.PlayerEngine.CurrentTrack as DatabaseTrackInfo;
+            if (track != null) {
+                track.SavedRating = playing_track_rating_proxy.LastRating;
+            }
         }
 
         private void OnSearchForSameArtist (object o, EventArgs args)

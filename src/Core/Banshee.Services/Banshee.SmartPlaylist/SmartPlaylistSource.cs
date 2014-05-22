@@ -252,6 +252,7 @@ namespace Banshee.SmartPlaylist
             Properties.SetString ("Icon.Name", "source-smart-playlist");
             Properties.SetString ("SourcePropertiesActionLabel", properties_label);
             Properties.SetString ("UnmapSourceActionLabel", Catalog.GetString ("Delete Smart Playlist"));
+            Properties.SetString ("RemovePlayingTrackActionLabel", Catalog.GetString ("Remove From Library"));
         }
 
 #endregion

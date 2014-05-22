@@ -131,6 +131,7 @@ namespace Banshee.Playlist
         {
             Properties.SetString ("Icon.Name", "source-playlist");
             Properties.SetString ("RemoveSelectedTracksActionLabel", Catalog.GetString ("Remove From Playlist"));
+            Properties.SetString ("RemovePlayingTrackActionLabel", Catalog.GetString ("Remove From Library"));
             Properties.SetString ("UnmapSourceActionLabel", Catalog.GetString ("Delete Playlist"));
         }
 
@@ -238,7 +239,7 @@ namespace Banshee.Playlist
             OnTracksAdded ();
         }
 
-        protected override void AddTrack (DatabaseTrackInfo track)
+        public override void AddTrack (DatabaseTrackInfo track)
         {
             AddTrack (track.TrackId);
         }
