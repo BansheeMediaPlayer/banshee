@@ -1,0 +1,11 @@
+prefix=@prefix@
+exec_prefix=${prefix}
+libdir=@libdir@
+bansheedir=${libdir}/@PACKAGE@
+
+Name: Banshee Metadata Fixup
+Description: Metadata Fixup extension for Banshee
+Version: @VERSION@
+Requires: banshee-thickclient
+Libs: -r:${bansheedir}/Extensions/Banshee.Fixup.dll -r:${bansheedir}/Migo.dll
+
