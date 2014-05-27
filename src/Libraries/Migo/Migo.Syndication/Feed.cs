@@ -28,21 +28,11 @@
 
 using System;
 using System.IO;
-using System.Net;
-using System.Threading;
-
-using System.Collections;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 
 using Mono.Unix;
 
-using Hyena;
 using Hyena.Data.Sqlite;
-
-using Migo.Net;
-using Migo.TaskCore;
-using Migo.DownloadCore;
 
 namespace Migo.Syndication
 {
@@ -63,7 +53,7 @@ namespace Migo.Syndication
         None = 6
     }
 
-    public class FeedProvider : MigoModelProvider<Feed>
+    public class FeedProvider : CacheableSqliteModelProvider<Feed>
     {
         public FeedProvider (HyenaSqliteConnection connection) : base (connection, "PodcastSyndications")
         {
@@ -98,7 +88,7 @@ namespace Migo.Syndication
         }
     }
 
-    public class Feed : MigoItem<Feed>
+    public class Feed : CacheableItem<Feed>
     {
         private static FeedProvider provider;
         public static FeedProvider Provider {

@@ -29,21 +29,19 @@
 //
 
 using System;
-using System.Collections.Generic;
 
-using Hyena;
 using Hyena.Data.Sqlite;
 
 namespace Migo.Syndication
 {
-    public class FeedItemProvider : MigoModelProvider<FeedItem>
+    public class FeedItemProvider : CacheableSqliteModelProvider<FeedItem>
     {
         public FeedItemProvider (HyenaSqliteConnection connection) : base (connection, "PodcastItems")
         {
         }
     }
 
-    public class FeedItem : MigoItem<FeedItem>
+    public class FeedItem : CacheableItem<FeedItem>
     {
         private static SqliteModelProvider<FeedItem> provider;
         public static SqliteModelProvider<FeedItem> Provider {

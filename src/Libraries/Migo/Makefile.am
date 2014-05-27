@@ -38,8 +38,6 @@ SOURCES =  \
 	Migo.Syndication/Migo.Syndication.Data/TablesManagers/EnclosuresTableManager.cs \
 	Migo.Syndication/Migo.Syndication.Data/TablesManagers/FeedsTableManager.cs \
 	Migo.Syndication/Migo.Syndication.Data/TablesManagers/ItemsTableManager.cs \
-	Migo.Syndication/MigoItem.cs \
-	Migo.Syndication/MigoModelProvider.cs \
 	Migo.Syndication/OpmlParser.cs \
 	Migo.Syndication/Rfc822DateTime.cs \
 	Migo.Syndication/RssParser.cs \

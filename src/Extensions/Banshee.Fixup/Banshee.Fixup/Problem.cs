@@ -26,24 +26,20 @@
 
 using System;
 using System.Linq;
-using System.Collections.Generic;
 
-using Hyena;
 using Hyena.Data.Sqlite;
-
-using Migo.Syndication;
 
 using Banshee.ServiceStack;
 
 namespace Banshee.Fixup
 {
-    public class Problem : MigoItem<Problem>, IEquatable<Problem>
+    public class Problem : CacheableItem<Problem>, IEquatable<Problem>
     {
-        private static MigoModelProvider<Problem> provider;
-        public static MigoModelProvider<Problem> Provider {
+        private static CacheableSqliteModelProvider<Problem> provider;
+        public static CacheableSqliteModelProvider<Problem> Provider {
             get {
                 return provider ?? (provider =
-                    new MigoModelProvider<Problem> (ServiceManager.DbConnection, "MetadataProblems", false));
+                    new CacheableSqliteModelProvider<Problem> (ServiceManager.DbConnection, "MetadataProblems", false));
             }
         }
 

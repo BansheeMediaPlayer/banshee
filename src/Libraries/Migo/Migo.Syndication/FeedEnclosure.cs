@@ -31,12 +31,11 @@
 using System;
 using System.IO;
 
-using Hyena;
 using Hyena.Data.Sqlite;
 
 namespace Migo.Syndication
 {
-    public class FeedEnclosure : MigoItem<FeedEnclosure>
+    public class FeedEnclosure : CacheableItem<FeedEnclosure>
     {
         private static SqliteModelProvider<FeedEnclosure> provider;
         public static SqliteModelProvider<FeedEnclosure> Provider {
@@ -44,7 +43,7 @@ namespace Migo.Syndication
         }
 
         public static void Init () {
-            provider = new MigoModelProvider<FeedEnclosure> (FeedsManager.Instance.Connection, "PodcastEnclosures");
+            provider = new CacheableSqliteModelProvider<FeedEnclosure> (FeedsManager.Instance.Connection, "PodcastEnclosures");
         }
 
         private string mimetype;
