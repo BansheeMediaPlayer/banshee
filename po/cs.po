@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: banshee\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=banshee&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2014-03-16 03:48+0000\n"
+"POT-Creation-Date: 2014-05-31 02:48+0000\n"
 "PO-Revision-Date: 2014-03-16 09:55+0100\n"
 "Last-Translator: Marek Černocký <marek@manet.cz>\n"
 "Language-Team: Czech <gnome-cs-list@gnome.org>\n"
@@ -263,7 +263,7 @@ msgid ""
 "information."
 msgstr ""
 "Ovládání přehrávače Banshee přes malé okno, které obsahuje pouze ovládací "
-"prvky přehrávání a informace o stopě."
+"prvky přehrávání a informace o skladbě."
 
 #. ../src/Extensions/Banshee.MiroGuide/Banshee.MiroGuide.addin.xml
 #: ../data/addin-xml-strings.cs:117
@@ -332,7 +332,7 @@ msgstr "Fronta přehrávání"
 #: ../data/addin-xml-strings.cs:148
 msgid "Queue tracks in an ad-hoc playlist, or let the Auto DJ take over."
 msgstr ""
-"Řazení stop do fronty v účelovém seznamu skladeb, případně umožňuje řízení "
+"Řazení skladeb do fronty v účelovém seznamu k přehrání, případně umožňuje řízení "
 "automatickým diskžokejem."
 
 #. ../src/Extensions/Banshee.Podcasting/Banshee.Podcasting.addin.xml
@@ -735,7 +735,7 @@ msgid ""
 "For tracks that have ReplayGain data, automatically scale (normalize) "
 "playback volume"
 msgstr ""
-"Pro stopy, které mají data ReplayGain, automaticky změnit (normalizovat) "
+"Pro skladby, které mají data ReplayGain, automaticky změnit (normalizovat) "
 "hlasitost přehrávání."
 
 #: ../src/Backends/Banshee.GStreamer/Banshee.GStreamer/PlayerEngine.cs:894
@@ -749,7 +749,7 @@ msgid ""
 "Eliminate the small playback gap on track change. Useful for concept albums "
 "and classical music"
 msgstr ""
-"Zamezuje malé pauze v přehrávání při přechodu na jinou stopu. Vhodné pro "
+"Zamezuje malé pauze v přehrávání při přechodu na jinou skladbu. Vhodné pro "
 "koncepční alba a klasickou hudbu"
 
 #: ../src/Backends/Banshee.GStreamer/Banshee.GStreamer/Transcoder.cs:63
@@ -1244,7 +1244,7 @@ msgstr "_Zařadit do fronty"
 #: ../src/Clients/Muinshee/Muinshee/BaseDialog.cs:103
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui/PlaybackActions.cs:73
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui/PlaybackActions.cs:210
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:125
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:213
 msgid "_Play"
 msgstr "_Přehrát"
 
@@ -1254,7 +1254,7 @@ msgstr "Přehrát _skladbu"
 
 #: ../src/Clients/Muinshee/Muinshee/MuinsheeActions.cs:48
 msgid "Add a song to the playlist"
-msgstr "Přidat skladbu do seznamu"
+msgstr "Přidat skladbu do seznamu k přehrání"
 
 #: ../src/Clients/Muinshee/Muinshee/MuinsheeActions.cs:52
 msgid "Play _Album"
@@ -1262,7 +1262,7 @@ msgstr "Přehrát _album"
 
 #: ../src/Clients/Muinshee/Muinshee/MuinsheeActions.cs:53
 msgid "Add an album to the playlist"
-msgstr "Přidat album do seznamu skladeb"
+msgstr "Přidat album do seznamu k přehrání"
 
 #: ../src/Clients/Muinshee/Muinshee/PlayerInterface.cs:281
 #, csharp-format
@@ -1476,7 +1476,7 @@ msgstr "ručně"
 
 #: ../src/Core/Banshee.Services/Banshee.Collection.Database/RandomByOff.cs:40
 msgid "Do not shuffle playlist"
-msgstr "Nehrát seznam skladeb v náhodném pořadí"
+msgstr "Nehrát skladby ze seznamu v náhodném pořadí"
 
 #: ../src/Core/Banshee.Services/Banshee.Collection.Database/RandomByRating.cs:46
 msgid "Shuffle by _Rating"
@@ -1638,28 +1638,33 @@ msgid "Techno"
 msgstr "Techno"
 
 #: ../src/Core/Banshee.Services/Banshee.Library/LibrarySource.cs:64
+#: ../src/Core/Banshee.Services/Banshee.Library/LibrarySource.cs:65
+#: ../src/Core/Banshee.Services/Banshee.Playlist/PlaylistSource.cs:134
+#: ../src/Core/Banshee.Services/Banshee.SmartPlaylist/SmartPlaylistSource.cs:255
+#: ../src/Extensions/Banshee.InternetRadio/Banshee.InternetRadio/InternetRadioSource.cs:81
+#: ../src/Extensions/Banshee.PlayQueue/Banshee.PlayQueue/PlayQueueSource.cs:89
 msgid "Remove From Library"
 msgstr "Odstranit z kolekce"
 
-#: ../src/Core/Banshee.Services/Banshee.Library/LibrarySource.cs:78
+#: ../src/Core/Banshee.Services/Banshee.Library/LibrarySource.cs:79
 #: ../src/Core/Banshee.Services/Banshee.Sources/PrimarySource.cs:249
 msgid "File Organization"
 msgstr "Organizace souborů"
 
-#: ../src/Core/Banshee.Services/Banshee.Library/LibrarySource.cs:82
+#: ../src/Core/Banshee.Services/Banshee.Library/LibrarySource.cs:83
 msgid "Co_py files to media folder when importing"
 msgstr "Při importu ko_pírovat soubory do složky médií"
 
-#: ../src/Core/Banshee.Services/Banshee.Library/LibrarySource.cs:88
+#: ../src/Core/Banshee.Services/Banshee.Library/LibrarySource.cs:89
 msgid "_Update file and folder names"
 msgstr "_Aktualizovat názvy souborů a složek"
 
-#: ../src/Core/Banshee.Services/Banshee.Library/LibrarySource.cs:89
+#: ../src/Core/Banshee.Services/Banshee.Library/LibrarySource.cs:90
 msgid "Rename files and folders according to media metadata"
 msgstr "Přejmenovat soubory a složky podle metadat média"
 
 #. Translators: {0} is the library name, eg 'Music Library' or 'Podcasts'
-#: ../src/Core/Banshee.Services/Banshee.Library/LibrarySource.cs:168
+#: ../src/Core/Banshee.Services/Banshee.Library/LibrarySource.cs:169
 #, csharp-format
 msgid "{0} Folder"
 msgstr "Složka {0}"
@@ -1984,37 +1989,37 @@ msgstr ""
 
 #: ../src/Core/Banshee.Services/Banshee.Playlist/AbstractPlaylistSource.cs:153
 msgid "Search this playlist"
-msgstr "Prohledat tento seznam skladeb"
+msgstr "Prohledat tento seznam k přehrání"
 
 #: ../src/Core/Banshee.Services/Banshee.Playlist/PlaylistSource.cs:58
 #: ../src/Core/Banshee.Services/Banshee.Query/BansheeQuery.cs:311
 msgid "Playlist"
-msgstr "Seznam skladeb"
+msgstr "Seznam k přehrání"
 
 #: ../src/Core/Banshee.Services/Banshee.Playlist/PlaylistSource.cs:133
 msgid "Remove From Playlist"
-msgstr "Odstranit ze seznamu skladeb"
+msgstr "Odstranit ze seznamu k přehrání"
 
-#: ../src/Core/Banshee.Services/Banshee.Playlist/PlaylistSource.cs:134
+#: ../src/Core/Banshee.Services/Banshee.Playlist/PlaylistSource.cs:135
 msgid "Delete Playlist"
-msgstr "Vymazat seznam skladeb"
+msgstr "Vymazat seznam k přehrání"
 
 #. TODO generate name based on the track selection, or begin editing it
-#: ../src/Core/Banshee.Services/Banshee.Playlist/PlaylistSource.cs:397
-#: ../src/Core/Banshee.Services/Banshee.Playlist/PlaylistSource.cs:403
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui/SourceActions.cs:176
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:134
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:463
+#: ../src/Core/Banshee.Services/Banshee.Playlist/PlaylistSource.cs:398
+#: ../src/Core/Banshee.Services/Banshee.Playlist/PlaylistSource.cs:404
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/SourceActions.cs:168
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:197
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:599
 #: ../src/Core/Banshee.ThickClient/Banshee.Sources.Gui/SourceView.cs:597
 #: ../src/Core/Banshee.ThickClient/Banshee.Sources.Gui/SourceView_DragAndDrop.cs:212
 msgid "New Playlist"
-msgstr "Nový seznam skladeb"
+msgstr "Nový seznam k přehrání"
 
 #: ../src/Core/Banshee.Services/Banshee.Playlists.Formats/AsfReferencePlaylistFormat.cs:43
 msgid "Windows Media ASX"
 msgstr "Windows Media ASX"
 
-#: ../src/Core/Banshee.Services/Banshee.Playlists.Formats/AsxPlaylistFormat.cs:48
+#: ../src/Core/Banshee.Services/Banshee.Playlists.Formats/AsxPlaylistFormat.cs:46
 msgid "Windows Media ASX (*.asx)"
 msgstr "Windows Media ASX (*.asx)"
 
@@ -2476,7 +2481,7 @@ msgstr "importovano_na"
 #: ../src/Core/Banshee.Services/Banshee.Query/BansheeQuery.cs:317
 #: ../src/Core/Banshee.Services/Banshee.SmartPlaylist/SmartPlaylistSource.cs:65
 msgid "Smart Playlist"
-msgstr "Chytrý seznam skladeb"
+msgstr "Chytrý seznam k přehrání"
 
 #. Translators: These are unique search fields (and nouns). You can use CSV for synonyms. Please, no spaces. Blank ok.
 #: ../src/Core/Banshee.Services/Banshee.Query/BansheeQuery.cs:326
@@ -2619,7 +2624,7 @@ msgstr "neznama"
 
 #: ../src/Core/Banshee.Services/Banshee.SmartPlaylist/Migrator.cs:78
 msgid "Unable to Migrate Smart Playlists"
-msgstr "Nelze převést chytré seznamy skladeb"
+msgstr "Nelze převést chytré seznamy k přehrání"
 
 #: ../src/Core/Banshee.Services/Banshee.SmartPlaylist/Migrator.cs:79
 #, csharp-format
@@ -2629,11 +2634,11 @@ msgstr "Nahlaste prosím tuto chybu: {0}"
 #: ../src/Core/Banshee.Services/Banshee.SmartPlaylist/SmartPlaylistSource.cs:66
 #: ../src/Core/Banshee.ThickClient/Banshee.SmartPlaylist.Gui/Editor.cs:49
 msgid "Edit Smart Playlist"
-msgstr "Upravit chytrý seznam skladeb"
+msgstr "Upravit chytrý seznam k přehrání"
 
 #: ../src/Core/Banshee.Services/Banshee.SmartPlaylist/SmartPlaylistSource.cs:254
 msgid "Delete Smart Playlist"
-msgstr "Odstranit chytrý seznam skladeb"
+msgstr "Odstranit chytrý seznam k přehrání"
 
 #: ../src/Core/Banshee.Services/Banshee.Sources/DatabaseSource.cs:149
 #: ../src/Extensions/Banshee.InternetRadio/Banshee.InternetRadio/InternetRadioSource.cs:163
@@ -2703,7 +2708,7 @@ msgstr "Chyby"
 
 #: ../src/Core/Banshee.Services/Banshee.Sources/PrimarySource.cs:215
 msgid "Sort Playlists By"
-msgstr "Seřadit seznamy skladeb podle"
+msgstr "Seřadit seznamy k přehrání podle"
 
 #. Translators: this is a noun, referring to the harddisk
 #: ../src/Core/Banshee.Services/Banshee.Sources/PrimarySource.cs:225
@@ -2767,11 +2772,11 @@ msgstr "Chyba při otevírání proudu"
 
 #: ../src/Core/Banshee.Services/Banshee.Streaming/RadioTrackInfo.cs:84
 msgid "Could not open stream or playlist"
-msgstr "Nelze otevřít proud nebo seznam skladeb"
+msgstr "Nelze otevřít proud nebo seznam k přehrání"
 
 #: ../src/Core/Banshee.Services/Banshee.Streaming/RadioTrackInfo.cs:93
 msgid "Problem parsing playlist"
-msgstr "Problém při zpracování seznamu skladeb"
+msgstr "Problém při zpracování seznamu k přehrání"
 
 #: ../src/Core/Banshee.Services/Banshee.Web/Browser.cs:67
 msgid "Could not launch URL"
@@ -2827,7 +2832,7 @@ msgid ""
 "To put the playlist in manual sort mode, click the currently sorted column "
 "header until the sort arrow goes away."
 msgstr ""
-"Aby se seznam skladeb přepnul do režimu ručního řazení, klikejte na záhlaví "
+"Aby se seznam k přehrání přepnul do režimu ručního řazení, klikejte na záhlaví "
 "sloupce, podle kterého se aktuálně řadí, dokud nezmizí šipka."
 
 #. Translators: this is {disc number} of {disc count}
@@ -3023,7 +3028,7 @@ msgstr ""
 "Chcete, aby byl výchozím Banshee?"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui.Dialogs/DefaultApplicationHelperDialog.cs:72
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui/SourceActions.cs:443
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/SourceActions.cs:438
 #, csharp-format
 msgid "Do not ask me this again"
 msgstr "Příště se již neptat"
@@ -3084,11 +3089,11 @@ msgstr "Importovat média z různých zdrojů"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui/GlobalActions.cs:57
 msgid "Import _Playlist..."
-msgstr "Importovat seznam _skladeb…"
+msgstr "Importovat _seznam k přehrání…"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui/GlobalActions.cs:58
 msgid "Import a playlist"
-msgstr "Importovat seznam skladeb"
+msgstr "Importovat seznam k přehrání"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui/GlobalActions.cs:61
 msgid "Open _Location..."
@@ -3187,12 +3192,12 @@ msgstr "Zobrazit podrobné informace o verzi a nastavení"
 #. Prompt user for location of the playlist.
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui/GlobalActions.cs:182
 msgid "Import Playlist"
-msgstr "Importovat seznam skladeb"
+msgstr "Importovat seznam k přehrání"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui/GlobalActions.cs:183
 #: ../src/Extensions/Banshee.PlayerMigration/Banshee.PlayerMigration/ItunesPlayerImportSource.cs:558
 msgid "Playlists"
-msgstr "Seznamy skladeb"
+msgstr "Seznamy k přehrání"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui/PlaybackActions.cs:69
 msgid "Play the current item"
@@ -3265,7 +3270,7 @@ msgstr "_Vypnout opakování"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui/PlaybackRepeatActions.cs:79
 msgid "Do not repeat playlist"
-msgstr "Neopakovat seznam skladeb"
+msgstr "Neopakovat seznam k přehrání"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui/PlaybackRepeatActions.cs:83
 msgid "Repeat _All"
@@ -3273,7 +3278,7 @@ msgstr "Opakovat _vše"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui/PlaybackRepeatActions.cs:84
 msgid "Play all songs before repeating playlist"
-msgstr "Přehrát všechny skladby před opakováním seznamu skladeb"
+msgstr "Přehrát všechny skladby před opakováním seznamu k přehrání"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui/PlaybackRepeatActions.cs:88
 msgid "Repeat Singl_e"
@@ -3328,77 +3333,77 @@ msgstr "Aktivovat vložené titulky {0}"
 msgid "Hide subtitles"
 msgstr "Skrýt titulky"
 
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui/SourceActions.cs:75
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/SourceActions.cs:67
 msgid "_New Playlist"
-msgstr "_Nový seznam skladeb"
+msgstr "_Nový seznam k přehrání"
 
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui/SourceActions.cs:76
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/SourceActions.cs:68
 msgid "Create a new empty playlist"
-msgstr "Vytvořit nový prázdný seznam skladeb"
+msgstr "Vytvořit nový prázdný seznam k přehrání"
 
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui/SourceActions.cs:79
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/SourceActions.cs:71
 msgid "New _Smart Playlist..."
-msgstr "Nový chytrý _seznam skladeb…"
+msgstr "Nový chytrý _seznam k přehrání…"
 
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui/SourceActions.cs:80
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/SourceActions.cs:72
 msgid "Create a new smart playlist"
-msgstr "Vytvořit nový chytrý seznam skladeb"
+msgstr "Vytvořit nový chytrý seznam k přehrání"
 
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui/SourceActions.cs:90
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/SourceActions.cs:82
 msgid "Import to Library"
 msgstr "Importovat do kolekce"
 
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui/SourceActions.cs:91
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/SourceActions.cs:83
 msgid "Import source to library"
 msgstr "Importovat zdroje do kolekce"
 
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui/SourceActions.cs:94
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/SourceActions.cs:86
 msgid "Rename"
 msgstr "Přejmenovat"
 
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui/SourceActions.cs:97
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/SourceActions.cs:89
 msgid "Export Playlist..."
-msgstr "Exportovat seznam skladeb…"
+msgstr "Exportovat seznam k přehrání…"
 
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui/SourceActions.cs:98
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/SourceActions.cs:90
 msgid "Export a playlist"
-msgstr "Exportovat seznam skladeb"
+msgstr "Exportovat seznam k přehrání"
 
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui/SourceActions.cs:101
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/SourceActions.cs:93
 msgid "Unmap"
 msgstr "Nemapovat"
 
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui/SourceActions.cs:104
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/SourceActions.cs:96
 msgid "Source Properties"
 msgstr "Vlastnosti zdroje"
 
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui/SourceActions.cs:107
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/SourceActions.cs:99
 msgid "Sort Children by"
 msgstr "Seřadit potomky podle"
 
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui/SourceActions.cs:111
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/SourceActions.cs:103
 msgid "Switch Source"
 msgstr "Přepnout zdroj"
 
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui/SourceActions.cs:112
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/SourceActions.cs:104
 msgid "Switch to a source by typing its name"
 msgstr "Přepnout na zdroj psaním jeho názvu"
 
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui/SourceActions.cs:115
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/SourceActions.cs:107
 #: ../src/Core/Banshee.ThickClient/Banshee.Preferences.Gui/PreferenceDialog.cs:50
 #: ../src/Extensions/Banshee.Lastfm/Banshee.Lastfm/LastfmPreferences.cs:87
 msgid "Preferences"
 msgstr "Předvolby"
 
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui/SourceActions.cs:116
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/SourceActions.cs:108
 msgid "Edit preferences related to this source"
 msgstr "Upravit předvolby vztahující se k tomuto zdroji"
 
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui/SourceActions.cs:120
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/SourceActions.cs:112
 msgid "New _Smart Playlist"
-msgstr "Nový chytrý _seznam skladeb"
+msgstr "Nový chytrý _seznam k přehrání"
 
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui/SourceActions.cs:129
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/SourceActions.cs:121
 #: ../src/Extensions/Banshee.Fixup/Banshee.Fixup/FixSource.cs:84
 #: ../src/Extensions/Banshee.LastfmStreaming/Banshee.LastfmStreaming/LastfmStreamingActions.cs:67
 #: ../src/Extensions/Banshee.PlayQueue/Banshee.PlayQueue/PlayQueueActions.cs:79
@@ -3406,156 +3411,215 @@ msgstr "Nový chytrý _seznam skladeb"
 msgid "Refresh"
 msgstr "Obnovit"
 
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui/SourceActions.cs:130
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/SourceActions.cs:122
 msgid "Refresh this randomly sorted smart playlist"
-msgstr "Obnovit tento náhodně seřazený chytrý seznam skladeb"
+msgstr "Obnovit tento náhodně seřazený chytrý seznam k přehrání"
 
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui/SourceActions.cs:297
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/SourceActions.cs:291
 msgid "Could not export playlist"
-msgstr "Nelze exportovat seznam skladeb"
+msgstr "Nelze exportovat seznam k přehrání"
 
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui/SourceActions.cs:434
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/SourceActions.cs:429
 #, csharp-format
 msgid "Are you sure you want to delete this {0}?"
 msgstr "Opravdu chcete smazat tento {0}?"
 
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui/SourceActions.cs:477
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/SourceActions.cs:472
 msgid "Separate by Type"
 msgstr "Oddělit podle typu"
 
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:109
-msgid "Select _All"
-msgstr "Vybr_at vše"
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:119
+msgid "Playing Track"
+msgstr "Přehrávaná stopa"
 
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:110
-msgid "Select all tracks"
-msgstr "Vybrat všechny stopy"
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:120
+msgid "Options for playing track"
+msgstr "Volby pro přehrávanou skladbu"
 
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:113
-msgid "Select _None"
-msgstr "Vybrat _nic"
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:124
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:161
+msgid "Add _to Playlist"
+msgstr "Přidat _do seznamu k přehrání"
 
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:114
-msgid "Unselect all tracks"
-msgstr "Zrušit označení všech stop"
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:125
+msgid ""
+"Append playing items to playlist or create new playlist from playing track"
+msgstr ""
+"Připojit přehrávané položky do seznamu k přehrání nebo z nich vytvořit nový "
+"seznam k přehrání"
 
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:117
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:132
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:169
 #: ../src/Extensions/Banshee.Audiobook/Banshee.Audiobook/Actions.cs:59
 msgid "_Edit Track Information"
 msgstr "_Upravit informace o stopě"
 
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:118
-msgid "Edit information on selected tracks"
-msgstr "Upravit informace o vybraných skladbách"
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:133
+msgid "Edit information on playing track"
+msgstr "Upravit informace o přehrávaných skladbách"
 
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:121
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:136
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:173
+msgid "_Remove"
+msgstr "Odst_ranit"
+
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:137
+msgid "Remove playing track from this source"
+msgstr "Odstranit přehrávanou stopu z tohoto zdroje"
+
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:140
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:181
+msgid "_Delete From Drive"
+msgstr "_Smazat z disku"
+
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:141
+msgid "Permanently delete playing item from medium"
+msgstr "Trvale odstranit přehrávanou položku z média"
+
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:144
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:185
+msgid "_Open Containing Folder"
+msgstr "_Otevřít příslušnou složku"
+
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:145
+msgid "Open the folder that contains playing item"
+msgstr "Otevřít složku, která obsahuje přehrávanou položku"
+
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:148
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:189
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui.TrackEditor/StatisticsPage.cs:283
 #: ../src/Extensions/Banshee.Podcasting/Banshee.Podcasting.Gui/PodcastActions.cs:117
 #: ../src/Extensions/Banshee.Podcasting/Banshee.Podcasting.Gui/PodcastActions.cs:164
 msgid "Properties"
 msgstr "Vlastnosti"
 
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:122
-msgid "View information on selected tracks"
-msgstr "Zobrazit informace o vybraných stopách"
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:149
+msgid "View information on playing track"
+msgstr "Zobrazit informace o přehrávané skladbě"
 
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:126
-msgid "Play the selected item"
-msgstr "Přehrát vybranou položku"
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:156
+msgid "Selected Track(s)"
+msgstr "Vybraná stopa(y)"
 
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:129
-msgid "Add _to Playlist"
-msgstr "Přidat _do seznamu skladeb"
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:157
+msgid "Options for selected track(s)"
+msgstr "Volby pro vybranou skladbu(y)"
 
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:130
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:162
 msgid "Append selected items to playlist or create new playlist from selection"
 msgstr ""
-"Připojit vybrané položky k seznamu skladeb nebo z výběru vytvořit nový "
-"seznam skladeb"
+"Připojit vybrané položky do seznamu k přehrání nebo z výběru vytvořit nový "
+"seznam k přehrání"
 
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:135
-msgid "Create new playlist from selected tracks"
-msgstr "Vytvořit chytrý seznam z vybraných stop"
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:170
+msgid "Edit information on selected tracks"
+msgstr "Upravit informace o vybraných skladbách"
 
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:139
-msgid "_Remove"
-msgstr "Odst_ranit"
-
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:140
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:174
 msgid "Remove selected track(s) from this source"
 msgstr "Odstranit vybranou stopu či stopy z tohoto zdroje"
 
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:143
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:177
 msgid "Remove From _Library"
 msgstr "Odstranit ze s_bírky"
 
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:144
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:178
 msgid "Remove selected track(s) from library"
 msgstr "Odstranit vybranou stopu či stopy z kolekce"
 
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:147
-msgid "_Open Containing Folder"
-msgstr "_Otevřít příslušnou složku"
-
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:148
-msgid "Open the folder that contains the selected item"
-msgstr "Otevřít složku, která obsahuje vybrané položky."
-
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:151
-msgid "_Delete From Drive"
-msgstr "_Smazat z disku"
-
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:152
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:182
 msgid "Permanently delete selected item(s) from medium"
 msgstr "Trvale odstranit vybrané položky z média"
 
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:186
+msgid "Open the folder that contains the selected item"
+msgstr "Otevřít složku, která obsahuje vybrané položky."
+
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:190
+msgid "View information on selected tracks"
+msgstr "Zobrazit informace o vybraných stopách"
+
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:198
+msgid "Create new playlist from selected tracks"
+msgstr "Vytvořit chytrý seznam z vybraných stop"
+
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:202
+msgid "Select _All"
+msgstr "Vybr_at vše"
+
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:203
+msgid "Select all tracks"
+msgstr "Vybrat všechny stopy"
+
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:206
+msgid "Select _None"
+msgstr "Vybrat _nic"
+
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:207
+msgid "Unselect all tracks"
+msgstr "Zrušit označení všech stop"
+
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:214
+msgid "Play the selected item"
+msgstr "Přehrát vybranou položku"
+
 #. Translators: this is a verb (command), not a noun (things)
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:158
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:217
 #: ../src/Extensions/Banshee.InternetArchive/Banshee.InternetArchive/HeaderFilters.cs:171
 #: ../src/Extensions/Banshee.MediaPanel/Banshee.MediaPanel/SearchEntry.cs:112
 #, csharp-format
 msgid "_Search"
 msgstr "_Hledat"
 
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:159
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:218
 msgid "Search for items matching certain criteria"
 msgstr "Hledat položky vyhovující určitým kritériím"
 
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:162
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:221
 msgid "By Matching _Album"
 msgstr "Podle odpovídajícího _alba"
 
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:163
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:222
 msgid "Search all songs of this album"
 msgstr "Vyhledat všechny skladby z tohoto alba"
 
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:166
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:225
 msgid "By Matching A_rtist"
 msgstr "Podle odpovídajícího _umělce"
 
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:167
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:226
 msgid "Search all songs of this artist"
 msgstr "Vyhledat všechny skladby tohoto umělce"
 
 #. inside the "Edit" menu it's a bit redundant to have a label that starts as "Edit Track..."
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:231
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:305
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:306
 msgid "Track _Information"
 msgstr "_Informace o stopě"
 
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:323
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:308
+msgid "Selected Tracks"
+msgstr "Vybrané stopy"
+
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:310
+msgid "Selected Track"
+msgstr "Vybraná stopa"
+
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:416
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:418
 #, csharp-format
 msgid "_Delete From \"{0}\""
 msgstr "_Odstranit z „{0}“"
 
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:536
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:706
 msgid "The folder could not be found."
 msgstr "Složku nelze nalézt."
 
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:537
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:707
 msgid "Please check that the track's location is accessible by the system."
 msgstr "Zkontrolujte prosím, zda je umístění stopy dostupné ze systému."
 
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:608
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:804
 #, csharp-format
 msgid "Are you sure you want to permanently delete this item?"
 msgid_plural ""
@@ -3564,16 +3628,16 @@ msgstr[0] "Opravdu chcete navždy odstranit tuto skladbu?"
 msgstr[1] "Opravdu chcete navždy odstranit {0} vybrané skladby?"
 msgstr[2] "Opravdu chcete navždy odstranit {0} vybraných skladeb?"
 
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:612
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:808
 msgid "If you delete the selection, it will be permanently lost."
 msgstr "Pokud výběr smažete, bude navždy ztracen."
 
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:615
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:811
 #, csharp-format
 msgid "Remove selection from {0}?"
 msgstr "Odstranit výběr z {0}?"
 
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:618
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:814
 #, csharp-format
 msgid "Are you sure you want to remove the selected item from your {1}?"
 msgid_plural ""
@@ -3582,11 +3646,11 @@ msgstr[0] "Opravdu chcete odstranit vybranou položku ze své {1}?"
 msgstr[1] "Opravdu chcete odstranit vybrané {0} položky ze své {1}?"
 msgstr[2] "Opravdu chcete odstranit vybraných {0} položek ze své {1}?"
 
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:646
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:842
 msgid "Are you sure you want to continue?"
 msgstr "Opravdu chcete pokračovat?"
 
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:657
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:853
 msgid "Remove tracks"
 msgstr "Odstranit stopy"
 
@@ -3919,7 +3983,7 @@ msgstr ""
 msgid "<i>Editing {0} of {1} items</i>"
 msgstr "<i>Upravuje se {0} z {1} položek<i>"
 
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui.TrackEditor/TrackEditorDialog.cs:696
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui.TrackEditor/TrackEditorDialog.cs:712
 #, csharp-format
 msgid "Save the changes made to the open track?"
 msgid_plural "Save the changes made to {0} of {1} open tracks?"
@@ -3927,11 +3991,11 @@ msgstr[0] "Uložit změny provedené v otevřené skladbě?"
 msgstr[1] "Uložit změny provedené ve {0} z {1} otevřených skladeb?"
 msgstr[2] "Uložit změny provedené ve {0} z {1} otevřených skladeb?"
 
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui.TrackEditor/TrackEditorDialog.cs:713
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui.TrackEditor/TrackEditorDialog.cs:729
 msgid "Close _without Saving"
 msgstr "Zavřít _bez uložení"
 
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui.TrackEditor/TrackEditorDialog.cs:750
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui.TrackEditor/TrackEditorDialog.cs:766
 #, csharp-format
 msgid "If you don't save, changes from the last {0} will be permanently lost."
 msgstr "Pokud změny z posledního {0} neuložíte, budou nenávratně ztraceny."
@@ -4131,7 +4195,7 @@ msgstr "Nastavování {0}"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Playlist.Gui/PlaylistExportDialog.cs:20
 msgid "Export Playlist"
-msgstr "Exportovat seznam skladeb"
+msgstr "Exportovat seznam k přehrání"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Playlist.Gui/PlaylistExportDialog.cs:29
 msgid "Export"
@@ -4171,15 +4235,15 @@ msgstr "Službu předvoleb nelze nalézt."
 
 #: ../src/Core/Banshee.ThickClient/Banshee.SmartPlaylist.Gui/Editor.cs:80
 msgid "New Smart Playlist"
-msgstr "Nový chytrý seznam skladeb"
+msgstr "Nový chytrý seznam k přehrání"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.SmartPlaylist.Gui/Editor.cs:96
 msgid "Playlist _Name:"
-msgstr "_Název seznamu skladeb:"
+msgstr "_Název seznamu k přehrání:"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.SmartPlaylist.Gui/Editor.cs:108
 msgid "Predefined Smart Playlists"
-msgstr "Předdefinovaný chytrý seznam skladeb"
+msgstr "Předdefinovaný chytrý seznam k přehrání"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.SmartPlaylist.Gui/Editor.cs:119
 msgid "Open in editor"
@@ -4572,7 +4636,7 @@ msgstr "Požadované zanoření složky"
 
 #: ../src/Dap/Banshee.Dap.MassStorage/Banshee.Dap.MassStorage/MassStorageSource.cs:131
 msgid "Supports Playlists"
-msgstr "Podporuje seznamy skladeb"
+msgstr "Podporuje seznamy k přehrání"
 
 #: ../src/Dap/Banshee.Dap.MassStorage/Banshee.Dap.MassStorage/RockBoxDevice.cs:41
 msgid "Rockbox Device"
@@ -4768,11 +4832,11 @@ msgstr[2] "{0} knih"
 msgid "Audiobooks Folder"
 msgstr "Složka s mluvenými knihami"
 
-#: ../src/Extensions/Banshee.Audiobook/Banshee.Audiobook/BookView.cs:114
+#: ../src/Extensions/Banshee.Audiobook/Banshee.Audiobook/BookView.cs:118
 msgid "Resume Playback"
 msgstr "Pokračovat v přehrávání"
 
-#: ../src/Extensions/Banshee.Audiobook/Banshee.Audiobook/BookView.cs:120
+#: ../src/Extensions/Banshee.Audiobook/Banshee.Audiobook/BookView.cs:124
 msgid "No Bookmark Set"
 msgstr "Není nastavena žádná záložka"
 
@@ -4938,7 +5002,7 @@ msgstr[2] "Načítá se {0} stop"
 
 #: ../src/Extensions/Banshee.Daap/Banshee.Daap/DaapSource.cs:270
 msgid "Loading playlists"
-msgstr "Načítají se seznamy skladeb"
+msgstr "Načítají se seznamy k přehrání"
 
 #: ../src/Extensions/Banshee.Daap/Banshee.Daap/OpenRemoteServer.cs:46
 msgid "Open remote DAAP server"
@@ -5116,7 +5180,7 @@ msgstr "|"
 msgid ", {0}"
 msgstr ", {0}"
 
-#: ../src/Extensions/Banshee.Fixup/Banshee.Fixup/View.cs:77
+#: ../src/Extensions/Banshee.Fixup/Banshee.Fixup/View.cs:81
 msgid "Fix?"
 msgstr "Opravit?"
 
@@ -5657,21 +5721,25 @@ msgstr "Nejnovější"
 msgid "Oldest"
 msgstr "Nejstarší"
 
-#: ../src/Extensions/Banshee.InternetRadio/Banshee.InternetRadio/InternetRadioSource.cs:54
+#: ../src/Extensions/Banshee.InternetRadio/Banshee.InternetRadio/InternetRadioSource.cs:52
 msgid "Radio"
 msgstr "Rádio"
 
-#: ../src/Extensions/Banshee.InternetRadio/Banshee.InternetRadio/InternetRadioSource.cs:65
+#: ../src/Extensions/Banshee.InternetRadio/Banshee.InternetRadio/InternetRadioSource.cs:63
 msgid "Add Station"
 msgstr "Přidat stanici"
 
-#: ../src/Extensions/Banshee.InternetRadio/Banshee.InternetRadio/InternetRadioSource.cs:66
+#: ../src/Extensions/Banshee.InternetRadio/Banshee.InternetRadio/InternetRadioSource.cs:64
 msgid "Add a new Internet Radio station or playlist"
-msgstr "Přidat novou internetovou rozhlasovou stanici nebo seznam skladeb"
+msgstr "Přidat novou internetovou rozhlasovou stanici nebo seznam k přehrání"
 
-#: ../src/Extensions/Banshee.InternetRadio/Banshee.InternetRadio/InternetRadioSource.cs:82
+#: ../src/Extensions/Banshee.InternetRadio/Banshee.InternetRadio/InternetRadioSource.cs:80
 msgid "Search your stations"
 msgstr "Hledat své stanice"
+
+#: ../src/Extensions/Banshee.InternetRadio/Banshee.InternetRadio/InternetRadioSource.cs:82
+msgid "Delete From Drive"
+msgstr "Smazat z disku"
 
 #: ../src/Extensions/Banshee.InternetRadio/Banshee.InternetRadio/InternetRadioSource.cs:83
 #: ../src/Extensions/Banshee.LastfmStreaming/Banshee.LastfmStreaming/StationEditor.cs:60
@@ -6474,7 +6542,7 @@ msgstr "Importovat statistiky přehrávání (počet přehrání apod.)"
 
 #: ../src/Extensions/Banshee.PlayerMigration/Banshee.PlayerMigration/ItunesPlayerImportDialogs.cs:96
 msgid "Import playlists"
-msgstr "Importovat seznamy skladeb"
+msgstr "Importovat seznamy k přehrání"
 
 #: ../src/Extensions/Banshee.PlayerMigration/Banshee.PlayerMigration/ItunesPlayerImportDialogs.cs:120
 #, csharp-format
@@ -6600,11 +6668,11 @@ msgstr "Vyprázdnit frontu při ukončení"
 msgid "Remove From Play Queue"
 msgstr "Odstranit z fronty"
 
-#: ../src/Extensions/Banshee.PlayQueue/Banshee.PlayQueue/PlayQueueSource.cs:965
+#: ../src/Extensions/Banshee.PlayQueue/Banshee.PlayQueue/PlayQueueSource.cs:966
 msgid "Number of _played songs to show"
 msgstr "Počet _přehraných skladeb, které se mají zobrazit"
 
-#: ../src/Extensions/Banshee.PlayQueue/Banshee.PlayQueue/PlayQueueSource.cs:971
+#: ../src/Extensions/Banshee.PlayQueue/Banshee.PlayQueue/PlayQueueSource.cs:972
 msgid "Number of _upcoming songs to show"
 msgstr "Počet _nadcházejících skladeb, které se mají zobrazit"
 
@@ -7027,11 +7095,11 @@ msgstr "cokoliv"
 msgid "of the following:"
 msgstr "z následujících:"
 
-#: ../src/Hyena/Hyena.Gui/Hyena.Query.Gui/QueryLimitBox.cs:58
+#: ../src/Hyena/Hyena.Gui/Hyena.Query.Gui/QueryLimitBox.cs:56
 msgid "_Limit to"
 msgstr "_Omezit na"
 
-#: ../src/Hyena/Hyena.Gui/Hyena.Query.Gui/QueryLimitBox.cs:85
+#: ../src/Hyena/Hyena.Gui/Hyena.Query.Gui/QueryLimitBox.cs:86
 msgid "selected by"
 msgstr "vybráno podle"
 
@@ -7272,7 +7340,7 @@ msgstr "Připojování k Last.fm."
 msgid "Connected to Last.fm."
 msgstr "Připojeno k Last.fm."
 
-#: ../src/Libraries/Migo/Migo.Syndication/Feed.cs:151
+#: ../src/Libraries/Migo/Migo.Syndication/Feed.cs:141
 #: ../src/Libraries/Migo/Migo.Syndication/RssParser.cs:100
 #: ../src/Libraries/Migo/Migo.Syndication/RssParser.cs:103
 msgid "Unknown Podcast"
