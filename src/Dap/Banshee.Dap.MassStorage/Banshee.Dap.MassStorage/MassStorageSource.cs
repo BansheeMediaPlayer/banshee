@@ -72,7 +72,9 @@ namespace Banshee.Dap.MassStorage
                 if (ms_device.ShouldIgnoreDevice () || !ms_device.LoadDeviceConfiguration ()) {
                     ms_device = null;
                 }
-            } catch {
+            } catch (Exception e) {
+                Log.Exception (e);
+
                 ms_device = null;
             }
 
@@ -673,7 +675,9 @@ namespace Banshee.Dap.MassStorage
             try {
                 SafeUri uri = new SafeUri (command.DeviceId);
                 return BaseDirectory.StartsWith (uri.LocalPath);
-            } catch {
+            } catch (Exception e) {
+                Log.Exception (e);
+
                 return false;
             }
         }
