@@ -56,15 +56,30 @@ namespace Banshee.Hardware.Gio
 
         void HandleManagerDeviceRemoved (object o, MountArgs args)
         {
-            if (DeviceRemoved != null) {
-                DeviceRemoved (this, new DeviceRemovedArgs (args.Device.Uuid));
-            }
+            HandleManagerDeviceRemoved (args.Device);
         }
 
         void HandleManagerDeviceAdded (IDevice device)
         {
-            if (device != null && DeviceAdded != null) {
-                DeviceAdded (this, new DeviceAddedArgs (device));
+            if (device == null) {
+                return;
+            }
+
+            var handler = DeviceAdded;
+            if (handler != null) {
+                handler (this, new DeviceAddedArgs (device));
+            }
+        }
+
+        private void HandleManagerDeviceRemoved (IDevice device)
+        {
+            if (device == null) {
+                return;
+            }
+
+            var handler = DeviceRemoved;
+            if (handler != null) {
+                handler (this, new DeviceRemovedArgs (device.Uuid));
             }
         }
 
