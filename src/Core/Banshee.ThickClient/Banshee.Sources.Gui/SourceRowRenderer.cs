@@ -159,7 +159,7 @@ namespace Banshee.Sources.Gui
             bool selected = view != null && view.Selection.IterIsSelected (iter);
             StateFlags state = RendererStateToWidgetState (widget, flags);
 
-            RenderSelection (cr, background_area, selected, state);
+            RenderBackground (cr, background_area, selected, state);
 
             int title_layout_width = 0, title_layout_height = 0;
             int count_layout_width = 0, count_layout_height = 0;
@@ -284,7 +284,7 @@ namespace Banshee.Sources.Gui
             fd.Dispose ();
         }
 
-        private void RenderSelection (Cairo.Context cr, Gdk.Rectangle background_area,
+        private void RenderBackground (Cairo.Context cr, Gdk.Rectangle background_area,
             bool selected, StateFlags state)
         {
             if (view == null) {
@@ -292,32 +292,26 @@ namespace Banshee.Sources.Gui
             }
 
             if (selected) {
-                Gdk.Rectangle rect = background_area;
-                rect.X -= 2;
-                rect.Width += 4;
+                // Just leave the standard GTK selection and focus
+                return;
+            }
 
-                // clear the standard GTK selection and focus
-                Gdk.RGBA rgba = view.StyleContext.GetBackgroundColor (StateFlags.Normal);
-                cr.SetSourceRGBA (rgba.Red, rgba.Green, rgba.Blue, rgba.Alpha);
-                cr.Rectangle (rect.X, rect.Y, rect.Width, rect.Height);
-                cr.Fill ();
-
-                // draw the hot cairo selection
-                if (!view.EditingRow) {
-                    view.Theme.DrawRowSelection (cr, background_area.X + 1, background_area.Y + 1,
-                        background_area.Width - 2, background_area.Height - 2);
-                }
-            } else if (!TreeIter.Zero.Equals (iter) && iter.Equals (view.HighlightedIter)) {
-                view.Theme.DrawRowSelection (cr, background_area.X + 1, background_area.Y + 1,
-                    background_area.Width - 2, background_area.Height - 2, false);
+            if (!TreeIter.Zero.Equals (iter) && iter.Equals (view.HighlightedIter)) {
+                // Item is highlighted but not selected
+                view.Theme.DrawHighlightFrame (cr, background_area.X + 1, background_area.Y + 1,
+                                               background_area.Width - 2, background_area.Height - 2);
             } else if (view.NotifyStage.ActorCount > 0) {
                 if (!TreeIter.Zero.Equals (iter) && view.NotifyStage.Contains (iter)) {
+                    // Render the current step of the notification animation
                     Actor<TreeIter> actor = view.NotifyStage[iter];
-                    Cairo.Color color = CairoExtensions.GdkRGBAToCairoColor (view.StyleContext.GetBackgroundColor (StateFlags.Active));
-                    color.A = Math.Sin (actor.Percent * Math.PI);
+                    Cairo.Color normal_color = CairoExtensions.GdkRGBAToCairoColor (view.StyleContext.GetBackgroundColor (StateFlags.Normal));
+                    Cairo.Color selected_color = CairoExtensions.GdkRGBAToCairoColor (view.StyleContext.GetBackgroundColor (StateFlags.Selected));
+                    Cairo.Color notify_bg_color = CairoExtensions.AlphaBlend (normal_color, selected_color, 0.5);
+                    notify_bg_color.A = Math.Sin (actor.Percent * Math.PI);
 
-                    view.Theme.DrawRowSelection (cr, background_area.X + 1, background_area.Y + 1,
-                        background_area.Width - 2, background_area.Height - 2, true, true, color);
+                    cr.SetSourceColor (notify_bg_color);
+                    CairoExtensions.RoundedRectangle (cr, background_area.X, background_area.Y, background_area.Width, background_area.Height, view.Theme.Context.Radius);
+                    cr.Fill ();
                 }
             }
         }
