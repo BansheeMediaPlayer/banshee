@@ -42,6 +42,7 @@ namespace Banshee.Hardware
         private Dictionary<string, ICustomDeviceProvider> custom_device_providers = new Dictionary<string, ICustomDeviceProvider> ();
 
         public event DeviceAddedHandler DeviceAdded;
+        public event DeviceChangedHandler DeviceChanged;
         public event DeviceRemovedHandler DeviceRemoved;
 
         public HardwareManager ()
@@ -66,6 +67,7 @@ namespace Banshee.Hardware
             }
 
             manager.DeviceAdded += OnDeviceAdded;
+            manager.DeviceChanged += OnDeviceChanged;
             manager.DeviceRemoved += OnDeviceRemoved;
 
             ServiceManager.Get<DBusCommandService> ().ArgumentPushed += OnCommandLineArgument;
@@ -78,6 +80,7 @@ namespace Banshee.Hardware
             lock (this) {
                 if (manager != null) {
                     manager.DeviceAdded -= OnDeviceAdded;
+                    manager.DeviceChanged -= OnDeviceChanged;
                     manager.DeviceRemoved -= OnDeviceRemoved;
                     manager.Dispose ();
                     manager = null;
@@ -182,6 +185,16 @@ namespace Banshee.Hardware
                     }
 
                     handler (this, raise_args);
+                }
+            }
+        }
+
+        private void OnDeviceChanged (object o, DeviceChangedEventArgs args)
+        {
+            lock (this) {
+                var handler = DeviceChanged;
+                if (null != handler) {
+                    handler (this, args);
                 }
             }
         }

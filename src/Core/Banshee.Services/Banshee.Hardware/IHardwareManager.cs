@@ -34,6 +34,7 @@ namespace Banshee.Hardware
     public interface IHardwareManager : IDisposable
     {
         event DeviceAddedHandler DeviceAdded;
+        event DeviceChangedHandler DeviceChanged;
         event DeviceRemovedHandler DeviceRemoved;
 
         IEnumerable<IDevice> GetAllDevices ();
@@ -43,6 +44,7 @@ namespace Banshee.Hardware
     }
 
     public delegate void DeviceAddedHandler (object o, DeviceAddedArgs args);
+    public delegate void DeviceChangedHandler (object o, DeviceChangedEventArgs args);
     public delegate void DeviceRemovedHandler (object o, DeviceRemovedArgs args);
 
     public sealed class DeviceAddedArgs : EventArgs
@@ -50,6 +52,20 @@ namespace Banshee.Hardware
         private IDevice device;
 
         public DeviceAddedArgs (IDevice device)
+        {
+            this.device = device;
+        }
+
+        public IDevice Device {
+            get { return device; }
+        }
+    }
+
+    public sealed class DeviceChangedEventArgs : EventArgs
+    {
+        private readonly IDevice device;
+
+        public DeviceChangedEventArgs (IDevice device)
         {
             this.device = device;
         }

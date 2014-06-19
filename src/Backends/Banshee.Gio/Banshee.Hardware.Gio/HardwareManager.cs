@@ -41,6 +41,7 @@ namespace Banshee.Hardware.Gio
         {
             manager = new Manager ();
             manager.DeviceAdded += HandleManagerDeviceAdded;
+            manager.DeviceChanged += HandleManagerDeviceChanged;
             manager.DeviceRemoved += HandleManagerDeviceRemoved;
         }
 
@@ -52,6 +53,11 @@ namespace Banshee.Hardware.Gio
         void HandleManagerDeviceAdded (object o, MountArgs args)
         {
             HandleManagerDeviceAdded (args.Device);
+        }
+
+        private void HandleManagerDeviceChanged (object o, MountArgs args)
+        {
+            HandleManagerDeviceChanged (args.Device);
         }
 
         void HandleManagerDeviceRemoved (object o, MountArgs args)
@@ -71,6 +77,14 @@ namespace Banshee.Hardware.Gio
             }
         }
 
+        private void HandleManagerDeviceChanged (IDevice device)
+        {
+            var handler = DeviceChanged;
+            if (null != handler) {
+                handler (this, new DeviceChangedEventArgs (device));
+            }
+        }
+
         private void HandleManagerDeviceRemoved (IDevice device)
         {
             if (device == null) {
@@ -86,6 +100,7 @@ namespace Banshee.Hardware.Gio
 #region IHardwareManager
 
         public event DeviceAddedHandler DeviceAdded;
+        public event DeviceChangedHandler DeviceChanged;
         public event DeviceRemovedHandler DeviceRemoved;
 
         public IEnumerable<IDevice> GetAllDevices ()

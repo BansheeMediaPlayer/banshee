@@ -72,6 +72,7 @@ namespace Banshee.Dap
                 AddinManager.AddExtensionNodeHandler ("/Banshee/Dap/DeviceClass", OnExtensionChanged);
 
                 ServiceManager.HardwareManager.DeviceAdded += OnHardwareDeviceAdded;
+                ServiceManager.HardwareManager.DeviceChanged += OnHardwareDeviceChanged;
                 ServiceManager.HardwareManager.DeviceRemoved += OnHardwareDeviceRemoved;
                 ServiceManager.HardwareManager.DeviceCommand += OnDeviceCommand;
                 ServiceManager.SourceManager.SourceRemoved += OnSourceRemoved;
@@ -290,6 +291,11 @@ namespace Banshee.Dap
         }
 
         private void OnHardwareDeviceAdded (object o, DeviceAddedArgs args)
+        {
+            MapDevice (args.Device);
+        }
+
+        private void OnHardwareDeviceChanged (object o, DeviceChangedEventArgs args)
         {
             MapDevice (args.Device);
         }

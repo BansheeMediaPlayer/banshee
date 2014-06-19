@@ -63,8 +63,15 @@ namespace Banshee.Dap.MassStorage
             base.DeviceInitialize (device);
 
             volume = device as IVolume;
-            if (volume == null || !volume.IsMounted || (usb_device = volume.ResolveRootUsbDevice ()) == null) {
+
+            if (volume == null || (usb_device = volume.ResolveRootUsbDevice ()) == null) {
                 throw new InvalidDeviceException ();
+            }
+
+            if (!volume.IsMounted && !volume.CanMount) {
+                throw new InvalidDeviceException ();
+            } else if (!volume.IsMounted) {
+                volume.Mount ();
             }
 
             ms_device = DeviceMapper.Map (this);
