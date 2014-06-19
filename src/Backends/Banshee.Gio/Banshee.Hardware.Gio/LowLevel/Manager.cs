@@ -28,11 +28,9 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 
 using GLib;
 using GUdev;
-using System.Runtime.InteropServices;
 using Banshee.Hardware;
 
 namespace Banshee.Hardware.Gio
@@ -69,6 +67,19 @@ namespace Banshee.Hardware.Gio
         }
 #endregion
 
+        private RawVolume CreateRawVolume (GLib.IVolume volume)
+        {
+            GUdev.Device device;
+            if (!volume_device_map.TryGetValue (volume.Handle, out device)) {
+                Hyena.Log.Debug (string.Format ("No matching udev device for volume {0}/{1}", volume.Name, volume.Uuid));
+                return null;
+            }
+            return new RawVolume (volume,
+                this,
+                new GioVolumeMetadataSource (volume),
+                new UdevMetadataSource (device));
+        }
+
         void HandleMonitorMountAdded (object o, MountAddedArgs args)
         {
             // Manually get the mount as gio-sharp translates it to the wrong managed object
@@ -86,10 +97,10 @@ namespace Banshee.Hardware.Gio
             volume_device_map [mount.Volume.Handle] = device;
             var h = DeviceAdded;
             if (h != null) {
-                var v = new RawVolume (mount.Volume,
-                                          this,
-                                          new GioVolumeMetadataSource (mount.Volume),
-                                          new UdevMetadataSource (device));
+                var v = CreateRawVolume (mount.Volume);
+                if (v == null) {
+                    return;
+                }
                 h (this, new MountArgs (HardwareManager.Resolve (new Device (v))));
             }
         }
@@ -120,15 +131,10 @@ namespace Banshee.Hardware.Gio
         {
             var h = DeviceRemoved;
             if (h != null) {
-                GUdev.Device device;
-                if (!volume_device_map.TryGetValue (volume.Handle, out device)) {
-                    Hyena.Log.Debug (string.Format ("Tried to unmount {0}/{1} with no matching udev device", volume.Name, volume.Uuid));
+                var v = CreateRawVolume (volume);
+                if (v == null) {
                     return;
                 }
-                var v = new RawVolume (volume,
-                                          this,
-                                          new GioVolumeMetadataSource (volume),
-                                          new UdevMetadataSource (device));
 
                 h (this, new MountArgs (new Device (v)));
             }
@@ -143,10 +149,10 @@ namespace Banshee.Hardware.Gio
                 }
 
                 volume_device_map [vol.Handle] = device;
-                var raw = new RawVolume (vol,
-                                         this,
-                                         new GioVolumeMetadataSource (vol),
-                                         new UdevMetadataSource (device));
+                var raw = CreateRawVolume (vol);
+                if (raw == null) {
+                    continue;
+                }
                 yield return HardwareManager.Resolve (new Device (raw));
             }
         }
