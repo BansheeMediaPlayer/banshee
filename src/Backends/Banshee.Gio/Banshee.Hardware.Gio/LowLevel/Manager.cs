@@ -86,19 +86,19 @@ namespace Banshee.Hardware.Gio
 
         void HandleMonitorMountAdded (object o, MountAddedArgs args)
         {
-            Hyena.Log.Debug ("Gio.Manager: Received MountAdded Signal");
+            Hyena.Log.Debug ("Gio.Manager: received MountAdded signal");
             VolumeChanged (args.Mount.Volume);
         }
 
         void HandleMonitorMountRemoved (object o, MountRemovedArgs args)
         {
-            Hyena.Log.Debug ("Gio.Manager: received MountRemoved Signal");
+            Hyena.Log.Debug ("Gio.Manager: received MountRemoved signal");
             VolumeChanged (args.Mount.Volume);
         }
 
         private void HandleMonitorVolumeAdded (object o, VolumeAddedArgs args)
         {
-            Hyena.Log.Debug ("Gio.Manager: Received VolumeAdded Signal");
+            Hyena.Log.Debug ("Gio.Manager: received VolumeAdded signal");
             var volume = GLib.VolumeAdapter.GetObject ((GLib.Object) args.Args [0]);
             if (volume == null) {
                 Hyena.Log.Error ("Gio.Manager: ignoring VolumeAdded signal with no volume");

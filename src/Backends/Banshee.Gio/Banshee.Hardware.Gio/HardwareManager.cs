@@ -25,11 +25,9 @@
 // THE SOFTWARE.
 
 #if ENABLE_GIO_HARDWARE
-using System;
 using System.Collections.Generic;
 
 using Banshee.Hardware;
-using Hyena;
 
 namespace Banshee.Hardware.Gio
 {
@@ -79,8 +77,12 @@ namespace Banshee.Hardware.Gio
 
         private void HandleManagerDeviceChanged (IDevice device)
         {
+            if (device == null) {
+                return;
+            }
+
             var handler = DeviceChanged;
-            if (null != handler) {
+            if (handler != null) {
                 handler (this, new DeviceChangedEventArgs (device));
             }
         }

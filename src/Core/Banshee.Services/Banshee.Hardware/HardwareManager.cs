@@ -193,7 +193,7 @@ namespace Banshee.Hardware
         {
             lock (this) {
                 var handler = DeviceChanged;
-                if (null != handler) {
+                if (handler != null) {
                     handler (this, args);
                 }
             }
