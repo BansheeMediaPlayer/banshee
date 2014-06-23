@@ -229,7 +229,7 @@ namespace Banshee.Collection.Gui
             LoadPixbufs ();
         }
 
-        public override void Render (CellContext context, StateFlags state, double cellWidth, double cellHeight)
+        public override void Render (CellContext context, double cellWidth, double cellHeight)
         {
             TrackInfo track = BoundTrack;
             if (track == null) {

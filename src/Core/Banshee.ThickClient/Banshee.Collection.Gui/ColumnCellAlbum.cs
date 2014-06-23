@@ -74,7 +74,7 @@ namespace Banshee.Collection.Gui
             return new ColumnCellAlbumAccessible (BoundObject, this, parent);
         }
 
-        public override void Render (CellContext context, StateFlags state, double cellWidth, double cellHeight)
+        public override void Render (CellContext context, double cellWidth, double cellHeight)
         {
             if (BoundObject == null) {
                 return;

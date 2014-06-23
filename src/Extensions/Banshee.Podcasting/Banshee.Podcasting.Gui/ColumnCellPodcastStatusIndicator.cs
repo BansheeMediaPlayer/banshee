@@ -85,7 +85,7 @@ namespace Banshee.Podcasting.Gui
             return i;
         }
 
-        public override void Render (CellContext context, StateFlags state, double cellWidth, double cellHeight)
+        public override void Render (CellContext context, double cellWidth, double cellHeight)
         {
             PodcastTrackInfo podcast = PodcastTrackInfo.From (BoundTrack);
             if (podcast != null) {
@@ -94,7 +94,7 @@ namespace Banshee.Podcasting.Gui
                 }
             }
 
-            base.Render (context, state, cellWidth, cellHeight);
+            base.Render (context, cellWidth, cellHeight);
         }
     }
 }

@@ -60,7 +60,7 @@ namespace Banshee.Podcasting.Gui
             artwork_manager = ServiceManager.Get<ArtworkManager> ();
         }
 
-        public override void Render (CellContext context, StateFlags state, double cellWidth, double cellHeight)
+        public override void Render (CellContext context, double cellWidth, double cellHeight)
         {
             if (BoundObject == null) {
                 return;
@@ -91,8 +91,9 @@ namespace Banshee.Podcasting.Gui
 
             int fl_width = 0, fl_height = 0, sl_width = 0, sl_height = 0;
             context.Widget.StyleContext.Save ();
-            context.Widget.StyleContext.AddClass ("entry");
-            Cairo.Color text_color = CairoExtensions.GdkRGBAToCairoColor (context.Widget.StyleContext.GetColor (state));
+            context.Widget.StyleContext.AddClass ("cell");
+            context.StyleContext.State |= context.State;
+            Cairo.Color text_color = CairoExtensions.GdkRGBAToCairoColor (context.Widget.StyleContext.GetColor (context.StyleContext.State));
             context.Widget.StyleContext.Restore ();
             text_color.A = 0.75;
 

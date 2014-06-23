@@ -56,7 +56,7 @@ namespace Banshee.Collection.Gui
             LoadPixbufs ();
         }
 
-        public override void Render (CellContext context, StateFlags state, double cellWidth, double cellHeight)
+        public override void Render (CellContext context, double cellWidth, double cellHeight)
         {
             context.Context.Translate (0, 0.5);
             int draw_x = 0;
