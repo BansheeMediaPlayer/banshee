@@ -32,11 +32,9 @@ using Mono.Unix;
 
 using Hyena;
 
-using Banshee.Base;
 using Banshee.ServiceStack;
 using Banshee.MediaEngine;
 using Banshee.Collection;
-using Banshee.Configuration;
 
 namespace Banshee.Gui
 {
@@ -61,15 +59,12 @@ namespace Banshee.Gui
         {
         }
 
-        public BaseClientWindow (string title, WindowConfiguration windowConfiguration) : base (title)
+        protected BaseClientWindow (string title, WindowConfiguration windowConfiguration) : base (title)
         {
             elements_service = ServiceManager.Get<GtkElementsService> ();
             action_service = ServiceManager.Get<InterfaceActionService> ();
 
-            ConfigureWindow ();
-
-            window_controller = new PersistentWindowController (this, windowConfiguration, WindowPersistOptions.All);
-            window_controller.Restore ();
+            ConfigureWindow (windowConfiguration);
 
             elements_service.PrimaryWindow = this;
 
@@ -156,8 +151,10 @@ namespace Banshee.Gui
             UpdateTitle ();
         }
 
-        protected virtual void ConfigureWindow ()
+        private void ConfigureWindow (WindowConfiguration windowConfiguration)
         {
+            window_controller = new PersistentWindowController (this, windowConfiguration, WindowPersistOptions.All);
+            window_controller.Restore ();
         }
 
         protected override bool OnDeleteEvent (Gdk.Event evnt)
