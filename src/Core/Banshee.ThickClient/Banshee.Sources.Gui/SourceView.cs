@@ -396,13 +396,19 @@ namespace Banshee.Sources.Gui
         protected override void OnRowExpanded (TreeIter iter, TreePath path)
         {
             base.OnRowExpanded (iter, path);
-            store.GetSource (iter).Expanded = true;
+            var source = store.GetSource (iter);
+            if (source != null) {
+                source.Expanded = true;
+            }
         }
 
         protected override void OnRowCollapsed (TreeIter iter, TreePath path)
         {
             base.OnRowCollapsed (iter, path);
-            store.GetSource (iter).Expanded = false;
+            var source = store.GetSource (iter);
+            if (source != null) {
+                source.Expanded = false;
+            }
         }
 
         protected override void OnCursorChanged ()
