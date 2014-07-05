@@ -88,7 +88,7 @@ namespace Banshee.Dap
         {
         }
 
-        public virtual void DeviceInitialize (IDevice device)
+        public virtual void DeviceInitialize (IDevice device, bool force)
         {
             this.device = device;
             TypeUniqueId = device.Serial;
@@ -175,6 +175,8 @@ namespace Banshee.Dap
             get { return supports_podcasts; }
             protected set { supports_podcasts = value; }
         }
+
+        internal event EventHandler RequestUnmap;
 
 #region Source
 
@@ -343,6 +345,11 @@ namespace Banshee.Dap
         protected override void Eject ()
         {
             Flush ();
+
+            var h = RequestUnmap;
+            if (h != null) {
+                h (this, EventArgs.Empty);
+            }
         }
 
         private void Flush ()

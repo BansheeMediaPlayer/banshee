@@ -9,6 +9,7 @@ SOURCES =  \
 	Banshee.Dap.Gui/DapInfoBar.cs \
 	Banshee.Dap.Gui/DapPropertiesDialog.cs \
 	Banshee.Dap.Gui/DapPropertiesDisplay.cs \
+	Banshee.Dap.Gui/InactiveDapContent.cs \
 	Banshee.Dap.Gui/LibrarySyncOptions.cs \
 	Banshee.Dap.Gui/PurchasedMusicActions.cs \
 	Banshee.Dap/DapLibrarySync.cs \
@@ -21,6 +22,7 @@ SOURCES =  \
 	Banshee.Dap/MediaGroupSource.cs \
 	Banshee.Dap/MusicGroupSource.cs \
 	Banshee.Dap/PodcastGroupSource.cs \
+	Banshee.Dap/PotentialSource.cs \
 	Banshee.Dap/RemovableSource.cs \
 	Banshee.Dap/SyncPlaylist.cs \
 	Banshee.Dap/VideoGroupSource.cs

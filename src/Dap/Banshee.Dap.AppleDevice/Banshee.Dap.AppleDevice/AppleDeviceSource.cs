@@ -70,7 +70,7 @@ namespace Banshee.Dap.AppleDevice
 
 #region Device Setup/Dispose
 
-        public override void DeviceInitialize (IDevice device)
+        public override void DeviceInitialize (IDevice device, bool force)
         {
             Volume = device as IVolume;
 
@@ -94,7 +94,7 @@ namespace Banshee.Dap.AppleDevice
                 throw new InvalidDeviceException ();
             }
 
-            base.DeviceInitialize (device);
+            base.DeviceInitialize (device, force);
 
             Name = Volume.Name;
             SupportsPlaylists = true;

@@ -50,9 +50,9 @@ namespace Banshee.Dap.Karma
         private Dictionary<long, KarmaTrackInfo> track_map =
             new Dictionary<long, KarmaTrackInfo>();
 
-        public override void DeviceInitialize(IDevice dev)
+        public override void DeviceInitialize(IDevice dev, bool force)
         {
-            base.DeviceInitialize(dev);
+            base.DeviceInitialize(dev, force);
 
             if (!IsKarma(dev))
                 throw new InvalidDeviceException();

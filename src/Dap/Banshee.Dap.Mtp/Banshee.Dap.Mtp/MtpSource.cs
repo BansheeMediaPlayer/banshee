@@ -64,9 +64,9 @@ namespace Banshee.Dap.Mtp
         private bool can_sync_albumart = NeverSyncAlbumArtSchema.Get () == false;
         private int thumb_width = AlbumArtWidthSchema.Get ();
 
-        public override void DeviceInitialize (IDevice device)
+        public override void DeviceInitialize (IDevice device, bool force)
         {
-            base.DeviceInitialize (device);
+            base.DeviceInitialize (device, force);
 
             var portInfo = device.ResolveUsbPortInfo ();
             if (portInfo == null || portInfo.DeviceNumber == 0) {
@@ -98,19 +98,20 @@ namespace Banshee.Dap.Mtp
                 //if (v.BusNumber == busnum && v.DeviceNumber == devnum) {
                 if (v.DeviceNumber == devnum) {
                     // If gvfs-gphoto has it mounted, unmount it
-                    if (volume != null && volume.IsMounted) {
+                    if (volume != null && volume.IsMounted && force) {
+                        Log.DebugFormat ("MtpSource: attempting to unmount {0}", volume.Name);
                         volume.Unmount ();
                     }
 
-                    for (int i = 5; i > 0 && mtp_device == null; i--) {
-                        try {
-                            mtp_device = MtpDevice.Connect (v);
-                        } catch (Exception) {}
+                    if (volume != null && volume.IsMounted) {
+                        throw new InvalidDeviceStateException ();
+                    }
 
-                        if (mtp_device == null) {
-                            Log.DebugFormat ("Failed to connect to mtp device. Trying {0} more times...", i - 1);
-                            Thread.Sleep (2000);
-                        }
+                    mtp_device = MtpDevice.Connect (v);
+
+                    if (mtp_device == null) {
+                        Log.DebugFormat ("Failed to connect to mtp device {0}", device.Name);
+                        throw new InvalidDeviceStateException ();
                     }
                 }
             }
@@ -465,14 +466,7 @@ namespace Banshee.Dap.Mtp
                 }
             }
 
-            ServiceManager.SourceManager.RemoveSource (this);
             mtp_device = null;
-        }
-
-        protected override void Eject ()
-        {
-            base.Eject ();
-            Dispose ();
         }
 
         private static string MakeAlbumKey (string album_artist, string album)

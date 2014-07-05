@@ -58,9 +58,9 @@ namespace Banshee.Dap.MassStorage
         private IVolume volume;
         private IUsbDevice usb_device;
 
-        public override void DeviceInitialize (IDevice device)
+        public override void DeviceInitialize (IDevice device, bool force)
         {
-            base.DeviceInitialize (device);
+            base.DeviceInitialize (device, force);
 
             volume = device as IVolume;
 

@@ -49,6 +49,11 @@ namespace Banshee.Dap.Gui
         public DapActions () : base ("dap")
         {
             AddImportant (
+                new ActionEntry ("ClaimDapAction", null,
+                    Catalog.GetString ("Claim"), null,
+                    String.Empty, OnClaimDap)
+            );
+            AddImportant (
                 new ActionEntry ("SyncDapAction", null,
                     Catalog.GetString ("Sync"), null,
                     String.Empty, OnSyncDap)
@@ -57,6 +62,7 @@ namespace Banshee.Dap.Gui
             AddUiFromFile ("GlobalUI.xml");
 
             this["SyncDapAction"].IconName = Stock.Refresh;
+            this["ClaimDapAction"].IconName = Stock.Connect;
             ServiceManager.SourceManager.ActiveSourceChanged += OnActiveSourceChanged;
             Actions.SourceActions.Updated += delegate { UpdateActions (); };
             OnActiveSourceChanged (null);
@@ -71,6 +77,7 @@ namespace Banshee.Dap.Gui
             }
 
             previous_dap = ActiveSource as DapSource;
+            UpdateActions ();
 
             if (previous_dap != null) {
                 previous_dap.Sync.Updated += OnSyncUpdated;
@@ -87,6 +94,7 @@ namespace Banshee.Dap.Gui
             DapSource dap = Dap;
             if (dap != null) {
                 UpdateAction ("SyncDapAction", dap.Sync.Enabled);
+                UpdateAction ("ClaimDapAction", dap is PotentialSource);
             }
         }
 
@@ -98,5 +106,12 @@ namespace Banshee.Dap.Gui
             }
         }
 
+        private void OnClaimDap (object o, EventArgs args)
+        {
+            var dap = Dap as PotentialSource;
+            if (dap != null) {
+                dap.TryClaim ();
+            }
+        }
     }
 }

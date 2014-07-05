@@ -33,4 +33,8 @@ namespace Banshee.Dap
     public class InvalidDeviceException : ApplicationException
     {
     }
+
+    public class InvalidDeviceStateException : InvalidDeviceException
+    {
+    }
 }

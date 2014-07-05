@@ -139,7 +139,7 @@ namespace Banshee.Dap.Gui
             opts.Dispose ();
         }
 
-        private void BuildActions ()
+        internal static void BuildActions()
         {
             if (actions == null) {
                 actions = new DapActions ();

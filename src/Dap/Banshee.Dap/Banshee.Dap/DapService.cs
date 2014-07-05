@@ -29,6 +29,7 @@
 //
 
 using System;
+using System.Linq;
 using System.Collections.Generic;
 
 using Mono.Unix;
@@ -75,7 +76,6 @@ namespace Banshee.Dap
                 ServiceManager.HardwareManager.DeviceChanged += OnHardwareDeviceChanged;
                 ServiceManager.HardwareManager.DeviceRemoved += OnHardwareDeviceRemoved;
                 ServiceManager.HardwareManager.DeviceCommand += OnDeviceCommand;
-                ServiceManager.SourceManager.SourceRemoved += OnSourceRemoved;
                 initialized = true;
 
                 // Now that we've loaded all the enabled DAP providers, load the devices
@@ -133,7 +133,6 @@ namespace Banshee.Dap
                 ServiceManager.HardwareManager.DeviceAdded -= OnHardwareDeviceAdded;
                 ServiceManager.HardwareManager.DeviceRemoved -= OnHardwareDeviceRemoved;
                 ServiceManager.HardwareManager.DeviceCommand -= OnDeviceCommand;
-                ServiceManager.SourceManager.SourceRemoved -= OnSourceRemoved;
 
                 List<DapSource> dap_sources = new List<DapSource> (sources.Values);
                 foreach (DapSource source in dap_sources) {
@@ -153,9 +152,16 @@ namespace Banshee.Dap
             foreach (TypeExtensionNode node in supported_dap_types) {
                 try {
                     DapSource source = (DapSource)node.CreateInstance ();
-                    source.DeviceInitialize (device);
+                    source.DeviceInitialize (device, false);
                     source.LoadDeviceContents ();
                     source.AddinId = node.Addin.Id;
+                    return source;
+                } catch (InvalidDeviceStateException) {
+                    Log.WarningFormat (
+                        "Dap.DapService: invalid state, mapping potential source for {0}",
+                        device.Name
+                    );
+                    DapSource source = new PotentialSource (this, node, device);
                     return source;
                 } catch (InvalidDeviceException) {
                 } catch (InvalidCastException e) {
@@ -171,6 +177,25 @@ namespace Banshee.Dap
         private void MapDevice (IDevice device)
         {
             Scheduler.Schedule (new MapDeviceJob (this, device));
+        }
+
+        internal void SwapSource (DapSource oldSource, DapSource newSource, bool makeActive)
+        {
+            if (oldSource.Device.Uuid != newSource.Device.Uuid) {
+                Log.ErrorFormat (
+                    "Dap.DapService: swap ignored from {0} to {1}.",
+                    oldSource.Device.Uuid, newSource.Device.Uuid
+                );
+                return;
+            }
+            Log.DebugFormat (
+                "Dap.DapService: Swapping {0} with UUID {1} for {2}",
+                oldSource.GetType ().Name, oldSource.Device.Uuid,
+                newSource.GetType ().Name
+            );
+
+            Unmap (oldSource.Device.Uuid);
+            MapSource (newSource, makeActive);
         }
 
         private class MapDeviceJob : IJob
@@ -221,17 +246,27 @@ namespace Banshee.Dap
                 }
 
                 if (source != null) {
-                    service.MapSource (source);
+                    service.MapSource (source, false);
                 }
             }
         }
 
-        private void MapSource (DapSource source)
+        private void MapSource (DapSource source, bool active)
         {
-            ThreadAssist.ProxyToMain (() => {
+            lock (sync) {
+                sources [source.Device.Uuid] = source;
+                source.RequestUnmap += OnRequestUnmap;
+            }
 
+            ThreadAssist.ProxyToMain (() => {
+            
                 ServiceManager.SourceManager.AddSource (source);
                 source.NotifyUser ();
+
+                if (active)
+                {
+                    ServiceManager.SourceManager.SetActiveSource (source);
+                }
 
                 // If there are any queued device commands, see if they are to be
                 // handled by this new DAP (e.g. --device-activate=file:///media/disk)
@@ -252,6 +287,15 @@ namespace Banshee.Dap
                     Log.Error (e);
                 }
             });
+        }
+
+        private void OnRequestUnmap (object sender, EventArgs e)
+        {
+            DapSource source = sender as DapSource;
+            if (source != null) {
+                Log.DebugFormat ("DapService: unmap request from {0}", source.Device.Uuid);
+                UnmapDevice (source.Device.Uuid);
+            }
         }
 
         internal void UnmapDevice (string uuid)
@@ -276,6 +320,7 @@ namespace Banshee.Dap
             }
 
             if (source != null) {
+                source.RequestUnmap -= OnRequestUnmap;
                 source.Dispose ();
                 ThreadAssist.ProxyToMain (delegate {
                     try {
@@ -287,14 +332,6 @@ namespace Banshee.Dap
             }
         }
 
-        private void OnSourceRemoved (SourceEventArgs args)
-        {
-            DapSource dap_source = args.Source as DapSource;
-            if (dap_source != null) {
-                UnmapDevice (dap_source.Device.Uuid);
-            }
-        }
-
         private void OnHardwareDeviceAdded (object o, DeviceAddedArgs args)
         {
             MapDevice (args.Device);
@@ -302,7 +339,16 @@ namespace Banshee.Dap
 
         private void OnHardwareDeviceChanged (object o, DeviceChangedEventArgs args)
         {
-            MapDevice (args.Device);
+            DapSource source;
+            if (!sources.TryGetValue (args.Device.Uuid, out source)) {
+                MapDevice (args.Device);
+                return;
+            }
+
+            PotentialSource potential = source as PotentialSource;
+            if (potential != null) {
+                potential.TryInitialize ();
+            }
         }
 
         private void OnHardwareDeviceRemoved (object o, DeviceRemovedArgs args)
