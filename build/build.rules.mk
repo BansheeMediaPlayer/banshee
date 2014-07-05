@@ -41,7 +41,7 @@ $(ASSEMBLY_FILE): $(SOURCES_BUILD) $(RESOURCES_EXPANDED) $(DEP_LINK) $(DLL_MAP_V
 	$(MCS) \
 		$(GMCS_FLAGS) \
 		$(ASSEMBLY_BUILD_FLAGS) \
-		-nowarn:0278 -nowarn:0078 $$warn \
+		$$warn \
 		-debug -target:$(TARGET) -out:$@ \
 		$(BUILD_DEFINES) $(ENABLE_TESTS_FLAG) \
 		$(FILTERED_LINK) $(RESOURCES_BUILD) $(SOURCES_BUILD)
