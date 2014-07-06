@@ -274,7 +274,7 @@ namespace Nereid
                 window = new Hyena.Widgets.ScrolledWindow ();
             }
 
-            window.AddWithFrame (source_view);
+            window.Add (source_view);
             source_scroll = window;
 
             composite_view.TrackView.HeaderVisible = false;
