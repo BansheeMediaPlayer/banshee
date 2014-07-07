@@ -28,7 +28,6 @@
 //
 
 using System;
-using System.Collections.Generic;
 using Mono.Unix;
 
 using Gtk;
@@ -38,7 +37,6 @@ using Hyena;
 using Hyena.Gui;
 using Hyena.Gui.Theatrics;
 
-using Banshee.Base;
 using Banshee.Collection;
 using Banshee.Collection.Gui;
 using Banshee.ServiceStack;
@@ -505,7 +503,7 @@ namespace Banshee.Gui.Widgets
 
         protected virtual string GetFirstLineText (TrackInfo track)
         {
-            return String.Format ("<b>{0}</b>", GLib.Markup.EscapeText (track.DisplayTrackTitle));
+            return WrapWithDefaultTextColor (String.Format ("<b>{0}</b>", GLib.Markup.EscapeText (track.DisplayTrackTitle)));
         }
 
         protected virtual string GetSecondLineText (TrackInfo track)
@@ -542,6 +540,11 @@ namespace Banshee.Gui.Widgets
                 markup = GetByFrom (track.ArtistName, track.DisplayArtistName, track.AlbumTitle, track.DisplayAlbumTitle, true);
             }
 
+            return WrapWithDefaultTextColor (markup);
+        }
+
+        private string WrapWithDefaultTextColor (string markup)
+        {
             return String.Format ("<span color=\"{0}\">{1}</span>",
                 CairoExtensions.ColorGetHex (TextColor, false),
                 markup);
@@ -563,7 +566,6 @@ namespace Banshee.Gui.Widgets
 
         private string GetByFrom (string artist, string display_artist, string album, string display_album, bool unknown_ok)
         {
-
             bool has_artist = !String.IsNullOrEmpty (artist);
             bool has_album = !String.IsNullOrEmpty (album);
 
