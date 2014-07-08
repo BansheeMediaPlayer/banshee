@@ -39,6 +39,10 @@
       <Package>mono-addins</Package>
       <SpecificVersion>False</SpecificVersion>
     </Reference>
+    <Reference Include="dbus-sharp">
+      <HintPath>..\..\..\bin\bin\dbus-sharp.dll</HintPath>
+      <Package>dbus-sharp-2.0</Package>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Banshee.SoundMenu.addin.xml">
