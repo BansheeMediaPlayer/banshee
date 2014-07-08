@@ -105,7 +105,7 @@ namespace Banshee.Gui.Widgets
         protected virtual Cairo.Color TextLightColor {
             get {
                 if (!text_light_color.HasValue) {
-                    text_light_color = Hyena.Gui.Theming.GtkTheme.GetCairoTextMidColor (this);
+                    text_light_color = Hyena.Gui.Theming.GtkTheme.GetCairoTextMidColor (Parent);
                 }
                 return text_light_color.Value;
             }
