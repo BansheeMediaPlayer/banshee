@@ -56,13 +56,12 @@ namespace Banshee.Fixup
             if (measure) {
                 solution_value_widths.Clear ();
                 var sb = new StringBuilder ();
-                int x = 0, w, h;
+                int w, h;
                 foreach (var str in SolutionOptions) {
                     sb.Append (str);
                     context.Layout.SetMarkup (sb.ToString ());
                     context.Layout.GetPixelSize (out w, out h);
-                    x += w;
-                    solution_value_widths.Add (x);
+                    solution_value_widths.Add (w);
                     sb.Append (solution_joiner);
                 }
             }
@@ -92,7 +91,7 @@ namespace Banshee.Fixup
 
             int cur_x = 0;
             for (int i = 0; i < solution_value_widths.Count; i++) {
-                cur_x += solution_value_widths[i];
+                cur_x = solution_value_widths[i];
                 if (x < cur_x)
                     return i;
             }
