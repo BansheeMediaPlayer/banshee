@@ -30,7 +30,6 @@ using System.Collections.Generic;
 
 using Mono.Unix;
 
-using Hyena;
 using Hyena.Data.Sqlite;
 
 using Banshee.ServiceStack;
@@ -69,6 +68,10 @@ namespace Banshee.Fixup
         public string Name { get; set; }
         public string Description { get; set; }
         public int Generation { get; private set; }
+
+        internal protected virtual bool HasTrackDetails {
+            get { return false; }
+        }
 
         public void FindProblems ()
         {

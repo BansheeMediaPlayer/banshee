@@ -25,26 +25,17 @@
 // THE SOFTWARE.
 
 using System;
-using System.Collections.Generic;
 
 using Mono.Unix;
 
 using Gtk;
 
-using Hyena;
-using Hyena.Data;
 using Hyena.Data.Gui;
-using Hyena.Data.Sqlite;
-
 using Hyena.Widgets;
 
-using Banshee.ServiceStack;
 using Banshee.Sources;
 using Banshee.Library;
-
-using Banshee.Gui;
 using Banshee.Sources.Gui;
-using Banshee.Preferences.Gui;
 
 namespace Banshee.Fixup
 {
@@ -83,7 +74,15 @@ namespace Banshee.Fixup
                 var summary = new ColumnCellSolutionOptions ();
                 var summary_col = new Column ("", summary, 1.0);
                 ColumnController.Add (summary_col);
-                model.Reloaded += (o, a) => summary_col.Title = model.Solver.Name;
+
+                var track_details_col = new Column (Catalog.GetString ("Track details"),
+                                                    new ColumnCellText ("TrackDetails", true), 0);
+                ColumnController.Add (track_details_col);
+
+                model.Reloaded += (o, a) => {
+                    track_details_col.Visible = model.Solver.HasTrackDetails;
+                    summary_col.Title = model.Solver.Name;
+                };
 
                 RowOpaquePropertyName = "Selected";
                 RulesHint = true;

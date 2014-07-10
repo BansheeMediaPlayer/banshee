@@ -77,6 +77,9 @@ namespace Banshee.Fixup
         [DatabaseColumn]
         public int ObjectCount { get; private set; }
 
+        [DatabaseColumn ("TrackDetails")]
+        public string TrackDetails { get; private set; }
+
         private int [] object_ids;
         public int [] ObjectIds {
             get {
@@ -135,6 +138,7 @@ namespace Banshee.Fixup
                         SolutionOptions     TEXT,
                         ObjectIds   TEXT,
                         ObjectCount INTEGER,
+                        TrackDetails TEXT,
 
                         UNIQUE (ProblemType, Generation, ObjectIds) ON CONFLICT IGNORE
                     )"
