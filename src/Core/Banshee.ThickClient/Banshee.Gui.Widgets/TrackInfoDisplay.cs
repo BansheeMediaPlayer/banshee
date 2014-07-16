@@ -81,16 +81,34 @@ namespace Banshee.Gui.Widgets
                 = PixbufImageSurface.Create (IconThemeUtils.LoadIcon (MissingIconSizeRequest, MissingVideoIconName), true)); }
         }
 
-        protected virtual Cairo.Color BackgroundColor { get; set; }
-
-        private Cairo.Color text_color;
-        protected virtual Cairo.Color TextColor {
-            get { return text_color; }
+        private Cairo.Color? background_color;
+        protected virtual Cairo.Color BackgroundColor {
+            get {
+                if (!background_color.HasValue) {
+                    background_color = CairoExtensions.GdkRGBAToCairoColor (StyleContext.GetBackgroundColor (StateFlags.Normal));
+                }
+                return background_color.Value;
+            }
         }
 
-        private Cairo.Color text_light_color;
+        private Cairo.Color? text_color;
+        protected virtual Cairo.Color TextColor {
+            get {
+                if (!text_color.HasValue) {
+                    text_color = CairoExtensions.GdkRGBAToCairoColor (StyleContext.GetColor (StateFlags.Normal));
+                }
+                return text_color.Value;
+            }
+        }
+
+        private Cairo.Color? text_light_color;
         protected virtual Cairo.Color TextLightColor {
-            get { return text_light_color; }
+            get {
+                if (!text_light_color.HasValue) {
+                    text_light_color = Hyena.Gui.Theming.GtkTheme.GetCairoTextMidColor (this);
+                }
+                return text_light_color.Value;
+            }
         }
 
         private TrackInfo current_track;
@@ -202,9 +220,10 @@ namespace Banshee.Gui.Widgets
         {
             base.OnStyleUpdated ();
 
-            text_color = CairoExtensions.GdkRGBAToCairoColor (StyleContext.GetColor (StateFlags.Normal));
-            BackgroundColor = CairoExtensions.GdkRGBAToCairoColor (StyleContext.GetBackgroundColor (StateFlags.Normal));
-            text_light_color = Hyena.Gui.Theming.GtkTheme.GetCairoTextMidColor (this);
+            // these will be refreshed to new values, on demand, via their properties
+            text_color = null;
+            background_color = null;
+            text_light_color = null;
 
             ResetMissingImages ();
 
