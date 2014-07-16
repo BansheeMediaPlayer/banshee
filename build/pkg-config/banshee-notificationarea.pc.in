@@ -1,0 +1,10 @@
+prefix=@prefix@
+exec_prefix=${prefix}
+libdir=@libdir@
+bansheedir=${libdir}/@PACKAGE@
+
+Name: Banshee NotificationArea
+Description: Notification Area extension source for Banshee
+Version: @VERSION@
+Libs: -r:${bansheedir}/Extensions/Banshee.NotificationArea.dll
+
