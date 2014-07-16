@@ -212,7 +212,6 @@ namespace Banshee.Gui.Widgets
 
             if (renderTrack) {
                 cr.MoveTo (x, y);
-                cr.SetSourceColor (TextColor);
                 Pango.CairoHelper.ShowLayout (cr, first_line_layout);
             }
 
