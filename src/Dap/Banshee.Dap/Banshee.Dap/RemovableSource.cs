@@ -130,9 +130,8 @@ namespace Banshee.Dap
             return (source is DatabaseSource) && this != source.Parent && !IsReadOnly;
         }
 
-        private bool syncing = false;
-        public bool CanUnmap {
-            get { return !syncing; }
+        public virtual bool CanUnmap {
+            get { return true; }
         }
 
         public bool ConfirmBeforeUnmap {
