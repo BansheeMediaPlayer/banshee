@@ -54,7 +54,7 @@ namespace Banshee.Streaming
             try {
                 return OpenPlay (new SafeUri (uri));
             } catch (Exception e) {
-                Hyena.Log.Exception (e);
+                Log.Error (e);
                 return null;
             }
         }
@@ -166,7 +166,7 @@ namespace Banshee.Streaming
                         LoadStreamUris ();
                     } catch (Exception e) {
                         trying_to_play = false;
-                        Log.Exception (this.ToString (), e);
+                        Log.Error (this.ToString (), e);
                         SavePlaybackError (StreamPlaybackError.Unknown);
                         OnParsingPlaylistFinished ();
                         ServiceManager.PlayerEngine.Close ();
@@ -307,10 +307,10 @@ namespace Banshee.Streaming
                 }
                 Log.DebugFormat ("Parsed {0} URIs out of {1}", stream_uris.Count, this);
             } catch (System.Net.WebException e) {
-                Hyena.Log.Exception (this.ToString (), e);
+                Log.Warning (this.ToString (), e);
                 SavePlaybackError (StreamPlaybackError.ResourceNotFound);
             } catch (Exception e) {
-                Hyena.Log.Exception (this.ToString (), e);
+                Log.Error (this.ToString (), e);
                 SavePlaybackError (StreamPlaybackError.Unknown);
             }
         }

@@ -183,7 +183,7 @@ namespace Banshee.Collection.Indexer
 
                     success = true;
                 } catch (Exception e) {
-                    Log.Exception (e);
+                    Log.Error (e);
                 }
 
                 Hyena.Log.DebugTimerPrint (timer_id, "CollectionIndexer.SaveToXml: {0}");

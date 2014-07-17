@@ -80,7 +80,7 @@ namespace Banshee.Dap.MassStorage
                     ms_device = null;
                 }
             } catch (Exception e) {
-                Log.Exception (e);
+                Log.Error (e);
 
                 ms_device = null;
             }
@@ -356,7 +356,7 @@ namespace Banshee.Dap.MassStorage
                 try {
                     Banshee.IO.File.Delete (new SafeUri (file_name));
                 } catch (Exception e) {
-                    Log.Exception (e);
+                    Log.Error (e);
                 }
             }
 
@@ -389,7 +389,7 @@ namespace Banshee.Dap.MassStorage
 
                         playlist_format.Save (stream, from);
                     } catch (Exception e) {
-                        Log.Exception (e);
+                        Log.Error (e);
                     } finally {
                         stream.Close ();
                     }
@@ -683,7 +683,7 @@ namespace Banshee.Dap.MassStorage
                 SafeUri uri = new SafeUri (command.DeviceId);
                 return BaseDirectory.StartsWith (uri.LocalPath);
             } catch (Exception e) {
-                Log.Exception (e);
+                Log.Error (e);
 
                 return false;
             }

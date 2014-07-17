@@ -104,7 +104,7 @@ namespace Banshee.GStreamerSharp
                 }
                 pipeline.Bus.AddWatch (OnBusMessage);
             } catch (Exception e) {
-                Log.Exception (e);
+                Log.Error (e);
                 throw new ApplicationException (Catalog.GetString ("Could not create BPM detection driver."), e);
             }
         }
@@ -201,7 +201,7 @@ namespace Banshee.GStreamerSharp
                 filesrc ["location"] = path;
                 pipeline.SetState (State.Playing);
             } catch (Exception e) {
-                Log.Exception (e);
+                Log.Error (e);
             }
         }
 

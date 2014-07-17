@@ -119,7 +119,7 @@ namespace Banshee.Dap
                             GenericName, e.Message), true);
                     });
 
-                    Log.Exception (e);
+                    Log.Error (e);
                 }
             });
             return true;

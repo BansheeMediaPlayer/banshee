@@ -39,6 +39,8 @@ using Banshee.Library;
 using Banshee.Gui;
 using Banshee.I18n;
 
+using Hyena;
+
 namespace Banshee.LibraryWatcher
 {
     public class LibraryWatcherService : IExtensionService, IDisposable, IDelayedInitializeService
@@ -147,7 +149,7 @@ namespace Banshee.LibraryWatcher
                             Hyena.Log.DebugFormat ("Started LibraryWatcher for {0} ({1})", library.Name, dir);
                         }
                     } catch (Exception e) {
-                        Hyena.Log.Exception (e);
+                        Log.Error (e);
                     }
                 }
             }

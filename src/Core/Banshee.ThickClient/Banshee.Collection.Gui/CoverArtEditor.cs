@@ -91,7 +91,7 @@ namespace Banshee.Collection.Gui
                                     }
                                 }
                             } catch (Exception e) {
-                                Log.Exception (e);
+                                Log.Error (e);
                             }
                         };
 
@@ -104,7 +104,7 @@ namespace Banshee.Collection.Gui
                                     NotifyUpdated (track);
                                 }
                             } catch (Exception e) {
-                                Log.Exception (e);
+                                Log.Error (e);
                             }
                         };
 
@@ -134,7 +134,7 @@ namespace Banshee.Collection.Gui
                             }
                         }
                     } catch (Exception e) {
-                        Log.Exception (e);
+                        Log.Error (e);
                     }
                 };
 
@@ -143,7 +143,7 @@ namespace Banshee.Collection.Gui
                     try {
                         SetCoverArt (GetTrack (), Encoding.UTF8.GetString (a.SelectionData.Data));
                     } catch (Exception e) {
-                        Log.Exception (e);
+                        Log.Error (e);
                     }
                 };
             }

@@ -63,7 +63,7 @@ namespace Banshee.Gui.TrackEditor
                         }
                     }
                 } catch (Exception e) {
-                    Log.Exception (e);
+                    Log.Error (e);
                 }
             }
         }
@@ -99,7 +99,7 @@ namespace Banshee.Gui.TrackEditor
                 return StreamTagger.ProcessUri (Uri);
             } catch (Exception e) {
                 if (Uri.Scheme == "file") {
-                    Hyena.Log.Exception ("Cannot load TagLib file", e);
+                    Log.Error ("Cannot load TagLib file", e);
                 }
             }
 

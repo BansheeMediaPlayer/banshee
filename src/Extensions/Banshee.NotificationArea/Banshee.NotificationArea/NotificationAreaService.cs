@@ -520,7 +520,7 @@ namespace Banshee.NotificationArea
 
                 current_nf.Show ();
             } catch (Exception e) {
-                Hyena.Log.Exception (Catalog.GetString ("Cannot show notification"), e);
+                Log.Error (Catalog.GetString ("Cannot show notification"), e);
             }
         }
 

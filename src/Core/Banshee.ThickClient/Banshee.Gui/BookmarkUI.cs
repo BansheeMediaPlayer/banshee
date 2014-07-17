@@ -130,7 +130,7 @@ namespace Banshee.Gui
                         AddBookmark (bookmark);
                     }
                 } catch (Exception e) {
-                    Log.Exception ("Unable to Add New Bookmark", e);
+                    Log.Error ("Unable to Add New Bookmark", e);
                 }
             }
         }

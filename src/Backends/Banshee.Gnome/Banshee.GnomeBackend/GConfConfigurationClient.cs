@@ -115,7 +115,7 @@ namespace Banshee.GnomeBackend
                 return true;
             } catch (GConf.NoSuchKeyException) {
             } catch (Exception e) {
-                Log.Exception (String.Format ("Could not read GConf key {0}.{1}", @namespace, key), e);
+                Log.Error (String.Format ("Could not read GConf key {0}.{1}", @namespace, key), e);
             }
 
             result = default (T);
@@ -137,7 +137,7 @@ namespace Banshee.GnomeBackend
             try {
                 client.Set (CreateKey (@namespace, key), value);
             } catch (Exception e) {
-                Log.Exception (String.Format ("Could not set GConf key {0}.{1}.", @namespace, key), e);
+                Log.Error (String.Format ("Could not set GConf key {0}.{1}.", @namespace, key), e);
             }
         }
     }

@@ -156,7 +156,7 @@ namespace Banshee.PlayerMigration
                              LogError (SafeUri.UriToFilename (uri), e);
                          }
                      } catch (Exception e) {
-                         Hyena.Log.Exception (e);
+                         Log.Error (e);
                          // something went wrong, skip entry
                      }
                  }
@@ -173,7 +173,7 @@ namespace Banshee.PlayerMigration
                  }
 
             } catch (Exception e) {
-                Hyena.Log.Exception (e);
+                Log.Error (e);
                 LogError (amarok_db_path, Catalog.GetString ("Importing from Amarok failed"));
             } finally {
                 conn.Dispose ();

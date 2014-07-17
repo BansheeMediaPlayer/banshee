@@ -146,7 +146,7 @@ namespace Banshee.Bpm
                 try {
                     detector = (IBpmDetector)node.CreateInstance (typeof (IBpmDetector));
                 } catch (Exception e) {
-                    Log.Exception (e);
+                    Log.Error (e);
                 }
 
                 if (detector != null) {

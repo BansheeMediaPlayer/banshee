@@ -531,7 +531,7 @@ namespace Banshee.Sources
                         skip_deletion.Add (track);
                     }
                 } catch (Exception e) {
-                    Log.Exception (e);
+                    Log.Error (e);
                     ErrorSource.AddMessage (e.Message, track.Uri.ToString ());
                 }
 
@@ -647,7 +647,7 @@ namespace Banshee.Sources
                     AddTrackAndIncrementCount (track);
                 } catch (Exception e) {
                     IncrementAddedTracks ();
-                    Log.Exception (e);
+                    Log.Error (e);
                     ErrorSource.AddMessage (e.Message, track.Uri.ToString ());
                 }
             }

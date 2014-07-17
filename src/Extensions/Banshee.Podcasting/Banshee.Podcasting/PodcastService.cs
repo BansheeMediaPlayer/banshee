@@ -230,7 +230,7 @@ namespace Banshee.Podcasting
             try {
                 MigrateDownloadCache ();
             } catch (Exception e) {
-                Hyena.Log.Exception ("Couldn't migrate podcast download cache", e);
+                Log.Error ("Couldn't migrate podcast download cache", e);
             }
 
             source = new PodcastSource ();
@@ -378,7 +378,7 @@ namespace Banshee.Podcasting
                         ProcessFile (feed, title);
                     }
                 } catch (Exception e) {
-                    Log.Exception (e);
+                    Log.Error (e);
                 }
             } else if (uri.Contains ("xml") || uri.Contains ("rss") || uri.Contains ("feed") || uri.StartsWith ("itpc") || uri.StartsWith ("pcast")) {
                 // Handle normal XML/RSS URLs
@@ -400,7 +400,7 @@ namespace Banshee.Podcasting
                             });
                         }
                     } catch (Exception e) {
-                        Hyena.Log.Exception (e);
+                        Log.Error (e);
                     }
                 });
             }

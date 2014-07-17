@@ -40,6 +40,7 @@ using System.Threading;
 using System.Collections;
 
 using Banshee.Web;
+using Hyena;
 
 using DAAP = Daap;
 
@@ -60,7 +61,7 @@ namespace Banshee.Daap
                 try {
                     server.Bind (EndPoint);
                 } catch (System.Net.Sockets.SocketException e) {
-                    Hyena.Log.Exception (e);
+                    Log.Warning (e);
                     return false;
                 }
             }
@@ -168,7 +169,7 @@ namespace Banshee.Daap
                             return;
                         }
                     } catch (Exception e) {
-                        Hyena.Log.Exception (e);
+                        Log.Error (e);
                     }
 
                     code = HttpStatusCode.BadRequest;

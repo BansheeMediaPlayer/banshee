@@ -159,9 +159,9 @@ namespace Banshee.Dap
                     return source;
                 } catch (InvalidDeviceException) {
                 } catch (InvalidCastException e) {
-                    Log.Exception ("Extension is not a DapSource as required", e);
+                    Log.Warning ("Extension is not a DapSource as required", e);
                 } catch (Exception e) {
-                    Log.Exception (e);
+                    Log.Error (e);
                 }
             }
 
@@ -216,7 +216,7 @@ namespace Banshee.Dap
                             service.sources.Add (device.Uuid, source);
                         }
                     } catch (Exception e) {
-                        Log.Exception (e);
+                        Log.Error (e);
                     }
                 }
 
@@ -242,7 +242,7 @@ namespace Banshee.Dap
                                 }
                             }
                         } catch (Exception e) {
-                            Log.Exception (e);
+                            Log.Error (e);
                         }
                     });
                 }
@@ -276,7 +276,7 @@ namespace Banshee.Dap
                     try {
                         ServiceManager.SourceManager.RemoveSource (source);
                     } catch (Exception e) {
-                        Log.Exception (e);
+                        Log.Error (e);
                     }
                 });
             }

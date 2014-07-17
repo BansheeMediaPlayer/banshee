@@ -97,7 +97,7 @@ namespace Banshee.Fixup
                 try {
                     solver = (Solver) node.CreateInstance (typeof (Solver));
                 } catch (Exception e) {
-                    Log.Exception (e);
+                    Log.Error (e);
                     continue;
                 }
 

@@ -229,7 +229,7 @@ namespace Banshee.Collection
                     }
                 }
             } catch (Exception e) {
-                Hyena.Log.Exception (e);
+                Hyena.Log.Error (e);
             }
             return null;
         }

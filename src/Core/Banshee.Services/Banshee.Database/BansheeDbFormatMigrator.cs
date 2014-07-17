@@ -751,7 +751,7 @@ namespace Banshee.Database
                     connection.RemoveFunction<MigratePartialFunction> ();
                 }
             } catch (Exception e) {
-                Hyena.Log.Exception (e);
+                Hyena.Log.Error (e);
             }
             return true;
         }
@@ -1315,7 +1315,7 @@ namespace Banshee.Database
                         SELECT * FROM PlaylistEntries
                 ");
             } catch (Exception e) {
-                Log.Exception ("Must be a pre-0.13.2 banshee.db, attempting to migrate", e);
+                Log.Error ("Must be a pre-0.13.2 banshee.db, attempting to migrate", e);
                 try {
                     Execute(@"
                         INSERT INTO CorePlaylists (PlaylistID, Name)
@@ -1325,7 +1325,7 @@ namespace Banshee.Database
                     ");
                     Log.Debug ("Success, was able to migrate older playlist information");
                 } catch (Exception e2) {
-                    Log.Exception ("Failed to migrate playlists", e2);
+                    Log.Error ("Failed to migrate playlists", e2);
                 }
             }
 

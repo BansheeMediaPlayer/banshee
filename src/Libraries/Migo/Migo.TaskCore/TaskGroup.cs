@@ -33,6 +33,8 @@ using System.Collections.Generic;
 
 using Migo.TaskCore.Collections;
 
+using Hyena;
+
 namespace Migo.TaskCore
 {
     public class TaskGroup<T> where T : Task
@@ -352,7 +354,7 @@ namespace Migo.TaskCore
                     OnStarted ();
                     SpawnExecutionThread ();
                 } catch (Exception e) {
-                    Hyena.Log.Exception (e);
+                    Log.Error (e);
                     SetExecuting (false);
                     Reset ();
                     OnStopped ();
@@ -808,7 +810,7 @@ namespace Migo.TaskCore
                                 task.ExecuteAsync ();
                             }
                         } catch (Exception e) {
-                            Hyena.Log.Exception (e);
+                            Log.Error (e);
 
                             try {
                                 gsm.SuspendUpdate = true;

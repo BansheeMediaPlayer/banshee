@@ -99,7 +99,7 @@ namespace Banshee.Dap.MassStorage
                     }
 
                 } catch (Exception e) {
-                    Log.Exception ("Error parsing " + IsAudioPlayerPath, e);
+                    Log.Error ("Error parsing " + IsAudioPlayerPath, e);
                 }
             }
 

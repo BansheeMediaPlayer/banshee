@@ -66,7 +66,7 @@ namespace Banshee.Collection
                     if (manager.Debug) Log.InformationFormat ("ImportElement processing {0}", item);
                     manager.OnImportRequested (item);
                 } catch (Exception e) {
-                    Hyena.Log.Exception (e);
+                    Hyena.Log.Error (e);
                 }
                 return null;
             }

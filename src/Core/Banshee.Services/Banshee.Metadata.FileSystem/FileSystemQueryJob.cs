@@ -122,7 +122,7 @@ namespace Banshee.Metadata.FileSystem
 
                     Log.Debug ("Got cover art from track's folder", best_file);
                 } catch (Exception e) {
-                    Log.Exception (e);
+                    Log.Error (e);
                 }
             }
         }

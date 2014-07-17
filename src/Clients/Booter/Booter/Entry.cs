@@ -91,7 +91,7 @@ namespace Booter
                     indexer.RebootWhenFinished (Environment.GetCommandLineArgs ());
                     Log.Warning ("The Banshee indexer is currently running. Banshee will be started when the indexer finishes.");
                 } catch (Exception e) {
-                    Log.Exception ("CollectionIndexer found on the Bus, but doesn't say Hello", e);
+                    Log.Error ("CollectionIndexer found on the Bus, but doesn't say Hello", e);
                 }
             } else if (ApplicationContext.CommandLine.Contains ("indexer")) {
                 // Indexer Client
@@ -122,7 +122,7 @@ namespace Booter
                     gdk_notify_startup_complete ();
                 }
             } catch (Exception e) {
-                Hyena.Log.Exception ("Problem with NotifyStartupComplete", e);
+                Log.Error ("Problem with NotifyStartupComplete", e);
             }
         }
 

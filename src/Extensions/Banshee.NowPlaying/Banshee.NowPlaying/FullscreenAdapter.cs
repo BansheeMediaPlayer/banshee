@@ -54,7 +54,7 @@ namespace Banshee.NowPlaying
                 try {
                     adapter.Fullscreen (window, fullscreen);
                 } catch (Exception e) {
-                    Log.Exception ("IFullscreenAdapter extension failed, so disabling", e);
+                    Log.Error ("IFullscreenAdapter extension failed, so disabling", e);
                     DisposeAdapter ();
                 }
 
@@ -71,7 +71,7 @@ namespace Banshee.NowPlaying
                     Log.DebugFormat ("Loaded IFullscreenAdapter: {0}", adapter.GetType ().FullName);
                     break;
                 } catch (Exception e) {
-                    Log.Exception ("IFullscreenAdapter extension failed to load", e);
+                    Log.Error ("IFullscreenAdapter extension failed to load", e);
                 }
             }
 
@@ -100,7 +100,7 @@ namespace Banshee.NowPlaying
                     adapter.SuggestUnfullscreen -= OnSuggestUnfullscreen;
                     adapter.Dispose ();
                 } catch (Exception e) {
-                    Log.Exception ("IFullscreenAdapter failed to dispose", e);
+                    Log.Error ("IFullscreenAdapter failed to dispose", e);
                 }
 
                 adapter = null;

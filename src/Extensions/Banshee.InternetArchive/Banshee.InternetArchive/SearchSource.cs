@@ -145,7 +145,7 @@ namespace Banshee.InternetArchive
                 results = search.GetResults ();
                 total_results = results.TotalResults;
             } catch (System.Net.WebException e) {
-                Hyena.Log.Exception ("Error searching the Internet Archive", e);
+                Log.Error ("Error searching the Internet Archive", e);
                 results = null;
                 err = e;
             }
@@ -164,7 +164,7 @@ namespace Banshee.InternetArchive
                     success = true;
                 } catch (Exception e) {
                     err = e;
-                    Hyena.Log.Exception ("Error searching the Internet Archive", e);
+                    Log.Error ("Error searching the Internet Archive", e);
                 }
             }
 

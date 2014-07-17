@@ -68,7 +68,7 @@ namespace Banshee.InternetRadio
                     MigrateXspf (file);
                 }
             } catch (Exception e) {
-                Log.Exception ("Error loading Internet Radio Stations from system default", e);
+                Log.Error ("Error loading Internet Radio Stations from system default", e);
             }
 
             return true;
@@ -93,7 +93,7 @@ namespace Banshee.InternetRadio
                     MigrateXspf (file);
                 }
             } catch (Exception e) {
-                Log.Exception ("Error migrating Internet Radio Stations", e);
+                Log.Error ("Error migrating Internet Radio Stations", e);
             }
 
             return true;
@@ -109,11 +109,11 @@ namespace Banshee.InternetRadio
                     try {
                         MigrateXspfTrack (playlist, track);
                     } catch (Exception e) {
-                        Log.Exception ("Could not migrate XSPF track", e);
+                        Log.Error ("Could not migrate XSPF track", e);
                     }
                 }
             } catch (Exception e) {
-                Log.Exception ("Could not migrate XSPF playlist", e);
+                Log.Error ("Could not migrate XSPF playlist", e);
             }
         }
 

@@ -77,7 +77,7 @@ namespace Banshee.Gui
                     Gtk.AccelMap.Load (accel_map_file);
                 }
             } catch (Exception e) {
-                Hyena.Log.Exception ("Failed to load custom AccelMap", e);
+                Log.Error ("Failed to load custom AccelMap", e);
             }
         }
 
@@ -86,7 +86,7 @@ namespace Banshee.Gui
             try {
                 Gtk.AccelMap.Save (accel_map_file);
             } catch (Exception e) {
-                Hyena.Log.Exception ("Failed to save custom AccelMap", e);
+                Log.Error ("Failed to save custom AccelMap", e);
             }
 
             base.Dispose (disposing);

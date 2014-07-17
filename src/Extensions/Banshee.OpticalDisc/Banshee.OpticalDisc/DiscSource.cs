@@ -179,7 +179,7 @@ namespace Banshee.OpticalDisc
                         OnUpdated ();
                     });
 
-                    Log.Exception (e);
+                    Log.Error (e);
                 }
             });
 

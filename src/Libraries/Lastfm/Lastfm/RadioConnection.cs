@@ -196,7 +196,7 @@ namespace Lastfm
                     this.station = station;
                     return StationError.None;
                 } catch (Exception e) {
-                    Log.Exception (e);
+                    Log.Error (e);
                     return StationError.Unknown;
                 }
             }

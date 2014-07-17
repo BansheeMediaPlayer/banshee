@@ -175,7 +175,7 @@ namespace Banshee.Web
                 while (HandleRequest(client));
             } catch (IOException) {
             } catch (Exception e) {
-                Log.Exception (e);
+                Log.Error (e);
             } finally {
                 clients.Remove (client);
                 client.Close ();
@@ -191,7 +191,7 @@ namespace Banshee.Web
                 if (e.SocketErrorCode == SocketError.AddressAlreadyInUse && this.EndPoint is IPEndPoint) {
                     Log.InformationFormat ("Unable to bind {0} to port {1}", name, (EndPoint as IPEndPoint).Port);
                 } else {
-                    Log.Exception (e);
+                    Log.Warning (e);
                 }
                 return false;
             }

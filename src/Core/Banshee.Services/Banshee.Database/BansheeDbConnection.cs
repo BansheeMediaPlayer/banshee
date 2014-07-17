@@ -95,7 +95,7 @@ namespace Banshee.Database
                 try {
                     OptimizeDatabase ();
                 } catch (Exception e) {
-                    Log.Exception ("Error determining if ANALYZE is necessary", e);
+                    Log.Error ("Error determining if ANALYZE is necessary", e);
                 }
 
                 // Update cached sorting keys

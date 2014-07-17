@@ -184,7 +184,7 @@ namespace Banshee.Dap.AppleDevice
                 try {
                     MediaDatabase = new GPod.ITDB (Device.Mountpoint);
                 } catch (Exception e) {
-                    Log.Exception ("iPod database could not be loaded, creating a new one", e);
+                    Log.Error ("iPod database could not be loaded, creating a new one", e);
                     if (GPod.ITDB.InitIpod (Volume.MountPoint, null, Volume.Name)) {
                         // this may throw again. In the future we need to implement some kind of alert
                         // mechanism to let the user know that something more serious is wrong with their
@@ -224,7 +224,7 @@ namespace Banshee.Dap.AppleDevice
                         tracks_map.Add (track.TrackId, track);
                     }
                 } catch (Exception e) {
-                    Log.Exception (e);
+                    Log.Error (e);
                 }
             }
 
@@ -321,7 +321,7 @@ namespace Banshee.Dap.AppleDevice
                 MediaDatabase.MasterPlaylist.Name = name;
                 base.Rename (name);
             } catch (Exception e) {
-                Log.Exception ("Trying to change iPod name", e);
+                Log.Error ("Trying to change iPod name", e);
             }
         }
 
@@ -553,7 +553,7 @@ namespace Banshee.Dap.AppleDevice
                     sync_thread = null;
                 }
             } catch (Exception e) {
-                Log.Exception (e);
+                Log.Error (e);
             }
         }
 
@@ -606,7 +606,7 @@ namespace Banshee.Dap.AppleDevice
                     track.Save (false);
                     tracks_map[track.TrackId] = track;
                 } catch (Exception e) {
-                    Log.Exception ("Cannot save track to the Apple device", e);
+                    Log.Error ("Cannot save track to the Apple device", e);
                 }
             }
             if (total > 0) {
@@ -630,7 +630,7 @@ namespace Banshee.Dap.AppleDevice
 
                     track.CommitToIpod (MediaDatabase);
                 } catch (Exception e) {
-                    Log.Exception ("Cannot save track to iPod", e);
+                    Log.Error ("Cannot save track to iPod", e);
                 }
             }
         }
@@ -658,7 +658,7 @@ namespace Banshee.Dap.AppleDevice
                         Log.Error ("The ipod track was null");
                     }
                 } catch (Exception e) {
-                    Log.Exception ("Cannot remove track from iPod", e);
+                    Log.Error ("Cannot remove track from iPod", e);
                 }
             }
 
@@ -674,7 +674,7 @@ namespace Banshee.Dap.AppleDevice
                     UpdateProgress (progressUpdater, message, total - invalid_tracks_in_device.Count, total);
                     DeleteTrack (invalid_tracks_in_device.Dequeue (), false);
                 } catch (Exception e) {
-                    Log.Exception ("Cannot remove invalid track from iPod", e);
+                    Log.Error ("Cannot remove invalid track from iPod", e);
                 }
             }
         }
@@ -723,7 +723,7 @@ namespace Banshee.Dap.AppleDevice
 
                 Log.Information ("Wrote iPod database");
             } catch (Exception e) {
-                Log.Exception ("Failed to save iPod database", e);
+                Log.Error ("Failed to save iPod database", e);
             }
         }
 

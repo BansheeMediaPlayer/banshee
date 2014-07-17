@@ -55,7 +55,7 @@ namespace Banshee.GnomeBackend
             try {
                 gnome.Brasero.Run (String.Format ("-c {0}", device));
             } catch (Exception e) {
-                Log.Exception (e);
+                Log.Error (e);
                 return false;
             }
 
@@ -68,7 +68,7 @@ namespace Banshee.GnomeBackend
                 System.Diagnostics.Process.Start ("nautilus-cd-burner",
                     String.Format ("--source-device={0}", device));
             } catch (Exception e) {
-                Log.Exception (e);
+                Log.Error (e);
                 return false;
             }
 

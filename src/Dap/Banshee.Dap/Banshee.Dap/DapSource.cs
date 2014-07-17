@@ -314,7 +314,7 @@ namespace Banshee.Dap
                     sync.Sync ();
                 }
             } catch (Exception e) {
-                Log.Exception (e);
+                Log.Error (e);
             }
         }
 
@@ -438,7 +438,7 @@ namespace Banshee.Dap
             try {
                 AttemptToAddTrackToDevice ((DatabaseTrackInfo)track, outputUri);
             } catch (Exception e) {
-                Log.Exception (e);
+                Log.Error (e);
             }
 
             IncrementAddedTracks ();

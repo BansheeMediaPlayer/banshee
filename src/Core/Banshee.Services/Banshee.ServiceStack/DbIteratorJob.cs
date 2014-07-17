@@ -119,7 +119,7 @@ namespace Banshee.ServiceStack
                 Cleanup ();
                 throw;
             } catch (Exception e) {
-                Log.Exception (e);
+                Log.Error (e);
                 failure_count++;
                 if (failure_count > MAX_FAILURE_COUNT) {
                     Log.WarningFormat ("Too many consecutive errors for job '{0}', aborting", this.Title);

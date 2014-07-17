@@ -134,7 +134,7 @@ namespace Banshee.Sources
                         }
                         Log.DebugFormat ("Extension source loaded: {0}", source.Name);
                     } catch (Exception e) {
-                        Log.Exception (e);
+                        Log.Error (e);
                     }
                 } else if (args.Change == ExtensionChange.Remove && extension_sources.ContainsKey (node.Id)) {
                     Source source = extension_sources[node.Id];

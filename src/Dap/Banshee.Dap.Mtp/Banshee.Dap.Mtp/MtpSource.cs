@@ -86,7 +86,7 @@ namespace Banshee.Dap.Mtp
                 );
                 throw new InvalidDeviceException ();
             } catch (Exception e) {
-                Log.Exception (e);
+                Log.Error (e);
                 //ShowGeneralExceptionDialog (e);
                 throw new InvalidDeviceException ();
             }
@@ -145,7 +145,7 @@ namespace Banshee.Dap.Mtp
             try {
                 AddDapProperty (Catalog.GetString ("Battery level"), String.Format ("{0:0%}", mtp_device.BatteryLevel/100.0));
             } catch (Exception e) {
-                Log.Exception ("Unable to get battery level from MTP device", e);
+                Log.Error ("Unable to get battery level from MTP device", e);
             }
         }
 
@@ -210,7 +210,7 @@ namespace Banshee.Dap.Mtp
                 }
 
             } catch (Exception e) {
-                Log.Exception (e);
+                Log.Error (e);
             }
             OnTracksAdded ();
         }

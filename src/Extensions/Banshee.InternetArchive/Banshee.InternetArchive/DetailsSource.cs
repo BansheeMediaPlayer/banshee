@@ -140,7 +140,7 @@ namespace Banshee.InternetArchive
                     }
                 });
             } catch (Exception e) {
-                Hyena.Log.Exception ("Error loading IA item details", e);
+                Log.Error ("Error loading IA item details", e);
 
                 ThreadAssist.ProxyToMain (delegate {
                     var web_e = e as System.Net.WebException;

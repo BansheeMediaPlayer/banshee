@@ -608,7 +608,7 @@ namespace Banshee.GStreamer
             try {
                 handler (cbd, new float[][] { spec });
             } catch (Exception e) {
-                Log.Exception ("Uncaught exception during visualization data post.", e);
+                Log.Error ("Uncaught exception during visualization data post.", e);
             }
         }
 
@@ -857,7 +857,7 @@ namespace Banshee.GStreamer
                     clutter_video_texture = IntPtr.Zero;
                 }
             } catch (Exception e) {
-                Log.Exception ("Clutter support could not be initialized", e);
+                Log.Error ("Clutter support could not be initialized", e);
                 clutter_video_sink = IntPtr.Zero;
                 clutter_video_texture = IntPtr.Zero;
                 clutter_video_sink_enabled = false;

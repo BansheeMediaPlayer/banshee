@@ -75,7 +75,7 @@ namespace Migo.Syndication
                 }
 
                 if (!loaded) {
-                    Hyena.Log.Exception (e);
+                    Log.Error (e);
                     throw new FormatException ("Invalid XML document.");
                 }
             }
@@ -119,7 +119,7 @@ namespace Migo.Syndication
 
                 return feed;
             } catch (Exception e) {
-                 Hyena.Log.Exception ("Caught error parsing RSS channel", e);
+                 Log.Error ("Caught error parsing RSS channel", e);
             }
 
             return null;
@@ -131,7 +131,7 @@ namespace Migo.Syndication
             try {
                 nodes = doc.SelectNodes ("//item");
             } catch (Exception e) {
-                Hyena.Log.Exception ("Unable to get any RSS items", e);
+                Log.Error ("Unable to get any RSS items", e);
             }
 
             if (nodes != null) {
@@ -144,7 +144,7 @@ namespace Migo.Syndication
                             item.Feed = feed;
                         }
                     } catch (Exception e) {
-                        Hyena.Log.Exception (e);
+                        Log.Error (e);
                     }
 
                     if (item != null) {
@@ -181,7 +181,7 @@ namespace Migo.Syndication
 
                 return item;
              } catch (Exception e) {
-                 Hyena.Log.Exception ("Caught error parsing RSS item", e);
+                 Log.Error ("Caught error parsing RSS item", e);
              }
 
              return null;
@@ -203,7 +203,7 @@ namespace Migo.Syndication
                 enclosure.Keywords = GetXmlNodeText (node, "itunes:keywords");
                 return enclosure;
              } catch (Exception e) {
-                 Hyena.Log.Exception (String.Format ("Caught error parsing RSS enclosure in {0}", url), e);
+                 Log.Error (String.Format ("Caught error parsing RSS enclosure in {0}", url), e);
              }
 
              return null;
@@ -250,7 +250,7 @@ namespace Migo.Syndication
 
                 return enclosure;
              } catch (Exception e) {
-                 Hyena.Log.Exception ("Caught error parsing RSS media:content", e);
+                 Log.Error ("Caught error parsing RSS media:content", e);
              }
 
              return null;

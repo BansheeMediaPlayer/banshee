@@ -136,7 +136,7 @@ namespace Banshee.OpticalDisc
                         }
                     }
                 } catch (Exception e) {
-                    Log.Exception (e);
+                    Log.Error (e);
                 }
 
                 Log.DebugFormat ("Mapping disc ({0})", volume.Uuid);

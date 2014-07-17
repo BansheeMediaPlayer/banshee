@@ -106,7 +106,7 @@ namespace Banshee.GStreamer
                 Log.DebugFormat ("GStreamer running beat detection on {0}", path);
                 bbd_process_file (handle, path_ptr);
             } catch (Exception e) {
-                Log.Exception (e);
+                Log.Error (e);
             } finally {
                 GLib.Marshaller.Free (path_ptr);
             }

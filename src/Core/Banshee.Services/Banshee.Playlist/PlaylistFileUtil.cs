@@ -250,7 +250,7 @@ namespace Banshee.Playlist
                     }
                 }
             } catch (Exception e) {
-                Hyena.Log.Exception (e);
+                Log.Error (e);
             }
         }
     }
@@ -282,7 +282,7 @@ namespace Banshee.Playlist
                 importer.Finished += CreatePlaylist;
                 importer.Enqueue (uris);
             } catch (PlaylistImportCanceledException e) {
-                Hyena.Log.Exception (e);
+                Log.Warning (e);
             }
         }
 
@@ -314,7 +314,7 @@ namespace Banshee.Playlist
                 playlist.Reload ();
                 playlist.NotifyUser ();
             } catch (Exception e) {
-                Hyena.Log.Exception (e);
+                Log.Error (e);
             }
         }
     }

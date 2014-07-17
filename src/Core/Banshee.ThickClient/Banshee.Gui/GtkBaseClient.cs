@@ -146,7 +146,7 @@ namespace Banshee.Gui
                 try {
                     node.CreateInstance ();
                 } catch (Exception e) {
-                    Log.Exception ("PostInitializeGtk extension failed to run", e);
+                    Log.Error ("PostInitializeGtk extension failed to run", e);
                 }
             }
         }

@@ -45,7 +45,7 @@ namespace Banshee.PlatformServices
                     Log.DebugFormat ("Loaded IScreensaverManager: {0}", manager.GetType ().FullName);
                     break;
                 } catch (Exception e) {
-                    Log.Exception ("IScreensaverManager extension failed to load", e);
+                    Log.Error ("IScreensaverManager extension failed to load", e);
                 }
             }
         }

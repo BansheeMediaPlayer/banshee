@@ -361,7 +361,7 @@ namespace Banshee.Gui
                         filter_selection.Clear (false);
                         filter_selection.SelectAll ();
                     } else {
-                        Log.Exception (new Exception ("Filter focused, but selection is not filter selection!"));
+                        Log.Error (new Exception ("Filter focused, but selection is not filter selection!"));
                     }
                 } else {
                     UpdateActions (true, true, disable_for_filter_actions);

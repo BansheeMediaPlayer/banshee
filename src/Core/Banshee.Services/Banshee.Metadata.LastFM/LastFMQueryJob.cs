@@ -126,7 +126,7 @@ namespace Banshee.Metadata.LastFM
                     AddTag (tag);
                 }
             } catch (Exception e) {
-                Log.Exception ("Cover art found on Lastfm, but downloading it failed. Probably server under high load or dead link", e);
+                Log.Error ("Cover art found on Lastfm, but downloading it failed. Probably server under high load or dead link", e);
             }
         }
     }

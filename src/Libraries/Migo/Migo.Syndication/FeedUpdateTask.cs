@@ -134,7 +134,7 @@ namespace Migo.Syndication
                 }
 
                 EmitCompletionEvents (FeedDownloadError.DownloadFailed);
-                Log.Exception (e);
+                Log.Error (e);
             }
         }
 
@@ -160,7 +160,7 @@ namespace Migo.Syndication
                         error = FeedDownloadError.None;
                         notify_on_save = feed.LastBuildDate > last_built_at;
                     } catch (FormatException e) {
-                        Log.Exception (e);
+                        Log.Warning (e);
                         error = FeedDownloadError.InvalidFeedFormat;
                     }
                 } else {

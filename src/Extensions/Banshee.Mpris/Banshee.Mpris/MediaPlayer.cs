@@ -478,7 +478,7 @@ namespace Banshee.Mpris
                     try {
                         handler (interface_name, changed_properties, invalidated_properties.ToArray ());
                     } catch (Exception e) {
-                        Log.Exception (e);
+                        Log.Error (e);
                     }
                     changed_properties.Clear ();
                     invalidated_properties.Clear ();
@@ -501,7 +501,7 @@ namespace Banshee.Mpris
                 try {
                     playlist_handler (BuildPlaylistFromSource (source));
                 } catch (Exception e) {
-                    Log.Exception (e);
+                    Log.Error (e);
                 }
             }
         }

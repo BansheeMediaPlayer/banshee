@@ -70,7 +70,7 @@ namespace Banshee.Gui.Widgets
                 Load ();
                 TaskActive = false;
             } catch (Exception e) {
-                Hyena.Log.Exception (e);
+                Log.Error (e);
             }
 
             // Listen for jobs

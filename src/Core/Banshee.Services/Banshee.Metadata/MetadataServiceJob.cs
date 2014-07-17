@@ -99,7 +99,7 @@ namespace Banshee.Metadata
                 } catch (System.Threading.ThreadAbortException) {
                     throw;
                 } catch(Exception e) {
-                   Hyena.Log.Exception (e);
+                    Log.Error (e);
                 }
             }
 
@@ -201,7 +201,7 @@ namespace Banshee.Metadata
                 Banshee.IO.StreamAssist.Save (from_stream, Banshee.IO.File.OpenWrite (tmp_uri, true));
                 Banshee.IO.File.Move (tmp_uri, path_uri);
             } catch (Exception e) {
-                Hyena.Log.Exception (e);
+                Log.Error (e);
             }
         }
     }

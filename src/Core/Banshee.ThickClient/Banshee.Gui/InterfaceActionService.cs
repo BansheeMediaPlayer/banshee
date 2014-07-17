@@ -139,7 +139,7 @@ namespace Banshee.Gui
                     }
                 }
             } catch (Exception e) {
-                Log.Exception (e);
+                Log.Error (e);
             }
         }
 

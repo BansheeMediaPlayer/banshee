@@ -188,7 +188,7 @@ namespace Banshee.AmazonMp3
                         try {
                         import_manager.Enqueue (amz_downloader.LocalPath);
                         } catch (Exception e) {
-                            Log.Exception ("Trying to queue amz file", e);
+                            Log.Error ("Trying to queue amz file", e);
                         }
                         break;
                     default:

@@ -110,7 +110,7 @@ namespace Banshee.Collection.Database
                         random_modes.Add (random_by);
                         node_map[tnode] = random_by;
                     } catch (Exception e) {
-                        Log.Exception (String.Format ("Failed to load RandomBy extension: {0}", args.Path), e);
+                        Log.Error (String.Format ("Failed to load RandomBy extension: {0}", args.Path), e);
                     }
                 }
 

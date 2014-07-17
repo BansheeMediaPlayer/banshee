@@ -233,7 +233,7 @@ namespace Banshee.Kernel
                     current_running_job.Run();
                     OnJobFinished(current_running_job);
                 } catch(Exception e) {
-                    Log.Exception (e);
+                    Log.Error (e);
                 }
             }
         }

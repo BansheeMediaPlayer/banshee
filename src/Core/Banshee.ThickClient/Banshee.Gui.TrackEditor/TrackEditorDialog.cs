@@ -33,6 +33,7 @@ using Mono.Unix;
 using Mono.Addins;
 using Gtk;
 
+using Hyena;
 using Hyena.Gui;
 using Hyena.Widgets;
 
@@ -237,7 +238,7 @@ namespace Banshee.Gui.TrackEditor
                         page.Widget.Show ();
                     }
                 } catch (Exception e) {
-                    Hyena.Log.Exception ("Failed to initialize NotebookPage extension node. Ensure it implements ITrackEditorPage.", e);
+                    Log.Error ("Failed to initialize NotebookPage extension node. Ensure it implements ITrackEditorPage.", e);
                 }
             }
 
@@ -337,7 +338,7 @@ namespace Banshee.Gui.TrackEditor
                     ITrackEditorModifier mod = (ITrackEditorModifier)node.CreateInstance ();
                     mod.Modify (this);
                 } catch (Exception e) {
-                    Hyena.Log.Exception ("Failed to initialize TrackEditor/Modifier extension node. Ensure it implements ITrackEditorModifier.", e);
+                    Log.Error ("Failed to initialize TrackEditor/Modifier extension node. Ensure it implements ITrackEditorModifier.", e);
                 }
             }
         }

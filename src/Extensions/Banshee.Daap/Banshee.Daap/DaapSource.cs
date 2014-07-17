@@ -119,7 +119,7 @@ namespace Banshee.Daap
                     ThreadAssist.ProxyToMain (delegate {
                         ShowErrorView (DaapErrorType.BrokenAuthentication);
                     });
-                    Hyena.Log.Exception (e);
+                    Log.Error (e);
                 }
 
                 is_activating = false;
@@ -279,7 +279,7 @@ namespace Banshee.Daap
                 UpdateIcon ();
                 OnUpdated ();
             } catch (Exception e) {
-                Hyena.Log.Exception ("Caught exception while loading daap share", e);
+                Log.Error ("Caught exception while loading daap share", e);
                 ThreadAssist.ProxyToMain (delegate {
                     HideStatus ();
                     ShowErrorView (DaapErrorType.UserDisconnect);

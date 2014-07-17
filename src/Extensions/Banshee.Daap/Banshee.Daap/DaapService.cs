@@ -175,7 +175,7 @@ namespace Banshee.Daap
                 proxy_server = new DaapProxyWebServer ();
                 proxy_server.Start ();
             } catch (Exception e) {
-                Log.Exception ("Failed to start DAAP client", e);
+                Log.Error ("Failed to start DAAP client", e);
             }
 
             var uia_service = ServiceManager.Get<InterfaceActionService> ();

@@ -262,7 +262,7 @@ namespace Banshee.Lastfm.Recommendations
 
                 UpdateForArtist (artist, artist_data.SimilarArtists, artist_data.TopAlbums, artist_data.TopTracks);
             } catch (Exception e) {
-                Log.Exception (e);
+                Log.Error (e);
             }
         }
 

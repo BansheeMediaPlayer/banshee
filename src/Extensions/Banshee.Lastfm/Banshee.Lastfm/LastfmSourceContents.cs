@@ -166,7 +166,7 @@ namespace Banshee.Lastfm
                 top_artists.SetList (user.GetTopArtists (TopType.Overall));
             } catch (Exception e) {
                 lastfm.SetStatus ("Failed to get information from your Last.fm profile", true, ConnectionState.InvalidAccount);
-                Log.Exception (String.Format ("LastfmUserData query failed for {0}", username), e);
+                Log.Error (String.Format ("LastfmUserData query failed for {0}", username), e);
             }
 
             ShowAll ();

@@ -144,7 +144,7 @@ namespace Banshee.CoverArt
                 save = false;
                 throw;
             } catch (Exception e) {
-                Log.Exception (e);
+                Log.Error (e);
             } finally {
                 if (save) {
                     bool have_cover_art = CoverArtSpec.CoverExists (track.ArtistName, track.AlbumTitle);

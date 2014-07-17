@@ -61,7 +61,7 @@ namespace Banshee.Configuration
                             Log.DebugFormat ("Loaded Default Application Helper: {0}", helper.GetType ().FullName);
                             break;
                         } catch (Exception e) {
-                            Log.Exception ("Default Application Helper backend failed to load", e);
+                            Log.Error ("Default Application Helper backend failed to load", e);
                         }
                     }
                 }

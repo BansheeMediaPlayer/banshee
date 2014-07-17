@@ -52,7 +52,7 @@ namespace Banshee.GnomeBackend
                 // FIXME: this needs to be deferred/delayed initialized
                 gconf_proxy = new GConfProxy ();
             } catch (Exception e) {
-                Hyena.Log.Exception ("GConfProxy", e);
+                Hyena.Log.Error ("Problem initializing GConfProxy", e);
                 gconf_proxy = null;
             }
 

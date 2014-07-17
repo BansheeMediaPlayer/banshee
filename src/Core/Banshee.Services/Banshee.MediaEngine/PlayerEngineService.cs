@@ -371,7 +371,7 @@ namespace Banshee.MediaEngine
             try {
                 OpenCheck (track, play);
             } catch (Exception e) {
-                Log.Exception (e);
+                Log.Error (e);
                 Log.Error (Catalog.GetString ("Problem with Player Engine"), e.Message, true);
                 Close ();
                 ActiveEngine = default_engine;
@@ -921,7 +921,7 @@ namespace Banshee.MediaEngine
                         try {
                             node.Value.Handler (args);
                         } catch (Exception e) {
-                            Log.Exception (String.Format ("Error running PlayerEngine handler for {0}", args.Event), e);
+                            Log.Error (String.Format ("Error running PlayerEngine handler for {0}", args.Event), e);
                         }
                     }
                     node = node.Next;

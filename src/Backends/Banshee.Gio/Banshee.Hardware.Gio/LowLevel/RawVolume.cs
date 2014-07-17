@@ -163,7 +163,7 @@ namespace Banshee.Hardware.Gio
                             Hyena.Log.ErrorFormat ("Failed to eject {0}", Volume.Name);
                         }
                     } catch (Exception e) {
-                        Hyena.Log.Exception (e);
+                        Hyena.Log.Error (e);
                     }
                 });
             }

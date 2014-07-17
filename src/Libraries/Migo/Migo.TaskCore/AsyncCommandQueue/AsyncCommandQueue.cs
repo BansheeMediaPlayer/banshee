@@ -30,6 +30,8 @@ using System;
 using System.Threading;
 using System.Collections.Generic;
 
+using Hyena;
+
 namespace Migo.TaskCore
 {
     delegate void ExecuteCommand (ICommand command);
@@ -212,7 +214,7 @@ namespace Migo.TaskCore
                         try {
                             execCommand (e);
                         } catch (Exception ex) {
-                            Hyena.Log.Exception (ex);
+                            Log.Error (ex);
                         }
                     }
 
@@ -244,7 +246,7 @@ namespace Migo.TaskCore
                 try {
                     handler (this, new EventArgs ());
                 } catch (Exception ex) {
-                    Hyena.Log.Exception (ex);
+                    Log.Error (ex);
                 }
             }
         }

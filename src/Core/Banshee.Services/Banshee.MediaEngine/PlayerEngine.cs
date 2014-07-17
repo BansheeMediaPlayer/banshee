@@ -130,7 +130,7 @@ namespace Banshee.MediaEngine
                 SetNextTrackUri (track == null ? null : track.Uri,
                     track == null || track.HasAttribute (TrackMediaAttributes.VideoStream) || track is UnknownTrackInfo);
             } catch (Exception e) {
-                Log.Exception ("Failed to pre-buffer next track", e);
+                Log.Error ("Failed to pre-buffer next track", e);
             }
         }
 

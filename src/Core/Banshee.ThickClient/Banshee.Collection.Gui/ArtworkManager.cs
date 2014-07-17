@@ -83,7 +83,7 @@ namespace Banshee.Collection.Gui
             try {
                 MigrateCacheDir ();
             } catch (Exception e) {
-                Log.Exception ("Could not migrate album artwork cache directory", e);
+                Log.Error ("Could not migrate album artwork cache directory", e);
             }
 
             if (ApplicationContext.CommandLine.Contains ("fetch-artwork")) {

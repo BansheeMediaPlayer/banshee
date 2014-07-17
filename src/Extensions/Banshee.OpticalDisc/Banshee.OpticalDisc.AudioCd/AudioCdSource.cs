@@ -192,7 +192,7 @@ namespace Banshee.OpticalDisc.AudioCd
                 }
             } catch (Exception e) {
                 Log.Error (Catalog.GetString ("Could not import CD"), e.Message, true);
-                Log.Exception (e);
+                Log.Error (e);
 
                 if (ripper != null) {
                     ripper.Dispose ();
@@ -213,7 +213,7 @@ namespace Banshee.OpticalDisc.AudioCd
                 AudioCdDuplicator.Duplicate (Model);
             } catch (Exception e) {
                 Hyena.Log.Error (Catalog.GetString ("Could not duplicate audio CD"), e.Message, true);
-                Hyena.Log.Exception (e);
+                Log.Error (e);
             }
         }
 

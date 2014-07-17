@@ -79,7 +79,7 @@ namespace Banshee.Equalizer
             try {
                 Load ();
             } catch (Exception e) {
-                Log.Exception ("Failed to load equalizer", e);
+                Log.Error ("Failed to load equalizer", e);
             }
         }
 
@@ -234,11 +234,11 @@ namespace Banshee.Equalizer
                         }
                         Log.Information ("Converted legacy XML equalizer presets to new JSON format");
                     } catch (Exception xe) {
-                        Log.Exception ("Could not load equalizers.xml", xe);
+                        Log.Error ("Could not load equalizers.xml", xe);
                     }
                 }
             } catch (Exception e) {
-                Log.Exception ("Could not load equalizers.json", e);
+                Log.Error ("Could not load equalizers.json", e);
             }
 
             Log.DebugTimerPrint (timer, "Loaded equalizer presets: {0}");
@@ -325,7 +325,7 @@ namespace Banshee.Equalizer
                 }
                 Log.Debug ("EqualizerManager", "Saved equalizers to disk");
             } catch (Exception e) {
-                Log.Exception ("Unable to save equalizers", e);
+                Log.Error ("Unable to save equalizers", e);
             }
         }
 

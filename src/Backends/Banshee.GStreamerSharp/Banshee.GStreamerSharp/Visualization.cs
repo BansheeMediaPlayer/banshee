@@ -287,7 +287,7 @@ namespace Banshee.GStreamerSharp
                 try {
                     OnDataAvailable (cbd, new float[][] { spec });
                 } catch (System.Exception e) {
-                    Log.Exception ("Uncaught exception during visualization data post.", e);
+                    Log.Error ("Uncaught exception during visualization data post.", e);
                 }
 
                 vis_buffer.Flush ((uint)wanted_size);

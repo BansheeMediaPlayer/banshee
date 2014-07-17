@@ -477,7 +477,7 @@ namespace Banshee.Collection
                         property.SetValue (dest, property.GetValue (source, null), null);
                     }
                 } catch (Exception e) {
-                    Log.Exception (e);
+                    Log.Error (e);
                 }
             }
         }

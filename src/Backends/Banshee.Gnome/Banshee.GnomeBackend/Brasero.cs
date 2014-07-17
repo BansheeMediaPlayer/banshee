@@ -101,7 +101,8 @@ namespace Banshee.GnomeBackend
             try {
                 Run (file_args.ToString ());
             } catch (Exception e) {
-                Log.Exception ("Problem starting Brasero", e);
+                Log.Error ("Problem starting Brasero", e);
+
                 Log.Error (Catalog.GetString ("Could not write CD"),
                     Catalog.GetString ("Brasero could not be started"), true);
             }

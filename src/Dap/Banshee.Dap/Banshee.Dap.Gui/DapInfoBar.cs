@@ -113,7 +113,7 @@ namespace Banshee.Dap.Gui
                     }
                     UpdateUsage ();
                 } catch (Exception e) {
-                    Hyena.Log.Exception (e);
+                    Log.Error (e);
                 }
             });
         }

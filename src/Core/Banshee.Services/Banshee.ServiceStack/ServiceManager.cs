@@ -79,7 +79,7 @@ namespace Banshee.ServiceStack
                 try {
                     AddinManager.Registry.DisableAddin (a.AddinId);
                 } catch {}
-                Log.Exception (a.Message, a.Exception);
+                Log.Error (a.Message, a.Exception);
             };
 
             if (ApplicationContext.Debugging) {
@@ -189,7 +189,7 @@ namespace Banshee.ServiceStack
 
                 Log.Warning (String.Format ("Service `{0}' not started: {1}", type.FullName,
                     e.InnerException != null ? e.InnerException.Message : e.Message));
-                Log.Exception (e.InnerException ?? e);
+                Log.Error (e.InnerException ?? e);
             }
 
             return null;
@@ -221,7 +221,7 @@ namespace Banshee.ServiceStack
 
                 dispose_services.Push (service);
             } catch (Exception e) {
-                Log.Exception (e.InnerException ?? e);
+                Log.Error (e.InnerException ?? e);
                 Log.Warning (String.Format ("Extension `{0}' not started: {1}",
                     service == null ? node.Path : service.GetType ().FullName, e.Message));
             }
@@ -282,7 +282,7 @@ namespace Banshee.ServiceStack
                     ((IDelayedInitializeService)service).DelayedInitialize ();
                 }
             } catch (Exception e) {
-                Log.Exception (e.InnerException ?? e);
+                Log.Error (e.InnerException ?? e);
                 Log.Warning (String.Format ("Service `{0}' not initialized: {1}",
                     service.GetType ().FullName, e.Message));
             }
@@ -297,7 +297,7 @@ namespace Banshee.ServiceStack
                         ((IDisposable)service).Dispose ();
                         Log.DebugFormat ("Service disposed ({0})", service.ServiceName);
                     } catch (Exception e) {
-                        Log.Exception (String.Format ("Service disposal ({0}) threw an exception", service.ServiceName), e);
+                        Log.Error (String.Format ("Service disposal ({0}) threw an exception", service.ServiceName), e);
                     }
                 }
 

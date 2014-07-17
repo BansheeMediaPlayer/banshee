@@ -73,7 +73,7 @@ namespace Banshee.IO
                 is_directory = !is_regular_file && Banshee.IO.Directory.Exists (source);
                 if (Debug) Log.InformationFormat ("  > item {0} is reg file? {1} is dir? {2}", source, is_regular_file, is_directory);
             } catch (Exception e) {
-                if (Debug) Log.Exception ("Testing if path is file or dir", e);
+                if (Debug) Log.Error ("Testing if path is file or dir", e);
                 if (Debug) Log.InformationFormat ("  > item {0} is reg file? {1} is dir? {2}", source, is_regular_file, is_directory);
                 return;
             }
@@ -101,11 +101,11 @@ namespace Banshee.IO
                                 }
                             }
                         } catch (Exception e) {
-                            Hyena.Log.Exception (e);
+                            Log.Error (e);
                         }
                     }
-                } catch (System.ArgumentException) {
-                    // If there are illegal characters in path
+                } catch (ArgumentException ex) {
+                    Log.Warning (String.Format ("There are illegal characters in the path '{0}'", source), ex);
                 }
             }
         }

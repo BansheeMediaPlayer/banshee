@@ -291,7 +291,7 @@ namespace Lastfm
                 nb_tracks_scrobbled = (int)ar.AsyncState;
 
             } catch (Exception e) {
-                Log.Exception ("Failed to complete the scrobble request", e);
+                Log.Error ("Failed to complete the scrobble request", e);
                 state = State.Idle;
                 return;
             }
@@ -300,7 +300,7 @@ namespace Lastfm
             try {
                 response = current_scrobble_request.GetResponseObject ();
             } catch (Exception e) {
-                Log.Exception ("Failed to process the scrobble response", e);
+                Log.Error ("Failed to process the scrobble response", e);
                 state = State.Idle;
                 return;
             }
@@ -424,7 +424,7 @@ namespace Lastfm
             try {
                 current_now_playing_request.EndSend (ar);
             } catch (Exception e) {
-                Log.Exception ("Failed to complete the NowPlaying request", e);
+                Log.Error ("Failed to complete the NowPlaying request", e);
                 state = State.Idle;
                 current_now_playing_request = null;
                 return;
