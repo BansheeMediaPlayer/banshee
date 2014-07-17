@@ -78,7 +78,7 @@ namespace Banshee.AmazonMp3
                 Log.Information ("Downloading Amazon MP3 purchase", path);
             } catch (Exception e) {
                 Log.Exception ("Invalid .amz file: " + path, e);
-                Log.Error ("Invalid Amazon MP3 downloader file", path, true);
+                Log.Error (Catalog.GetString ("Invalid Amazon MP3 downloader file"), path, true);
             }
         }
 
