@@ -3,8 +3,10 @@
 //
 // Author:
 //   Aaron Bockover <abockover@novell.com>
+//   Frank Ziegler <funtastix@googlemail.com>
 //
 // Copyright (C) 2007 Novell, Inc.
+// Copyright (C) 2013 Frank Ziegler
 //
 // Permission is hereby granted, free of charge, to any person obtaining
 // a copy of this software and associated documentation files (the
@@ -28,23 +30,90 @@
 
 using System;
 
-using Hyena.Data;
-using Hyena.Data.Gui;
-
 using Banshee.Collection;
 using Banshee.ServiceStack;
 using Banshee.Gui;
+using Banshee.MediaEngine;
+
+using Gtk;
 
 namespace Banshee.Collection.Gui
 {
     public class ArtistListView : TrackFilterListView<ArtistInfo>
     {
         protected ArtistListView (IntPtr ptr) : base () {}
+        private IArtistListRenderer renderer = null;
+        private readonly InterfaceActionService action_service = null;
 
         public ArtistListView () : base ()
         {
-            column_controller.Add (new Column ("Artist", new ColumnCellText ("DisplayName", true), 1.0));
-            ColumnController = column_controller;
+            action_service = ServiceManager.Get<InterfaceActionService> ();
+
+            renderer = action_service.ArtistListActions.ArtistListRenderer;
+
+            if (renderer == null) {
+                renderer = new ColumnCellArtistText ();
+            }
+            UpdateRenderer ();
+
+            ServiceManager.PlayerEngine.ConnectEvent (OnPlayerEvent, PlayerEvent.TrackInfoUpdated);
+            Banshee.Metadata.MetadataService.Instance.ArtworkUpdated += OnArtworkUpdated;
+
+            action_service.ArtistListActions.ArtistListModeChanged += HandleArtistListModeChanged;
+        }
+
+        private void HandleArtistListModeChanged (object sender, ArtistListModeChangedEventArgs args)
+        {
+            this.renderer = args.Renderer;
+            UpdateRenderer ();
+        }
+
+        protected override void Dispose (bool disposing)
+        {
+            if (disposing) {
+                ServiceManager.PlayerEngine.DisconnectEvent (OnPlayerEvent);
+                Banshee.Metadata.MetadataService.Instance.ArtworkUpdated -= OnArtworkUpdated;
+                action_service.ArtistListActions.ArtistListModeChanged -= HandleArtistListModeChanged;
+            }
+            base.Dispose (disposing);
+        }
+
+        protected override Gdk.Size OnMeasureChild ()
+        {
+            return new Gdk.Size (0, renderer.ComputeRowHeight (this));
+        }
+
+        private void UpdateRenderer ()
+        {
+            column_controller.Clear ();
+            ColumnController = renderer.ColumnController;
+            QueueResize ();
+        }
+
+        private void OnPlayerEvent (PlayerEventArgs args)
+        {
+            QueueDraw ();
+        }
+
+        private void OnArtworkUpdated (IBasicTrackInfo track)
+        {
+            QueueDraw ();
+        }
+
+        protected override bool OnFocusInEvent (Gdk.EventFocus evnt)
+        {
+            action_service.ArtistListActions ["ArtistListMenuAction"].Visible =
+                action_service.ArtistListActions.ListActions ().Length > 2;
+            return base.OnFocusInEvent (evnt);
+        }
+
+        protected override bool OnFocusOutEvent (Gdk.EventFocus evnt)
+        {
+            var focus = ServiceManager.Get<GtkElementsService> ().PrimaryWindow.Focus;
+            if (focus != this) {
+                action_service.ArtistListActions ["ArtistListMenuAction"].Visible = false;
+            }
+            return base.OnFocusOutEvent (evnt);
         }
 
         // TODO add context menu for artists/albums...probably need a Banshee.Gui/ArtistActions.cs file.  Should

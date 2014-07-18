@@ -65,4 +65,14 @@
     <Description>Defines an extension that provides a custom (possibly native) file chooser dialog.</Description>
     <ExtensionNode name="NativeFileChooserDialog"/>
   </ExtensionPoint>
+
+  <ExtensionPoint path="/Banshee/Gui/ArtistListView">
+    <Description>Defines an extension that provides a custom rendering for the artist list cells.</Description>
+    <ExtensionNode name="ArtistListRenderer"/>
+  </ExtensionPoint>
+
+  <Extension path="/Banshee/Gui/ArtistListView">
+    <ArtistListRenderer class="Banshee.Collection.Gui.ColumnCellArtistText"/>
+  </Extension>
+
 </Addin>

@@ -16,6 +16,7 @@ SOURCES =  \
 	Banshee.Collection.Gui/ArtworkRenderer.cs \
 	Banshee.Collection.Gui/BaseTrackListView.cs \
 	Banshee.Collection.Gui/ColumnCellAlbum.cs \
+	Banshee.Collection.Gui/ColumnCellArtistText.cs \
 	Banshee.Collection.Gui/ColumnCellCreativeCommons.cs \
 	Banshee.Collection.Gui/ColumnCellDateTime.cs \
 	Banshee.Collection.Gui/ColumnCellDiscAndCount.cs \
@@ -31,6 +32,7 @@ SOURCES =  \
 	Banshee.Collection.Gui/CoverArtEditor.cs \
 	Banshee.Collection.Gui/DataViewChildAlbum.cs \
 	Banshee.Collection.Gui/DefaultColumnController.cs \
+	Banshee.Collection.Gui/IArtistListRenderer.cs \
 	Banshee.Collection.Gui/PersistentColumnController.cs \
 	Banshee.Collection.Gui/QueryFilterView.cs \
 	Banshee.Collection.Gui/SearchableListView.cs \
@@ -106,6 +108,7 @@ SOURCES =  \
 	Banshee.Gui.Widgets/TrackInfoDisplay.cs \
 	Banshee.Gui.Widgets/UserJobTile.cs \
 	Banshee.Gui.Widgets/UserJobTileHost.cs \
+	Banshee.Gui/ArtistListActions.cs \
 	Banshee.Gui/BansheeActionGroup.cs \
 	Banshee.Gui/BansheeDbFormatMigratorMonitor.cs \
 	Banshee.Gui/BansheeIconFactory.cs \

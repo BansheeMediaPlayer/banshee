@@ -1,10 +1,12 @@
 //
 // InterfaceActionService.cs
 //
-// Author:
+// Authors:
 //   Aaron Bockover <abockover@novell.com>
+//   Frank Ziegler <funtastix@googlemail.com>
 //
 // Copyright (C) 2006-2007 Novell, Inc.
+// Copyright (C) 2013 Frank Ziegler
 //
 // Permission is hereby granted, free of charge, to any person obtaining
 // a copy of this software and associated documentation files (the
@@ -53,6 +55,7 @@ namespace Banshee.Gui
         private TrackActions    track_actions;
         private SourceActions   source_actions;
 
+        private ArtistListActions artist_list_actions;
         private BansheeActionGroup active_source_actions;
         private List<uint> active_source_uis = new List<uint> ();
 
@@ -68,6 +71,7 @@ namespace Banshee.Gui
             AddActionGroup (playback_actions    = new PlaybackActions ());
             AddActionGroup (track_actions       = new TrackActions ());
             AddActionGroup (source_actions      = new SourceActions ());
+            AddActionGroup (artist_list_actions = new ArtistListActions ());
             UIManager.AddUiFromResource ("core-ui-actions-layout.xml");
 
             AddinManager.AddExtensionNodeHandler ("/Banshee/ThickClient/ActionGroup", OnExtensionChanged);
@@ -161,6 +165,10 @@ namespace Banshee.Gui
 
         public ViewActions ViewActions {
             get { return view_actions; }
+        }
+
+        public ArtistListActions ArtistListActions {
+            get { return artist_list_actions; }
         }
 
         string IService.ServiceName {
