@@ -13,8 +13,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: banshee\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-07-17 19:26+0200\n"
-"PO-Revision-Date: 2014-07-17 19:27+0200\n"
+"POT-Creation-Date: 2014-07-20 16:23+0200\n"
+"PO-Revision-Date: 2014-07-20 16:25+0200\n"
 "Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish <gnomepl@aviary.pl>\n"
 "Language: pl\n"
@@ -692,11 +692,11 @@ msgstr "Nagraj płytę CD..."
 msgid "Write selected tracks to an audio CD"
 msgstr "Zapis zaznaczonych ścieżek na płytę CD-Audio"
 
-#: ../src/Backends/Banshee.Gnome/Banshee.GnomeBackend/Brasero.cs:105
+#: ../src/Backends/Banshee.Gnome/Banshee.GnomeBackend/Brasero.cs:106
 msgid "Could not write CD"
 msgstr "Nie można nagrać płyty CD"
 
-#: ../src/Backends/Banshee.Gnome/Banshee.GnomeBackend/Brasero.cs:106
+#: ../src/Backends/Banshee.Gnome/Banshee.GnomeBackend/Brasero.cs:107
 msgid "Brasero could not be started"
 msgstr "Nie można uruchomić programu Brasero"
 
@@ -2853,6 +2853,10 @@ msgstr ""
 "klikać nagłówek kolumny, według której jest teraz porządkowane, aż strzałka "
 "zniknie."
 
+#: ../src/Core/Banshee.ThickClient/Banshee.Collection.Gui/ColumnCellArtistText.cs:42
+msgid "Default Text Artist List"
+msgstr "Domyślny tekst listy wykonawców"
+
 #. Translators: this is {disc number} of {disc count}
 #. Translators: this is {track number} of {track count}
 #: ../src/Core/Banshee.ThickClient/Banshee.Collection.Gui/ColumnCellDiscAndCount.cs:40
@@ -2962,6 +2966,14 @@ msgstr "Korektor graficzny"
 #: ../src/Core/Banshee.ThickClient/Banshee.Equalizer.Gui/EqualizerWindow.cs:147
 msgid "New Preset"
 msgstr "Nowe ustawienie"
+
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/ArtistListActions.cs:118
+msgid "Artist List View"
+msgstr "Widok listy wykonawców"
+
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/ArtistListActions.cs:160
+msgid "_ArtistList"
+msgstr "Lista _wykonawców"
 
 #. Translators: this is the window title when a track is playing
 #. {0} is the track title, {1} is the artist name
@@ -3963,40 +3975,40 @@ msgstr "Rozmiar pliku:"
 msgid "bytes"
 msgstr "bajtów"
 
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui.TrackEditor/TrackEditorDialog.cs:96
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui.TrackEditor/TrackEditorDialog.cs:97
 msgid "Track Editor"
 msgstr "Edytor ścieżek"
 
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui.TrackEditor/TrackEditorDialog.cs:96
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui.TrackEditor/TrackEditorDialog.cs:97
 msgid "Track Properties"
 msgstr "Właściwości ścieżki"
 
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui.TrackEditor/TrackEditorDialog.cs:146
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui.TrackEditor/TrackEditorDialog.cs:147
 msgid "Show the previous track"
 msgstr "Wyświetla poprzednią ścieżkę"
 
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui.TrackEditor/TrackEditorDialog.cs:152
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui.TrackEditor/TrackEditorDialog.cs:153
 msgid "Show the next track"
 msgstr "Wyświetla następną ścieżkę"
 
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui.TrackEditor/TrackEditorDialog.cs:184
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui.TrackEditor/TrackEditorDialog.cs:185
 msgid "Title:"
 msgstr "Tytuł:"
 
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui.TrackEditor/TrackEditorDialog.cs:185
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui.TrackEditor/TrackEditorDialog.cs:186
 msgid "Artist:"
 msgstr "Wykonawca:"
 
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui.TrackEditor/TrackEditorDialog.cs:186
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui.TrackEditor/TrackEditorDialog.cs:187
 msgid "Album:"
 msgstr "Album:"
 
 # skrócone, ale i tak może wystawać poza obszar przycisku.
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui.TrackEditor/TrackEditorDialog.cs:311
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui.TrackEditor/TrackEditorDialog.cs:312
 msgid "Sync all field _values"
 msgstr "Z_synchr. wszystkie pola"
 
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui.TrackEditor/TrackEditorDialog.cs:316
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui.TrackEditor/TrackEditorDialog.cs:317
 msgid ""
 "Apply the values of all common fields set for this track to all of the "
 "tracks selected in this editor"
@@ -4004,12 +4016,12 @@ msgstr ""
 "Kopiuje wartości ze wszystkich wspólnych pól z bieżącego utworu do "
 "pozostałych zaznaczonych ścieżek zaznaczonych w tym edytorze"
 
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui.TrackEditor/TrackEditorDialog.cs:416
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui.TrackEditor/TrackEditorDialog.cs:417
 #, csharp-format
 msgid "<i>Editing {0} of {1} items</i>"
 msgstr "<i>Modyfikowanie elementu {0} z {1}</i>"
 
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui.TrackEditor/TrackEditorDialog.cs:712
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui.TrackEditor/TrackEditorDialog.cs:713
 #, csharp-format
 msgid "Save the changes made to the open track?"
 msgid_plural "Save the changes made to {0} of {1} open tracks?"
@@ -4017,11 +4029,11 @@ msgstr[0] "Zapisać zmiany dokonane na otwartej ścieżce?"
 msgstr[1] "Zapisać zmiany dokonane na {0} z {1} otwartych ścieżek?"
 msgstr[2] "Zapisać zmiany dokonane na {0} z {1} otwartych ścieżek?"
 
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui.TrackEditor/TrackEditorDialog.cs:729
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui.TrackEditor/TrackEditorDialog.cs:730
 msgid "Close _without Saving"
 msgstr "Zamknij _bez zapisywania"
 
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui.TrackEditor/TrackEditorDialog.cs:766
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui.TrackEditor/TrackEditorDialog.cs:767
 #, csharp-format
 msgid "If you don't save, changes from the last {0} will be permanently lost."
 msgstr ""
