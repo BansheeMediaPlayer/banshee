@@ -115,7 +115,7 @@ namespace Banshee.Gui
                 var box = new HBox ();
                 box.Spacing = 5;
 
-                var label = new Label (Catalog.GetString ("Artist List View"));
+                var label = new Label (action.Label);
                 box.PackStart (label, false, false, 0);
                 label.Show ();
 
@@ -157,7 +157,7 @@ namespace Banshee.Gui
             };
 
             Add (new [] {
-                new ActionEntry ("ArtistListMenuAction", null, Catalog.GetString ("_ArtistList"),
+                new ActionEntry ("ArtistListMenuAction", null, Catalog.GetString ("Artist List View"),
                                  null, null, null)
             });
 
