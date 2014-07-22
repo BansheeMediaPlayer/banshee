@@ -388,6 +388,9 @@ namespace Banshee.NotificationArea
                     ToggleRatingMenuSensitive ();
                     ShowTrackNotification ();
                     break;
+                case PlayerEvent.StateChange:
+                    UpdateActions ();
+                    break;
                 case PlayerEvent.EndOfStream:
                     current_track = null;
                     ToggleRatingMenuSensitive ();
@@ -491,8 +494,6 @@ namespace Banshee.NotificationArea
                 current_nf.Urgency = Urgency.Low;
                 current_nf.Timeout = 4500;
 
-                UpdateActions ();
-
                 if (image == null) {
                     current_nf.RemoveHint ("image-path");
                 } else {
@@ -511,7 +512,13 @@ namespace Banshee.NotificationArea
 
         private void UpdateActions ()
         {
-            if (!current_track.IsLive && ActionsSupported && interface_action_service.PlaybackActions["NextAction"].Sensitive) {
+            if (!ActionsSupported || current_nf == null || current_track == null) {
+                return;
+            }
+
+            if (!current_track.IsLive && interface_action_service.PlaybackActions["NextAction"].Sensitive) {
+                current_nf.ClearActions ();
+
                 if (ActionIconsSupported) {
                     current_nf.AddHint ("action-icons", true);
 
@@ -519,7 +526,7 @@ namespace Banshee.NotificationArea
                     current_nf.AddAction ("media-skip-backward",
                                           Catalog.GetString("Previous"), OnPreviousTrack);
 
-                    bool is_playing = ServiceManager.PlayerEngine.IsPlaying ();
+                    bool is_playing = ServiceManager.PlayerEngine.IsPlaying () && ServiceManager.PlayerEngine.CurrentState != PlayerState.Paused;
                     current_nf.AddAction (is_playing ? "media-playback-pause" : "media-playback-start",
                                           interface_action_service.PlaybackActions["PlayPauseAction"].Label, OnPlayPause);
                 }
