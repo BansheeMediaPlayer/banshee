@@ -500,6 +500,10 @@ namespace Banshee.NotificationArea
                     current_nf.AddHint ("image-path", image);
                 }
 
+                if (ServiceManager.PlayerEngine.IsPlaying ()) {
+                    current_nf.Category = "x-gnome.music";
+                }
+
                 if (PersistenceSupported) {
                     current_nf.AddHint ("resident", true);
                 }
