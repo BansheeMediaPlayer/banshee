@@ -491,22 +491,7 @@ namespace Banshee.NotificationArea
                 current_nf.Urgency = Urgency.Low;
                 current_nf.Timeout = 4500;
 
-                if (!current_track.IsLive && ActionsSupported && interface_action_service.PlaybackActions["NextAction"].Sensitive) {
-                    if (ActionIconsSupported) {
-                        current_nf.AddHint ("action-icons", true);
-
-                        // We need to use an icon name as the action id, so that the notification uses that icon
-                        current_nf.AddAction ("media-skip-backward",
-                            Catalog.GetString("Previous"), OnPreviousTrack);
-
-                        bool is_playing = ServiceManager.PlayerEngine.IsPlaying ();
-                        current_nf.AddAction (is_playing ? "media-playback-pause" : "media-playback-start",
-                            interface_action_service.PlaybackActions["PlayPauseAction"].Label, OnPlayPause);
-                    }
-
-                    current_nf.AddAction ("media-skip-forward",
-                        Catalog.GetString("Skip this item"), OnNextTrack);
-                }
+                UpdateActions ();
 
                 if (image == null) {
                     current_nf.RemoveHint ("image-path");
@@ -521,6 +506,26 @@ namespace Banshee.NotificationArea
                 current_nf.Show ();
             } catch (Exception e) {
                 Log.Error (Catalog.GetString ("Cannot show notification"), e);
+            }
+        }
+
+        private void UpdateActions ()
+        {
+            if (!current_track.IsLive && ActionsSupported && interface_action_service.PlaybackActions["NextAction"].Sensitive) {
+                if (ActionIconsSupported) {
+                    current_nf.AddHint ("action-icons", true);
+
+                    // We need to use an icon name as the action id, so that the notification uses that icon
+                    current_nf.AddAction ("media-skip-backward",
+                                          Catalog.GetString("Previous"), OnPreviousTrack);
+
+                    bool is_playing = ServiceManager.PlayerEngine.IsPlaying ();
+                    current_nf.AddAction (is_playing ? "media-playback-pause" : "media-playback-start",
+                                          interface_action_service.PlaybackActions["PlayPauseAction"].Label, OnPlayPause);
+                }
+
+                current_nf.AddAction ("media-skip-forward",
+                                      Catalog.GetString("Skip this item"), OnNextTrack);
             }
         }
 
