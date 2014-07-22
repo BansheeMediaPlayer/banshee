@@ -10,7 +10,25 @@ formatting details of this message are described here:
 
   http://live.gnome.org/Git/CommitMessages
 
-Please review these guidelines separate to this document.
+Please review these guidelines separate to this document, and take in account
+these policies on top:
+
+  1. Unlike many other open-source projects, we don't use the git tagging
+     'Signed-off-by' to refer as a licencing statement of a contribution,
+     rather we use it as 'Reviewed by this maintainer' metadata.
+
+  2. As a consequence of the above, the choice of licencing attribution
+     is implicit: by contributing a patch to the Banshee project you are
+     automatically accepting to follow the same licence as the project
+     itself (see our COPYING file) unless stated on the contrary.
+
+  3. When a contributed patch contains new files, please include licence
+     headers in each of them, in the same way the rest of the files of
+     the projects already have.
+
+  4. It's recommended that you add yourself (or your company) to the list
+     of the copyright owners of a file if you're modifying a considerable
+     proportion of it.
 
 
 C# Coding Style Guidelines
