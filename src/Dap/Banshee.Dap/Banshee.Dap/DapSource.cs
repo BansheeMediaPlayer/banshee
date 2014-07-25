@@ -112,9 +112,6 @@ namespace Banshee.Dap
 
             Flush ();
 
-            PurgeTemporaryPlaylists ();
-            PurgeTracks ();
-
             if (dap_info_bar != null) {
                 var info_bar = dap_info_bar;
                 ThreadAssist.ProxyToMain (info_bar.Destroy);
@@ -303,18 +300,28 @@ namespace Banshee.Dap
         private void ThreadedLoadDeviceContents ()
         {
             try {
-                PurgeTracks ();
+                PreLoad ();
                 SetStatus (String.Format (Catalog.GetString ("Loading {0}"), Name), false);
                 LoadFromDevice ();
-                HideStatus ();
-
-                sync.DapLoaded ();
-                sync.CalculateSync ();
-                if (sync.AutoSync) {
-                    sync.Sync ();
-                }
+                PostLoad ();
             } catch (Exception e) {
                 Log.Error (e);
+            }
+        }
+
+        protected virtual void PreLoad ()
+        {
+            PurgeTracks ();
+        }
+
+        protected virtual void PostLoad ()
+        {
+            HideStatus ();
+
+            sync.DapLoaded ();
+            sync.CalculateSync ();
+            if (sync.AutoSync) {
+                sync.Sync ();
             }
         }
 
