@@ -58,8 +58,7 @@ namespace Banshee.Metadata.LastFM
 
         public override void Run ()
         {
-
-            if (Track == null || (Track.MediaAttributes & TrackMediaAttributes.Podcast) != 0) {
+            if (!OnlineMetadataServiceJob.TrackConditionsMet (Track)) {
                 return;
             }
 

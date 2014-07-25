@@ -130,6 +130,7 @@ SOURCES =  \
 	Banshee.Metadata/IMetadataProvider.cs \
 	Banshee.Metadata/MetadataService.cs \
 	Banshee.Metadata/MetadataServiceJob.cs \
+	Banshee.Metadata/OnlineMetadataServiceJob.cs \
 	Banshee.Metadata/SaveTrackMetadataJob.cs \
 	Banshee.Metadata/SaveTrackMetadataService.cs \
 	Banshee.Metadata/Tests/TaglibReadWriteTests.cs \

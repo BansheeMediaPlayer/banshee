@@ -93,8 +93,7 @@ namespace Banshee.Metadata.MusicBrainz
 
         public bool Lookup ()
         {
-
-            if (Track == null || (Track.MediaAttributes & TrackMediaAttributes.Podcast) != 0) {
+            if (!OnlineMetadataServiceJob.TrackConditionsMet (Track)) {
                 return false;
             }
 

@@ -79,6 +79,22 @@ namespace Banshee.Base
             return System.IO.Path.ChangeExtension (GetPath (aaid), extension);
         }
 
+        public static string CreateArtworkId (IBasicTrackInfo track)
+        {
+            string art_id = CoverArtSpec.CreateArtistAlbumId (track.AlbumArtist, track.AlbumTitle);
+            if (art_id != null) {
+                return art_id;
+            }
+
+            art_id = CoverArtSpec.CreateArtistTrackId (track.ArtistName, track.TrackTitle);
+            if (art_id != null) {
+                return art_id;
+            }
+
+            //if track provides embedded artwork but lacks tags, try hard at not giving a null artworkId, so that it can be displayed
+            return CoverArtSpec.CreateUriId (track.Uri);
+        }
+
         public static string CreateArtistAlbumId (string artist, string album)
         {
             if (String.IsNullOrEmpty (album)) {
@@ -91,7 +107,32 @@ namespace Banshee.Base
             }
 
             string digestible = String.Format ("{0}\t{1}", artist, album);
-            return String.Format ("album-{0}", Digest (digestible));
+            return CreateId ("album", digestible);
+        }
+
+        private static string CreateId (string prefix, string digestible)
+        {
+            return String.Format ("{0}-{1}", prefix, Digest (digestible));
+        }
+
+        private static string CreateArtistTrackId (string artist, string track)
+        {
+            if (String.IsNullOrEmpty (artist)) {
+                return null;
+            }
+
+            if (String.IsNullOrEmpty (track)) {
+                return null;
+            }
+
+            string digestible = String.Format ("{0}\t{1}", artist, track);
+            return CreateId ("single", digestible);
+        }
+
+        private static string CreateUriId (SafeUri uri)
+        {
+            string digestible = uri.ToString ();
+            return CreateId ("unknown", digestible);
         }
 
         public static string Digest (string str)

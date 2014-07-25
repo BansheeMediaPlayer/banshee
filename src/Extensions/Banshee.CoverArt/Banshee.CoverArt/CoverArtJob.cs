@@ -134,12 +134,8 @@ namespace Banshee.CoverArt
         {
             bool save = true;
             try {
-                if (String.IsNullOrEmpty (track.AlbumTitle) || String.IsNullOrEmpty (track.ArtistName)) {
-                    // Do not try to fetch album art for these
-                } else {
-                    IMetadataLookupJob job = MetadataService.Instance.CreateJob (track);
-                    job.Run ();
-                }
+                IMetadataLookupJob job = MetadataService.Instance.CreateJob (track);
+                job.Run ();
             } catch (System.Threading.ThreadAbortException) {
                 save = false;
                 throw;

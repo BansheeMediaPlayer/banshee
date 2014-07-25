@@ -72,7 +72,7 @@ namespace Banshee.Metadata.Rhapsody
 
         public override void Run()
         {
-            if (Track == null || (Track.MediaAttributes & TrackMediaAttributes.Podcast) != 0
+            if (!OnlineMetadataServiceJob.TrackConditionsMet (Track)
                 || GetAlbumUrl (Track) == null) {
                 return;
             }
