@@ -29,9 +29,9 @@ using Banshee.Collection;
 
 namespace Banshee.Metadata
 {
-    public static class OnlineMetadataServiceJob
+    internal static class OnlineMetadataServiceJob
     {
-        public static bool TrackConditionsMet (IBasicTrackInfo track)
+        internal static bool TrackConditionsMet (IBasicTrackInfo track)
         {
             if (track == null) {
                 return false;
