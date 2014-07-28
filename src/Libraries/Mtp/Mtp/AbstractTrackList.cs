@@ -57,13 +57,19 @@ namespace Mtp
 
         protected AbstractTrackList (MtpDevice device)
         {
+            if (device == null) {
+                throw new ArgumentNullException ("device");
+            }
+
             this.device = device;
-            track_ids = new List<uint> ();
+
+            if (track_ids == null) {
+                track_ids = new List<uint> ();
+            }
         }
 
-        internal AbstractTrackList (MtpDevice device, IntPtr tracks, uint count)
+        internal AbstractTrackList (MtpDevice device, IntPtr tracks, uint count) : this (device)
         {
-            this.device = device;
             this.saved = true;
             this.track_ids = new List<uint> ();
 
