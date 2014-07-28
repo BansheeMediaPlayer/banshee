@@ -55,7 +55,7 @@ namespace Mtp
             get { return track_ids; }
         }
 
-        public AbstractTrackList (MtpDevice device, string name)
+        protected AbstractTrackList (MtpDevice device)
         {
             this.device = device;
             track_ids = new List<uint> ();

@@ -92,7 +92,7 @@ namespace Mtp
             set { album.tracks = value; }
         }
 
-        public Album (MtpDevice device, string name, string artist, string genre, string composer) : base (device, name)
+        public Album (MtpDevice device, string name, string artist, string genre, string composer) : base (device)
         {
             Name = name;
             Artist = artist;

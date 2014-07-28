@@ -67,7 +67,7 @@ namespace Mtp
             set { playlist.tracks = value; }
         }
 
-        public Playlist (MtpDevice device, string name) : base (device, name)
+        public Playlist (MtpDevice device, string name) : base (device)
         {
             this.playlist = new PlaylistStruct ();
             Name = name;
