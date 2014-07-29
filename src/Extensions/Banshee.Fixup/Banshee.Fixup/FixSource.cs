@@ -38,12 +38,15 @@ using Hyena.Data.Sqlite;
 using Banshee.ServiceStack;
 using Banshee.Gui;
 using Banshee.Sources;
+using Banshee.Preferences;
 
 namespace Banshee.Fixup
 {
     public class FixSource : Source, IUnmapableSource
     {
         ProblemModel problem_model = new ProblemModel ();
+        private SourcePage page = null;
+        private HashSet<Section> sections = new HashSet<Section> ();
 
         public FixSource () : base (Catalog.GetString ("Metadata Fixer"), Catalog.GetString ("Metadata Fixer"), -1)
         {
@@ -55,8 +58,19 @@ namespace Banshee.Fixup
 
             var combo = new Banshee.Widgets.DictionaryComboBox<Solver> ();
             foreach (var solver in problem_model.Solvers) {
+                if (solver.PreferencesSection != null) {
+                    sections.Add (solver.PreferencesSection);
+                }
                 combo.Add (solver.Name, solver);
             }
+
+            if (sections.Count > 0) {
+                page = new SourcePage (this);
+                foreach (var section in sections) {
+                    page.Add (section);
+                }
+            }
+
             combo.Changed += (o, a) => {
                 problem_model.Solver = combo.ActiveValue;
                 SetStatus (problem_model.Solver.Description, false, false, "gtk-info");
@@ -98,7 +112,12 @@ namespace Banshee.Fixup
             Parent.RemoveChildSource (this);
             Properties.Get<Banshee.Sources.Gui.ISourceContents> ("Nereid.SourceContents").Widget.Destroy ();
             problem_model.Dispose ();
+            page.Dispose ();
             return true;
+        }
+
+        public override string PreferencesPageId {
+            get { return page == null ? String.Empty : page.Id; }
         }
     }
 }

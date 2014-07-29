@@ -48,6 +48,10 @@ namespace Banshee.Fixup
         {
         }
 
+        internal protected virtual Banshee.Preferences.Section PreferencesSection {
+            get { return null; }
+        }
+
         // Total hack to work make unit tests work
         internal static bool EnableUnitTests;
 
