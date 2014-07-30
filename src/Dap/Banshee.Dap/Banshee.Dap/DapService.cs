@@ -221,32 +221,37 @@ namespace Banshee.Dap
                 }
 
                 if (source != null) {
-                    ThreadAssist.ProxyToMain (delegate {
-
-                        ServiceManager.SourceManager.AddSource (source);
-                        source.NotifyUser ();
-
-                        // If there are any queued device commands, see if they are to be
-                        // handled by this new DAP (e.g. --device-activate=file:///media/disk)
-                        try {
-                            if (service.unhandled_device_commands != null) {
-                                foreach (DeviceCommand command in service.unhandled_device_commands) {
-                                    if (source.CanHandleDeviceCommand (command)) {
-                                        service.HandleDeviceCommand (source, command.Action);
-                                        service.unhandled_device_commands.Remove (command);
-                                        if (service.unhandled_device_commands.Count == 0) {
-                                            service.unhandled_device_commands = null;
-                                        }
-                                        break;
-                                    }
-                                }
-                            }
-                        } catch (Exception e) {
-                            Log.Error (e);
-                        }
-                    });
+                    service.MapSource (source);
                 }
             }
+        }
+
+        private void MapSource (DapSource source)
+        {
+            ThreadAssist.ProxyToMain (() => {
+
+                ServiceManager.SourceManager.AddSource (source);
+                source.NotifyUser ();
+
+                // If there are any queued device commands, see if they are to be
+                // handled by this new DAP (e.g. --device-activate=file:///media/disk)
+                try {
+                    if (unhandled_device_commands != null) {
+                        foreach (DeviceCommand command in unhandled_device_commands) {
+                            if (source.CanHandleDeviceCommand (command)) {
+                                HandleDeviceCommand (source, command.Action);
+                                unhandled_device_commands.Remove (command);
+                                if (unhandled_device_commands.Count == 0) {
+                                    unhandled_device_commands = null;
+                                }
+                                break;
+                            }
+                        }
+                    }
+                } catch (Exception e) {
+                    Log.Error (e);
+                }
+            });
         }
 
         internal void UnmapDevice (string uuid)
