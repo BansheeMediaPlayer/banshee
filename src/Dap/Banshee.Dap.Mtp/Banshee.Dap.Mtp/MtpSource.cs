@@ -36,6 +36,7 @@ using Mtp;
 using MTP = Mtp;
 
 using Banshee.Dap;
+using Banshee.Collection.Gui;
 using Banshee.ServiceStack;
 using Banshee.Sources;
 using Banshee.Playlist;
@@ -353,16 +354,33 @@ namespace Banshee.Dap.Mtp
                         album.AddTrack (mtp_track);
 
                         if (supports_jpegs && can_sync_albumart) {
-                            try {
-                                Gdk.Pixbuf pic = ServiceManager.Get<Banshee.Collection.Gui.ArtworkManager> ().LookupScalePixbuf (
-                                    track.ArtworkId, thumb_width
-                                );
-                                if (pic != null) {
-                                    byte [] bytes = pic.SaveToBuffer ("jpeg");
-                                    album.Save (bytes, (uint)pic.Width, (uint)pic.Height);
-                                    Banshee.Collection.Gui.ArtworkManager.DisposePixbuf (pic);
+                            ArtworkManager art = ServiceManager.Get<ArtworkManager> ();
+                            Exception ex = null;
+                            Gdk.Pixbuf pic = null;
+                            byte[] bytes = null;
+                            uint width = 0, height = 0;
+                            ThreadAssist.BlockingProxyToMain (() => {
+                                try {
+                                    pic = art.LookupScalePixbuf (track.ArtworkId, thumb_width);
+                                    if (pic != null) {
+                                        bytes = pic.SaveToBuffer ("jpeg");
+                                        width = (uint) pic.Width;
+                                        height = (uint) pic.Height;
+                                    }
+                                } catch (Exception e) {
+                                    ex = e;
                                 }
-                                album_cache[key] = album;
+                            });
+
+                            try {
+                                if (ex != null) {
+                                    throw ex;
+                                }
+                                if (bytes != null) {
+                                    ArtworkManager.DisposePixbuf (pic);
+                                    album.Save (bytes, width, height);
+                                    album_cache [key] = album;
+                                }
                             } catch (Exception e) {
                                 Log.Debug ("Failed to create MTP Album", e.Message);
                             }
