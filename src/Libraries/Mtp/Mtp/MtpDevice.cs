@@ -307,8 +307,10 @@ namespace Mtp
         internal static void GetBatteryLevel (MtpDeviceHandle handle, out ushort maxLevel, out ushort currentLevel)
         {
             int result = LIBMTP_Get_Batterylevel (handle, out maxLevel, out currentLevel);
-            if (result != 0)
+            if (result != 0) {
+                LibMtpException.CheckErrorStack (handle);
                 throw new LibMtpException (ErrorCode.General, "Could not retrieve battery stats");
+            }
         }
 
         internal static void GetConnectedDevices (out IntPtr list)
