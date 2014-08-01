@@ -26,12 +26,16 @@
 
 using System;
 
+using Mono.Unix;
+
 using Banshee.Collection.Database;
 using Banshee.Dap.Gui;
 using Banshee.Hardware;
 using Banshee.Sources;
 using Banshee.Sources.Gui;
+
 using Hyena;
+
 using Mono.Addins;
 
 namespace Banshee.Dap
@@ -119,23 +123,22 @@ namespace Banshee.Dap
         private bool TryDeviceInitialize (bool force, out DapSource source)
         {
             lock (lock_object) {
-                source = default (DapSource);
+                source = null;
 
                 if (initialized) {
                     return false;
                 }
 
                 SetStatus (
-                    AddinManager.CurrentLocalizer.GetString ("Trying to Claim Your Device\u2026"),
+                    Catalog.GetString ("Trying to claim your device..."),
                     false,
                     true,
                     "dialog-information"
                 );
 
                 Log.Debug ("PotentialSource: Creating Instance");
-                DapSource src = null;
                 try {
-                    src = (DapSource) Claimant.CreateInstance ();
+                    DapSource src = (DapSource) Claimant.CreateInstance ();
                     Log.Debug ("PotentialSource: Initializing Device");
                     src.DeviceInitialize (Device, force);
                     Log.Debug ("PotentialSource: Loading Contents");
@@ -153,11 +156,11 @@ namespace Banshee.Dap
                     Log.Error (e);
                 }
 
-                bool success = !object.ReferenceEquals (source, default (DapSource));
+                bool success = (source != null);
 
                 SetStatus (
-                    success ? AddinManager.CurrentLocalizer.GetString ("Connection Successful. Please wait\u2026")
-                            : AddinManager.CurrentLocalizer.GetString ("Connection Failed\u2026"),
+                    success ? Catalog.GetString ("Connection successful. Please wait...")
+                            : Catalog.GetString ("Connection failed"),
                     !success,
                     success,
                     success ? "dialog-information"
