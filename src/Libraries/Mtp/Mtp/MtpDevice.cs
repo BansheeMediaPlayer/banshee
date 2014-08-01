@@ -152,10 +152,6 @@ namespace Mtp
                     albumFolder = f;
                 else if (f.FolderId == device.default_music_folder) {
                     musicFolder = f;
-                    // Fix for devices that don't have an explicit playlist folder (BGO #590342)
-                    if (device.default_playlist_folder == 0) {
-                        playlistFolder = f;
-                    }
                 }
                 else if (f.FolderId == device.default_organizer_folder)
                     organizerFolder = f;
@@ -169,6 +165,11 @@ namespace Mtp
                     videoFolder = f;
                 else if (f.FolderId == device.default_zencast_folder)
                     podcastFolder = f;
+            }
+
+            // Fix for devices that don't have an explicit playlist folder (see BGO #590342 and #733883)
+            if (playlistFolder == null && musicFolder != null) {
+                playlistFolder = musicFolder;
             }
         }
         
