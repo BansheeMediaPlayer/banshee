@@ -1,5 +1,5 @@
 //
-// PlaybackControllerService.cs
+// MediaProfilerManager.cs
 //
 // Author:
 //   Aaron Bockover <abockover@novell.com>
