@@ -49,7 +49,6 @@ namespace Banshee.Dap.Mtp
 {
     public class MtpSource : DapSource
     {
-
         protected override object InternalLock {
             get { return mtp_device; }
         }
@@ -146,8 +145,8 @@ namespace Banshee.Dap.Mtp
             AddDapProperty (Catalog.GetString ("Version"), mtp_device.Version);
             try {
                 AddDapProperty (Catalog.GetString ("Battery level"), String.Format ("{0:0%}", mtp_device.BatteryLevel/100.0));
-            } catch (Exception e) {
-                Log.Error ("Unable to get battery level from MTP device", e);
+            } catch (LibMtpException e) {
+                Log.Warning ("Unable to get battery level from MTP device", e);
             }
         }
 
