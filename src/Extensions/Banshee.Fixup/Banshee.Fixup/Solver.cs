@@ -32,6 +32,7 @@ using Mono.Unix;
 
 using Hyena.Data.Sqlite;
 
+using Banshee.Sources;
 using Banshee.ServiceStack;
 using Banshee.Configuration;
 
@@ -109,6 +110,10 @@ namespace Banshee.Fixup
 
         protected abstract void IdentifyCore ();
         public abstract void Fix (IEnumerable<Problem> problems);
+
+        public virtual void SetStatus (SourceMessage status_message, string preferences_page_id)
+        {
+        }
     }
 
     public abstract class DuplicateSolver : Solver
