@@ -79,7 +79,7 @@ namespace Banshee.Dap.Mtp
             try {
                 devices = MtpDevice.Detect ();
             } catch (TypeInitializationException e) {
-                Log.Exception (e);
+                Log.Error (e); // even if this is not a generic-catch block, e.InnerException should probably be checked here
                 Log.Error (
                     Catalog.GetString ("Error Initializing MTP Device Support"),
                     Catalog.GetString ("There was an error initializing MTP device support."), true
