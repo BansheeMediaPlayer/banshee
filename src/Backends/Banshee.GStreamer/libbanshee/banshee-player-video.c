@@ -151,6 +151,7 @@ bp_video_bus_element_sync_message (GstBus *bus, GstMessage *message, BansheePlay
 
     if (found_video_overlay) {
         gst_video_overlay_set_window_handle (player->video_overlay, player->video_window_xid);
+        gst_video_overlay_handle_events (player->video_overlay, TRUE);
     }
 
     #endif
@@ -358,6 +359,7 @@ bp_video_window_expose (BansheePlayer *player, GdkWindow *window, gboolean direc
     gst_object_ref (player->video_overlay);
 
     gst_video_overlay_set_window_handle (player->video_overlay, player->video_window_xid);
+    gst_video_overlay_handle_events (player->video_overlay, TRUE);
     gst_video_overlay_expose (player->video_overlay);
 
     gst_object_unref (player->video_overlay);
