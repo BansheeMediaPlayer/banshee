@@ -13,8 +13,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: banshee\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-08-03 20:14+0200\n"
-"PO-Revision-Date: 2014-08-03 20:15+0200\n"
+"POT-Creation-Date: 2014-08-11 18:22+0200\n"
+"PO-Revision-Date: 2014-08-11 18:24+0200\n"
 "Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish <gnomepl@aviary.pl>\n"
 "Language: pl\n"
@@ -4726,13 +4726,26 @@ msgstr "Wersja"
 msgid "Battery level"
 msgstr "Poziom naładowania akumulatora"
 
-#. user_event.Progress = (double)current / total;
-#. Translators: {0} is the name of the MTP audio device (eg Gabe's Zen Player), {1} is the
-#. track currently being loaded, and {2} is the total # of tracks that will be loaded.
-#: ../src/Dap/Banshee.Dap.Mtp/Banshee.Dap.Mtp/MtpSource.cs:163
+#. Translators: {0} is the file currently being loaded
+#. and {1} is the total # of files that will be loaded.
+#: ../src/Dap/Banshee.Dap.Mtp/Banshee.Dap.Mtp/MtpSource.cs:157
 #, csharp-format
-msgid "Loading {0} - {1} of {2}"
-msgstr "Wczytywanie {0} - {1} z {2}"
+msgid "Reading File - {0} of {1}"
+msgstr "Odczytywanie pliku {0} z {1}"
+
+#. Translators: {0} is the track currently being loaded
+#. and {1} is the total # of tracks that will be loaded.
+#: ../src/Dap/Banshee.Dap.Mtp/Banshee.Dap.Mtp/MtpSource.cs:183
+#, csharp-format
+msgid "Loading Track - {0} of {1}"
+msgstr "Wczytywanie ścieżki - {0} z {1}"
+
+#. Translators: {0} is the playlist currently being loaded
+#. and {1} is the total # of playlists that will be loaded.
+#: ../src/Dap/Banshee.Dap.Mtp/Banshee.Dap.Mtp/MtpSource.cs:204
+#, csharp-format
+msgid "Loading Playlist - {0} of {1}"
+msgstr "Wczytywanie listy odtwarzania - {0} z {1}"
 
 #: ../src/Extensions/Banshee.AmazonMp3/Banshee.AmazonMp3/AmazonDownloadManager.cs:57
 msgid "Amazon MP3 Purchases"
@@ -5236,13 +5249,13 @@ msgstr " i "
 #. Translators: These are articles that might be prefixed or suffixed
 #. on artist names or album titles.  You can add as many as you need,
 #. separated by a pipe (|)
-#: ../src/Extensions/Banshee.Fixup/Banshee.Fixup/Solver.cs:205
+#: ../src/Extensions/Banshee.Fixup/Banshee.Fixup/Solver.cs:210
 msgid "a|an|the"
 msgstr " "
 
 #. Translators: This is the format commonly used in your langauge for
 #. suffixing an article, eg in English: ", The"
-#: ../src/Extensions/Banshee.Fixup/Banshee.Fixup/Solver.cs:209
+#: ../src/Extensions/Banshee.Fixup/Banshee.Fixup/Solver.cs:214
 #, csharp-format
 msgid ", {0}"
 msgstr ", {0}"
