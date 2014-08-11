@@ -152,15 +152,15 @@ namespace Banshee.Dap.Mtp
 
         protected override void LoadFromDevice ()
         {
+            // Translators: {0} is the file currently being loaded
+            // and {1} is the total # of files that will be loaded.
+            string format = Catalog.GetString ("Reading File - {0} of {1}");
             track_map = new Dictionary<long, Track> ();
             try {
                 List<Track> files = null;
                 lock (mtp_device) {
                     files = mtp_device.GetAllTracks (delegate (ulong current, ulong total, IntPtr data) {
-                        //user_event.Progress = (double)current / total;
-                        // Translators: {0} is the name of the MTP audio device (eg Gabe's Zen Player), {1} is the
-                        // track currently being loaded, and {2} is the total # of tracks that will be loaded.
-                        SetStatus (String.Format (Catalog.GetString ("Loading {0} - {1} of {2}"), Name, current, total), false);
+                        SetStatus (String.Format (format, current + 1, total), false);
                         return 0;
                     });
                 }
@@ -178,7 +178,12 @@ namespace Banshee.Dap.Mtp
                     }
                 }
 
-                foreach (Track mtp_track in files) {
+                // Translators: {0} is the track currently being loaded
+                // and {1} is the total # of tracks that will be loaded.
+                format = Catalog.GetString ("Loading Track - {0} of {1}");
+                for (int current = 0, total = files.Count; current < total; ++current) {
+                    SetStatus (String.Format (format, current + 1, total), false);
+                    Track mtp_track = files [current];
                     long track_id;
                     if ((track_id = DatabaseTrackInfo.GetTrackIdForUri (MtpTrackInfo.GetPathFromMtpTrack (mtp_track), DbId )) > 0) {
                         track_map[track_id] = mtp_track;
@@ -194,10 +199,16 @@ namespace Banshee.Dap.Mtp
                     @"INSERT INTO CorePlaylistEntries (PlaylistID, TrackID)
                         SELECT ?, TrackID FROM CoreTracks WHERE PrimarySourceID = ? AND ExternalID = ?");
 
+                // Translators: {0} is the playlist currently being loaded
+                // and {1} is the total # of playlists that will be loaded.
+                format = Catalog.GetString ("Loading Playlist - {0} of {1}");
                 lock (mtp_device) {
                     var playlists = mtp_device.GetPlaylists ();
                     if (playlists != null) {
-                        foreach (MTP.Playlist playlist in playlists) {
+                        for (int current = 0, total = playlists.Count; current < total; ++current) {
+                            MTP.Playlist playlist = playlists [current];
+                            SetStatus (String.Format (format, current + 1, total), false);
+                            Track mtp_track = files [current];
                             PlaylistSource pl_src = new PlaylistSource (playlist.Name, this);
                             pl_src.Save ();
                             // TODO a transaction would make sense here (when the threading issue is fixed)
