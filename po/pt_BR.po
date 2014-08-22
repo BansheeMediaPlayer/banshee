@@ -13,13 +13,14 @@
 # Carlos Eduardo Moreira dos Santos <cems@cemshost.com.br>, 2008.
 # Fábio Nogueira <deb-user-ba@ubuntu.com>, 2008.
 # Amanda Magalhães <amandinha@comum.org>, 2010.
-# Enrico Nicoletto <liverig@gmail.com>, 2010.
+# Enrico Nicoletto <liverig@gmail.com>, 2010, 2014.
 # Pablo Garrido <pablo@pablogarrido.com.br>, 2010.
 # Michel Recondo <michel@recondo.com.br>, 2008, 2010.
 # Daniel S. Koda <danielskoda@gmail.com>, 2009, 2010.
 # Carlos José Pereira <carlao2005@gmail.com>, 2010.
 # Lucas Mezencio <lucas.mezencio@gmail.com>, 2012.
 # Rafael Ferreira <rafael.f.f1@gmail.com>, 2013, 2014.
+# Ricardo Barbosa <barbosa.cisco@gmail.com>, 2014.
 #
 # Referências baseadas no gstreamer
 # filesink -> consumidor de arquivo
@@ -30,9 +31,9 @@ msgstr ""
 "Project-Id-Version: banshee\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=banshee&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2014-07-20 14:23+0000\n"
-"PO-Revision-Date: 2014-07-20 14:12-0300\n"
-"Last-Translator: Rafael Ferreira <rafael.f.f1@gmail.com>\n"
+"POT-Creation-Date: 2014-08-12 02:48+0000\n"
+"PO-Revision-Date: 2014-08-22 15:08-0300\n"
+"Last-Translator: Ricardo Barbosa <barbosa.cisco@gmail.com>\n"
 "Language-Team: Brazilian Portuguese <gnome-pt_br-list@gnome.org>\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
@@ -667,7 +668,7 @@ msgstr ""
 "dispositivos. Acreditamos que você irá amar o Banshee!"
 
 #: ../data/desktop-files/common.desktop.in.h:1
-#: ../src/Dap/Banshee.Dap/Banshee.Dap/DapSource.cs:207
+#: ../src/Dap/Banshee.Dap/Banshee.Dap/DapSource.cs:206
 msgid "Media Player"
 msgstr "Reprodutor de mídia"
 
@@ -1347,7 +1348,7 @@ msgid "Stream location not found"
 msgstr "Local de transmissão não localizado"
 
 #: ../src/Core/Banshee.Core/Banshee.Collection/TrackInfo.cs:348
-#: ../src/Dap/Banshee.Dap/Banshee.Dap/DapSource.cs:359
+#: ../src/Dap/Banshee.Dap/Banshee.Dap/DapSource.cs:373
 msgid "File not found"
 msgstr "Arquivo não encontrado"
 
@@ -2631,7 +2632,7 @@ msgstr "drm"
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui.TrackEditor/StatisticsPage.cs:234
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui.TrackEditor/StatisticsPage.cs:236
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui.TrackEditor/StatisticsPage.cs:238
-#: ../src/Dap/Banshee.Dap/Banshee.Dap/DapSource.cs:420
+#: ../src/Dap/Banshee.Dap/Banshee.Dap/DapSource.cs:434
 msgid "Unknown"
 msgstr "Desconhecido"
 
@@ -2961,13 +2962,9 @@ msgstr "Equalizador"
 msgid "New Preset"
 msgstr "Nova predefinição"
 
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui/ArtistListActions.cs:118
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/ArtistListActions.cs:160
 msgid "Artist List View"
 msgstr "Ver lista de artista"
-
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui/ArtistListActions.cs:160
-msgid "_ArtistList"
-msgstr "Lista_Artista"
 
 #. Translators: this is the window title when a track is playing
 #. {0} is the track title, {1} is the artist name
@@ -3427,7 +3424,7 @@ msgid "New _Smart Playlist"
 msgstr "Nova lista de reprodução _inteligente"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui/SourceActions.cs:121
-#: ../src/Extensions/Banshee.Fixup/Banshee.Fixup/FixSource.cs:84
+#: ../src/Extensions/Banshee.Fixup/Banshee.Fixup/FixSource.cs:98
 #: ../src/Extensions/Banshee.LastfmStreaming/Banshee.LastfmStreaming/LastfmStreamingActions.cs:67
 #: ../src/Extensions/Banshee.PlayQueue/Banshee.PlayQueue/PlayQueueActions.cs:79
 #: ../src/Extensions/Banshee.Podcasting/Banshee.Podcasting.Gui/PodcastActions.cs:72
@@ -4105,7 +4102,7 @@ msgstr "{0}por{1} {2} {0}de{1} {3}"
 #. Translators: {0} and {1} are for markup so ignore them, {2} is for Album Title;
 #. e.g. 'from Killing with a Smile'
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui.Widgets/TrackInfoDisplay.cs:600
-#: ../src/Extensions/Banshee.NotificationArea/Banshee.NotificationArea/NotificationAreaService.cs:554
+#: ../src/Extensions/Banshee.NotificationArea/Banshee.NotificationArea/NotificationAreaService.cs:570
 #, csharp-format
 msgid "{0}from{1} {2}"
 msgstr "{0}de{1} {2}"
@@ -4113,7 +4110,7 @@ msgstr "{0}de{1} {2}"
 #. Translators: {0} and {1} are for markup so ignore them, {2} is for Artist Name;
 #. e.g. 'by Parkway Drive'
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui.Widgets/TrackInfoDisplay.cs:604
-#: ../src/Extensions/Banshee.NotificationArea/Banshee.NotificationArea/NotificationAreaService.cs:558
+#: ../src/Extensions/Banshee.NotificationArea/Banshee.NotificationArea/NotificationAreaService.cs:574
 #, csharp-format
 msgid "{0}by{1} {2}"
 msgstr "{0}por{1} {2}"
@@ -4423,7 +4420,7 @@ msgid "Available"
 msgstr "Disponível"
 
 #: ../src/Dap/Banshee.Dap.AppleDevice/Banshee.Dap.AppleDevice/AppleDeviceSource.cs:123
-#: ../src/Dap/Banshee.Dap.Mtp/Banshee.Dap.Mtp/MtpSource.cs:143
+#: ../src/Dap/Banshee.Dap.Mtp/Banshee.Dap.Mtp/MtpSource.cs:144
 msgid "Serial number"
 msgstr "Número serial"
 
@@ -4482,39 +4479,39 @@ msgid "Sync {0}"
 msgstr "Sincronizar {0}"
 
 #. This group source gives us a separator for DAPs in the source view.
-#: ../src/Dap/Banshee.Dap/Banshee.Dap/DapService.cs:60
+#: ../src/Dap/Banshee.Dap/Banshee.Dap/DapService.cs:61
 msgid "Devices"
 msgstr "Dispositivos"
 
-#: ../src/Dap/Banshee.Dap/Banshee.Dap/DapSource.cs:192
+#: ../src/Dap/Banshee.Dap/Banshee.Dap/DapSource.cs:191
 msgid "Device Properties"
 msgstr "Propriedades do dispositivo"
 
-#: ../src/Dap/Banshee.Dap/Banshee.Dap/DapSource.cs:214
+#: ../src/Dap/Banshee.Dap/Banshee.Dap/DapSource.cs:213
 msgid "Product"
 msgstr "Produto"
 
-#: ../src/Dap/Banshee.Dap/Banshee.Dap/DapSource.cs:215
+#: ../src/Dap/Banshee.Dap/Banshee.Dap/DapSource.cs:214
 msgid "Vendor"
 msgstr "Fabricante"
 
-#: ../src/Dap/Banshee.Dap/Banshee.Dap/DapSource.cs:307
+#: ../src/Dap/Banshee.Dap/Banshee.Dap/DapSource.cs:306
 #: ../src/Extensions/Banshee.Podcasting/Banshee.Podcasting.Data/PodcastSource.cs:141
 #, csharp-format
 msgid "Loading {0}"
 msgstr "Carregando {0}"
 
-#: ../src/Dap/Banshee.Dap/Banshee.Dap/DapSource.cs:401
+#: ../src/Dap/Banshee.Dap/Banshee.Dap/DapSource.cs:415
 #: ../src/Extensions/Banshee.Podcasting/Banshee.Podcasting.Gui/ColumnCellYesNo.cs:37
 msgid "Yes"
 msgstr "Sim"
 
-#: ../src/Dap/Banshee.Dap/Banshee.Dap/DapSource.cs:401
+#: ../src/Dap/Banshee.Dap/Banshee.Dap/DapSource.cs:415
 #: ../src/Extensions/Banshee.Podcasting/Banshee.Podcasting.Gui/ColumnCellYesNo.cs:38
 msgid "No"
 msgstr "Não"
 
-#: ../src/Dap/Banshee.Dap/Banshee.Dap/DapSource.cs:422
+#: ../src/Dap/Banshee.Dap/Banshee.Dap/DapSource.cs:436
 #, csharp-format
 msgid ""
 "The {0} format is not supported by the device, and no converter was found to "
@@ -4523,11 +4520,11 @@ msgstr ""
 "O dispositivo não possui suporte ao formato {0}, e nenhum conversor foi "
 "localizado para convertê-lo"
 
-#: ../src/Dap/Banshee.Dap/Banshee.Dap/DapSource.cs:428
+#: ../src/Dap/Banshee.Dap/Banshee.Dap/DapSource.cs:442
 msgid "File format conversion support is not available"
 msgstr "O suporte à conversão de formato de arquivos não está disponível"
 
-#: ../src/Dap/Banshee.Dap/Banshee.Dap/DapSource.cs:454
+#: ../src/Dap/Banshee.Dap/Banshee.Dap/DapSource.cs:468
 msgid "Error converting file"
 msgstr "Erro ao converter arquivo"
 
@@ -4558,6 +4555,11 @@ msgstr[0] "A operação de sincronização removerá uma faixa de seu dispositiv
 msgstr[1] "A operação de sincronização removerá {0} faixas de seu dispositivo."
 
 #: ../src/Dap/Banshee.Dap/Banshee.Dap.Gui/DapActions.cs:53
+#: ../src/Dap/Banshee.Dap/Banshee.Dap.Gui/InactiveDapContent.cs:106
+msgid "Claim"
+msgstr "Reivindicar"
+
+#: ../src/Dap/Banshee.Dap/Banshee.Dap.Gui/DapActions.cs:58
 msgid "Sync"
 msgstr "Sincronizar"
 
@@ -4602,6 +4604,15 @@ msgstr "Capacidade usada"
 msgid "Advanced details"
 msgstr "Detalhes avançados"
 
+#: ../src/Dap/Banshee.Dap/Banshee.Dap.Gui/InactiveDapContent.cs:103
+msgid "Your device appears to be in use by another program"
+msgstr "Seu dispositivo parece estar sendo usado por outro programa"
+
+#: ../src/Dap/Banshee.Dap/Banshee.Dap.Gui/InactiveDapContent.cs:109
+#, csharp-format
+msgid "Press the {0} button above to use it in Banshee"
+msgstr "Pressione o botão {0} acima para usá-lo no Banshee"
+
 #. Translators: {0} is the name of a library, eg 'Music' or 'Podcasts'
 #: ../src/Dap/Banshee.Dap/Banshee.Dap.Gui/LibrarySyncOptions.cs:65
 #, csharp-format
@@ -4626,6 +4637,18 @@ msgstr "Sicronizando de \"{0}\""
 #: ../src/Dap/Banshee.Dap/Banshee.Dap.Gui/PurchasedMusicActions.cs:53
 msgid "Import Purchased Music"
 msgstr "Importar música comprada"
+
+#: ../src/Dap/Banshee.Dap/Banshee.Dap/PotentialSource.cs:133
+msgid "Trying to claim your device..."
+msgstr "Tentando reivindicar seu dispositivo..."
+
+#: ../src/Dap/Banshee.Dap/Banshee.Dap/PotentialSource.cs:162
+msgid "Connection successful. Please wait..."
+msgstr "Conexão sucedida. Por favor espere..."
+
+#: ../src/Dap/Banshee.Dap/Banshee.Dap/PotentialSource.cs:163
+msgid "Connection failed"
+msgstr "A conexão falhou"
 
 #: ../src/Dap/Banshee.Dap/Banshee.Dap/RemovableSource.cs:57
 #: ../src/Extensions/Banshee.Daap/Banshee.Daap/DaapSource.cs:64
@@ -4684,22 +4707,35 @@ msgstr "Erro iniciando o suporte a dispositivos MTP"
 msgid "There was an error initializing MTP device support."
 msgstr "Houve um erro inicializando o suporte a dispositivos MTP."
 
-#: ../src/Dap/Banshee.Dap.Mtp/Banshee.Dap.Mtp/MtpSource.cs:144
+#: ../src/Dap/Banshee.Dap.Mtp/Banshee.Dap.Mtp/MtpSource.cs:145
 #: ../src/Hyena/Hyena.Gui/Hyena.Gui.Dialogs/VersionInformationDialog.cs:66
 msgid "Version"
 msgstr "Versão"
 
-#: ../src/Dap/Banshee.Dap.Mtp/Banshee.Dap.Mtp/MtpSource.cs:146
+#: ../src/Dap/Banshee.Dap.Mtp/Banshee.Dap.Mtp/MtpSource.cs:147
 msgid "Battery level"
 msgstr "Nível da bateria"
 
-#. user_event.Progress = (double)current / total;
-#. Translators: {0} is the name of the MTP audio device (eg Gabe's Zen Player), {1} is the
-#. track currently being loaded, and {2} is the total # of tracks that will be loaded.
-#: ../src/Dap/Banshee.Dap.Mtp/Banshee.Dap.Mtp/MtpSource.cs:162
+#. Translators: {0} is the file currently being loaded
+#. and {1} is the total # of files that will be loaded.
+#: ../src/Dap/Banshee.Dap.Mtp/Banshee.Dap.Mtp/MtpSource.cs:157
 #, csharp-format
-msgid "Loading {0} - {1} of {2}"
-msgstr "Carregando {0} - {1} de {2}"
+msgid "Reading File - {0} of {1}"
+msgstr "Lendo arquivo - {0} de {1}"
+
+#. Translators: {0} is the track currently being loaded
+#. and {1} is the total # of tracks that will be loaded.
+#: ../src/Dap/Banshee.Dap.Mtp/Banshee.Dap.Mtp/MtpSource.cs:183
+#, csharp-format
+msgid "Loading Track - {0} of {1}"
+msgstr "Carregando faixa - {0} de {1}"
+
+#. Translators: {0} is the playlist currently being loaded
+#. and {1} is the total # of playlists that will be loaded.
+#: ../src/Dap/Banshee.Dap.Mtp/Banshee.Dap.Mtp/MtpSource.cs:204
+#, csharp-format
+msgid "Loading Playlist - {0} of {1}"
+msgstr "Carregando lista de reprodução - {0} de {1}"
 
 #: ../src/Extensions/Banshee.AmazonMp3/Banshee.AmazonMp3/AmazonDownloadManager.cs:57
 msgid "Amazon MP3 Purchases"
@@ -5163,19 +5199,19 @@ msgstr ""
 msgid "Fix Music Metadata..."
 msgstr "Consertar metadados de músicas..."
 
-#: ../src/Extensions/Banshee.Fixup/Banshee.Fixup/FixSource.cs:48
+#: ../src/Extensions/Banshee.Fixup/Banshee.Fixup/FixSource.cs:51
 msgid "Metadata Fixer"
 msgstr "Reparador de metadados"
 
-#: ../src/Extensions/Banshee.Fixup/Banshee.Fixup/FixSource.cs:54
+#: ../src/Extensions/Banshee.Fixup/Banshee.Fixup/FixSource.cs:57
 msgid "Problem Type:"
 msgstr "Tipo do problema:"
 
-#: ../src/Extensions/Banshee.Fixup/Banshee.Fixup/FixSource.cs:66
+#: ../src/Extensions/Banshee.Fixup/Banshee.Fixup/FixSource.cs:80
 msgid "Apply Selected Fixes"
 msgstr "Aplicar os reparos selecionados"
 
-#: ../src/Extensions/Banshee.Fixup/Banshee.Fixup/FixSource.cs:79
+#: ../src/Extensions/Banshee.Fixup/Banshee.Fixup/FixSource.cs:93
 #: ../src/Extensions/Banshee.NotificationArea/Banshee.NotificationArea/NotificationAreaService.cs:133
 #: ../src/Extensions/Banshee.SoundMenu/Banshee.SoundMenu/SoundMenuService.cs:111
 msgid "Close"
@@ -5201,13 +5237,13 @@ msgstr " e "
 #. Translators: These are articles that might be prefixed or suffixed
 #. on artist names or album titles.  You can add as many as you need,
 #. separated by a pipe (|)
-#: ../src/Extensions/Banshee.Fixup/Banshee.Fixup/Solver.cs:201
+#: ../src/Extensions/Banshee.Fixup/Banshee.Fixup/Solver.cs:210
 msgid "a|an|the"
 msgstr "um|uma|o|a"
 
 #. Translators: This is the format commonly used in your langauge for
 #. suffixing an article, eg in English: ", The"
-#: ../src/Extensions/Banshee.Fixup/Banshee.Fixup/Solver.cs:205
+#: ../src/Extensions/Banshee.Fixup/Banshee.Fixup/Solver.cs:214
 #, csharp-format
 msgid ", {0}"
 msgstr ", {0}"
@@ -6359,23 +6395,23 @@ msgstr ""
 "Banshee foi fechado para a área de notificação. Use a opção <i>Sair</i> para "
 "fechar sua sessão."
 
-#: ../src/Extensions/Banshee.NotificationArea/Banshee.NotificationArea/NotificationAreaService.cs:500
+#: ../src/Extensions/Banshee.NotificationArea/Banshee.NotificationArea/NotificationAreaService.cs:513
+msgid "Cannot show notification"
+msgstr "Não é possível mostrar notificação"
+
+#: ../src/Extensions/Banshee.NotificationArea/Banshee.NotificationArea/NotificationAreaService.cs:531
 msgid "Previous"
 msgstr "Anterior"
 
-#: ../src/Extensions/Banshee.NotificationArea/Banshee.NotificationArea/NotificationAreaService.cs:508
+#: ../src/Extensions/Banshee.NotificationArea/Banshee.NotificationArea/NotificationAreaService.cs:539
 #: ../src/Extensions/Banshee.SoundMenu/Banshee.SoundMenu/SoundMenuService.cs:326
 msgid "Skip this item"
 msgstr "Pular este item"
 
-#: ../src/Extensions/Banshee.NotificationArea/Banshee.NotificationArea/NotificationAreaService.cs:523
-msgid "Cannot show notification"
-msgstr "Não é possível mostrar notificação"
-
 #. Translators: {0} and {1} are for markup so ignore them, {2} and {3}
 #. are Artist Name and Album Title, respectively;
 #. e.g. 'by Parkway Drive from Killing with a Smile'
-#: ../src/Extensions/Banshee.NotificationArea/Banshee.NotificationArea/NotificationAreaService.cs:550
+#: ../src/Extensions/Banshee.NotificationArea/Banshee.NotificationArea/NotificationAreaService.cs:566
 #, csharp-format
 msgid ""
 "{0}by{1} {2}\n"
@@ -7382,6 +7418,9 @@ msgstr "Conectado ao Last.fm."
 #: ../src/Libraries/Migo/Migo.Syndication/RssParser.cs:103
 msgid "Unknown Podcast"
 msgstr "Podcast desconhecido"
+
+#~ msgid "_ArtistList"
+#~ msgstr "Lista_Artista"
 
 #~ msgid "Could not create decodebin2 plugin"
 #~ msgstr "Não foi possível criar o plug-in decodebin2"
