@@ -3,22 +3,24 @@
 # This file is distributed under the same license as the Banshee package.
 #
 # Gabor Kelemen <kelemeng at gnome dot hu>, 2011, 2012.
+# Balázs Úr <urbalazs@gmail.com>, 2014.
 msgid ""
 msgstr ""
 "Project-Id-Version: Banshee master\n"
-"POT-Creation-Date: 2012-02-09 05:55+0000\n"
-"PO-Revision-Date: 2012-03-18 03:14+0100\n"
-"Last-Translator: Gabor Kelemen <kelemeng at gnome dot hu>\n"
+"POT-Creation-Date: 2014-04-18 14:55+0000\n"
+"PO-Revision-Date: 2014-09-21 21:42+0200\n"
+"Last-Translator: Balázs Úr <urbalazs@gmail.com>\n"
 "Language-Team: Hungarian <gnome-hu-list at gnome dot org>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 1.11.4\n"
+"X-Generator: Lokalize 1.2\n"
 "Plural-Forms:  nplurals=2; plural=(n != 1);\n"
 
 #. When image changes, this message will be marked fuzzy or untranslated for you.
 #. It doesn't matter what you translate it to: it's not used at all.
-#: C/ui.page:29(None) C/introduction.page:45(None)
+#: C/ui.page:29(None)
 msgid "@@image: 'figures/banshee.png'; md5=THIS FILE DOESN'T EXIST"
 msgstr "@@image: 'figures/banshee.png'; md5=THIS FILE DOESN'T EXIST"
 
@@ -31,7 +33,7 @@ msgstr "A <app>Banshee</app> felhasználói felületének bemutatása."
 #: C/manage-tags.page:13(name) C/manage-playlists.page:13(name)
 #: C/manage-coverart.page:12(name) C/lastfm.page:12(name)
 #: C/keyboardshortcuts.page:10(name) C/introduction.page:12(name)
-#: C/index.page:9(name) C/import.page:11(name) C/extensions.page:11(name)
+#: C/index.page:10(name) C/import.page:11(name) C/extensions.page:11(name)
 #: C/amazon.page:12(name) C/advanced.page:11(name) C/add-radio.page:14(name)
 #: C/add-podcast.page:14(name)
 msgid "Paul Cutler"
@@ -42,7 +44,7 @@ msgstr "Paul Cutler"
 #: C/manage-tags.page:14(email) C/manage-playlists.page:14(email)
 #: C/manage-coverart.page:13(email) C/lastfm.page:13(email)
 #: C/keyboardshortcuts.page:11(email) C/introduction.page:13(email)
-#: C/index.page:10(email) C/import.page:12(email) C/extensions.page:12(email)
+#: C/index.page:11(email) C/import.page:12(email) C/extensions.page:12(email)
 #: C/amazon.page:13(email) C/advanced.page:12(email)
 #: C/add-radio.page:15(email) C/add-podcast.page:15(email)
 msgid "pcutler@gnome.org"
@@ -52,15 +54,15 @@ msgstr "pcutler@gnome.org"
 msgid "Introduction to the Banshee User Interface"
 msgstr "A Banshee felhasználói felületének ismertetése"
 
-#: C/ui.page:27(title) C/introduction.page:43(title)
+#: C/ui.page:27(title)
 msgid "<gui>Banshee Media Player</gui> window"
 msgstr "<gui>Banshee médialejátszó</gui> ablak"
 
-#: C/ui.page:28(app) C/introduction.page:44(app) C/index.page:21(title)
+#: C/ui.page:28(app) C/index.page:26(title)
 msgid "Banshee Media Player"
 msgstr "Banshee médialejátszó"
 
-#: C/ui.page:30(p) C/introduction.page:46(p)
+#: C/ui.page:30(p)
 msgid "<app>Banshee</app> library interface"
 msgstr "A <app>Banshee</app> gyűjtemény felület"
 
@@ -160,7 +162,8 @@ msgstr ""
 
 #: C/sync.page:9(desc)
 msgid "Sync your media to a portable media player or smartphone."
-msgstr "Szinkronizálja médiafájljait hordozható zenelejátszóra vagy okostelefonra."
+msgstr ""
+"Szinkronizálja médiafájljait hordozható zenelejátszóra vagy okostelefonra."
 
 #: C/sync.page:24(title)
 msgid "Sync"
@@ -247,7 +250,8 @@ msgstr "Podcast"
 
 #: C/sync.page:66(p)
 msgid "From the dropdown menu next to each of the media, choose from:"
-msgstr "Az egyes médiatípusok melletti legördülő menüből válasszon a következőkből:"
+msgstr ""
+"Az egyes médiatípusok melletti legördülő menüből válasszon a következőkből:"
 
 #: C/sync.page:69(p)
 msgid "Manage manually"
@@ -626,7 +630,8 @@ msgstr ""
 "lásd a <link xref=\"adv-search\"/> oldalt."
 
 #: C/rb-import.page:8(desc)
-msgid "Import music and categorizations from the <app>Rhythmbox</app> music player."
+msgid ""
+"Import music and categorizations from the <app>Rhythmbox</app> music player."
 msgstr "Zene és kategóriák importálása a <app>Rhythmbox</app> zenelejátszóból."
 
 #: C/rb-import.page:12(title)
@@ -1308,11 +1313,10 @@ msgstr ""
 "A Last.fm teljes kihasználásához létre kell hoznia egy Last.fm profilt. Új "
 "fiók létrehozásához keresse fel a <link href=\"http://www.last.fm/join"
 "\">http://www.last.fm/join</link> oldalt, vagy válassza a Banshee menüjének "
-"<guiseq><gui>Szerkesztés</gui><gui>Beállítások</gui></guiseq> pontját. "
-"A beállítások között a <gui>Forrásspecifikus</gui> lapon válassza ki a <gui>"
-"Forrás</gui> "
-"legördülő menüből a <gui>Last.fm</gui> elemet, és kattintson a <em>Last.fm "
-"regisztráció</em> hivatkozásra."
+"<guiseq><gui>Szerkesztés</gui><gui>Beállítások</gui></guiseq> pontját. A "
+"beállítások között a <gui>Forrásspecifikus</gui> lapon válassza ki a "
+"<gui>Forrás</gui> legördülő menüből a <gui>Last.fm</gui> elemet, és "
+"kattintson a <em>Last.fm regisztráció</em> hivatkozásra."
 
 #: C/lastfm.page:45(p)
 msgid ""
@@ -1336,41 +1340,91 @@ msgstr ""
 "gui> gombot a folyamat befejezéséhez."
 
 #: C/lastfm.page:58(title)
-msgid "Enable Last.fm Song Reporting"
-msgstr "Számbeküldés engedélyezése a Last.fm-re"
+#| msgid "Enable Last.fm Song Reporting"
+msgid "Enable Last.fm Song Reporting From Banshee"
+msgstr "Last.fm számok jelentésének engedélyezése a Banshee programból"
 
 #: C/lastfm.page:59(p)
+#| msgid ""
+#| "After you have successfully linked Banshee to your Last.fm profile you "
+#| "must ensure that you have enabled Banshee to report your songs. To enable "
+#| "Banshee to report the songs to your Last.fm profile go to Banshee's "
+#| "preferences, select the <gui>Source Specific</gui> tab, select <gui>Last."
+#| "fm</gui> from the dropdown, and press the <gui>Enable Song Reporting</"
+#| "gui> checkbox. If you have an active internet connection Banshee will now "
+#| "send Last.fm information regarding the songs you play. To view your play "
+#| "history visit your profile on the Last.fm website. Last.fm will "
+#| "automatically update your music metadata if any of your artist, song "
+#| "title, or album information is incorrect (although we recommend that you "
+#| "use the Metadata Fixer extension to correct your files instead)."
 msgid ""
 "After you have successfully linked Banshee to your Last.fm profile you must "
 "ensure that you have enabled Banshee to report your songs. To enable Banshee "
 "to report the songs to your Last.fm profile go to Banshee's preferences, "
 "select the <gui>Source Specific</gui> tab, select <gui>Last.fm</gui> from "
-"the dropdown, and press the <gui>Enable Song Reporting</gui> checkbox. If "
-"you have an active internet connection Banshee will now send Last.fm "
-"information regarding the songs you play. To view your play history visit "
-"your profile on the Last.fm website. Last.fm will automatically update your "
-"music metadata if any of your artist, song title, or album information is "
-"incorrect (although we recommend that you use the Metadata Fixer extension "
-"to correct your files instead)."
+"the dropdown, and press the <gui>Enable Song Reporting From Banshee</gui> "
+"checkbox. If you have an active internet connection Banshee will now send "
+"Last.fm information regarding the songs you play. To view your play history "
+"visit your profile on the Last.fm website. Last.fm will automatically update "
+"your music metadata if any of your artist, song title, or album information "
+"is incorrect (although we recommend that you use the Metadata Fixer "
+"extension to correct your files instead)."
 msgstr ""
 "Miután sikeresen csatlakoztatta a Bansheet a Last.fm profiljához, "
 "engedélyezni kell a Banshee számára a lejátszott számok bejelentését. Ahhoz, "
-"hogy a Banshee bejelentese a számokat a Last.fm profiljába, válassza ki a "
-"Banshee beállításablakának "
-"<gui>Forrásspecifikus</gui> lapján a legördülő lista <gui>Last.fm</gui> "
-"elemét, és jelölje be a <gui>Számok jelentésének engedélyezése</gui> "
-"négyzetet. Ha internetkapcsolata aktív, a Banshee információkat fog "
-"küldeni a Last.fm-nek az Ön által lejátszott számokról. Lejátszási "
-"előzményeinek megjelenítéséhez keresse fel profilját a Last.fm weboldalán. A "
-"Last.fm automatikusan frissíti zenéi metaadatait, ha az előadó, a számcím "
-"vagy az albuminformációk helytelenek (noha erre inkább a javítást "
-"automatikusan elvégző metaadat-javító kiterjesztést ajánljuk)."
+"hogy a Banshee bejelentse a számokat a Last.fm profiljába, válassza ki a "
+"Banshee beállításablakának <gui>Forrásspecifikus</gui> lapján a legördülő "
+"lista <gui>Last.fm</gui> elemét, és jelölje be a <gui>Számok jelentésének "
+"engedélyezése</gui> négyzetet. Ha internetkapcsolata aktív, a Banshee "
+"információkat fog küldeni a Last.fm-nek az Ön által lejátszott számokról. "
+"Lejátszási előzményeinek megjelenítéséhez keresse fel profilját a Last.fm "
+"weboldalán. A Last.fm automatikusan frissíti zenéi metaadatait, ha az "
+"előadó, a számcím vagy az albuminformációk helytelenek (noha erre inkább a "
+"javítást automatikusan elvégző metaadat-javító kiterjesztést ajánljuk)."
 
 #: C/lastfm.page:75(title)
+#| msgid "Enable Last.fm Song Reporting"
+msgid "Enable Last.fm Song Reporting From Your Device"
+msgstr "Last.fm számok jelentésének engedélyezése az eszközről"
+
+#: C/lastfm.page:76(p)
+msgid ""
+"After successfully linking Banshee to your Last.fm profile and enabling "
+"Banshee to report songs to Last.fm you can also enable scrobbling from a "
+"connected device. Banshee will, upon connection of your device, attempt to "
+"scrobble the songs you have played since the device was last connected and "
+"submit them to Last.fm."
+msgstr ""
+
+#: C/lastfm.page:82(p)
+msgid ""
+"To enable scrobbling of a connected device go to Banshee's preferences, "
+"select the <gui>Source Specific</gui> tab, select <gui>Last.fm</gui> from "
+"the dropdown, and press the <gui>Enable Song Reporting From Device</gui> "
+"checkbox. If you have an active internet connection Banshee will, upon "
+"connection of your device, now attempt to gather information regarding the "
+"songs that you have played since it was last connected."
+msgstr ""
+
+#: C/lastfm.page:89(p)
+msgid ""
+"As with regular Banshee scrobbling submissions Last.fm will automatically "
+"update your music metadata if any of your artist, title, or album "
+"information is incorrect (although we again recommend that you use the "
+"Metadata Fixer extension to correct your files instead)."
+msgstr ""
+
+#: C/lastfm.page:94(p)
+msgid ""
+"Please note that currently Banshee only supports this feature with Apple "
+"products that are supported by the AppleDevice extension."
+msgstr ""
+
+#: C/lastfm.page:101(title)
 msgid "Listen to Last.fm Radio"
 msgstr "A Last.fm rádió hallgatása"
 
-#: C/lastfm.page:76(p)
+#: C/lastfm.page:102(p)
 msgid ""
 "Last.fm radio is free for residents of the United States, United Kingdom and "
 "Germany. Residents of other countries will have to pay for a premium account "
@@ -1384,7 +1438,7 @@ msgstr ""
 "országban prémium rádiószolgáltatásokat kapnak: a kedvelt vagy megcímkézett "
 "zenék lejátszólistái és állomásai hallgathatók."
 
-#: C/lastfm.page:83(p)
+#: C/lastfm.page:109(p)
 msgid ""
 "In Banshee's sources pane on the left hand side, you will now have a Last.fm "
 "section, including your Last.fm radio stations. You will need an active "
@@ -1560,7 +1614,8 @@ msgid "Toggle Play / Pause (Requires Notification Area Plug-in Enabled"
 msgstr "Lejátszás/szünet átváltása (az értesítésiterület-bővítmény szükséges)"
 
 #: C/itunes-import.page:8(desc)
-msgid "Import music and categorizations from the <app>iTunes</app> media player."
+msgid ""
+"Import music and categorizations from the <app>iTunes</app> media player."
 msgstr "Zene és kategóriák importálása az <app>iTunes</app> médialejátszóból."
 
 #: C/itunes-import.page:12(title)
@@ -1604,29 +1659,33 @@ msgstr ""
 "támogatja a népszerű eszközöket, beleértve a legtöbb iPodot, Sandisk és "
 "Creative MP3-lejátszót, valamint az Android-alapú telefonokat."
 
-#: C/index.page:24(title)
+#: C/index.page:14(name)
+msgid "Sindhu S"
+msgstr "Sindhu S"
+
+#: C/index.page:15(email)
+msgid "sindhus@live.in"
+msgstr "sindhus@live.in"
+
+#: C/index.page:29(title)
 msgid "Add, Remove &amp; Play"
 msgstr "Hozzáadás, eltávolítás és lejátszás"
 
-#: C/index.page:28(title)
+#: C/index.page:33(title)
 msgid "Manage &amp; Sort"
 msgstr "Kezelés és rendezés"
 
-#: C/index.page:32(title)
+#: C/index.page:37(title)
 msgid "Sync your media with a portable music player"
 msgstr "Média szinkronizálása hordozható zenelejátszóval"
 
-#: C/index.page:36(title)
+#: C/index.page:41(title)
 msgid "Add additional functionality to Banshee"
 msgstr "A Banshee bővítése további funkciókkal"
 
-#: C/index.page:40(title)
+#: C/index.page:45(title)
 msgid "Advanced options and help"
 msgstr "További lehetőségek és súgó"
-
-#: C/index.page:44(title)
-msgid "Common Problems"
-msgstr "Gyakori problémák"
 
 #: C/import.page:8(desc)
 msgid "Add music and videos from your computer to your Banshee library."
@@ -1984,7 +2043,8 @@ msgstr ""
 "<gui>Értékelés</gui> mezőket is."
 
 #: C/add-radio.page:66(p)
-msgid "Then press <gui>Save</gui> to save the internet radio station in Banshee."
+msgid ""
+"Then press <gui>Save</gui> to save the internet radio station in Banshee."
 msgstr ""
 "Ezután nyomja meg a <gui>Mentés</gui> gombot az internetes rádióállomás "
 "felvételéhez a Bansheeba."
@@ -2096,7 +2156,9 @@ msgid "<gui>Published</gui> (Date the episode was published or released)"
 msgstr "<gui>Közzététel</gui> (az epizód közzétételének dátuma)"
 
 #. Put one translator per line, in the form of NAME <EMAIL>, YEAR1, YEAR2
-#: C/index.page:0(None)
+#: C/add-podcast.page:0(None)
 msgid "translator-credits"
 msgstr "Kelemen Gábor <kelemeng at gnome dot hu>"
 
+#~ msgid "Common Problems"
+#~ msgstr "Gyakori problémák"
