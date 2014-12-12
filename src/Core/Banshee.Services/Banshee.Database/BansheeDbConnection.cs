@@ -52,6 +52,16 @@ namespace Banshee.Database
             get { return configuration; }
         }
 
+        private bool? likelihood_support = null;
+        public bool LikelihoodSupport {
+            get {
+                if (!likelihood_support.HasValue) {
+                    likelihood_support = Query<bool> ("SELECT sqlite_version () >= '3.8.1'");
+                }
+                return likelihood_support.Value;
+            }
+        }
+
         public BansheeDbConnection () : this (DatabaseFile)
         {
             validate_schema = ApplicationContext.CommandLine.Contains ("validate-db-schema");

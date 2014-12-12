@@ -46,7 +46,7 @@ namespace Banshee.Collection.Database
             ReloadFragmentFormat = @"
                 FROM CoreArtists WHERE CoreArtists.ArtistID IN
                     (SELECT CoreAlbums.ArtistID FROM CoreAlbums, CoreTracks, CoreCache{0}
-                        WHERE CoreCache.ModelID = {1} AND
+                        WHERE {4}(CoreCache.ModelID = {1}) AND
                               CoreTracks.AlbumID = CoreAlbums.AlbumID AND
                               EXISTS (SELECT 1 FROM CoreArtists WHERE ArtistID = CoreAlbums.ArtistID) AND
                               CoreCache.ItemID = {2} {3})
