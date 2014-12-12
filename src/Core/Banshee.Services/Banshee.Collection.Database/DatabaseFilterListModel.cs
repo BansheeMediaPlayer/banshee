@@ -57,10 +57,10 @@ namespace Banshee.Collection.Database
         }
 
         protected readonly U select_all_item;
-        private HyenaSqliteConnection connection;
+        private BansheeDbConnection connection;
 
         public DatabaseFilterListModel (string name, string label, Banshee.Sources.DatabaseSource source,
-                                        DatabaseTrackListModel trackModel, HyenaSqliteConnection connection, SqliteModelProvider<T> provider, U selectAllItem, string uuid)
+                                        DatabaseTrackListModel trackModel, BansheeDbConnection connection, SqliteModelProvider<T> provider, U selectAllItem, string uuid)
             : base (trackModel)
         {
             this.source = source;
@@ -124,7 +124,8 @@ namespace Banshee.Collection.Database
                         "{0}.{1} AND CoreTracks.TrackID = {0}.{2}",
                         FilteredModel.JoinTable, FilteredModel.JoinPrimaryKey, FilteredModel.JoinColumn)
                     : "CoreTracks.TrackID",
-                filtered ? GetFilterFragment () : ""
+                filtered ? GetFilterFragment () : "",
+                connection.LikelihoodSupport ? "UNLIKELY" : ""
             );
         }
 

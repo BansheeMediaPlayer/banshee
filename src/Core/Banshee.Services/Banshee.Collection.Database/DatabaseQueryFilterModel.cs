@@ -37,6 +37,7 @@ using Hyena.Data.Sqlite;
 using Mono.Unix;
 
 using Banshee.ServiceStack;
+using Banshee.Database;
 
 namespace Banshee.Collection.Database
 {
@@ -51,7 +52,7 @@ namespace Banshee.Collection.Database
         private string select_all_fmt;
 
         public DatabaseQueryFilterModel (Banshee.Sources.DatabaseSource source, DatabaseTrackListModel trackModel,
-            HyenaSqliteConnection connection, string select_all_fmt, string uuid, QueryField field, string filter_column)
+            BansheeDbConnection connection, string select_all_fmt, string uuid, QueryField field, string filter_column)
             : base (field.Name, field.Label, source, trackModel, connection, QueryFilterInfo<T>.CreateProvider (filter_column, field), new QueryFilterInfo<T> (), String.Format ("{0}-{1}", uuid, field.Name))
         {
             this.field = field;
@@ -59,7 +60,7 @@ namespace Banshee.Collection.Database
 
             ReloadFragmentFormat = @"
                 FROM CoreTracks, CoreCache{0}
-                    WHERE CoreCache.ModelID = {1} AND CoreCache.ItemID = {2} {3}
+                    WHERE {4}(CoreCache.ModelID = {1}) AND CoreCache.ItemID = {2} {3}
                     ORDER BY Value";
 
             QueryFields = new QueryFieldSet (query_filter_field);

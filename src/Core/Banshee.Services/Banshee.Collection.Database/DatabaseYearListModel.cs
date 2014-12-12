@@ -47,7 +47,7 @@ namespace Banshee.Collection.Database
                 FROM (SELECT MIN(CoreTracks.TrackID) AS TrackID, CoreTracks.Year FROM CoreTracks GROUP BY CoreTracks.Year) AS CoreTracks
                 WHERE CoreTracks.Year IN
                     (SELECT CoreTracks.Year FROM CoreTracks, CoreCache{0}
-                        WHERE CoreCache.ModelID = {1} AND
+                        WHERE {4}(CoreCache.ModelID = {1}) AND
                               CoreCache.ItemID = {2} {3})
                     ORDER BY Year";
         }

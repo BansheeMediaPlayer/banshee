@@ -49,7 +49,7 @@ namespace Banshee.Collection.Database
             ReloadFragmentFormat = @"
                 FROM CoreArtists WHERE CoreArtists.ArtistID IN
                     (SELECT CoreTracks.ArtistID FROM CoreTracks, CoreCache{0}
-                        WHERE CoreCache.ModelID = {1} AND
+                        WHERE {4}(CoreCache.ModelID = {1}) AND
                               CoreCache.ItemID = {2} {3})
                     ORDER BY NameSortKey";
         }
