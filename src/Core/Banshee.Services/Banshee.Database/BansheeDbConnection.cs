@@ -53,7 +53,7 @@ namespace Banshee.Database
         }
 
         private bool? likelihood_support = null;
-        public bool LikelihoodSupport {
+        internal bool LikelihoodSupport {
             get {
                 if (!likelihood_support.HasValue) {
                     likelihood_support = Query<bool> ("SELECT sqlite_version () >= '3.8.1'");
