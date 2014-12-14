@@ -343,7 +343,7 @@ namespace Banshee.Podcasting.Gui
                 return;
             }
 
-            if (!TryParseUrl (url, out feedUri)) {
+            if (!TryParseUrl (url, out feedUri) && !TryParseUrl ("http://" + url, out feedUri)) {
                 HigMessageDialog.RunHigMessageDialog (
                     null,
                     DialogFlags.Modal,
