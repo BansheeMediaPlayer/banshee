@@ -214,13 +214,15 @@ namespace Banshee.Sources.Gui
 
                 int position = source.Order;
 
-                TreeIter iter = parent.Equals (TreeIter.Zero)
-                    ? InsertNode (position)
-                    : InsertNode (parent, position);
+                var args = new object [] {
+                    source,
+                    position,
+                    source is SourceManager.GroupSource ? EntryType.Group : EntryType.Source
+                };
 
-                SetValue (iter, 0, source);
-                SetValue (iter, 1, source.Order);
-                SetValue (iter, 2, source is SourceManager.GroupSource ? EntryType.Group : EntryType.Source);
+                TreeIter iter = parent.Equals (TreeIter.Zero)
+                    ? InsertWithValues (position, args)
+                    : InsertWithValues (parent, position, args);
 
                 lock (source.Children) {
                     foreach (Source child in source.Children) {
