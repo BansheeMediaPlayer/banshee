@@ -10,9 +10,9 @@ msgstr ""
 "Project-Id-Version: Banshee\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=banshee&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2014-06-04 14:49+0000\n"
-"PO-Revision-Date: 2014-06-07 12:32+0200\n"
-"Last-Translator: Tom Tryfonidis <tomtryf@gmail.com>\n"
+"POT-Creation-Date: 2014-08-18 14:49+0000\n"
+"PO-Revision-Date: 2014-08-18 23:11+0200\n"
+"Last-Translator: Maria Mavridou <mavridou@gmail.com>\n"
 "Language-Team: team@gnome.gr\n"
 "Language: el\n"
 "MIME-Version: 1.0\n"
@@ -142,7 +142,7 @@ msgstr "Ανίχνευση των χτύπων ανά λεπτό (BPM) της μ
 #. ../src/Extensions/Banshee.CoverArt/Banshee.CoverArt.addin.xml
 #: ../data/addin-xml-strings.cs:53
 msgid "Cover Art Fetching"
-msgstr "Λήψη εξώφυλλου"
+msgstr "Ανάκτηση εξώφυλλου"
 
 #: ../data/addin-xml-strings.cs:54
 msgid "Fetch cover art for all items in your library."
@@ -1188,7 +1188,7 @@ msgstr "Ορίστε μία εναλλακτική βάση δεδομένων �
 
 #: ../src/Clients/Booter/Booter/Entry.cs:219
 msgid "Force fetching of missing cover artwork"
-msgstr "Δυναμική μεταφορά του εξώφυλλου που λείπει"
+msgstr "Δυναμική ανάκτηση του εξώφυλλου που λείπει"
 
 #: ../src/Clients/Booter/Booter/Entry.cs:220
 msgid "Specify an alternate key, default is /apps/banshee-1/"
@@ -1985,7 +1985,7 @@ msgid ""
 "cover art fetching"
 msgstr ""
 "Κάποια χαρακτηριστικά απαιτούν ευρυζωνική σύνδεση διαδικτύου όπως είναι το "
-"Last.fm ή η αναζήτηση για εξώφυλλο"
+"Last.fm ή η ανάκτηση εξωφύλλου"
 
 #: ../src/Core/Banshee.Services/Banshee.Playlist/AbstractPlaylistSource.cs:153
 msgid "Search this playlist"
@@ -2010,7 +2010,7 @@ msgstr "Διαγραφή λίστας αναπαραγωγής"
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui/SourceActions.cs:176
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:135
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:464
-#: ../src/Core/Banshee.ThickClient/Banshee.Sources.Gui/SourceView.cs:612
+#: ../src/Core/Banshee.ThickClient/Banshee.Sources.Gui/SourceView.cs:618
 #: ../src/Core/Banshee.ThickClient/Banshee.Sources.Gui/SourceView_DragAndDrop.cs:214
 msgid "New Playlist"
 msgstr "Νέα λίστα αναπαραγωγής"
@@ -2771,7 +2771,7 @@ msgstr "Δεν είναι δυνατό το άνοιγμα ροής ή ο κατ
 
 #: ../src/Core/Banshee.Services/Banshee.Streaming/RadioTrackInfo.cs:93
 msgid "Problem parsing playlist"
-msgstr "Πρόβλημα ανάγνωσης της λίστας αναπαραγωγής"
+msgstr "Πρόβλημα ανάλυσης της λίστας αναπαραγωγής"
 
 #: ../src/Core/Banshee.Services/Banshee.Web/Browser.cs:67
 msgid "Could not launch URL"
@@ -4910,11 +4910,11 @@ msgstr "Σύνδεση στο {0}"
 
 #: ../src/Extensions/Banshee.Daap/Banshee.Daap/DaapService.cs:186
 msgid "Add Remote DAAP Server"
-msgstr "Προσθήκη απομακρυσμένου εξυπηρετητή DAAP"
+msgstr "Προσθήκη απομακρυσμένου διακομιστή DAAP"
 
 #: ../src/Extensions/Banshee.Daap/Banshee.Daap/DaapService.cs:187
 msgid "Add a new remote DAAP server"
-msgstr "Προσθήκη ενός νέου απομακρυσμένου DAAP εξυπηρετητή"
+msgstr "Προσθήκη ενός νέου απομακρυσμένου DAAP διακομιστή"
 
 #: ../src/Extensions/Banshee.Daap/Banshee.Daap/DaapSource.cs:60
 msgid "Music Share"
@@ -4938,11 +4938,11 @@ msgstr "Φόρτωση καταλόγων αναπαραγωγής"
 
 #: ../src/Extensions/Banshee.Daap/Banshee.Daap/OpenRemoteServer.cs:46
 msgid "Open remote DAAP server"
-msgstr "Άνοιγμα απομακρυσμένου DAAP εξυπηρετητή"
+msgstr "Άνοιγμα απομακρυσμένου DAAP διακομιστή"
 
 #: ../src/Extensions/Banshee.Daap/Banshee.Daap/OpenRemoteServer.cs:51
 msgid "Enter server IP address and port:"
-msgstr "Εισαγωγή διεύθυνσης IP και θύρας εξυπηρετητή:"
+msgstr "Εισαγωγή διεύθυνσης IP και θύρας διακομιστή:"
 
 #: ../src/Extensions/Banshee.Emusic/Banshee.Emusic/DownloadManager/DownloadUserJob.cs:46
 #: ../src/Extensions/Banshee.InternetArchive/Banshee.InternetArchive/SearchView.cs:133
@@ -7068,8 +7068,8 @@ msgstr[1] "{0} λήψεις σε {1}/s"
 #, csharp-format
 msgid "{0} download at {1}/s ({2} pending)"
 msgid_plural "{0} downloads at {1}/s ({2} pending)"
-msgstr[0] "{0} μεταφόρτωση με {1}/s ({2} σε αναμονή)"
-msgstr[1] "{0} μεταφορτώσεις με {1}/s ({2} σε αναμονή)"
+msgstr[0] "{0} λήψη σε {1}/s ({2} σε αναμονή)"
+msgstr[1] "{0} λήψεις σε {1}/s ({2} σε αναμονή)"
 
 #. public static readonly Operator Equal              = new Operator ("equals", "= {0}", "==", "=", ":");
 #. public static readonly Operator NotEqual           = new Operator ("notEqual", "!= {0}", true, "!=", "!:");
@@ -7181,11 +7181,11 @@ msgstr "Η καθορισμένη πηγή είναι άκυρη."
 
 #: ../src/Libraries/Lastfm/Lastfm/RadioConnection.cs:287
 msgid "Server error, please try again later."
-msgstr "Σφάλμα εξυπηρετητή, παρακαλώ προσπαθήστε ξανά αργότερα."
+msgstr "Σφάλμα διακομιστή, παρακαλούμε προσπαθήστε ξανά αργότερα."
 
 #: ../src/Libraries/Lastfm/Lastfm/RadioConnection.cs:289
 msgid "Invalid authentication information, please re-authenticate."
-msgstr "Άκυρες πληροφορίες εξουσιοδότησης, παρακαλώ εξουσιοδοτήστε ξανά."
+msgstr "Άκυρες πληροφορίες εξουσιοδότησης, παρακαλούμε εξουσιοδοτήστε ξανά."
 
 #: ../src/Libraries/Lastfm/Lastfm/RadioConnection.cs:291
 msgid "The API key used by this application is invalid."
