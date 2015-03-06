@@ -8,22 +8,23 @@
 # Wylmer Wang <wantinghard@gmail.com>, 2012, 2013.
 # EaiLFly <eailfly@gmail.com>, 2012.
 # Techlive Zheng <techlivezheng@gmail.com>, 2012.
+# Jeff Bai <jeffbaichina@members.fsf.org>, 2015.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: banshee master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=banshee&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2013-12-01 16:01+0000\n"
-"PO-Revision-Date: 2013-12-03 22:01+0800\n"
-"Last-Translator: michaeljayt <michaeljayt@gmail.com>\n"
+"POT-Creation-Date: 2015-01-12 15:50+0000\n"
+"PO-Revision-Date: 2015-03-06 17:01+0800\n"
+"Last-Translator: Jeff Bai <jeffbaichina@members.fsf.org>\n"
 "Language-Team: Chinese (simplified) <i18n-zh@googlegroups.com>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Poedit 1.5.7\n"
+"X-Generator: Poedit 1.7.1\n"
 
 #. ../src/Dap/Banshee.Dap.AppleDevice/Banshee.Dap.AppleDevice.addin.xml
 #: ../data/addin-xml-strings.cs:8
@@ -628,14 +629,14 @@ msgstr ""
 "iPod 和其他设备。希望您能喜欢上 Banshee！"
 
 #: ../data/desktop-files/common.desktop.in.h:1
-#: ../src/Dap/Banshee.Dap/Banshee.Dap/DapSource.cs:194
+#: ../src/Dap/Banshee.Dap/Banshee.Dap/DapSource.cs:206
 msgid "Media Player"
 msgstr "媒体播放器"
 
 #: ../data/desktop-files/common.desktop.in.h:2
 #: ../src/Clients/Muinshee/Muinshee/PlayerInterface.cs:86
 #: ../src/Clients/Nereid/Nereid/PlayerInterface.cs:115
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui/BaseClientWindow.cs:199
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/BaseClientWindow.cs:196
 #: ../src/Extensions/Banshee.MiniMode/Banshee.MiniMode/MiniModeWindow.cs:68
 msgid "Banshee Media Player"
 msgstr "Banshee 媒体播放器"
@@ -663,11 +664,11 @@ msgstr "写入光盘..."
 msgid "Write selected tracks to an audio CD"
 msgstr "将选中音轨写入音频光盘"
 
-#: ../src/Backends/Banshee.Gnome/Banshee.GnomeBackend/Brasero.cs:105
+#: ../src/Backends/Banshee.Gnome/Banshee.GnomeBackend/Brasero.cs:106
 msgid "Could not write CD"
 msgstr "无法写入光盘"
 
-#: ../src/Backends/Banshee.Gnome/Banshee.GnomeBackend/Brasero.cs:106
+#: ../src/Backends/Banshee.Gnome/Banshee.GnomeBackend/Brasero.cs:107
 msgid "Brasero could not be started"
 msgstr "无法打开 Brasero "
 
@@ -676,7 +677,7 @@ msgid "Fullscreen video playback active"
 msgstr "全屏视频播放启用"
 
 #: ../src/Backends/Banshee.GStreamer/Banshee.GStreamer/AudioCdRipper.cs:89
-#: ../src/Backends/Banshee.GStreamerSharp/Banshee.GStreamerSharp/AudioCdRipper.cs:96
+#: ../src/Backends/Banshee.GStreamerSharp/Banshee.GStreamerSharp/AudioCdRipper.cs:100
 msgid "Could not find an encoder for ripping."
 msgstr "无法找到抓轨编码器。"
 
@@ -685,7 +686,7 @@ msgid "Could not create CD ripping driver."
 msgstr "无法创建光盘抓轨程序。"
 
 #: ../src/Backends/Banshee.GStreamer/Banshee.GStreamer/BpmDetector.cs:71
-#: ../src/Backends/Banshee.GStreamerSharp/Banshee.GStreamerSharp/BpmDetector.cs:107
+#: ../src/Backends/Banshee.GStreamerSharp/Banshee.GStreamerSharp/BpmDetector.cs:108
 msgid "Could not create BPM detection driver."
 msgstr "无法创建 BPM 检测驱动。"
 
@@ -694,28 +695,30 @@ msgstr "无法创建 BPM 检测驱动。"
 msgid "Could not initialize GStreamer library"
 msgstr "无法初始化 GStreamer 库"
 
-#: ../src/Backends/Banshee.GStreamer/Banshee.GStreamer/PlayerEngine.cs:510
-#: ../src/Backends/Banshee.GStreamerSharp/Banshee.GStreamerSharp/PlayerEngine.cs:577
+#: ../src/Backends/Banshee.GStreamer/Banshee.GStreamer/PlayerEngine.cs:521
+#: ../src/Backends/Banshee.GStreamerSharp/Banshee.GStreamerSharp/PlayerEngine.cs:612
 msgid "Unknown Error"
 msgstr "未知错误"
 
-#: ../src/Backends/Banshee.GStreamer/Banshee.GStreamer/PlayerEngine.cs:878
-#: ../src/Backends/Banshee.GStreamerSharp/Banshee.GStreamerSharp/PlayerEngine.cs:1000
+#: ../src/Backends/Banshee.GStreamer/Banshee.GStreamer/PlayerEngine.cs:889
+#: ../src/Backends/Banshee.GStreamerSharp/Banshee.GStreamerSharp/PlayerEngine.cs:1053
 msgid "_Enable ReplayGain correction"
 msgstr "启用播放增益修正(_E)"
 
-#: ../src/Backends/Banshee.GStreamer/Banshee.GStreamer/PlayerEngine.cs:879
-#: ../src/Backends/Banshee.GStreamerSharp/Banshee.GStreamerSharp/PlayerEngine.cs:1001
+#: ../src/Backends/Banshee.GStreamer/Banshee.GStreamer/PlayerEngine.cs:890
+#: ../src/Backends/Banshee.GStreamerSharp/Banshee.GStreamerSharp/PlayerEngine.cs:1054
 msgid ""
 "For tracks that have ReplayGain data, automatically scale (normalize) "
 "playback volume"
 msgstr "对于有播放增益数据的音轨，自动调节(正常化)播放音量。"
 
-#: ../src/Backends/Banshee.GStreamer/Banshee.GStreamer/PlayerEngine.cs:883
+#: ../src/Backends/Banshee.GStreamer/Banshee.GStreamer/PlayerEngine.cs:894
+#: ../src/Backends/Banshee.GStreamerSharp/Banshee.GStreamerSharp/PlayerEngine.cs:1058
 msgid "Enable _gapless playback"
 msgstr "启用无缝播放(_G)"
 
-#: ../src/Backends/Banshee.GStreamer/Banshee.GStreamer/PlayerEngine.cs:884
+#: ../src/Backends/Banshee.GStreamer/Banshee.GStreamer/PlayerEngine.cs:895
+#: ../src/Backends/Banshee.GStreamerSharp/Banshee.GStreamerSharp/PlayerEngine.cs:1059
 msgid ""
 "Eliminate the small playback gap on track change. Useful for concept albums "
 "and classical music"
@@ -727,7 +730,7 @@ msgstr "无法创建转码器"
 
 #: ../src/Backends/Banshee.GStreamer/libbanshee/banshee-bpmdetector.c:203
 #: ../src/Backends/Banshee.GStreamer/libbanshee/banshee-ripper.c:267
-#: ../src/Backends/Banshee.GStreamerSharp/Banshee.GStreamerSharp/AudioCdRipper.cs:240
+#: ../src/Backends/Banshee.GStreamerSharp/Banshee.GStreamerSharp/AudioCdRipper.cs:250
 msgid "Could not create pipeline"
 msgstr "无法创建流水线"
 
@@ -737,12 +740,13 @@ msgstr "无法创建 filesrc 元素"
 
 #: ../src/Backends/Banshee.GStreamer/libbanshee/banshee-bpmdetector.c:215
 #: ../src/Backends/Banshee.GStreamer/libbanshee/banshee-transcoder.c:245
+#: ../src/Backends/Banshee.GStreamerSharp/Banshee.GStreamerSharp/Transcoder.cs:191
 msgid "Could not create decodebin plugin"
 msgstr "无法创建 decodebin 插件"
 
 #: ../src/Backends/Banshee.GStreamer/libbanshee/banshee-bpmdetector.c:221
 #: ../src/Backends/Banshee.GStreamer/libbanshee/banshee-transcoder.c:263
-#: ../src/Backends/Banshee.GStreamerSharp/Banshee.GStreamerSharp/Transcoder.cs:68
+#: ../src/Backends/Banshee.GStreamerSharp/Banshee.GStreamerSharp/Transcoder.cs:72
 msgid "Could not create audioconvert plugin"
 msgstr "无法创建 audioconvert 插件"
 
@@ -757,12 +761,12 @@ msgstr "无法创建 fakesink 插件"
 #: ../src/Backends/Banshee.GStreamer/libbanshee/banshee-bpmdetector.c:242
 #: ../src/Backends/Banshee.GStreamer/libbanshee/banshee-bpmdetector.c:251
 #: ../src/Backends/Banshee.GStreamer/libbanshee/banshee-ripper.c:308
-#: ../src/Backends/Banshee.GStreamerSharp/Banshee.GStreamerSharp/AudioCdRipper.cs:281
+#: ../src/Backends/Banshee.GStreamerSharp/Banshee.GStreamerSharp/AudioCdRipper.cs:291
 msgid "Could not link pipeline elements"
 msgstr "无法链接流水线元素"
 
 #: ../src/Backends/Banshee.GStreamer/libbanshee/banshee-ripper.c:273
-#: ../src/Backends/Banshee.GStreamerSharp/Banshee.GStreamerSharp/AudioCdRipper.cs:246
+#: ../src/Backends/Banshee.GStreamerSharp/Banshee.GStreamerSharp/AudioCdRipper.cs:256
 msgid "Could not initialize element from cdda URI"
 msgstr "无法从 cdda URI 地址初始化元件"
 
@@ -771,32 +775,32 @@ msgid "Could not create encoder pipeline"
 msgstr "无法创建编码器流水线"
 
 #: ../src/Backends/Banshee.GStreamer/libbanshee/banshee-ripper.c:293
-#: ../src/Backends/Banshee.GStreamerSharp/Banshee.GStreamerSharp/AudioCdRipper.cs:266
+#: ../src/Backends/Banshee.GStreamerSharp/Banshee.GStreamerSharp/AudioCdRipper.cs:276
 msgid "Could not create queue plugin"
 msgstr "无法创建 queue 插件"
 
 #: ../src/Backends/Banshee.GStreamer/libbanshee/banshee-ripper.c:301
-#: ../src/Backends/Banshee.GStreamerSharp/Banshee.GStreamerSharp/AudioCdRipper.cs:274
+#: ../src/Backends/Banshee.GStreamerSharp/Banshee.GStreamerSharp/AudioCdRipper.cs:284
 msgid "Could not create filesink plugin"
 msgstr "无法创建 filesink 插件"
 
 #: ../src/Backends/Banshee.GStreamer/libbanshee/banshee-transcoder.c:239
-#: ../src/Backends/Banshee.GStreamerSharp/Banshee.GStreamerSharp/Transcoder.cs:181
+#: ../src/Backends/Banshee.GStreamerSharp/Banshee.GStreamerSharp/Transcoder.cs:185
 msgid "Could not create source element"
 msgstr "无法创建源元素"
 
 #: ../src/Backends/Banshee.GStreamer/libbanshee/banshee-transcoder.c:251
-#: ../src/Backends/Banshee.GStreamerSharp/Banshee.GStreamerSharp/Transcoder.cs:63
+#: ../src/Backends/Banshee.GStreamerSharp/Banshee.GStreamerSharp/Transcoder.cs:67
 msgid "Could not create sink element"
 msgstr "无法创建接收元素"
 
 #: ../src/Backends/Banshee.GStreamer/libbanshee/banshee-transcoder.c:257
-#: ../src/Backends/Banshee.GStreamerSharp/Banshee.GStreamerSharp/Transcoder.cs:198
+#: ../src/Backends/Banshee.GStreamerSharp/Banshee.GStreamerSharp/Transcoder.cs:202
 msgid "Could not create sinkbin plugin"
 msgstr "无法创建 sinkbin 插件"
 
 #: ../src/Backends/Banshee.GStreamer/libbanshee/banshee-transcoder.c:269
-#: ../src/Backends/Banshee.GStreamerSharp/Banshee.GStreamerSharp/Transcoder.cs:73
+#: ../src/Backends/Banshee.GStreamerSharp/Banshee.GStreamerSharp/Transcoder.cs:77
 msgid "Could not create audioresample plugin"
 msgstr "无法创建 audioresample 插件"
 
@@ -805,32 +809,28 @@ msgid "Could not create encoding pipeline"
 msgstr "无法创建编码流水线"
 
 #: ../src/Backends/Banshee.GStreamer/libbanshee/banshee-transcoder.c:281
-#: ../src/Backends/Banshee.GStreamerSharp/Banshee.GStreamerSharp/Transcoder.cs:85
+#: ../src/Backends/Banshee.GStreamerSharp/Banshee.GStreamerSharp/Transcoder.cs:89
 msgid "Could not get sink pad from encoder"
 msgstr "无法从编码器中获得 sink pad"
 
 #: ../src/Backends/Banshee.GStreamer/libbanshee/banshee-transcoder.c:344
-#: ../src/Backends/Banshee.GStreamerSharp/Banshee.GStreamerSharp/Transcoder.cs:269
+#: ../src/Backends/Banshee.GStreamerSharp/Banshee.GStreamerSharp/Transcoder.cs:272
 msgid "Could not construct pipeline"
 msgstr "无法构建流水线"
 
-#: ../src/Backends/Banshee.GStreamerSharp/Banshee.GStreamerSharp/AudioCdRipper.cs:259
+#: ../src/Backends/Banshee.GStreamerSharp/Banshee.GStreamerSharp/AudioCdRipper.cs:269
 #, csharp-format
 msgid "Could not create encoder pipeline : {0}"
 msgstr "无法创建编码器流水线：{0}"
 
-#: ../src/Backends/Banshee.GStreamerSharp/Banshee.GStreamerSharp/PlayerEngine.cs:822
+#: ../src/Backends/Banshee.GStreamerSharp/Banshee.GStreamerSharp/PlayerEngine.cs:874
 msgid "GStreamer# 0.10"
 msgstr "GStreamer# 0.10"
 
-#: ../src/Backends/Banshee.GStreamerSharp/Banshee.GStreamerSharp/Transcoder.cs:79
+#: ../src/Backends/Banshee.GStreamerSharp/Banshee.GStreamerSharp/Transcoder.cs:83
 #, csharp-format
 msgid "Could not create encoding pipeline : {0}"
 msgstr "无法创建编码流水线：{0}"
-
-#: ../src/Backends/Banshee.GStreamerSharp/Banshee.GStreamerSharp/Transcoder.cs:187
-msgid "Could not create decodebin2 plugin"
-msgstr "无法创建 decodebin2 插件"
 
 #. Translators: verb
 #: ../src/Backends/Banshee.Osx/Banshee.OsxBackend/OsxFileChooserDialog.cs:66
@@ -1200,7 +1200,7 @@ msgstr "队列(_Q)"
 #: ../src/Clients/Muinshee/Muinshee/BaseDialog.cs:103
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui/PlaybackActions.cs:73
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui/PlaybackActions.cs:210
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:126
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:213
 msgid "_Play"
 msgstr "播放(_P)"
 
@@ -1290,7 +1290,7 @@ msgid "Stream location not found"
 msgstr "没有找到流位置"
 
 #: ../src/Core/Banshee.Core/Banshee.Collection/TrackInfo.cs:348
-#: ../src/Dap/Banshee.Dap/Banshee.Dap/DapSource.cs:344
+#: ../src/Dap/Banshee.Dap/Banshee.Dap/DapSource.cs:373
 msgid "File not found"
 msgstr "未找到文件"
 
@@ -1375,12 +1375,17 @@ msgstr "所有专辑({0})"
 msgid "All Artists ({0})"
 msgstr "全部艺人({0})"
 
-#: ../src/Core/Banshee.Services/Banshee.Collection.Database/DatabaseImportManager.cs:173
+#: ../src/Core/Banshee.Services/Banshee.Collection.Database/DatabaseImportManager.cs:170
+#, csharp-format
+msgid "File is not readable so it could not be imported: {0}"
+msgstr "文件无法读取因此无法导入：{0}"
+
+#: ../src/Core/Banshee.Services/Banshee.Collection.Database/DatabaseImportManager.cs:176
 #, csharp-format
 msgid "File is empty so it could not be imported: {0}"
 msgstr "文件为空，因此无法导入：{0}"
 
-#: ../src/Core/Banshee.Services/Banshee.Collection.Database/DatabaseQueryFilterModel.cs:48
+#: ../src/Core/Banshee.Services/Banshee.Collection.Database/DatabaseQueryFilterModel.cs:49
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui.TrackEditor/StatisticsPage.cs:96
 msgid "Value"
 msgstr "值"
@@ -1583,28 +1588,33 @@ msgid "Techno"
 msgstr "电音"
 
 #: ../src/Core/Banshee.Services/Banshee.Library/LibrarySource.cs:64
+#: ../src/Core/Banshee.Services/Banshee.Library/LibrarySource.cs:65
+#: ../src/Core/Banshee.Services/Banshee.Playlist/PlaylistSource.cs:134
+#: ../src/Core/Banshee.Services/Banshee.SmartPlaylist/SmartPlaylistSource.cs:255
+#: ../src/Extensions/Banshee.InternetRadio/Banshee.InternetRadio/InternetRadioSource.cs:81
+#: ../src/Extensions/Banshee.PlayQueue/Banshee.PlayQueue/PlayQueueSource.cs:89
 msgid "Remove From Library"
 msgstr "从音乐库中删除"
 
-#: ../src/Core/Banshee.Services/Banshee.Library/LibrarySource.cs:78
+#: ../src/Core/Banshee.Services/Banshee.Library/LibrarySource.cs:79
 #: ../src/Core/Banshee.Services/Banshee.Sources/PrimarySource.cs:249
 msgid "File Organization"
 msgstr "文件组织"
 
-#: ../src/Core/Banshee.Services/Banshee.Library/LibrarySource.cs:82
+#: ../src/Core/Banshee.Services/Banshee.Library/LibrarySource.cs:83
 msgid "Co_py files to media folder when importing"
 msgstr "导入时将文件复制到媒体目录(_P)"
 
-#: ../src/Core/Banshee.Services/Banshee.Library/LibrarySource.cs:88
+#: ../src/Core/Banshee.Services/Banshee.Library/LibrarySource.cs:89
 msgid "_Update file and folder names"
 msgstr "更新文件及目录名字(_U)"
 
-#: ../src/Core/Banshee.Services/Banshee.Library/LibrarySource.cs:89
+#: ../src/Core/Banshee.Services/Banshee.Library/LibrarySource.cs:90
 msgid "Rename files and folders according to media metadata"
 msgstr "将文件及目录根据媒体的元数据来重命名。"
 
 #. Translators: {0} is the library name, eg 'Music Library' or 'Podcasts'
-#: ../src/Core/Banshee.Services/Banshee.Library/LibrarySource.cs:168
+#: ../src/Core/Banshee.Services/Banshee.Library/LibrarySource.cs:169
 #, csharp-format
 msgid "{0} Folder"
 msgstr "{0} 目录"
@@ -1926,17 +1936,17 @@ msgstr "播放列表"
 msgid "Remove From Playlist"
 msgstr "从播放列表中删除"
 
-#: ../src/Core/Banshee.Services/Banshee.Playlist/PlaylistSource.cs:134
+#: ../src/Core/Banshee.Services/Banshee.Playlist/PlaylistSource.cs:135
 msgid "Delete Playlist"
 msgstr "删除播放列表"
 
 #. TODO generate name based on the track selection, or begin editing it
-#: ../src/Core/Banshee.Services/Banshee.Playlist/PlaylistSource.cs:397
-#: ../src/Core/Banshee.Services/Banshee.Playlist/PlaylistSource.cs:403
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui/SourceActions.cs:176
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:135
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:462
-#: ../src/Core/Banshee.ThickClient/Banshee.Sources.Gui/SourceView.cs:597
+#: ../src/Core/Banshee.Services/Banshee.Playlist/PlaylistSource.cs:398
+#: ../src/Core/Banshee.Services/Banshee.Playlist/PlaylistSource.cs:404
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/SourceActions.cs:168
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:197
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:599
+#: ../src/Core/Banshee.ThickClient/Banshee.Sources.Gui/SourceView.cs:603
 #: ../src/Core/Banshee.ThickClient/Banshee.Sources.Gui/SourceView_DragAndDrop.cs:212
 msgid "New Playlist"
 msgstr "新建播放列表"
@@ -1945,7 +1955,7 @@ msgstr "新建播放列表"
 msgid "Windows Media ASX"
 msgstr "Windows 媒体 ASX"
 
-#: ../src/Core/Banshee.Services/Banshee.Playlists.Formats/AsxPlaylistFormat.cs:48
+#: ../src/Core/Banshee.Services/Banshee.Playlists.Formats/AsxPlaylistFormat.cs:46
 msgid "Windows Media ASX (*.asx)"
 msgstr "Windows 媒体 ASX (*.asx)"
 
@@ -2484,7 +2494,7 @@ msgstr "随机"
 #: ../src/Core/Banshee.Services/Banshee.Query/PlaybackErrorQueryValue.cs:44
 #: ../src/Core/Banshee.Services/Banshee.Query/PlaybackErrorQueryValue.cs:46
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui/PlaybackSubtitleActions.cs:146
-#: ../src/Dap/Banshee.Dap/Banshee.Dap.Gui/DapInfoBar.cs:97
+#: ../src/Dap/Banshee.Dap/Banshee.Dap.Gui/DapInfoBar.cs:103
 msgid "None"
 msgstr "无"
 
@@ -2536,11 +2546,11 @@ msgstr "drm"
 #. Translators: These are unique strings for playback errors. Please, no spaces. Blank ok.
 #: ../src/Core/Banshee.Services/Banshee.Query/PlaybackErrorQueryValue.cs:64
 #: ../src/Core/Banshee.Services/Banshee.Query/PlaybackErrorQueryValue.cs:66
-#: ../src/Core/Banshee.Services/Banshee.ServiceStack/Application.cs:363
+#: ../src/Core/Banshee.Services/Banshee.ServiceStack/Application.cs:361
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui.TrackEditor/StatisticsPage.cs:234
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui.TrackEditor/StatisticsPage.cs:236
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui.TrackEditor/StatisticsPage.cs:238
-#: ../src/Dap/Banshee.Dap/Banshee.Dap/DapSource.cs:405
+#: ../src/Dap/Banshee.Dap/Banshee.Dap/DapSource.cs:434
 msgid "Unknown"
 msgstr "未知"
 
@@ -2750,6 +2760,10 @@ msgid ""
 msgstr ""
 "要将播放清单置于手动排序模式，请反复点击当前已排序的列表头直到排序箭头消失。"
 
+#: ../src/Core/Banshee.ThickClient/Banshee.Collection.Gui/ColumnCellArtistText.cs:42
+msgid "Default Text Artist List"
+msgstr "默认的文本艺人列表"
+
 #. Translators: this is {disc number} of {disc count}
 #. Translators: this is {track number} of {track count}
 #: ../src/Core/Banshee.ThickClient/Banshee.Collection.Gui/ColumnCellDiscAndCount.cs:40
@@ -2860,9 +2874,13 @@ msgstr "均衡器"
 msgid "New Preset"
 msgstr "新建预设"
 
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/ArtistListActions.cs:160
+msgid "Artist List View"
+msgstr "艺人列表视图"
+
 #. Translators: this is the window title when a track is playing
 #. {0} is the track title, {1} is the artist name
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui/BaseClientWindow.cs:205
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/BaseClientWindow.cs:202
 #, csharp-format
 msgid "{0} by {1}"
 msgstr "{0} - {1}"
@@ -2941,7 +2959,7 @@ msgid ""
 msgstr "当前有另外的程序配置为默认的媒体播放器。您打算设置 Banshee 为默认吗？"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui.Dialogs/DefaultApplicationHelperDialog.cs:72
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui/SourceActions.cs:443
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/SourceActions.cs:438
 #, csharp-format
 msgid "Do not ask me this again"
 msgstr "不再询问"
@@ -3054,7 +3072,7 @@ msgstr "重新扫描音乐库目录"
 msgid "The rescan operation will remove one track from your music library."
 msgid_plural ""
 "The rescan operation will remove {0} tracks from your music library."
-msgstr[0] "重新扫描操作将从您的设备中移除 {0} 条音轨。"
+msgstr[0] "重新扫描操作将从您的设备中删除 {0} 条音轨。"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui/GlobalActions.cs:99
 #: ../src/Extensions/Banshee.InternetArchive/Banshee.InternetArchive/HeaderFilters.cs:135
@@ -3241,256 +3259,318 @@ msgstr "激活内嵌字幕 {0}"
 msgid "Hide subtitles"
 msgstr "隐藏字幕"
 
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui/SourceActions.cs:75
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/SourceActions.cs:67
 msgid "_New Playlist"
 msgstr "新建播放列表(_N)"
 
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui/SourceActions.cs:76
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/SourceActions.cs:68
 msgid "Create a new empty playlist"
 msgstr "创建新的空播放列表"
 
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui/SourceActions.cs:79
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/SourceActions.cs:71
 msgid "New _Smart Playlist..."
 msgstr "新建智能播放列表(_S)"
 
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui/SourceActions.cs:80
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/SourceActions.cs:72
 msgid "Create a new smart playlist"
 msgstr "创建新智能播放列表"
 
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui/SourceActions.cs:90
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/SourceActions.cs:82
 msgid "Import to Library"
 msgstr "导入到库中"
 
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui/SourceActions.cs:91
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/SourceActions.cs:83
 msgid "Import source to library"
 msgstr "导入源到库"
 
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui/SourceActions.cs:94
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/SourceActions.cs:86
 msgid "Rename"
 msgstr "重命名"
 
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui/SourceActions.cs:97
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/SourceActions.cs:89
 msgid "Export Playlist..."
 msgstr "导出播放列表..."
 
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui/SourceActions.cs:98
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/SourceActions.cs:90
 msgid "Export a playlist"
 msgstr "导出一个播放列表"
 
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui/SourceActions.cs:101
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/SourceActions.cs:93
 msgid "Unmap"
 msgstr "取消映射关系"
 
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui/SourceActions.cs:104
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/SourceActions.cs:96
 msgid "Source Properties"
 msgstr "源属性"
 
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui/SourceActions.cs:107
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/SourceActions.cs:99
 msgid "Sort Children by"
 msgstr "排序子项目通过"
 
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui/SourceActions.cs:111
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/SourceActions.cs:103
 msgid "Switch Source"
 msgstr "切换源"
 
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui/SourceActions.cs:112
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/SourceActions.cs:104
 msgid "Switch to a source by typing its name"
 msgstr "通过输入源名字来切换为某个源"
 
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui/SourceActions.cs:115
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/SourceActions.cs:107
 #: ../src/Core/Banshee.ThickClient/Banshee.Preferences.Gui/PreferenceDialog.cs:50
 #: ../src/Extensions/Banshee.Lastfm/Banshee.Lastfm/LastfmPreferences.cs:87
 msgid "Preferences"
 msgstr "首选项"
 
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui/SourceActions.cs:116
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/SourceActions.cs:108
 msgid "Edit preferences related to this source"
 msgstr "编辑关于此来源的首选项"
 
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui/SourceActions.cs:120
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/SourceActions.cs:112
 msgid "New _Smart Playlist"
 msgstr "新建智能播放列表(_S)"
 
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui/SourceActions.cs:129
-#: ../src/Extensions/Banshee.Fixup/Banshee.Fixup/FixSource.cs:84
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/SourceActions.cs:121
+#: ../src/Extensions/Banshee.Fixup/Banshee.Fixup/FixSource.cs:98
 #: ../src/Extensions/Banshee.LastfmStreaming/Banshee.LastfmStreaming/LastfmStreamingActions.cs:67
 #: ../src/Extensions/Banshee.PlayQueue/Banshee.PlayQueue/PlayQueueActions.cs:79
 #: ../src/Extensions/Banshee.Podcasting/Banshee.Podcasting.Gui/PodcastActions.cs:72
 msgid "Refresh"
 msgstr "刷新"
 
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui/SourceActions.cs:130
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/SourceActions.cs:122
 msgid "Refresh this randomly sorted smart playlist"
 msgstr "刷新本随机排序的智能播放曲目"
 
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui/SourceActions.cs:297
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/SourceActions.cs:291
 msgid "Could not export playlist"
 msgstr "无法导出播放列表"
 
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui/SourceActions.cs:434
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/SourceActions.cs:429
 #, csharp-format
 msgid "Are you sure you want to delete this {0}?"
 msgstr "您确定要删除本 {0}？"
 
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui/SourceActions.cs:477
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/SourceActions.cs:472
 msgid "Separate by Type"
 msgstr "按类型区分"
 
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:110
-msgid "Select _All"
-msgstr "全选(_A)"
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:119
+msgid "Playing Track"
+msgstr "正在播放音轨"
 
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:111
-msgid "Select all tracks"
-msgstr "选择所有音轨"
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:120
+msgid "Options for playing track"
+msgstr "音轨播放选项"
 
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:114
-msgid "Select _None"
-msgstr "不选(_N)"
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:124
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:161
+msgid "Add _to Playlist"
+msgstr "添加到播放列表(_T)"
 
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:115
-msgid "Unselect all tracks"
-msgstr "取消选择所有音轨"
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:125
+msgid ""
+"Append playing items to playlist or create new playlist from playing track"
+msgstr "添加正在播放的项目到播放列表或根据选定创建新播放列表"
 
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:118
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:132
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:169
 #: ../src/Extensions/Banshee.Audiobook/Banshee.Audiobook/Actions.cs:59
 msgid "_Edit Track Information"
 msgstr "编辑音轨信息(_E)"
 
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:119
-msgid "Edit information on selected tracks"
-msgstr "编辑选定音轨的信息"
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:133
+msgid "Edit information on playing track"
+msgstr "编辑正在播放的音轨的信息"
 
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:122
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:136
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:173
+msgid "_Remove"
+msgstr "删除(_R)"
+
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:137
+msgid "Remove playing track from this source"
+msgstr "从本源中删除正在播放的音轨"
+
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:140
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:181
+msgid "_Delete From Drive"
+msgstr "从硬盘中删除(_D)"
+
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:141
+msgid "Permanently delete playing item from medium"
+msgstr "从媒介中永久删除正在播放的项目"
+
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:144
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:185
+msgid "_Open Containing Folder"
+msgstr "打开包含文件夹(_O)"
+
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:145
+msgid "Open the folder that contains playing item"
+msgstr "打开包含有正在播放项目的文件夹"
+
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:148
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:189
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui.TrackEditor/StatisticsPage.cs:283
 #: ../src/Extensions/Banshee.Podcasting/Banshee.Podcasting.Gui/PodcastActions.cs:117
 #: ../src/Extensions/Banshee.Podcasting/Banshee.Podcasting.Gui/PodcastActions.cs:164
 msgid "Properties"
 msgstr "属性"
 
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:123
-msgid "View information on selected tracks"
-msgstr "查看选定音轨的信息"
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:149
+msgid "View information on playing track"
+msgstr "查看正在播放音轨的信息"
 
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:127
-msgid "Play the selected item"
-msgstr "播放选择的项目"
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:156
+msgid "Selected Track(s)"
+msgstr "选中的音轨"
 
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:130
-msgid "Add _to Playlist"
-msgstr "添加到播放列表(_T)"
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:157
+msgid "Options for selected track(s)"
+msgstr "选中音轨的选项"
 
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:131
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:162
 msgid "Append selected items to playlist or create new playlist from selection"
 msgstr "添加选定的项目到播放列表或根据选定创建新播放列表"
 
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:136
-msgid "Create new playlist from selected tracks"
-msgstr "根据选定的音轨创建新播放列表"
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:170
+msgid "Edit information on selected tracks"
+msgstr "编辑选定音轨的信息"
 
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:140
-msgid "_Remove"
-msgstr "删除(_R)"
-
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:141
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:174
 msgid "Remove selected track(s) from this source"
 msgstr "从本源中删除已选定音轨"
 
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:144
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:177
 msgid "Remove From _Library"
 msgstr "从库中删除(_L)"
 
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:145
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:178
 msgid "Remove selected track(s) from library"
 msgstr "从库中删除选定的音轨"
 
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:148
-msgid "_Open Containing Folder"
-msgstr "打开包含文件夹(_O)"
-
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:149
-msgid "Open the folder that contains the selected item"
-msgstr "打开包含有选定项目的文件夹"
-
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:152
-msgid "_Delete From Drive"
-msgstr "从硬盘中删除(_D)"
-
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:153
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:182
 msgid "Permanently delete selected item(s) from medium"
 msgstr "从媒介中永久删除已选定项目"
 
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:186
+msgid "Open the folder that contains the selected item"
+msgstr "打开包含有选定项目的文件夹"
+
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:190
+msgid "View information on selected tracks"
+msgstr "查看选定音轨的信息"
+
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:198
+msgid "Create new playlist from selected tracks"
+msgstr "根据选定的音轨创建新播放列表"
+
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:202
+msgid "Select _All"
+msgstr "全选(_A)"
+
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:203
+msgid "Select all tracks"
+msgstr "选择所有音轨"
+
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:206
+msgid "Select _None"
+msgstr "不选(_N)"
+
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:207
+msgid "Unselect all tracks"
+msgstr "取消选择所有音轨"
+
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:214
+msgid "Play the selected item"
+msgstr "播放选择的项目"
+
 #. Translators: this is a verb (command), not a noun (things)
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:159
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:217
 #: ../src/Extensions/Banshee.InternetArchive/Banshee.InternetArchive/HeaderFilters.cs:171
 #: ../src/Extensions/Banshee.MediaPanel/Banshee.MediaPanel/SearchEntry.cs:112
 #, csharp-format
 msgid "_Search"
 msgstr "搜索(_S)"
 
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:160
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:218
 msgid "Search for items matching certain criteria"
 msgstr "搜索符合某类标准的项目"
 
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:163
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:221
 msgid "By Matching _Album"
 msgstr "根据专辑匹配(_A)"
 
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:164
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:222
 msgid "Search all songs of this album"
 msgstr "搜索该专辑的所有曲目"
 
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:167
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:225
 msgid "By Matching A_rtist"
 msgstr "根据艺人匹配(_R)"
 
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:168
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:226
 msgid "Search all songs of this artist"
 msgstr "搜索该艺人的所有曲目"
 
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:322
+#. inside the "Edit" menu it's a bit redundant to have a label that starts as "Edit Track..."
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:305
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:306
+msgid "Track _Information"
+msgstr "音轨信息 (_I)"
+
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:308
+msgid "Selected Tracks"
+msgstr "选中的音轨"
+
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:310
+msgid "Selected Track"
+msgstr "选中的音轨"
+
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:416
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:418
 #, csharp-format
 msgid "_Delete From \"{0}\""
 msgstr "从 {0} 删除(_D)"
 
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:535
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:706
 msgid "The folder could not be found."
 msgstr "没有找到该文件夹。"
 
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:536
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:707
 msgid "Please check that the track's location is accessible by the system."
 msgstr "请检查本系统是否可访问该音轨位置。"
 
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:607
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:804
 #, csharp-format
 msgid "Are you sure you want to permanently delete this item?"
 msgid_plural ""
 "Are you sure you want to permanently delete the selected {0} items?"
 msgstr[0] "您确定要永久删除该 {0} 项目吗？"
 
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:611
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:808
 msgid "If you delete the selection, it will be permanently lost."
 msgstr "如果您决定删除，所选定的项目将永久丢失。"
 
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:614
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:811
 #, csharp-format
 msgid "Remove selection from {0}?"
 msgstr "从 {0} 中删除已选定的吗？"
 
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:617
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:814
 #, csharp-format
 msgid "Are you sure you want to remove the selected item from your {1}?"
 msgid_plural ""
 "Are you sure you want to remove the selected {0} items from your {1}?"
 msgstr[0] "您确定您想从您的 {1} 中删除选定的 {0} 项目？"
 
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:645
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:842
 msgid "Are you sure you want to continue?"
 msgstr "您确定要继续吗？"
 
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:656
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:853
 msgid "Remove tracks"
-msgstr "移除音轨"
+msgstr "删除音轨"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui.TrackEditor/AlbumArtistEntry.cs:52
 msgid "Com_pilation Album Artist:"
@@ -3775,60 +3855,60 @@ msgstr "文件大小："
 msgid "bytes"
 msgstr "字节"
 
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui.TrackEditor/TrackEditorDialog.cs:96
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui.TrackEditor/TrackEditorDialog.cs:97
 msgid "Track Editor"
 msgstr "音轨编辑器"
 
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui.TrackEditor/TrackEditorDialog.cs:96
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui.TrackEditor/TrackEditorDialog.cs:97
 msgid "Track Properties"
 msgstr "音轨属性"
 
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui.TrackEditor/TrackEditorDialog.cs:146
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui.TrackEditor/TrackEditorDialog.cs:147
 msgid "Show the previous track"
 msgstr "显示上一首音轨"
 
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui.TrackEditor/TrackEditorDialog.cs:152
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui.TrackEditor/TrackEditorDialog.cs:153
 msgid "Show the next track"
 msgstr "显示下一首音轨"
 
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui.TrackEditor/TrackEditorDialog.cs:184
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui.TrackEditor/TrackEditorDialog.cs:185
 msgid "Title:"
 msgstr "标题："
 
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui.TrackEditor/TrackEditorDialog.cs:185
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui.TrackEditor/TrackEditorDialog.cs:186
 msgid "Artist:"
 msgstr "艺人："
 
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui.TrackEditor/TrackEditorDialog.cs:186
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui.TrackEditor/TrackEditorDialog.cs:187
 msgid "Album:"
 msgstr "专辑："
 
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui.TrackEditor/TrackEditorDialog.cs:311
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui.TrackEditor/TrackEditorDialog.cs:312
 msgid "Sync all field _values"
 msgstr "同步所有字段值(_V)"
 
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui.TrackEditor/TrackEditorDialog.cs:316
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui.TrackEditor/TrackEditorDialog.cs:317
 msgid ""
 "Apply the values of all common fields set for this track to all of the "
 "tracks selected in this editor"
 msgstr "将本曲目的所有常规字段值设定应用于本编辑器中所有已选定的曲目。"
 
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui.TrackEditor/TrackEditorDialog.cs:416
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui.TrackEditor/TrackEditorDialog.cs:417
 #, csharp-format
 msgid "<i>Editing {0} of {1} items</i>"
 msgstr "<i>正在编辑 {1} 项中的第 {0} 项</i>"
 
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui.TrackEditor/TrackEditorDialog.cs:696
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui.TrackEditor/TrackEditorDialog.cs:713
 #, csharp-format
 msgid "Save the changes made to the open track?"
 msgid_plural "Save the changes made to {0} of {1} open tracks?"
 msgstr[0] "保存对 {1} 个打开曲目中的 {0} 个的更改？"
 
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui.TrackEditor/TrackEditorDialog.cs:713
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui.TrackEditor/TrackEditorDialog.cs:730
 msgid "Close _without Saving"
 msgstr "关闭而不保存(_W)"
 
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui.TrackEditor/TrackEditorDialog.cs:750
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui.TrackEditor/TrackEditorDialog.cs:767
 #, csharp-format
 msgid "If you don't save, changes from the last {0} will be permanently lost."
 msgstr "如果您不保存，从最后 {0} 的变化都将永久丢失。"
@@ -3877,19 +3957,19 @@ msgstr[0] "活动任务运行中"
 #. Translators: {0} and {1} are for markup so ignore them, {2} and {3}
 #. are Podcast Name and Published Date, respectively;
 #. e.g. 'from BBtv published 7/26/2007'
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui.Widgets/TrackInfoDisplay.cs:520
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui.Widgets/TrackInfoDisplay.cs:537
 #, csharp-format
 msgid "{0}from{1} {2} {0}published{1} {3}"
 msgstr "{0} - {1} {2} {0} - {1} {3}"
 
 #. Translators: {0} and {1} are markup so ignore them, {2} is the name of the radio station
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui.Widgets/TrackInfoDisplay.cs:536
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui.Widgets/TrackInfoDisplay.cs:553
 #, csharp-format
 msgid "{0}on{1} {2}"
 msgstr "{0} - {1} {2}"
 
 #. Translators: {0} is the "from {album} by {artist}" type string, and {1} is the "on {radio station name}" string
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui.Widgets/TrackInfoDisplay.cs:539
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui.Widgets/TrackInfoDisplay.cs:556
 #, csharp-format
 msgid "{0} {1}"
 msgstr "{0} {1}"
@@ -3897,23 +3977,23 @@ msgstr "{0} {1}"
 #. Translators: {0} and {1} are for markup so ignore them, {2} and {3}
 #. are Artist Name and Album Title, respectively;
 #. e.g. 'by Parkway Drive from Killing with a Smile'
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui.Widgets/TrackInfoDisplay.cs:575
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui.Widgets/TrackInfoDisplay.cs:596
 #, csharp-format
 msgid "{0}by{1} {2} {0}from{1} {3}"
 msgstr "{0} - {1} {2} {0} - {1} {3}"
 
 #. Translators: {0} and {1} are for markup so ignore them, {2} is for Album Title;
 #. e.g. 'from Killing with a Smile'
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui.Widgets/TrackInfoDisplay.cs:579
-#: ../src/Extensions/Banshee.NotificationArea/Banshee.NotificationArea/NotificationAreaService.cs:554
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui.Widgets/TrackInfoDisplay.cs:600
+#: ../src/Extensions/Banshee.NotificationArea/Banshee.NotificationArea/NotificationAreaService.cs:570
 #, csharp-format
 msgid "{0}from{1} {2}"
 msgstr "{0} - {1} {2}"
 
 #. Translators: {0} and {1} are for markup so ignore them, {2} is for Artist Name;
 #. e.g. 'by Parkway Drive'
-#: ../src/Core/Banshee.ThickClient/Banshee.Gui.Widgets/TrackInfoDisplay.cs:583
-#: ../src/Extensions/Banshee.NotificationArea/Banshee.NotificationArea/NotificationAreaService.cs:558
+#: ../src/Core/Banshee.ThickClient/Banshee.Gui.Widgets/TrackInfoDisplay.cs:604
+#: ../src/Extensions/Banshee.NotificationArea/Banshee.NotificationArea/NotificationAreaService.cs:574
 #, csharp-format
 msgid "{0}by{1} {2}"
 msgstr "{0} - {1} {2}"
@@ -4220,7 +4300,7 @@ msgid "Available"
 msgstr "可用"
 
 #: ../src/Dap/Banshee.Dap.AppleDevice/Banshee.Dap.AppleDevice/AppleDeviceSource.cs:123
-#: ../src/Dap/Banshee.Dap.Mtp/Banshee.Dap.Mtp/MtpSource.cs:141
+#: ../src/Dap/Banshee.Dap.Mtp/Banshee.Dap.Mtp/MtpSource.cs:144
 msgid "Serial number"
 msgstr "序列号"
 
@@ -4267,7 +4347,7 @@ msgstr "正在删除 {1} 条音轨中的第 {0} 个"
 #: ../src/Dap/Banshee.Dap.AppleDevice/Banshee.Dap.AppleDevice/AppleDeviceSource.cs:670
 #, csharp-format
 msgid "Cleaning up, removing invalid track {0} of {1}"
-msgstr "清理中，正在移除 {1} 条音轨中的第 {0} 条"
+msgstr "清理中，正在删除 {1} 条音轨中的第 {0} 条"
 
 #: ../src/Dap/Banshee.Dap.AppleDevice/Banshee.Dap.AppleDevice/AppleDeviceSource.cs:717
 msgid "Writing media database"
@@ -4279,50 +4359,50 @@ msgid "Sync {0}"
 msgstr "同步 {0}"
 
 #. This group source gives us a separator for DAPs in the source view.
-#: ../src/Dap/Banshee.Dap/Banshee.Dap/DapService.cs:64
+#: ../src/Dap/Banshee.Dap/Banshee.Dap/DapService.cs:61
 msgid "Devices"
 msgstr "设备"
 
-#: ../src/Dap/Banshee.Dap/Banshee.Dap/DapSource.cs:179
+#: ../src/Dap/Banshee.Dap/Banshee.Dap/DapSource.cs:191
 msgid "Device Properties"
 msgstr "设备属性"
 
-#: ../src/Dap/Banshee.Dap/Banshee.Dap/DapSource.cs:201
+#: ../src/Dap/Banshee.Dap/Banshee.Dap/DapSource.cs:213
 msgid "Product"
 msgstr "产品"
 
-#: ../src/Dap/Banshee.Dap/Banshee.Dap/DapSource.cs:202
+#: ../src/Dap/Banshee.Dap/Banshee.Dap/DapSource.cs:214
 msgid "Vendor"
 msgstr "出版商"
 
-#: ../src/Dap/Banshee.Dap/Banshee.Dap/DapSource.cs:292
+#: ../src/Dap/Banshee.Dap/Banshee.Dap/DapSource.cs:306
 #: ../src/Extensions/Banshee.Podcasting/Banshee.Podcasting.Data/PodcastSource.cs:141
 #, csharp-format
 msgid "Loading {0}"
 msgstr "正在载入 {0}"
 
-#: ../src/Dap/Banshee.Dap/Banshee.Dap/DapSource.cs:386
+#: ../src/Dap/Banshee.Dap/Banshee.Dap/DapSource.cs:415
 #: ../src/Extensions/Banshee.Podcasting/Banshee.Podcasting.Gui/ColumnCellYesNo.cs:37
 msgid "Yes"
 msgstr "是"
 
-#: ../src/Dap/Banshee.Dap/Banshee.Dap/DapSource.cs:386
+#: ../src/Dap/Banshee.Dap/Banshee.Dap/DapSource.cs:415
 #: ../src/Extensions/Banshee.Podcasting/Banshee.Podcasting.Gui/ColumnCellYesNo.cs:38
 msgid "No"
 msgstr "否"
 
-#: ../src/Dap/Banshee.Dap/Banshee.Dap/DapSource.cs:407
+#: ../src/Dap/Banshee.Dap/Banshee.Dap/DapSource.cs:436
 #, csharp-format
 msgid ""
 "The {0} format is not supported by the device, and no converter was found to "
 "convert it"
 msgstr "设备不支持 {0} 格式，也没有发现可以使用的转换器"
 
-#: ../src/Dap/Banshee.Dap/Banshee.Dap/DapSource.cs:413
+#: ../src/Dap/Banshee.Dap/Banshee.Dap/DapSource.cs:442
 msgid "File format conversion support is not available"
 msgstr "文件格式转换支持不可用"
 
-#: ../src/Dap/Banshee.Dap/Banshee.Dap/DapSource.cs:439
+#: ../src/Dap/Banshee.Dap/Banshee.Dap/DapSource.cs:468
 msgid "Error converting file"
 msgstr "转换文件出错"
 
@@ -4341,31 +4421,36 @@ msgid "Sync Preferences"
 msgstr "同步首选项"
 
 #. singular form unused b/c we know it's > 1, but we still need GetPlural
-#: ../src/Dap/Banshee.Dap/Banshee.Dap/DapSync.cs:364
+#: ../src/Dap/Banshee.Dap/Banshee.Dap/DapSync.cs:360
 #, csharp-format
 msgid "The sync operation will remove one track from your device."
 msgid_plural "The sync operation will remove {0} tracks from your device."
-msgstr[0] "同步操作将从您的设备中移除 {0} 个音轨。"
+msgstr[0] "同步操作将从您的设备中删除 {0} 个音轨。"
 
 #: ../src/Dap/Banshee.Dap/Banshee.Dap.Gui/DapActions.cs:53
+#: ../src/Dap/Banshee.Dap/Banshee.Dap.Gui/InactiveDapContent.cs:106
+msgid "Claim"
+msgstr "认领"
+
+#: ../src/Dap/Banshee.Dap/Banshee.Dap.Gui/DapActions.cs:58
 msgid "Sync"
 msgstr "同步"
 
-#: ../src/Dap/Banshee.Dap/Banshee.Dap.Gui/DapInfoBar.cs:68
+#: ../src/Dap/Banshee.Dap/Banshee.Dap.Gui/DapInfoBar.cs:74
 #: ../src/Extensions/Banshee.InternetArchive/InternetArchive/MediaType.cs:97
 msgid "Audio"
 msgstr "音频"
 
-#: ../src/Dap/Banshee.Dap/Banshee.Dap.Gui/DapInfoBar.cs:69
+#: ../src/Dap/Banshee.Dap/Banshee.Dap.Gui/DapInfoBar.cs:75
 #: ../src/Extensions/Banshee.UPnPClient/Banshee.UPnPClient/UPnPVideoSource.cs:49
 msgid "Video"
 msgstr "音频视频"
 
-#: ../src/Dap/Banshee.Dap/Banshee.Dap.Gui/DapInfoBar.cs:70
+#: ../src/Dap/Banshee.Dap/Banshee.Dap.Gui/DapInfoBar.cs:76
 msgid "Other"
 msgstr "其他"
 
-#: ../src/Dap/Banshee.Dap/Banshee.Dap.Gui/DapInfoBar.cs:71
+#: ../src/Dap/Banshee.Dap/Banshee.Dap.Gui/DapInfoBar.cs:77
 msgid "Free Space"
 msgstr "空余空间"
 
@@ -4392,6 +4477,15 @@ msgstr "已使用容量"
 msgid "Advanced details"
 msgstr "高级细节"
 
+#: ../src/Dap/Banshee.Dap/Banshee.Dap.Gui/InactiveDapContent.cs:103
+msgid "Your device appears to be in use by another program"
+msgstr "你的设备似乎正在被其他程序使用"
+
+#: ../src/Dap/Banshee.Dap/Banshee.Dap.Gui/InactiveDapContent.cs:109
+#, csharp-format
+msgid "Press the {0} button above to use it in Banshee"
+msgstr "按下上方的 {0} 以在 Banshee 使用"
+
 #. Translators: {0} is the name of a library, eg 'Music' or 'Podcasts'
 #: ../src/Dap/Banshee.Dap/Banshee.Dap.Gui/LibrarySyncOptions.cs:65
 #, csharp-format
@@ -4417,6 +4511,18 @@ msgstr "从 “{0}” 同步"
 msgid "Import Purchased Music"
 msgstr "导入已购音乐"
 
+#: ../src/Dap/Banshee.Dap/Banshee.Dap/PotentialSource.cs:133
+msgid "Trying to claim your device..."
+msgstr "正在尝试认领你的设备……"
+
+#: ../src/Dap/Banshee.Dap/Banshee.Dap/PotentialSource.cs:162
+msgid "Connection successful. Please wait..."
+msgstr "连接成功。请稍候……"
+
+#: ../src/Dap/Banshee.Dap/Banshee.Dap/PotentialSource.cs:163
+msgid "Connection failed"
+msgstr "连接失败"
+
 #: ../src/Dap/Banshee.Dap/Banshee.Dap/RemovableSource.cs:57
 #: ../src/Extensions/Banshee.Daap/Banshee.Daap/DaapSource.cs:64
 msgid "Disconnect"
@@ -4436,23 +4542,23 @@ msgstr "无法断开 {0}: {1}"
 msgid "Purchased Music"
 msgstr "已付费音乐"
 
-#: ../src/Dap/Banshee.Dap.MassStorage/Banshee.Dap.MassStorage/MassStorageSource.cs:115
+#: ../src/Dap/Banshee.Dap.MassStorage/Banshee.Dap.MassStorage/MassStorageSource.cs:124
 #, csharp-format
 msgid "Audio Folder"
 msgid_plural "Audio Folders"
 msgstr[0] "音频目录"
 
-#: ../src/Dap/Banshee.Dap.MassStorage/Banshee.Dap.MassStorage/MassStorageSource.cs:122
+#: ../src/Dap/Banshee.Dap.MassStorage/Banshee.Dap.MassStorage/MassStorageSource.cs:131
 #, csharp-format
 msgid "Video Folder"
 msgid_plural "Video Folders"
 msgstr[0] "视频目录"
 
-#: ../src/Dap/Banshee.Dap.MassStorage/Banshee.Dap.MassStorage/MassStorageSource.cs:128
+#: ../src/Dap/Banshee.Dap.MassStorage/Banshee.Dap.MassStorage/MassStorageSource.cs:137
 msgid "Required Folder Depth"
 msgstr "要求的目录深度"
 
-#: ../src/Dap/Banshee.Dap.MassStorage/Banshee.Dap.MassStorage/MassStorageSource.cs:131
+#: ../src/Dap/Banshee.Dap.MassStorage/Banshee.Dap.MassStorage/MassStorageSource.cs:140
 msgid "Supports Playlists"
 msgstr "支持播放列表"
 
@@ -4464,30 +4570,43 @@ msgstr "Rockbox 设备"
 msgid "Ringtones"
 msgstr "铃声"
 
-#: ../src/Dap/Banshee.Dap.Mtp/Banshee.Dap.Mtp/MtpSource.cs:82
+#: ../src/Dap/Banshee.Dap.Mtp/Banshee.Dap.Mtp/MtpSource.cs:84
 msgid "Error Initializing MTP Device Support"
 msgstr "初始化 MTP 设备支持时出错"
 
-#: ../src/Dap/Banshee.Dap.Mtp/Banshee.Dap.Mtp/MtpSource.cs:83
+#: ../src/Dap/Banshee.Dap.Mtp/Banshee.Dap.Mtp/MtpSource.cs:85
 msgid "There was an error initializing MTP device support."
 msgstr "初始化 MTP 设备支持时出错。"
 
-#: ../src/Dap/Banshee.Dap.Mtp/Banshee.Dap.Mtp/MtpSource.cs:142
+#: ../src/Dap/Banshee.Dap.Mtp/Banshee.Dap.Mtp/MtpSource.cs:145
 #: ../src/Hyena/Hyena.Gui/Hyena.Gui.Dialogs/VersionInformationDialog.cs:66
 msgid "Version"
 msgstr "版本"
 
-#: ../src/Dap/Banshee.Dap.Mtp/Banshee.Dap.Mtp/MtpSource.cs:144
+#: ../src/Dap/Banshee.Dap.Mtp/Banshee.Dap.Mtp/MtpSource.cs:147
 msgid "Battery level"
 msgstr "电池水平"
 
-#. user_event.Progress = (double)current / total;
-#. Translators: {0} is the name of the MTP audio device (eg Gabe's Zen Player), {1} is the
-#. track currently being loaded, and {2} is the total # of tracks that will be loaded.
-#: ../src/Dap/Banshee.Dap.Mtp/Banshee.Dap.Mtp/MtpSource.cs:160
+#. Translators: {0} is the file currently being loaded
+#. and {1} is the total # of files that will be loaded.
+#: ../src/Dap/Banshee.Dap.Mtp/Banshee.Dap.Mtp/MtpSource.cs:157
 #, csharp-format
-msgid "Loading {0} - {1} of {2}"
-msgstr "正在载入 {1} 的 {0} 到 {2}"
+msgid "Reading File - {0} of {1}"
+msgstr "正在读取 - {0}/{1}"
+
+#. Translators: {0} is the track currently being loaded
+#. and {1} is the total # of tracks that will be loaded.
+#: ../src/Dap/Banshee.Dap.Mtp/Banshee.Dap.Mtp/MtpSource.cs:183
+#, csharp-format
+msgid "Loading Track - {0} of {1}"
+msgstr "正在载入音轨 - {0}/{1}"
+
+#. Translators: {0} is the playlist currently being loaded
+#. and {1} is the total # of playlists that will be loaded.
+#: ../src/Dap/Banshee.Dap.Mtp/Banshee.Dap.Mtp/MtpSource.cs:204
+#, csharp-format
+msgid "Loading Playlist - {0} of {1}"
+msgstr "正在载入播放列表 - {0}/{1}"
 
 #: ../src/Extensions/Banshee.AmazonMp3/Banshee.AmazonMp3/AmazonDownloadManager.cs:57
 msgid "Amazon MP3 Purchases"
@@ -4500,6 +4619,10 @@ msgstr "Amazon MP3"
 #: ../src/Extensions/Banshee.AmazonMp3/Banshee.AmazonMp3/AmazonMp3DownloaderService.cs:54
 msgid "Songs purchased from the Amazon MP3 Store"
 msgstr "从 Amazon MP3 商店购买的歌曲"
+
+#: ../src/Extensions/Banshee.AmazonMp3/Banshee.AmazonMp3/AmazonMp3DownloaderService.cs:81
+msgid "Invalid Amazon MP3 downloader file"
+msgstr "无效的 Amazon MP3 下载器文件"
 
 #: ../src/Extensions/Banshee.AmazonMp3/Banshee.AmazonMp3/ImportSource.cs:40
 msgid "Download Amazon MP3 Purchase"
@@ -4645,11 +4768,11 @@ msgstr[0] "{0} 本书"
 msgid "Audiobooks Folder"
 msgstr "有声书目录"
 
-#: ../src/Extensions/Banshee.Audiobook/Banshee.Audiobook/BookView.cs:114
+#: ../src/Extensions/Banshee.Audiobook/Banshee.Audiobook/BookView.cs:118
 msgid "Resume Playback"
 msgstr "继续播放"
 
-#: ../src/Extensions/Banshee.Audiobook/Banshee.Audiobook/BookView.cs:120
+#: ../src/Extensions/Banshee.Audiobook/Banshee.Audiobook/BookView.cs:124
 msgid "No Bookmark Set"
 msgstr "未设置书签"
 
@@ -4844,7 +4967,7 @@ msgstr "取消所有 eMusic 下载？"
 #, csharp-format
 msgid "Transferring {0} file at {1} KB/s"
 msgid_plural "Transferring {0} of {2} files at {1} KB/s"
-msgstr[0] "正在传输 {0} 文件(总 {2} 个)，速度 {1} KB/s"
+msgstr[0] "正在传输文件 {0}/{2} 个，速度 {1} KB/s"
 
 #: ../src/Extensions/Banshee.Emusic/Banshee.Emusic/DownloadManager/DownloadUserJob.cs:133
 #: ../src/Extensions/Banshee.Podcasting/Banshee.Podcasting.Gui/DownloadManager/DownloadUserJob.cs:133
@@ -4933,19 +5056,19 @@ msgstr ""
 msgid "Fix Music Metadata..."
 msgstr "修复音乐元数据..."
 
-#: ../src/Extensions/Banshee.Fixup/Banshee.Fixup/FixSource.cs:48
+#: ../src/Extensions/Banshee.Fixup/Banshee.Fixup/FixSource.cs:51
 msgid "Metadata Fixer"
 msgstr "元数据修复工具"
 
-#: ../src/Extensions/Banshee.Fixup/Banshee.Fixup/FixSource.cs:54
+#: ../src/Extensions/Banshee.Fixup/Banshee.Fixup/FixSource.cs:57
 msgid "Problem Type:"
 msgstr "故障类型："
 
-#: ../src/Extensions/Banshee.Fixup/Banshee.Fixup/FixSource.cs:66
+#: ../src/Extensions/Banshee.Fixup/Banshee.Fixup/FixSource.cs:80
 msgid "Apply Selected Fixes"
 msgstr "应用选择的修复操作"
 
-#: ../src/Extensions/Banshee.Fixup/Banshee.Fixup/FixSource.cs:79
+#: ../src/Extensions/Banshee.Fixup/Banshee.Fixup/FixSource.cs:93
 #: ../src/Extensions/Banshee.NotificationArea/Banshee.NotificationArea/NotificationAreaService.cs:133
 #: ../src/Extensions/Banshee.SoundMenu/Banshee.SoundMenu/SoundMenuService.cs:111
 msgid "Close"
@@ -4970,20 +5093,24 @@ msgstr " 和 "
 #. Translators: These are articles that might be prefixed or suffixed
 #. on artist names or album titles.  You can add as many as you need,
 #. separated by a pipe (|)
-#: ../src/Extensions/Banshee.Fixup/Banshee.Fixup/Solver.cs:198
+#: ../src/Extensions/Banshee.Fixup/Banshee.Fixup/Solver.cs:210
 msgid "a|an|the"
 msgstr "一个|这个"
 
 #. Translators: This is the format commonly used in your langauge for
 #. suffixing an article, eg in English: ", The"
-#: ../src/Extensions/Banshee.Fixup/Banshee.Fixup/Solver.cs:202
+#: ../src/Extensions/Banshee.Fixup/Banshee.Fixup/Solver.cs:214
 #, csharp-format
 msgid ", {0}"
 msgstr "，{0}"
 
-#: ../src/Extensions/Banshee.Fixup/Banshee.Fixup/View.cs:77
+#: ../src/Extensions/Banshee.Fixup/Banshee.Fixup/View.cs:72
 msgid "Fix?"
 msgstr "修复吗？"
+
+#: ../src/Extensions/Banshee.Fixup/Banshee.Fixup/View.cs:78
+msgid "Track details"
+msgstr "音轨细节"
 
 #: ../src/Extensions/Banshee.InternetArchive/Banshee.InternetArchive/Actions.cs:51
 msgid "View Item Details"
@@ -5515,21 +5642,25 @@ msgstr "最新"
 msgid "Oldest"
 msgstr "最旧"
 
-#: ../src/Extensions/Banshee.InternetRadio/Banshee.InternetRadio/InternetRadioSource.cs:54
+#: ../src/Extensions/Banshee.InternetRadio/Banshee.InternetRadio/InternetRadioSource.cs:52
 msgid "Radio"
 msgstr "广播"
 
-#: ../src/Extensions/Banshee.InternetRadio/Banshee.InternetRadio/InternetRadioSource.cs:65
+#: ../src/Extensions/Banshee.InternetRadio/Banshee.InternetRadio/InternetRadioSource.cs:63
 msgid "Add Station"
 msgstr "添加电台"
 
-#: ../src/Extensions/Banshee.InternetRadio/Banshee.InternetRadio/InternetRadioSource.cs:66
+#: ../src/Extensions/Banshee.InternetRadio/Banshee.InternetRadio/InternetRadioSource.cs:64
 msgid "Add a new Internet Radio station or playlist"
 msgstr "添加一个互联网广播电台或播放列表"
 
-#: ../src/Extensions/Banshee.InternetRadio/Banshee.InternetRadio/InternetRadioSource.cs:82
+#: ../src/Extensions/Banshee.InternetRadio/Banshee.InternetRadio/InternetRadioSource.cs:80
 msgid "Search your stations"
 msgstr "搜索您的电台"
+
+#: ../src/Extensions/Banshee.InternetRadio/Banshee.InternetRadio/InternetRadioSource.cs:82
+msgid "Delete From Drive"
+msgstr "从设备删除"
 
 #: ../src/Extensions/Banshee.InternetRadio/Banshee.InternetRadio/InternetRadioSource.cs:83
 #: ../src/Extensions/Banshee.LastfmStreaming/Banshee.LastfmStreaming/StationEditor.cs:60
@@ -5602,7 +5733,7 @@ msgstr "评级："
 #: ../src/Extensions/Banshee.Lastfm/Banshee.Lastfm.Audioscrobbler/AudioscrobblerService.cs:84
 #, csharp-format
 msgid "Processed {0} of {1} tracks"
-msgstr "已处理 {0} / {1} 条音轨..."
+msgstr "已处理 {0}/{1} 条音轨..."
 
 #: ../src/Extensions/Banshee.Lastfm/Banshee.Lastfm.Audioscrobbler/AudioscrobblerService.cs:146
 msgid "_Last.fm"
@@ -5610,7 +5741,7 @@ msgstr "_Last.fm"
 
 #: ../src/Extensions/Banshee.Lastfm/Banshee.Lastfm.Audioscrobbler/AudioscrobblerService.cs:147
 msgid "Configure the Audioscrobbler plugin"
-msgstr "配置“Audioscrobbler”插件"
+msgstr "配置 Audioscrobbler 插件"
 
 #: ../src/Extensions/Banshee.Lastfm/Banshee.Lastfm.Audioscrobbler/AudioscrobblerService.cs:150
 msgid "Visit _User Profile Page"
@@ -5772,7 +5903,7 @@ msgstr "您已经作为用户 <i>{0}</i> 登录到了 Last.fm。"
 
 #: ../src/Extensions/Banshee.Lastfm/Banshee.Lastfm/LastfmPreferences.cs:321
 msgid "Log out of Last.fm"
-msgstr "从 Last.fm 登出"
+msgstr "从 Last.fm 退出"
 
 #: ../src/Extensions/Banshee.Lastfm/Banshee.Lastfm/LastfmSourceContents.cs:150
 msgid "Recently Loved Tracks"
@@ -6108,23 +6239,23 @@ msgid ""
 "end your session."
 msgstr "Banshee 最小化到通知区域。请使用 <i>退出</i> 选项以结束本进程。"
 
-#: ../src/Extensions/Banshee.NotificationArea/Banshee.NotificationArea/NotificationAreaService.cs:500
+#: ../src/Extensions/Banshee.NotificationArea/Banshee.NotificationArea/NotificationAreaService.cs:513
+msgid "Cannot show notification"
+msgstr "无法显示通知"
+
+#: ../src/Extensions/Banshee.NotificationArea/Banshee.NotificationArea/NotificationAreaService.cs:531
 msgid "Previous"
 msgstr "上一首"
 
-#: ../src/Extensions/Banshee.NotificationArea/Banshee.NotificationArea/NotificationAreaService.cs:508
+#: ../src/Extensions/Banshee.NotificationArea/Banshee.NotificationArea/NotificationAreaService.cs:539
 #: ../src/Extensions/Banshee.SoundMenu/Banshee.SoundMenu/SoundMenuService.cs:326
 msgid "Skip this item"
 msgstr "跳过此项"
 
-#: ../src/Extensions/Banshee.NotificationArea/Banshee.NotificationArea/NotificationAreaService.cs:523
-msgid "Cannot show notification"
-msgstr "无法显示通知"
-
 #. Translators: {0} and {1} are for markup so ignore them, {2} and {3}
 #. are Artist Name and Album Title, respectively;
 #. e.g. 'by Parkway Drive from Killing with a Smile'
-#: ../src/Extensions/Banshee.NotificationArea/Banshee.NotificationArea/NotificationAreaService.cs:550
+#: ../src/Extensions/Banshee.NotificationArea/Banshee.NotificationArea/NotificationAreaService.cs:566
 #, csharp-format
 msgid ""
 "{0}by{1} {2}\n"
@@ -6241,7 +6372,7 @@ msgstr "无法获取音轨信息"
 msgid "Automatic import off since this album is already in the Music Library."
 msgstr "由于该专辑已经在音乐库中，关闭自动导入。"
 
-#: ../src/Extensions/Banshee.OpticalDisc/Banshee.OpticalDisc.AudioCd/AudioCdSource.cs:198
+#: ../src/Extensions/Banshee.OpticalDisc/Banshee.OpticalDisc.AudioCd/AudioCdSource.cs:194
 msgid "Could not import CD"
 msgstr "无法导入 CD"
 
@@ -6441,11 +6572,11 @@ msgstr "退出时清空播放队列"
 msgid "Remove From Play Queue"
 msgstr "从播放队列中删除"
 
-#: ../src/Extensions/Banshee.PlayQueue/Banshee.PlayQueue/PlayQueueSource.cs:965
+#: ../src/Extensions/Banshee.PlayQueue/Banshee.PlayQueue/PlayQueueSource.cs:966
 msgid "Number of _played songs to show"
 msgstr "要显示的已播过歌曲的数量(_p)"
 
-#: ../src/Extensions/Banshee.PlayQueue/Banshee.PlayQueue/PlayQueueSource.cs:971
+#: ../src/Extensions/Banshee.PlayQueue/Banshee.PlayQueue/PlayQueueSource.cs:972
 msgid "Number of _upcoming songs to show"
 msgstr "要显示的即将播过歌曲的数量(_u)"
 
@@ -6467,7 +6598,7 @@ msgstr "播客目录"
 
 #: ../src/Extensions/Banshee.Podcasting/Banshee.Podcasting.Data/PodcastSource.cs:130
 msgid "Remove Podcast"
-msgstr "移除播客"
+msgstr "删除播客"
 
 #: ../src/Extensions/Banshee.Podcasting/Banshee.Podcasting.Data/PodcastSource.cs:135
 msgid "Disable Auto Updates"
@@ -6521,16 +6652,16 @@ msgid "{0} episode"
 msgid_plural "{0} episodes"
 msgstr[0] "{0} 段剧集"
 
-#: ../src/Extensions/Banshee.Podcasting/Banshee.Podcasting.Gui/ColumnCellPodcast.cs:116
+#: ../src/Extensions/Banshee.Podcasting/Banshee.Podcasting.Gui/ColumnCellPodcast.cs:117
 msgid "Never updated"
 msgstr "从未更新的"
 
-#: ../src/Extensions/Banshee.Podcasting/Banshee.Podcasting.Gui/ColumnCellPodcast.cs:118
+#: ../src/Extensions/Banshee.Podcasting/Banshee.Podcasting.Gui/ColumnCellPodcast.cs:119
 #, csharp-format
 msgid "Updated at {0}"
 msgstr "更新于 {0}"
 
-#: ../src/Extensions/Banshee.Podcasting/Banshee.Podcasting.Gui/ColumnCellPodcast.cs:120
+#: ../src/Extensions/Banshee.Podcasting/Banshee.Podcasting.Gui/ColumnCellPodcast.cs:121
 #, csharp-format
 msgid "Updated {0}"
 msgstr "已更新 {0}"
@@ -6619,11 +6750,11 @@ msgid "Delete File"
 msgid_plural "Delete Files"
 msgstr[0] "删除文件"
 
-#: ../src/Extensions/Banshee.Podcasting/Banshee.Podcasting.Gui/PodcastActions.cs:352
+#: ../src/Extensions/Banshee.Podcasting/Banshee.Podcasting.Gui/PodcastActions.cs:353
 msgid "Invalid URL"
 msgstr "无效的 URL 地址"
 
-#: ../src/Extensions/Banshee.Podcasting/Banshee.Podcasting.Gui/PodcastActions.cs:353
+#: ../src/Extensions/Banshee.Podcasting/Banshee.Podcasting.Gui/PodcastActions.cs:354
 msgid "Podcast URL is invalid."
 msgstr "无效的播客 URL 地址"
 
@@ -6862,11 +6993,11 @@ msgstr "任何"
 msgid "of the following:"
 msgstr "属于以下的："
 
-#: ../src/Hyena/Hyena.Gui/Hyena.Query.Gui/QueryLimitBox.cs:58
+#: ../src/Hyena/Hyena.Gui/Hyena.Query.Gui/QueryLimitBox.cs:56
 msgid "_Limit to"
 msgstr "限于(_L)"
 
-#: ../src/Hyena/Hyena.Gui/Hyena.Query.Gui/QueryLimitBox.cs:85
+#: ../src/Hyena/Hyena.Gui/Hyena.Query.Gui/QueryLimitBox.cs:86
 msgid "selected by"
 msgstr "选择依据"
 
@@ -7099,11 +7230,14 @@ msgstr "正在连接到 Last.fm。"
 msgid "Connected to Last.fm."
 msgstr "已连接到 Last.fm。"
 
-#: ../src/Libraries/Migo/Migo.Syndication/Feed.cs:151
+#: ../src/Libraries/Migo/Migo.Syndication/Feed.cs:141
 #: ../src/Libraries/Migo/Migo.Syndication/RssParser.cs:100
 #: ../src/Libraries/Migo/Migo.Syndication/RssParser.cs:103
 msgid "Unknown Podcast"
 msgstr "未知播客"
+
+#~ msgid "Could not create decodebin2 plugin"
+#~ msgstr "无法创建 decodebin2 插件"
 
 #~ msgid "Clear search"
 #~ msgstr "清空搜索"
