@@ -26,8 +26,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Banshee\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-11-22 14:59+0100\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
+"product=banshee&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2015-04-12 02:54+0000\n"
 "PO-Revision-Date:  2012-03-15 20:40+01000\n"
 "Last-Translator: Jordi Mas i Hernàndez <jmas@softcatala.org>\n"
 "Language-Team: ca_ES <tradgnome@softcatala.net>\n"
@@ -266,7 +267,7 @@ msgstr "Compatibilitat MTP amb MediaPanel"
 msgid "Provides a custom media panel to quickly browse and play your media."
 msgstr ""
 "Proporciona un quadre personalitzat per navegar i reproduir els elements "
-"multimèdia"
+"multimèdia."
 
 #. ../src/Extensions/Banshee.MiniMode/Banshee.MiniMode.addin.xml
 #: ../data/addin-xml-strings.cs:112
@@ -1022,7 +1023,7 @@ msgid ""
 "If the current song has been played longer than 4 seconds then restart it, "
 "otherwise the same as --previous"
 msgstr ""
-"Si la cançó actual s'ha estat reproduint durant més de 4 segons reinicia-la, "
+"Si la cançó actual s'ha estat reproduint durant més de 4 segons, reinicia-la; "
 "si no, el mateix que --previous"
 
 #: ../src/Clients/Booter/Booter/Entry.cs:166
@@ -1088,7 +1089,7 @@ msgstr "Consulta si es pot fer una pausa en el reproductor"
 
 #: ../src/Clients/Booter/Booter/Entry.cs:182
 msgid "Query whether the player can seek"
-msgstr "Consulta si es pot fer cerques a un punt concret"
+msgstr "Consulta si es poden fer cerques a un punt concret"
 
 #
 #: ../src/Clients/Booter/Booter/Entry.cs:183
@@ -1213,11 +1214,11 @@ msgstr "Presenta la capsa de diàleg d'importació d'elements multimèdia"
 
 #: ../src/Clients/Booter/Booter/Entry.cs:208
 msgid "Present the about dialog"
-msgstr "Presenta la capsa de diàleg en quant a"
+msgstr "Presenta la capsa de diàleg Quant a"
 
 #: ../src/Clients/Booter/Booter/Entry.cs:209
 msgid "Present the open location dialog"
-msgstr "Presenta la capsa de diàleg obre una ubicació"
+msgstr "Presenta la capsa de diàleg Obre una ubicació"
 
 #: ../src/Clients/Booter/Booter/Entry.cs:210
 msgid "Present the preferences dialog"
@@ -1310,7 +1311,7 @@ msgstr "R_eprodueix l'àlbum"
 
 #: ../src/Clients/Muinshee/Muinshee/MuinsheeActions.cs:53
 msgid "Add an album to the playlist"
-msgstr "Afegei_x un àlbum a la llista de reproducció"
+msgstr "Afegeix un àlbum a la llista de reproducció"
 
 #: ../src/Clients/Muinshee/Muinshee/PlayerInterface.cs:281
 #, csharp-format
@@ -1482,7 +1483,7 @@ msgstr "No es pot llegir el fitxer i per tant no es pot importar: {0}"
 msgid "File is empty so it could not be imported: {0}"
 msgstr "El fitxer és buit i per tant no es pot importar: {0}"
 
-#: ../src/Core/Banshee.Services/Banshee.Collection.Database/DatabaseQueryFilterModel.cs:48
+#: ../src/Core/Banshee.Services/Banshee.Collection.Database/DatabaseQueryFilterModel.cs:49
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui.TrackEditor/StatisticsPage.cs:96
 msgid "Value"
 msgstr "Valor"
@@ -1503,7 +1504,7 @@ msgstr "per àlbum"
 #: ../src/Core/Banshee.Services/Banshee.Collection.Database/RandomByAlbum.cs:52
 msgid "Play all songs from an album, then randomly choose another album"
 msgstr ""
-"Reprodueix totes les cançons d'un àlbum, i llavors escolleix un altre àlbum "
+"Reprodueix totes les cançons d'un àlbum, i llavors tria un altre àlbum "
 "aleatòriament"
 
 #: ../src/Core/Banshee.Services/Banshee.Collection.Database/RandomByArtist.cs:50
@@ -1517,7 +1518,7 @@ msgstr "per artista"
 #: ../src/Core/Banshee.Services/Banshee.Collection.Database/RandomByArtist.cs:52
 msgid "Play all songs by an artist, then randomly choose another artist"
 msgstr ""
-"Reprodueix totes les cançons d'un artista, i llavors escolleix un altre "
+"Reprodueix totes les cançons d'un artista, i llavors tria un altre "
 "artista aleatòriament"
 
 #
@@ -2001,7 +2002,7 @@ msgstr "S'estan desant les metadades al fitxer"
 
 #: ../src/Core/Banshee.Services/Banshee.Metadata/SaveTrackMetadataService.cs:49
 msgid "Sync _metadata between library and files"
-msgstr "Sincronitza les metadades entre la biblioteca i els fitxers"
+msgstr "_Sincronitza les metadades entre la biblioteca i els fitxers"
 
 #: ../src/Core/Banshee.Services/Banshee.Metadata/SaveTrackMetadataService.cs:50
 msgid ""
@@ -3136,8 +3137,8 @@ msgid ""
 "Closing Banshee now will cancel any currently running tasks. They cannot be "
 "resumed automatically the next time Banshee is run."
 msgstr ""
-"Si tanqueu el Banshee ara cancel·lareu totes les tasques en execució. No es "
-"podran reprendre automàticament el proper cop que inicieu el Banshee."
+"Si tanqueu el Banshee, cancel·lareu totes les tasques en execució. No es "
+"podran reprendre automàticament la pròxima vegada que inicieu el Banshee."
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui.Dialogs/ConfirmShutdownDialog.cs:60
 msgid "Quit Anyway"
@@ -3516,7 +3517,7 @@ msgstr "Exporta una llista de reproducció"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui/SourceActions.cs:93
 msgid "Unmap"
-msgstr "Desassocia"
+msgstr "Desvincula"
 
 #
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui/SourceActions.cs:96
@@ -3547,7 +3548,7 @@ msgstr "Edita les preferències relacionades amb aquesta font"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui/SourceActions.cs:112
 msgid "New _Smart Playlist"
-msgstr "Llista de reproducció intel·ligent nova"
+msgstr "_Llista de reproducció intel·ligent nova"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui/SourceActions.cs:121
 #: ../src/Extensions/Banshee.Fixup/Banshee.Fixup/FixSource.cs:98
@@ -3920,7 +3921,7 @@ msgstr "Dóna aquest valor a totes les valoracions"
 #
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui.TrackEditor/BasicTrackDetailsPage.cs:205
 msgid "_Rating:"
-msgstr "Valoració:"
+msgstr "_Valoració:"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui.TrackEditor/ExtraTrackDetailsPage.cs:44
 msgid "Extra"
@@ -4622,7 +4623,7 @@ msgstr "S'està afegint la cançó {0} de {1}"
 #: ../src/Dap/Banshee.Dap.AppleDevice/Banshee.Dap.AppleDevice/AppleDeviceSource.cs:620
 #, csharp-format
 msgid "Updating metadata in track {0} of {1}"
-msgstr "S'estant actualitzant les metadades de la cançó {0} de {1}"
+msgstr "S'estan actualitzant les metadades de la cançó {0} de {1}"
 
 #: ../src/Dap/Banshee.Dap.AppleDevice/Banshee.Dap.AppleDevice/AppleDeviceSource.cs:640
 #, csharp-format
@@ -4689,7 +4690,7 @@ msgstr ""
 msgid "File format conversion support is not available"
 msgstr ""
 "Aquest dispositiu no té compatibilitat de conversió d'aquest format de "
-"fitxer."
+"fitxer"
 
 #: ../src/Dap/Banshee.Dap/Banshee.Dap/DapSource.cs:468
 msgid "Error converting file"
@@ -4706,7 +4707,7 @@ msgid ""
 "Begin synchronizing the device as soon as the device is plugged in or the "
 "libraries change."
 msgstr ""
-"Comença a sincronitzar el dispositiu tan aviat el dispositiu es connecti o "
+"Comença a sincronitzar el dispositiu tan bon punt es connecti el dispositiu o "
 "quan les biblioteques canviïn."
 
 #: ../src/Dap/Banshee.Dap/Banshee.Dap/DapSync.cs:139
@@ -5026,7 +5027,7 @@ msgid ""
 msgstr ""
 "Això garanteix que es dóna aquest valor correctament a tots els números de "
 "disc, i llavors es defineixen l'autor i el títol del llibre per a totes les "
-"cançons de tots els discs d'acord amb els valors de sota."
+"cançons de tots els discs d'acord amb els valors de sota"
 
 #: ../src/Extensions/Banshee.Audiobook/Banshee.Audiobook/Actions.cs:153
 msgid "Author:"
@@ -5040,7 +5041,7 @@ msgstr "Títol del llibre:"
 #: ../src/Extensions/Banshee.Audiobook/Banshee.Audiobook/AudiobookLibrarySource.cs:89
 #: ../src/Extensions/Banshee.Podcasting/Banshee.Podcasting.Gui/PodcastEpisodePage.cs:87
 msgid "Author"
-msgstr "Autors"
+msgstr "Autor"
 
 #. Translators: This means the first letter of the author's name
 #: ../src/Extensions/Banshee.Audiobook/Banshee.Audiobook/AudiobookFileNamePattern.cs:63
@@ -5081,7 +5082,7 @@ msgstr "No hi ha cap adreça d'interès establerta"
 
 #: ../src/Extensions/Banshee.Bpm/Banshee.Bpm/BpmDetectJob.cs:64
 msgid "Detecting BPM"
-msgstr "S'està detectant els BPM"
+msgstr "S'estan detectant els BPM"
 
 #: ../src/Extensions/Banshee.Bpm/Banshee.Bpm/BpmEntry.cs:92
 msgid "D_etect"
@@ -5615,7 +5616,7 @@ msgstr "Tipus multimèdia predeterminats"
 
 #: ../src/Extensions/Banshee.InternetArchive/Banshee.InternetArchive/HomeSource.cs:122
 msgid "_Audio"
-msgstr "_Àudio"
+msgstr "À_udio"
 
 #: ../src/Extensions/Banshee.InternetArchive/Banshee.InternetArchive/HomeSource.cs:125
 msgid "_Video"
@@ -5632,7 +5633,7 @@ msgstr "Cerca..."
 
 #: ../src/Extensions/Banshee.InternetArchive/Banshee.InternetArchive/HomeView.cs:111
 msgid "_Go"
-msgstr "_Ves"
+msgstr "_Vés"
 
 #: ../src/Extensions/Banshee.InternetArchive/Banshee.InternetArchive/HomeView.cs:119
 msgid "Staff Picks"
@@ -6041,7 +6042,7 @@ msgstr "Gènere de l'emissora:"
 
 #: ../src/Extensions/Banshee.InternetRadio/Banshee.InternetRadio/StationEditor.cs:119
 msgid "Station Name:"
-msgstr "Nom de l'emissora"
+msgstr "Nom de l'emissora:"
 
 #: ../src/Extensions/Banshee.InternetRadio/Banshee.InternetRadio/StationEditor.cs:120
 msgid "Stream URL:"
@@ -6085,7 +6086,7 @@ msgstr "V_isiteu la pàgina del perfil de l'usuari"
 #: ../src/Extensions/Banshee.Lastfm/Banshee.Lastfm.Audioscrobbler/AudioscrobblerService.cs:151
 #: ../src/Extensions/Banshee.Lastfm/Banshee.Lastfm/LastfmPreferences.cs:172
 msgid "Visit Your Last.fm Profile Page"
-msgstr "V_isiteu la vostra pàgina de perfil d'usuari a Last.fm"
+msgstr "Visiteu la vostra pàgina de perfil d'usuari a Last.fm"
 
 #: ../src/Extensions/Banshee.Lastfm/Banshee.Lastfm.Audioscrobbler/AudioscrobblerService.cs:156
 #: ../src/Extensions/Banshee.Lastfm/Banshee.Lastfm/LastfmPreferences.cs:93
@@ -6214,7 +6215,7 @@ msgstr "Compte"
 #: ../src/Extensions/Banshee.Lastfm/Banshee.Lastfm/LastfmPreferences.cs:82
 #: ../src/Extensions/Banshee.Lastfm/Banshee.Lastfm/LastfmPreferences.cs:278
 msgid "_Username"
-msgstr "_Nom d'usuari:"
+msgstr "_Nom d'usuari"
 
 #: ../src/Extensions/Banshee.Lastfm/Banshee.Lastfm/LastfmPreferences.cs:168
 #: ../src/Libraries/Lastfm.Gui/Lastfm.Gui/AccountLoginForm.cs:86
@@ -6841,7 +6842,7 @@ msgstr "Importa les valoracions de la cançó"
 #: ../src/Extensions/Banshee.PlayerMigration/Banshee.PlayerMigration/ItunesPlayerImportDialogs.cs:93
 msgid "Import play statistics (playcount, etc.)"
 msgstr ""
-"Importa les estadístiques de reproducció (nombre de reproduccions, etc)"
+"Importa les estadístiques de reproducció (nombre de reproduccions, etc.)"
 
 #: ../src/Extensions/Banshee.PlayerMigration/Banshee.PlayerMigration/ItunesPlayerImportDialogs.cs:96
 msgid "Import playlists"
@@ -7165,11 +7166,11 @@ msgid_plural "Delete Files"
 msgstr[0] "Suprimeix el fitxer"
 msgstr[1] "Suprimeix els fitxers"
 
-#: ../src/Extensions/Banshee.Podcasting/Banshee.Podcasting.Gui/PodcastActions.cs:352
+#: ../src/Extensions/Banshee.Podcasting/Banshee.Podcasting.Gui/PodcastActions.cs:353
 msgid "Invalid URL"
 msgstr "URL no vàlida"
 
-#: ../src/Extensions/Banshee.Podcasting/Banshee.Podcasting.Gui/PodcastActions.cs:353
+#: ../src/Extensions/Banshee.Podcasting/Banshee.Podcasting.Gui/PodcastActions.cs:354
 msgid "Podcast URL is invalid."
 msgstr "L'URL del canal Podcast no és vàlid."
 
@@ -7186,7 +7187,7 @@ msgid ""
 "If checked, Banshee will check every hour to see if this podcast has new "
 "episodes"
 msgstr ""
-"Si es marca, el Banshee comprovarà cada hora si el Podcast té episodis nous."
+"Si es marca, el Banshee comprovarà cada hora si el Podcast té episodis nous"
 
 #: ../src/Extensions/Banshee.Podcasting/Banshee.Podcasting.Gui/PodcastManager/Dialog/PodcastFeedPropertiesDialog.cs:105
 #: ../src/Extensions/Banshee.Podcasting/Banshee.Podcasting.Gui/PodcastManager/Dialog/PodcastSubscribeDialog.cs:136
@@ -7303,7 +7304,7 @@ msgstr "_Mostra el Banshee al menú del «so»"
 
 #: ../src/Extensions/Banshee.SoundMenu/Banshee.SoundMenu/SoundMenuService.cs:363
 msgid "Control Banshee through the sound menu"
-msgstr "Controleu el Banshee mitjançant el menú del «so»."
+msgstr "Controleu el Banshee mitjançant el menú del «so»"
 
 #: ../src/Extensions/Banshee.SqlDebugConsole/Banshee.SqlDebugConsole/SqlActions.cs:59
 msgid "Show SQL Console"
@@ -7331,7 +7332,7 @@ msgstr "Compartició UPnP"
 
 #: ../src/Extensions/Banshee.YouTube/Banshee.YouTube.Gui/VideoStreamTile.cs:136
 msgid "Uploaded by"
-msgstr "Pujat per:"
+msgstr "Pujat per"
 
 #: ../src/Extensions/Banshee.YouTube/Banshee.YouTube.Gui/VideoStreamTile.cs:233
 #: ../src/Extensions/Banshee.YouTube/Banshee.YouTube.Gui/VideoStreamTile.cs:234
@@ -7844,7 +7845,7 @@ msgstr "Podcast desconegut"
 
 #~ msgid "Learn more about Banshee's iPod support"
 #~ msgstr ""
-#~ "Obteniu més informació en quant a la compatibilitat iPod del Banshee"
+#~ "Obteniu més informació quant a la compatibilitat iPod del Banshee"
 
 #~ msgid ""
 #~ "An iPod database could not be found on this device.\n"
