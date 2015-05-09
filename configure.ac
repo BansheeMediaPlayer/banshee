@@ -56,9 +56,9 @@ PKG_CHECK_MODULES(GLIB, glib-2.0 >= 2.22)
 dnl User help
 SHAMROCK_CHECK_GNOME_DOC_UTILS(0.17.3)
 
-dnl Mono and gmcs
-SHAMROCK_CHECK_MONO_MODULE(2.8.2)
-SHAMROCK_FIND_MONO_2_0_COMPILER_OR_HIGHER
+dnl Mono and mcs
+SHAMROCK_CHECK_MONO_MODULE(3.2.8)
+SHAMROCK_FIND_MONO_COMPILER
 SHAMROCK_FIND_MONO_RUNTIME
 SHAMROCK_CHECK_MONO_2_0_GAC_ASSEMBLIES([
 	Mono.Posix
@@ -161,16 +161,13 @@ AM_CONDITIONAL(ENABLE_RELEASE, test "x$enable_release" = "xyes")
 ENABLE_RELEASE=$enable_release
 AC_SUBST(ENABLE_RELEASE)
 if test "x$enable_release" = "xyes"; then
-	GMCS_FLAGS="-define:RELEASE"
+	MCS_FLAGS="-define:RELEASE"
 else
-	GMCS_FLAGS=""
+	MCS_FLAGS=""
 fi
 #FIXME: add "-warnaserror" back above!
 
-#TODO: for simplicity, just remove langversion and use .NET 4.0 moving forward
-GMCS_FLAGS="$GMC_FLAGS -langversion:3"
-
-AC_SUBST(GMCS_FLAGS)
+AC_SUBST(MCS_FLAGS)
 
 AM_CONDITIONAL(HYENA_PKG_CONFIG, false)
 
@@ -332,7 +329,7 @@ ${PACKAGE}-${VERSION}
     Libdir:                ${expanded_libdir}
 
     C Compiler:            ${CC}
-    Mono C# Compiler:      ${MCS} ${GMCS_FLAGS}
+    Mono C# Compiler:      ${MCS} ${MCS_FLAGS}
     Mono Runtime:          ${MONO}
     Gtk#:                  ${gtk_sharp_version}
 

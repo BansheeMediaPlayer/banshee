@@ -39,7 +39,7 @@ $(ASSEMBLY_FILE): $(SOURCES_BUILD) $(RESOURCES_EXPANDED) $(DEP_LINK) $(DLL_MAP_V
 		$(MONO) $(top_builddir)/build/dll-map-verifier.exe $(srcdir)/$(notdir $@.config) -iwinmm -ilibbanshee -ilibbnpx11 -ilibc -ilibc.so.6 -iintl -ilibmtp.dll -ilibgtkmacintegration.dylib -iCFRelease $(SOURCES_BUILD); \
 	fi;
 	$(MCS) \
-		$(GMCS_FLAGS) \
+		$(MCS_FLAGS) \
 		$(ASSEMBLY_BUILD_FLAGS) \
 		$$warn \
 		-debug -target:$(TARGET) -out:$@ \

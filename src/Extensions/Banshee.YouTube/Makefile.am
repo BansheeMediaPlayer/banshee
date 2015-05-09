@@ -20,6 +20,6 @@ include $(top_srcdir)/build/build.dist.mk
 endif
 
 if HAVE_GDATASHARP_1_5
-GMCS_FLAGS += "-define:HAVE_GDATASHARP_1_5"
+MCS_FLAGS += "-define:HAVE_GDATASHARP_1_5"
 endif
 
