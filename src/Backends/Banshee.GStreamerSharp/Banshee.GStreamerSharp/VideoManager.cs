@@ -114,7 +114,7 @@ namespace Banshee.GStreamerSharp
                 return;
             }
 
-            if (!GlobalVideo.IsVideoOverlayPrepareWindowHandleMessage (message)) {
+            if (!Gst.Video.Global.IsVideoOverlayPrepareWindowHandleMessage (message)) {
                 return;
             }
 

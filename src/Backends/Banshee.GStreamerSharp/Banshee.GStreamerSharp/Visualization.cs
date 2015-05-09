@@ -99,7 +99,7 @@ namespace Banshee.GStreamerSharp
             audiosinkqueue ["leaky"] = GST_QUEUE_LEAK_DOWNSTREAM;
             audiosinkqueue ["max-size-buffers"] = 0;
             audiosinkqueue ["max-size-bytes"] = 0;
-            audiosinkqueue ["max-size-time"] = ((long)Constants.SECOND) * 5L;
+            audiosinkqueue ["max-size-time"] = ((long)Gst.Constants.SECOND) * 5L;
 
             fakesink.Connect ("handoff", PCMHandoff);
 
@@ -109,11 +109,11 @@ namespace Banshee.GStreamerSharp
             fakesink ["sync"] = true;
             // Drop buffers if they come in too late.  This is mainly used when
             // thawing the vis pipeline.
-            fakesink ["max-lateness"] = ((long)Constants.SECOND / 120L);
+            fakesink ["max-lateness"] = ((long)Gst.Constants.SECOND / 120L);
             // Deliver buffers one frame early.  This allows for rendering
             // time.  (TODO: It would be great to calculate this on-the-fly so
             // we match the rendering time.
-            fakesink ["ts-offset"] = -((long)Constants.SECOND / 60L);
+            fakesink ["ts-offset"] = -((long)Gst.Constants.SECOND / 60L);
             // Don't go to PAUSED when we freeze the pipeline.
             fakesink ["async"] = false;
 
@@ -147,7 +147,7 @@ namespace Banshee.GStreamerSharp
         private Caps caps = Caps.FromString (
             "audio/x-raw, " +
             //FIXME: is this correct way to port this? https://github.com/GNOME/banshee/commit/e40923df1bc55129832dff5ca2c782f5040b412f#diff-7c442526ef990528be03ffbca9921ec3R38
-            "format = (string) " + Gst.Audio.GlobalAudio.AudioFormatToString (Gst.Audio.AudioFormat.F32) + ", " +
+            "format = (string) " + Gst.Audio.Global.AudioFormatToString (Gst.Audio.AudioFormat.F32) + ", " +
             "rate = (int) 44100, " +
             "channels = (int) 2");
 

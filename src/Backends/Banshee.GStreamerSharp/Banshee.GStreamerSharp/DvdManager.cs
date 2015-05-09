@@ -141,7 +141,7 @@ namespace Banshee.GStreamerSharp
             InDvdMenu = false;
             // Get available command to know if player is in menu
             // FIXME: GlobalVideo should be Gst.Video.Global
-            Gst.Query query = GlobalVideo.NavigationQueryNewCommands ();
+            Gst.Query query = Gst.Video.Global.NavigationQueryNewCommands ();
 
             NavigationCommand[] cmds;
             if (Navigation == null) {
