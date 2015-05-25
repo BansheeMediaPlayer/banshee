@@ -118,6 +118,7 @@ public class TranslatorExtractor
             case "id": language_name = "Indonesian"; break;
             case "ko": language_name = "Korean"; break;
             case "lt": language_name = "Lithuanian"; break;
+            case "oc": language_name = "Occitan"; break;
             case "pt": language_name = "Portuguese"; break;
             case "zh_CN": language_name = "Simplified Chinese"; break;
             case "zh_HK": language_name = "Chinese (Hong Kong)"; break;
