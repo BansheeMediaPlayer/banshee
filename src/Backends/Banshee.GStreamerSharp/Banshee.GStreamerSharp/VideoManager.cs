@@ -4,7 +4,7 @@
 // Authors:
 //  Olivier Dufour <olivier.duff@gmail.com>
 //  Andrés G. Aragoneses <knocte@gmail.com>
-//   Stephan Sundermann <stephansundermann@gmail.com>
+//  Stephan Sundermann <stephansundermann@gmail.com>
 //
 // Copyright (C) 2011 Olivier Dufour
 // Copyright (C) 2013 Andrés G. Aragoneses
@@ -294,20 +294,13 @@ namespace Banshee.GStreamerSharp
 
         public void WindowRealize (IntPtr window)
         {
-            switch (System.Environment.OSVersion.Platform) {
-                case PlatformID.Unix:
+            if (PlatformDetection.IsWindows) {
+                video_window_xid = (ulong)gdk_win32_drawable_get_handle (window);
+            } else if (PlatformDetection.IsUnix) {
                     //FIXME: we should maybe stop relying on x11 http://gstreamer.freedesktop.org/data/doc/gstreamer/head/gst-plugins-base-libs/html/gst-plugins-base-libs-gstvideooverlay.html#GstVideoOverlay
-                    video_window_xid = (ulong)gdk_x11_window_get_xid (window);
-                break;
-                case PlatformID.Win32NT:
-                case PlatformID.Win32S:
-                case PlatformID.Win32Windows:
-                case PlatformID.WinCE:
-                    video_window_xid = (ulong)gdk_win32_drawable_get_handle (window);
-                break;
+                video_window_xid = (ulong)gdk_x11_window_get_xid (window);
             }
         }
-
 
         [DllImport ("libgdk-3-0.dll")]
         private static extern IntPtr gdk_x11_window_get_xid (IntPtr drawable);
