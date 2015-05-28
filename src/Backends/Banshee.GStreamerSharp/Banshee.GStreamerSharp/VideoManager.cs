@@ -52,7 +52,7 @@ namespace Banshee.GStreamerSharp
         Element playbin;
         VideoDisplayContextType video_display_context_type;
         IntPtr video_window;
-        ulong? video_window_xid;
+        IntPtr? video_window_xid;
         VideoOverlayAdapter xoverlay;
         object video_mutex = new object ();
 
@@ -295,10 +295,10 @@ namespace Banshee.GStreamerSharp
         public void WindowRealize (IntPtr window)
         {
             if (PlatformDetection.IsWindows) {
-                video_window_xid = (ulong)gdk_win32_drawable_get_handle (window);
+                video_window_xid = gdk_win32_drawable_get_handle (window);
             } else if (PlatformDetection.IsUnix) {
                     //FIXME: we should maybe stop relying on x11 http://gstreamer.freedesktop.org/data/doc/gstreamer/head/gst-plugins-base-libs/html/gst-plugins-base-libs-gstvideooverlay.html#GstVideoOverlay
-                video_window_xid = (ulong)gdk_x11_window_get_xid (window);
+                video_window_xid = gdk_x11_window_get_xid (window);
             }
         }
 
