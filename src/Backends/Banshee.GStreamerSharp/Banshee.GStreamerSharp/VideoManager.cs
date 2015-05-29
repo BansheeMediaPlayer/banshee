@@ -296,11 +296,30 @@ namespace Banshee.GStreamerSharp
         {
             if (PlatformDetection.IsWindows) {
                 video_window_xid = gdk_win32_drawable_get_handle (window);
+            } else if (PlatformDetection.IsMac) {
+                // On OSX, gdk can either be used with the quartz backend or the x11 one.
+                // There is no function in gdk which returns which backend is currently used.
+                // Therefore try to get the handle from the quartz backend first (which is more common)
+                // A failure to find that function will result in a EntryPointNotFoundException
+                try {
+                    video_window_xid = gdk_quartz_window_get_nsview (window);
+                } catch (EntryPointNotFoundException ex) {
+                    // The bockbuild package always builds the quartz backend so this exception
+                    // would never happen for a bockbuild build. The fallback is used when someone is still
+                    // using XQuartz and did compile all the dependencies and stuff on their own.
+
+                    Hyena.Log.Warning (ex);
+
+                    video_window_xid = gdk_x11_window_get_xid (window);
+                }
             } else if (PlatformDetection.IsUnix) {
                     //FIXME: we should maybe stop relying on x11 http://gstreamer.freedesktop.org/data/doc/gstreamer/head/gst-plugins-base-libs/html/gst-plugins-base-libs-gstvideooverlay.html#GstVideoOverlay
                 video_window_xid = gdk_x11_window_get_xid (window);
             }
         }
+
+        [DllImport ("libgdk-3-0.dll")]
+        private static extern IntPtr gdk_quartz_window_get_nsview (IntPtr drawable);
 
         [DllImport ("libgdk-3-0.dll")]
         private static extern IntPtr gdk_x11_window_get_xid (IntPtr drawable);
