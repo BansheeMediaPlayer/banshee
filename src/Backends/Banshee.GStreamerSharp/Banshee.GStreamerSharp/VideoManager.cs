@@ -320,8 +320,8 @@ namespace Banshee.GStreamerSharp
             }
             get { 
                 if (VideoDisplayContextType == VideoDisplayContextType.GdkWindow) {
-                        return video_window;
-                    }
+                    return video_window;
+                }
                 return IntPtr.Zero;
             }
         }
