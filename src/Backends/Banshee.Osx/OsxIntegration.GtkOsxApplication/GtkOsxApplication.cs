@@ -40,15 +40,14 @@ namespace OsxIntegration.GtkOsxApplication
 
         public GtkOsxApplication ()
         {
-            IntPtr osx_app = gtk_osxapplication_get_type ();
+            IntPtr osx_app = gtkosx_application_get_type ();
             theApp = new GLib.GType (osx_app).Val;
-
         }
 
         // Takes the Gtk.MenuShell and sets it as OS X application menu
         public void SetMenu (MenuShell shell)
         {
-            gtk_osxapplication_set_menu_bar (theApp, shell.Handle);
+            gtkosx_application_set_menu_bar (theApp, shell.Handle);
         }
 
         // Places MenuItems into the OS X specific "Application" menu
@@ -57,18 +56,18 @@ namespace OsxIntegration.GtkOsxApplication
         // dialog in there
         public void InsertIntoAppMenu (MenuItem item, int index)
         {
-            gtk_osxapplication_insert_app_menu_item (theApp, item.Handle, index);
-            gtk_osxapplication_sync_menubar (theApp);
+            gtkosx_application_insert_app_menu_item (theApp, item.Handle, index);
+            gtkosx_application_sync_menubar (theApp);
         }
 
         public void SetWindowMenu (MenuItem item)
         {
-            gtk_osxapplication_set_window_menu (theApp, item.Handle);
-            gtk_osxapplication_sync_menubar (theApp);
+            gtkosx_application_set_window_menu (theApp, item.Handle);
+            gtkosx_application_sync_menubar (theApp);
         }
         public void Ready ()
         {
-            gtk_osxapplication_ready (theApp);
+            gtkosx_application_ready (theApp);
         }
 
         // Bindings against native gtk-mac-integration/GtkOSXApplication
@@ -76,28 +75,28 @@ namespace OsxIntegration.GtkOsxApplication
         // for documentation of these functions, see:
         // http://gtk-osx.sourceforge.net/ige-mac-integration/GtkOSXApplication.html
 
-        private const string GtkMacIntegrationLibrary = "libgtkmacintegration.dylib";
+        private const string GtkMacIntegrationLibrary = "libgtkmacintegration-gtk3.dylib";
 
         [DllImport (GtkMacIntegrationLibrary)]
-        protected extern static IntPtr gtk_osxapplication_get_type ();
+        protected extern static IntPtr gtkosx_application_get_type ();
 
         [DllImport (GtkMacIntegrationLibrary)]
-        protected extern static void gtk_osxapplication_ready (IntPtr app);
+        protected extern static void gtkosx_application_ready (IntPtr app);
 
         [DllImport (GtkMacIntegrationLibrary)]
-        protected extern static void gtk_osxapplication_set_menu_bar (IntPtr app, IntPtr menu_shell);
+        protected extern static void gtkosx_application_set_menu_bar (IntPtr app, IntPtr menu_shell);
 
         [DllImport (GtkMacIntegrationLibrary)]
-        protected extern static void gtk_osxapplication_insert_app_menu_item (IntPtr app, IntPtr menu_item, int index);
+        protected extern static void gtkosx_application_insert_app_menu_item (IntPtr app, IntPtr menu_item, int index);
 
         [DllImport (GtkMacIntegrationLibrary)]
-        protected extern static void gtk_osxapplication_sync_menubar (IntPtr app);
+        protected extern static void gtkosx_application_sync_menubar (IntPtr app);
 
         [DllImport (GtkMacIntegrationLibrary)]
-        protected extern static void gtk_osxapplication_set_dock_menu  (IntPtr app, IntPtr menu_shell);
+        protected extern static void gtkosx_application_set_dock_menu  (IntPtr app, IntPtr menu_shell);
 
         [DllImport (GtkMacIntegrationLibrary)]
-        protected extern static void gtk_osxapplication_set_window_menu (IntPtr app, IntPtr menu_item);
+        protected extern static void gtkosx_application_set_window_menu (IntPtr app, IntPtr menu_item);
 
         // TODO add more functions from GtkOsxApplication
 

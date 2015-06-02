@@ -36,7 +36,7 @@ $(ASSEMBLY_FILE): $(SOURCES_BUILD) $(RESOURCES_EXPANDED) $(DEP_LINK) $(DLL_MAP_V
 	@mkdir -p $(top_builddir)/bin
 	@if [ ! "x$(ENABLE_RELEASE)" = "xyes" ]; then \
 		$(top_srcdir)/build/dll-map-makefile-verifier $(srcdir)/Makefile.am $(srcdir)/$(notdir $@.config) && \
-		$(MONO) $(top_builddir)/build/dll-map-verifier.exe $(srcdir)/$(notdir $@.config) -iwinmm -ilibbanshee -ilibbnpx11 -ilibc -ilibc.so.6 -iintl -ilibmtp.dll -ilibgtkmacintegration.dylib -iCFRelease $(SOURCES_BUILD); \
+		$(MONO) $(top_builddir)/build/dll-map-verifier.exe $(srcdir)/$(notdir $@.config) -iwinmm -ilibbanshee -ilibbnpx11 -ilibc -ilibc.so.6 -iintl -ilibmtp.dll -ilibgtkmacintegration-gtk3.dylib -iCFRelease $(SOURCES_BUILD); \
 	fi;
 	$(MCS) \
 		$(MCS_FLAGS) \
