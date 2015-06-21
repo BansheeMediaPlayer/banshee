@@ -44,7 +44,7 @@ namespace Banshee.OsxBackend
     public sealed class HardwareManager : IHardwareManager, IService
     {
         public event DeviceAddedHandler DeviceAdded;
-	public event DeviceChangedHandler DeviceChanged;
+        public event DeviceChangedHandler DeviceChanged;
         public event DeviceRemovedHandler DeviceRemoved;
 
         private List<IDevice> devices = new List<IDevice> ();
@@ -91,8 +91,11 @@ namespace Banshee.OsxBackend
                 if (new_device != null) {
                     devices.Add (new_device);
 
-                    // Notify that a device was added (i.e. to refresh device list)
-                    DeviceAdded (this, new DeviceAddedArgs ((IDevice) new_device));
+                    var added_handler = DeviceAdded;
+                    if (added_handler != null) {
+                        // Notify that a device was added (i.e. to refresh device list)
+                        added_handler (this, new DeviceAddedArgs ((IDevice)new_device));
+                    }
                 }
             }
         }
@@ -110,7 +113,10 @@ namespace Banshee.OsxBackend
                     // a device that was currently attached has changed 
                     // remove the device and immediately re-add it
                     devices.Remove (old_device);
-                    DeviceRemoved (old_device, new DeviceRemovedArgs (old_device.Uuid));
+                    var remove_handler = DeviceRemoved;
+                    if (remove_handler != null) {
+                        remove_handler (old_device, new DeviceRemovedArgs (old_device.Uuid));
+                    }
                 }
 
                 // do not add device without a VolumePath (=MountPoint)
@@ -126,7 +132,10 @@ namespace Banshee.OsxBackend
                     new_device = new Volume (args);
                 }
                 devices.Add (new_device);
-                DeviceAdded (this, new DeviceAddedArgs ((IDevice) new_device));
+                var added_handler = DeviceAdded;
+                if (added_handler != null) {
+                    added_handler (this, new DeviceAddedArgs ((IDevice)new_device));
+                }
             }
         }
 
@@ -141,7 +150,10 @@ namespace Banshee.OsxBackend
                 var old_device = devices.Where (d => d.Uuid == device.Uuid).FirstOrDefault ();
                 if (old_device != null) {
                     devices.Remove (old_device);
-                    DeviceRemoved (this, new DeviceRemovedArgs (old_device.Uuid));
+                    var removed_handler = DeviceRemoved;
+                    if (removed_handler != null) {
+                        removed_handler (this, new DeviceRemovedArgs (old_device.Uuid));
+                    }
                 }
             }
         }
