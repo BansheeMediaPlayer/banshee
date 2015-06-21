@@ -54,6 +54,8 @@ namespace Banshee.ServiceStack
 
     public static class Application
     {
+        private const string LibGlibLibrary = "libglib-2.0-0.dll";
+
         public static event ShutdownRequestHandler ShutdownRequested;
         public static event Action<Client> ClientAdded;
 
@@ -81,7 +83,7 @@ namespace Banshee.ServiceStack
         }
 
 #if WIN32
-        [DllImport("msvcrt.dll") /* willfully unmapped */]
+        [DllImport ("msvcrt.dll", CallingConvention = CallingConvention.Cdecl) /* willfully unmapped */]
         public static extern int _putenv (string varName);
 #endif
 
@@ -176,7 +178,7 @@ namespace Banshee.ServiceStack
             }
         }
 
-        [DllImport ("libglib-2.0-0.dll")]
+        [DllImport (LibGlibLibrary, CallingConvention = CallingConvention.Cdecl)]
         static extern IntPtr g_get_language_names ();
 
         public static void DisplayHelp (string page)

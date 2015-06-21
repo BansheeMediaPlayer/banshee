@@ -52,13 +52,13 @@ namespace JavaScriptCore
             Context = context;
         }
 
-        [DllImport (JSContext.NATIVE_IMPORT)]
+        [DllImport (JSContext.NATIVE_IMPORT, CallingConvention = CallingConvention.Cdecl)]
         private static extern IntPtr JSValueMakeBoolean (IntPtr ctx, bool value);
 
-        [DllImport (JSContext.NATIVE_IMPORT)]
+        [DllImport (JSContext.NATIVE_IMPORT, CallingConvention = CallingConvention.Cdecl)]
         private static extern IntPtr JSValueMakeNumber (IntPtr ctx, double value);
 
-        [DllImport (JSContext.NATIVE_IMPORT)]
+        [DllImport (JSContext.NATIVE_IMPORT, CallingConvention = CallingConvention.Cdecl)]
         private static extern IntPtr JSValueMakeString (IntPtr ctx, JSString value);
 
         public JSValue (JSContext ctx, bool value) : this (ctx, JSValueMakeBoolean (ctx.Raw, value)) { }
@@ -75,56 +75,56 @@ namespace JavaScriptCore
         public JSValue (JSContext ctx, JSString value) : this (ctx, JSValueMakeString (ctx.Raw, value)) { }
         public JSValue (JSContext ctx, string value) : this (ctx, JSValueMakeString (ctx.Raw, JSString.New (value))) { }
 
-        [DllImport (JSContext.NATIVE_IMPORT)]
+        [DllImport (JSContext.NATIVE_IMPORT, CallingConvention = CallingConvention.Cdecl)]
         private static extern JSType JSValueGetType (IntPtr ctx, IntPtr value);
 
         public JSType JSType {
             get { return JSValueGetType (Context.Raw, Raw); }
         }
 
-        [DllImport (JSContext.NATIVE_IMPORT)]
+        [DllImport (JSContext.NATIVE_IMPORT, CallingConvention = CallingConvention.Cdecl)]
         private static extern bool JSValueIsUndefined (IntPtr ctx, IntPtr value);
 
         public bool IsUndefined {
             get { return JSValueIsUndefined (Context.Raw, Raw); }
         }
 
-        [DllImport (JSContext.NATIVE_IMPORT)]
+        [DllImport (JSContext.NATIVE_IMPORT, CallingConvention = CallingConvention.Cdecl)]
         private static extern bool JSValueIsNull (IntPtr ctx, IntPtr value);
 
         public bool IsNull {
             get { return JSValueIsNull (Context.Raw, Raw); }
         }
 
-        [DllImport (JSContext.NATIVE_IMPORT)]
+        [DllImport (JSContext.NATIVE_IMPORT, CallingConvention = CallingConvention.Cdecl)]
         private static extern bool JSValueIsBoolean (IntPtr ctx, IntPtr value);
 
         public bool IsBoolean {
             get { return JSValueIsBoolean (Context.Raw, Raw); }
         }
 
-        [DllImport (JSContext.NATIVE_IMPORT)]
+        [DllImport (JSContext.NATIVE_IMPORT, CallingConvention = CallingConvention.Cdecl)]
         private static extern bool JSValueIsNumber (IntPtr ctx, IntPtr value);
 
         public bool IsNumber {
             get { return JSValueIsNumber (Context.Raw, Raw); }
         }
 
-        [DllImport (JSContext.NATIVE_IMPORT)]
+        [DllImport (JSContext.NATIVE_IMPORT, CallingConvention = CallingConvention.Cdecl)]
         private static extern bool JSValueIsString (IntPtr ctx, IntPtr value);
 
         public bool IsString {
             get { return JSValueIsString (Context.Raw, Raw); }
         }
 
-        [DllImport (JSContext.NATIVE_IMPORT)]
+        [DllImport (JSContext.NATIVE_IMPORT, CallingConvention = CallingConvention.Cdecl)]
         private static extern bool JSValueIsObject (IntPtr ctx, IntPtr value);
 
         public bool IsObject {
             get { return JSValueIsObject (Context.Raw, Raw); }
         }
 
-        [DllImport (JSContext.NATIVE_IMPORT)]
+        [DllImport (JSContext.NATIVE_IMPORT, CallingConvention = CallingConvention.Cdecl)]
         private static extern bool JSValueIsObjectOfClass (IntPtr ctx, IntPtr value, IntPtr jsClass);
 
         public bool IsObjectOfClass (JSClass jsClass)
@@ -132,7 +132,7 @@ namespace JavaScriptCore
             return JSValueIsObjectOfClass (Context.Raw, Raw, jsClass.Raw);
         }
 
-        [DllImport (JSContext.NATIVE_IMPORT)]
+        [DllImport (JSContext.NATIVE_IMPORT, CallingConvention = CallingConvention.Cdecl)]
         private static extern bool JSValueIsEqual (IntPtr ctx, IntPtr a, IntPtr b, ref IntPtr exception);
 
         public bool IsEqual (JSValue value)
@@ -143,7 +143,7 @@ namespace JavaScriptCore
             return result;
         }
 
-        [DllImport (JSContext.NATIVE_IMPORT)]
+        [DllImport (JSContext.NATIVE_IMPORT, CallingConvention = CallingConvention.Cdecl)]
         private static extern bool JSValueIsStrictEqual (IntPtr ctx, IntPtr a, IntPtr b);
 
         public bool IsStrictEqual (JSValue value)
@@ -151,7 +151,7 @@ namespace JavaScriptCore
             return JSValueIsStrictEqual (Context.Raw, Raw, value.Raw);
         }
 
-        [DllImport (JSContext.NATIVE_IMPORT)]
+        [DllImport (JSContext.NATIVE_IMPORT, CallingConvention = CallingConvention.Cdecl)]
         private static extern bool JSValueIsInstanceOfConstructor (IntPtr ctx, IntPtr value,
             IntPtr constructor, ref IntPtr exception);
 
@@ -163,7 +163,7 @@ namespace JavaScriptCore
             return result;
         }
 
-        [DllImport (JSContext.NATIVE_IMPORT)]
+        [DllImport (JSContext.NATIVE_IMPORT, CallingConvention = CallingConvention.Cdecl)]
         private static extern IntPtr JSValueMakeUndefined (IntPtr ctx);
 
         public static JSValue NewUndefined (JSContext ctx)
@@ -171,7 +171,7 @@ namespace JavaScriptCore
             return new JSValue (ctx, JSValueMakeUndefined (ctx.Raw));
         }
 
-        [DllImport (JSContext.NATIVE_IMPORT)]
+        [DllImport (JSContext.NATIVE_IMPORT, CallingConvention = CallingConvention.Cdecl)]
         private static extern IntPtr JSValueMakeNull (IntPtr ctx);
 
         public static JSValue NewNull (JSContext ctx)
@@ -179,7 +179,7 @@ namespace JavaScriptCore
             return new JSValue (ctx, JSValueMakeNull (ctx.Raw));
         }
 
-        [DllImport (JSContext.NATIVE_IMPORT)]
+        [DllImport (JSContext.NATIVE_IMPORT, CallingConvention = CallingConvention.Cdecl)]
         private static extern IntPtr JSValueMakeFromJSONString (IntPtr ctx, JSString str);
 
         public static JSValue FromJson (JSContext ctx, JSString json)
@@ -202,21 +202,21 @@ namespace JavaScriptCore
             }
         }
 
-        [DllImport (JSContext.NATIVE_IMPORT)]
+        [DllImport (JSContext.NATIVE_IMPORT, CallingConvention = CallingConvention.Cdecl)]
         private static extern bool JSValueToBoolean (IntPtr ctx, IntPtr value);
 
         public bool BooleanValue {
             get { return JSValueToBoolean (Context.Raw, Raw); }
         }
 
-        [DllImport (JSContext.NATIVE_IMPORT)]
+        [DllImport (JSContext.NATIVE_IMPORT, CallingConvention = CallingConvention.Cdecl)]
         private static extern double JSValueToNumber (IntPtr ctx, IntPtr value);
 
         public double NumberValue {
             get { return JSValueToNumber (Context.Raw, Raw); }
         }
 
-        [DllImport (JSContext.NATIVE_IMPORT)]
+        [DllImport (JSContext.NATIVE_IMPORT, CallingConvention = CallingConvention.Cdecl)]
         private static extern IntPtr JSValueToStringCopy (IntPtr ctx, IntPtr value, ref IntPtr exception);
 
         public string StringValue {
@@ -228,7 +228,7 @@ namespace JavaScriptCore
             }
         }
 
-        [DllImport (JSContext.NATIVE_IMPORT)]
+        [DllImport (JSContext.NATIVE_IMPORT, CallingConvention = CallingConvention.Cdecl)]
         private static extern IntPtr JSValueToObject (IntPtr ctx, IntPtr value, ref IntPtr exception);
 
         public JSObject ObjectValue {
@@ -240,7 +240,7 @@ namespace JavaScriptCore
             }
         }
 
-        [DllImport (JSContext.NATIVE_IMPORT)]
+        [DllImport (JSContext.NATIVE_IMPORT, CallingConvention = CallingConvention.Cdecl)]
         private static extern IntPtr JSValueCreateJSONString (IntPtr ctx, IntPtr value, uint indent, ref IntPtr exception);
 
         public string ToJsonString (uint indent)
@@ -257,7 +257,7 @@ namespace JavaScriptCore
             return ToJsonString (2);
         }
 
-        [DllImport (JSContext.NATIVE_IMPORT)]
+        [DllImport (JSContext.NATIVE_IMPORT, CallingConvention = CallingConvention.Cdecl)]
         private static extern void JSValueProtect (IntPtr ctx, IntPtr value);
 
         public void Protect ()
@@ -265,7 +265,7 @@ namespace JavaScriptCore
             JSValueProtect (Context.Raw, Raw);
         }
 
-        [DllImport (JSContext.NATIVE_IMPORT)]
+        [DllImport (JSContext.NATIVE_IMPORT, CallingConvention = CallingConvention.Cdecl)]
         private static extern void JSValueUnprotect (IntPtr ctx, IntPtr value);
 
         public void Unprotect ()

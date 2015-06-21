@@ -37,27 +37,27 @@ namespace MusicBrainz
         const int CD_FRAMES = 75;
         const int XA_INTERVAL = ((60 + 90 + 2) * CD_FRAMES);
 
-        [DllImport ("libc", CharSet = CharSet.Auto)]
+        [DllImport ("libc", CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Auto)]
         static extern int open (string path, int flags);
 
-        [DllImport ("libc")]
+        [DllImport ("libc", CallingConvention = CallingConvention.Cdecl)]
         static extern int close (int fd);
 
-        [DllImport ("libc", EntryPoint = "ioctl")]
+        [DllImport ("libc", CallingConvention = CallingConvention.Cdecl, EntryPoint = "ioctl")]
         static extern int read_toc_header (int fd, int request, ref cdrom_tochdr header);
         static int read_toc_header (int fd, ref cdrom_tochdr header)
         {
             return read_toc_header (fd, CDROMREADTOCHDR, ref header);
         }
 
-        [DllImport ("libc", EntryPoint = "ioctl")]
+        [DllImport ("libc", CallingConvention = CallingConvention.Cdecl, EntryPoint = "ioctl")]
         static extern int read_multisession (int fd, int request, ref cdrom_multisession multisession);
         static int read_multisession (int fd, ref cdrom_multisession multisession)
         {
             return read_multisession (fd, CDROMMULTISESSION, ref multisession);
         }
 
-        [DllImport ("libc", EntryPoint = "ioctl")]
+        [DllImport ("libc", CallingConvention = CallingConvention.Cdecl, EntryPoint = "ioctl")]
         static extern int read_toc_entry (int fd, int request, ref cdrom_tocentry entry);
         static int read_toc_entry (int fd, ref cdrom_tocentry entry)
         {

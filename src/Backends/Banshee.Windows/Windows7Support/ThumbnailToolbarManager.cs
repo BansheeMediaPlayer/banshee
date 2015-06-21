@@ -111,13 +111,15 @@ namespace Windows7Support
 
         private delegate IntPtr Win32WinProc (IntPtr hWnd, int Msg, int wParam, int lParam);
 
-        [DllImport ("user32.dll")]
+        internal const string User32Library = "user32.dll";
+
+        [DllImport (User32Library, CallingConvention = CallingConvention.Cdecl)]
         private static extern IntPtr SetWindowLongW (IntPtr hWnd, int nIndex, IntPtr dwNewLong);
 
-        [DllImport ("user32.dll")]
+        [DllImport (User32Library, CallingConvention = CallingConvention.Cdecl)]
         private static extern IntPtr CallWindowProcW (IntPtr proc, IntPtr hWnd, int Msg, int wParam, int lParam);
 
-        [DllImport ("user32.dll")]
+        [DllImport (User32Library, CallingConvention = CallingConvention.Cdecl)]
         private static extern uint RegisterWindowMessage (string lpProcName);
 
         #endregion

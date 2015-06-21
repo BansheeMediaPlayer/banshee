@@ -34,12 +34,12 @@ namespace MusicBrainz
         // no delay
         const int O_NONBLOCK = 0x0004;
 
-        [DllImport ("libc", CharSet = CharSet.Auto, SetLastError = true)]
+        [DllImport ("libc", CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Auto, SetLastError = true)]
         static extern int open (string path, int flags);
 #endregion
 
 #region <unistd.h>
-        [DllImport ("libc", SetLastError = true)]
+        [DllImport ("libc", CallingConvention = CallingConvention.Cdecl, SetLastError = true)]
         static extern int close (int d);
 #endregion
 
@@ -69,7 +69,7 @@ namespace MusicBrainz
             public byte ending_track;
         }
         const ulong CDIOREADTOCHEADER = 1074029316;
-        [DllImport ("libc", EntryPoint = "ioctl")]
+        [DllImport ("libc", CallingConvention = CallingConvention.Cdecl, EntryPoint = "ioctl")]
         static extern int cd_read_toc_header (int fd, ulong request, ref ioc_toc_header data);
         static int cd_read_toc_header (int fd, ref ioc_toc_header data)
         {
@@ -84,7 +84,7 @@ namespace MusicBrainz
             public IntPtr data; // cd_toc_entry*
         }
         const ulong CDIOREADTOCENTRYS = 3222299397;
-        [DllImport ("libc", EntryPoint = "ioctl")]
+        [DllImport ("libc", CallingConvention = CallingConvention.Cdecl, EntryPoint = "ioctl")]
         static extern int cd_read_toc_entrys (int fd, ulong request, ref ioc_read_toc_entry data);
         static int cd_read_toc_entrys (int fd, ref ioc_read_toc_entry data)
         {

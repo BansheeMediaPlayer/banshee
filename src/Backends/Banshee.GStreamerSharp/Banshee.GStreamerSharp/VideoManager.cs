@@ -318,13 +318,15 @@ namespace Banshee.GStreamerSharp
             }
         }
 
-        [DllImport ("libgdk-3-0.dll")]
+        private const string LibGdkLibrary = "libgdk-3-0.dll";
+
+        [DllImport (LibGdkLibrary, CallingConvention = CallingConvention.Cdecl)]
         private static extern IntPtr gdk_quartz_window_get_nsview (IntPtr drawable);
 
-        [DllImport ("libgdk-3-0.dll")]
+        [DllImport (LibGdkLibrary, CallingConvention = CallingConvention.Cdecl)]
         private static extern IntPtr gdk_x11_window_get_xid (IntPtr drawable);
 
-        [DllImport ("libgdk-3-0.dll")]
+        [DllImport (LibGdkLibrary, CallingConvention = CallingConvention.Cdecl)]
         private static extern IntPtr gdk_win32_drawable_get_handle (IntPtr drawable);
 
         public VideoDisplayContextType VideoDisplayContextType {

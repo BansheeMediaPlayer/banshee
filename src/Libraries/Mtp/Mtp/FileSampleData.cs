@@ -34,13 +34,13 @@ namespace Mtp
 {
     internal static class FileSample
     {
-        [DllImport("libmtp.dll")]
+        [DllImport (MtpDevice.LibMtpLibrary, CallingConvention = CallingConvention.Cdecl)]
         public static extern void LIBMTP_destroy_filesampledata_t (ref FileSampleData data); // LIBMTP_filesampledata_t *
 
-        [DllImport("libmtp.dll")]
+        [DllImport (MtpDevice.LibMtpLibrary, CallingConvention = CallingConvention.Cdecl)]
         public static extern int LIBMTP_Get_Representative_Sample_Format (MtpDeviceHandle handle, FileType type, IntPtr data_array);
 
-        [DllImport("libmtp.dll")]
+        [DllImport (MtpDevice.LibMtpLibrary, CallingConvention = CallingConvention.Cdecl)]
         public static extern int LIBMTP_Send_Representative_Sample (MtpDeviceHandle handle, uint id, ref FileSampleData sample);
     }
 

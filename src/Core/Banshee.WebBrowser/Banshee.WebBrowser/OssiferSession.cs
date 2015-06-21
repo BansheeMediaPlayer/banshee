@@ -39,7 +39,7 @@ namespace Banshee.WebBrowser
         private static IntPtr handle;
         private static CookieJarChangedCallback cookie_jar_changed_callback;
 
-        [DllImport (LIBOSSIFER)]
+        [DllImport (LIBOSSIFER, CallingConvention = CallingConvention.Cdecl)]
         private static extern IntPtr ossifer_session_initialize (IntPtr cookie_db_path,
             CookieJarChangedCallback cookie_jar_changed_callback);
 
@@ -62,7 +62,7 @@ namespace Banshee.WebBrowser
             }
         }
 
-        [DllImport (LIBOSSIFER)]
+        [DllImport (LIBOSSIFER, CallingConvention = CallingConvention.Cdecl)]
         private static extern void ossifer_session_set_cookie (IntPtr name, IntPtr value,
             IntPtr domain, IntPtr path, int max_age);
 
@@ -103,10 +103,10 @@ namespace Banshee.WebBrowser
             }
         }
 
-        [DllImport (LIBOSSIFER)]
+        [DllImport (LIBOSSIFER, CallingConvention = CallingConvention.Cdecl)]
         private static extern IntPtr ossifer_session_get_cookie (IntPtr name, IntPtr domain, IntPtr path);
 
-        [DllImport (LIBOSSIFER)]
+        [DllImport (LIBOSSIFER, CallingConvention = CallingConvention.Cdecl)]
         private static extern void ossifer_cookie_free (IntPtr cookie);
 
         public static OssiferCookie GetCookie (string name, string domain, string path)
@@ -133,7 +133,7 @@ namespace Banshee.WebBrowser
             }
         }
 
-        [DllImport (LIBOSSIFER)]
+        [DllImport (LIBOSSIFER, CallingConvention = CallingConvention.Cdecl)]
         private static extern bool ossifer_session_delete_cookie (IntPtr name, IntPtr domain, IntPtr path);
 
         public static bool DeleteCookie (string name, string domain, string path)

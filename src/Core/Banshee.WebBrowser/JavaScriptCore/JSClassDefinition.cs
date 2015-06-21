@@ -154,7 +154,7 @@ namespace JavaScriptCore
             }
         }
 
-        [DllImport (JSContext.NATIVE_IMPORT)]
+        [DllImport (JSContext.NATIVE_IMPORT, CallingConvention = CallingConvention.Cdecl)]
         private static extern IntPtr JSClassCreate (ref JSClassDefinition.JSClassDefinitionNative definition);
 
         private JSClass class_handle;

@@ -77,25 +77,25 @@ namespace OsxIntegration.GtkOsxApplication
 
         private const string GtkMacIntegrationLibrary = "libgtkmacintegration-gtk3.dylib";
 
-        [DllImport (GtkMacIntegrationLibrary)]
+        [DllImport (GtkMacIntegrationLibrary, CallingConvention = CallingConvention.Cdecl)]
         protected extern static IntPtr gtkosx_application_get_type ();
 
-        [DllImport (GtkMacIntegrationLibrary)]
+        [DllImport (GtkMacIntegrationLibrary, CallingConvention = CallingConvention.Cdecl)]
         protected extern static void gtkosx_application_ready (IntPtr app);
 
-        [DllImport (GtkMacIntegrationLibrary)]
+        [DllImport (GtkMacIntegrationLibrary, CallingConvention = CallingConvention.Cdecl)]
         protected extern static void gtkosx_application_set_menu_bar (IntPtr app, IntPtr menu_shell);
 
-        [DllImport (GtkMacIntegrationLibrary)]
+        [DllImport (GtkMacIntegrationLibrary, CallingConvention = CallingConvention.Cdecl)]
         protected extern static void gtkosx_application_insert_app_menu_item (IntPtr app, IntPtr menu_item, int index);
 
-        [DllImport (GtkMacIntegrationLibrary)]
+        [DllImport (GtkMacIntegrationLibrary, CallingConvention = CallingConvention.Cdecl)]
         protected extern static void gtkosx_application_sync_menubar (IntPtr app);
 
-        [DllImport (GtkMacIntegrationLibrary)]
+        [DllImport (GtkMacIntegrationLibrary, CallingConvention = CallingConvention.Cdecl)]
         protected extern static void gtkosx_application_set_dock_menu  (IntPtr app, IntPtr menu_shell);
 
-        [DllImport (GtkMacIntegrationLibrary)]
+        [DllImport (GtkMacIntegrationLibrary, CallingConvention = CallingConvention.Cdecl)]
         protected extern static void gtkosx_application_set_window_menu (IntPtr app, IntPtr menu_item);
 
         // TODO add more functions from GtkOsxApplication

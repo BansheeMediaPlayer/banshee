@@ -33,40 +33,40 @@ namespace Banshee.Hardware.Osx.LowLevel
     {
         private const string DiskArbitrationLibrary = "/Systems/Library/Frameworks/DiskArbitration.framework/DiskArbitration";
 
-        [DllImport (DiskArbitrationLibrary)]
+        [DllImport (DiskArbitrationLibrary, CallingConvention = CallingConvention.Cdecl)]
         public static extern IntPtr DASessionCreate (IntPtr allocator);
     
-        [DllImport (DiskArbitrationLibrary)]
+        [DllImport (DiskArbitrationLibrary, CallingConvention = CallingConvention.Cdecl)]
         public static extern IntPtr DARegisterDiskAppearedCallback (IntPtr session, IntPtr match, IntPtr callback, IntPtr context);
     
-        [DllImport (DiskArbitrationLibrary)]
+        [DllImport (DiskArbitrationLibrary, CallingConvention = CallingConvention.Cdecl)]
         public static extern IntPtr DARegisterDiskDescriptionChangedCallback (IntPtr session, IntPtr match, IntPtr watch, IntPtr callback, IntPtr context);
     
-        [DllImport (DiskArbitrationLibrary)]
+        [DllImport (DiskArbitrationLibrary, CallingConvention = CallingConvention.Cdecl)]
         public static extern IntPtr DARegisterDiskDisappearedCallback (IntPtr session, IntPtr match, IntPtr callback, IntPtr context);
         
-        [DllImport (DiskArbitrationLibrary)]
+        [DllImport (DiskArbitrationLibrary, CallingConvention = CallingConvention.Cdecl)]
         public static extern IntPtr DAUnregisterCallback (IntPtr session, IntPtr callback, IntPtr context);
 
-        [DllImport (DiskArbitrationLibrary)]
+        [DllImport (DiskArbitrationLibrary, CallingConvention = CallingConvention.Cdecl)]
         public static extern IntPtr DASessionScheduleWithRunLoop (IntPtr session , IntPtr runLoop , IntPtr runloopMode);
     
-        [DllImport (DiskArbitrationLibrary)]
+        [DllImport (DiskArbitrationLibrary, CallingConvention = CallingConvention.Cdecl)]
         public static extern IntPtr DASessionUnscheduleFromRunLoop (IntPtr session , IntPtr runLoop , IntPtr runloopMode);
 
-        [DllImport (DiskArbitrationLibrary)]
+        [DllImport (DiskArbitrationLibrary, CallingConvention = CallingConvention.Cdecl)]
         public static extern IntPtr DADiskCopyDescription (IntPtr disk);
 
-        [DllImport (DiskArbitrationLibrary)]
+        [DllImport (DiskArbitrationLibrary, CallingConvention = CallingConvention.Cdecl)]
         public static extern IntPtr DADiskCopyIOMedia (IntPtr disk);
 
-        [DllImport (DiskArbitrationLibrary)]
+        [DllImport (DiskArbitrationLibrary, CallingConvention = CallingConvention.Cdecl)]
         public static extern void DADiskUnmount (IntPtr disk, int unmountOptions, UnmountCallback callback, IntPtr context);
 
-        [DllImport (DiskArbitrationLibrary)]
+        [DllImport (DiskArbitrationLibrary, CallingConvention = CallingConvention.Cdecl)]
         public static extern IntPtr DADiskCreateFromBSDName (IntPtr allocator, IntPtr da_session_ref, string name);
 
-        [DllImport (DiskArbitrationLibrary)]
+        [DllImport (DiskArbitrationLibrary, CallingConvention = CallingConvention.Cdecl)]
         public static extern IntPtr DADiskCreateFromVolumePath (IntPtr allocator, IntPtr da_session_ref, IntPtr urlref);
 
         public delegate void UnmountCallback (IntPtr disk, IntPtr dissenter, IntPtr context);

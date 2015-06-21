@@ -402,76 +402,78 @@ namespace Mtp
             return s;
         }
 
+        internal const string LibMtpLibrary = "libmtp.dll";
+
         // Device Management
-        [DllImport("libmtp.dll")]
+        [DllImport (LibMtpLibrary, CallingConvention = CallingConvention.Cdecl)]
         private static extern void LIBMTP_Init ();
-            
+
         // Clears out the error stack and frees any allocated memory.
-        [DllImport("libmtp.dll")]
+        [DllImport (LibMtpLibrary, CallingConvention = CallingConvention.Cdecl)]
         private static extern void LIBMTP_Clear_Errorstack (MtpDeviceHandle handle);
-        
-        [DllImport("libmtp.dll")]
+
+        [DllImport (LibMtpLibrary, CallingConvention = CallingConvention.Cdecl)]
         internal static extern int LIBMTP_Delete_Object (MtpDeviceHandle handle, uint object_id);
-            
+
         // Gets the first connected device:
-        //[DllImport("libmtp.dll")]
+        //[DllImport (LibMtpLibrary, CallingConvention = CallingConvention.Cdecl)]
         //private static extern IntPtr LIBMTP_Get_First_Device (); // LIBMTP_mtpdevice_t *
-        
+
         // Gets the storage information
-        [DllImportAttribute("libmtp.dll")]
+        [DllImport (LibMtpLibrary, CallingConvention = CallingConvention.Cdecl)]
         private static extern int LIBMTP_Get_Storage (MtpDeviceHandle handle, int sortMode);
-        
+
         // Formats the supplied storage device attached to the device
-        //[DllImportAttribute("libmtp.dll")]
+        //[DllImport (LibMtpLibrary, CallingConvention = CallingConvention.Cdecl)]
         //private static extern int LIBMTP_Format_Storage (MtpDeviceHandle handle, ref DeviceStorage storage);
-        
+
         // Counts the devices in the list
-        //[DllImportAttribute("libmtp.dll")]
+        //[DllImport (LibMtpLibrary, CallingConvention = CallingConvention.Cdecl)]
         //private static extern uint LIBMTP_Number_Devices_In_List (MtpDeviceHandle handle);
-        
-        [DllImportAttribute("libmtp.dll")]
+
+        [DllImport (LibMtpLibrary, CallingConvention = CallingConvention.Cdecl)]
         private static extern ErrorCode LIBMTP_Get_Connected_Devices (out IntPtr list); //LIBMTP_mtpdevice_t **
 
-        [DllImport ("libmtp.dll")]
+        [DllImport (LibMtpLibrary, CallingConvention = CallingConvention.Cdecl)]
         private static extern ErrorCode LIBMTP_Detect_Raw_Devices (ref IntPtr list, ref int count); //LIBMTP_raw_device_t
 
-        [DllImport ("libmtp.dll")]
+        [DllImport (LibMtpLibrary, CallingConvention = CallingConvention.Cdecl)]
         private static extern IntPtr LIBMTP_Open_Raw_Device (ref RawDeviceStruct rawdevice);
 
         // Deallocates the memory for the device
-        [DllImportAttribute("libmtp.dll")]
+        [DllImport (LibMtpLibrary, CallingConvention = CallingConvention.Cdecl)]
         private static extern void LIBMTP_Release_Device (IntPtr device);
 
-        //[DllImportAttribute("libmtp.dll")]
+        //[DllImport (LibMtpLibrary, CallingConvention = CallingConvention.Cdecl)]
         //private static extern int LIBMTP_Reset_Device (MtpDeviceHandle handle);
-        
-        [DllImport("libmtp.dll")]
+
+        [DllImport (LibMtpLibrary, CallingConvention = CallingConvention.Cdecl)]
         private static extern int LIBMTP_Get_Batterylevel (MtpDeviceHandle handle, out ushort maxLevel, out ushort currentLevel);
-        
-        [DllImportAttribute("libmtp.dll")]
+
+        [DllImport (LibMtpLibrary, CallingConvention = CallingConvention.Cdecl)]
         private static extern IntPtr LIBMTP_Get_Modelname (MtpDeviceHandle handle); // char *
-        
-        [DllImportAttribute("libmtp.dll")]
+
+        [DllImport (LibMtpLibrary, CallingConvention = CallingConvention.Cdecl)]
         private static extern IntPtr LIBMTP_Get_Serialnumber (MtpDeviceHandle handle); // char *
-        
-        [DllImportAttribute("libmtp.dll")]
+
+        [DllImport (LibMtpLibrary, CallingConvention = CallingConvention.Cdecl)]
         private static extern IntPtr LIBMTP_Get_Deviceversion (MtpDeviceHandle handle); // char *
-        
-        [DllImportAttribute("libmtp.dll")]
+
+        [DllImport (LibMtpLibrary, CallingConvention = CallingConvention.Cdecl)]
         private static extern IntPtr LIBMTP_Get_Friendlyname (MtpDeviceHandle handle); // char *
-        
-        [DllImport("libmtp.dll")]
+
+        [DllImport (LibMtpLibrary, CallingConvention = CallingConvention.Cdecl)]
         private static extern int LIBMTP_Set_Friendlyname (MtpDeviceHandle handle, string name);
-        
-        [DllImportAttribute("libmtp.dll")]
+
+        [DllImport (LibMtpLibrary, CallingConvention = CallingConvention.Cdecl)]
         private static extern IntPtr LIBMTP_Get_Errorstack (MtpDeviceHandle handle); // LIBMTP_error_t *
-        
-        [DllImportAttribute("libmtp.dll")]
+
+        [DllImport (LibMtpLibrary, CallingConvention = CallingConvention.Cdecl)]
         private static extern int LIBMTP_Get_Supported_Filetypes (MtpDeviceHandle handle, ref IntPtr types, ref ushort count); // uint16_t **const
-        
-        
+
+
         // void LIBMTP_Release_Device_List (LIBMTP_mtpdevice_t *)
-                
+
 
         // int LIBMTP_Detect_Descriptor (uint16_t *, uint16_t *);
         /*

@@ -143,7 +143,7 @@ namespace Hyena
             }
         }
 
-        [System.Runtime.InteropServices.DllImport ("libc", EntryPoint="isatty")]
+        [System.Runtime.InteropServices.DllImport ("libc", EntryPoint="isatty", CallingConvention = System.Runtime.InteropServices.CallingConvention.Cdecl)]
         private extern static int _isatty (int fd);
 
         private static bool isatty (int fd)

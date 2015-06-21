@@ -56,7 +56,7 @@ namespace Banshee.WebBrowser
         public event EventHandler LoadStatusChanged;
         public event Action<float> ZoomChanged;
 
-        [DllImport (LIBOSSIFER)]
+        [DllImport (LIBOSSIFER, CallingConvention = CallingConvention.Cdecl)]
         private static extern IntPtr ossifer_web_view_get_type ();
 
         public static new GLib.GType GType {
@@ -67,7 +67,7 @@ namespace Banshee.WebBrowser
         {
         }
 
-        [DllImport (LIBOSSIFER)]
+        [DllImport (LIBOSSIFER, CallingConvention = CallingConvention.Cdecl)]
         private static extern void ossifer_web_view_set_callbacks (IntPtr ossifer, Callbacks callbacks);
 
         public OssiferWebView ()
@@ -168,7 +168,7 @@ namespace Banshee.WebBrowser
 
 #region Public Instance API
 
-        [DllImport (LIBOSSIFER)]
+        [DllImport (LIBOSSIFER, CallingConvention = CallingConvention.Cdecl)]
         private static extern IntPtr ossifer_web_view_load_uri (IntPtr ossifer, IntPtr uri);
 
         public void LoadUri (string uri)
@@ -182,7 +182,7 @@ namespace Banshee.WebBrowser
             }
         }
 
-        [DllImport (LIBOSSIFER)]
+        [DllImport (LIBOSSIFER, CallingConvention = CallingConvention.Cdecl)]
         private static extern void ossifer_web_view_load_string (IntPtr ossifer,
             IntPtr content, IntPtr mimetype, IntPtr encoding, IntPtr base_uri);
 
@@ -207,21 +207,21 @@ namespace Banshee.WebBrowser
             }
         }
 
-        [DllImport (LIBOSSIFER)]
+        [DllImport (LIBOSSIFER, CallingConvention = CallingConvention.Cdecl)]
         private static extern bool ossifer_web_view_can_go_forward (IntPtr ossifer);
 
         public virtual bool CanGoForward {
             get { return ossifer_web_view_can_go_forward (Handle); }
         }
 
-        [DllImport (LIBOSSIFER)]
+        [DllImport (LIBOSSIFER, CallingConvention = CallingConvention.Cdecl)]
         private static extern bool ossifer_web_view_can_go_back (IntPtr ossifer);
 
         public virtual bool CanGoBack {
             get { return ossifer_web_view_can_go_back (Handle); }
         }
 
-        [DllImport (LIBOSSIFER)]
+        [DllImport (LIBOSSIFER, CallingConvention = CallingConvention.Cdecl)]
         private static extern void ossifer_web_view_go_forward (IntPtr ossifer);
 
         public virtual void GoForward ()
@@ -229,7 +229,7 @@ namespace Banshee.WebBrowser
             ossifer_web_view_go_forward (Handle);
         }
 
-        [DllImport (LIBOSSIFER)]
+        [DllImport (LIBOSSIFER, CallingConvention = CallingConvention.Cdecl)]
         private static extern void ossifer_web_view_go_back (IntPtr ossifer);
 
         public virtual void GoBack ()
@@ -237,10 +237,10 @@ namespace Banshee.WebBrowser
             ossifer_web_view_go_back (Handle);
         }
 
-        [DllImport (LIBOSSIFER)]
+        [DllImport (LIBOSSIFER, CallingConvention = CallingConvention.Cdecl)]
         private static extern void ossifer_web_view_set_zoom (IntPtr ossifer, float zoomLevel);
 
-        [DllImport (LIBOSSIFER)]
+        [DllImport (LIBOSSIFER, CallingConvention = CallingConvention.Cdecl)]
         private static extern float ossifer_web_view_get_zoom (IntPtr ossifer);
 
         public float Zoom {
@@ -254,10 +254,10 @@ namespace Banshee.WebBrowser
             }
         }
 
-        [DllImport (LIBOSSIFER)]
+        [DllImport (LIBOSSIFER, CallingConvention = CallingConvention.Cdecl)]
         private static extern void ossifer_web_view_reload (IntPtr ossifer);
 
-        [DllImport (LIBOSSIFER)]
+        [DllImport (LIBOSSIFER, CallingConvention = CallingConvention.Cdecl)]
         private static extern void ossifer_web_view_reload_bypass_cache (IntPtr ossifer);
 
         public virtual void Reload (bool bypassCache)
@@ -274,7 +274,7 @@ namespace Banshee.WebBrowser
             Reload (false);
         }
 
-        [DllImport (LIBOSSIFER)]
+        [DllImport (LIBOSSIFER, CallingConvention = CallingConvention.Cdecl)]
         private static extern void ossifer_web_view_execute_script (IntPtr ossifer, IntPtr script);
 
         public void ExecuteScript (string script)
@@ -287,28 +287,28 @@ namespace Banshee.WebBrowser
             }
         }
 
-        [DllImport (LIBOSSIFER)]
+        [DllImport (LIBOSSIFER, CallingConvention = CallingConvention.Cdecl)]
         private static extern IntPtr ossifer_web_view_get_uri (IntPtr ossifer);
 
         public virtual string Uri {
             get { return GLib.Marshaller.Utf8PtrToString (ossifer_web_view_get_uri (Handle)); }
         }
 
-        [DllImport (LIBOSSIFER)]
+        [DllImport (LIBOSSIFER, CallingConvention = CallingConvention.Cdecl)]
         private static extern IntPtr ossifer_web_view_get_title (IntPtr ossifer);
 
         public virtual string Title {
             get { return GLib.Marshaller.Utf8PtrToString (ossifer_web_view_get_title (Handle)); }
         }
 
-        [DllImport (LIBOSSIFER)]
+        [DllImport (LIBOSSIFER, CallingConvention = CallingConvention.Cdecl)]
         private static extern OssiferLoadStatus ossifer_web_view_get_load_status (IntPtr ossifer);
 
         public virtual OssiferLoadStatus LoadStatus {
             get { return ossifer_web_view_get_load_status (Handle); }
         }
 
-        [DllImport (LIBOSSIFER)]
+        [DllImport (LIBOSSIFER, CallingConvention = CallingConvention.Cdecl)]
         private static extern OssiferSecurityLevel ossifer_web_view_get_security_level (IntPtr ossifer);
 
         public virtual OssiferSecurityLevel SecurityLevel {

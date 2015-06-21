@@ -66,7 +66,7 @@ namespace JavaScriptCore
             return ToStringAndRelease (new JSString (raw));
         }
 
-        [DllImport (JSContext.NATIVE_IMPORT)]
+        [DllImport (JSContext.NATIVE_IMPORT, CallingConvention = CallingConvention.Cdecl)]
         private static extern IntPtr JSStringCreateWithCharacters (IntPtr chars, IntPtr numChars);
 
         public static JSString New (string str)
@@ -85,7 +85,7 @@ namespace JavaScriptCore
             }
         }
 
-        [DllImport (JSContext.NATIVE_IMPORT)]
+        [DllImport (JSContext.NATIVE_IMPORT, CallingConvention = CallingConvention.Cdecl)]
         private static extern JSString JSStringRetain (JSString str);
 
         public void Retain ()
@@ -93,7 +93,7 @@ namespace JavaScriptCore
             JSStringRetain (this);
         }
 
-        [DllImport (JSContext.NATIVE_IMPORT)]
+        [DllImport (JSContext.NATIVE_IMPORT, CallingConvention = CallingConvention.Cdecl)]
         private static extern void JSStringRelease (JSString str);
 
         public void Release ()
@@ -103,7 +103,7 @@ namespace JavaScriptCore
             }
         }
 
-        [DllImport (JSContext.NATIVE_IMPORT)]
+        [DllImport (JSContext.NATIVE_IMPORT, CallingConvention = CallingConvention.Cdecl)]
         private static extern bool JSStringIsEqual (JSString a, JSString b);
 
         public bool IsEqual (JSString str)
@@ -111,14 +111,14 @@ namespace JavaScriptCore
             return JSStringIsEqual (this, str);
         }
 
-        [DllImport (JSContext.NATIVE_IMPORT)]
+        [DllImport (JSContext.NATIVE_IMPORT, CallingConvention = CallingConvention.Cdecl)]
         private static extern IntPtr JSStringGetLength (JSString str);
 
         public int Length {
             get { return JSStringGetLength (this).ToInt32 (); }
         }
 
-        [DllImport (JSContext.NATIVE_IMPORT)]
+        [DllImport (JSContext.NATIVE_IMPORT, CallingConvention = CallingConvention.Cdecl)]
         private static extern IntPtr JSStringGetCharactersPtr (JSString str);
 
         public string Value {

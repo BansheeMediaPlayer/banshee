@@ -171,32 +171,32 @@ namespace Banshee.GStreamer
         private delegate void GstTranscoderFinishedCallback(IntPtr transcoder);
         private delegate void GstTranscoderErrorCallback(IntPtr transcoder, IntPtr error, IntPtr debug);
 
-        [DllImport("libbanshee.dll")]
+        [DllImport(PlayerEngine.LibBansheeLibrary, CallingConvention = CallingConvention.Cdecl)]
         private static extern IntPtr gst_transcoder_new();
 
-        [DllImport("libbanshee.dll")]
+        [DllImport(PlayerEngine.LibBansheeLibrary, CallingConvention = CallingConvention.Cdecl)]
         private static extern void gst_transcoder_free(HandleRef handle);
 
-        [DllImport("libbanshee.dll")]
+        [DllImport(PlayerEngine.LibBansheeLibrary, CallingConvention = CallingConvention.Cdecl)]
         private static extern void gst_transcoder_transcode(HandleRef handle, IntPtr input_uri,
             IntPtr output_uri, string encoder_pipeline);
 
-        [DllImport("libbanshee.dll")]
+        [DllImport(PlayerEngine.LibBansheeLibrary, CallingConvention = CallingConvention.Cdecl)]
         private static extern void gst_transcoder_cancel(HandleRef handle);
 
-        [DllImport("libbanshee.dll")]
+        [DllImport(PlayerEngine.LibBansheeLibrary, CallingConvention = CallingConvention.Cdecl)]
         private static extern void gst_transcoder_set_progress_callback(HandleRef handle,
             GstTranscoderProgressCallback cb);
 
-        [DllImport("libbanshee.dll")]
+        [DllImport(PlayerEngine.LibBansheeLibrary, CallingConvention = CallingConvention.Cdecl)]
         private static extern void gst_transcoder_set_finished_callback(HandleRef handle,
             GstTranscoderFinishedCallback cb);
 
-        [DllImport("libbanshee.dll")]
+        [DllImport(PlayerEngine.LibBansheeLibrary, CallingConvention = CallingConvention.Cdecl)]
         private static extern void gst_transcoder_set_error_callback(HandleRef handle,
             GstTranscoderErrorCallback cb);
 
-        [DllImport("libbanshee.dll")]
+        [DllImport(PlayerEngine.LibBansheeLibrary, CallingConvention = CallingConvention.Cdecl)]
         private static extern bool gst_transcoder_get_is_transcoding(HandleRef handle);
     }
 }

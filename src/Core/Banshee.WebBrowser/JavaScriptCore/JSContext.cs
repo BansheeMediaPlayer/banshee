@@ -40,7 +40,7 @@ namespace JavaScriptCore
             Raw = raw;
         }
 
-        [DllImport (JSContext.NATIVE_IMPORT)]
+        [DllImport (JSContext.NATIVE_IMPORT, CallingConvention = CallingConvention.Cdecl)]
         private static extern IntPtr JSGlobalContextCreate (IntPtr globalObjectClass);
 
         public JSContext ()
@@ -53,7 +53,7 @@ namespace JavaScriptCore
             Raw = JSGlobalContextCreate (globalObjectClass.Raw);
         }
 
-        [DllImport (JSContext.NATIVE_IMPORT)]
+        [DllImport (JSContext.NATIVE_IMPORT, CallingConvention = CallingConvention.Cdecl)]
         private static extern IntPtr JSEvaluateScript (IntPtr ctx, JSString script,
             IntPtr thisObject, JSString sourceURL, int startingLineNumber, ref IntPtr exception);
 
@@ -91,7 +91,7 @@ namespace JavaScriptCore
             return EvaluateScript (script, null, null, 0);
         }
 
-        [DllImport (JSContext.NATIVE_IMPORT)]
+        [DllImport (JSContext.NATIVE_IMPORT, CallingConvention = CallingConvention.Cdecl)]
         private static extern void JSGarbageCollect (IntPtr ctx);
 
         public void GarbageCollect ()
@@ -99,7 +99,7 @@ namespace JavaScriptCore
             JSGarbageCollect (Raw);
         }
 
-        [DllImport (JSContext.NATIVE_IMPORT)]
+        [DllImport (JSContext.NATIVE_IMPORT, CallingConvention = CallingConvention.Cdecl)]
         private static extern IntPtr JSContextGetGlobalObject (IntPtr ctx);
 
         public JSObject GlobalObject {

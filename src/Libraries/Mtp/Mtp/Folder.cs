@@ -208,19 +208,19 @@ namespace Mtp
         }
 
         // Folder Management
-        //[DllImport("libmtp.dll")]
+        //[DllImport (MtpDevice.LibMtpLibrary, CallingConvention = CallingConvention.Cdecl)]
         //private static extern IntPtr LIBMTP_new_folder_t (); // LIBMTP_folder_t*
 
-        [DllImport("libmtp.dll")]
+        [DllImport (MtpDevice.LibMtpLibrary, CallingConvention = CallingConvention.Cdecl)]
         private static extern void LIBMTP_destroy_folder_t (IntPtr folder);
 
-        [DllImport("libmtp.dll")]
+        [DllImport (MtpDevice.LibMtpLibrary, CallingConvention = CallingConvention.Cdecl)]
         private static extern IntPtr LIBMTP_Get_Folder_List (MtpDeviceHandle handle); // LIBMTP_folder_t*
 
-        [DllImport("libmtp.dll")]
+        [DllImport (MtpDevice.LibMtpLibrary, CallingConvention = CallingConvention.Cdecl)]
         private static extern IntPtr LIBMTP_Find_Folder (IntPtr folderList, uint folderId); // LIBMTP_folder_t*
 
-        [DllImport("libmtp.dll")]
+        [DllImport (MtpDevice.LibMtpLibrary, CallingConvention = CallingConvention.Cdecl)]
         private static extern uint LIBMTP_Create_Folder (MtpDeviceHandle handle, string name, uint parentId, uint storageId);
     }
 

@@ -119,16 +119,16 @@ namespace Banshee.GStreamer
             get { return handle; }
         }
 
-        [DllImport ("libbanshee.dll")]
+        [DllImport (PlayerEngine.LibBansheeLibrary, CallingConvention = CallingConvention.Cdecl)]
         private static extern IntPtr bt_tag_list_new ();
 
-        [DllImport ("libbanshee.dll")]
+        [DllImport (PlayerEngine.LibBansheeLibrary, CallingConvention = CallingConvention.Cdecl)]
         private static extern void bt_tag_list_free (HandleRef tag_list);
 
-        [DllImport ("libbanshee.dll")]
+        [DllImport (PlayerEngine.LibBansheeLibrary, CallingConvention = CallingConvention.Cdecl)]
         private static extern void bt_tag_list_add_value (HandleRef tag_list, string tag_name, ref GLib.Value value);
 
-        [DllImport ("libbanshee.dll")]
+        [DllImport (PlayerEngine.LibBansheeLibrary, CallingConvention = CallingConvention.Cdecl)]
         private static extern void bt_tag_list_add_date (HandleRef tag_list, int year, int month, int day);
     }
 }

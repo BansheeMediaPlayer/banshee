@@ -43,7 +43,7 @@ namespace JavaScriptCore
         {
         }
 
-        [DllImport (JSContext.NATIVE_IMPORT)]
+        [DllImport (JSContext.NATIVE_IMPORT, CallingConvention = CallingConvention.Cdecl)]
         private static extern IntPtr JSObjectMake (IntPtr ctx, IntPtr jsClass, IntPtr data);
 
         public JSObject (JSContext context) :
@@ -92,7 +92,7 @@ namespace JavaScriptCore
 
 #region Property API
 
-        [DllImport (JSContext.NATIVE_IMPORT)]
+        [DllImport (JSContext.NATIVE_IMPORT, CallingConvention = CallingConvention.Cdecl)]
         private static extern bool JSObjectHasProperty (IntPtr ctx, IntPtr obj, JSString propertyName);
 
         public bool HasProperty (string propertyName)
@@ -105,7 +105,7 @@ namespace JavaScriptCore
             }
         }
 
-        [DllImport (JSContext.NATIVE_IMPORT)]
+        [DllImport (JSContext.NATIVE_IMPORT, CallingConvention = CallingConvention.Cdecl)]
         private static extern IntPtr JSObjectGetProperty (IntPtr ctx, IntPtr obj, JSString propertyName, ref IntPtr exception);
 
         public JSValue GetProperty (string propertyName)
@@ -121,7 +121,7 @@ namespace JavaScriptCore
             }
         }
 
-        [DllImport (JSContext.NATIVE_IMPORT)]
+        [DllImport (JSContext.NATIVE_IMPORT, CallingConvention = CallingConvention.Cdecl)]
         private static extern void JSObjectSetProperty (IntPtr ctx, IntPtr obj, JSString propertyName,
             IntPtr value, JSPropertyAttribute attributes, ref IntPtr exception);
 
@@ -142,7 +142,7 @@ namespace JavaScriptCore
             SetProperty (propertyName, value, JSPropertyAttribute.None);
         }
 
-        [DllImport (JSContext.NATIVE_IMPORT)]
+        [DllImport (JSContext.NATIVE_IMPORT, CallingConvention = CallingConvention.Cdecl)]
         private static extern bool JSObjectDeleteProperty (IntPtr ctx, IntPtr obj, JSString propertyName, ref IntPtr exception);
 
         public bool DeleteProperty (string propertyName)
@@ -158,7 +158,7 @@ namespace JavaScriptCore
             }
         }
 
-        [DllImport (JSContext.NATIVE_IMPORT)]
+        [DllImport (JSContext.NATIVE_IMPORT, CallingConvention = CallingConvention.Cdecl)]
         private static extern IntPtr JSObjectCopyPropertyNames (IntPtr ctx, IntPtr obj);
 
         private JSPropertyNameArray CopyPropertyNames ()
@@ -180,10 +180,10 @@ namespace JavaScriptCore
 
 #endregion
 
-        [DllImport (JSContext.NATIVE_IMPORT)]
+        [DllImport (JSContext.NATIVE_IMPORT, CallingConvention = CallingConvention.Cdecl)]
         private static extern void JSObjectSetPrivate (IntPtr obj, IntPtr data);
 
-        [DllImport (JSContext.NATIVE_IMPORT)]
+        [DllImport (JSContext.NATIVE_IMPORT, CallingConvention = CallingConvention.Cdecl)]
         private static extern IntPtr JSObjectGetPrivate (IntPtr obj);
 
         public IntPtr UnmanagedPrivate {
@@ -191,14 +191,14 @@ namespace JavaScriptCore
             set { JSObjectSetPrivate (Raw, value); }
         }
 
-        [DllImport (JSContext.NATIVE_IMPORT)]
+        [DllImport (JSContext.NATIVE_IMPORT, CallingConvention = CallingConvention.Cdecl)]
         private static extern bool JSObjectIsFunction (IntPtr ctx, IntPtr obj);
 
         public bool IsFunction {
             get { return JSObjectIsFunction (Context.Raw, Raw); }
         }
 
-        [DllImport (JSContext.NATIVE_IMPORT)]
+        [DllImport (JSContext.NATIVE_IMPORT, CallingConvention = CallingConvention.Cdecl)]
         private static extern IntPtr JSObjectCallAsFunction (IntPtr ctx, IntPtr obj, IntPtr thisObject,
             IntPtr argumentCount, IntPtr [] arguments, ref IntPtr exception);
 

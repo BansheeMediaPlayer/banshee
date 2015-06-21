@@ -245,31 +245,31 @@ namespace Mtp
                 throw new LibMtpException (ErrorCode.General);
         }
         
-        //[DllImport("libmtp.dll")]
+        //[DllImport (MtpDevice.LibMtpLibrary, CallingConvention = CallingConvention.Cdecl)]
         //private static extern IntPtr LIBMTP_new_track_t (); // LIBMTP_track_t *
 
-        [DllImport("libmtp.dll")]
+        [DllImport (MtpDevice.LibMtpLibrary, CallingConvention = CallingConvention.Cdecl)]
         private static extern void LIBMTP_destroy_track_t (IntPtr track); // LIBMTP_track_t *
 
-        //[DllImport("libmtp.dll")]
+        //[DllImport (MtpDevice.LibMtpLibrary, CallingConvention = CallingConvention.Cdecl)]
         //private static extern IntPtr LIBMTP_Get_Tracklisting (MtpDeviceHandle handle); //LIBMTP_track_t *
 
-        [DllImport("libmtp.dll")]
+        [DllImport (MtpDevice.LibMtpLibrary, CallingConvention = CallingConvention.Cdecl)]
         private static extern IntPtr LIBMTP_Get_Tracklisting_With_Callback (MtpDeviceHandle handle, ProgressFunction callback, IntPtr data); // LIBMTP_track_t *
 
-        //[DllImport("libmtp.dll")]
+        //[DllImport (MtpDevice.LibMtpLibrary, CallingConvention = CallingConvention.Cdecl)]
         //private static extern IntPtr LIBMTP_Get_Trackmetadata (MtpDeviceHandle handle, uint trackId); // LIBMTP_track_t *
 
-        [DllImport("libmtp.dll")]
+        [DllImport (MtpDevice.LibMtpLibrary, CallingConvention = CallingConvention.Cdecl)]
         private static extern int LIBMTP_Get_Track_To_File (MtpDeviceHandle handle, uint trackId, string path, ProgressFunction callback, IntPtr data);
 
-        [DllImport("libmtp.dll")]
+        [DllImport (MtpDevice.LibMtpLibrary, CallingConvention = CallingConvention.Cdecl)]
         private static extern int LIBMTP_Send_Track_From_File (MtpDeviceHandle handle, string path, ref TrackStruct track, ProgressFunction callback, IntPtr data);
 
-        [DllImport("libmtp.dll")]
+        [DllImport (MtpDevice.LibMtpLibrary, CallingConvention = CallingConvention.Cdecl)]
         private static extern int LIBMTP_Update_Track_Metadata (MtpDeviceHandle handle, ref TrackStruct metadata);
 
-        //[DllImport("libmtp.dll")]
+        //[DllImport (MtpDevice.LibMtpLibrary, CallingConvention = CallingConvention.Cdecl)]
         //private static extern int LIBMTP_Track_Exists (MtpDeviceHandle handle, uint trackId);
 
         //int     LIBMTP_Get_Track_To_File_Descriptor (MtpDeviceHandle handle, uint trackId, int const, LIBMTP_progressfunc_t const, void const *const)

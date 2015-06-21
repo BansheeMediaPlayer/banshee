@@ -44,7 +44,7 @@ namespace JavaScriptCore
             this.raw = raw;
         }
 
-        [DllImport (JSContext.NATIVE_IMPORT)]
+        [DllImport (JSContext.NATIVE_IMPORT, CallingConvention = CallingConvention.Cdecl)]
         private static extern IntPtr JSPropertyNameArrayRetain (JSPropertyNameArray array);
 
         public void Retain ()
@@ -52,7 +52,7 @@ namespace JavaScriptCore
             JSPropertyNameArrayRetain (this);
         }
 
-        [DllImport (JSContext.NATIVE_IMPORT)]
+        [DllImport (JSContext.NATIVE_IMPORT, CallingConvention = CallingConvention.Cdecl)]
         private static extern void JSPropertyNameArrayRelease (JSPropertyNameArray array);
 
         public void Release ()
@@ -60,14 +60,14 @@ namespace JavaScriptCore
             JSPropertyNameArrayRelease (this);
         }
 
-        [DllImport (JSContext.NATIVE_IMPORT)]
+        [DllImport (JSContext.NATIVE_IMPORT, CallingConvention = CallingConvention.Cdecl)]
         private static extern IntPtr JSPropertyNameArrayGetCount (JSPropertyNameArray array);
 
         public int Count {
             get { return JSPropertyNameArrayGetCount (this).ToInt32 (); }
         }
 
-        [DllImport (JSContext.NATIVE_IMPORT)]
+        [DllImport (JSContext.NATIVE_IMPORT, CallingConvention = CallingConvention.Cdecl)]
         private static extern IntPtr JSPropertyNameArrayGetNameAtIndex (JSPropertyNameArray array, IntPtr index);
 
         public string GetNameAtIndex (int index)

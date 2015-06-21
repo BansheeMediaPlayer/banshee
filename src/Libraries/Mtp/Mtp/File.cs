@@ -34,34 +34,34 @@ namespace Mtp
 {
     public class File
     {
-        [DllImport("libmtp.dll")]
+        [DllImport (MtpDevice.LibMtpLibrary, CallingConvention = CallingConvention.Cdecl)]
         private static extern IntPtr LIBMTP_new_file_t (); // LIBMTP_file_t *
 
-        [DllImport("libmtp.dll")]
+        [DllImport (MtpDevice.LibMtpLibrary, CallingConvention = CallingConvention.Cdecl)]
         private static extern void LIBMTP_destroy_file_t (ref File file); // LIBMTP_file_t *
 
-        [DllImport("libmtp.dll")]
+        [DllImport (MtpDevice.LibMtpLibrary, CallingConvention = CallingConvention.Cdecl)]
         private static extern string LIBMTP_Get_Filetype_Description (FileType type); // char const *
 
-        [DllImport("libmtp.dll")]
+        [DllImport (MtpDevice.LibMtpLibrary, CallingConvention = CallingConvention.Cdecl)]
         private static extern IntPtr LIBMTP_Get_Filelisting (MtpDeviceHandle handle); // LIBMTP_file_t *
 
-        [DllImport("libmtp.dll")]
+        [DllImport (MtpDevice.LibMtpLibrary, CallingConvention = CallingConvention.Cdecl)]
         private static extern IntPtr LIBMTP_Get_Filelisting_With_Callback (MtpDeviceHandle handle, ProgressFunction function, IntPtr data); // LIBMTP_file_t *
 
-        [DllImport("libmtp.dll")]
+        [DllImport (MtpDevice.LibMtpLibrary, CallingConvention = CallingConvention.Cdecl)]
         private static extern IntPtr LIBMTP_Get_Filemetadata (MtpDeviceHandle handle, uint fileid); // LIBMTP_file_t *
 
-        [DllImport("libmtp.dll")]
+        [DllImport (MtpDevice.LibMtpLibrary, CallingConvention = CallingConvention.Cdecl)]
         private static extern int LIBMTP_Get_File_To_File (MtpDeviceHandle handle, uint fileId, string path, ProgressFunction function, IntPtr data);
 
-        [DllImport("libmtp.dll")]
+        [DllImport (MtpDevice.LibMtpLibrary, CallingConvention = CallingConvention.Cdecl)]
         private static extern void LIBMTP_destroy_filesampledata_t (ref FileSampleData data); // LIBMTP_filesampledata_t *
 
-        [DllImport("libmtp.dll")]
+        [DllImport (MtpDevice.LibMtpLibrary, CallingConvention = CallingConvention.Cdecl)]
         private static extern int LIBMTP_Get_Representative_Sample_Format (MtpDeviceHandle handle, FileType type, IntPtr data_array);
 
-        [DllImport("libmtp.dll")]
+        [DllImport (MtpDevice.LibMtpLibrary, CallingConvention = CallingConvention.Cdecl)]
         private static extern int LIBMTP_Send_Representative_Sample (MtpDeviceHandle handle, uint id, ref FileSampleData sample);
 
     }

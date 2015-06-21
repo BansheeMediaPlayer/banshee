@@ -228,26 +228,26 @@ namespace Banshee.GStreamer
         private delegate void RipperFinishedHandler (IntPtr ripper);
         private delegate void RipperErrorHandler (IntPtr ripper, IntPtr error, IntPtr debug);
 
-        [DllImport ("libbanshee.dll")]
+        [DllImport (PlayerEngine.LibBansheeLibrary, CallingConvention = CallingConvention.Cdecl)]
         private static extern IntPtr br_new (string device, int paranoia_mode, string encoder_pipeline);
 
-        [DllImport ("libbanshee.dll")]
+        [DllImport (PlayerEngine.LibBansheeLibrary, CallingConvention = CallingConvention.Cdecl)]
         private static extern void br_destroy (HandleRef handle);
 
-        [DllImport ("libbanshee.dll")]
+        [DllImport (PlayerEngine.LibBansheeLibrary, CallingConvention = CallingConvention.Cdecl)]
         private static extern void br_rip_track (HandleRef handle, int track_number, string output_path,
             HandleRef tag_list, out bool tagging_supported);
 
-        [DllImport ("libbanshee.dll")]
+        [DllImport (PlayerEngine.LibBansheeLibrary, CallingConvention = CallingConvention.Cdecl)]
         private static extern void br_set_progress_callback (HandleRef handle, RipperProgressHandler callback);
 
-        [DllImport ("libbanshee.dll")]
+        [DllImport (PlayerEngine.LibBansheeLibrary, CallingConvention = CallingConvention.Cdecl)]
         private static extern void br_set_mimetype_callback (HandleRef handle, RipperMimeTypeHandler callback);
 
-        [DllImport ("libbanshee.dll")]
+        [DllImport (PlayerEngine.LibBansheeLibrary, CallingConvention = CallingConvention.Cdecl)]
         private static extern void br_set_finished_callback (HandleRef handle, RipperFinishedHandler callback);
 
-        [DllImport ("libbanshee.dll")]
+        [DllImport (PlayerEngine.LibBansheeLibrary, CallingConvention = CallingConvention.Cdecl)]
         private static extern void br_set_error_callback (HandleRef handle, RipperErrorHandler callback);
     }
 }

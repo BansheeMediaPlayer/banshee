@@ -49,7 +49,7 @@ namespace Banshee.GStreamer
         {
         }
 
-        [DllImport ("libbanshee.dll")]
+        [DllImport (PlayerEngine.LibBansheeLibrary, CallingConvention = CallingConvention.Cdecl)]
         private static extern void gstreamer_initialize (bool debugging, BansheeLogHandler log_handler);
 
         void IExtensionService.Initialize ()
@@ -118,7 +118,7 @@ namespace Banshee.GStreamer
             args.ProfileAvailable = available;
         }
 
-        [DllImport ("libbanshee.dll")]
+        [DllImport (PlayerEngine.LibBansheeLibrary, CallingConvention = CallingConvention.Cdecl)]
         private static extern bool gstreamer_test_pipeline (IntPtr pipeline);
 
         internal static bool TestPipeline (string pipeline)

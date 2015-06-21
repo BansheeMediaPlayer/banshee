@@ -168,25 +168,25 @@ namespace Banshee.GStreamer
         private delegate void BpmDetectorFinishedHandler ();
         //private delegate void BpmDetectorErrorHandler (IntPtr error, IntPtr debug);
 
-        [DllImport ("libbanshee.dll")]
+        [DllImport (PlayerEngine.LibBansheeLibrary, CallingConvention = CallingConvention.Cdecl)]
         private static extern IntPtr bbd_new ();
 
-        [DllImport ("libbanshee.dll")]
+        [DllImport (PlayerEngine.LibBansheeLibrary, CallingConvention = CallingConvention.Cdecl)]
         private static extern void bbd_destroy (HandleRef handle);
 
-        [DllImport ("libbanshee.dll")]
+        [DllImport (PlayerEngine.LibBansheeLibrary, CallingConvention = CallingConvention.Cdecl)]
         private static extern bool bbd_get_is_detecting (HandleRef handle);
 
-        [DllImport ("libbanshee.dll")]
+        [DllImport (PlayerEngine.LibBansheeLibrary, CallingConvention = CallingConvention.Cdecl)]
         private static extern void bbd_process_file (HandleRef handle, IntPtr path);
 
-        [DllImport ("libbanshee.dll")]
+        [DllImport (PlayerEngine.LibBansheeLibrary, CallingConvention = CallingConvention.Cdecl)]
         private static extern void bbd_set_progress_callback (HandleRef handle, BpmDetectorProgressHandler callback);
 
-        [DllImport ("libbanshee.dll")]
+        [DllImport (PlayerEngine.LibBansheeLibrary, CallingConvention = CallingConvention.Cdecl)]
         private static extern void bbd_set_finished_callback (HandleRef handle, BpmDetectorFinishedHandler callback);
 
-        //[DllImport ("libbanshee.dll")]
+        //[DllImport (PlayerEngine.LibBansheeLibrary, CallingConvention = CallingConvention.Cdecl)]
         //private static extern void bbd_set_error_callback (HandleRef handle, BpmDetectorErrorHandler callback);
     }
 }

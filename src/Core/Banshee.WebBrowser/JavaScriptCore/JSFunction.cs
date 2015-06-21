@@ -33,7 +33,7 @@ namespace JavaScriptCore
 
     public class JSFunction : JSObject
     {
-        [DllImport (JSContext.NATIVE_IMPORT)]
+        [DllImport (JSContext.NATIVE_IMPORT, CallingConvention = CallingConvention.Cdecl)]
         private static extern IntPtr JSObjectMakeFunctionWithCallback (IntPtr ctx, JSString name,
             CallAsFunctionCallback callAsFunction);
 

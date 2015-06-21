@@ -109,10 +109,12 @@ namespace Booter
                 Assembly.GetEntryAssembly ().Location), String.Format ("{0}.exe", clientName)));
         }
 
-        [DllImport ("libgdk-win32-2.0-0.dll")]
+        private const string LibGdkLibrary = "libgdk-win32-2.0-0.dll";
+
+        [DllImport (LibGdkLibrary, CallingConvention = CallingConvention.Cdecl)]
         private static extern bool gdk_init_check (IntPtr argc, IntPtr argv);
 
-        [DllImport ("libgdk-win32-2.0-0.dll")]
+        [DllImport (LibGdkLibrary, CallingConvention = CallingConvention.Cdecl)]
         private static extern void gdk_notify_startup_complete ();
 
         private static void NotifyStartupComplete ()

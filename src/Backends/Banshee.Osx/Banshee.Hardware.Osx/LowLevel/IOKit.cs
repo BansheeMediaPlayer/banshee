@@ -86,22 +86,22 @@ namespace Banshee.Hardware.Osx.LowLevel
             return ptr;
         }
 
-        [DllImport (IOKitLibrary)]
+        [DllImport (IOKitLibrary, CallingConvention = CallingConvention.Cdecl)]
         public static extern void IOObjectRelease (IntPtr obj);
 
-        [DllImport (IOKitLibrary)]
+        [DllImport (IOKitLibrary, CallingConvention = CallingConvention.Cdecl)]
         public static extern IntPtr IORegistryEntryCreateCFProperty (IntPtr entry, IntPtr key, IntPtr allocator, uint options);
 
-        [DllImport (IOKitLibrary)]
+        [DllImport (IOKitLibrary, CallingConvention = CallingConvention.Cdecl)]
         public static extern void IORegistryEntryGetParentIterator (IntPtr iterator, IntPtr plane, out IntPtr parent);
 
-        [DllImport (IOKitLibrary)]
+        [DllImport (IOKitLibrary, CallingConvention = CallingConvention.Cdecl)]
         public static extern void IORegistryEntryGetParentEntry (IntPtr entry, string plane, out IntPtr parent);
 
-        [DllImport (IOKitLibrary)]
+        [DllImport (IOKitLibrary, CallingConvention = CallingConvention.Cdecl)]
         public static extern IntPtr IORegistryEntryFromPath (IntPtr master_port, string path);
 
-        [DllImport (IOKitLibrary)]
+        [DllImport (IOKitLibrary, CallingConvention = CallingConvention.Cdecl)]
         public static extern IntPtr IORegistryEntryGetPath (IntPtr entry, string plane, string path);
     }
 }

@@ -41,34 +41,34 @@ namespace Banshee.Hardware.Osx.LowLevel
     // Missing pieces that are not present in MonoMac.CoreFoundation
     internal class CoreFoundation
     {
-        [DllImport (MonoMac.Constants.CoreFoundationLibrary)]
+        [DllImport (MonoMac.Constants.CoreFoundationLibrary, CallingConvention = CallingConvention.Cdecl)]
         public static extern IntPtr CFAllocatorGetDefault ();
 
-        [DllImport (MonoMac.Constants.CoreFoundationLibrary)]
+        [DllImport (MonoMac.Constants.CoreFoundationLibrary, CallingConvention = CallingConvention.Cdecl)]
         public static extern IntPtr CFRunLoopGetCurrent ();
 
-        [DllImport (MonoMac.Constants.CoreFoundationLibrary)]
+        [DllImport (MonoMac.Constants.CoreFoundationLibrary, CallingConvention = CallingConvention.Cdecl)]
         public static extern IntPtr CFRunLoopCopyCurrentMode (IntPtr runloop);
 
-        [DllImport (MonoMac.Constants.CoreFoundationLibrary)]
+        [DllImport (MonoMac.Constants.CoreFoundationLibrary, CallingConvention = CallingConvention.Cdecl)]
         public static extern void CFRunLoopRun ();
 
-        [DllImport (MonoMac.Constants.CoreFoundationLibrary)]
+        [DllImport (MonoMac.Constants.CoreFoundationLibrary, CallingConvention = CallingConvention.Cdecl)]
         public static extern void CFRunLoopStop (IntPtr runloop);
 
-        [DllImport (MonoMac.Constants.CoreFoundationLibrary)]
+        [DllImport (MonoMac.Constants.CoreFoundationLibrary, CallingConvention = CallingConvention.Cdecl)]
         public static extern IntPtr CFURLCopyFileSystemPath (IntPtr url, uint style);
 
-        [DllImport (MonoMac.Constants.CoreFoundationLibrary)]
+        [DllImport (MonoMac.Constants.CoreFoundationLibrary, CallingConvention = CallingConvention.Cdecl)]
         public static extern void CFRelease (IntPtr ptr);
 
-        [DllImport (MonoMac.Constants.CoreFoundationLibrary)]
+        [DllImport (MonoMac.Constants.CoreFoundationLibrary, CallingConvention = CallingConvention.Cdecl)]
         public static extern bool CFNumberGetValue (IntPtr number, int numberType, out Int32 val);
 
-        [DllImport (MonoMac.Constants.CoreFoundationLibrary)]
+        [DllImport (MonoMac.Constants.CoreFoundationLibrary, CallingConvention = CallingConvention.Cdecl)]
         public static extern void CFShow (IntPtr obj);
 
-        [DllImport (MonoMac.Constants.CoreFoundationLibrary)]
+        [DllImport (MonoMac.Constants.CoreFoundationLibrary, CallingConvention = CallingConvention.Cdecl)]
         public static extern IntPtr CFStringCreateWithCString (IntPtr number, string str, int encoding);
     }
 }

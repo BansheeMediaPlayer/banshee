@@ -172,22 +172,22 @@ namespace Mtp
             }
         }
 
-        //[DllImport("libmtp.dll")]
+        //[DllImport (MtpDevice.LibMtpLibrary, CallingConvention = CallingConvention.Cdecl)]
         //internal static extern IntPtr LIBMTP_new_album_t (); // LIBMTP_album_t*
 
-        [DllImport("libmtp.dll")]
+        [DllImport (MtpDevice.LibMtpLibrary, CallingConvention = CallingConvention.Cdecl)]
         static extern void LIBMTP_destroy_album_t (IntPtr album);
 
-        [DllImport("libmtp.dll")]
+        [DllImport (MtpDevice.LibMtpLibrary, CallingConvention = CallingConvention.Cdecl)]
         static extern IntPtr LIBMTP_Get_Album_List (MtpDeviceHandle handle); // LIBMTP_album_t*
 
-        [DllImport("libmtp.dll")]
+        [DllImport (MtpDevice.LibMtpLibrary, CallingConvention = CallingConvention.Cdecl)]
         static extern IntPtr LIBMTP_Get_Album (MtpDeviceHandle handle, uint albumId); // LIBMTP_album_t*
 
-        [DllImport("libmtp.dll")]
+        [DllImport (MtpDevice.LibMtpLibrary, CallingConvention = CallingConvention.Cdecl)]
         internal static extern int LIBMTP_Create_New_Album (MtpDeviceHandle handle, ref AlbumStruct album);
 
-        [DllImport("libmtp.dll")]
+        [DllImport (MtpDevice.LibMtpLibrary, CallingConvention = CallingConvention.Cdecl)]
         static extern int LIBMTP_Update_Album (MtpDeviceHandle handle, ref AlbumStruct album);
     }
 

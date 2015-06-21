@@ -100,16 +100,16 @@ namespace Mtp
 
         // Playlist Management
 
-        [DllImport("libmtp.dll")]
+        [DllImport (MtpDevice.LibMtpLibrary, CallingConvention = CallingConvention.Cdecl)]
         private static extern void LIBMTP_destroy_playlist_t (IntPtr playlist);
 
-        [DllImport("libmtp.dll")]
+        [DllImport (MtpDevice.LibMtpLibrary, CallingConvention = CallingConvention.Cdecl)]
         private static extern IntPtr LIBMTP_Get_Playlist_List (MtpDeviceHandle handle); // LIBMTP_playlist_t*
 
-        [DllImport("libmtp.dll")]
+        [DllImport (MtpDevice.LibMtpLibrary, CallingConvention = CallingConvention.Cdecl)]
         private static extern int LIBMTP_Create_New_Playlist (MtpDeviceHandle handle, ref PlaylistStruct metadata);
 
-        [DllImport("libmtp.dll")]
+        [DllImport (MtpDevice.LibMtpLibrary, CallingConvention = CallingConvention.Cdecl)]
         private static extern int LIBMTP_Update_Playlist (MtpDeviceHandle handle, ref PlaylistStruct playlist);
     }
 

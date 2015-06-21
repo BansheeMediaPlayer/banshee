@@ -29,10 +29,12 @@ namespace MusicBrainz
 {
     internal sealed class DiscWin32 : LocalDisc
     {
-        [DllImport ("winmm")]
+        private const string WinMmLibrary = "winmm";
+
+        [DllImport (WinMmLibrary, CallingConvention = CallingConvention.Cdecl)]
         static extern Int32 mciSendString ([MarshalAs(UnmanagedType.LPTStr)] String command, [MarshalAs(UnmanagedType.LPTStr)] StringBuilder buffer, Int32 bufferSize, IntPtr hwndCallback);
 
-        [DllImport ("winmm")]
+        [DllImport (WinMmLibrary, CallingConvention = CallingConvention.Cdecl)]
         static extern Int32 mciGetErrorString (Int32 errorCode, [MarshalAs(UnmanagedType.LPTStr)] StringBuilder errorText, Int32 errorTextSize);
 
         delegate void MciCall (string result);

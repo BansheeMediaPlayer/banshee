@@ -58,7 +58,7 @@ namespace Banshee.Hardware.Gio
         }
 
         // This was literally copied and pasted from Hal's CdromDevice class.
-        [DllImport ("libc")]
+        [DllImport ("libc", CallingConvention = CallingConvention.Cdecl)]
         private static extern int ioctl (int device, IoctlOperation request, bool lockdoor);
 
         private enum IoctlOperation {

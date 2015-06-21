@@ -179,22 +179,24 @@ namespace Banshee.I18n
             }
         }
 
-        [DllImport ("intl")]
+        private const string LibIntlibrary = "intl";
+
+        [DllImport (LibIntlibrary, CallingConvention = CallingConvention.Cdecl)]
         private static extern IntPtr bind_textdomain_codeset (IntPtr domain, IntPtr codeset);
 
-        [DllImport ("intl")]
+        [DllImport (LibIntlibrary, CallingConvention = CallingConvention.Cdecl)]
         private static extern IntPtr bindtextdomain (IntPtr domain, IntPtr locale_dir);
 
-        [DllImport ("intl")]
+        [DllImport (LibIntlibrary, CallingConvention = CallingConvention.Cdecl)]
         private static extern IntPtr dgettext (IntPtr domain, IntPtr msgid);
 
-        [DllImport ("intl")]
+        [DllImport (LibIntlibrary, CallingConvention = CallingConvention.Cdecl)]
         private static extern IntPtr dngettext (IntPtr domain, IntPtr msgid_singular, IntPtr msgid_plural, Int32 n);
 
-        [DllImport ("intl")]
+        [DllImport (LibIntlibrary, CallingConvention = CallingConvention.Cdecl)]
         private static extern IntPtr gettext (IntPtr msgid);
 
-        [DllImport ("intl")]
+        [DllImport (LibIntlibrary, CallingConvention = CallingConvention.Cdecl)]
         private static extern IntPtr ngettext (IntPtr msgid_singular, IntPtr msgid_plural, Int32 n);
     }
 }

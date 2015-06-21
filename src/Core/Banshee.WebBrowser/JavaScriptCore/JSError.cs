@@ -31,7 +31,7 @@ namespace JavaScriptCore
 {
     public class JSError : JSObject
     {
-        [DllImport (JSContext.NATIVE_IMPORT)]
+        [DllImport (JSContext.NATIVE_IMPORT, CallingConvention = CallingConvention.Cdecl)]
         private static extern IntPtr JSObjectMakeError (IntPtr ctx,
             IntPtr argumentCount, IntPtr args, ref IntPtr exception);
 

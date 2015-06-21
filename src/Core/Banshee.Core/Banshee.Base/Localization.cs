@@ -36,6 +36,8 @@ namespace Banshee.Base
 {
     public static class Localization
     {
+        private const string LibGlibLibrary = "libglib-2.0-0.dll";
+
         private static string [] default_languages = { "C" };
         private static string [] instance_languages = null;
         private static string [] instance_xml_languages = null;
@@ -140,7 +142,7 @@ namespace Banshee.Base
             return result;
         }
 
-        [DllImport("libglib-2.0-0.dll")]
+        [DllImport (LibGlibLibrary, CallingConvention = CallingConvention.Cdecl)]
         private static extern IntPtr g_get_language_names();
 
         private static string [] GetLanguageNames()

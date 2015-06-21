@@ -97,7 +97,7 @@ namespace Banshee.Gui
         {
         }
 
-        [DllImport ("libdbus-glib-1-2.dll")]
+        [DllImport ("libdbus-glib-1-2.dll", CallingConvention = CallingConvention.Cdecl)]
         internal static extern void dbus_g_thread_init ();
 
         protected virtual void InitializeGtk ()

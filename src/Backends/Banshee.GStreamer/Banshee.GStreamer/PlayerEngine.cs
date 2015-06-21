@@ -80,6 +80,8 @@ namespace Banshee.GStreamer
     public class PlayerEngine : Banshee.MediaEngine.PlayerEngine,
         IEqualizer, IVisualizationDataSource, ISupportClutter
     {
+        internal const string LibBansheeLibrary = "libbanshee.dll";
+
         private uint GST_CORE_ERROR = 0;
         private uint GST_LIBRARY_ERROR = 0;
         private uint GST_RESOURCE_ERROR = 0;
@@ -927,198 +929,198 @@ namespace Banshee.GStreamer
 
 #endregion
 
-        [DllImport ("libbanshee.dll")]
+        [DllImport (PlayerEngine.LibBansheeLibrary, CallingConvention = CallingConvention.Cdecl)]
         private static extern IntPtr bp_new ();
 
-        [DllImport ("libbanshee.dll")]
+        [DllImport (PlayerEngine.LibBansheeLibrary, CallingConvention = CallingConvention.Cdecl)]
         private static extern bool bp_initialize_pipeline (HandleRef player);
 
-        [DllImport ("libbanshee.dll")]
+        [DllImport (PlayerEngine.LibBansheeLibrary, CallingConvention = CallingConvention.Cdecl)]
         private static extern void bp_destroy (HandleRef player);
 
-        [DllImport ("libbanshee.dll")]
+        [DllImport (PlayerEngine.LibBansheeLibrary, CallingConvention = CallingConvention.Cdecl)]
         private static extern void bp_set_eos_callback (HandleRef player, BansheePlayerEosCallback cb);
 
-        [DllImport ("libbanshee.dll")]
+        [DllImport (PlayerEngine.LibBansheeLibrary, CallingConvention = CallingConvention.Cdecl)]
         private static extern void bp_set_error_callback (HandleRef player, BansheePlayerErrorCallback cb);
 
-        [DllImport ("libbanshee.dll")]
+        [DllImport (PlayerEngine.LibBansheeLibrary, CallingConvention = CallingConvention.Cdecl)]
         private static extern void bp_set_vis_data_callback (HandleRef player, BansheePlayerVisDataCallback cb);
 
-        [DllImport ("libbanshee.dll")]
+        [DllImport (PlayerEngine.LibBansheeLibrary, CallingConvention = CallingConvention.Cdecl)]
         private static extern void bp_set_state_changed_callback (HandleRef player,
             BansheePlayerStateChangedCallback cb);
 
-        [DllImport ("libbanshee.dll")]
+        [DllImport (PlayerEngine.LibBansheeLibrary, CallingConvention = CallingConvention.Cdecl)]
         private static extern void bp_set_buffering_callback (HandleRef player,
             BansheePlayerBufferingCallback cb);
 
-        [DllImport ("libbanshee.dll")]
+        [DllImport (PlayerEngine.LibBansheeLibrary, CallingConvention = CallingConvention.Cdecl)]
         private static extern void bp_set_video_pipeline_setup_callback (HandleRef player,
             VideoPipelineSetupHandler cb);
 
-        [DllImport ("libbanshee.dll")]
+        [DllImport (PlayerEngine.LibBansheeLibrary, CallingConvention = CallingConvention.Cdecl)]
         private static extern void bp_set_tag_found_callback (HandleRef player,
             GstTaggerTagFoundCallback cb);
 
-        [DllImport ("libbanshee.dll")]
+        [DllImport (PlayerEngine.LibBansheeLibrary, CallingConvention = CallingConvention.Cdecl)]
         private static extern void bp_set_video_prepare_window_callback (HandleRef player,
            VideoPrepareWindowHandler cb);
 
-        [DllImport ("libbanshee.dll")]
+        [DllImport (PlayerEngine.LibBansheeLibrary, CallingConvention = CallingConvention.Cdecl)]
         private static extern void bp_set_next_track_starting_callback (HandleRef player,
             BansheePlayerNextTrackStartingCallback cb);
 
-        [DllImport ("libbanshee.dll")]
+        [DllImport (PlayerEngine.LibBansheeLibrary, CallingConvention = CallingConvention.Cdecl)]
         private static extern void bp_set_about_to_finish_callback (HandleRef player,
             BansheePlayerAboutToFinishCallback cb);
 
-        [DllImport ("libbanshee.dll")]
+        [DllImport (PlayerEngine.LibBansheeLibrary, CallingConvention = CallingConvention.Cdecl)]
         private static extern bool bp_open (HandleRef player, IntPtr uri, bool maybeVideo);
 
-        [DllImport ("libbanshee.dll")]
+        [DllImport (PlayerEngine.LibBansheeLibrary, CallingConvention = CallingConvention.Cdecl)]
         private static extern void bp_stop (HandleRef player, bool nullstate);
 
-        [DllImport ("libbanshee.dll")]
+        [DllImport (PlayerEngine.LibBansheeLibrary, CallingConvention = CallingConvention.Cdecl)]
         private static extern void bp_pause (HandleRef player);
 
-        [DllImport ("libbanshee.dll")]
+        [DllImport (PlayerEngine.LibBansheeLibrary, CallingConvention = CallingConvention.Cdecl)]
         private static extern void bp_play (HandleRef player);
 
-        [DllImport ("libbanshee.dll")]
+        [DllImport (PlayerEngine.LibBansheeLibrary, CallingConvention = CallingConvention.Cdecl)]
         private static extern bool bp_set_next_track (HandleRef player, IntPtr uri, bool maybeVideo);
 
-        [DllImport ("libbanshee.dll")]
+        [DllImport (PlayerEngine.LibBansheeLibrary, CallingConvention = CallingConvention.Cdecl)]
         private static extern void bp_set_volume (HandleRef player, double volume);
 
-        [DllImport("libbanshee.dll")]
+        [DllImport(PlayerEngine.LibBansheeLibrary, CallingConvention = CallingConvention.Cdecl)]
         private static extern double bp_get_volume (HandleRef player);
 
-        [DllImport ("libbanshee.dll")]
+        [DllImport (PlayerEngine.LibBansheeLibrary, CallingConvention = CallingConvention.Cdecl)]
         private static extern void bp_set_volume_changed_callback (HandleRef player,
             BansheePlayerVolumeChangedCallback cb);
 
-        [DllImport ("libbanshee.dll")]
+        [DllImport (PlayerEngine.LibBansheeLibrary, CallingConvention = CallingConvention.Cdecl)]
         private static extern bool bp_can_seek (HandleRef player);
 
-        [DllImport ("libbanshee.dll")]
+        [DllImport (PlayerEngine.LibBansheeLibrary, CallingConvention = CallingConvention.Cdecl)]
         private static extern bool bp_audiosink_has_volume (HandleRef player);
 
-        [DllImport ("libbanshee.dll")]
+        [DllImport (PlayerEngine.LibBansheeLibrary, CallingConvention = CallingConvention.Cdecl)]
         private static extern bool bp_set_position (HandleRef player, ulong time_ms, bool accurate_seek);
 
-        [DllImport ("libbanshee.dll")]
+        [DllImport (PlayerEngine.LibBansheeLibrary, CallingConvention = CallingConvention.Cdecl)]
         private static extern ulong bp_get_position (HandleRef player);
 
-        [DllImport ("libbanshee.dll")]
+        [DllImport (PlayerEngine.LibBansheeLibrary, CallingConvention = CallingConvention.Cdecl)]
         private static extern ulong bp_get_duration (HandleRef player);
 
-        [DllImport ("libbanshee.dll")]
+        [DllImport (PlayerEngine.LibBansheeLibrary, CallingConvention = CallingConvention.Cdecl)]
         private static extern bool bp_get_pipeline_elements (HandleRef player, out IntPtr playbin,
             out IntPtr audiobin, out IntPtr audiotee);
 
-        [DllImport ("libbanshee.dll")]
+        [DllImport (PlayerEngine.LibBansheeLibrary, CallingConvention = CallingConvention.Cdecl)]
         private static extern void bp_set_application_gdk_window (HandleRef player, IntPtr window);
 
-        [DllImport ("libbanshee.dll")]
+        [DllImport (PlayerEngine.LibBansheeLibrary, CallingConvention = CallingConvention.Cdecl)]
         private static extern VideoDisplayContextType bp_video_get_display_context_type (HandleRef player);
 
-        [DllImport ("libbanshee.dll")]
+        [DllImport (PlayerEngine.LibBansheeLibrary, CallingConvention = CallingConvention.Cdecl)]
         private static extern void bp_video_set_display_context (HandleRef player, IntPtr displayContext);
 
-        [DllImport ("libbanshee.dll")]
+        [DllImport (PlayerEngine.LibBansheeLibrary, CallingConvention = CallingConvention.Cdecl)]
         private static extern IntPtr bp_video_get_display_context (HandleRef player);
 
-        [DllImport ("libbanshee.dll")]
+        [DllImport (PlayerEngine.LibBansheeLibrary, CallingConvention = CallingConvention.Cdecl)]
         private static extern void bp_video_window_expose (HandleRef player, IntPtr displayContext, bool direct);
 
-        [DllImport ("libbanshee.dll")]
+        [DllImport (PlayerEngine.LibBansheeLibrary, CallingConvention = CallingConvention.Cdecl)]
         private static extern void bp_video_window_realize (HandleRef player, IntPtr window);
 
-        [DllImport ("libbanshee.dll")]
+        [DllImport (PlayerEngine.LibBansheeLibrary, CallingConvention = CallingConvention.Cdecl)]
         private static extern void bp_get_error_quarks (out uint core, out uint library,
             out uint resource, out uint stream);
 
-        [DllImport ("libbanshee.dll")]
+        [DllImport (PlayerEngine.LibBansheeLibrary, CallingConvention = CallingConvention.Cdecl)]
         private static extern bool bp_equalizer_is_supported (HandleRef player);
 
-        [DllImport ("libbanshee.dll")]
+        [DllImport (PlayerEngine.LibBansheeLibrary, CallingConvention = CallingConvention.Cdecl)]
         private static extern void bp_equalizer_set_preamp_level (HandleRef player, double level);
 
-        [DllImport ("libbanshee.dll")]
+        [DllImport (PlayerEngine.LibBansheeLibrary, CallingConvention = CallingConvention.Cdecl)]
         private static extern void bp_equalizer_set_gain (HandleRef player, uint bandnum, double gain);
 
-        [DllImport ("libbanshee.dll")]
+        [DllImport (PlayerEngine.LibBansheeLibrary, CallingConvention = CallingConvention.Cdecl)]
         private static extern void bp_equalizer_get_bandrange (HandleRef player, out int min, out int max);
 
-        [DllImport ("libbanshee.dll")]
+        [DllImport (PlayerEngine.LibBansheeLibrary, CallingConvention = CallingConvention.Cdecl)]
         private static extern uint bp_equalizer_get_nbands (HandleRef player);
 
-        [DllImport ("libbanshee.dll")]
+        [DllImport (PlayerEngine.LibBansheeLibrary, CallingConvention = CallingConvention.Cdecl)]
         private static extern void bp_equalizer_get_frequencies (HandleRef player,
             [MarshalAs (UnmanagedType.LPArray)] out double [] freq);
 
-        [DllImport ("libbanshee.dll")]
+        [DllImport (PlayerEngine.LibBansheeLibrary, CallingConvention = CallingConvention.Cdecl)]
         private static extern void bp_replaygain_set_enabled (HandleRef player, bool enabled);
 
-        [DllImport ("libbanshee.dll")]
+        [DllImport (PlayerEngine.LibBansheeLibrary, CallingConvention = CallingConvention.Cdecl)]
         private static extern bool bp_replaygain_get_enabled (HandleRef player);
 
-        [DllImport ("libbanshee.dll")]
+        [DllImport (PlayerEngine.LibBansheeLibrary, CallingConvention = CallingConvention.Cdecl)]
         private static extern IntPtr clutter_gst_video_sink_new (IntPtr texture);
 
-        [DllImport ("libbanshee.dll")]
+        [DllImport (PlayerEngine.LibBansheeLibrary, CallingConvention = CallingConvention.Cdecl)]
         private static extern int bp_get_subtitle_count (HandleRef player);
 
-        [DllImport ("libbanshee.dll")]
+        [DllImport (PlayerEngine.LibBansheeLibrary, CallingConvention = CallingConvention.Cdecl)]
         private static extern void bp_set_subtitle (HandleRef player, int index);
 
-        [DllImport ("libbanshee.dll")]
+        [DllImport (PlayerEngine.LibBansheeLibrary, CallingConvention = CallingConvention.Cdecl)]
         private static extern void bp_set_subtitle_uri (HandleRef player, IntPtr uri);
 
-        [DllImport ("libbanshee.dll")]
+        [DllImport (PlayerEngine.LibBansheeLibrary, CallingConvention = CallingConvention.Cdecl)]
         private static extern IntPtr bp_get_subtitle_uri (HandleRef player);
 
-        [DllImport ("libbanshee.dll")]
+        [DllImport (PlayerEngine.LibBansheeLibrary, CallingConvention = CallingConvention.Cdecl)]
         private static extern IntPtr bp_get_subtitle_description (HandleRef player, int index);
 
-        [DllImport ("libbanshee.dll")]
+        [DllImport (PlayerEngine.LibBansheeLibrary, CallingConvention = CallingConvention.Cdecl)]
         private static extern string gstreamer_version_string ();
 
-        [DllImport ("libbanshee.dll")]
+        [DllImport (PlayerEngine.LibBansheeLibrary, CallingConvention = CallingConvention.Cdecl)]
         private static extern bool bp_dvd_is_menu (HandleRef player);
 
-        [DllImport ("libbanshee.dll")]
+        [DllImport (PlayerEngine.LibBansheeLibrary, CallingConvention = CallingConvention.Cdecl)]
         private static extern void bp_dvd_mouse_move_notify (HandleRef player, double x, double y);
 
-        [DllImport ("libbanshee.dll")]
+        [DllImport (PlayerEngine.LibBansheeLibrary, CallingConvention = CallingConvention.Cdecl)]
         private static extern void bp_dvd_mouse_button_pressed_notify (HandleRef player, int button, double x, double y);
 
-        [DllImport ("libbanshee.dll")]
+        [DllImport (PlayerEngine.LibBansheeLibrary, CallingConvention = CallingConvention.Cdecl)]
         private static extern void bp_dvd_mouse_button_released_notify (HandleRef player, int button, double x, double y);
 
-        [DllImport ("libbanshee.dll")]
+        [DllImport (PlayerEngine.LibBansheeLibrary, CallingConvention = CallingConvention.Cdecl)]
         private static extern void bp_dvd_left_notify (HandleRef player);
 
-        [DllImport ("libbanshee.dll")]
+        [DllImport (PlayerEngine.LibBansheeLibrary, CallingConvention = CallingConvention.Cdecl)]
         private static extern void bp_dvd_right_notify (HandleRef player);
 
-        [DllImport ("libbanshee.dll")]
+        [DllImport (PlayerEngine.LibBansheeLibrary, CallingConvention = CallingConvention.Cdecl)]
         private static extern void bp_dvd_up_notify (HandleRef player);
 
-        [DllImport ("libbanshee.dll")]
+        [DllImport (PlayerEngine.LibBansheeLibrary, CallingConvention = CallingConvention.Cdecl)]
         private static extern void bp_dvd_down_notify (HandleRef player);
 
-        [DllImport ("libbanshee.dll")]
+        [DllImport (PlayerEngine.LibBansheeLibrary, CallingConvention = CallingConvention.Cdecl)]
         private static extern void bp_dvd_activate_notify (HandleRef player);
 
-        [DllImport ("libbanshee.dll")]
+        [DllImport (PlayerEngine.LibBansheeLibrary, CallingConvention = CallingConvention.Cdecl)]
         private static extern void bp_dvd_go_to_menu (HandleRef player);
 
-        [DllImport ("libbanshee.dll")]
+        [DllImport (PlayerEngine.LibBansheeLibrary, CallingConvention = CallingConvention.Cdecl)]
         private static extern void bp_dvd_go_to_next_chapter (HandleRef player);
 
-        [DllImport ("libbanshee.dll")]
+        [DllImport (PlayerEngine.LibBansheeLibrary, CallingConvention = CallingConvention.Cdecl)]
         private static extern void bp_dvd_go_to_previous_chapter (HandleRef player);
    }
 }

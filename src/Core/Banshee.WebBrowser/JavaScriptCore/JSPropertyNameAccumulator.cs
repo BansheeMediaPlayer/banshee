@@ -35,7 +35,7 @@ namespace JavaScriptCore
         private IntPtr raw;
         #pragma warning restore 0169
 
-        [DllImport (JSContext.NATIVE_IMPORT)]
+        [DllImport (JSContext.NATIVE_IMPORT, CallingConvention = CallingConvention.Cdecl)]
         private static extern void JSPropertyNameAccumulatorAddName (
             JSPropertyNameAccumulator accumulator, JSString propertyName);
 

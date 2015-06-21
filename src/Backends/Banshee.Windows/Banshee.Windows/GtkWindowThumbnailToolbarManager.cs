@@ -69,7 +69,7 @@ namespace Banshee.Windows
             ThumbnailToolbarManager.Register (gdk_win32_drawable_get_handle (window.Window.Handle), cb);
         }
 
-        [DllImport ("libgdk-win32-2.0-0.dll")]
+        [DllImport ("libgdk-win32-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
         static extern IntPtr gdk_win32_drawable_get_handle (IntPtr drawable);
     }
 }
