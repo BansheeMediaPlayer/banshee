@@ -44,6 +44,7 @@ namespace Banshee.OsxBackend
     public sealed class HardwareManager : IHardwareManager, IService
     {
         public event DeviceAddedHandler DeviceAdded;
+	public event DeviceChangedHandler DeviceChanged;
         public event DeviceRemovedHandler DeviceRemoved;
 
         private List<IDevice> devices = new List<IDevice> ();
@@ -54,13 +55,13 @@ namespace Banshee.OsxBackend
         {
             OsxService.GlobalInit ();
             this.diskArbiter = new OsxDiskArbiter ();
-            diskArbiter.DeviceAppeared += DeviceAppeared;
-            diskArbiter.DeviceChanged += DeviceChanged;
-            diskArbiter.DeviceDisappeared += DeviceDisappeared;
+            diskArbiter.DeviceAppeared += OnDeviceAppeared;
+            diskArbiter.DeviceChanged += OnDeviceChanged;
+            diskArbiter.DeviceDisappeared += OnDeviceDisappeared;
             diskArbiter.StartListening ();
         }
 
-        private void DeviceAppeared (object o, DeviceArguments args)
+        private void OnDeviceAppeared (object o, DeviceArguments args)
         {
             Device device = new Device (args);
 
@@ -96,7 +97,7 @@ namespace Banshee.OsxBackend
             }
         }
 
-        private void DeviceChanged (object o, DeviceArguments args)
+        private void OnDeviceChanged (object o, DeviceArguments args)
         {
             Device device = new Device (args);
 
@@ -129,7 +130,7 @@ namespace Banshee.OsxBackend
             }
         }
 
-        private void DeviceDisappeared (object o, DeviceArguments args)
+        private void OnDeviceDisappeared (object o, DeviceArguments args)
         {
             Device device = new Device (args);
 
