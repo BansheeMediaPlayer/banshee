@@ -1,19 +1,19 @@
-# translation of banshee to Hungarian
+# Hungarian translation of banshee.
+# Copyright (C) 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015 Free Software Foundation, Inc.
 # This file is distributed under the same license as the banshee package.
-# Copyright (C) 2006, 2007, 2008, 2009, 2010, 2011 Free Software Foundation, Inc.
 #
 # Kéménczy Kálmán <kkemenczy at novell dot com>, 2006.
 # Gabor Kelemen <kelemeng at gnome dot hu>, 2006, 2007, 2008, 2009, 2010, 2011, 2012.
-# Balázs Úr <urbalazs at gmail dot com>, 2012, 2013, 2014.
+# Balázs Úr <urbalazs at gmail dot com>, 2012, 2013, 2014, 2015.
 msgid ""
 msgstr ""
 "Project-Id-Version: banshee master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=banshee&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2014-09-20 14:49+0000\n"
-"PO-Revision-Date: 2014-09-20 23:37+0200\n"
+"POT-Creation-Date: 2015-06-23 02:54+0000\n"
+"PO-Revision-Date: 2015-06-24 19:59+0200\n"
 "Last-Translator: Balázs Úr <urbalazs@gmail.com>\n"
-"Language-Team: Hungarian <gnome-hu-list at gnome dot org>\n"
+"Language-Team: Hungarian <openscope at gmail dot com>\n"
 "Language: hu\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -705,22 +705,22 @@ msgstr "A CD-beolvasó meghajtó nem hozható létre."
 msgid "Could not create BPM detection driver."
 msgstr "A BPM-felismerő meghajtó nem hozható létre."
 
-#: ../src/Backends/Banshee.GStreamer/Banshee.GStreamer/PlayerEngine.cs:149
-#: ../src/Backends/Banshee.GStreamer/Banshee.GStreamer/PlayerEngine.cs:191
+#: ../src/Backends/Banshee.GStreamer/Banshee.GStreamer/PlayerEngine.cs:151
+#: ../src/Backends/Banshee.GStreamer/Banshee.GStreamer/PlayerEngine.cs:193
 msgid "Could not initialize GStreamer library"
 msgstr "A GStreamer könyvtár előkészítése nem sikerült"
 
-#: ../src/Backends/Banshee.GStreamer/Banshee.GStreamer/PlayerEngine.cs:521
+#: ../src/Backends/Banshee.GStreamer/Banshee.GStreamer/PlayerEngine.cs:523
 #: ../src/Backends/Banshee.GStreamerSharp/Banshee.GStreamerSharp/PlayerEngine.cs:612
 msgid "Unknown Error"
 msgstr "Ismeretlen hiba"
 
-#: ../src/Backends/Banshee.GStreamer/Banshee.GStreamer/PlayerEngine.cs:889
+#: ../src/Backends/Banshee.GStreamer/Banshee.GStreamer/PlayerEngine.cs:891
 #: ../src/Backends/Banshee.GStreamerSharp/Banshee.GStreamerSharp/PlayerEngine.cs:1053
 msgid "_Enable ReplayGain correction"
 msgstr "_Visszhangerősítés javításának engedélyezése"
 
-#: ../src/Backends/Banshee.GStreamer/Banshee.GStreamer/PlayerEngine.cs:890
+#: ../src/Backends/Banshee.GStreamer/Banshee.GStreamer/PlayerEngine.cs:892
 #: ../src/Backends/Banshee.GStreamerSharp/Banshee.GStreamerSharp/PlayerEngine.cs:1054
 msgid ""
 "For tracks that have ReplayGain data, automatically scale (normalize) "
@@ -729,12 +729,12 @@ msgstr ""
 "A ReplayGain adatokat tartalmazó számok esetén a lejátszási hangerő "
 "automatikus normalizálása"
 
-#: ../src/Backends/Banshee.GStreamer/Banshee.GStreamer/PlayerEngine.cs:894
+#: ../src/Backends/Banshee.GStreamer/Banshee.GStreamer/PlayerEngine.cs:896
 #: ../src/Backends/Banshee.GStreamerSharp/Banshee.GStreamerSharp/PlayerEngine.cs:1058
 msgid "Enable _gapless playback"
 msgstr "_Szünetmentes lejátszás bekapcsolása"
 
-#: ../src/Backends/Banshee.GStreamer/Banshee.GStreamer/PlayerEngine.cs:895
+#: ../src/Backends/Banshee.GStreamer/Banshee.GStreamer/PlayerEngine.cs:897
 #: ../src/Backends/Banshee.GStreamerSharp/Banshee.GStreamerSharp/PlayerEngine.cs:1059
 msgid ""
 "Eliminate the small playback gap on track change. Useful for concept albums "
@@ -921,61 +921,61 @@ msgstr "A frissítés letöltése befejeződött"
 msgid "Check for Updates"
 msgstr "Frissítések keresése"
 
-#: ../src/Clients/Booter/Booter/Entry.cs:151
+#: ../src/Clients/Booter/Booter/Entry.cs:153
 msgid "Help Options"
 msgstr "Súgólehetőségek"
 
-#: ../src/Clients/Booter/Booter/Entry.cs:152
+#: ../src/Clients/Booter/Booter/Entry.cs:154
 msgid "Show this help"
 msgstr "Ezen súgó megjelenítése"
 
-#: ../src/Clients/Booter/Booter/Entry.cs:153
+#: ../src/Clients/Booter/Booter/Entry.cs:155
 msgid "Show options for controlling playback"
 msgstr "A lejátszást vezérlő kapcsolók megjelenítése"
 
-#: ../src/Clients/Booter/Booter/Entry.cs:154
+#: ../src/Clients/Booter/Booter/Entry.cs:156
 msgid "Show options for querying the playing track"
 msgstr "A lejátszott számot lekérdező kapcsolók megjelenítése"
 
-#: ../src/Clients/Booter/Booter/Entry.cs:155
+#: ../src/Clients/Booter/Booter/Entry.cs:157
 msgid "Show options for querying the playing engine"
 msgstr "A lejátszóalrendszert lekérdező kapcsolók megjelenítése"
 
-#: ../src/Clients/Booter/Booter/Entry.cs:156
+#: ../src/Clients/Booter/Booter/Entry.cs:158
 msgid "Show options for the user interface"
 msgstr "A felhasználói felület kapcsolóinak megjelenítése"
 
-#: ../src/Clients/Booter/Booter/Entry.cs:157
+#: ../src/Clients/Booter/Booter/Entry.cs:159
 msgid "Show options for developers and debugging"
 msgstr "Fejlesztőknek szóló és hibakeresési kapcsolók megjelenítése"
 
-#: ../src/Clients/Booter/Booter/Entry.cs:158
+#: ../src/Clients/Booter/Booter/Entry.cs:160
 msgid "Show all option groups"
 msgstr "Minden kapcsolócsoport megjelenítése"
 
-#: ../src/Clients/Booter/Booter/Entry.cs:159
+#: ../src/Clients/Booter/Booter/Entry.cs:161
 msgid "Show version information"
 msgstr "Verzióinformációk megjelenítése"
 
-#: ../src/Clients/Booter/Booter/Entry.cs:162
+#: ../src/Clients/Booter/Booter/Entry.cs:164
 msgid "Playback Control Options"
 msgstr "Lejátszást vezérlő kapcsolói"
 
-#: ../src/Clients/Booter/Booter/Entry.cs:163
+#: ../src/Clients/Booter/Booter/Entry.cs:165
 msgid ""
 "Play the next track, optionally restarting if the 'restart' value is set"
 msgstr ""
 "A következő szám lejátszása, újraindítással, ha az „újraindítás” érték be "
 "van állítva"
 
-#: ../src/Clients/Booter/Booter/Entry.cs:164
+#: ../src/Clients/Booter/Booter/Entry.cs:166
 msgid ""
 "Play the previous track, optionally restarting if the 'restart' value is set"
 msgstr ""
 "Az előző szám lejátszása, újraindítással, ha az „újraindítás” érték be van "
 "állítva"
 
-#: ../src/Clients/Booter/Booter/Entry.cs:165
+#: ../src/Clients/Booter/Booter/Entry.cs:167
 msgid ""
 "If the current song has been played longer than 4 seconds then restart it, "
 "otherwise the same as --previous"
@@ -983,28 +983,28 @@ msgstr ""
 "Ha a jelenlegi szám 4 másodpercnél tovább volt lejátszva, akkor újraindítja, "
 "egyébként ugyanaz mint a --previous"
 
-#: ../src/Clients/Booter/Booter/Entry.cs:166
+#: ../src/Clients/Booter/Booter/Entry.cs:168
 msgid "Automatically start playing any tracks enqueued on the command line"
 msgstr ""
 "A parancssorban sorba állított számok lejátszásának automatikus elindítása"
 
-#: ../src/Clients/Booter/Booter/Entry.cs:167
+#: ../src/Clients/Booter/Booter/Entry.cs:169
 msgid "Start playback"
 msgstr "Lejátszás indítása"
 
-#: ../src/Clients/Booter/Booter/Entry.cs:168
+#: ../src/Clients/Booter/Booter/Entry.cs:170
 msgid "Pause playback"
 msgstr "Lejátszás szüneteltetése"
 
-#: ../src/Clients/Booter/Booter/Entry.cs:169
+#: ../src/Clients/Booter/Booter/Entry.cs:171
 msgid "Toggle playback"
 msgstr "Lejátszás átváltása"
 
-#: ../src/Clients/Booter/Booter/Entry.cs:170
+#: ../src/Clients/Booter/Booter/Entry.cs:172
 msgid "Completely stop playback"
 msgstr "Lejátszás leállítása"
 
-#: ../src/Clients/Booter/Booter/Entry.cs:172
+#: ../src/Clients/Booter/Booter/Entry.cs:174
 msgid ""
 "Enable or disable playback stopping after the currently playing track (value "
 "should be either 'true' or 'false')"
@@ -1012,97 +1012,97 @@ msgstr ""
 "Lejátszás leállításának engedélyezése vagy tiltása a lejátszott szám után "
 "(true vagy false értékű lehet)"
 
-#: ../src/Clients/Booter/Booter/Entry.cs:173
+#: ../src/Clients/Booter/Booter/Entry.cs:175
 msgid "Set the playback volume (0-100), prefix with +/- for relative values"
 msgstr ""
 "Lejátszás hangerejének beállítása (0-100), relatív értékek +/- előtaggal "
 "jelölhetők"
 
-#: ../src/Clients/Booter/Booter/Entry.cs:174
+#: ../src/Clients/Booter/Booter/Entry.cs:176
 msgid "Seek to a specific point (seconds, float)"
 msgstr "Adott helyre tekerés (másodperc, lebegőpontos)"
 
-#: ../src/Clients/Booter/Booter/Entry.cs:175
+#: ../src/Clients/Booter/Booter/Entry.cs:177
 msgid "Set the currently played track's rating (0 to 5)"
 msgstr "A jelenleg lejátszott szám értékelésének beállítása (0 - 5)"
 
-#: ../src/Clients/Booter/Booter/Entry.cs:178
+#: ../src/Clients/Booter/Booter/Entry.cs:180
 msgid "Player Engine Query Options"
 msgstr "Lejátszómotor lekérdezési kapcsolói"
 
-#: ../src/Clients/Booter/Booter/Entry.cs:179
+#: ../src/Clients/Booter/Booter/Entry.cs:181
 msgid "Current player state"
 msgstr "Jelenlegi lejátszóállapot"
 
-#: ../src/Clients/Booter/Booter/Entry.cs:180
+#: ../src/Clients/Booter/Booter/Entry.cs:182
 msgid "Last player state"
 msgstr "Utolsó lejátszóállapot"
 
-#: ../src/Clients/Booter/Booter/Entry.cs:181
+#: ../src/Clients/Booter/Booter/Entry.cs:183
 msgid "Query whether the player can be paused"
 msgstr "A lejátszó szüneteltetési képességének lekérdezése"
 
-#: ../src/Clients/Booter/Booter/Entry.cs:182
+#: ../src/Clients/Booter/Booter/Entry.cs:184
 msgid "Query whether the player can seek"
 msgstr "A lejátszó tekerési képességének lekérdezése"
 
-#: ../src/Clients/Booter/Booter/Entry.cs:183
+#: ../src/Clients/Booter/Booter/Entry.cs:185
 msgid "Player volume"
 msgstr "Lejátszó hangereje"
 
-#: ../src/Clients/Booter/Booter/Entry.cs:184
+#: ../src/Clients/Booter/Booter/Entry.cs:186
 msgid "Player position in currently playing track"
 msgstr "Lejátszópozíció az épp lejátszott számban"
 
-#: ../src/Clients/Booter/Booter/Entry.cs:187
+#: ../src/Clients/Booter/Booter/Entry.cs:189
 msgid "Playing Track Metadata Query Options"
 msgstr "Lejátszott szám metaadat-lekérdezési kapcsolói"
 
-#: ../src/Clients/Booter/Booter/Entry.cs:188
+#: ../src/Clients/Booter/Booter/Entry.cs:190
 msgid "URI"
 msgstr "URI"
 
-#: ../src/Clients/Booter/Booter/Entry.cs:189
+#: ../src/Clients/Booter/Booter/Entry.cs:191
 #: ../src/Clients/Nereid/Nereid/ViewContainer.cs:133
 #: ../src/Extensions/Banshee.MediaPanel/Banshee.MediaPanel/SearchEntry.cs:89
 msgid "Artist Name"
 msgstr "Előadó neve"
 
-#: ../src/Clients/Booter/Booter/Entry.cs:190
+#: ../src/Clients/Booter/Booter/Entry.cs:192
 #: ../src/Clients/Nereid/Nereid/ViewContainer.cs:135
 #: ../src/Extensions/Banshee.MediaPanel/Banshee.MediaPanel/SearchEntry.cs:90
 msgid "Album Title"
 msgstr "Album címe"
 
-#: ../src/Clients/Booter/Booter/Entry.cs:191
+#: ../src/Clients/Booter/Booter/Entry.cs:193
 #: ../src/Clients/Nereid/Nereid/ViewContainer.cs:132
 #: ../src/Extensions/Banshee.MediaPanel/Banshee.MediaPanel/SearchEntry.cs:88
 msgid "Track Title"
 msgstr "Szám címe"
 
-#: ../src/Clients/Booter/Booter/Entry.cs:192
+#: ../src/Clients/Booter/Booter/Entry.cs:194
 msgid "Duration"
 msgstr "Hossz"
 
 #. Translators: noun
-#: ../src/Clients/Booter/Booter/Entry.cs:193
+#: ../src/Clients/Booter/Booter/Entry.cs:195
 #: ../src/Core/Banshee.Services/Banshee.Query/BansheeQuery.cs:119
 msgid "Track Number"
 msgstr "Szám sorszáma"
 
 #. Translators: noun
-#: ../src/Clients/Booter/Booter/Entry.cs:194
+#: ../src/Clients/Booter/Booter/Entry.cs:196
 #: ../src/Core/Banshee.Services/Banshee.Query/BansheeQuery.cs:128
 msgid "Track Count"
 msgstr "Számok összesen"
 
-#: ../src/Clients/Booter/Booter/Entry.cs:195
+#: ../src/Clients/Booter/Booter/Entry.cs:197
 #: ../src/Core/Banshee.Services/Banshee.Library/MusicFileNamePattern.cs:149
 #: ../src/Extensions/Banshee.Audiobook/Banshee.Audiobook/AudiobookFileNamePattern.cs:114
 msgid "Disc Number"
 msgstr "Lemezszám"
 
-#: ../src/Clients/Booter/Booter/Entry.cs:196
+#: ../src/Clients/Booter/Booter/Entry.cs:198
 #: ../src/Clients/Nereid/Nereid/ViewContainer.cs:138
 #: ../src/Core/Banshee.Services/Banshee.Library/MusicFileNamePattern.cs:113
 #: ../src/Core/Banshee.Services/Banshee.Query/BansheeQuery.cs:179
@@ -1113,7 +1113,7 @@ msgstr "Lemezszám"
 msgid "Year"
 msgstr "Év"
 
-#: ../src/Clients/Booter/Booter/Entry.cs:197
+#: ../src/Clients/Booter/Booter/Entry.cs:199
 #: ../src/Core/Banshee.Services/Banshee.Query/BansheeQuery.cs:232
 #: ../src/Extensions/Banshee.InternetArchive/Banshee.InternetArchive/SearchView.cs:131
 #: ../src/Extensions/Banshee.InternetArchive/InternetArchive/Field.cs:60
@@ -1121,82 +1121,82 @@ msgstr "Év"
 msgid "Rating"
 msgstr "Értékelés"
 
-#: ../src/Clients/Booter/Booter/Entry.cs:198
+#: ../src/Clients/Booter/Booter/Entry.cs:200
 #: ../src/Core/Banshee.Services/Banshee.Query/BansheeQuery.cs:324
 msgid "Score"
 msgstr "Pontszám"
 
 #. Translators: noun
-#: ../src/Clients/Booter/Booter/Entry.cs:199
+#: ../src/Clients/Booter/Booter/Entry.cs:201
 #: ../src/Core/Banshee.Services/Banshee.Query/BansheeQuery.cs:145
 msgid "Bit Rate"
 msgstr "Bitsebesség"
 
-#: ../src/Clients/Booter/Booter/Entry.cs:202
+#: ../src/Clients/Booter/Booter/Entry.cs:204
 msgid "User Interface Options"
 msgstr "Felhasználói felület kapcsolói"
 
-#: ../src/Clients/Booter/Booter/Entry.cs:203
+#: ../src/Clients/Booter/Booter/Entry.cs:205
 msgid "Present the user interface on the active workspace"
 msgstr "A felhasználói felület megjelenítése az aktív munkaterületen"
 
-#: ../src/Clients/Booter/Booter/Entry.cs:204
+#: ../src/Clients/Booter/Booter/Entry.cs:206
 msgid "Enter the full-screen mode"
 msgstr "Teljes képernyős mód"
 
-#: ../src/Clients/Booter/Booter/Entry.cs:205
+#: ../src/Clients/Booter/Booter/Entry.cs:207
 msgid "Hide the user interface"
 msgstr "Felhasználói felület elrejtése"
 
-#: ../src/Clients/Booter/Booter/Entry.cs:206
+#: ../src/Clients/Booter/Booter/Entry.cs:208
 msgid "Do not present the user interface, regardless of any other options"
 msgstr "Ne jelenjen meg a felhasználói felület, más kapcsolóktól függetlenül"
 
-#: ../src/Clients/Booter/Booter/Entry.cs:207
+#: ../src/Clients/Booter/Booter/Entry.cs:209
 msgid "Present the import media dialog box"
 msgstr "A média importálása ablak megjelenítése"
 
-#: ../src/Clients/Booter/Booter/Entry.cs:208
+#: ../src/Clients/Booter/Booter/Entry.cs:210
 msgid "Present the about dialog"
 msgstr "A névjegyablak megjelenítése"
 
-#: ../src/Clients/Booter/Booter/Entry.cs:209
+#: ../src/Clients/Booter/Booter/Entry.cs:211
 msgid "Present the open location dialog"
 msgstr "A hely megnyitása ablak megjelenítése"
 
-#: ../src/Clients/Booter/Booter/Entry.cs:210
+#: ../src/Clients/Booter/Booter/Entry.cs:212
 msgid "Present the preferences dialog"
 msgstr "A beállítások ablak megjelenítése"
 
-#: ../src/Clients/Booter/Booter/Entry.cs:213
+#: ../src/Clients/Booter/Booter/Entry.cs:215
 msgid "Debugging and Development Options"
 msgstr "Hibakeresési és fejlesztői kapcsolók"
 
-#: ../src/Clients/Booter/Booter/Entry.cs:214
+#: ../src/Clients/Booter/Booter/Entry.cs:216
 msgid "Enable general debugging features"
 msgstr "Általános hibakeresési szolgáltatások engedélyezése"
 
-#: ../src/Clients/Booter/Booter/Entry.cs:215
+#: ../src/Clients/Booter/Booter/Entry.cs:217
 msgid "Enable debugging output of SQL queries"
 msgstr "SQL lekérdezések hibakeresési kimenetének engedélyezése"
 
-#: ../src/Clients/Booter/Booter/Entry.cs:216
+#: ../src/Clients/Booter/Booter/Entry.cs:218
 msgid "Enable debugging output of Mono.Addins"
 msgstr "A Mono.Addins hibakeresési kimenetének engedélyezése"
 
-#: ../src/Clients/Booter/Booter/Entry.cs:217
+#: ../src/Clients/Booter/Booter/Entry.cs:219
 msgid "Specify an alternate database to use"
 msgstr "Használandó alternatív adatbázis megadása"
 
-#: ../src/Clients/Booter/Booter/Entry.cs:218
+#: ../src/Clients/Booter/Booter/Entry.cs:220
 msgid "Force fetching of missing cover artwork"
 msgstr "Hiányzó borító letöltésének kényszerítése"
 
-#: ../src/Clients/Booter/Booter/Entry.cs:219
+#: ../src/Clients/Booter/Booter/Entry.cs:221
 msgid "Specify an alternate key, default is /apps/banshee-1/"
 msgstr "Alternatív kulcs megadása, az alapértelmezett az /apps/banshee-1/"
 
-#: ../src/Clients/Booter/Booter/Entry.cs:220
+#: ../src/Clients/Booter/Booter/Entry.cs:222
 msgid ""
 "Optimize instance for running uninstalled; most notably, this will create an "
 "alternate Mono.Addins database in the working directory"
@@ -1204,21 +1204,21 @@ msgstr ""
 "Példány optimalizálása telepítés nélküli futásra, ez legfőképp egy másik "
 "Mono.Addins adatbázis hoz létre a munkakönyvtárban"
 
-#: ../src/Clients/Booter/Booter/Entry.cs:222
+#: ../src/Clients/Booter/Booter/Entry.cs:224
 msgid "Disable DBus support completely"
 msgstr "D-Bus támogatás teljes letiltása"
 
-#: ../src/Clients/Booter/Booter/Entry.cs:224
+#: ../src/Clients/Booter/Booter/Entry.cs:226
 #, csharp-format
 msgid "Skip loading a custom gtk.css file ({0}) if it exists"
 msgstr "Egyéni gtk.css fájl ({0}) betöltésének kihagyása, ha van"
 
-#: ../src/Clients/Booter/Booter/Entry.cs:226
+#: ../src/Clients/Booter/Booter/Entry.cs:228
 #, csharp-format
 msgid "Reload the custom gtk.css file ({0}) every 5 seconds"
 msgstr "Az egyéni gtk.css fájl ({0}) újratöltése 5 másodpercenként"
 
-#: ../src/Clients/Booter/Booter/Entry.cs:255
+#: ../src/Clients/Booter/Booter/Entry.cs:257
 #, csharp-format
 msgid "The following help arguments are invalid: {0}"
 msgstr "A következő súgóargumentumok érvénytelenek: {0}"
@@ -1419,7 +1419,7 @@ msgstr "A fájl nem olvasható, ezért nem lehet importálni: {0}"
 msgid "File is empty so it could not be imported: {0}"
 msgstr "A fájl üres, ezért nem lehet importálni: {0}"
 
-#: ../src/Core/Banshee.Services/Banshee.Collection.Database/DatabaseQueryFilterModel.cs:48
+#: ../src/Core/Banshee.Services/Banshee.Collection.Database/DatabaseQueryFilterModel.cs:49
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui.TrackEditor/StatisticsPage.cs:96
 msgid "Value"
 msgstr "Érték"
@@ -2598,7 +2598,7 @@ msgstr "drm"
 #. Translators: These are unique strings for playback errors. Please, no spaces. Blank ok.
 #: ../src/Core/Banshee.Services/Banshee.Query/PlaybackErrorQueryValue.cs:64
 #: ../src/Core/Banshee.Services/Banshee.Query/PlaybackErrorQueryValue.cs:66
-#: ../src/Core/Banshee.Services/Banshee.ServiceStack/Application.cs:361
+#: ../src/Core/Banshee.Services/Banshee.ServiceStack/Application.cs:363
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui.TrackEditor/StatisticsPage.cs:234
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui.TrackEditor/StatisticsPage.cs:236
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui.TrackEditor/StatisticsPage.cs:238
@@ -2819,7 +2819,6 @@ msgstr ""
 "rendezési oszlop fejlécére, amíg a rendezést jelző nyíl el nem tűnik."
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Collection.Gui/ColumnCellArtistText.cs:42
-#| msgid "Duplicate Artists"
 msgid "Default Text Artist List"
 msgstr "Alapértelmezett szöveg előadólista"
 
@@ -2934,7 +2933,6 @@ msgid "New Preset"
 msgstr "Új alapbeállítás"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui/ArtistListActions.cs:160
-#| msgid "View Artist's Videos"
 msgid "Artist List View"
 msgstr "Előadólista nézet"
 
@@ -4519,7 +4517,7 @@ msgstr[1] ""
 #: ../src/Dap/Banshee.Dap/Banshee.Dap.Gui/DapActions.cs:53
 #: ../src/Dap/Banshee.Dap/Banshee.Dap.Gui/InactiveDapContent.cs:106
 msgid "Claim"
-msgstr ""
+msgstr "Lefoglalás"
 
 #: ../src/Dap/Banshee.Dap/Banshee.Dap.Gui/DapActions.cs:58
 msgid "Sync"
@@ -4602,7 +4600,7 @@ msgstr "Megvásárolt zene importálása"
 
 #: ../src/Dap/Banshee.Dap/Banshee.Dap/PotentialSource.cs:133
 msgid "Trying to claim your device..."
-msgstr ""
+msgstr "Az eszköz lefoglalásának kísérlete…"
 
 #: ../src/Dap/Banshee.Dap/Banshee.Dap/PotentialSource.cs:162
 msgid "Connection successful. Please wait..."
@@ -4682,7 +4680,6 @@ msgstr "Akkumulátor szintje"
 #. and {1} is the total # of files that will be loaded.
 #: ../src/Dap/Banshee.Dap.Mtp/Banshee.Dap.Mtp/MtpSource.cs:157
 #, csharp-format
-#| msgid "Rescanning {0} of {1}"
 msgid "Reading File - {0} of {1}"
 msgstr "Fájl olvasása – {0} / {1}"
 
@@ -4690,7 +4687,6 @@ msgstr "Fájl olvasása – {0} / {1}"
 #. and {1} is the total # of tracks that will be loaded.
 #: ../src/Dap/Banshee.Dap.Mtp/Banshee.Dap.Mtp/MtpSource.cs:183
 #, csharp-format
-#| msgid "Adding track {0} of {1}"
 msgid "Loading Track - {0} of {1}"
 msgstr "Szám betöltése – {0} / {1}"
 
@@ -4698,7 +4694,6 @@ msgstr "Szám betöltése – {0} / {1}"
 #. and {1} is the total # of playlists that will be loaded.
 #: ../src/Dap/Banshee.Dap.Mtp/Banshee.Dap.Mtp/MtpSource.cs:204
 #, csharp-format
-#| msgid "Loading {0} - {1} of {2}"
 msgid "Loading Playlist - {0} of {1}"
 msgstr "Lejátszólista betöltése – {0} / {1}"
 
@@ -5213,7 +5208,6 @@ msgid "Fix?"
 msgstr "Javítja?"
 
 #: ../src/Extensions/Banshee.Fixup/Banshee.Fixup/View.cs:78
-#| msgid "Track Artist"
 msgid "Track details"
 msgstr "Szám részletei"
 
@@ -6888,11 +6882,11 @@ msgid_plural "Delete Files"
 msgstr[0] "Fájl törlése"
 msgstr[1] "Fájlok törlése"
 
-#: ../src/Extensions/Banshee.Podcasting/Banshee.Podcasting.Gui/PodcastActions.cs:352
+#: ../src/Extensions/Banshee.Podcasting/Banshee.Podcasting.Gui/PodcastActions.cs:353
 msgid "Invalid URL"
 msgstr "Érvénytelen URL"
 
-#: ../src/Extensions/Banshee.Podcasting/Banshee.Podcasting.Gui/PodcastActions.cs:353
+#: ../src/Extensions/Banshee.Podcasting/Banshee.Podcasting.Gui/PodcastActions.cs:354
 msgid "Podcast URL is invalid."
 msgstr "A podcast URL-címe érvénytelen."
 
