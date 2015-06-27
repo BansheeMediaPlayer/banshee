@@ -107,12 +107,10 @@ namespace Banshee.Gui.Widgets
 
             ClearButtons ();
 
-            if (source.CurrentMessage.Actions != null) {
-                foreach (MessageAction action in source.CurrentMessage.Actions) {
-                    Button button = new ActionButton (action);
-                    button.UseStock = action.IsStock;
-                    AddButton (button);
-                }
+            foreach (MessageAction action in source.CurrentMessage.Actions) {
+                Button button = new ActionButton (action);
+                button.UseStock = action.IsStock;
+                AddButton (button);
             }
 
             Show ();

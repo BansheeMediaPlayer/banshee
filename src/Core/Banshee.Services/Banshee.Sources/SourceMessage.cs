@@ -36,7 +36,7 @@ namespace Banshee.Sources
         private bool updated_when_frozen;
         private int freeze_count;
 
-        private List<MessageAction> actions;
+        private List<MessageAction> actions = new List<MessageAction> ();
 
         private Source source;
         private bool is_spinning;
@@ -55,9 +55,6 @@ namespace Banshee.Sources
         public void AddAction (MessageAction action)
         {
             lock (this) {
-                if (actions == null) {
-                    actions = new List<MessageAction> ();
-                }
                 actions.Add (action);
                 OnUpdated ();
             }
@@ -66,9 +63,7 @@ namespace Banshee.Sources
         public void ClearActions ()
         {
             lock (this) {
-                if (actions != null) {
-                    actions.Clear ();
-                }
+                actions.Clear ();
                 OnUpdated ();
             }
         }
@@ -143,7 +138,11 @@ namespace Banshee.Sources
         }
 
         public IEnumerable<MessageAction> Actions {
-            get { return actions; }
+            get {
+                lock (this) {
+                    return actions.ToArray ();
+                }
+            }
         }
     }
 }
