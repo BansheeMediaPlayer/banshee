@@ -74,6 +74,11 @@ namespace Banshee.Dap.MassStorage
                 volume.Mount ();
             }
 
+            mount_point = volume.MountPoint;
+            if (mount_point == null) {
+                throw new InvalidDeviceException ();
+            }
+
             ms_device = DeviceMapper.Map (this);
             try {
                 if (ms_device.ShouldIgnoreDevice () || !ms_device.LoadDeviceConfiguration ()) {
@@ -103,8 +108,6 @@ namespace Banshee.Dap.MassStorage
             }
 
             Name = ms_device == null ? volume.Name : ms_device.Name;
-            mount_point = volume.MountPoint;
-
             Initialize ();
 
             if (ms_device != null) {
