@@ -199,7 +199,7 @@ AC_SUBST(ENABLE_RELEASE)
 if test "x$enable_release" = "xyes"; then
 	GMCS_FLAGS="-define:RELEASE"
 else
-	GMCS_FLAGS="-warnaserror"
+	GMCS_FLAGS=""
 fi
 AC_SUBST(GMCS_FLAGS)
 
