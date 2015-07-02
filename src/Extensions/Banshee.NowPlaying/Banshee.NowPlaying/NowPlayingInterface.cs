@@ -31,6 +31,8 @@ using System;
 using Mono.Unix;
 using Gtk;
 
+using Hyena;
+
 using Banshee.Gui;
 using Banshee.PlatformServices;
 using Banshee.ServiceStack;
@@ -99,7 +101,11 @@ namespace Banshee.NowPlaying
         {
             if (Contents.Parent != frame) {
                 Contents.Reparent (frame);
-                Contents.Show ();
+
+                // workaround for crash in Mac, see https://bugzilla.gnome.org/show_bug.cgi?id=750100#c6
+                if (!PlatformDetection.IsMac) {
+                    Contents.Show ();
+                }
             }
         }
 
