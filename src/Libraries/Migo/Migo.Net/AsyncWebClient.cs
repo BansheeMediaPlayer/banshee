@@ -735,19 +735,12 @@ namespace Migo.Net
                                 Match match = encoding_regexp.Match (s);
                                 if (match.Success && match.Groups.Count > 0) {
                                     string encodingStr = match.Groups[1].Value;
-
-                                    Encoding enc = Encoding;
                                     try {
-                                        enc = Encoding.GetEncoding (encodingStr);
+                                        Encoding enc = Encoding.GetEncoding (encodingStr);
                                         if (!enc.Equals (Encoding)) {
                                             s = enc.GetString (resultPtr);
                                         }
                                     } catch (ArgumentException) {}
-
-                                    string bom = enc.GetString (enc.GetPreamble ());
-                                    if (s.StartsWith (bom)) {
-                                        s = s.Remove (0, bom.Length);
-                                    }
                                 }
                             }
                         } catch (Exception ex) {
