@@ -32,7 +32,7 @@ export GDK_PIXBUF_MODULE_FILE="$ETC_DIR/gtk-2.0/gdk-pixbuf.loaders"
 export PANGO_RC_FILE="$ETC_DIR/pango/pangorc"
 
 # Banshee/Mono/GStreamer environment
-export DYLD_LIBRARY_PATH="$LIB_DIR:$LIB_DIR/@PACKAGE@:$LIB_DIR/@PACKAGE@/Extensions"
+export DYLD_LIBRARY_PATH="/usr/lib:$LIB_DIR:$LIB_DIR/@PACKAGE@:$LIB_DIR/@PACKAGE@/Extensions"
 export GST_PLUGIN_SYSTEM_PATH="$LIB_DIR/gstreamer-0.10"
 export BANSHEE_CONFIG_DIR="$XDG_CONFIG_HOME/banshee-1"
 BANSHEE_OPTIONS=""
