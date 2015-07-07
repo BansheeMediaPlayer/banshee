@@ -192,7 +192,12 @@ namespace Banshee.Dap
         {
             var library = GetSyncableLibrary (source);
             if (library != null) {
-                var sync = library_syncs.First (s => s.Library == library);
+
+                var sync = library_syncs.FirstOrDefault (s => s.Library == library);
+                if (sync == null) {
+                    return;
+                }
+
                 library_syncs.Remove (sync);
                 sync.Library.TracksAdded -= OnLibraryChanged;
                 sync.Library.TracksDeleted -= OnLibraryChanged;
