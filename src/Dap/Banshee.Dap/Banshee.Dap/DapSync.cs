@@ -53,7 +53,10 @@ namespace Banshee.Dap
     {
         private DapSource dap;
         private string conf_ns;
+
         private List<DapLibrarySync> library_syncs = new List<DapLibrarySync> ();
+        private object library_syncs_mutex = new object ();
+
         internal SchemaEntry<bool> LegacyManuallyManage;
         private SchemaEntry<bool> auto_sync;
         private Section sync_prefs;
@@ -76,12 +79,20 @@ namespace Banshee.Dap
             get { return dap; }
         }
 
-        public IList<DapLibrarySync> Libraries {
-            get { return library_syncs; }
+        public IEnumerable<DapLibrarySync> Libraries {
+            get {
+                lock (library_syncs_mutex) {
+                    return library_syncs.ToArray ();
+                }
+            }
         }
 
         public bool Enabled {
-            get { return library_syncs.Any (l => l.Enabled); }
+            get {
+                lock (library_syncs_mutex) {
+                    return library_syncs.Any (l => l.Enabled);
+                }
+            }
         }
 
         public bool AutoSync {
@@ -105,10 +116,12 @@ namespace Banshee.Dap
 
         public void Dispose ()
         {
-            foreach (DapLibrarySync sync in library_syncs) {
-                sync.Library.TracksAdded -= OnLibraryChanged;
-                sync.Library.TracksDeleted -= OnLibraryChanged;
-                sync.Dispose ();
+            lock (library_syncs_mutex) {
+                foreach (DapLibrarySync sync in library_syncs) {
+                    sync.Library.TracksAdded -= OnLibraryChanged;
+                    sync.Library.TracksDeleted -= OnLibraryChanged;
+                    sync.Dispose ();
+                }
             }
 
             var src_mgr = ServiceManager.SourceManager;
@@ -173,7 +186,9 @@ namespace Banshee.Dap
             var library = GetSyncableLibrary (source);
             if (library != null) {
                 var sync = new DapLibrarySync (this, library);
-                library_syncs.Add (sync);
+                lock (library_syncs_mutex) {
+                    library_syncs.Add (sync);
+                }
                 library.TracksAdded += OnLibraryChanged;
                 library.TracksDeleted += OnLibraryChanged;
 
@@ -193,7 +208,10 @@ namespace Banshee.Dap
             var library = GetSyncableLibrary (source);
             if (library != null) {
 
-                var sync = library_syncs.FirstOrDefault (s => s.Library == library);
+                DapLibrarySync sync = null;
+                lock (library_syncs_mutex) {
+                    sync = library_syncs.FirstOrDefault (s => s.Library == library);
+                }
                 if (sync == null) {
                     return;
                 }
@@ -213,7 +231,9 @@ namespace Banshee.Dap
 
         private void SortLibraries ()
         {
-            library_syncs.Sort ((a, b) => a.Library.Order.CompareTo (b.Library.Order));
+            lock (library_syncs_mutex) {
+                library_syncs.Sort ((a, b) => a.Library.Order.CompareTo (b.Library.Order));
+            }
         }
 
         private void UpdateSensitivities ()
@@ -233,8 +253,10 @@ namespace Banshee.Dap
         private void OnDapChanged (Source sender, TrackEventArgs args)
         {
             if (!AutoSync && dap_loaded && !Syncing) {
-                foreach (DapLibrarySync lib_sync in library_syncs) {
-                    lib_sync.CalculateSync ();
+                lock (library_syncs_mutex) {
+                    foreach (DapLibrarySync lib_sync in library_syncs) {
+                        lib_sync.CalculateSync ();
+                    }
                 }
             }
         }
@@ -245,18 +267,19 @@ namespace Banshee.Dap
                 return;
             }
 
-            foreach (DapLibrarySync lib_sync in library_syncs) {
-                if (lib_sync.Library == sender) {
-                    if (AutoSync && lib_sync.Enabled) {
-                        Sync ();
-                    } else {
-                        lib_sync.CalculateSync ();
-                        OnUpdated ();
-                    }
-                    break;
+            DapLibrarySync lib_to_sync = null;
+            lock (library_syncs_mutex) {
+                lib_to_sync = library_syncs.FirstOrDefault (lib_sync => lib_sync.Library == sender);
+            }
+            if (lib_to_sync != null) {
+                if (AutoSync && lib_to_sync.Enabled) {
+                    Sync ();
+                } else {
+                    lib_to_sync.CalculateSync ();
+                    OnUpdated ();
                 }
             }
-         }
+        }
 
         private LibrarySource GetSyncableLibrary (Source source)
         {
@@ -294,8 +317,10 @@ namespace Banshee.Dap
 
         public void CalculateSync ()
         {
-            foreach (DapLibrarySync library_sync in library_syncs) {
-                library_sync.CalculateSync ();
+            lock (library_syncs_mutex) {
+                foreach (DapLibrarySync library_sync in library_syncs) {
+                    library_sync.CalculateSync ();
+                }
             }
 
             OnUpdated ();
@@ -321,9 +346,11 @@ namespace Banshee.Dap
         public override string ToString ()
         {
             System.Text.StringBuilder sb = new System.Text.StringBuilder ();
-            foreach (DapLibrarySync library_sync in library_syncs) {
-                sb.Append (library_sync.ToString ());
-                sb.Append ("\n");
+            lock (library_syncs_mutex) {
+                foreach (DapLibrarySync library_sync in library_syncs) {
+                    sb.Append (library_sync.ToString ());
+                    sb.Append ("\n");
+                }
             }
             return sb.ToString ();
         }
@@ -341,10 +368,12 @@ namespace Banshee.Dap
 
             bool sync_playlists = false;
             if (dap.SupportsPlaylists) {
-                foreach (DapLibrarySync library_sync in library_syncs) {
-                    if (library_sync.Library.SupportsPlaylists) {
-                        sync_playlists = true;
-                        break;
+                lock (library_syncs_mutex) {
+                    foreach (DapLibrarySync library_sync in library_syncs) {
+                        if (library_sync.Library.SupportsPlaylists) {
+                            sync_playlists = true;
+                            break;
+                        }
                     }
                 }
             }
@@ -353,7 +382,7 @@ namespace Banshee.Dap
                 dap.RemovePlaylists ();
             }
 
-            foreach (DapLibrarySync library_sync in library_syncs) {
+            foreach (DapLibrarySync library_sync in Libraries) {
                 try {
                     library_sync.Sync ();
                 } catch (DapLibrarySync.PossibleUserErrorException e) {
