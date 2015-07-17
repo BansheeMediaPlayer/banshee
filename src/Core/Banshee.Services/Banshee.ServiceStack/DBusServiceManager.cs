@@ -40,15 +40,6 @@ using Banshee.Base;
 
 namespace Banshee.ServiceStack
 {
-    public class DBusExportableAttribute : Attribute
-    {
-        private string service_name;
-        public string ServiceName {
-            get { return service_name; }
-            set { service_name = value; }
-        }
-    }
-
     public class DBusServiceManager : IService
     {
         public const string ObjectRoot = "/org/bansheeproject/Banshee";
@@ -102,43 +93,21 @@ namespace Banshee.ServiceStack
 
         public ObjectPath RegisterObject (IDBusExportable o)
         {
-            return RegisterObject (DBusConnection.DefaultServiceName, o);
-        }
-
-        public ObjectPath RegisterObject (string serviceName, IDBusExportable o)
-        {
-            return RegisterObject (serviceName, o, MakeObjectPath (o));
+            return RegisterObject (o, MakeObjectPath (o));
         }
 
         public ObjectPath RegisterObject (object o, string objectName)
         {
-            return RegisterObject (DBusConnection.DefaultServiceName, o, objectName);
-        }
-
-        public ObjectPath RegisterObject (string serviceName, object o, string objectName)
-        {
             ObjectPath path = null;
 
             if (DBusConnection.Enabled && Bus.Session != null) {
-                object [] attrs = o.GetType ().GetCustomAttributes (typeof (DBusExportableAttribute), true);
-                if (attrs != null && attrs.Length > 0) {
-                    DBusExportableAttribute dbus_attr = (DBusExportableAttribute)attrs[0];
-                    if (!String.IsNullOrEmpty (dbus_attr.ServiceName)) {
-                        serviceName = dbus_attr.ServiceName;
-                    }
-                }
-
                 lock (registered_objects) {
                     registered_objects.Add (o, path = new ObjectPath (objectName));
                 }
 
-                string bus_name = DBusConnection.MakeBusName (serviceName);
+                Log.DebugFormat ("Registering remote object {0} ({1})", path, o.GetType ());
 
-                Log.DebugFormat ("Registering remote object {0} ({1}) on {2}", path, o.GetType (), bus_name);
-
-                #pragma warning disable 0618
-                Bus.Session.Register (bus_name, path, o);
-                #pragma warning restore 0618
+                Bus.Session.Register (path, o);
             }
 
             return path;

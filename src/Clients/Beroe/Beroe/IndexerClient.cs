@@ -43,7 +43,6 @@ using Banshee.Collection.Indexer;
 
 namespace Beroe
 {
-    [DBusExportable (ServiceName = "CollectionIndexer")]
     public class IndexerClient : Client, IIndexerClient, IDBusExportable
     {
         public static void Main ()
