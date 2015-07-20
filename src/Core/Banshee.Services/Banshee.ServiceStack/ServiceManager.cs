@@ -100,9 +100,6 @@ namespace Banshee.ServiceStack
             RegisterService<DBusCommandService> ();
             RegisterService<BansheeDbConnection> ();
             RegisterService<Banshee.Preferences.PreferenceService> ();
-            // HACK: the next line shouldn't be here, it's needed to work around
-            // a race in NDesk DBus. See bgo#627441.
-            RegisterService<Banshee.Networking.Network> ();
             RegisterService<SourceManager> ();
             RegisterService<MediaProfileManager> ();
             RegisterService<PlayerEngineService> ();
