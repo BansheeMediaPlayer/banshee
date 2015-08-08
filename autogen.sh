@@ -53,6 +53,10 @@ test -z "$srcdir" && srcdir=.
 	error "Directory \"$srcdir\" does not look like the top-level $PROJECT directory"
 }
 
+
+# in case there are binaries from a previous compilation
+make distclean 2>/dev/null
+
 # MacPorts on OS X only seems to have glibtoolize
 WHICHLIBTOOLIZE=$(which libtoolize || which glibtoolize)
 if [ x"$WHICHLIBTOOLIZE" == x"" ]; then
