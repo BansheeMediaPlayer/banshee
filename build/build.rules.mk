@@ -7,7 +7,8 @@ INSTALL_DIR_RESOLVED = $(firstword $(subst , $(DEFAULT_INSTALL_DIR), $(INSTALL_D
 
 FILTERED_LINK = $(shell echo "$(LINK)" | $(UNIQUE_FILTER_PIPE))
 DEP_LINK = $(shell echo "$(LINK)" | $(UNIQUE_FILTER_PIPE) | sed s,-r:,,g | grep '$(top_builddir)/bin/')
-DLL_MAP_VERIFIER_ASSEMBLY = $(top_srcdir)/build/dll-map-verifier.exe
+DLL_MAP_VERIFIER_ASSEMBLY_NAME = dll-map-verifier.exe
+DLL_MAP_VERIFIER_ASSEMBLY = $(top_srcdir)/build/$(DLL_MAP_VERIFIER_ASSEMBLY_NAME)
 
 moduledir = $(INSTALL_DIR_RESOLVED)
 module_SCRIPTS = $(OUTPUT_FILES)
@@ -36,7 +37,18 @@ $(ASSEMBLY_FILE): $(SOURCES_BUILD) $(RESOURCES_EXPANDED) $(DEP_LINK) $(DLL_MAP_V
 	@mkdir -p $(top_builddir)/bin
 	@if [ ! "x$(ENABLE_RELEASE)" = "xyes" ]; then \
 		$(top_srcdir)/build/dll-map-makefile-verifier $(srcdir)/Makefile.am $(srcdir)/$(notdir $@.config) && \
-		$(MONO) $(top_builddir)/build/dll-map-verifier.exe $(srcdir)/$(notdir $@.config) -iwinmm -ilibbanshee -ilibbnpx11 -ilibc -ilibc.so.6 -iintl -ilibmtp.dll -ilibgtkmacintegration-gtk3.dylib -iCFRelease $(SOURCES_BUILD); \
+		$(MONO) $(top_builddir)/build/$(DLL_MAP_VERIFIER_ASSEMBLY_NAME) \
+			$(srcdir)/$(notdir $@.config) \
+			-iwinmm \
+			-ilibbanshee \
+			-ilibbnpx11 \
+			-ilibc \
+			-ilibc.so.6 \
+			-iintl \
+			-ilibmtp.dll \
+			-ilibgtkmacintegration-gtk3.dylib \
+			-iCFRelease
+			$(SOURCES_BUILD); \
 	fi;
 	$(MCS) \
 		$(MCS_FLAGS) \
