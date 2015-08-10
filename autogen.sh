@@ -53,6 +53,8 @@ test -z "$srcdir" && srcdir=.
 	error "Directory \"$srcdir\" does not look like the top-level $PROJECT directory"
 }
 
+builddir=`pwd`
+cd "$srcdir"
 
 # in case there are binaries from a previous compilation
 make distclean 2>/dev/null
@@ -94,6 +96,7 @@ if [ $# = 0 ]; then
 	echo "WARNING: I am going to run configure without any arguments."
 fi
 
+cd "$builddir"
 
 { cat <<EOF
 #!/usr/bin/env bash
@@ -102,4 +105,4 @@ EOF
 } > reautogen.sh
 chmod +x reautogen.sh
 
-run ./configure $@
+run "$srcdir/configure" $@

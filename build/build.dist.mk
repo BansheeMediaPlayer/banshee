@@ -1,5 +1,5 @@
 SOURCES_BUILD = $(addprefix $(srcdir)/, $(SOURCES))
-SOURCES_BUILD += $(top_srcdir)/src/AssemblyInfo.cs
+SOURCES_BUILD += $(top_builddir)/src/AssemblyInfo.cs
 
 RESOURCES_EXPANDED = $(addprefix $(srcdir)/, $(RESOURCES))
 RESOURCES_BUILD = $(foreach resource, $(RESOURCES_EXPANDED), \
