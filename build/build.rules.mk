@@ -47,7 +47,7 @@ $(ASSEMBLY_FILE): $(SOURCES_BUILD) $(RESOURCES_EXPANDED) $(DEP_LINK) $(DLL_MAP_V
 			-iintl \
 			-ilibmtp.dll \
 			-ilibgtkmacintegration-gtk3.dylib \
-			-iCFRelease
+			-iCFRelease \
 			$(SOURCES_BUILD); \
 	fi;
 	$(MCS) \
