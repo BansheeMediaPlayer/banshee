@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: banshee\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=banshee&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2015-08-13 02:56+0000\n"
-"PO-Revision-Date: 2015-08-19 12:55+0100\n"
+"POT-Creation-Date: 2015-08-19 11:56+0000\n"
+"PO-Revision-Date: 2015-08-19 13:20+0100\n"
 "Last-Translator: Pedro Albuquerque <palbuquerque73@gmail.com>\n"
 "Language-Team: Português <palbuquerque73@gmail.com>\n"
 "Language: pt\n"
@@ -1217,9 +1217,10 @@ msgstr "Desativar completamente o suporte a DBus"
 
 #: ../src/Clients/Booter/Booter/Entry.cs:226
 #, csharp-format
-msgid "Skip loading a custom gtkrc file ({0}) if it exists"
+#| msgid "Skip loading a custom gtkrc file ({0}) if it exists"
+msgid "Skip loading a custom gtk.css file ({0}) if it exists"
 msgstr ""
-"Ignorar o carregamento de um ficheiro gtkrc ({0}) personalizado se ele "
+"Ignorar o carregamento de um ficheiro gtkrc.css ({0}) personalizado se ele "
 "existir"
 
 #: ../src/Clients/Booter/Booter/Entry.cs:228
@@ -1425,7 +1426,6 @@ msgstr "Todos os artistas ({0})"
 
 #: ../src/Core/Banshee.Services/Banshee.Collection.Database/DatabaseImportManager.cs:170
 #, csharp-format
-#| msgid "File is empty so it could not be imported: {0}"
 msgid "File is not readable so it could not be imported: {0}"
 msgstr "O ficheiro não é legível, por isso não foi importado: {0}"
 
@@ -2835,7 +2835,6 @@ msgstr ""
 "cabeçalho da atual coluna ordenada até que a seta de ordenação desapareça."
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Collection.Gui/ColumnCellArtistText.cs:42
-#| msgid "Duplicate Artists"
 msgid "Default Text Artist List"
 msgstr "Lista predefinida de artista de texto"
 
@@ -2950,7 +2949,6 @@ msgid "New Preset"
 msgstr "Nova predefinição"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui/ArtistListActions.cs:160
-#| msgid "View Artist's Videos"
 msgid "Artist List View"
 msgstr "Vista Lista de artistas"
 
@@ -3437,12 +3435,10 @@ msgid "Separate by Type"
 msgstr "Separar por tipo"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:119
-#| msgid "Ban Track"
 msgid "Playing Track"
 msgstr "Faixa em reprodução"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:120
-#| msgid "Show options for querying the playing track"
 msgid "Options for playing track"
 msgstr "Opções da faixa em reprodução"
 
@@ -3452,8 +3448,6 @@ msgid "Add _to Playlist"
 msgstr "Adicionar à _Lista de Reprodução"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:125
-#| msgid ""
-#| "Append selected items to playlist or create new playlist from selection"
 msgid ""
 "Append playing items to playlist or create new playlist from playing track"
 msgstr ""
@@ -3467,7 +3461,6 @@ msgid "_Edit Track Information"
 msgstr "_Editar informações de faixa"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:133
-#| msgid "Edit information on selected tracks"
 msgid "Edit information on playing track"
 msgstr "Editar informação da faixa em reprodução"
 
@@ -3477,7 +3470,6 @@ msgid "_Remove"
 msgstr "_Remover"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:137
-#| msgid "Remove selected track(s) from this source"
 msgid "Remove playing track from this source"
 msgstr "Remover faixa em reprodução desta origem"
 
@@ -3487,7 +3479,6 @@ msgid "_Delete From Drive"
 msgstr "_Eliminar da Unidade"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:141
-#| msgid "Permanently delete selected item(s) from medium"
 msgid "Permanently delete playing item from medium"
 msgstr ""
 "Eliminar permanentemente o item em reprodução do suporte de armazenamento"
@@ -3498,7 +3489,6 @@ msgid "_Open Containing Folder"
 msgstr "_Abrir pasta contentora"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:145
-#| msgid "Open the folder that contains the selected item"
 msgid "Open the folder that contains playing item"
 msgstr "Abrir a pasta que contém o item em reprodução"
 
@@ -3511,17 +3501,14 @@ msgid "Properties"
 msgstr "Propriedades"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:149
-#| msgid "View information on selected tracks"
 msgid "View information on playing track"
 msgstr "Ver informação sobre a faixa em reprodução"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:156
-#| msgid "Select all tracks"
 msgid "Selected Track(s)"
 msgstr "Faixa(s) selecionada(s)"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:157
-#| msgid "Edit information on selected tracks"
 msgid "Options for selected track(s)"
 msgstr "Opções das faixas selecionadas"
 
@@ -3616,17 +3603,14 @@ msgstr "Procurar todas as canções deste artista"
 #. inside the "Edit" menu it's a bit redundant to have a label that starts as "Edit Track..."
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:305
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:306
-#| msgid "View Track Information"
 msgid "Track _Information"
 msgstr "_Informação de faixa"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:308
-#| msgid "Select all tracks"
 msgid "Selected Tracks"
 msgstr "Faixas selecionadas"
 
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui/TrackActions.cs:310
-#| msgid "Select all tracks"
 msgid "Selected Track"
 msgstr "Faixa selecionada"
 
@@ -4717,7 +4701,6 @@ msgstr "Carga da bateria"
 #. and {1} is the total # of files that will be loaded.
 #: ../src/Dap/Banshee.Dap.Mtp/Banshee.Dap.Mtp/MtpSource.cs:157
 #, csharp-format
-#| msgid "Rescanning {0} of {1}"
 msgid "Reading File - {0} of {1}"
 msgstr "A ler ficheiro - {0} de {1}"
 
@@ -4725,7 +4708,6 @@ msgstr "A ler ficheiro - {0} de {1}"
 #. and {1} is the total # of tracks that will be loaded.
 #: ../src/Dap/Banshee.Dap.Mtp/Banshee.Dap.Mtp/MtpSource.cs:183
 #, csharp-format
-#| msgid "Adding track {0} of {1}"
 msgid "Loading Track - {0} of {1}"
 msgstr "A carregar faixa - {0} de {1}"
 
@@ -4733,7 +4715,6 @@ msgstr "A carregar faixa - {0} de {1}"
 #. and {1} is the total # of playlists that will be loaded.
 #: ../src/Dap/Banshee.Dap.Mtp/Banshee.Dap.Mtp/MtpSource.cs:204
 #, csharp-format
-#| msgid "Loading {0} - {1} of {2}"
 msgid "Loading Playlist - {0} of {1}"
 msgstr "A carregar lista de reprodução - {0} de {1}"
 
@@ -5250,7 +5231,6 @@ msgid "Fix?"
 msgstr "Corrigir?"
 
 #: ../src/Extensions/Banshee.Fixup/Banshee.Fixup/View.cs:78
-#| msgid "Track Artist"
 msgid "Track details"
 msgstr "Detalhes da faixa"
 
@@ -5805,7 +5785,6 @@ msgid "Search your stations"
 msgstr "Procurar as suas estações"
 
 #: ../src/Extensions/Banshee.InternetRadio/Banshee.InternetRadio/InternetRadioSource.cs:82
-#| msgid "_Delete From Drive"
 msgid "Delete From Drive"
 msgstr "Eliminar da unidade"
 
