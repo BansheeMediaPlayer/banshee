@@ -1,5 +1,5 @@
 #
-# Copyright (C) 2005-2012 Jordi Mas i Hernàndez, jmas@softcatala.org
+# Copyright (C) 2005-2015 Jordi Mas i Hernàndez, jmas@softcatala.org
 # Traducció del Banshee al català
 #
 # Correccions addicionals Josep Puigdemont, Toni Hermoso, Quico Llach, Joan Duran, Gil Forcada i Silvia Miranda.
@@ -26,13 +26,12 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Banshee\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
-"product=banshee&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2015-04-12 02:54+0000\n"
-"PO-Revision-Date:  2012-03-15 20:40+01000\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-09-22 06:04+0200\n"
+"PO-Revision-Date:  2015-09-23 20:40+01000\n"
 "Last-Translator: Jordi Mas i Hernàndez <jmas@softcatala.org>\n"
 "Language-Team: ca_ES <tradgnome@softcatala.net>\n"
-"Language: \n"
+"Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -739,23 +738,23 @@ msgstr "No s'ha pogut crear el controlador de l'extractor de CD."
 msgid "Could not create BPM detection driver."
 msgstr "No s'ha pogut crear el controlador de detecció BPM."
 
-#: ../src/Backends/Banshee.GStreamer/Banshee.GStreamer/PlayerEngine.cs:149
-#: ../src/Backends/Banshee.GStreamer/Banshee.GStreamer/PlayerEngine.cs:191
+#: ../src/Backends/Banshee.GStreamer/Banshee.GStreamer/PlayerEngine.cs:151
+#: ../src/Backends/Banshee.GStreamer/Banshee.GStreamer/PlayerEngine.cs:193
 msgid "Could not initialize GStreamer library"
 msgstr "No s'ha pogut inicialitzar la biblioteca del GStreamer"
 
-#: ../src/Backends/Banshee.GStreamer/Banshee.GStreamer/PlayerEngine.cs:521
+#: ../src/Backends/Banshee.GStreamer/Banshee.GStreamer/PlayerEngine.cs:523
 #: ../src/Backends/Banshee.GStreamerSharp/Banshee.GStreamerSharp/PlayerEngine.cs:612
 msgid "Unknown Error"
 msgstr "Error desconegut"
 
 #
-#: ../src/Backends/Banshee.GStreamer/Banshee.GStreamer/PlayerEngine.cs:889
+#: ../src/Backends/Banshee.GStreamer/Banshee.GStreamer/PlayerEngine.cs:891
 #: ../src/Backends/Banshee.GStreamerSharp/Banshee.GStreamerSharp/PlayerEngine.cs:1053
 msgid "_Enable ReplayGain correction"
 msgstr "_Habilita la correcció d'errors ReplayGain"
 
-#: ../src/Backends/Banshee.GStreamer/Banshee.GStreamer/PlayerEngine.cs:890
+#: ../src/Backends/Banshee.GStreamer/Banshee.GStreamer/PlayerEngine.cs:892
 #: ../src/Backends/Banshee.GStreamerSharp/Banshee.GStreamerSharp/PlayerEngine.cs:1054
 msgid ""
 "For tracks that have ReplayGain data, automatically scale (normalize) "
@@ -764,12 +763,12 @@ msgstr ""
 "Per a cançons que disposen de dades ReplayGain, escala automàticament "
 "(normalitza) el volum de reproducció"
 
-#: ../src/Backends/Banshee.GStreamer/Banshee.GStreamer/PlayerEngine.cs:894
+#: ../src/Backends/Banshee.GStreamer/Banshee.GStreamer/PlayerEngine.cs:896
 #: ../src/Backends/Banshee.GStreamerSharp/Banshee.GStreamerSharp/PlayerEngine.cs:1058
 msgid "Enable _gapless playback"
 msgstr "Ha_bilita el mode de reproducció sense salts"
 
-#: ../src/Backends/Banshee.GStreamer/Banshee.GStreamer/PlayerEngine.cs:895
+#: ../src/Backends/Banshee.GStreamer/Banshee.GStreamer/PlayerEngine.cs:897
 #: ../src/Backends/Banshee.GStreamerSharp/Banshee.GStreamerSharp/PlayerEngine.cs:1059
 msgid ""
 "Eliminate the small playback gap on track change. Useful for concept albums "
@@ -963,92 +962,92 @@ msgstr "S'ha finalitzat la baixada de l'actualització"
 msgid "Check for Updates"
 msgstr "Comprova si hi ha actualitzacions"
 
-#: ../src/Clients/Booter/Booter/Entry.cs:151
+#: ../src/Clients/Booter/Booter/Entry.cs:153
 msgid "Help Options"
 msgstr "Opcions d'ajuda"
 
-#: ../src/Clients/Booter/Booter/Entry.cs:152
+#: ../src/Clients/Booter/Booter/Entry.cs:154
 msgid "Show this help"
 msgstr "Mostra aquesta ajuda"
 
-#: ../src/Clients/Booter/Booter/Entry.cs:153
+#: ../src/Clients/Booter/Booter/Entry.cs:155
 msgid "Show options for controlling playback"
 msgstr "Mostra les opcions per controlar la reproducció"
 
-#: ../src/Clients/Booter/Booter/Entry.cs:154
+#: ../src/Clients/Booter/Booter/Entry.cs:156
 msgid "Show options for querying the playing track"
 msgstr "Mostra les opcions per consultar la cançó en reproducció"
 
-#: ../src/Clients/Booter/Booter/Entry.cs:155
+#: ../src/Clients/Booter/Booter/Entry.cs:157
 msgid "Show options for querying the playing engine"
 msgstr "Mostra les opcions per consultar el motor de reproducció"
 
 #
-#: ../src/Clients/Booter/Booter/Entry.cs:156
+#: ../src/Clients/Booter/Booter/Entry.cs:158
 msgid "Show options for the user interface"
 msgstr "Mostra les opcions per a la interfície d'usuari"
 
-#: ../src/Clients/Booter/Booter/Entry.cs:157
+#: ../src/Clients/Booter/Booter/Entry.cs:159
 msgid "Show options for developers and debugging"
 msgstr "Mostra les opcions per a desenvolupadors i depuració"
 
-#: ../src/Clients/Booter/Booter/Entry.cs:158
+#: ../src/Clients/Booter/Booter/Entry.cs:160
 msgid "Show all option groups"
 msgstr "Mostra tots els grups d'opcions"
 
-#: ../src/Clients/Booter/Booter/Entry.cs:159
+#: ../src/Clients/Booter/Booter/Entry.cs:161
 msgid "Show version information"
 msgstr "Mostra la informació de la versió"
 
-#: ../src/Clients/Booter/Booter/Entry.cs:162
+#: ../src/Clients/Booter/Booter/Entry.cs:164
 msgid "Playback Control Options"
 msgstr "Opcions de control de la reproducció"
 
-#: ../src/Clients/Booter/Booter/Entry.cs:163
+#: ../src/Clients/Booter/Booter/Entry.cs:165
 msgid ""
 "Play the next track, optionally restarting if the 'restart' value is set"
 msgstr ""
 "Reprodueix la cançó següent, tornant a començar opcionalment si el valor "
 "«reinicia» està establert"
 
-#: ../src/Clients/Booter/Booter/Entry.cs:164
+#: ../src/Clients/Booter/Booter/Entry.cs:166
 msgid ""
 "Play the previous track, optionally restarting if the 'restart' value is set"
 msgstr ""
 "Reprodueix la cançó anterior, tornant a començar opcionalment si el valor "
 "«reinicia» està establert"
 
-#: ../src/Clients/Booter/Booter/Entry.cs:165
+#: ../src/Clients/Booter/Booter/Entry.cs:167
 msgid ""
 "If the current song has been played longer than 4 seconds then restart it, "
 "otherwise the same as --previous"
 msgstr ""
-"Si la cançó actual s'ha estat reproduint durant més de 4 segons, reinicia-la; "
-"si no, el mateix que --previous"
+"Si la cançó actual s'ha estat reproduint durant més de 4 segons, reinicia-"
+"la; si no, el mateix que --previous"
 
-#: ../src/Clients/Booter/Booter/Entry.cs:166
+#: ../src/Clients/Booter/Booter/Entry.cs:168
 msgid "Automatically start playing any tracks enqueued on the command line"
 msgstr ""
 "Inicia automàticament la reproducció de qualsevol cançó en la línia d'ordres"
 
-#: ../src/Clients/Booter/Booter/Entry.cs:167
+#: ../src/Clients/Booter/Booter/Entry.cs:169
 msgid "Start playback"
 msgstr "Inicia la reproducció"
 
-#: ../src/Clients/Booter/Booter/Entry.cs:168
+#: ../src/Clients/Booter/Booter/Entry.cs:170
 msgid "Pause playback"
 msgstr "Fes una pausa en la reproducció"
 
-#: ../src/Clients/Booter/Booter/Entry.cs:169
+#: ../src/Clients/Booter/Booter/Entry.cs:171
 msgid "Toggle playback"
 msgstr "Commuta el mode de reproducció"
 
 #
-#: ../src/Clients/Booter/Booter/Entry.cs:170
+#: ../src/Clients/Booter/Booter/Entry.cs:172
 msgid "Completely stop playback"
 msgstr "Atura completament la reproducció"
 
-#: ../src/Clients/Booter/Booter/Entry.cs:172
+#: ../src/Clients/Booter/Booter/Entry.cs:174
 msgid ""
 "Enable or disable playback stopping after the currently playing track (value "
 "should be either 'true' or 'false')"
@@ -1056,80 +1055,80 @@ msgstr ""
 "Habilita o inhabilita l'aturada de reproducció després de la cançó actual en "
 "reproducció (el valor ha de ser «cert» o «fals»)"
 
-#: ../src/Clients/Booter/Booter/Entry.cs:173
+#: ../src/Clients/Booter/Booter/Entry.cs:175
 msgid "Set the playback volume (0-100), prefix with +/- for relative values"
 msgstr ""
 "Estableix el volum de reproducció (0-100), utilitzeu els prefixos +/- per a "
 "valors relatius"
 
-#: ../src/Clients/Booter/Booter/Entry.cs:174
+#: ../src/Clients/Booter/Booter/Entry.cs:176
 msgid "Seek to a specific point (seconds, float)"
 msgstr "Vés a un punt concret de l'element actual (segons, coma flotant)"
 
-#: ../src/Clients/Booter/Booter/Entry.cs:175
+#: ../src/Clients/Booter/Booter/Entry.cs:177
 msgid "Set the currently played track's rating (0 to 5)"
 msgstr "Estableix la valoració (0 a 5) per la cançó que s'està reproduint"
 
 #
-#: ../src/Clients/Booter/Booter/Entry.cs:178
+#: ../src/Clients/Booter/Booter/Entry.cs:180
 msgid "Player Engine Query Options"
 msgstr "Opcions de consulta del motor del reproductor"
 
-#: ../src/Clients/Booter/Booter/Entry.cs:179
+#: ../src/Clients/Booter/Booter/Entry.cs:181
 msgid "Current player state"
 msgstr "Estat actual del reproductor"
 
-#: ../src/Clients/Booter/Booter/Entry.cs:180
+#: ../src/Clients/Booter/Booter/Entry.cs:182
 msgid "Last player state"
 msgstr "Darrer estat del reproductor"
 
-#: ../src/Clients/Booter/Booter/Entry.cs:181
+#: ../src/Clients/Booter/Booter/Entry.cs:183
 msgid "Query whether the player can be paused"
 msgstr "Consulta si es pot fer una pausa en el reproductor"
 
-#: ../src/Clients/Booter/Booter/Entry.cs:182
+#: ../src/Clients/Booter/Booter/Entry.cs:184
 msgid "Query whether the player can seek"
 msgstr "Consulta si es poden fer cerques a un punt concret"
 
 #
-#: ../src/Clients/Booter/Booter/Entry.cs:183
+#: ../src/Clients/Booter/Booter/Entry.cs:185
 msgid "Player volume"
 msgstr "Volum del reproductor"
 
 #
 #
-#: ../src/Clients/Booter/Booter/Entry.cs:184
+#: ../src/Clients/Booter/Booter/Entry.cs:186
 msgid "Player position in currently playing track"
 msgstr "Posició del reproductor en la cançó que s'està reproduint"
 
-#: ../src/Clients/Booter/Booter/Entry.cs:187
+#: ../src/Clients/Booter/Booter/Entry.cs:189
 msgid "Playing Track Metadata Query Options"
 msgstr "Opcions de consulta de metadades de la cançó en reproducció"
 
-#: ../src/Clients/Booter/Booter/Entry.cs:188
+#: ../src/Clients/Booter/Booter/Entry.cs:190
 msgid "URI"
 msgstr "URI"
 
-#: ../src/Clients/Booter/Booter/Entry.cs:189
+#: ../src/Clients/Booter/Booter/Entry.cs:191
 #: ../src/Clients/Nereid/Nereid/ViewContainer.cs:133
 #: ../src/Extensions/Banshee.MediaPanel/Banshee.MediaPanel/SearchEntry.cs:89
 msgid "Artist Name"
 msgstr "Nom de l'artista"
 
-#: ../src/Clients/Booter/Booter/Entry.cs:190
+#: ../src/Clients/Booter/Booter/Entry.cs:192
 #: ../src/Clients/Nereid/Nereid/ViewContainer.cs:135
 #: ../src/Extensions/Banshee.MediaPanel/Banshee.MediaPanel/SearchEntry.cs:90
 msgid "Album Title"
 msgstr "Títol de l'àlbum"
 
 #
-#: ../src/Clients/Booter/Booter/Entry.cs:191
+#: ../src/Clients/Booter/Booter/Entry.cs:193
 #: ../src/Clients/Nereid/Nereid/ViewContainer.cs:132
 #: ../src/Extensions/Banshee.MediaPanel/Banshee.MediaPanel/SearchEntry.cs:88
 msgid "Track Title"
 msgstr "Títol de la cançó"
 
-#: ../src/Clients/Booter/Booter/Entry.cs:192
+#: ../src/Clients/Booter/Booter/Entry.cs:194
 msgid "Duration"
 msgstr "Durada"
 
@@ -1137,27 +1136,27 @@ msgstr "Durada"
 #
 #
 #. Translators: noun
-#: ../src/Clients/Booter/Booter/Entry.cs:193
+#: ../src/Clients/Booter/Booter/Entry.cs:195
 #: ../src/Core/Banshee.Services/Banshee.Query/BansheeQuery.cs:119
 msgid "Track Number"
 msgstr "Número de la cançó"
 
 #
 #. Translators: noun
-#: ../src/Clients/Booter/Booter/Entry.cs:194
+#: ../src/Clients/Booter/Booter/Entry.cs:196
 #: ../src/Core/Banshee.Services/Banshee.Query/BansheeQuery.cs:128
 msgid "Track Count"
 msgstr "Nombre de reproduccions de la cançó"
 
 #
-#: ../src/Clients/Booter/Booter/Entry.cs:195
+#: ../src/Clients/Booter/Booter/Entry.cs:197
 #: ../src/Core/Banshee.Services/Banshee.Library/MusicFileNamePattern.cs:149
 #: ../src/Extensions/Banshee.Audiobook/Banshee.Audiobook/AudiobookFileNamePattern.cs:114
 msgid "Disc Number"
 msgstr "Número del disc"
 
 #
-#: ../src/Clients/Booter/Booter/Entry.cs:196
+#: ../src/Clients/Booter/Booter/Entry.cs:198
 #: ../src/Clients/Nereid/Nereid/ViewContainer.cs:138
 #: ../src/Core/Banshee.Services/Banshee.Library/MusicFileNamePattern.cs:113
 #: ../src/Core/Banshee.Services/Banshee.Query/BansheeQuery.cs:179
@@ -1168,7 +1167,7 @@ msgstr "Número del disc"
 msgid "Year"
 msgstr "Any"
 
-#: ../src/Clients/Booter/Booter/Entry.cs:197
+#: ../src/Clients/Booter/Booter/Entry.cs:199
 #: ../src/Core/Banshee.Services/Banshee.Query/BansheeQuery.cs:232
 #: ../src/Extensions/Banshee.InternetArchive/Banshee.InternetArchive/SearchView.cs:131
 #: ../src/Extensions/Banshee.InternetArchive/InternetArchive/Field.cs:60
@@ -1176,83 +1175,83 @@ msgstr "Any"
 msgid "Rating"
 msgstr "Valoració"
 
-#: ../src/Clients/Booter/Booter/Entry.cs:198
+#: ../src/Clients/Booter/Booter/Entry.cs:200
 #: ../src/Core/Banshee.Services/Banshee.Query/BansheeQuery.cs:324
 msgid "Score"
 msgstr "Puntuació"
 
 #. Translators: noun
-#: ../src/Clients/Booter/Booter/Entry.cs:199
+#: ../src/Clients/Booter/Booter/Entry.cs:201
 #: ../src/Core/Banshee.Services/Banshee.Query/BansheeQuery.cs:145
 msgid "Bit Rate"
 msgstr "Taxa de bits"
 
-#: ../src/Clients/Booter/Booter/Entry.cs:202
+#: ../src/Clients/Booter/Booter/Entry.cs:204
 msgid "User Interface Options"
 msgstr "Opcions de la interfície d'usuari"
 
-#: ../src/Clients/Booter/Booter/Entry.cs:203
+#: ../src/Clients/Booter/Booter/Entry.cs:205
 msgid "Present the user interface on the active workspace"
 msgstr "Presenta la interfície d'usuari en l'espai de treball actiu"
 
-#: ../src/Clients/Booter/Booter/Entry.cs:204
+#: ../src/Clients/Booter/Booter/Entry.cs:206
 msgid "Enter the full-screen mode"
 msgstr "Entra al mode de pantalla completa"
 
-#: ../src/Clients/Booter/Booter/Entry.cs:205
+#: ../src/Clients/Booter/Booter/Entry.cs:207
 msgid "Hide the user interface"
 msgstr "Amaga la interfície d'usuari"
 
-#: ../src/Clients/Booter/Booter/Entry.cs:206
+#: ../src/Clients/Booter/Booter/Entry.cs:208
 msgid "Do not present the user interface, regardless of any other options"
 msgstr ""
 "No presentis la interfície d'usuari, independentment de qualsevol altra opció"
 
-#: ../src/Clients/Booter/Booter/Entry.cs:207
+#: ../src/Clients/Booter/Booter/Entry.cs:209
 msgid "Present the import media dialog box"
 msgstr "Presenta la capsa de diàleg d'importació d'elements multimèdia"
 
-#: ../src/Clients/Booter/Booter/Entry.cs:208
+#: ../src/Clients/Booter/Booter/Entry.cs:210
 msgid "Present the about dialog"
 msgstr "Presenta la capsa de diàleg Quant a"
 
-#: ../src/Clients/Booter/Booter/Entry.cs:209
+#: ../src/Clients/Booter/Booter/Entry.cs:211
 msgid "Present the open location dialog"
 msgstr "Presenta la capsa de diàleg Obre una ubicació"
 
-#: ../src/Clients/Booter/Booter/Entry.cs:210
+#: ../src/Clients/Booter/Booter/Entry.cs:212
 msgid "Present the preferences dialog"
 msgstr "Presenta la capsa de diàleg de les preferències"
 
-#: ../src/Clients/Booter/Booter/Entry.cs:213
+#: ../src/Clients/Booter/Booter/Entry.cs:215
 msgid "Debugging and Development Options"
 msgstr "Opcions de desenvolupament i depuració"
 
-#: ../src/Clients/Booter/Booter/Entry.cs:214
+#: ../src/Clients/Booter/Booter/Entry.cs:216
 msgid "Enable general debugging features"
 msgstr "Habilita les característiques generals de depuració"
 
-#: ../src/Clients/Booter/Booter/Entry.cs:215
+#: ../src/Clients/Booter/Booter/Entry.cs:217
 msgid "Enable debugging output of SQL queries"
 msgstr "Habilita la sortida de depuració de les consultes SQL"
 
-#: ../src/Clients/Booter/Booter/Entry.cs:216
+#: ../src/Clients/Booter/Booter/Entry.cs:218
 msgid "Enable debugging output of Mono.Addins"
 msgstr "Habilita la sortida de depuració de Mono.Addins"
 
-#: ../src/Clients/Booter/Booter/Entry.cs:217
+#: ../src/Clients/Booter/Booter/Entry.cs:219
 msgid "Specify an alternate database to use"
 msgstr "Especifica la base de dades alternativa a utilitzar"
 
-#: ../src/Clients/Booter/Booter/Entry.cs:218
+#: ../src/Clients/Booter/Booter/Entry.cs:220
 msgid "Force fetching of missing cover artwork"
 msgstr "Força la baixada de les cobertes que falten"
 
-#: ../src/Clients/Booter/Booter/Entry.cs:219
+#: ../src/Clients/Booter/Booter/Entry.cs:221
 msgid "Specify an alternate key, default is /apps/banshee-1/"
 msgstr "Especifiqueu una clau alternativa, per defecte és /apps/banshee-1/"
 
-#: ../src/Clients/Booter/Booter/Entry.cs:220
+#: ../src/Clients/Booter/Booter/Entry.cs:222
 msgid ""
 "Optimize instance for running uninstalled; most notably, this will create an "
 "alternate Mono.Addins database in the working directory"
@@ -1260,21 +1259,21 @@ msgstr ""
 "Optimitza la instància per executar-se sense ser instal·lada; això crearà "
 "una base de dades alternativa per a Mono.Addins al directori de treball"
 
-#: ../src/Clients/Booter/Booter/Entry.cs:222
+#: ../src/Clients/Booter/Booter/Entry.cs:224
 msgid "Disable DBus support completely"
 msgstr "Inhabilita completament la compatibilitat amb DBus"
 
-#: ../src/Clients/Booter/Booter/Entry.cs:224
+#: ../src/Clients/Booter/Booter/Entry.cs:226
 #, csharp-format
 msgid "Skip loading a custom gtk.css file ({0}) if it exists"
 msgstr "Omet la càrrega d'un fitxer gtkrc personalitzat ({0}) si existeix"
 
-#: ../src/Clients/Booter/Booter/Entry.cs:226
+#: ../src/Clients/Booter/Booter/Entry.cs:228
 #, csharp-format
 msgid "Reload the custom gtk.css file ({0}) every 5 seconds"
 msgstr "Torna a carregar el fitxer gtkrc personalitzat ({0}) cada 5 segons"
 
-#: ../src/Clients/Booter/Booter/Entry.cs:255
+#: ../src/Clients/Booter/Booter/Entry.cs:257
 #, csharp-format
 msgid "The following help arguments are invalid: {0}"
 msgstr "Els següents arguments d'ajuda no són vàlids: {0}"
@@ -1518,8 +1517,8 @@ msgstr "per artista"
 #: ../src/Core/Banshee.Services/Banshee.Collection.Database/RandomByArtist.cs:52
 msgid "Play all songs by an artist, then randomly choose another artist"
 msgstr ""
-"Reprodueix totes les cançons d'un artista, i llavors tria un altre "
-"artista aleatòriament"
+"Reprodueix totes les cançons d'un artista, i llavors tria un altre artista "
+"aleatòriament"
 
 #
 #: ../src/Core/Banshee.Services/Banshee.Collection.Database/RandomByOff.cs:38
@@ -2184,7 +2183,7 @@ msgstr "artistes"
 #. Translators: These are unique search aliases for "album artist". You can use CSV for synonyms. Please, no spaces. Blank ok.
 #: ../src/Core/Banshee.Services/Banshee.Query/BansheeQuery.cs:86
 msgid "albumartist"
-msgstr "artistalàlbum"
+msgstr "artistaàlbum"
 
 #: ../src/Core/Banshee.Services/Banshee.Query/BansheeQuery.cs:86
 msgid "compilationartist"
@@ -2732,7 +2731,7 @@ msgstr "drm"
 #. Translators: These are unique strings for playback errors. Please, no spaces. Blank ok.
 #: ../src/Core/Banshee.Services/Banshee.Query/PlaybackErrorQueryValue.cs:64
 #: ../src/Core/Banshee.Services/Banshee.Query/PlaybackErrorQueryValue.cs:66
-#: ../src/Core/Banshee.Services/Banshee.ServiceStack/Application.cs:361
+#: ../src/Core/Banshee.Services/Banshee.ServiceStack/Application.cs:363
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui.TrackEditor/StatisticsPage.cs:234
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui.TrackEditor/StatisticsPage.cs:236
 #: ../src/Core/Banshee.ThickClient/Banshee.Gui.TrackEditor/StatisticsPage.cs:238
@@ -4689,33 +4688,32 @@ msgstr ""
 #: ../src/Dap/Banshee.Dap/Banshee.Dap/DapSource.cs:442
 msgid "File format conversion support is not available"
 msgstr ""
-"Aquest dispositiu no té compatibilitat de conversió d'aquest format de "
-"fitxer"
+"Aquest dispositiu no té compatibilitat de conversió d'aquest format de fitxer"
 
 #: ../src/Dap/Banshee.Dap/Banshee.Dap/DapSource.cs:468
 msgid "Error converting file"
 msgstr "S'ha produït un error en convertir el fitxer"
 
-#: ../src/Dap/Banshee.Dap/Banshee.Dap/DapSync.cs:135
+#: ../src/Dap/Banshee.Dap/Banshee.Dap/DapSync.cs:148
 msgid "Sync when first plugged in and when the libraries change"
 msgstr ""
 "Sincronitza el dispositiu quan es connecti per primer cop o quan les "
 "biblioteques canviïn"
 
-#: ../src/Dap/Banshee.Dap/Banshee.Dap/DapSync.cs:136
+#: ../src/Dap/Banshee.Dap/Banshee.Dap/DapSync.cs:149
 msgid ""
 "Begin synchronizing the device as soon as the device is plugged in or the "
 "libraries change."
 msgstr ""
-"Comença a sincronitzar el dispositiu tan bon punt es connecti el dispositiu o "
-"quan les biblioteques canviïn."
+"Comença a sincronitzar el dispositiu tan bon punt es connecti el dispositiu "
+"o quan les biblioteques canviïn."
 
-#: ../src/Dap/Banshee.Dap/Banshee.Dap/DapSync.cs:139
+#: ../src/Dap/Banshee.Dap/Banshee.Dap/DapSync.cs:152
 msgid "Sync Preferences"
 msgstr "Preferències de la sincronització"
 
 #. singular form unused b/c we know it's > 1, but we still need GetPlural
-#: ../src/Dap/Banshee.Dap/Banshee.Dap/DapSync.cs:360
+#: ../src/Dap/Banshee.Dap/Banshee.Dap/DapSync.cs:394
 #, csharp-format
 msgid "The sync operation will remove one track from your device."
 msgid_plural "The sync operation will remove {0} tracks from your device."
@@ -4774,12 +4772,12 @@ msgstr "Detalls avançats"
 
 #: ../src/Dap/Banshee.Dap/Banshee.Dap.Gui/InactiveDapContent.cs:103
 msgid "Your device appears to be in use by another program"
-msgstr ""
+msgstr "El dispositiu sembla que ja està sent usat per un altre programa"
 
 #: ../src/Dap/Banshee.Dap/Banshee.Dap.Gui/InactiveDapContent.cs:109
 #, csharp-format
 msgid "Press the {0} button above to use it in Banshee"
-msgstr ""
+msgstr "Premeu el botó {0} de dalt per a usar-lo al Banshee"
 
 #. Translators: {0} is the name of a library, eg 'Music' or 'Podcasts'
 #: ../src/Dap/Banshee.Dap/Banshee.Dap.Gui/LibrarySyncOptions.cs:65
@@ -4837,25 +4835,25 @@ msgstr "No s'ha pogut desconnectar {0}: {1}"
 msgid "Purchased Music"
 msgstr "Música comprada"
 
-#: ../src/Dap/Banshee.Dap.MassStorage/Banshee.Dap.MassStorage/MassStorageSource.cs:124
+#: ../src/Dap/Banshee.Dap.MassStorage/Banshee.Dap.MassStorage/MassStorageSource.cs:127
 #, csharp-format
 msgid "Audio Folder"
 msgid_plural "Audio Folders"
 msgstr[0] "Carpeta de l'àudio"
 msgstr[1] "Carpetes de l'àudio"
 
-#: ../src/Dap/Banshee.Dap.MassStorage/Banshee.Dap.MassStorage/MassStorageSource.cs:131
+#: ../src/Dap/Banshee.Dap.MassStorage/Banshee.Dap.MassStorage/MassStorageSource.cs:134
 #, csharp-format
 msgid "Video Folder"
 msgid_plural "Video Folders"
 msgstr[0] "Carpeta del vídeo"
 msgstr[1] "Carpetes dels vídeos"
 
-#: ../src/Dap/Banshee.Dap.MassStorage/Banshee.Dap.MassStorage/MassStorageSource.cs:137
+#: ../src/Dap/Banshee.Dap.MassStorage/Banshee.Dap.MassStorage/MassStorageSource.cs:140
 msgid "Required Folder Depth"
 msgstr "Es requereix la profunditat de la carpeta"
 
-#: ../src/Dap/Banshee.Dap.MassStorage/Banshee.Dap.MassStorage/MassStorageSource.cs:140
+#: ../src/Dap/Banshee.Dap.MassStorage/Banshee.Dap.MassStorage/MassStorageSource.cs:143
 msgid "Supports Playlists"
 msgstr "Permet llistes de reproducció"
 
@@ -4889,25 +4887,25 @@ msgstr "Nivell de la bateria"
 #. Translators: {0} is the file currently being loaded
 #. and {1} is the total # of files that will be loaded.
 #: ../src/Dap/Banshee.Dap.Mtp/Banshee.Dap.Mtp/MtpSource.cs:157
-#, fuzzy, csharp-format
+#, csharp-format
 msgid "Reading File - {0} of {1}"
-msgstr "S'està escanejant {0} de {1}"
+msgstr "S'està llegint el fitxer - {0} de {1}"
 
 # csharp-format
 #. Translators: {0} is the track currently being loaded
 #. and {1} is the total # of tracks that will be loaded.
 #: ../src/Dap/Banshee.Dap.Mtp/Banshee.Dap.Mtp/MtpSource.cs:183
-#, fuzzy, csharp-format
+#, csharp-format
 msgid "Loading Track - {0} of {1}"
-msgstr "S'està afegint la cançó {0} de {1}"
+msgstr "S'està carregant la cançó - {0} de {1}"
 
 # csharp-format
 #. Translators: {0} is the playlist currently being loaded
 #. and {1} is the total # of playlists that will be loaded.
 #: ../src/Dap/Banshee.Dap.Mtp/Banshee.Dap.Mtp/MtpSource.cs:204
-#, fuzzy, csharp-format
+#, csharp-format
 msgid "Loading Playlist - {0} of {1}"
-msgstr "S'està carregant {0} - {1} de {2}"
+msgstr "S'està carregant la llista de reproducció - {0} de {1}"
 
 #: ../src/Extensions/Banshee.AmazonMp3/Banshee.AmazonMp3/AmazonDownloadManager.cs:57
 msgid "Amazon MP3 Purchases"
@@ -5908,7 +5906,7 @@ msgstr "Biblioteca per la canalla"
 
 #: ../src/Extensions/Banshee.InternetArchive/InternetArchive/MediaType.cs:94
 msgid "Biodiversity Heritage Library"
-msgstr "Llibreria de l'herència de la biodiversitat"
+msgstr "Biblioteca de l'herència de la biodiversitat"
 
 #: ../src/Extensions/Banshee.InternetArchive/InternetArchive/MediaType.cs:95
 msgid "Additional Collections"
@@ -6065,9 +6063,9 @@ msgid "Rating:"
 msgstr "Valoració:"
 
 #: ../src/Extensions/Banshee.Lastfm/Banshee.Lastfm.Audioscrobbler/AudioscrobblerService.cs:84
-#, fuzzy, csharp-format
+#, csharp-format
 msgid "Processed {0} of {1} tracks"
-msgstr "S'està processant{0} de {1} ..."
+msgstr "S'estan processant {0} de {1} cançons"
 
 #: ../src/Extensions/Banshee.Lastfm/Banshee.Lastfm.Audioscrobbler/AudioscrobblerService.cs:146
 msgid "_Last.fm"
@@ -6527,17 +6525,13 @@ msgstr "URL lastfm://"
 msgid "lastfm://"
 msgstr "lastfm://"
 
-#
 #: ../src/Extensions/Banshee.MediaPanel/banshee-media-panel.desktop.in.h:1
-#, fuzzy
 msgid "Banshee Media Panel"
-msgstr "Reproductor multimèdia Banshee"
+msgstr "Tauler multimèdia del Banshee"
 
-#
 #: ../src/Extensions/Banshee.MediaPanel/banshee-media-panel.desktop.in.h:2
-#, fuzzy
 msgid "Play and browse your media collection"
-msgstr "Reproduïu i organitzeu la col·lecció multimèdia"
+msgstr "Reprodueix i navega la col·lecció multimèdia"
 
 #: ../src/Extensions/Banshee.MediaPanel/Banshee.MediaPanel/MediaPanelContents.cs:106
 msgid "Library"
@@ -6811,7 +6805,7 @@ msgstr "Navega al menú"
 
 #: ../src/Extensions/Banshee.OpticalDisc/Banshee.OpticalDisc.Dvd/DvdSource.cs:38
 msgid "DVD"
-msgstr ""
+msgstr "DVD"
 
 #: ../src/Extensions/Banshee.OpticalDisc/Banshee.OpticalDisc.Dvd/DvdSource.cs:63
 msgid "DVD Preferences"
@@ -7631,6 +7625,7 @@ msgid ""
 "Your IP has made too many requests in a short period, exceeding our API "
 "guidelines"
 msgstr ""
+"S'han realitzat massa peticions des de la vostra IP en poc temps. Heu excedit el límit d'ús de l'API."
 
 #: ../src/Libraries/Lastfm/Lastfm/RadioConnection.cs:318
 msgid "There was an unknown error."
@@ -7844,8 +7839,7 @@ msgstr "Podcast desconegut"
 #~ "utilitzar el Banshee i l'iTunes al mateix iPod."
 
 #~ msgid "Learn more about Banshee's iPod support"
-#~ msgstr ""
-#~ "Obteniu més informació quant a la compatibilitat iPod del Banshee"
+#~ msgstr "Obteniu més informació quant a la compatibilitat iPod del Banshee"
 
 #~ msgid ""
 #~ "An iPod database could not be found on this device.\n"
