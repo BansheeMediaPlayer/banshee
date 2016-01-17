@@ -1,6 +1,6 @@
 # Copyright (C) 2010 banshee's COPYRIGHT HOLDER
 # This file is distributed under the same license as the banshee package.
-# Mario Blättermann <mario.blaettermann@gmail.com>, 2010, 2012.
+# Mario Blättermann <mario.blaettermann@gmail.com>, 2010, 2012, 2016.
 # Markus Schley <marqus@gmx.net>, 2011.
 # Daniel Winzen <d@winzen4.de>, 2012.
 # Christian Kirbach <christian.kirbach@gmail.com>, 2012.
@@ -9,23 +9,23 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: banshee help master\n"
-"POT-Creation-Date: 2014-01-02 11:17+0000\n"
-"PO-Revision-Date: 2014-01-06 16:10+0100\n"
-"Last-Translator: Benjamin Steinwender <b@stbe.at>\n"
+"POT-Creation-Date: 2015-12-24 15:58+0000\n"
+"PO-Revision-Date: 2016-01-08 17:37+0100\n"
+"Last-Translator: Mario Blättermann <mario.blaettermann@gmail.com>\n"
 "Language-Team: German <gnome-de@gnome.org>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 1.6.3\n"
+"X-Generator: Poedit 1.8.6\n"
 
 #. When image changes, this message will be marked fuzzy or untranslated for you.
 #. It doesn't matter what you translate it to: it's not used at all.
 #: C/ui.page:35(None) C/introduction.page:44(None)
 msgid ""
 "@@image: 'figures/main-window.png'; md5=a4b2814f0dce9333bceb0d05e910a796"
-msgstr ""
+msgstr "translated"
 
 #: C/ui.page:9(desc)
 msgid "An overview of the <app>Banshee</app> user interface."
@@ -46,8 +46,8 @@ msgstr "Paul Cutler"
 #: C/play.page:15(email) C/play-queue.page:19(email)
 #: C/manage-tags.page:13(email) C/manage-playlists.page:13(email)
 #: C/lastfm.page:13(email) C/keyboard-shortcuts.page:11(email)
-#: C/introduction.page:11(email) C/index.page:12(email)
-#: C/import.page:13(email) C/extensions.page:12(email) C/amazon.page:12(email)
+#: C/introduction.page:11(email) C/index.page:12(email) C/import.page:13(email)
+#: C/extensions.page:12(email) C/amazon.page:12(email)
 msgid "pcutler@gnome.org"
 msgstr "pcutler@gnome.org"
 
@@ -61,8 +61,8 @@ msgstr "Aruna Sankaranarayanan"
 #: C/ui.page:17(email) C/sync.page:17(email) C/sort.page:17(email)
 #: C/search.page:17(email) C/radio.page:19(email) C/play.page:23(email)
 #: C/play-queue.page:14(email) C/lastfm.page:17(email)
-#: C/introduction.page:15(email) C/index.page:20(email)
-#: C/import.page:21(email) C/amazon.page:16(email)
+#: C/introduction.page:15(email) C/index.page:20(email) C/import.page:21(email)
+#: C/amazon.page:16(email)
 msgid "aruna.evam@gmail.com"
 msgstr "aruna.evam@gmail.com"
 
@@ -130,7 +130,7 @@ msgstr ""
 
 #: C/ui.page:68(title)
 msgid "<gui>Now Playing</gui> view"
-msgstr "Ansicht »<gui>Aktuelle Wiedergabe</gui>«"
+msgstr "Ansicht <gui>Aktuelle Wiedergabe</gui>"
 
 #: C/ui.page:70(p)
 msgid ""
@@ -155,11 +155,11 @@ msgid ""
 msgstr ""
 "Um im <gui>Aktuelle Wiedergabe</gui>-Modus die <app>Banshee</app>-"
 "Benutzerschnittstelle zu verstecken und Ihre Medien im Vollbildmodus zu "
-"betrachten können Sie eine der folgenden Möglichkeiten einsetzen:"
+"betrachten, können Sie eine der folgenden Möglichkeiten einsetzen:"
 
 #: C/ui.page:83(p)
 msgid "Double-click the view with your mouse."
-msgstr "In die Ansicht mit Ihrer Maus doppelt klicken."
+msgstr "Klicken Sie mit Ihrer Maus doppelt in die Ansicht."
 
 #: C/ui.page:86(p)
 msgid "Press <key>F</key>."
@@ -836,12 +836,11 @@ msgid ""
 "<guiseq><gui style=\"menu\">Playback</gui><gui style=\"menuitem\">Play</"
 "gui></guiseq>."
 msgstr ""
-"Um einen Radiosenders <link xref=\"play\">wiederzugeben</link>, "
-"doppelklicken Sie auf den Radiosender. Alternativ können Sie auf den "
-"Radiosender rechts klicken und <gui style=\"menuitem\">Wiedergabe</gui> "
-"wählen oder den Radiosender auswählen und <guiseq><gui style=\"menu"
-"\">Wiedergabe</gui><gui style=\"menuitem\">Wiedergabe</gui></guiseq> im Menü "
-"wählen."
+"Um einen Radiosender <link xref=\"play\">wiederzugeben</link>, klicken Sie "
+"doppelt darauf. Alternativ können Sie auf den Radiosender rechts klicken und "
+"<gui style=\"menuitem\">Wiedergabe</gui> wählen oder den Radiosender "
+"auswählen und <guiseq><gui style=\"menu\">Wiedergabe</gui><gui style="
+"\"menuitem\">Wiedergabe</gui></guiseq> im Menü wählen."
 
 #. Not sure about play queue and play after current track
 #: C/radio.page:109(p)
@@ -852,6 +851,12 @@ msgid ""
 "when the queue has finished playing all media which is ahead of the station "
 "in the <gui>Play Queue</gui>."
 msgstr ""
+"Um einen Radiosender zur <gui style=\"menuitem\" xref=\"play-queue"
+"\">Wiedergabe-Warteschlange</gui> hinzuzufügen, klicken Sie mit der rechten "
+"Maustaste darauf und wählen Sie <gui style=\"menuitem\">Zur Warteschlange "
+"hinzufügen</gui>. Der Sender wird abgespielt, sobald alle anderen Medien "
+"wiedergegeben wurden, die in der <gui>Wiedergabe-Warteschlange</gui> vor dem "
+"Sender stehen."
 
 #: C/radio.page:115(p)
 msgid ""
@@ -884,6 +889,12 @@ msgid ""
 "<key>Delete</key>. When you are prompted for confirmation, click the <gui "
 "style=\"button\">Remove</gui> button to remove the radio station."
 msgstr ""
+"Um einen Radiosender aus <app>Banshee</app> zu entfernen, klicken Sie "
+"entweder mit der rechten Maustaste darauf und wählen <gui style=\"menuitem"
+"\">Entfernen</gui>, oder Sie wählen den Sender mit der Maus aus und drücken "
+"die <key>Entf</key>-Taste. Wenn Sie um Bestätigung gebeten werden, klicken "
+"Sie auf <gui style=\"button\">Entfernen</gui>, um den Radiosender zu "
+"entfernen."
 
 #: C/podcast.page:11(desc)
 msgid "Add, remove and play podcasts in <app>Banshee</app>."
@@ -1000,12 +1011,17 @@ msgid ""
 "name of the podcast, the title of each episode and the date that it was "
 "published on."
 msgstr ""
+"Nachdem Sie eine Podcast-Quelle hinzugefügt haben, zeigt <app>Banshee</app> "
+"den Namen des Podcasts, den Titel der Folge und das Datum der "
+"Veröffentlichung an."
 
 #: C/podcast.page:85(p)
 msgid ""
 "Once a podcast has been archived, it will be removed from the <gui>New "
 "Items</gui> list, but it will still appear in the <gui>All Items</gui> list."
 msgstr ""
+"Wenn ein Podcast archiviert wurde, wird er aus der Liste <gui>Neue Elemente</"
+"gui> entfernt, bleibt aber in der Liste <gui>Alle Elemente</gui> sichtbar."
 
 #: C/podcast.page:90(p)
 msgid ""
@@ -1014,6 +1030,10 @@ msgid ""
 "corresponding podcast name in the podcast list or by right clicking on any "
 "episode of that podcast."
 msgstr ""
+"Sie können in den <gui style=\"menuitem\">Eigenschaften des Podcasts</gui> "
+"die Abonnement-Optionen bearbeiten, indem Sie mit der rechten Maustaste "
+"entweder auf den entsprechenden Namen in der Podcast-Liste oder auf eine "
+"beliebige Folge innerhalb des Podcasts klicken."
 
 #: C/podcast.page:99(title) C/play.page:121(title)
 msgid "Play a podcast"
@@ -1027,6 +1047,13 @@ msgid ""
 "episode to the <gui xref=\"play-queue\">Play Queue</gui> by right clicking "
 "on the episode and selecting <gui style=\"menuitem\">Add to Play Queue</gui>."
 msgstr ""
+"Um eine Podcast-Folge <link xref=\"play\">wiederzugeben</link>, klicken Sie "
+"doppelt darauf oder wählen Sie sie mit einem einfachen Klick aus und wählen "
+"dann <guiseq><gui style=\"menu\">Wiedergabe</gui><gui style=\"menuitem"
+"\">Wiedergabe</gui></guiseq>. Sie können die Folge auch zur <gui xref=\"play-"
+"queue\">Wiedergabe-Warteschlange</gui> hinzufügen, indem Sie mit der rechten "
+"Maustaste darauf klicken und <gui style=\"menuitem\">Zur Warteschlange "
+"hinzufügen</gui> wählen."
 
 #: C/podcast.page:110(title)
 msgid "Remove a podcast"
@@ -1039,6 +1066,10 @@ msgid ""
 "unsubscribe you from receiving podcast updates and will delete all the "
 "episodes of the podcast from your library."
 msgstr ""
+"Um einen Podcast zu entfernen, klicken Sie in der Podcast-Liste mit der "
+"rechten Maustaste darauf und wählen Sie <gui style=\"menuitem\">Abbestellen "
+"und löschen</gui>. Dadurch wird der Empfang neuer Folgen verhindert und alle "
+"Folgen dieses Podcasts aus Ihrer Bibliothek entfernt."
 
 #: C/play.page:9(desc)
 msgid "Play your videos and music files."
@@ -1679,12 +1710,12 @@ msgid ""
 "guiseq>. You will be presented with a dialog to create a new Smart Playlist. "
 "Enter the name of your playlist and then choose the criteria your playlist "
 "should be based on. You can choose from any field included in the song's "
-"meatadata, such as Album, Artist or Year. Choose the criteria and then "
-"choose from one of the following:"
+"metadata, such as Album, Artist or Year. Choose the criteria and then choose "
+"from one of the following:"
 msgstr ""
 "Um eine neue intelligente Wiedergabeliste anzulegen, wählen Sie im Menü "
 "<guiseq><gui style=\"menu\">Medien</gui><gui style=\"menuitem\">Neue "
-"intelligente Wiedergabeliste</gui></guiseq>. Ein dialog zum Erstellen der "
+"intelligente Wiedergabeliste</gui></guiseq>. Ein Dialog zum Erstellen der "
 "neuen intelligenten Wiedergabeliste wird geöffnet. Geben Sie den Namen Ihrer "
 "Wiedergabeliste ein und wählen Sie anschließend die Kriterien aus, auf denen "
 "Ihre Wiedergabeliste basieren soll. Sie können aus jedem in den Metadaten "
@@ -1755,7 +1786,7 @@ msgstr ""
 msgid ""
 "<app>Banshee</app> also includes smart playlists already created for you. "
 "Press the <gui style=\"button\">Open in editor</gui> button to view how the "
-"playlist created was or to modify it. If you press <gui style=\"button"
+"playlist was created, or to modify it. If you press <gui style=\"button"
 "\">Create and save</gui> the playlist will be automatically generated and "
 "saved for you. The following playlists are included:"
 msgstr ""
@@ -1936,6 +1967,11 @@ msgid ""
 "of your device, attempt to scrobble the songs you have played since the "
 "device was last connected and submit them to Last.fm."
 msgstr ""
+"Nachdem Sie <app>Banshee</app> erfolgreich mit Ihrem Last.fm-Profil "
+"verbunden und die Übermittlung von Titeln an Last.fm ermöglicht haben, "
+"können Sie auch das Scrobbeln von einem angeschlossenen Gerät aktivieren. "
+"<app>Banshee</app> wird versuchen, die seit der letzten Verbindung zum Gerät "
+"abgespielten Titel zu scrobbeln und an Last.fm zu übermitteln."
 
 #: C/lastfm.page:95(p)
 msgid ""
@@ -1947,6 +1983,14 @@ msgid ""
 "upon connection of your device, now attempt to gather information regarding "
 "the songs that you have played since it was last connected."
 msgstr ""
+"Um das Scrobbeln von einem angeschlossenen Gerät zu aktivieren, öffnen Sie "
+"die Einstellungen in <app>Banshee</app> und wählen den Reiter <gui style="
+"\"tab\">Quellspezifisch</gui>. Aus der Auswahlliste wählen Sie dann <gui "
+"style=\"menuitem\">Last.fm</gui> und aktivieren das Ankreuzfeld <gui style="
+"\"checkbox\">Übermittlung von Titeln durch Gerät aktivieren</gui>. Bei "
+"aktiver Verbindung zum Internet versucht <app>Banshee</app> nun bei "
+"angeschlossenem Gerät Informationen zu den abgespielten Titeln seit der "
+"letzten Verbindung zu übermitteln."
 
 #: C/lastfm.page:103(p)
 msgid ""
@@ -1955,6 +1999,11 @@ msgid ""
 "album information is incorrect (although we again recommend that you use the "
 "Metadata Fixer extension to correct your files instead)."
 msgstr ""
+"Wie bei regulären Scrobbling-Übertragungen durch <app>Banshee</app> "
+"aktualisiert Last.fm Ihre Musik-Metadaten automatisch, wenn die "
+"Informationen zu Künstler, Titel oder Album nicht korrekt sind. Wir "
+"empfehlen allerdings, stattdessen die Metadaten-Korrektor-Erweiterung zu "
+"verwenden, um Ihre Dateien zu korrigieren."
 
 #: C/lastfm.page:108(p)
 msgid ""
@@ -2263,7 +2312,7 @@ msgstr ""
 msgid ""
 "To import music or video files on your computer, choose <guiseq><gui style="
 "\"menu\">Media</gui><gui style=\"menuitem\">Import Media</gui></guiseq>. A "
-"dialog wil appear with a number of choices."
+"dialog will appear with a number of choices."
 msgstr ""
 "Um Musik- oder Videodateien auf Ihren Rechner zu importieren, wählen Sie "
 "<guiseq><gui style=\"menu\">Medien</gui><gui style=\"menuitem\">Medien "
@@ -2500,10 +2549,10 @@ msgstr ""
 "Stunde nach dem Kauf die Dateien herunterzuladen und zu importieren."
 
 #. Put one translator per line, in the form of NAME <EMAIL>, YEAR1, YEAR2
-#: C/index.page:0(None)
+#: C/amazon.page:0(None)
 msgid "translator-credits"
 msgstr ""
-"Mario Blättermann <mario.blaettermann@gmail.com>, 2010, 2012\n"
+"Mario Blättermann <mario.blaettermann@gmail.com>, 2010, 2012, 2015\n"
 "Markus Schley <marqus@gmx.net>, 2011\n"
 "Daniel Winzen <d@winzen4.de>, 2012\n"
 "Benjamin Steinwender <b@stbe.at>, 2013, 2014"
