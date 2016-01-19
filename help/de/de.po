@@ -1,6 +1,6 @@
 # Copyright (C) 2010 banshee's COPYRIGHT HOLDER
 # This file is distributed under the same license as the banshee package.
-# Mario Blättermann <mario.blaettermann@gmail.com>, 2010, 2012.
+# Mario Blättermann <mario.blaettermann@gmail.com>, 2010, 2012, 2016.
 # Markus Schley <marqus@gmx.net>, 2011.
 # Daniel Winzen <d@winzen4.de>, 2012.
 # Christian Kirbach <christian.kirbach@gmail.com>, 2012.
@@ -8,16 +8,16 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: banshee help master\n"
-"POT-Creation-Date: 2014-06-01 14:50+0000\n"
-"PO-Revision-Date: 2014-06-01 19:55+0100\n"
-"Last-Translator: Benjamin Steinwender <b@stbe.at>\n"
+"POT-Creation-Date: 2016-01-19 16:00+0000\n"
+"PO-Revision-Date: 2016-01-19 20:12+0100\n"
+"Last-Translator: Mario Blättermann <mario.blaettermann@gmail.com>\n"
 "Language-Team: German <gnome-de@gnome.org>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 1.6.5\n"
+"X-Generator: Poedit 1.8.6\n"
 
 #. When image changes, this message will be marked fuzzy or untranslated for you.
 #. It doesn't matter what you translate it to: it's not used at all.
@@ -46,8 +46,8 @@ msgstr "Paul Cutler"
 #: C/manage-coverart.page:13(email) C/lastfm.page:13(email)
 #: C/keyboardshortcuts.page:11(email) C/introduction.page:13(email)
 #: C/index.page:11(email) C/import.page:12(email) C/extensions.page:12(email)
-#: C/amazon.page:13(email) C/advanced.page:12(email)
-#: C/add-radio.page:15(email) C/add-podcast.page:15(email)
+#: C/amazon.page:13(email) C/advanced.page:12(email) C/add-radio.page:15(email)
+#: C/add-podcast.page:15(email)
 msgid "pcutler@gnome.org"
 msgstr "pcutler@gnome.org"
 
@@ -1445,6 +1445,11 @@ msgid ""
 "scrobble the songs you have played since the device was last connected and "
 "submit them to Last.fm."
 msgstr ""
+"Nachdem Sie <app>Banshee</app> erfolgreich mit Ihrem Last.fm-Profil "
+"verbunden und die Übermittlung von Titeln an Last.fm ermöglicht haben, "
+"können Sie auch das Scrobbeln von einem angeschlossenen Gerät aktivieren. "
+"<app>Banshee</app> wird versuchen, die seit der letzten Verbindung zum Gerät "
+"abgespielten Titel zu scrobbeln und an Last.fm zu übermitteln."
 
 #: C/lastfm.page:82(p)
 msgid ""
@@ -1455,6 +1460,13 @@ msgid ""
 "connection of your device, now attempt to gather information regarding the "
 "songs that you have played since it was last connected."
 msgstr ""
+"Um das Scrobbeln von einem angeschlossenen Gerät zu aktivieren, öffnen Sie "
+"die Einstellungen in <app>Banshee</app> und wählen den Reiter "
+"<gui>Quellspezifisch</gui>. Aus der Auswahlliste wählen Sie dann <gui>Last."
+"fm</gui> und aktivieren das Ankreuzfeld <gui>Übermittlung von Titeln durch "
+"Gerät aktivieren</gui>. Bei aktiver Verbindung zum Internet versucht "
+"<app>Banshee</app> nun bei angeschlossenem Gerät Informationen zu den "
+"abgespielten Titeln seit der letzten Verbindung zu übermitteln."
 
 #: C/lastfm.page:89(p)
 msgid ""
@@ -1463,6 +1475,11 @@ msgid ""
 "information is incorrect (although we again recommend that you use the "
 "Metadata Fixer extension to correct your files instead)."
 msgstr ""
+"Wie bei regulären Scrobbling-Übertragungen durch <app>Banshee</app> "
+"aktualisiert Last.fm Ihre Musik-Metadaten automatisch, wenn die "
+"Informationen zu Künstler, Titel oder Album nicht korrekt sind. Wir "
+"empfehlen allerdings, stattdessen die Metadaten-Korrektor-Erweiterung zu "
+"verwenden, um Ihre Dateien zu korrigieren."
 
 #: C/lastfm.page:94(p)
 msgid ""
