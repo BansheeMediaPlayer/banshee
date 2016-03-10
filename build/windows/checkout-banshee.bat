@@ -10,7 +10,7 @@ if not exist banshee goto failure
 
 cd banshee
 call %GIT_PATH% submodule update --init
-call %GIT_PATH% clone git://gitorious.org/banshee/windows-binaries.git bin
+call %GIT_PATH% clone https://github.com/BansheeMediaPlayer/windows-binaries.git bin
 if not exist bin goto failure
 
 echo "Checkout script finished. Banshee is now checked out into the banshee folder.  Build it with build\windows\build-banshee.bat or your favorite IDE using Banshee.sln"
