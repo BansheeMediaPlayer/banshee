@@ -9,10 +9,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: banshee HEAD\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
-"product=banshee&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2012-09-22 16:09+0000\n"
-"PO-Revision-Date: 2012-09-15 22:58-0400\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=banshe"
+"e&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2012-09-29 20:20+0000\n"
+"PO-Revision-Date: 2012-10-12 20:11-0400\n"
 "Last-Translator: Chris Leonard <cjlhomeaddress@gmail.com>\n"
 "Language-Team: Sugar Labs\n"
 "Language: en_GB\n"
@@ -4252,29 +4252,41 @@ msgstr "Supports cover art"
 msgid "Supports photos"
 msgstr "Supports photos"
 
-#: ../src/Dap/Banshee.Dap.AppleDevice/Banshee.Dap.AppleDevice/AppleDeviceSource.cs:465
+#: ../src/Dap/Banshee.Dap.AppleDevice/Banshee.Dap.AppleDevice/AppleDeviceSource.cs:462
 msgid "Track duration is zero"
 msgstr "Track duration is zero"
 
-#: ../src/Dap/Banshee.Dap.AppleDevice/Banshee.Dap.AppleDevice/AppleDeviceSource.cs:571
+#: ../src/Dap/Banshee.Dap.AppleDevice/Banshee.Dap.AppleDevice/AppleDeviceSource.cs:566
 msgid "Syncing iPod"
 msgstr "Synchronising iPod"
 
-#: ../src/Dap/Banshee.Dap.AppleDevice/Banshee.Dap.AppleDevice/AppleDeviceSource.cs:572
+#: ../src/Dap/Banshee.Dap.AppleDevice/Banshee.Dap.AppleDevice/AppleDeviceSource.cs:567
 msgid "Preparing to synchronize..."
 msgstr "Preparing to synchronise…"
 
-#: ../src/Dap/Banshee.Dap.AppleDevice/Banshee.Dap.AppleDevice/AppleDeviceSource.cs:575
+#: ../src/Dap/Banshee.Dap.AppleDevice/Banshee.Dap.AppleDevice/AppleDeviceSource.cs:589
 #, csharp-format
 msgid "Adding track {0} of {1}"
 msgstr "Adding track {0} of {1}"
 
-#: ../src/Dap/Banshee.Dap.AppleDevice/Banshee.Dap.AppleDevice/AppleDeviceSource.cs:611
+#: ../src/Dap/Banshee.Dap.AppleDevice/Banshee.Dap.AppleDevice/AppleDeviceSource.cs:616
+#, csharp-format
+#| msgid "Adding track {0} of {1}"
+msgid "Updating metadata in track {0} of {1}"
+msgstr "Updating metadata in track {0} of {1}"
+
+#: ../src/Dap/Banshee.Dap.AppleDevice/Banshee.Dap.AppleDevice/AppleDeviceSource.cs:636
 #, csharp-format
 msgid "Removing track {0} of {1}"
 msgstr "Removing track {0} of {1}"
 
-#: ../src/Dap/Banshee.Dap.AppleDevice/Banshee.Dap.AppleDevice/AppleDeviceSource.cs:664
+#: ../src/Dap/Banshee.Dap.AppleDevice/Banshee.Dap.AppleDevice/AppleDeviceSource.cs:666
+#, csharp-format
+#| msgid "Removing track {0} of {1}"
+msgid "Cleaning up, removing invalid track {0} of {1}"
+msgstr "Cleaning up, removing invalid track {0} of {1}"
+
+#: ../src/Dap/Banshee.Dap.AppleDevice/Banshee.Dap.AppleDevice/AppleDeviceSource.cs:713
 msgid "Writing media database"
 msgstr "Writing media database"
 
