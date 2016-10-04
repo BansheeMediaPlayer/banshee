@@ -52,14 +52,9 @@ namespace Banshee.Database
             get { return configuration; }
         }
 
-        private bool? likelihood_support = null;
+        // banshee already depends on sqlite >= 3.8.1 (TODO: remove this internal property)
         internal bool LikelihoodSupport {
-            get {
-                if (!likelihood_support.HasValue) {
-                    likelihood_support = Query<bool> ("SELECT sqlite_version () >= '3.8.1'");
-                }
-                return likelihood_support.Value;
-            }
+            get { return true; }
         }
 
         public BansheeDbConnection () : this (DatabaseFile)

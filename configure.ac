@@ -114,7 +114,7 @@ BANSHEE_CHECK_OSX
 dnl Mono.Upnp libraries
 BANSHEE_CHECK_MONO_UPNP
 
-PKG_CHECK_MODULES(SQLITE, sqlite3 >= 3.4)
+PKG_CHECK_MODULES(SQLITE, sqlite3 >= 3.8.1)
 
 dnl GNOME (optional)
 AC_ARG_ENABLE(gnome, AC_HELP_STRING([--disable-gnome], [Disable GNOME support]), , enable_gnome="yes")
